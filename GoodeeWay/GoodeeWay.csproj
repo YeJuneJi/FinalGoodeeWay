@@ -82,6 +82,7 @@
   <ItemGroup>
     <Folder Include="DAO\" />
     <Folder Include="DB\" />
+    <Folder Include="VO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
