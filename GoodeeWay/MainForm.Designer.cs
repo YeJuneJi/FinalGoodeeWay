@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnSalesMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnSalesMenu
+            // 
+            this.btnSalesMenu.Location = new System.Drawing.Point(12, 12);
+            this.btnSalesMenu.Name = "btnSalesMenu";
+            this.btnSalesMenu.Size = new System.Drawing.Size(75, 23);
+            this.btnSalesMenu.TabIndex = 0;
+            this.btnSalesMenu.Text = "메뉴관리";
+            this.btnSalesMenu.UseVisualStyleBackColor = true;
+            this.btnSalesMenu.Click += new System.EventHandler(this.btnSalesMenu_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSalesMenu);
             this.Name = "MainForm";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -43,6 +55,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnSalesMenu;
     }
 }
 

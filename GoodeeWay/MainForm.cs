@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DB;
+using GoodeeWay.SalesMenu;
 
 namespace GoodeeWay
 {
@@ -21,6 +22,12 @@ namespace GoodeeWay
         private void MainForm_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnSalesMenu_Click(object sender, EventArgs e)
+        {
+            FrmSalesMenu salesMenu = new FrmSalesMenu();
+            salesMenu.Show();
         }
     }
 }

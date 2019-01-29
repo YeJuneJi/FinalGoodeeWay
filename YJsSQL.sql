@@ -45,3 +45,33 @@ constraint saleRecords_menuCode_fk foreign key(menuCode) references dbo.Sales(me
 GO
 
 
+--Sales 테이블의 Insert 프로시저
+CREATE PROCEDURE dbo.InsertMenu
+@menuCode nvarchar(10),
+@menuName nvarchar(30),
+@price float,
+@kCal int,
+@menuImage image ,
+@division nvarchar(10),
+@additionalContext nvarchar(200)
+as
+insert into dbo.Sales
+values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext);
+GO
+
+
+--Recipes 테이블의 Insert 프로시저
+CREATE PROCEDURE dbo.InsertRecipe
+@ingredientAmount int,
+@menuCode nvarchar(10),
+@InventoryTypeCode nvarchar(6),
+@necessary bit
+AS
+insert into dbo.Recipes values('RCP'+ REPLICATE('0', 7- LEN(next value for dbo.CountRecipeNo)) + CAST(next value for dbo.CountRecipeNo as nvarchar), @ingredientAmount, @menuCode, @InventoryTypeCode, @necessary);
+GO
+
+--RecipeNo에 대한 시퀀스
+CREATE SEQUENCE CountRecipeNo
+    START WITH 1
+    INCREMENT BY 1;
+GO

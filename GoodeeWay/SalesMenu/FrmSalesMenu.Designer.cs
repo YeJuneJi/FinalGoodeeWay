@@ -1,6 +1,6 @@
-﻿namespace GoodeeWay.Sales
+﻿namespace GoodeeWay.SalesMenu
 {
-    partial class Sales
+    partial class FrmSalesMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -51,6 +51,10 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
+            this.label8 = new System.Windows.Forms.Label();
+            this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
             this.SuspendLayout();
@@ -158,11 +162,13 @@
             // 
             // cbxDivision
             // 
+            this.cbxDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDivision.FormattingEnabled = true;
             this.cbxDivision.Location = new System.Drawing.Point(389, 54);
             this.cbxDivision.Name = "cbxDivision";
             this.cbxDivision.Size = new System.Drawing.Size(121, 20);
             this.cbxDivision.TabIndex = 12;
+            this.cbxDivision.SelectedIndexChanged += new System.EventHandler(this.cbxDivision_SelectedIndexChanged);
             // 
             // btnPhoto
             // 
@@ -172,21 +178,23 @@
             this.btnPhoto.TabIndex = 13;
             this.btnPhoto.Text = "찾아보기...";
             this.btnPhoto.UseVisualStyleBackColor = true;
+            this.btnPhoto.Click += new System.EventHandler(this.btnPhoto_Click);
             // 
             // pbxPhoto
             // 
             this.pbxPhoto.Location = new System.Drawing.Point(599, 26);
             this.pbxPhoto.Name = "pbxPhoto";
             this.pbxPhoto.Size = new System.Drawing.Size(115, 120);
+            this.pbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxPhoto.TabIndex = 14;
             this.pbxPhoto.TabStop = false;
             // 
             // tbxAddContxt
             // 
-            this.tbxAddContxt.Location = new System.Drawing.Point(391, 80);
+            this.tbxAddContxt.Location = new System.Drawing.Point(389, 80);
             this.tbxAddContxt.Multiline = true;
             this.tbxAddContxt.Name = "tbxAddContxt";
-            this.tbxAddContxt.Size = new System.Drawing.Size(202, 66);
+            this.tbxAddContxt.Size = new System.Drawing.Size(204, 66);
             this.tbxAddContxt.TabIndex = 15;
             // 
             // btnMnuInsert
@@ -253,11 +261,45 @@
             this.btnClear.Text = "초기화";
             this.btnClear.UseVisualStyleBackColor = true;
             // 
-            // Sales
+            // oFdialogPhoto
+            // 
+            this.oFdialogPhoto.Filter = "jpg 파일|*.jpg|png 파일|*.png|bmp 파일|*.bmp";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(902, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(192, 32);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "상세 레시피";
+            // 
+            // FlowPanel
+            // 
+            this.FlowPanel.AutoScroll = true;
+            this.FlowPanel.Location = new System.Drawing.Point(755, 57);
+            this.FlowPanel.Name = "FlowPanel";
+            this.FlowPanel.Size = new System.Drawing.Size(537, 448);
+            this.FlowPanel.TabIndex = 25;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(934, 205);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(0, 0);
+            this.flowLayoutPanel3.TabIndex = 28;
+            // 
+            // FrmSalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 517);
+            this.ClientSize = new System.Drawing.Size(741, 517);
+            this.Controls.Add(this.flowLayoutPanel3);
+            this.Controls.Add(this.FlowPanel);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnExcel);
@@ -281,8 +323,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Sales";
+            this.Name = "FrmSalesMenu";
             this.Text = "Sales";
+            this.Load += new System.EventHandler(this.FrmSalesMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).EndInit();
             this.ResumeLayout(false);
@@ -315,5 +358,9 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.OpenFileDialog oFdialogPhoto;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.FlowLayoutPanel FlowPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }

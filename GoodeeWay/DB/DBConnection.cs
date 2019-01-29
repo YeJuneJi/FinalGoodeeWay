@@ -16,6 +16,7 @@ namespace GoodeeWay.DB
              con = new SqlConnection(new Properties.Settings().connectionStr);
             
         }
+
         /// <summary>
         /// 싱글톤 패턴으로 만들어 Open 객체를 하나만 만들기 위해 만들어진 메서드
         /// </summary>
@@ -81,7 +82,6 @@ namespace GoodeeWay.DB
             SqlConnection sqlConnection = OpenConnection();
             SqlTransaction transaction = GetTransaction(sqlConnection);
             SqlCommand sqlCommand = GetCommand(sqlConnection,procedure,transaction,parameters);
-
             try
             {
                 return sqlCommand.ExecuteReader();
@@ -92,6 +92,7 @@ namespace GoodeeWay.DB
                 throw;
             }
         }
+
         /// <summary>
         /// Update 하기 위한 메서드
         /// </summary>
@@ -121,6 +122,7 @@ namespace GoodeeWay.DB
                 }
             }
         }
+
         /// <summary>
         ///  테이블에 insert시키는 메서드
         /// </summary>
@@ -151,6 +153,7 @@ namespace GoodeeWay.DB
             }
             return result;
         }
+
         /// <summary>
         /// Delete 사용 메서드
         /// </summary>
