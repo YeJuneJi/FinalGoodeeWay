@@ -53,7 +53,7 @@ namespace GoodeeWay.DB
         /// <param name="sqlCon"></param>
         /// <param name="procedure">사용하는 프로시져 명</param>
         /// <param name="transaction"></param>
-        /// <param name="sqlParameters"></param>
+        /// <param name="sqlParameters">null값 사용가능</param>
         /// <returns> SqlCommand 타입 객체</returns>
         private SqlCommand GetCommand(SqlConnection sqlCon, string procedure, SqlTransaction transaction, SqlParameter[] sqlParameters)
         {
@@ -62,8 +62,10 @@ namespace GoodeeWay.DB
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = procedure;
             cmd.Transaction = transaction;
-
-            cmd.Parameters.AddRange(sqlParameters);
+            if (sqlParameters !=null)
+            {
+                cmd.Parameters.AddRange(sqlParameters);
+            }
 
             return cmd;
         }

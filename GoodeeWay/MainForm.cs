@@ -20,8 +20,7 @@ namespace GoodeeWay
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            DBConnection dBConnection = new DBConnection();
-
+            
         }
     }
 }
