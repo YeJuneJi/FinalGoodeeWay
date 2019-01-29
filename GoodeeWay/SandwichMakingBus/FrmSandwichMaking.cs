@@ -7,20 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GoodeeWay.DB;
 
-namespace GoodeeWay
+namespace GoodeeWay.SandwichMakingBus
 {
-    public partial class MainForm : Form
+    public partial class FrmSandwichMaking : Form
     {
-        public MainForm()
+        public FrmSandwichMaking()
         {
             InitializeComponent();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }
