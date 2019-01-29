@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GoodeeWay.DB;
 
 namespace GoodeeWay
 {
@@ -21,6 +22,10 @@ namespace GoodeeWay
         {
             Inventory inventory = new Inventory();
             inventory.ShowDialog();
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

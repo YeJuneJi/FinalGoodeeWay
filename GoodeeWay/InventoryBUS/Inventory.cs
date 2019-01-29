@@ -130,7 +130,7 @@ namespace GoodeeWay
                 rd.InventoryTypeCode = dgvReceivingDetails["InventoryTypeCode", i].Value.ToString();
                 receivingDetailsList.Add(rd);
             }
-            inventoryDAO.InventoryAdd(receivingDetailsList);
+            inventoryDAO.InventoryInsert(receivingDetailsList);
         }
     }
 }
