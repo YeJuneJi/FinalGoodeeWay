@@ -32,10 +32,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView8 = new System.Windows.Forms.DataGridView();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dgvReceivingDetailsList = new System.Windows.Forms.DataGridView();
+            this.btnLoadingFile = new System.Windows.Forms.Button();
+            this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
+            this.dgvReceivingDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -60,10 +60,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetails)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
@@ -85,21 +86,21 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(843, 659);
+            this.tabControl1.Size = new System.Drawing.Size(1093, 659);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.dataGridView8);
-            this.tabPage1.Controls.Add(this.button9);
-            this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.dataGridView4);
+            this.tabPage1.Controls.Add(this.dgvReceivingDetailsList);
+            this.tabPage1.Controls.Add(this.btnLoadingFile);
+            this.tabPage1.Controls.Add(this.btnReceivingDetailsSave);
+            this.tabPage1.Controls.Add(this.dgvReceivingDetails);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(835, 633);
+            this.tabPage1.Size = new System.Drawing.Size(1085, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "입고내역";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -122,41 +123,43 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "입고내역 List";
             // 
-            // dataGridView8
+            // dgvReceivingDetailsList
             // 
-            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView8.Location = new System.Drawing.Point(12, 35);
-            this.dataGridView8.Name = "dataGridView8";
-            this.dataGridView8.RowTemplate.Height = 23;
-            this.dataGridView8.Size = new System.Drawing.Size(240, 546);
-            this.dataGridView8.TabIndex = 25;
+            this.dgvReceivingDetailsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReceivingDetailsList.Location = new System.Drawing.Point(12, 35);
+            this.dgvReceivingDetailsList.Name = "dgvReceivingDetailsList";
+            this.dgvReceivingDetailsList.RowTemplate.Height = 23;
+            this.dgvReceivingDetailsList.Size = new System.Drawing.Size(240, 546);
+            this.dgvReceivingDetailsList.TabIndex = 25;
             // 
-            // button9
+            // btnLoadingFile
             // 
-            this.button9.Location = new System.Drawing.Point(12, 587);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 24;
-            this.button9.Text = "가져오기";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnLoadingFile.Location = new System.Drawing.Point(12, 587);
+            this.btnLoadingFile.Name = "btnLoadingFile";
+            this.btnLoadingFile.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadingFile.TabIndex = 24;
+            this.btnLoadingFile.Text = "가져오기";
+            this.btnLoadingFile.UseVisualStyleBackColor = true;
+            this.btnLoadingFile.Click += new System.EventHandler(this.btnLoadingFile_Click);
             // 
-            // button6
+            // btnReceivingDetailsSave
             // 
-            this.button6.Location = new System.Drawing.Point(662, 587);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(162, 40);
-            this.button6.TabIndex = 20;
-            this.button6.Text = "입고내역 적용";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnReceivingDetailsSave.Location = new System.Drawing.Point(917, 587);
+            this.btnReceivingDetailsSave.Name = "btnReceivingDetailsSave";
+            this.btnReceivingDetailsSave.Size = new System.Drawing.Size(162, 40);
+            this.btnReceivingDetailsSave.TabIndex = 20;
+            this.btnReceivingDetailsSave.Text = "입고내역 적용";
+            this.btnReceivingDetailsSave.UseVisualStyleBackColor = true;
+            this.btnReceivingDetailsSave.Click += new System.EventHandler(this.btnReceivingDetailsSave_Click);
             // 
-            // dataGridView4
+            // dgvReceivingDetails
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(264, 35);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowTemplate.Height = 23;
-            this.dataGridView4.Size = new System.Drawing.Size(560, 546);
-            this.dataGridView4.TabIndex = 16;
+            this.dgvReceivingDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReceivingDetails.Location = new System.Drawing.Point(264, 35);
+            this.dgvReceivingDetails.Name = "dgvReceivingDetails";
+            this.dgvReceivingDetails.RowTemplate.Height = 23;
+            this.dgvReceivingDetails.Size = new System.Drawing.Size(815, 546);
+            this.dgvReceivingDetails.TabIndex = 16;
             // 
             // tabPage3
             // 
@@ -171,7 +174,7 @@
             this.tabPage3.Controls.Add(this.dataGridView3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(835, 633);
+            this.tabPage3.Size = new System.Drawing.Size(1085, 633);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -402,19 +405,23 @@
             this.dataGridView2.Size = new System.Drawing.Size(355, 543);
             this.dataGridView2.TabIndex = 9;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 683);
+            this.ClientSize = new System.Drawing.Size(1117, 683);
             this.Controls.Add(this.tabControl1);
             this.Name = "Inventory";
             this.Text = "Inventory";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetails)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
@@ -436,9 +443,9 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.Button btnLoadingFile;
+        private System.Windows.Forms.Button btnReceivingDetailsSave;
+        private System.Windows.Forms.DataGridView dgvReceivingDetails;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
@@ -465,6 +472,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView8;
+        private System.Windows.Forms.DataGridView dgvReceivingDetailsList;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

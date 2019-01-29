@@ -1,14 +1,15 @@
 ﻿--입고내역 테이블
 
-CREATE TABLE [dbo].[ReceivingDetails] (
+CREATE TABLE ReceivingDetails (
     [ReceivingDetailsID]   NVARCHAR (10) NOT NULL,
     [ReceivingDetailsDate] DATETIME      NOT NULL,
     [ExpirationDate]       DATETIME      NULL,
     [Quantity]             INT           DEFAULT ((0)) NOT NULL,
     [UnitPrice]            FLOAT (53)    DEFAULT ((0)) NOT NULL,
     [ReturnStatus]         NVARCHAR (10) NOT NULL,
-    [InventoryTypeCode]    NVARCHAR (6)  NOT NULL,
-    PRIMARY KEY CLUSTERED ([ReceivingDetailsID] ASC)
+    [InventoryTypeCode]    NVARCHAR (6)  REFERENCES InventoryType(InventoryTypeCode) NOT NULL,
+    PRIMARY KEY CLUSTERED ([ReceivingDetailsID] ASC),
+
 );
 
 Go
@@ -24,13 +25,31 @@ CREATE TABLE [dbo].InventoryType
 
 Go
 
+--재고종류테이블 추가
+ALTER TABLE InventoryType
+ADD(MaterialClassification nvarchar(30));
+
+Go
+
 --재고테이블
-CREATE TABLE [dbo].[Table]
-(
-	[InventoryID] NVARCHAR(10) NOT NULL PRIMARY KEY, 
-    [InventoryQuantity] INT NOT NULL, 
-    [DateOfUse] DATETIME NOT NULL, 
-    [DateOfDisposal] DATETIME NOT NULL, 
-    [ReceivingDetailsID] NVARCHAR(10) NULL, 
-    [InventoryTypeCode] NVARCHAR(6) NULL
-)
+CREATE TABLE [dbo].[Inventory] (
+    [InventoryID]        NVARCHAR (10) NOT NULL,
+    [InventoryQuantity]  INT           NOT NULL,
+    [DateOfUse]          DATETIME      NULL,
+    [DateOfDisposal]     DATETIME      NULL,
+    [ReceivingDetailsID] NVARCHAR (10) References ReceivingDetails(ReceivingDetailsID) NOT NULL,
+    [InventoryTypeCode]  NVARCHAR (6)  References InventoryType(InventoryTypeCode) NOT NULL,
+    PRIMARY KEY CLUSTERED ([InventoryID] ASC)
+);
+
+Go
+
+--발주내역
+CREATE TABLE [dbo].OrderDetails (
+    OrderID        NVARCHAR (10) NOT NULL,
+    OrderDate  DATETIME           NOT NULL,
+    InventoryTypeCode   NVARCHAR(6)    References InventoryType(InventoryTypeCode) NOT NULL,
+    Quantity     int    NOT NULL,
+    PRIMARY KEY CLUSTERED (OrderID ASC)
+);
+
