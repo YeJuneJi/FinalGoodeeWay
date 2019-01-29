@@ -251,6 +251,24 @@ namespace GoodeeWay.SalesMenu
                 lblvege.Padding = new Padding(10);
                 vegetablePanel.Controls.Add(lblvege);
 
+                Label lblsause = new Label();
+                lblsause.Text = "소스";
+                lblsause.Size = new Size(50, 50);
+                lblsause.Padding = new Padding(10);
+                saucePanel.Controls.Add(lblsause);
+
+                Label lbltopping = new Label();
+                lbltopping.Text = "토핑";
+                lbltopping.Size = new Size(50, 50);
+                lbltopping.Padding = new Padding(10);
+                toppingPanel.Controls.Add(lbltopping);
+
+                Label lbladd = new Label();
+                lbladd.Text = "부가";
+                lbladd.Size = new Size(50, 50);
+                lbladd.Padding = new Padding(10);
+                additionalPanel.Controls.Add(lbladd);
+
                 foreach (InventoryTypeVO inventoryType in testList)
                 {
                     if (inventoryType.MaterialClassification == "bread")
