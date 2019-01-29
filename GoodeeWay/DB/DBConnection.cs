@@ -10,7 +10,7 @@ namespace GoodeeWay.DB
     class DBConnection
     {
         SqlConnection con;
-
+         
         public DBConnection()
         {
              con = new SqlConnection(new Properties.Settings().connectionStr);
