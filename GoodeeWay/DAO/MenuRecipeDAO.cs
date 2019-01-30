@@ -21,6 +21,7 @@ namespace GoodeeWay.DAO
                 new SqlParameter("menuCode", menuRecipeVO.MenuCode),
                 new SqlParameter("InventoryTypeCode", menuRecipeVO.InventoryTypeCode),
                 new SqlParameter("necessary", menuRecipeVO.Necessary)
+                
             };
             try
             {

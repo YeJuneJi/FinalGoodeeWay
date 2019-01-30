@@ -44,6 +44,10 @@ constraint saleRecords_menuCode_fk foreign key(menuCode) references dbo.Sales(me
 );
 GO
 
+--Sales 테이블의 Select 프로시저
+CREATE PROCEDURE dbo.SelectMenu
+as
+Select * from dbo.Sales;
 
 --Sales 테이블의 Insert 프로시저
 CREATE PROCEDURE dbo.InsertMenu
@@ -74,4 +78,9 @@ GO
 CREATE SEQUENCE CountRecipeNo
     START WITH 1
     INCREMENT BY 1;
+GO
+
+
+-- Sequence를 특정값으로 재설정
+ALTER SEQUENCE dbo.CountRecipeNo RESTART WITH 100;
 GO

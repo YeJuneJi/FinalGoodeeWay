@@ -39,7 +39,6 @@ namespace GoodeeWay.DAO
             try
             {
                 return connection.Insert(storedProcedure, sqlParameters);
-                
             }
             catch (SqlException)
             {
