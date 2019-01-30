@@ -47,7 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\EquipmentDAO.cs" />
+    <Compile Include="DAO\IEquipmentDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
+    <Compile Include="Equipment\FrmAddEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\FrmAddEquipment.Designer.cs">
+      <DependentUpon>FrmAddEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\FrmEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +77,10 @@
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.Designer.cs">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
+    <Compile Include="VO\EquipmentVO.cs" />
+    <EmbeddedResource Include="Equipment\FrmAddEquipment.resx">
+      <DependentUpon>FrmAddEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Equipment\FrmEquipment.resx">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,10 +112,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\" />
-    <Folder Include="VO\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Equipment\EquipmentSQL.sql" />
   </ItemGroup>

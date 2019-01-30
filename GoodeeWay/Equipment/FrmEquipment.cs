@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GoodeeWay.DAO;
 
 namespace GoodeeWay.Equipment
 {
@@ -17,6 +18,17 @@ namespace GoodeeWay.Equipment
             InitializeComponent();
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FrmAddEquipment frmAddEquipment = new FrmAddEquipment();
+            frmAddEquipment.ShowDialog();
+        }
+
+        private void FrmEquipment_Load(object sender, EventArgs e)
+        {
+            EquipmentDAO dAO = new EquipmentDAO();
+
+            dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
+        }
     }
 }

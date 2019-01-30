@@ -20,7 +20,8 @@ namespace GoodeeWay
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            GoodeeWay.Equipment.FrmEquipment frmEquipment = new Equipment.FrmEquipment();
+            frmEquipment.Show();
         }
     }
 }
