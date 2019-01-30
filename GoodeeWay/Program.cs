@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoodeeWay.BUS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace GoodeeWay
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new Employee());
         }
     }
 }

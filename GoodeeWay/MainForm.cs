@@ -9,12 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GoodeeWay.DB;
 
 namespace GoodeeWay
 {
     public partial class MainForm : Form
     {
-        List<EmpVO> lst;
+        
 
         public MainForm()
         {
@@ -23,8 +24,8 @@ namespace GoodeeWay
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            lst = new EmpDAO().OutputAllBoard();
-            this.dataGridView1.DataSource = lst;
+            
+            
         }
     }
 }

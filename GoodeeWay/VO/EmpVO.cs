@@ -38,7 +38,9 @@ namespace GoodeeWay.VO
             get { return pay; }
             set { pay = value; }
         }
-       
+
+
+
         private string department;
 
         public string Department
@@ -61,7 +63,7 @@ namespace GoodeeWay.VO
             set { joindate = value; }
         }
         private DateTime leavedate;
-            
+
         public DateTime LeaveDate
         {
             get { return leavedate; }
