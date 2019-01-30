@@ -11,20 +11,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
+using GoodeeWay.InventoryBUS;
 using GoodeeWay.VO;
 using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
 
 namespace GoodeeWay
 {
     public partial class Inventory : Form
     {
 
-        List<ReceivingDetails> receivingDetailsList;
+        List<ReceivingDetailsVO> receivingDetailsList;
         InventoryDAO inventoryDAO;
 
         public Inventory()
         {
             InitializeComponent();
+            InventoryTypeSelect();
+            ReceivingDetailsListSelect();
         }
 
         private void btnLoadingFile_Click(object sender, EventArgs e)
@@ -34,14 +38,17 @@ namespace GoodeeWay
             {
                 string filePath =openFileDialog1.FileName;
                 
+                
                 dgvReceivingDetails.DataSource=ExcelLoading(filePath);
+                #region 입고내역 상세테이블 컬럼명 변경
                 dgvReceivingDetails.Columns["ReceivingDetailsID"].HeaderText = "입고번호";
                 dgvReceivingDetails.Columns["ReceivingDetailsDate"].HeaderText = "입고날짜";
                 dgvReceivingDetails.Columns["ExpirationDate"].HeaderText = "유통기한";
                 dgvReceivingDetails.Columns["Quantity"].HeaderText = "수량";
                 dgvReceivingDetails.Columns["UnitPrice"].HeaderText = "단가";
                 dgvReceivingDetails.Columns["ReturnStatus"].HeaderText = "반품여부";
-                dgvReceivingDetails.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
+                dgvReceivingDetails.Columns["InventoryTypeCode"].HeaderText = "재고종류코드"; 
+                #endregion
             }
             
             
@@ -52,9 +59,9 @@ namespace GoodeeWay
         /// </summary>
         /// <param name="filePath">엑셀파일의 경로</param>
         /// <returns>입고내역서에 대한 List파일</returns>
-        private List<ReceivingDetails> ExcelLoading(string filePath)
+        private List<ReceivingDetailsVO> ExcelLoading(string filePath)
         {
-            receivingDetailsList = new List<ReceivingDetails>();
+            receivingDetailsList = new List<ReceivingDetailsVO>();
 
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
 
@@ -84,7 +91,7 @@ namespace GoodeeWay
             string temp = worksheet.Cells[row, 2].Value.ToString();
             while (temp!=null)
             {
-                ReceivingDetails rd = new ReceivingDetails();
+                ReceivingDetailsVO rd = new ReceivingDetailsVO();
 
                 rd.ReceivingDetailsID=worksheet.Cells[row, 2].Value.ToString();
                 rd.ReceivingDetailsDate = DateTime.Parse(worksheet.Cells[2, 6].Value.ToString());
@@ -114,13 +121,18 @@ namespace GoodeeWay
             return receivingDetailsList;
         }
 
+        /// <summary>
+        /// ‘입고내역 적용' 버튼 클릭 시 입고내역서를 입고내역과 재고내역에 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReceivingDetailsSave_Click(object sender, EventArgs e)
         {
-            receivingDetailsList = new List<ReceivingDetails>();
+            receivingDetailsList = new List<ReceivingDetailsVO>();
 
             for (int i = 0; i < dgvReceivingDetails.Rows.Count; i++)
             {
-                ReceivingDetails rd = new ReceivingDetails();
+                ReceivingDetailsVO rd = new ReceivingDetailsVO();
                 rd.ReceivingDetailsID= dgvReceivingDetails["ReceivingDetailsID", i].Value.ToString();
                 rd.ReceivingDetailsDate = DateTime.Parse(dgvReceivingDetails["ReceivingDetailsDate", i].Value.ToString());
                 rd.ExpirationDate = DateTime.Parse(dgvReceivingDetails["ExpirationDate", i].Value.ToString());
@@ -130,7 +142,60 @@ namespace GoodeeWay
                 rd.InventoryTypeCode = dgvReceivingDetails["InventoryTypeCode", i].Value.ToString();
                 receivingDetailsList.Add(rd);
             }
-            inventoryDAO.InventoryInsert(receivingDetailsList);
+            new InventoryDAO().InventoryInsert(receivingDetailsList);
         }
+
+        /// <summary>
+        /// 재고종류 추가폼 띄우는 버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInventoryTypeAdd_Click(object sender, EventArgs e)
+        {
+            InventoryTypeAdd ita = new InventoryTypeAdd();
+            if(ita.ShowDialog()==DialogResult.OK)
+            {
+                MessageBox.Show("저장완료");
+                InventoryTypeSelect();
+            }
+        }
+
+        /// <summary>
+        /// 재고종류 테이블 새로고침
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewTable_Click(object sender, EventArgs e)
+        {
+            InventoryTypeSelect();
+        }
+
+        /// <summary>
+        /// 재고종류 테이블 출력하는 메서드
+        /// </summary>
+        private void InventoryTypeSelect()
+        {
+            dgvInventoryType.DataSource = new InventoryTypeDAO().InventoryTypeSelect();
+            #region 재고종류테이블 컬럼명 변경
+            dgvInventoryType.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
+            dgvInventoryType.Columns["ReceivingQuantity"].HeaderText = "입고정량";
+            dgvInventoryType.Columns["InventoryName"].HeaderText = "재고명";
+            dgvInventoryType.Columns["MaterialClassification"].HeaderText = "재료구분";
+            #endregion
+        }
+        
+        private void ReceivingDetailsListSelect()
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("입고날짜");
+            foreach (var item in new ReceivingDetailsDAO().ReceivingDetailsList())
+            {
+                DataRow row = dataTable.NewRow();
+                row["입고날짜"] = item.ReceivingDetailsDate.ToShortDateString();
+                dataTable.Rows.Add(row);
+            }
+            dgvReceivingDetailsList.DataSource = dataTable;
+        }
+
     }
 }

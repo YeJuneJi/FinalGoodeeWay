@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class ReceivingDetails
+    class ReceivingDetailsVO
     {
         private string receivingDetailsID;
         public string ReceivingDetailsID
@@ -51,6 +51,14 @@ namespace GoodeeWay.VO
             set { inventoryTypeCode = value; }
         }
 
+        public ReceivingDetailsVO()
+        {
+        }
+        public ReceivingDetailsVO(string receivingDetailsDate)
+        {
+            this.receivingDetailsDate = DateTime.Parse(receivingDetailsDate);
+        }
 
+        
     }
 }

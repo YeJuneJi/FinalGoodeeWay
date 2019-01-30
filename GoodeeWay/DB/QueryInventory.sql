@@ -53,3 +53,40 @@ CREATE TABLE [dbo].OrderDetails (
     PRIMARY KEY CLUSTERED (OrderID ASC)
 );
 
+Go
+--재고insert 저장프로시져
+CREATE PROCEDURE [dbo].InsertInventory
+	@InventoryQuantity int,
+	@DateOfDisposal datetime,
+	@ReceivingDetailsID nvarchar(10),
+	@InventoryTypeCode nvarchar(6)
+AS
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
+	values('STR'+ REPLICATE('0',7  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),@InventoryQuantity,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode);
+
+Go
+
+--재고종류 insert 저장프로시져
+CREATE PROCEDURE [dbo].InsertInventoryType
+	@InventoryTypeCode nvarchar(6),
+	@ReceivingQuantity int,
+	@InventoryName nvarchar(47),
+	@MaterialClassification nvarchar(30)
+AS
+	insert into InventoryType(InventoryTypeCode,ReceivingQuantity,InventoryName,MaterialClassification)
+	values(@InventoryTypeCode,@ReceivingQuantity,@InventoryName,@MaterialClassification)
+
+
+Go
+--재고종류 전체 select 저장프로시져
+CREATE PROCEDURE [dbo].SelectInventoryType
+
+AS
+	select * from InventoryType;
+
+Go
+--입고내역리스트 저장프로시져
+CREATE PROCEDURE [dbo].SelectReceivingDetailsList
+	
+AS
+	SELECT ReceivingDetailsDate from ReceivingDetails group by ReceivingDetailsDate;
