@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoodeeWay.Order;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace GoodeeWay
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OderVIew oView = new OderVIew();
+            oView.ShowDialog();
         }
     }
 }
