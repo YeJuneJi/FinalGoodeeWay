@@ -66,5 +66,19 @@ namespace GoodeeWay.Order
             get { return additionalContext; }
             set { additionalContext = value; }
         }
+
+        public Menu Clone()
+        {
+            Menu menu = new Menu();
+            menu.menuCode = this.menuCode;
+            menu.MenuName = this.MenuName;
+            menu.Price = this.Price;
+            menu.kcal = this.kcal;
+            menu.menuImage = this.menuImage;
+            menu.division = this.division;
+            menu.additionalContext = this.additionalContext;
+
+            return menu;
+        }
     }
 }

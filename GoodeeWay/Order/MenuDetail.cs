@@ -32,6 +32,14 @@ namespace GoodeeWay.Order
             set { menuCode = value; }
         }
 
+        private string menuName;
+
+        public string MenuName
+        {
+            get { return menuName; }
+            set { menuName = value; }
+        }
+
         private string inventoryTypeCOde;
 
         public string InventoryTypeCode
@@ -49,7 +57,15 @@ namespace GoodeeWay.Order
         }
 
         // Join 부분
-        
+        private string inventoryName;
+
+        public string InventoryName
+        {
+            get { return inventoryName; }
+            set { inventoryName = value; }
+        }
+
+
         private string division;
 
         public string Division

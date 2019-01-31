@@ -31,10 +31,10 @@
             this.listViewOrder = new System.Windows.Forms.ListView();
             this.listViewBasket = new System.Windows.Forms.ListView();
             this.gbCheckDivision = new System.Windows.Forms.GroupBox();
-            this.btnDrink = new System.Windows.Forms.Button();
-            this.btnSide = new System.Windows.Forms.Button();
-            this.btnSalad = new System.Windows.Forms.Button();
-            this.btnSandwich = new System.Windows.Forms.Button();
+            this.btn음료 = new System.Windows.Forms.Button();
+            this.btn사이드 = new System.Windows.Forms.Button();
+            this.btn샐러드 = new System.Windows.Forms.Button();
+            this.btn샌드위치 = new System.Windows.Forms.Button();
             this.btnAll = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
@@ -62,10 +62,10 @@
             // 
             // gbCheckDivision
             // 
-            this.gbCheckDivision.Controls.Add(this.btnDrink);
-            this.gbCheckDivision.Controls.Add(this.btnSide);
-            this.gbCheckDivision.Controls.Add(this.btnSalad);
-            this.gbCheckDivision.Controls.Add(this.btnSandwich);
+            this.gbCheckDivision.Controls.Add(this.btn음료);
+            this.gbCheckDivision.Controls.Add(this.btn사이드);
+            this.gbCheckDivision.Controls.Add(this.btn샐러드);
+            this.gbCheckDivision.Controls.Add(this.btn샌드위치);
             this.gbCheckDivision.Controls.Add(this.btnAll);
             this.gbCheckDivision.Location = new System.Drawing.Point(12, 13);
             this.gbCheckDivision.Name = "gbCheckDivision";
@@ -74,45 +74,45 @@
             this.gbCheckDivision.TabStop = false;
             this.gbCheckDivision.Text = "구분";
             // 
-            // btnDrink
+            // btn음료
             // 
-            this.btnDrink.Location = new System.Drawing.Point(536, 20);
-            this.btnDrink.Name = "btnDrink";
-            this.btnDrink.Size = new System.Drawing.Size(131, 46);
-            this.btnDrink.TabIndex = 4;
-            this.btnDrink.Text = "음료";
-            this.btnDrink.UseVisualStyleBackColor = true;
-            this.btnDrink.Click += new System.EventHandler(this.button_Click);
+            this.btn음료.Location = new System.Drawing.Point(536, 20);
+            this.btn음료.Name = "btn음료";
+            this.btn음료.Size = new System.Drawing.Size(131, 46);
+            this.btn음료.TabIndex = 4;
+            this.btn음료.Text = "음료";
+            this.btn음료.UseVisualStyleBackColor = true;
+            this.btn음료.Click += new System.EventHandler(this.button_Click);
             // 
-            // btnSide
+            // btn사이드
             // 
-            this.btnSide.Location = new System.Drawing.Point(403, 20);
-            this.btnSide.Name = "btnSide";
-            this.btnSide.Size = new System.Drawing.Size(127, 46);
-            this.btnSide.TabIndex = 3;
-            this.btnSide.Text = "사이드";
-            this.btnSide.UseVisualStyleBackColor = true;
-            this.btnSide.Click += new System.EventHandler(this.button_Click);
+            this.btn사이드.Location = new System.Drawing.Point(403, 20);
+            this.btn사이드.Name = "btn사이드";
+            this.btn사이드.Size = new System.Drawing.Size(127, 46);
+            this.btn사이드.TabIndex = 3;
+            this.btn사이드.Text = "사이드";
+            this.btn사이드.UseVisualStyleBackColor = true;
+            this.btn사이드.Click += new System.EventHandler(this.button_Click);
             // 
-            // btnSalad
+            // btn샐러드
             // 
-            this.btnSalad.Location = new System.Drawing.Point(260, 20);
-            this.btnSalad.Name = "btnSalad";
-            this.btnSalad.Size = new System.Drawing.Size(137, 46);
-            this.btnSalad.TabIndex = 2;
-            this.btnSalad.Text = "샐러드";
-            this.btnSalad.UseVisualStyleBackColor = true;
-            this.btnSalad.Click += new System.EventHandler(this.button_Click);
+            this.btn샐러드.Location = new System.Drawing.Point(260, 20);
+            this.btn샐러드.Name = "btn샐러드";
+            this.btn샐러드.Size = new System.Drawing.Size(137, 46);
+            this.btn샐러드.TabIndex = 2;
+            this.btn샐러드.Text = "샐러드";
+            this.btn샐러드.UseVisualStyleBackColor = true;
+            this.btn샐러드.Click += new System.EventHandler(this.button_Click);
             // 
-            // btnSandwich
+            // btn샌드위치
             // 
-            this.btnSandwich.Location = new System.Drawing.Point(129, 20);
-            this.btnSandwich.Name = "btnSandwich";
-            this.btnSandwich.Size = new System.Drawing.Size(125, 46);
-            this.btnSandwich.TabIndex = 1;
-            this.btnSandwich.Text = "샌드위치";
-            this.btnSandwich.UseVisualStyleBackColor = true;
-            this.btnSandwich.Click += new System.EventHandler(this.button_Click);
+            this.btn샌드위치.Location = new System.Drawing.Point(129, 20);
+            this.btn샌드위치.Name = "btn샌드위치";
+            this.btn샌드위치.Size = new System.Drawing.Size(125, 46);
+            this.btn샌드위치.TabIndex = 1;
+            this.btn샌드위치.Text = "샌드위치";
+            this.btn샌드위치.UseVisualStyleBackColor = true;
+            this.btn샌드위치.Click += new System.EventHandler(this.button_Click);
             // 
             // btnAll
             // 
@@ -190,10 +190,10 @@
         private System.Windows.Forms.ListView listViewBasket;
         private System.Windows.Forms.GroupBox gbCheckDivision;
         private System.Windows.Forms.Button btnAll;
-        private System.Windows.Forms.Button btnDrink;
-        private System.Windows.Forms.Button btnSide;
-        private System.Windows.Forms.Button btnSalad;
-        private System.Windows.Forms.Button btnSandwich;
+        private System.Windows.Forms.Button btn음료;
+        private System.Windows.Forms.Button btn사이드;
+        private System.Windows.Forms.Button btn샐러드;
+        private System.Windows.Forms.Button btn샌드위치;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;

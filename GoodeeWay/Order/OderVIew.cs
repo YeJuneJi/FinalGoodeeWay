@@ -29,49 +29,7 @@ namespace GoodeeWay.Order
 
         private void OderVIew_Load(object sender, EventArgs e) // 
         {
-            menuList = new OrderDAO().GetAllMenu(); // 메뉴 테이블에서 모든 메뉴를 뽑아와 리스트에 등록
-
-            // 테스트 입네다
-            Menu m = new Menu();
-            m.MenuCode = "0001";
-            m.MenuName = "Egg샌드위치";
-            m.Price = 5000;
-            m.Kcal = 5000;
-            m.MenuImage = Image.FromFile(@"C:\Users\gd12\Desktop\img\2.PNG");
-            m.Division = "Sandwich";
-            m.AdditionalContext = "계란 샌드위치 입네다~";
-
-            Menu m2 = new Menu();
-            m2.MenuCode = "0003";
-            m2.MenuName = "초코쿠키";
-            m2.Price = 3000;
-            m2.Kcal = 1000;
-            m2.MenuImage = Image.FromFile(@"C:\Users\gd12\Desktop\img\111.PNG");
-            m2.Division = "Side";
-            m2.AdditionalContext = "쿠기 입네다~";
-
-            Menu m3 = new Menu();
-            m3.MenuCode = "0002";
-            m3.MenuName = "사이다";
-            m3.Price = 1500;
-            m3.Kcal = 600;
-            m3.MenuImage = Image.FromFile(@"C:\Users\gd12\Desktop\img\MainLogo.PNG");
-            m3.Division = "Drink";
-            m3.AdditionalContext = "사이다 입네다~";
-
-            Menu m4 = new Menu();
-            m4.MenuCode = "0004";
-            m4.MenuName = "치킨샐러드";
-            m4.Price = 6000;
-            m4.Kcal = 100;
-            m4.MenuImage = Image.FromFile(@"C:\Users\gd12\Desktop\img\Precision.jpg");
-            m4.Division = "Salad";
-            m4.AdditionalContext = "치킨샐러드 입네다~";
-
-            menuList.Add(m);
-            menuList.Add(m2);
-            menuList.Add(m3);
-            menuList.Add(m4);
+            new OrderDAO().GetAllMenu(menuList); // 메뉴 테이블에서 모든 메뉴를 뽑아와 리스트에 등록
 
             GetMenuList();
             SetListView("All");
@@ -99,7 +57,7 @@ namespace GoodeeWay.Order
         {
             Button b = (Button)sender;
 
-            SetListView(b.Name.Replace("btn", ""));
+            SetListView(b.Name.Replace("btn", "")); // 버튼 이름에서 btn 제외후 전달
         }
 
         private void SetListView(string v) // 선택한 버튼에 따른 ListView Setting
@@ -138,9 +96,9 @@ namespace GoodeeWay.Order
             {                
                 if (item.MenuName == lvi.SelectedItems[0].Text)
                 {
-                    if (!item.Division.Equals("Sandwich")) // 구분이 Sandwich가 아니면 그냥 처리
+                    if (!item.Division.Equals("샌드위치")) // 구분이 Sandwich가 아니면 그냥 처리
                     {
-                        bucketMenuList.Add(item);
+                        bucketMenuList.Add(item.Clone());
                         MenuAndDetails menuAndDetails = new MenuAndDetails();
                         menuAndDetails.Menu = item;
                         menuAndDetails.MenuDetailList = null;
@@ -149,7 +107,7 @@ namespace GoodeeWay.Order
                     }
                     else // 구분이 Sandwich이면 상세 페이지로 이동
                     {
-                        OrderDetail orderDetail = new OrderDetail(item, bucketMenuList, bucketMenuDetailList, bucketMenuAndDetailList);
+                        OrderDetail orderDetail = new OrderDetail(item, bucketMenuList, bucketMenuAndDetailList);
                         orderDetail.ShowDialog();
                     }                    
                     break;
@@ -168,7 +126,7 @@ namespace GoodeeWay.Order
                     textBox1.Text += "--> 상세메뉴 :  ";
                     foreach (var item2 in item.MenuDetailList)
                     {
-                        textBox1.Text += item2.Name + " | ";
+                        textBox1.Text += item2.InventoryName + " | ";
                     }
                 }                
             }
