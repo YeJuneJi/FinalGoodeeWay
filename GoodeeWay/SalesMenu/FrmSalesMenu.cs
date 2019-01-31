@@ -1,11 +1,13 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,8 @@ using System.Windows.Forms;
 
 namespace GoodeeWay.SalesMenu
 {
+    enum Division {샌드위치, 찹샐러드, 사이드, 음료}
+    //enum Division {Sandwich, ChoppedSalad, Side, Drink};
     public partial class FrmSalesMenu : Form
     {
         FlowLayoutPanel breadPanel;
@@ -23,6 +27,7 @@ namespace GoodeeWay.SalesMenu
         FlowLayoutPanel toppingPanel;
         FlowLayoutPanel additionalPanel;
         List<InventoryTypeVO> testList = new List<InventoryTypeVO>();
+        List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
         public FrmSalesMenu()
         {
             InitializeComponent();
@@ -30,8 +35,13 @@ namespace GoodeeWay.SalesMenu
 
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
-            cbxDivision.Items.AddRange(new string[] { "샌드위치", "찹샐러드", "사이드", "음료" });
+            salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            salesMenuList = new SalesMenuDAO().OutPutAllMenus();
+            salesMenuGView.DataSource = salesMenuList;
+            cbxDivision.Items.Add(Division.샌드위치);
 
+           
             #region 테스트 코드입니다 ^ㅡ^
             testList.Add(new InventoryTypeVO()
             {
@@ -112,6 +122,13 @@ namespace GoodeeWay.SalesMenu
             });
             testList.Add(new InventoryTypeVO()
             {
+                InventoryName = "햄",
+                InventoryTypeCode = "ST0113",
+                MaterialClassification = "Additional",
+                ReceivingQuantity = 200
+            });
+            testList.Add(new InventoryTypeVO()
+            {
                 InventoryName = "토핑쓰",
                 InventoryTypeCode = "ST0111",
                 MaterialClassification = "Topping",
@@ -133,17 +150,17 @@ namespace GoodeeWay.SalesMenu
         private void btnMnuInsert_Click(object sender, EventArgs e)
         {
             string menuCode = msktbxMnuCode.Text;
-            string menuName = tbxMnuName.Text;
-            string price = tbxPrice.Text;
-            string kcal = tbxKcal.Text;
-            string division = cbxDivision.Text;
-            string addContxt = tbxAddContxt.Text;
+            string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
+            string price = tbxPrice.Text.Replace(",","").Trim();
+            string kcal = tbxKcal.Text.Replace(" ","").Trim();
+            string division = cbxDivision.Text.Replace(" ","").Trim();
+            string addContxt = tbxAddContxt.Text.Trim();
             Image image = pbxPhoto.Image;
             bool sucessRecipe = false;
             bool sucessMenu = false;
 
 
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal))
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal) && ValidateMenuCode(menuCode))
             {
                 if (cbxDivision.SelectedIndex != 0)
                 {
@@ -170,19 +187,17 @@ namespace GoodeeWay.SalesMenu
                                 if (ctrl.GetType() == typeof(RadioButton))
                                 {
                                     RadioButton rbtn = ctrl as RadioButton;
-                                    if (item.InventoryName.Equals(rbtn.Name))
+                                    if (item.InventoryName.Equals(rbtn.Text))
                                     {
                                         necess = rbtn.Checked;
-                                        //MessageBox.Show(necess.ToString());
                                     }
                                 }
                                 if (ctrl.GetType() == typeof(CheckBox))
                                 {
                                     CheckBox cbx = ctrl as CheckBox;
-                                    if (item.InventoryName.Equals(cbx.Name))
+                                    if (item.InventoryName.Equals(cbx.Text))
                                     {
                                         necess = cbx.Checked;
-                                        //MessageBox.Show(necess.ToString());
                                     }
                                 }
                             }
@@ -213,10 +228,7 @@ namespace GoodeeWay.SalesMenu
             {
                 MessageBox.Show("저장 성공!(기본 레시피 저장 포함)");
             }
-            else
-            {
-                MessageBox.Show("저장 실패");
-            }
+            ReflashData();
         }
 
         /// <summary>
@@ -266,6 +278,27 @@ namespace GoodeeWay.SalesMenu
             return sucessMenu;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <returns></returns>
+        private bool ValidateMenuCode(string menuCode)
+        {
+            bool result = false;
+
+            if (msktbxMnuCode.Text.Substring(3).Replace(" ", "").Length != 7)
+            {
+                msktbxMnuCode.Focus();
+                MessageBox.Show("메뉴코드의 자리수를 맞춰주세요.");
+
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
+        }
 
         /// <summary>
         /// 
@@ -316,6 +349,16 @@ namespace GoodeeWay.SalesMenu
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ReflashData()
+        {
+            salesMenuList.Clear();
+            salesMenuGView.DataSource = null;
+            salesMenuList = new SalesMenuDAO().OutPutAllMenus();
+            salesMenuGView.DataSource = salesMenuList;
+        }
 
         private void btnPhoto_Click(object sender, EventArgs e)
         {
@@ -388,7 +431,8 @@ namespace GoodeeWay.SalesMenu
                     {
                         RadioButton radioBread = new RadioButton();
                         radioBread.Text = inventoryType.InventoryName;
-                        radioBread.Name = inventoryType.InventoryName;
+                        radioBread.Name = inventoryType.InventoryTypeCode;
+
                         Label labelBread = new Label();
                         labelBread.Text = "사용량 : 5g";
                         labelBread.Padding = new Padding(0, 8, 0, 0);
@@ -400,7 +444,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         RadioButton radioCheese = new RadioButton();
                         radioCheese.Text = inventoryType.InventoryName;
-                        radioCheese.Name = inventoryType.InventoryName;
+                        radioCheese.Name = inventoryType.InventoryTypeCode;
                         Label labelCheese = new Label();
                         labelCheese.Text = "사용량 : 5g";
                         labelCheese.Padding = new Padding(0, 8, 0, 0);
@@ -412,7 +456,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         CheckBox cbxVege = new CheckBox();
                         cbxVege.Text = inventoryType.InventoryName;
-                        cbxVege.Name = inventoryType.InventoryName;
+                        cbxVege.Name = inventoryType.InventoryTypeCode;
                         Label labelVege = new Label();
                         labelVege.Text = "사용량 : 5g";
                         labelVege.Padding = new Padding(0, 8, 0, 0);
@@ -424,7 +468,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         CheckBox cbxSauce = new CheckBox();
                         cbxSauce.Text = inventoryType.InventoryName;
-                        cbxSauce.Name = inventoryType.InventoryName;
+                        cbxSauce.Name = inventoryType.InventoryTypeCode;
                         Label labelSauce = new Label();
                         labelSauce.Text = "사용량 : 5g";
                         labelSauce.Padding = new Padding(0, 8, 0, 0);
@@ -436,7 +480,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         CheckBox cbxTopping = new CheckBox();
                         cbxTopping.Text = inventoryType.InventoryName;
-                        cbxTopping.Text = inventoryType.InventoryName;
+                        cbxTopping.Name = inventoryType.InventoryTypeCode;
                         Label labelTopping = new Label();
                         labelTopping.Text = "사용량 : 5g";
                         labelTopping.Padding = new Padding(0, 8, 0, 0);
@@ -448,7 +492,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         CheckBox cbxAdd = new CheckBox();
                         cbxAdd.Text = inventoryType.InventoryName;
-                        cbxAdd.Text = inventoryType.InventoryName;
+                        cbxAdd.Name = inventoryType.InventoryTypeCode;
                         Label labelAdd = new Label();
                         labelAdd.Text = "사용량 : 5g";
                         labelAdd.Padding = new Padding(0, 8, 0, 0);
@@ -460,6 +504,90 @@ namespace GoodeeWay.SalesMenu
                 }
                 (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true;
                 FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            msktbxMnuCode.Text = tbxAddContxt.Text = tbxKcal.Text = tbxMnuName.Text = tbxPrice.Text = "";
+            pbxPhoto.Image = null;
+            cbxDivision.SelectedIndex = -1;
+        }
+
+        private void btnMnuUpdate_Click(object sender, EventArgs e)
+        {
+            string menuCode = msktbxMnuCode.Text;
+            string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
+            string price = tbxPrice.Text.Replace(",", "").Trim();
+            string kcal = tbxKcal.Text.Replace(" ", "").Trim();
+            string division = cbxDivision.Text.Replace(" ", "").Trim();
+            string addContxt = tbxAddContxt.Text.Trim();
+            Image image = pbxPhoto.Image;
+        }
+
+
+        private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                msktbxMnuCode.Text = salesMenuGView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                tbxMnuName.Text = salesMenuGView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                tbxPrice.Text = salesMenuGView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                tbxKcal.Text = salesMenuGView.Rows[e.RowIndex].Cells[3].Value.ToString();
+                tbxAddContxt.Text = salesMenuGView.Rows[e.RowIndex].Cells[6].Value.ToString();
+                pbxPhoto.Image = salesMenuGView.Rows[e.RowIndex].Cells[4].Value as Image;
+                cbxDivision.SelectedItem = salesMenuGView.Rows[e.RowIndex].Cells[5].Value.ToString();
+                if (cbxDivision.SelectedIndex == 0)
+                {
+                    List<MenuRecipeVO> menuRecipeList = new MenuRecipeDAO().SelectRecipesByMenuCode(msktbxMnuCode.Text);
+                    foreach (MenuRecipeVO item in menuRecipeList)
+                    {
+                        foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                        {
+                            foreach (var ctrl in panel.Controls)
+                            {
+                                if (ctrl.GetType() == typeof(RadioButton))
+                                {
+                                    RadioButton rbtn = ctrl as RadioButton;
+                                    if (item.InventoryTypeCode.Equals(rbtn.Name))
+                                    {
+                                        rbtn.Checked = item.Necessary;
+                                    }
+                                }
+                                if (ctrl.GetType() == typeof(CheckBox))
+                                {
+                                    CheckBox cbx = ctrl as CheckBox;
+                                    if (item.InventoryTypeCode.Equals(cbx.Name))
+                                    {
+                                        cbx.Checked = item.Necessary;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                tbxPrice.Focus();
+                salesMenuGView.Focus(); 
+            }
+        }
+
+        private void tbxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar == Convert.ToChar(Keys.Back)) && tbxPrice.Text.Length > 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbxPrice_Leave(object sender, EventArgs e)
+        {
+            if (tbxPrice.Text != "")
+            {
+                string lgsText = tbxPrice.Text;
+                if (float.TryParse(tbxPrice.Text, out float price))
+                {
+                    tbxPrice.Text = Convert.ToDouble(lgsText).ToString("N0");
+                }
             }
         }
     }

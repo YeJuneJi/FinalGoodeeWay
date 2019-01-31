@@ -33,5 +33,34 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+
+        public List<MenuRecipeVO> SelectRecipesByMenuCode(string menuCode)
+        {
+            List<MenuRecipeVO> lst = new List<MenuRecipeVO>();
+            string sp = "SelectRecipesByMenuCode";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("menuCode", menuCode)
+            };
+            try
+            {
+                SqlDataReader sdr = new DBConnection().Select(sp, sqlParameters);
+                while (sdr.Read())
+                {
+                    MenuRecipeVO menuRecipe = new MenuRecipeVO();
+                    menuRecipe.RecipeNo = sdr["recipeNo"].ToString();
+                    menuRecipe.IngredientAmount = Convert.ToInt32(sdr["ingredientAmount"]);
+                    menuRecipe.MenuCode = sdr["menuCode"].ToString();
+                    menuRecipe.InventoryTypeCode = sdr["InventoryTypeCode"].ToString();
+                    menuRecipe.Necessary = Convert.ToBoolean(sdr["necessary"]);
+                    lst.Add(menuRecipe);
+                }
+                return lst;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
     }
 }

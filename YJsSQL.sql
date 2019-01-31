@@ -84,3 +84,22 @@ GO
 -- Sequence를 특정값으로 재설정
 ALTER SEQUENCE dbo.CountRecipeNo RESTART WITH 100;
 GO
+
+
+-- Recipe 테이블과 InventoryType , Sales의 조합으로 만들어진 저장프로시저
+create procedure dbo.SelectByRecipesJoinToInventryTypeNSales
+@menuName nvarchar(30)
+as
+select r.recipeNo, r.ingredientAmount, r.menuCode, r.inventoryTypeCode, r.necessary, i.InventoryName, i.MaterialClassification, s.menuName
+from Recipes r, InventoryType i, Sales s
+where r.InventoryTypeCode = i.InventoryTypeCode and r.menuCode = s.menuCode
+and s.menuName = @menuName;
+GO
+
+--메뉴코드별 레시피 검색
+create procedure SelectRecipesByMenuCode
+@menuCode nvarchar(10)
+as
+select * from Recipes
+where menuCode = @menuCode;
+GO

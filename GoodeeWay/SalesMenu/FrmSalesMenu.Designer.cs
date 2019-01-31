@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.salesMenuGView = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,18 +55,24 @@
             this.label8 = new System.Windows.Forms.Label();
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // salesMenuGView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 186);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(710, 319);
-            this.dataGridView1.TabIndex = 0;
+            this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.salesMenuGView.Location = new System.Drawing.Point(12, 186);
+            this.salesMenuGView.MultiSelect = false;
+            this.salesMenuGView.Name = "salesMenuGView";
+            this.salesMenuGView.ReadOnly = true;
+            this.salesMenuGView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.salesMenuGView.RowTemplate.Height = 23;
+            this.salesMenuGView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.salesMenuGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.salesMenuGView.Size = new System.Drawing.Size(724, 319);
+            this.salesMenuGView.TabIndex = 0;
+            this.salesMenuGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesMenuGView_CellClick);
             // 
             // label1
             // 
@@ -152,6 +158,8 @@
             this.tbxPrice.Name = "tbxPrice";
             this.tbxPrice.Size = new System.Drawing.Size(164, 21);
             this.tbxPrice.TabIndex = 10;
+            this.tbxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxPrice_KeyPress);
+            this.tbxPrice.Leave += new System.EventHandler(this.tbxPrice_Leave);
             // 
             // tbxKcal
             // 
@@ -182,7 +190,7 @@
             // 
             // pbxPhoto
             // 
-            this.pbxPhoto.Location = new System.Drawing.Point(599, 26);
+            this.pbxPhoto.Location = new System.Drawing.Point(621, 24);
             this.pbxPhoto.Name = "pbxPhoto";
             this.pbxPhoto.Size = new System.Drawing.Size(115, 120);
             this.pbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -215,6 +223,7 @@
             this.btnMnuUpdate.TabIndex = 17;
             this.btnMnuUpdate.Text = "수정";
             this.btnMnuUpdate.UseVisualStyleBackColor = true;
+            this.btnMnuUpdate.Click += new System.EventHandler(this.btnMnuUpdate_Click);
             // 
             // btnMnuDelete
             // 
@@ -260,10 +269,11 @@
             this.btnClear.TabIndex = 22;
             this.btnClear.Text = "초기화";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // oFdialogPhoto
             // 
-            this.oFdialogPhoto.Filter = "jpg 파일|*.jpg|png 파일|*.png|bmp 파일|*.bmp";
+            this.oFdialogPhoto.Filter = "jpg 파일|*.jpg|png 파일|*.png";
             // 
             // label8
             // 
@@ -322,11 +332,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.salesMenuGView);
             this.Name = "FrmSalesMenu";
             this.Text = "Sales";
             this.Load += new System.EventHandler(this.FrmSalesMenu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -335,7 +345,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView salesMenuGView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
