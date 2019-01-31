@@ -90,3 +90,13 @@ CREATE PROCEDURE [dbo].SelectReceivingDetailsList
 	
 AS
 	SELECT ReceivingDetailsDate from ReceivingDetails group by ReceivingDetailsDate;
+
+Go
+
+--입고내역 상세뷰 저장프로시져
+CREATE PROCEDURE [dbo].SelectReceivingDetails_InventoryType_DetailView
+	@receivingDetailsDate nvarchar(10)
+AS
+	SELECT R.ReceivingDetailsID,I.InventoryName,CONVERT(NVARCHAR(10),R.ExpirationDate,23) 
+'ExpirationDate',R.Quantity,R.UnitPrice,R.ReturnStatus,I.InventoryTypeCode from ReceivingDetails R, InventoryType I
+	where R.InventoryTypeCode=I.InventoryTypeCode and convert(nvarchar(10),R.ReceivingDetailsDate,23)=@receivingDetailsDate;

@@ -130,8 +130,11 @@
             this.dgvReceivingDetailsList.Location = new System.Drawing.Point(12, 35);
             this.dgvReceivingDetailsList.Name = "dgvReceivingDetailsList";
             this.dgvReceivingDetailsList.RowTemplate.Height = 23;
+            this.dgvReceivingDetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvReceivingDetailsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReceivingDetailsList.Size = new System.Drawing.Size(154, 546);
             this.dgvReceivingDetailsList.TabIndex = 25;
+            this.dgvReceivingDetailsList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvReceivingDetailsList_CellMouseDoubleClick);
             // 
             // btnLoadingFile
             // 

@@ -197,5 +197,11 @@ namespace GoodeeWay
             dgvReceivingDetailsList.DataSource = dataTable;
         }
 
+        private void dgvReceivingDetailsList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            dgvReceivingDetails.DataSource = new ReceivingDetailsDAO().ReceivingDetailsDetailView(dgvReceivingDetailsList.SelectedRows[0].Cells["입고날짜"].Value.ToString());
+
+
+        }
     }
 }
