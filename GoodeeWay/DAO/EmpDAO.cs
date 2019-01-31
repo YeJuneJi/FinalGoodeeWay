@@ -1,4 +1,5 @@
-﻿using GoodeeWay.DB;
+﻿using GoodeeWay.BUS;
+using GoodeeWay.DB;
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,8 @@ namespace GoodeeWay.DAO
 
             //if (check(empno,pay,name,mobile,joindate,bankaccountno,bank))
             //{
-
             //}
+            
             string sp = "proc_emp_insert";
             SqlParameter[] sqlParameters = new SqlParameter[12];
             sqlParameters[0] = new SqlParameter("empno", emp.Empno);
@@ -40,16 +41,9 @@ namespace GoodeeWay.DAO
 
             return new DBConnection().Insert(sp, sqlParameters);
         }
-
         //private bool check(string empno, string pay, string name, string mobile, DateTime joindate, string bankaccountno, string bank)
         //{
         //    bool result = false;
-
-        //    if (!(string.IsNullOrEmpty(empno) || string.IsNullOrEmpty(pay) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(mobile) || string.IsNullOrEmpty(joindate.ToString()) || string.IsNullOrEmpty(mobile) || string.IsNullOrEmpty(mobile)))
-        //    {
-        //        result = true;
-        //    }
-
         //    return result;
         //}
 
