@@ -30,39 +30,40 @@
         {
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnModification = new System.Windows.Forms.Button();
             this.cbState = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.txtDetailName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtPurchasePrice = new System.Windows.Forms.Label();
+            this.lavel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtSearchForLocation = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtSearchForPrice = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.chbDate = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.rbReplacementRequest = new System.Windows.Forms.RadioButton();
+            this.rbDiscard = new System.Windows.Forms.RadioButton();
+            this.rbUsing = new System.Windows.Forms.RadioButton();
+            this.rbAll = new System.Windows.Forms.RadioButton();
+            this.txtSearchForName = new System.Windows.Forms.TextBox();
+            this.btnAddEquipment = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,24 +75,27 @@
             this.dgvEquipmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEquipmentList.Location = new System.Drawing.Point(0, 0);
+            this.dgvEquipmentList.MultiSelect = false;
             this.dgvEquipmentList.Name = "dgvEquipmentList";
             this.dgvEquipmentList.RowTemplate.Height = 23;
+            this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 390);
             this.dgvEquipmentList.TabIndex = 0;
+            this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dtpPurchaseDate);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnDelete);
+            this.groupBox1.Controls.Add(this.btnModification);
             this.groupBox1.Controls.Add(this.cbState);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtNote);
             this.groupBox1.Controls.Add(this.txtPrice);
             this.groupBox1.Controls.Add(this.txtLocation);
             this.groupBox1.Controls.Add(this.txtDetailName);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtPurchasePrice);
+            this.groupBox1.Controls.Add(this.lavel);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -102,39 +106,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "품목정보";
             // 
-            // button4
+            // dtpPurchaseDate
             // 
-            this.button4.Location = new System.Drawing.Point(332, 220);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 38);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "삭제";
-            this.button4.UseVisualStyleBackColor = true;
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(73, 120);
+            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(200, 21);
+            this.dtpPurchaseDate.TabIndex = 15;
             // 
-            // button3
+            // btnDelete
             // 
-            this.button3.Location = new System.Drawing.Point(332, 173);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 38);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "수정";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(332, 220);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 38);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnModification
+            // 
+            this.btnModification.Location = new System.Drawing.Point(332, 173);
+            this.btnModification.Name = "btnModification";
+            this.btnModification.Size = new System.Drawing.Size(75, 38);
+            this.btnModification.TabIndex = 13;
+            this.btnModification.Text = "수정";
+            this.btnModification.UseVisualStyleBackColor = true;
             // 
             // cbState
             // 
             this.cbState.FormattingEnabled = true;
+            this.cbState.Items.AddRange(new object[] {
+            "사용중",
+            "교체요망",
+            "폐기"});
             this.cbState.Location = new System.Drawing.Point(73, 74);
             this.cbState.Name = "cbState";
             this.cbState.Size = new System.Drawing.Size(99, 20);
             this.cbState.TabIndex = 12;
             // 
-            // textBox6
+            // txtNote
             // 
-            this.textBox6.Location = new System.Drawing.Point(72, 173);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(236, 92);
-            this.textBox6.TabIndex = 11;
+            this.txtNote.Location = new System.Drawing.Point(72, 173);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(236, 92);
+            this.txtNote.TabIndex = 11;
             // 
             // txtPrice
             // 
@@ -175,14 +191,14 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "구매일자";
             // 
-            // txtPurchasePrice
+            // lavel
             // 
-            this.txtPurchasePrice.AutoSize = true;
-            this.txtPurchasePrice.Location = new System.Drawing.Point(204, 77);
-            this.txtPurchasePrice.Name = "txtPurchasePrice";
-            this.txtPurchasePrice.Size = new System.Drawing.Size(53, 12);
-            this.txtPurchasePrice.TabIndex = 3;
-            this.txtPurchasePrice.Text = "구매가격";
+            this.lavel.AutoSize = true;
+            this.lavel.Location = new System.Drawing.Point(204, 77);
+            this.lavel.Name = "lavel";
+            this.lavel.Size = new System.Drawing.Size(53, 12);
+            this.lavel.TabIndex = 3;
+            this.lavel.Text = "구매가격";
             // 
             // label3
             // 
@@ -214,18 +230,19 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox9);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.txtSearchForLocation);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.textBox8);
+            this.groupBox2.Controls.Add(this.txtSearchForPrice);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.dtpEndDate);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
-            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.dtpStartDate);
+            this.groupBox2.Controls.Add(this.chbDate);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.textBox7);
+            this.groupBox2.Controls.Add(this.txtSearchForName);
             this.groupBox2.Location = new System.Drawing.Point(429, 395);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(651, 144);
@@ -233,12 +250,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "검색";
             // 
-            // textBox9
+            // txtSearchForLocation
             // 
-            this.textBox9.Location = new System.Drawing.Point(277, 111);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(110, 21);
-            this.textBox9.TabIndex = 13;
+            this.txtSearchForLocation.Location = new System.Drawing.Point(277, 111);
+            this.txtSearchForLocation.Name = "txtSearchForLocation";
+            this.txtSearchForLocation.Size = new System.Drawing.Size(110, 21);
+            this.txtSearchForLocation.TabIndex = 13;
             // 
             // label10
             // 
@@ -249,12 +266,17 @@
             this.label10.TabIndex = 12;
             this.label10.Text = "사용위치";
             // 
-            // textBox8
+            // txtSearchForPrice
             // 
-            this.textBox8.Location = new System.Drawing.Point(69, 111);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(110, 21);
-            this.textBox8.TabIndex = 13;
+            this.txtSearchForPrice.Location = new System.Drawing.Point(69, 111);
+            this.txtSearchForPrice.Name = "txtSearchForPrice";
+            this.txtSearchForPrice.Size = new System.Drawing.Size(110, 21);
+            this.txtSearchForPrice.TabIndex = 13;
+            this.txtSearchForPrice.Text = "0";
+            this.txtSearchForPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSearchForPrice.Enter += new System.EventHandler(this.txtSearchForPrice_Enter);
+            this.txtSearchForPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchForPrice_KeyPress);
+            this.txtSearchForPrice.Leave += new System.EventHandler(this.txtSearchForPrice_Leave);
             // 
             // label9
             // 
@@ -265,12 +287,13 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "구매가격";
             // 
-            // dateTimePicker2
+            // dtpEndDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(300, 71);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker2.TabIndex = 20;
+            this.dtpEndDate.Enabled = false;
+            this.dtpEndDate.Location = new System.Drawing.Point(300, 71);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(200, 21);
+            this.dtpEndDate.TabIndex = 20;
             // 
             // label8
             // 
@@ -281,112 +304,113 @@
             this.label8.TabIndex = 19;
             this.label8.Text = "~";
             // 
-            // dateTimePicker1
+            // dtpStartDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(71, 71);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 21);
-            this.dateTimePicker1.TabIndex = 18;
+            this.dtpStartDate.Enabled = false;
+            this.dtpStartDate.Location = new System.Drawing.Point(71, 71);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(200, 21);
+            this.dtpStartDate.TabIndex = 18;
             // 
-            // checkBox1
+            // chbDate
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(516, 74);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chbDate.AutoSize = true;
+            this.chbDate.Location = new System.Drawing.Point(516, 74);
+            this.chbDate.Name = "chbDate";
+            this.chbDate.Size = new System.Drawing.Size(15, 14);
+            this.chbDate.TabIndex = 17;
+            this.chbDate.UseVisualStyleBackColor = true;
+            this.chbDate.CheckedChanged += new System.EventHandler(this.chbDate_CheckedChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 74);
+            this.label7.Location = new System.Drawing.Point(10, 74);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 16;
             this.label7.Text = "구매날짜";
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.Location = new System.Drawing.Point(560, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "검색";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(560, 27);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(77, 23);
+            this.btnSearch.TabIndex = 15;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.radioButton4);
-            this.groupBox3.Controls.Add(this.radioButton3);
-            this.groupBox3.Controls.Add(this.radioButton2);
-            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Controls.Add(this.rbReplacementRequest);
+            this.groupBox3.Controls.Add(this.rbDiscard);
+            this.groupBox3.Controls.Add(this.rbUsing);
+            this.groupBox3.Controls.Add(this.rbAll);
             this.groupBox3.Location = new System.Drawing.Point(6, 14);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(265, 41);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             // 
-            // radioButton4
+            // rbReplacementRequest
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(183, 15);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(71, 16);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "교체요망";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbReplacementRequest.AutoSize = true;
+            this.rbReplacementRequest.Location = new System.Drawing.Point(183, 15);
+            this.rbReplacementRequest.Name = "rbReplacementRequest";
+            this.rbReplacementRequest.Size = new System.Drawing.Size(71, 16);
+            this.rbReplacementRequest.TabIndex = 3;
+            this.rbReplacementRequest.Text = "교체요망";
+            this.rbReplacementRequest.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbDiscard
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(129, 14);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(47, 16);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "폐기";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbDiscard.AutoSize = true;
+            this.rbDiscard.Location = new System.Drawing.Point(129, 14);
+            this.rbDiscard.Name = "rbDiscard";
+            this.rbDiscard.Size = new System.Drawing.Size(47, 16);
+            this.rbDiscard.TabIndex = 2;
+            this.rbDiscard.Text = "폐기";
+            this.rbDiscard.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbUsing
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(63, 15);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 16);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "사용중";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbUsing.AutoSize = true;
+            this.rbUsing.Location = new System.Drawing.Point(63, 15);
+            this.rbUsing.Name = "rbUsing";
+            this.rbUsing.Size = new System.Drawing.Size(59, 16);
+            this.rbUsing.TabIndex = 1;
+            this.rbUsing.Text = "사용중";
+            this.rbUsing.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbAll
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(8, 15);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(47, 16);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "전체";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbAll.AutoSize = true;
+            this.rbAll.Checked = true;
+            this.rbAll.Location = new System.Drawing.Point(8, 15);
+            this.rbAll.Name = "rbAll";
+            this.rbAll.Size = new System.Drawing.Size(47, 16);
+            this.rbAll.TabIndex = 0;
+            this.rbAll.TabStop = true;
+            this.rbAll.Text = "전체";
+            this.rbAll.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // txtSearchForName
             // 
-            this.textBox7.Location = new System.Drawing.Point(280, 29);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(276, 21);
-            this.textBox7.TabIndex = 13;
+            this.txtSearchForName.Location = new System.Drawing.Point(321, 29);
+            this.txtSearchForName.Name = "txtSearchForName";
+            this.txtSearchForName.Size = new System.Drawing.Size(235, 21);
+            this.txtSearchForName.TabIndex = 13;
             // 
-            // button2
+            // btnAddEquipment
             // 
-            this.button2.Location = new System.Drawing.Point(539, 571);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 62);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "등록하기";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAddEquipment.Location = new System.Drawing.Point(539, 571);
+            this.btnAddEquipment.Name = "btnAddEquipment";
+            this.btnAddEquipment.Size = new System.Drawing.Size(173, 62);
+            this.btnAddEquipment.TabIndex = 3;
+            this.btnAddEquipment.Text = "등록하기";
+            this.btnAddEquipment.UseVisualStyleBackColor = true;
+            this.btnAddEquipment.Click += new System.EventHandler(this.btnAddEquipment_Click);
             // 
             // button5
             // 
@@ -397,12 +421,14 @@
             this.button5.Text = "엑셀 다운로드";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // dtpPurchaseDate
+            // label4
             // 
-            this.dtpPurchaseDate.Location = new System.Drawing.Point(73, 120);
-            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
-            this.dtpPurchaseDate.Size = new System.Drawing.Size(200, 21);
-            this.dtpPurchaseDate.TabIndex = 15;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(278, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "품목명";
             // 
             // FrmEquipment
             // 
@@ -412,7 +438,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1092, 672);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAddEquipment);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvEquipmentList);
@@ -436,36 +462,37 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label txtPurchasePrice;
+        private System.Windows.Forms.Label lavel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnModification;
         private System.Windows.Forms.ComboBox cbState;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.TextBox txtDetailName;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtSearchForLocation;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtSearchForPrice;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DateTimePicker dtpStartDate;
+        private System.Windows.Forms.CheckBox chbDate;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.RadioButton rbReplacementRequest;
+        private System.Windows.Forms.RadioButton rbDiscard;
+        private System.Windows.Forms.RadioButton rbUsing;
+        private System.Windows.Forms.RadioButton rbAll;
+        private System.Windows.Forms.TextBox txtSearchForName;
+        private System.Windows.Forms.Button btnAddEquipment;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
+        private System.Windows.Forms.Label label4;
     }
 }

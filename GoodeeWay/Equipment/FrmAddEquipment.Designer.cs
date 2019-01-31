@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
@@ -40,9 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRebuild = new System.Windows.Forms.Button();
-            this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
             this.btnClose = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,11 +66,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "비품등록";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(178, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 12);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "\\(원)";
+            // 
+            // dtpPurchaseDate
+            // 
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(72, 120);
+            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(200, 21);
+            this.dtpPurchaseDate.TabIndex = 13;
+            this.dtpPurchaseDate.ValueChanged += new System.EventHandler(this.dtpPurchaseDate_ValueChanged);
+            // 
             // txtNote
             // 
             this.txtNote.Location = new System.Drawing.Point(72, 173);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
+            this.txtNote.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtNote.Size = new System.Drawing.Size(236, 92);
             this.txtNote.TabIndex = 11;
             // 
@@ -81,6 +99,7 @@
             this.txtPrice.Size = new System.Drawing.Size(100, 21);
             this.txtPrice.TabIndex = 9;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrice.Enter += new System.EventHandler(this.txtPrice_Enter);
             this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             this.txtPrice.Leave += new System.EventHandler(this.txtPrice_Leave);
             // 
@@ -166,14 +185,6 @@
             this.btnRebuild.UseVisualStyleBackColor = true;
             this.btnRebuild.Click += new System.EventHandler(this.btnRebuild_Click);
             // 
-            // dtpPurchaseDate
-            // 
-            this.dtpPurchaseDate.Location = new System.Drawing.Point(72, 120);
-            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
-            this.dtpPurchaseDate.Size = new System.Drawing.Size(200, 21);
-            this.dtpPurchaseDate.TabIndex = 13;
-            this.dtpPurchaseDate.ValueChanged += new System.EventHandler(this.dtpPurchaseDate_ValueChanged);
-            // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(290, 313);
@@ -183,15 +194,6 @@
             this.btnClose.Text = "닫기";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(178, 80);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 12);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "\\(원)";
             // 
             // FrmAddEquipment
             // 

@@ -8,9 +8,11 @@ namespace GoodeeWay.Equipment
 {
     public enum EquipmentStatus
     {
-        전체 = 0,
-        사용중 = 1,
-        폐기 =2,
-        교체요망 =3
+        All = 0,
+        Using = 1,
+        Discard =2,
+        ReplacementRequest = 3
+
+     
     }
 }

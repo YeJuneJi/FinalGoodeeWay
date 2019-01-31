@@ -6,7 +6,7 @@ detailName nvarchar(50) not null,
 location nvarchar(20),
 state nvarchar(15) default N'사용중',
 purchasePrice float default 0,
-purchaseDate datetime,
+purchaseDate datetime not null,
 note nvarchar(max)
 
 constraint PK_EQUCode primary key(EQUCode),

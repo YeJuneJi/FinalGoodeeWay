@@ -19,20 +19,7 @@ namespace GoodeeWay.Equipment
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            EquipmentVO equipmentVO = new EquipmentVO()
-            {
-                DetailName = txtDetailName.Text,
-                Location = txtLocation.Text,
-                PurchasePrice = float.Parse(txtNote.Text),
-                PurchaseDate = dtpPurchaseDate.Value,
-                Note = txtNote.Text
-            };
-            EquipmentDAO dAO = new EquipmentDAO();
-            dAO.InsertEquipment(equipmentVO);
-            
-        }
+       
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -41,7 +28,7 @@ namespace GoodeeWay.Equipment
                 DetailName = txtDetailName.Text,
                 Location = txtLocation.Text,
                 PurchasePrice = float.Parse(txtPrice.Text.Replace(",","")),
-                PurchaseDate = dtpPurchaseDate.Value,
+                PurchaseDate = dtpPurchaseDate.Value.Date,
                 Note = txtNote.Text
             };
             EquipmentDAO dAO = new EquipmentDAO();
@@ -119,5 +106,14 @@ namespace GoodeeWay.Equipment
 
             }
         }
+
+        private void txtPrice_Enter(object sender, EventArgs e)
+        {
+            if (txtPrice.Text != "")
+            {
+                txtPrice.Text = txtPrice.Text.Replace(",", "");
+            }
+        }
+        
     }
 }
