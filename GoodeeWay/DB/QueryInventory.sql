@@ -100,3 +100,14 @@ AS
 	SELECT R.ReceivingDetailsID,I.InventoryName,CONVERT(NVARCHAR(10),R.ExpirationDate,23) 
 'ExpirationDate',R.Quantity,R.UnitPrice,R.ReturnStatus,I.InventoryTypeCode from ReceivingDetails R, InventoryType I
 	where R.InventoryTypeCode=I.InventoryTypeCode and convert(nvarchar(10),R.ReceivingDetailsDate,23)=@receivingDetailsDate;
+
+
+Go
+--재고테이블 재고종류테이블 조인 저장프로시져
+CREATE PROCEDURE [dbo].SelectInventory_InventoryType
+AS
+	SELECT I.InventoryID, IT.InventoryName,I.InventoryQuantity,Convert(nvarchar(10),I.DateOfUse,23) 'DateOfUse',Convert(nvarchar(10),I.DateOfDisposal,23) 'DateOfDisposal',
+	I.ReceivingDetailsID,I.InventoryTypeCode
+	from Inventory I, InventoryType IT
+	where I.InventoryTypeCode=IT.InventoryTypeCode
+

@@ -45,5 +45,7 @@ namespace GoodeeWay.DAO
             }
             return inventoryTypeVOList;
         }
+
+        
     }
 }

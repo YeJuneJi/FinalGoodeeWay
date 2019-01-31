@@ -33,7 +33,14 @@ namespace GoodeeWay.DAO
                     ReceivingDetailsParameters[5] = new SqlParameter("ReturnStatus", item.ReturnStatus + "입");
                     ReceivingDetailsParameters[6] = new SqlParameter("InventoryTypeCode", item.InventoryTypeCode);
                     #endregion
-                    new DBConnection().Insert("InsertReceivingDetails", ReceivingDetailsParameters);
+                    try
+                    {
+                        new DBConnection().Insert("InsertReceivingDetails", ReceivingDetailsParameters);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
 
                     #region 입고내역서 -> 재고내역 저장
                     InventoryParameters[0] = new SqlParameter("InventoryQuantity", item.Quantity);
@@ -58,6 +65,46 @@ namespace GoodeeWay.DAO
                 }
             }
 
+        }
+
+        internal List<InventoryInventoryTypeVO> InventoryTableSelect()
+        {
+            SqlDataReader dr =  new DBConnection().Select("SelectInventory_InventoryType", null);
+            List<InventoryInventoryTypeVO> inventoryInventoryTypeVOList = new List<InventoryInventoryTypeVO>();
+            while (dr.Read())
+            {
+                //DateTime dateOfUse=DateTime.Parse("2001-01-01"); 
+                DateTime? dateOfUse=null; 
+                //DateTime dateOfDisposal=DateTime.Parse("2001-01-01");
+                DateTime? dateOfDisposal=null;
+                try
+                {
+                    dateOfUse = DateTime.Parse(dr["DateOfUse"].ToString());
+                }
+                catch (FormatException)
+                {
+                }
+                try
+                {
+                    dateOfDisposal = DateTime.Parse(dr["DateOfDisposal"].ToString());
+                }
+                catch (FormatException)
+                {
+                }
+                var inventoryInventoryTypeVO = new InventoryInventoryTypeVO()
+                {
+                    InventoryID = dr["InventoryID"].ToString(),
+                    InventoryName = dr["InventoryName"].ToString(),
+                    InventoryQuantity = Int32.Parse(dr["InventoryQuantity"].ToString()),
+                    DateOfUse = dateOfUse,
+                    DateOfDisposal = dateOfDisposal,
+                    ReceivingDetailsID = dr["ReceivingDetailsID"].ToString(),
+                    InventoryTypeCode = dr["InventoryTypeCode"].ToString(),
+                    
+                };
+                inventoryInventoryTypeVOList.Add(inventoryInventoryTypeVO);
+            }
+            return inventoryInventoryTypeVOList;
         }
     }
 }

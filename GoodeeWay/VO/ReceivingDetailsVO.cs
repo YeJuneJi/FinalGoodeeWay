@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class ReceivingDetailsVO
+    public class ReceivingDetailsVO
     {
         private string receivingDetailsID;
         public string ReceivingDetailsID
         {
             get { return receivingDetailsID; }
             set { receivingDetailsID = value; }
+        }
+        private string inventoryName;
+        public string InventoryName
+        {
+            get { return inventoryName; }
+            set { inventoryName = value; }
         }
         private DateTime receivingDetailsDate;
         public DateTime ReceivingDetailsDate
