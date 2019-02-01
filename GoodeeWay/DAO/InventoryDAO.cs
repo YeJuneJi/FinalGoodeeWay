@@ -51,7 +51,7 @@ namespace GoodeeWay.DAO
                     new DBConnection().Insert("InsertInventory", InventoryParameters);
 
                 }
-                else if (item.ReturnStatus == "교환" || item.ReturnStatus == "환불")
+                else if (item.ReturnStatus == "교환" || item.ReturnStatus == "반품")
                 {
                     ReceivingDetailsParameters[0] = new SqlParameter("ReceivingDetailsID", item.ReceivingDetailsID);
                     ReceivingDetailsParameters[1] = new SqlParameter("ReceivingDetailsDate", item.ReceivingDetailsDate);

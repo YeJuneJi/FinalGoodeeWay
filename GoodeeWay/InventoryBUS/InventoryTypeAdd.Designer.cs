@@ -104,6 +104,7 @@
             this.cmbClassification.Name = "cmbClassification";
             this.cmbClassification.Size = new System.Drawing.Size(100, 20);
             this.cmbClassification.TabIndex = 8;
+            this.cmbClassification.Text = "채소";
             // 
             // btnComplete
             // 

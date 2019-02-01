@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnReturnAdd = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvReceivingDetailsList = new System.Windows.Forms.DataGridView();
@@ -39,7 +40,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnInventoryTypeAdd = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnReturnAdd = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).BeginInit();
@@ -107,6 +107,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "입고내역";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnReturnAdd
+            // 
+            this.btnReturnAdd.Location = new System.Drawing.Point(1004, 9);
+            this.btnReturnAdd.Name = "btnReturnAdd";
+            this.btnReturnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnReturnAdd.TabIndex = 3;
+            this.btnReturnAdd.Text = "반품추가";
+            this.btnReturnAdd.UseVisualStyleBackColor = true;
+            this.btnReturnAdd.Click += new System.EventHandler(this.btnReturnAdd_Click);
             // 
             // label6
             // 
@@ -173,7 +183,7 @@
             // 
             this.tabPage3.Controls.Add(this.btnNewTable);
             this.tabPage3.Controls.Add(this.btnInventoryTypeAdd);
-            this.tabPage3.Controls.Add(this.button10);
+            this.tabPage3.Controls.Add(this.btnDelete);
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.dataGridView7);
             this.tabPage3.Controls.Add(this.label3);
@@ -208,14 +218,15 @@
             this.btnInventoryTypeAdd.UseVisualStyleBackColor = true;
             this.btnInventoryTypeAdd.Click += new System.EventHandler(this.btnInventoryTypeAdd_Click);
             // 
-            // button10
+            // btnDelete
             // 
-            this.button10.Location = new System.Drawing.Point(397, 15);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(59, 23);
-            this.button10.TabIndex = 11;
-            this.button10.Text = "제거";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(397, 15);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(59, 23);
+            this.btnDelete.TabIndex = 11;
+            this.btnDelete.Text = "제거";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label4
             // 
@@ -434,16 +445,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnReturnAdd
-            // 
-            this.btnReturnAdd.Location = new System.Drawing.Point(1004, 9);
-            this.btnReturnAdd.Name = "btnReturnAdd";
-            this.btnReturnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnReturnAdd.TabIndex = 3;
-            this.btnReturnAdd.Text = "반품추가";
-            this.btnReturnAdd.UseVisualStyleBackColor = true;
-            this.btnReturnAdd.Click += new System.EventHandler(this.btnReturnAdd_Click);
-            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -504,7 +505,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvInventoryType;
         private System.Windows.Forms.Button btnInventoryTypeAdd;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dgvReceivingDetailsList;

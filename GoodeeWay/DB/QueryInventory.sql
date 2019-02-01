@@ -111,3 +111,10 @@ AS
 	from Inventory I, InventoryType IT
 	where I.InventoryTypeCode=IT.InventoryTypeCode
 
+Go
+--재고종류 삭제 프로시져
+CREATE PROCEDURE [dbo].InventoryTypeDelete
+	@InventoryTypeCode nvarchar(6)
+AS
+	delete from InventoryType
+	where InventoryTypeCode=@InventoryTypeCode;

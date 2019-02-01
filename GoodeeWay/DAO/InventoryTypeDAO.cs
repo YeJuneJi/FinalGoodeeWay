@@ -46,6 +46,19 @@ namespace GoodeeWay.DAO
             return inventoryTypeVOList;
         }
 
-        
+        internal void InventoryTypeDelete(string inventoryTypeCode)
+        {
+            SqlParameter[] deleteInventoryType = new SqlParameter[1];
+            deleteInventoryType[0] = new SqlParameter("InventoryTypeCode", inventoryTypeCode);
+            try
+            {
+                new DBConnection().Delete("InventoryTypeDelete", deleteInventoryType);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
