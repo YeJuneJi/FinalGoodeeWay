@@ -38,6 +38,7 @@
             this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
             this.dgvReceivingDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnInventoryTypeAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -144,6 +145,7 @@
             this.dgvReceivingDetailsList.RowTemplate.Height = 23;
             this.dgvReceivingDetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvReceivingDetailsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReceivingDetailsList.ShowEditingIcon = false;
             this.dgvReceivingDetailsList.Size = new System.Drawing.Size(154, 546);
             this.dgvReceivingDetailsList.TabIndex = 25;
             this.dgvReceivingDetailsList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvReceivingDetailsList_CellMouseDoubleClick);
@@ -181,6 +183,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnUpdate);
             this.tabPage3.Controls.Add(this.btnNewTable);
             this.tabPage3.Controls.Add(this.btnInventoryTypeAdd);
             this.tabPage3.Controls.Add(this.btnDelete);
@@ -198,9 +201,19 @@
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(332, 15);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(59, 23);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "수정";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // btnNewTable
             // 
-            this.btnNewTable.Location = new System.Drawing.Point(261, 15);
+            this.btnNewTable.Location = new System.Drawing.Point(196, 15);
             this.btnNewTable.Name = "btnNewTable";
             this.btnNewTable.Size = new System.Drawing.Size(65, 23);
             this.btnNewTable.TabIndex = 13;
@@ -210,7 +223,7 @@
             // 
             // btnInventoryTypeAdd
             // 
-            this.btnInventoryTypeAdd.Location = new System.Drawing.Point(332, 15);
+            this.btnInventoryTypeAdd.Location = new System.Drawing.Point(267, 15);
             this.btnInventoryTypeAdd.Name = "btnInventoryTypeAdd";
             this.btnInventoryTypeAdd.Size = new System.Drawing.Size(59, 23);
             this.btnInventoryTypeAdd.TabIndex = 12;
@@ -231,7 +244,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(462, 367);
+            this.label4.Location = new System.Drawing.Point(462, 364);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 12);
             this.label4.TabIndex = 8;
@@ -240,7 +253,7 @@
             // dataGridView7
             // 
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView7.Location = new System.Drawing.Point(462, 382);
+            this.dataGridView7.Location = new System.Drawing.Point(462, 379);
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowTemplate.Height = 23;
             this.dataGridView7.Size = new System.Drawing.Size(607, 251);
@@ -276,6 +289,7 @@
             this.dgvInventoryTable.Size = new System.Drawing.Size(607, 312);
             this.dgvInventoryTable.TabIndex = 2;
             this.dgvInventoryTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventoryTable_CellMouseClick);
+            this.dgvInventoryTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvInventoryTable_KeyUp);
             // 
             // label1
             // 
@@ -512,5 +526,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnNewTable;
         private System.Windows.Forms.Button btnReturnAdd;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

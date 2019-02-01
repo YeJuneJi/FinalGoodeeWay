@@ -26,8 +26,6 @@ CREATE TABLE [dbo].InventoryType
 Go
 
 --재고종류테이블 추가
-ALTER TABLE InventoryType
-ADD(MaterialClassification nvarchar(30));
 
 Go
 
@@ -117,4 +115,16 @@ CREATE PROCEDURE [dbo].InventoryTypeDelete
 	@InventoryTypeCode nvarchar(6)
 AS
 	delete from InventoryType
+	where InventoryTypeCode=@InventoryTypeCode;
+
+Go
+--재고종류 수정 프로시져
+CREATE PROCEDURE [dbo].UpdateInventoryType
+	@InventoryTypeCode nvarchar(6),
+	@ReceivingQuantity nvarchar(20),
+	@InventoryName nvarchar(47),
+	@MaterialClassification nvarchar(30)
+AS
+	update  InventoryType
+	set ReceivingQuantity=@ReceivingQuantity,InventoryName=@InventoryName,MaterialClassification=@MaterialClassification
 	where InventoryTypeCode=@InventoryTypeCode;

@@ -60,5 +60,16 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+
+        internal void InventoryTypeUpdate(InventoryTypeVO inventoryTypeVO)
+        {
+            SqlParameter[] updateInventoryTypeParameter = new SqlParameter[4];
+            updateInventoryTypeParameter[0] = new SqlParameter("InventoryTypeCode", inventoryTypeVO.InventoryTypeCode);
+            updateInventoryTypeParameter[1] = new SqlParameter("ReceivingQuantity", inventoryTypeVO.ReceivingQuantity);
+            updateInventoryTypeParameter[2] = new SqlParameter("InventoryName", inventoryTypeVO.InventoryName);
+            updateInventoryTypeParameter[3] = new SqlParameter("MaterialClassification", inventoryTypeVO.MaterialClassification);
+            new DBConnection().Update("UpdateInventoryType", updateInventoryTypeParameter);
+
+        }
     }
 }
