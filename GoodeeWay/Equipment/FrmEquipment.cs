@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
 using GoodeeWay.VO;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GoodeeWay.Equipment
 {
@@ -18,18 +19,61 @@ namespace GoodeeWay.Equipment
         {
             InitializeComponent();
         }
-        EquipmentVO tempEquipment;//선택된 비품임시저장
+        private EquipmentVO tempEquipment;//선택된 비품임시저장
+        private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
+        private DataRow dataRow;
 
+
+        private DataTable SetDataTable(List<EquipmentVO> equipmentLst)
+        {
+            dataTable = new DataTable("Equipment");
+
+            //dataTable.Columns.Add("EQUCode", typeof(string), "비품코드");
+            //dataTable.Columns.Add("detailName", typeof(string), "상세명칭");
+            //dataTable.Columns.Add("location", typeof(string), "위치");
+            //dataTable.Columns.Add("state", typeof(string), "상태");
+            //dataTable.Columns.Add("purchasePrice", typeof(float), "구매가격");
+            //dataTable.Columns.Add("purchaseDate", typeof(DateTime), "구매날짜");
+            //dataTable.Columns.Add("note", typeof(string), "비고");
+
+            dataTable.Columns.Add("비품코드", typeof(string));
+            dataTable.Columns.Add("상세명칭", typeof(string));
+            dataTable.Columns.Add("위치", typeof(string));
+            dataTable.Columns.Add("상태", typeof(string));
+            dataTable.Columns.Add("구매가격", typeof(float));
+            dataTable.Columns.Add("구매날짜", typeof(DateTime));
+            dataTable.Columns.Add("비고", typeof(string));
+            foreach (var item in equipmentLst)
+            {
+                dataTable.Rows.Add(item.EQUCode, item.DetailName, item.Location, item.State, item.PurchasePrice, item.PurchaseDate, item.Note);
+            }
+            return dataTable;
+        }
         private void FrmEquipment_Load(object sender, EventArgs e)
         {
             EquipmentDAO dAO = new EquipmentDAO();
+            dgvEquipmentList.AllowUserToAddRows = false;
             chbDate.CheckState = CheckState.Unchecked;
-            dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
+            //dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
+            dgvEquipmentList.DataSource = SetDataTable(dAO.AllequipmentVOsList());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             EquipmentDAO dAO = new EquipmentDAO();
+            string tempState = "";
+            if (rbDiscard.Checked)
+            {
+                tempState = "폐기";
+            }
+            else if (rbUsing.Checked)
+            {
+                tempState = "사용중";
+            }
+            else if (rbReplacementRequest.Checked)
+            {
+                tempState = "교체요망";
+            }
 
             if (chbDate.Checked)
             {
@@ -45,10 +89,12 @@ namespace GoodeeWay.Equipment
                     DetailName = txtSearchForName.Text,
                     Location = txtSearchForLocation.Text,
                     PurchaseDate = dtpStartDate.Value,
-                    PurchasePrice = float.Parse(txtSearchForPrice.Text)
+                    PurchasePrice = float.Parse(txtSearchForPrice.Text),
+                    State = tempState
                 };
+
                 DateTime endDate = dtpEndDate.Value;
-                dgvEquipmentList.DataSource = dAO.SelectSearch(equipment, endDate);
+                dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, endDate));
             }
             else
             {
@@ -57,13 +103,14 @@ namespace GoodeeWay.Equipment
                     DetailName = txtSearchForName.Text,
                     Location = txtSearchForLocation.Text,
                     PurchaseDate = DateTime.Parse("1753-1-1"),
-                    PurchasePrice = float.Parse(txtSearchForPrice.Text)
+                    PurchasePrice = float.Parse(txtSearchForPrice.Text),
+                    State = tempState
                 };
-                dgvEquipmentList.DataSource = dAO.SelectSearch(equipment, DateTime.Parse("1753-1-1"));
+                dgvEquipmentList.DataSource = SetDataTable( dAO.SelectSearch(equipment, DateTime.Parse("1753-1-1")));
             }
         }
 
-            private void btnAddEquipment_Click(object sender, EventArgs e)
+        private void btnAddEquipment_Click(object sender, EventArgs e)
         {
             FrmAddEquipment frmAddEquipment = new FrmAddEquipment();
             frmAddEquipment.ShowDialog();
@@ -92,7 +139,7 @@ namespace GoodeeWay.Equipment
             cbState.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString();
             if (dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString() != "")
             {
-                dtpPurchaseDate.Value =DateTime.Parse( dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString());
+                dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString());
             }
 
             tempEquipment = new EquipmentVO()
@@ -101,11 +148,11 @@ namespace GoodeeWay.Equipment
                 DetailName = dgvEquipmentList.Rows[e.RowIndex].Cells[1].Value.ToString(),
                 Location = dgvEquipmentList.Rows[e.RowIndex].Cells[2].Value.ToString(),
                 State = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                PurchasePrice =float.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString()),
+                PurchasePrice = float.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString()),
                 PurchaseDate = dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString()),
                 Note = dgvEquipmentList.Rows[e.RowIndex].Cells[6].Value.ToString()
-        };
-
+            };
+            btnModification.Enabled = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -116,8 +163,8 @@ namespace GoodeeWay.Equipment
             if (mbResult == DialogResult.Yes)
             {
                 dAO.DeleteEquipment(tempEquipment);
-            }   
-            
+            }
+
         }
 
         private void txtSearchForPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -142,6 +189,53 @@ namespace GoodeeWay.Equipment
             {
                 txtSearchForPrice.Text = "";
             }
+        }
+
+        private void btnModification_Click(object sender, EventArgs e)
+        {
+            DialogResult mbResult = MessageBox.Show("정말로 수정하시겠습니까? 수정기록은 남지 않습니다.", "비품수정", MessageBoxButtons.YesNo);
+            if (mbResult == DialogResult.Yes)
+            {
+                if (tempEquipment.DetailName != txtDetailName.Text || tempEquipment.Location != txtLocation.Text || tempEquipment.PurchasePrice != float.Parse(txtPrice.Text) || tempEquipment.PurchaseDate != dtpPurchaseDate.Value.Date || tempEquipment.Note != txtNote.Text
+                || tempEquipment.State != cbState.Text)
+                {
+                    EquipmentDAO dAO = new EquipmentDAO();
+                    tempEquipment.DetailName = txtDetailName.Text;
+                    tempEquipment.Location = txtLocation.Text;
+                    tempEquipment.PurchasePrice = float.Parse(txtPrice.Text);
+                    tempEquipment.PurchaseDate = dtpPurchaseDate.Value.Date;
+                    tempEquipment.Note = txtNote.Text;
+                    tempEquipment.State = cbState.Text;
+
+                    if (dAO.UpdateEquipment(tempEquipment))
+                    {
+                        MessageBox.Show("성공적으로 업데이트 했습니다.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("업데이트에 실패했습니다.");
+                    }
+                }
+            }
+
+        }
+
+        private void btnExportAsExcel_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = new Excel.Application();
+            if (excelApp == null)
+            {
+                MessageBox.Show("Excel응용 프로그램을 찾을수 없거나, 설치되지 않았습니다.");
+                return;
+            }
+
+            Excel.Workbook workbook;
+            Excel.Sheets sheets;
+
+            object missingVlaue = System.Reflection.Missing.Value;
+
+            workbook = excelApp.Workbooks.Open(@".\Equipments\EquipmentExcel.xlsx");
+
         }
     }
 }

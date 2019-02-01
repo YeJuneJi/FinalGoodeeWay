@@ -31,6 +31,12 @@ namespace GoodeeWay.DAO
         /// <param name="equipment"></param>
         /// <returns></returns>
         bool DeleteEquipment(EquipmentVO equipment);
+        /// <summary>
+        /// 선택된 데이터 수정
+        /// </summary>
+        /// <param name="equipment"></param>
+        /// <returns></returns>
+        bool UpdateEquipment(EquipmentVO equipment);
         
     }
 }

@@ -40,3 +40,10 @@ insert into dbo.EquipmentRegister(EQUCode,detailName,location,purchasePrice,purc
 @purchasePrice,
 @purchaseDate,
 @note);
+go
+
+--비품 삭제 프로시저
+ create procedure [dbo].[DeleteEquipment_PROC]
+ @EQUCode nvarchar(10)
+ as
+ delete from dbo.EquipmentRegister where EQUCode = @EQUCode;

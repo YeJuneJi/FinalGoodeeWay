@@ -45,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtSearchForLocation = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtSearchForPrice = new System.Windows.Forms.TextBox();
@@ -62,8 +63,7 @@
             this.rbAll = new System.Windows.Forms.RadioButton();
             this.txtSearchForName = new System.Windows.Forms.TextBox();
             this.btnAddEquipment = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.btnExportAsExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,13 +72,17 @@
             // 
             // dgvEquipmentList
             // 
+            this.dgvEquipmentList.AllowUserToDeleteRows = false;
             this.dgvEquipmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEquipmentList.Location = new System.Drawing.Point(0, 0);
             this.dgvEquipmentList.MultiSelect = false;
             this.dgvEquipmentList.Name = "dgvEquipmentList";
+            this.dgvEquipmentList.ReadOnly = true;
             this.dgvEquipmentList.RowTemplate.Height = 23;
+            this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEquipmentList.ShowEditingIcon = false;
             this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 390);
             this.dgvEquipmentList.TabIndex = 0;
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
@@ -125,12 +129,14 @@
             // 
             // btnModification
             // 
+            this.btnModification.Enabled = false;
             this.btnModification.Location = new System.Drawing.Point(332, 173);
             this.btnModification.Name = "btnModification";
             this.btnModification.Size = new System.Drawing.Size(75, 38);
             this.btnModification.TabIndex = 13;
             this.btnModification.Text = "수정";
             this.btnModification.UseVisualStyleBackColor = true;
+            this.btnModification.Click += new System.EventHandler(this.btnModification_Click);
             // 
             // cbState
             // 
@@ -249,6 +255,15 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "검색";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(278, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "품목명";
             // 
             // txtSearchForLocation
             // 
@@ -412,23 +427,15 @@
             this.btnAddEquipment.UseVisualStyleBackColor = true;
             this.btnAddEquipment.Click += new System.EventHandler(this.btnAddEquipment_Click);
             // 
-            // button5
+            // btnExportAsExcel
             // 
-            this.button5.Location = new System.Drawing.Point(827, 571);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(173, 62);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "엑셀 다운로드";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(278, 32);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "품목명";
+            this.btnExportAsExcel.Location = new System.Drawing.Point(827, 571);
+            this.btnExportAsExcel.Name = "btnExportAsExcel";
+            this.btnExportAsExcel.Size = new System.Drawing.Size(173, 62);
+            this.btnExportAsExcel.TabIndex = 4;
+            this.btnExportAsExcel.Text = "엑셀 다운로드";
+            this.btnExportAsExcel.UseVisualStyleBackColor = true;
+            this.btnExportAsExcel.Click += new System.EventHandler(this.btnExportAsExcel_Click);
             // 
             // FrmEquipment
             // 
@@ -437,7 +444,7 @@
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1092, 672);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnExportAsExcel);
             this.Controls.Add(this.btnAddEquipment);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -491,7 +498,7 @@
         private System.Windows.Forms.RadioButton rbAll;
         private System.Windows.Forms.TextBox txtSearchForName;
         private System.Windows.Forms.Button btnAddEquipment;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnExportAsExcel;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
         private System.Windows.Forms.Label label4;
     }

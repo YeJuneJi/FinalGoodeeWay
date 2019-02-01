@@ -71,14 +71,13 @@ namespace GoodeeWay.DAO
 
             DBConnection dBConnection = new DBConnection();
             string procedureName = "dbo.SelectDitalsByEquipment_PROC";
-            //equipment.State = "사용중";
-            SqlParameter[] sqlParameters = new SqlParameter[5];
+            SqlParameter[] sqlParameters = new SqlParameter[6];
             sqlParameters[0] = new SqlParameter("detailName", equipment.DetailName);
             sqlParameters[1] = new SqlParameter("location", equipment.Location);
-            //sqlParameters[2] = new SqlParameter("state", equipment.State);
-            sqlParameters[2] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
-            sqlParameters[3] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
-            sqlParameters[4] = new SqlParameter("anotherDate", anotherDate);
+            sqlParameters[2] = new SqlParameter("state", equipment.State);
+            sqlParameters[3] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
+            sqlParameters[4] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
+            sqlParameters[5] = new SqlParameter("anotherDate", anotherDate);
             SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
 
             while (dataReader.Read())
@@ -96,6 +95,26 @@ namespace GoodeeWay.DAO
                 equipmentLst.Add(equipmentVO);
             }
             return equipmentLst;
+        }
+
+        public bool UpdateEquipment(EquipmentVO equipment)
+        {
+            DBConnection dBConnection = new DBConnection();
+            string procedureName = "dbo.UpdateEquipment_PROC";
+
+            SqlParameter[] sqlParameters = new SqlParameter[6];
+            sqlParameters[0] = new SqlParameter("EQUCode", equipment.EQUCode);
+            sqlParameters[1] = new SqlParameter("detailName", equipment.DetailName);
+            sqlParameters[2] = new SqlParameter("location", equipment.Location);
+            sqlParameters[3] = new SqlParameter("state", equipment.State);
+            sqlParameters[4] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
+            sqlParameters[5] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
+
+            if (dBConnection.Update(procedureName, sqlParameters) !=1)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
