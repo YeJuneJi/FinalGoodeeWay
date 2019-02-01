@@ -16,8 +16,6 @@ using System.Windows.Forms;
 
 namespace GoodeeWay.SalesMenu
 {
-    enum Division {샌드위치, 찹샐러드, 사이드, 음료}
-    //enum Division {Sandwich, ChoppedSalad, Side, Drink};
     public partial class FrmSalesMenu : Form
     {
         FlowLayoutPanel breadPanel;
@@ -28,6 +26,8 @@ namespace GoodeeWay.SalesMenu
         FlowLayoutPanel additionalPanel;
         List<InventoryTypeVO> testList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
+        string oldMenuCode;
+        int oldDivision;
         public FrmSalesMenu()
         {
             InitializeComponent();
@@ -39,9 +39,12 @@ namespace GoodeeWay.SalesMenu
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
             salesMenuGView.DataSource = salesMenuList;
-            cbxDivision.Items.Add(Division.샌드위치);
 
-           
+            foreach (Division item in Enum.GetValues(typeof(Division))) //Enum Type 반복하며 ComboBox에 등록.
+            {
+                cbxDivision.Items.Add(item);
+            }
+
             #region 테스트 코드입니다 ^ㅡ^
             testList.Add(new InventoryTypeVO()
             {
@@ -144,21 +147,19 @@ namespace GoodeeWay.SalesMenu
 
 
             #endregion
-
         }
 
         private void btnMnuInsert_Click(object sender, EventArgs e)
         {
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
-            string price = tbxPrice.Text.Replace(",","").Trim();
-            string kcal = tbxKcal.Text.Replace(" ","").Trim();
-            string division = cbxDivision.Text.Replace(" ","").Trim();
+            string price = tbxPrice.Text.Replace(",", "").Trim();
+            string kcal = tbxKcal.Text.Replace(" ", "").Trim();
+            string division = cbxDivision.Text;
             string addContxt = tbxAddContxt.Text.Trim();
             Image image = pbxPhoto.Image;
             bool sucessRecipe = false;
             bool sucessMenu = false;
-
 
             if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal) && ValidateMenuCode(menuCode))
             {
@@ -173,58 +174,17 @@ namespace GoodeeWay.SalesMenu
                     {
                         return;
                     }
-                    bool necess = false;
-                    foreach (InventoryTypeVO item in testList)
-                    {
-                        MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
-                        menuRecipeVO.IngredientAmount = 5;
-                        menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
-                        menuRecipeVO.MenuCode = menuCode;
-                        foreach (FlowLayoutPanel panel in FlowPanel.Controls)
-                        {
-                            foreach (var ctrl in panel.Controls)
-                            {
-                                if (ctrl.GetType() == typeof(RadioButton))
-                                {
-                                    RadioButton rbtn = ctrl as RadioButton;
-                                    if (item.InventoryName.Equals(rbtn.Text))
-                                    {
-                                        necess = rbtn.Checked;
-                                    }
-                                }
-                                if (ctrl.GetType() == typeof(CheckBox))
-                                {
-                                    CheckBox cbx = ctrl as CheckBox;
-                                    if (item.InventoryName.Equals(cbx.Text))
-                                    {
-                                        necess = cbx.Checked;
-                                    }
-                                }
-                            }
-                        }
-                        menuRecipeVO.Necessary = necess;
-                        try
-                        {
-                            if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
-                            {
-                                sucessRecipe = true;
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-
+                    sucessRecipe = InsertingRecipe(menuCode, sucessRecipe);
                 }
+                btnClear_Click(null, null);
             }
 
 
-            if (cbxDivision.SelectedIndex != 0 && sucessMenu)
+            if (!sucessRecipe)
             {
                 MessageBox.Show("저장 성공!");
             }
-            else if (cbxDivision.SelectedIndex == 0 && sucessRecipe)
+            else
             {
                 MessageBox.Show("저장 성공!(기본 레시피 저장 포함)");
             }
@@ -233,6 +193,60 @@ namespace GoodeeWay.SalesMenu
 
         /// <summary>
         /// 
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="sucessRecipe"></param>
+        /// <returns></returns>
+        private bool InsertingRecipe(string menuCode, bool sucessRecipe)
+        {
+            bool necess = false;
+            foreach (InventoryTypeVO item in testList)
+            {
+                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
+                menuRecipeVO.IngredientAmount = 5;
+                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
+                menuRecipeVO.MenuCode = menuCode;
+                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                {
+                    foreach (var ctrl in panel.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            RadioButton rbtn = ctrl as RadioButton;
+                            if (item.InventoryName.Equals(rbtn.Text))
+                            {
+                                necess = rbtn.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(CheckBox))
+                        {
+                            CheckBox cbx = ctrl as CheckBox;
+                            if (item.InventoryName.Equals(cbx.Text))
+                            {
+                                necess = cbx.Checked;
+                            }
+                        }
+                    }
+                }
+                menuRecipeVO.Necessary = necess;
+                try
+                {
+                    if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
+                    {
+                        sucessRecipe = true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return sucessRecipe;
+        }
+
+        /// <summary>
+        /// 메뉴를 등록하기위해 데이터를 받아와 DAO단으로 전송해주는 메서드
         /// </summary>
         /// <param name="menuCode"></param>
         /// <param name="menuName"></param>
@@ -246,16 +260,20 @@ namespace GoodeeWay.SalesMenu
         private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, Image image, bool sucessMenu)
         {
             sucessMenu = false;
-            SalesMenuVO salesMenuVO = new SalesMenuVO()
+            SalesMenuVO salesMenuVO = new SalesMenuVO();
+            salesMenuVO.MenuCode = menuCode;
+            salesMenuVO.MenuName = menuName;
+            salesMenuVO.Price = float.Parse(price);
+            salesMenuVO.Kcal = int.Parse(kcal);
+            salesMenuVO.MenuImage = image;
+            foreach (Division item in Enum.GetValues(typeof(Division)))
             {
-                MenuCode = menuCode,
-                MenuName = menuName,
-                Price = float.Parse(price),
-                Kcal = int.Parse(kcal),
-                MenuImage = image,
-                Division = division,
-                AdditionalContext = addContxt
-            };
+                if (item.ToString().Equals(division))
+                {
+                    salesMenuVO.Division = (int)item;
+                }
+            }
+            salesMenuVO.AdditionalContext = addContxt;
             try
             {
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
@@ -371,8 +389,6 @@ namespace GoodeeWay.SalesMenu
 
         private void cbxDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             if (cbxDivision.SelectedIndex != 0)
             {
                 this.Size = new Size(757, 556);
@@ -432,7 +448,6 @@ namespace GoodeeWay.SalesMenu
                         RadioButton radioBread = new RadioButton();
                         radioBread.Text = inventoryType.InventoryName;
                         radioBread.Name = inventoryType.InventoryTypeCode;
-
                         Label labelBread = new Label();
                         labelBread.Text = "사용량 : 5g";
                         labelBread.Padding = new Padding(0, 8, 0, 0);
@@ -512,6 +527,7 @@ namespace GoodeeWay.SalesMenu
             msktbxMnuCode.Text = tbxAddContxt.Text = tbxKcal.Text = tbxMnuName.Text = tbxPrice.Text = "";
             pbxPhoto.Image = null;
             cbxDivision.SelectedIndex = -1;
+            msktbxMnuCode.Focus();
         }
 
         private void btnMnuUpdate_Click(object sender, EventArgs e)
@@ -523,6 +539,75 @@ namespace GoodeeWay.SalesMenu
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             Image image = pbxPhoto.Image;
+            
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal) && ValidateMenuCode(menuCode))
+            {
+                SalesMenuVO salesMenuVO = new SalesMenuVO();
+                salesMenuVO.MenuCode = menuCode;
+                salesMenuVO.MenuName = menuName;
+                salesMenuVO.Price = float.Parse(price);
+                salesMenuVO.Kcal = int.Parse(kcal);
+                salesMenuVO.MenuImage = image;
+                foreach (Division item in Enum.GetValues(typeof(Division)))
+                {
+                    if (item.ToString().Equals(division))
+                    {
+                        salesMenuVO.Division = (int)item;
+                    }
+                }
+                salesMenuVO.AdditionalContext = addContxt;
+                try
+                {
+                    int result = new SalesMenuDAO().UpdateMenu(salesMenuVO, oldMenuCode);
+                    if (result < 1)
+                    {
+                        MessageBox.Show("수정 실패");
+                    }
+                    else
+                    {
+                        MessageBox.Show(result + "행이 영향을 받음");
+                    }
+                    
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Message.Contains("PRIMARY"))
+                    {
+                        MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                if (oldDivision == 0 && salesMenuVO.Division !=0)
+                {
+                    try
+                    {
+                        if (new MenuRecipeDAO().DeleteRecipesByMenuCode(salesMenuVO.MenuCode))
+                        {
+                            MessageBox.Show("레시피 삭제 성공");
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else if (oldDivision !=0 && salesMenuVO.Division ==0)
+                {
+                    InsertingRecipe(salesMenuVO.MenuCode, )
+                }
+            }
+            //update dbo.sales set 메뉴코드 = 메뉴코드, 메뉴이름 = 메뉴이름, 가격 = 가격, 칼로리 = 칼로리, 구분 = 구분, 추가내용 = 추가내용, 부가 = 부가
+            //where 메뉴코드 = 올드메뉴코드
+            //만약 oldDivision이 샌드위치이고, division이 다른것이면
+            //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
+            //만약 oldDivision이 다른것이고, division이 샌드위치이면
+            //insert into 메뉴코드 = 어쩌고
+
+
         }
 
 
@@ -530,13 +615,21 @@ namespace GoodeeWay.SalesMenu
         {
             if (e.RowIndex != -1)
             {
-                msktbxMnuCode.Text = salesMenuGView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                oldMenuCode = msktbxMnuCode.Text = salesMenuGView.Rows[e.RowIndex].Cells[0].Value.ToString();
                 tbxMnuName.Text = salesMenuGView.Rows[e.RowIndex].Cells[1].Value.ToString();
                 tbxPrice.Text = salesMenuGView.Rows[e.RowIndex].Cells[2].Value.ToString();
                 tbxKcal.Text = salesMenuGView.Rows[e.RowIndex].Cells[3].Value.ToString();
                 tbxAddContxt.Text = salesMenuGView.Rows[e.RowIndex].Cells[6].Value.ToString();
                 pbxPhoto.Image = salesMenuGView.Rows[e.RowIndex].Cells[4].Value as Image;
-                cbxDivision.SelectedItem = salesMenuGView.Rows[e.RowIndex].Cells[5].Value.ToString();
+                foreach (Division item in Enum.GetValues(typeof(Division)))
+                {
+                    if (salesMenuGView.Rows[e.RowIndex].Cells[5].Value.Equals((int)item))
+                    {
+                        cbxDivision.SelectedItem = item;
+                        oldDivision = (int)item;
+                    }
+                }
+                
                 if (cbxDivision.SelectedIndex == 0)
                 {
                     List<MenuRecipeVO> menuRecipeList = new MenuRecipeDAO().SelectRecipesByMenuCode(msktbxMnuCode.Text);
@@ -567,7 +660,7 @@ namespace GoodeeWay.SalesMenu
                     }
                 }
                 tbxPrice.Focus();
-                salesMenuGView.Focus(); 
+                salesMenuGView.Focus();
             }
         }
 

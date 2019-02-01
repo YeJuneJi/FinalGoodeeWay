@@ -7,7 +7,7 @@ menuName nvarchar(30) constraint sales_mname_nn not null,
 price float constraint sales_price_nn not null default 0,
 kCal int constraint sales_kcal_nn not null,
 menuImage image constraint sales_mImage_nn not null default 0x00,
-division nvarchar(10) constraint sales_div_nn not null,
+division int constraint sales_div_nn not null,
 additionalContext nvarchar(200) constraint sales_addcon_nn not null,
 constraint sales_mcode_pk primary key(menuCode),
 constraint sales_mname_uk unique(menuName),
@@ -40,14 +40,10 @@ salesTotal float constraint saleRecords_total_nn not null default 0,
 paymentPlan nvarchar(10) constraint saleRecords_paymentPlan_nn not null,
 menuCode nvarchar(10) constraint saleRecords_menucode_nn not null,
 constraint saleRecords_sNo_pk primary key(salesNo),
-constraint saleRecords_menuCode_fk foreign key(menuCode) references dbo.Sales(menuCode)
+constraint saleRecords_menuCode_fk foreign key(menuCode) references dbo.Sales(menuCode) on delete cascade on update cascade
 );
 GO
-
---Sales 테이블의 Select 프로시저
-CREATE PROCEDURE dbo.SelectMenu
-as
-Select * from dbo.Sales;
+\
 
 --Sales 테이블의 Insert 프로시저
 CREATE PROCEDURE dbo.InsertMenu
@@ -56,12 +52,19 @@ CREATE PROCEDURE dbo.InsertMenu
 @price float,
 @kCal int,
 @menuImage image ,
-@division nvarchar(10),
+@division int,
 @additionalContext nvarchar(200)
 as
 insert into dbo.Sales
 values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext);
 GO
+
+--Sales 테이블의 Select 프로시저
+CREATE PROCEDURE dbo.SelectMenu
+as
+Select * from dbo.Sales;
+GO
+
 
 
 --Recipes 테이블의 Insert 프로시저
@@ -102,4 +105,66 @@ create procedure SelectRecipesByMenuCode
 as
 select * from Recipes
 where menuCode = @menuCode;
+GO
+
+--Recipe와 Sales 동시에 Update 할 수있는 프로시저 생성중.. (미완성)
+create procedure UpdateSalesNRecipes
+@division int,
+@menuCode nvarchar(10),
+@menuName nvarchar(30),
+@price float,
+@kCal int,
+@menuImage image,
+@additionalContext nvarchar(200)
+as
+declare @updateNecessary bit,
+@count int,
+@num int,
+if(@division != 0)
+	begin
+		update dbo.Sales set menuName = @menuName, price = @price, menuImage = @menuImage, division = @division, additionalContext = @additionalContext
+		where menuCode = @menuCode;
+	end
+else
+	begin
+		set @count = (select count(necessary) from dbo.Recipes where menuCode =@menuCode)
+		while (@num <@count)
+			begin
+				update dbo.Recipes set necessary = @necessary where menuCode = @menuCode
+				set @num += 1
+			end
+		set @updateNecessary = (select necessary from Recipes where menuCode = @menuCode)
+		
+GO
+
+--Recipe Update 저장 프로시저
+create procedure UpdateRecipes
+@ingredientAmount int,
+@menuCode nvarchar(10),
+@InventoryTypeCode nvarchar(6),
+@necessary bit
+as
+update dbo.Recipes set ingredientAmount = @ingredientAmount, necessary = @necessary where menuCode = @menuCode and InventoryTypeCode = @InventoryTypeCode;
+GO
+
+--Sales Update 저장 프로시저
+create procedure UpdateSales
+@menuCode nvarchar(10),
+@menuName nvarchar(30),
+@price float,
+@kCal int,
+@menuImage image,
+@division int,
+@additionalContext nvarchar(200),
+@oldMenuCode nvarchar(10)
+as
+update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal, division = @division, additionalContext = @additionalContext
+where menuCode = @oldMenuCode;
+GO
+
+--DeleteRecipesByMenuCode
+create procedure DeleteRecipesByMenuCode
+@menuCode nvarchar(10)
+as
+delete from dbo.Recipes where menuCode = @menuCode;
 GO

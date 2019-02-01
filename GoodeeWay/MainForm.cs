@@ -12,6 +12,7 @@ using GoodeeWay.SalesMenu;
 
 namespace GoodeeWay
 {
+    enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
     public partial class MainForm : Form
     {
         public MainForm()

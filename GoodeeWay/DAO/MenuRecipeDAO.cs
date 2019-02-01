@@ -11,6 +11,24 @@ namespace GoodeeWay.DAO
 {
     class MenuRecipeDAO
     {
+
+        public bool DeleteRecipesByMenuCode(string menuCode)
+        {
+            DBConnection connection = new DBConnection();
+            string storedProcedure = "DeleteRecipesByMenuCode";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("menuCode", menuCode),
+            };
+            try
+            {
+                return connection.Delete(storedProcedure, sqlParameters);
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
         public bool InsertRecipe(MenuRecipeVO menuRecipeVO)
         {
             DBConnection connection = new DBConnection();
@@ -26,7 +44,6 @@ namespace GoodeeWay.DAO
             try
             {
                 return connection.Insert(storedProcedure, sqlParameters);
-
             }
             catch (SqlException)
             {

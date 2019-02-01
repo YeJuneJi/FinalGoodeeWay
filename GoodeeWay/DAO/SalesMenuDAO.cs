@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoodeeWay.DAO
 {
@@ -48,13 +45,18 @@ namespace GoodeeWay.DAO
             }
         }
 
-        public int UpdateMenu(SalesMenuVO salesMenuVO)
+        /// <summary>
+        /// 메뉴를 업데이트하는 메서드
+        /// </summary>
+        /// <param name="salesMenuVO"></param>
+        /// <returns></returns>
+        public int UpdateMenu(SalesMenuVO salesMenuVO, string oldeMenuCode)
         {
             memoryStream = new MemoryStream();
             salesMenuVO.MenuImage.Save(memoryStream, salesMenuVO.MenuImage.RawFormat);
             byte[] imageBytes = memoryStream.ToArray();
             connection = new DBConnection();
-            string storedProcedure = "InsertMenu";
+            string storedProcedure = "UpdateSales";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("menuCode", salesMenuVO.MenuCode),
@@ -63,7 +65,8 @@ namespace GoodeeWay.DAO
                 new SqlParameter("kCal", salesMenuVO.Kcal),
                 new SqlParameter("menuImage", imageBytes),
                 new SqlParameter("division", salesMenuVO.Division),
-                new SqlParameter("additionalContext", salesMenuVO.AdditionalContext)
+                new SqlParameter("additionalContext", salesMenuVO.AdditionalContext),
+                new SqlParameter("oldMenuCode", oldeMenuCode)
             };
             memoryStream.Close();
             try
@@ -90,7 +93,7 @@ namespace GoodeeWay.DAO
                     salesMenu.MenuCode = sdr["menuCode"].ToString();
                     salesMenu.MenuName = sdr["menuName"].ToString();
                     salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
-                    salesMenu.Division = sdr["division"].ToString();
+                    salesMenu.Division = int.Parse(sdr["division"].ToString());
                     salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
                     byte[] imgArr = sdr["menuImage"] as byte[];
                     memoryStream = new MemoryStream(imgArr);

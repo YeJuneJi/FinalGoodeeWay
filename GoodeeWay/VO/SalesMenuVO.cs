@@ -49,9 +49,9 @@ namespace GoodeeWay.VO
             set { menuImage = value; }
         }
 
-        private string division;
+        private int division;
 
-        public string Division
+        public int Division
         {
             get { return division; }
             set { division = value; }
