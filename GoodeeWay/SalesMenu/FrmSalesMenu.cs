@@ -49,28 +49,28 @@ namespace GoodeeWay.SalesMenu
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "허니오트",
-                InventoryTypeCode = "ST0100",
+                InventoryTypeCode = "ST0010",
                 MaterialClassification = "Bread",
                 ReceivingQuantity = 200
             });
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "하티",
-                InventoryTypeCode = "ST0101",
+                InventoryTypeCode = "ST0011",
                 MaterialClassification = "Bread",
                 ReceivingQuantity = 200
             });
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "위트",
-                InventoryTypeCode = "ST0102",
+                InventoryTypeCode = "ST0012",
                 MaterialClassification = "Bread",
                 ReceivingQuantity = 200
             });
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "양상추",
-                InventoryTypeCode = "ST0103",
+                InventoryTypeCode = "ST0012",
                 MaterialClassification = "Vegetable",
                 ReceivingQuantity = 200
             });
@@ -119,7 +119,7 @@ namespace GoodeeWay.SalesMenu
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "폴드포크",
-                InventoryTypeCode = "ST0110",
+                InventoryTypeCode = "ST0001",
                 MaterialClassification = "Additional",
                 ReceivingQuantity = 200
             });
@@ -133,14 +133,14 @@ namespace GoodeeWay.SalesMenu
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "토핑쓰",
-                InventoryTypeCode = "ST0111",
+                InventoryTypeCode = "ST00013",
                 MaterialClassification = "Topping",
                 ReceivingQuantity = 200
             });
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "토핑스",
-                InventoryTypeCode = "ST0112",
+                InventoryTypeCode = "ST0014",
                 MaterialClassification = "Topping",
                 ReceivingQuantity = 200
             });
@@ -192,18 +192,19 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 레시피를 등록하기위한 InsertingRecipe 메서드
         /// </summary>
         /// <param name="menuCode"></param>
         /// <param name="sucessRecipe"></param>
         /// <returns></returns>
-        private bool InsertingRecipe(string menuCode, bool sucessRecipe)
+        private bool InsertingRecipe(string menuCode, bool succRecip)
         {
+            int ingrAmount = 0;
+            succRecip = false;
             bool necess = false;
             foreach (InventoryTypeVO item in testList)
             {
                 MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
-                menuRecipeVO.IngredientAmount = 5;
                 menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
                 menuRecipeVO.MenuCode = menuCode;
                 foreach (FlowLayoutPanel panel in FlowPanel.Controls)
@@ -226,14 +227,23 @@ namespace GoodeeWay.SalesMenu
                                 necess = cbx.Checked;
                             }
                         }
+                        if (ctrl.GetType() == typeof(NumericUpDown))
+                        {
+                            NumericUpDown numeric = ctrl as NumericUpDown;
+                            if (item.InventoryTypeCode.Equals(numeric.Name))
+                            {
+                                ingrAmount = (int)numeric.Value;
+                            }
+                        }
                     }
                 }
                 menuRecipeVO.Necessary = necess;
+                menuRecipeVO.IngredientAmount = ingrAmount;
                 try
                 {
                     if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
                     {
-                        sucessRecipe = true;
+                        succRecip = true;
                     }
                 }
                 catch (SqlException ex)
@@ -242,7 +252,7 @@ namespace GoodeeWay.SalesMenu
                 }
             }
 
-            return sucessRecipe;
+            return succRecip;
         }
 
         /// <summary>
@@ -445,15 +455,22 @@ namespace GoodeeWay.SalesMenu
                 {
                     if (inventoryType.MaterialClassification == "Bread")
                     {
+                        //라디오버튼
                         RadioButton radioBread = new RadioButton();
                         radioBread.Text = inventoryType.InventoryName;
                         radioBread.Name = inventoryType.InventoryTypeCode;
+                        //라벨
                         Label labelBread = new Label();
-                        labelBread.Text = "사용량 : 5g";
+                        labelBread.Text = "사용량 :";
                         labelBread.Padding = new Padding(0, 8, 0, 0);
-                        labelBread.Size = new Size(70, 50);
+                        labelBread.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownBread = new NumericUpDown();
+                        nmrUpDownBread.Size = new Size(40, 21);
+                        nmrUpDownBread.Name = inventoryType.InventoryTypeCode;
                         breadPanel.Controls.Add(radioBread);
                         breadPanel.Controls.Add(labelBread);
+                        breadPanel.Controls.Add(nmrUpDownBread);
                     }
                     if (inventoryType.MaterialClassification == "Cheese")
                     {
@@ -461,11 +478,16 @@ namespace GoodeeWay.SalesMenu
                         radioCheese.Text = inventoryType.InventoryName;
                         radioCheese.Name = inventoryType.InventoryTypeCode;
                         Label labelCheese = new Label();
-                        labelCheese.Text = "사용량 : 5g";
+                        labelCheese.Text = "사용량 :";
                         labelCheese.Padding = new Padding(0, 8, 0, 0);
-                        labelCheese.Size = new Size(70, 50);
+                        labelCheese.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownCheese = new NumericUpDown();
+                        nmrUpDownCheese.Size = new Size(40, 21);
+                        nmrUpDownCheese.Name = inventoryType.InventoryTypeCode;
                         cheesePanel.Controls.Add(radioCheese);
                         cheesePanel.Controls.Add(labelCheese);
+                        cheesePanel.Controls.Add(nmrUpDownCheese);
                     }
                     if (inventoryType.MaterialClassification == "Vegetable")
                     {
@@ -473,11 +495,16 @@ namespace GoodeeWay.SalesMenu
                         cbxVege.Text = inventoryType.InventoryName;
                         cbxVege.Name = inventoryType.InventoryTypeCode;
                         Label labelVege = new Label();
-                        labelVege.Text = "사용량 : 5g";
+                        labelVege.Text = "사용량 :";
                         labelVege.Padding = new Padding(0, 8, 0, 0);
-                        labelVege.Size = new Size(70, 50);
+                        labelVege.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownVege = new NumericUpDown();
+                        nmrUpDownVege.Size = new Size(40, 21);
+                        nmrUpDownVege.Name = inventoryType.InventoryTypeCode;
                         vegetablePanel.Controls.Add(cbxVege);
                         vegetablePanel.Controls.Add(labelVege);
+                        vegetablePanel.Controls.Add(nmrUpDownVege);
                     }
                     if (inventoryType.MaterialClassification == "Sauce")
                     {
@@ -485,11 +512,16 @@ namespace GoodeeWay.SalesMenu
                         cbxSauce.Text = inventoryType.InventoryName;
                         cbxSauce.Name = inventoryType.InventoryTypeCode;
                         Label labelSauce = new Label();
-                        labelSauce.Text = "사용량 : 5g";
+                        labelSauce.Text = "사용량 :";
                         labelSauce.Padding = new Padding(0, 8, 0, 0);
-                        labelSauce.Size = new Size(70, 50);
+                        labelSauce.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownSauce = new NumericUpDown();
+                        nmrUpDownSauce.Size = new Size(40, 21);
+                        nmrUpDownSauce.Name = inventoryType.InventoryTypeCode;
                         saucePanel.Controls.Add(cbxSauce);
                         saucePanel.Controls.Add(labelSauce);
+                        saucePanel.Controls.Add(nmrUpDownSauce);
                     }
                     if (inventoryType.MaterialClassification == "Topping")
                     {
@@ -497,11 +529,16 @@ namespace GoodeeWay.SalesMenu
                         cbxTopping.Text = inventoryType.InventoryName;
                         cbxTopping.Name = inventoryType.InventoryTypeCode;
                         Label labelTopping = new Label();
-                        labelTopping.Text = "사용량 : 5g";
+                        labelTopping.Text = "사용량 :";
                         labelTopping.Padding = new Padding(0, 8, 0, 0);
-                        labelTopping.Size = new Size(70, 50);
+                        labelTopping.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownTopping = new NumericUpDown();
+                        nmrUpDownTopping.Size = new Size(40, 21);
+                        nmrUpDownTopping.Name = inventoryType.InventoryTypeCode;
                         toppingPanel.Controls.Add(cbxTopping);
                         toppingPanel.Controls.Add(labelTopping);
+                        toppingPanel.Controls.Add(nmrUpDownTopping);
                     }
                     if (inventoryType.MaterialClassification == "Additional")
                     {
@@ -509,13 +546,17 @@ namespace GoodeeWay.SalesMenu
                         cbxAdd.Text = inventoryType.InventoryName;
                         cbxAdd.Name = inventoryType.InventoryTypeCode;
                         Label labelAdd = new Label();
-                        labelAdd.Text = "사용량 : 5g";
+                        labelAdd.Text = "사용량 :";
                         labelAdd.Padding = new Padding(0, 8, 0, 0);
-                        labelAdd.Size = new Size(70, 50);
+                        labelAdd.Size = new Size(50, 20);
+                        //뉴메릭
+                        NumericUpDown nmrUpDownAdd = new NumericUpDown();
+                        nmrUpDownAdd.Size = new Size(40, 21);
+                        nmrUpDownAdd.Name = inventoryType.InventoryTypeCode;
                         additionalPanel.Controls.Add(cbxAdd);
                         additionalPanel.Controls.Add(labelAdd);
+                        additionalPanel.Controls.Add(nmrUpDownAdd);
                     }
-
                 }
                 (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true;
                 FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });
@@ -539,7 +580,8 @@ namespace GoodeeWay.SalesMenu
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             Image image = pbxPhoto.Image;
-            
+            bool successInsertRecipe = false;
+            bool sucessUpdateRecipe = false;
             if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal) && ValidateMenuCode(menuCode))
             {
                 SalesMenuVO salesMenuVO = new SalesMenuVO();
@@ -567,7 +609,7 @@ namespace GoodeeWay.SalesMenu
                     {
                         MessageBox.Show(result + "행이 영향을 받음");
                     }
-                    
+
                 }
                 catch (SqlException ex)
                 {
@@ -580,8 +622,67 @@ namespace GoodeeWay.SalesMenu
                         MessageBox.Show(ex.Message);
                     }
                 }
-
-                if (oldDivision == 0 && salesMenuVO.Division !=0)
+                //수정전 과 수정후가 같고 그것이 샌드위치이면..
+                if (oldDivision == salesMenuVO.Division && oldDivision == 0)
+                {
+                    bool necess = false;
+                    int ingrAmount = 0;
+                    foreach (InventoryTypeVO item in testList)
+                    {
+                        MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
+                        menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
+                        menuRecipeVO.MenuCode = menuCode;
+                        foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                        {
+                            foreach (var ctrl in panel.Controls)
+                            {
+                                if (ctrl.GetType() == typeof(RadioButton))
+                                {
+                                    RadioButton rbtn = ctrl as RadioButton;
+                                    if (item.InventoryName.Equals(rbtn.Text))
+                                    {
+                                        necess = rbtn.Checked;
+                                    }
+                                }
+                                if (ctrl.GetType() == typeof(CheckBox))
+                                {
+                                    CheckBox cbx = ctrl as CheckBox;
+                                    if (item.InventoryName.Equals(cbx.Text))
+                                    {
+                                        necess = cbx.Checked;
+                                    }
+                                }
+                                if (ctrl.GetType() == typeof(NumericUpDown))
+                                {
+                                    NumericUpDown numeric = ctrl as NumericUpDown;
+                                    if (item.InventoryTypeCode.Equals(numeric.Name))
+                                    {
+                                        ingrAmount = (int)numeric.Value;
+                                    }
+                                }
+                            }
+                        }
+                        menuRecipeVO.Necessary = necess;
+                        menuRecipeVO.IngredientAmount = ingrAmount;
+                        try
+                        {
+                            int result = new MenuRecipeDAO().UpdateRecipes(menuRecipeVO);
+                            if (result < 1)
+                            {
+                                MessageBox.Show("레시피 수정 실패 " + item.InventoryName);
+                            }
+                            else
+                            {
+                                sucessUpdateRecipe = true;
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                }
+                else if (oldDivision == 0 && salesMenuVO.Division != 0)
                 {
                     try
                     {
@@ -595,19 +696,21 @@ namespace GoodeeWay.SalesMenu
                         MessageBox.Show(ex.Message);
                     }
                 }
-                else if (oldDivision !=0 && salesMenuVO.Division ==0)
+                else if (oldDivision != 0 && salesMenuVO.Division == 0)
                 {
-                    InsertingRecipe(salesMenuVO.MenuCode, )
+                    successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
                 }
+
+                ReflashData();
             }
-            //update dbo.sales set 메뉴코드 = 메뉴코드, 메뉴이름 = 메뉴이름, 가격 = 가격, 칼로리 = 칼로리, 구분 = 구분, 추가내용 = 추가내용, 부가 = 부가
-            //where 메뉴코드 = 올드메뉴코드
-            //만약 oldDivision이 샌드위치이고, division이 다른것이면
+            //만약 바뀌기 전 후가 전부 샌드위치이면
+            //메뉴 업데이트 -> 레이피 업데이트
+            //만약 oldDivision이 샌드위치이고, division이 샌드위치가 아니면
+            //레시피 삭제 -> 메뉴 업데이트
             //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
-            //만약 oldDivision이 다른것이고, division이 샌드위치이면
+            //만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
+            //메뉴 수정 - > 레시피 등록
             //insert into 메뉴코드 = 어쩌고
-
-
         }
 
 
@@ -629,7 +732,7 @@ namespace GoodeeWay.SalesMenu
                         oldDivision = (int)item;
                     }
                 }
-                
+
                 if (cbxDivision.SelectedIndex == 0)
                 {
                     List<MenuRecipeVO> menuRecipeList = new MenuRecipeDAO().SelectRecipesByMenuCode(msktbxMnuCode.Text);
@@ -653,6 +756,14 @@ namespace GoodeeWay.SalesMenu
                                     if (item.InventoryTypeCode.Equals(cbx.Name))
                                     {
                                         cbx.Checked = item.Necessary;
+                                    }
+                                }
+                                if (ctrl.GetType() == typeof(NumericUpDown))
+                                {
+                                    NumericUpDown numeric = ctrl as NumericUpDown;
+                                    if (item.InventoryTypeCode.Equals(numeric.Name))
+                                    {
+                                        numeric.Value = item.IngredientAmount;
                                     }
                                 }
                             }

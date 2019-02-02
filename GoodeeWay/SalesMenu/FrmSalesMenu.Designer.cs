@@ -54,7 +54,6 @@
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
             this.label8 = new System.Windows.Forms.Label();
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
             this.SuspendLayout();
@@ -293,21 +292,11 @@
             this.FlowPanel.Size = new System.Drawing.Size(537, 448);
             this.FlowPanel.TabIndex = 25;
             // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(934, 205);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(0, 0);
-            this.flowLayoutPanel3.TabIndex = 28;
-            // 
             // FrmSalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 517);
-            this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.FlowPanel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClear);
@@ -371,6 +360,5 @@
         private System.Windows.Forms.OpenFileDialog oFdialogPhoto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.FlowLayoutPanel FlowPanel;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }

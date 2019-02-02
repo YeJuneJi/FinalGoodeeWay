@@ -29,6 +29,31 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+
+        internal int UpdateRecipes(MenuRecipeVO menuRecipeVO)
+        {
+            DBConnection connection = new DBConnection();
+            string storedProcedure = "UpdateRecipes";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("ingredientAmount", menuRecipeVO.IngredientAmount),
+                new SqlParameter("menuCode", menuRecipeVO.MenuCode),
+                new SqlParameter("InventoryTypeCode", menuRecipeVO.InventoryTypeCode),
+                new SqlParameter("necessary", menuRecipeVO.Necessary)
+            };
+            try
+            {
+                return connection.Update(storedProcedure, sqlParameters);
+                
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            
+        }
+
+
         public bool InsertRecipe(MenuRecipeVO menuRecipeVO)
         {
             DBConnection connection = new DBConnection();
@@ -39,7 +64,6 @@ namespace GoodeeWay.DAO
                 new SqlParameter("menuCode", menuRecipeVO.MenuCode),
                 new SqlParameter("InventoryTypeCode", menuRecipeVO.InventoryTypeCode),
                 new SqlParameter("necessary", menuRecipeVO.Necessary)
-                
             };
             try
             {
@@ -79,5 +103,7 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+
+        
     }
 }
