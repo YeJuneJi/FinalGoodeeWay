@@ -133,9 +133,9 @@ namespace GoodeeWay.SalesMenu
             testList.Add(new InventoryTypeVO()
             {
                 InventoryName = "토핑쓰",
-                InventoryTypeCode = "ST00013",
+                InventoryTypeCode = "ST0013",
                 MaterialClassification = "Topping",
-                ReceivingQuantity = 200
+                ReceivingQuantity = 300
             });
             testList.Add(new InventoryTypeVO()
             {
@@ -573,6 +573,14 @@ namespace GoodeeWay.SalesMenu
 
         private void btnMnuUpdate_Click(object sender, EventArgs e)
         {
+            //1. 만약 바뀌기 전 후가 전부 샌드위치이면
+            //메뉴 업데이트 -> 레시피 업데이트
+            //2. 만약 oldDivision이 샌드위치이고, division이 샌드위치가 아니면
+            //레시피 삭제 -> 메뉴 업데이트
+            //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
+            //3. 만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
+            //메뉴 수정 - > 레시피 등록
+            //insert into 메뉴코드 = 어쩌고
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -580,8 +588,10 @@ namespace GoodeeWay.SalesMenu
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             Image image = pbxPhoto.Image;
+            bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
+            bool sucessdeleteRecipe = false;
             if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, image) && ValidateType(price, kcal) && ValidateMenuCode(menuCode))
             {
                 SalesMenuVO salesMenuVO = new SalesMenuVO();
@@ -598,121 +608,148 @@ namespace GoodeeWay.SalesMenu
                     }
                 }
                 salesMenuVO.AdditionalContext = addContxt;
-                try
-                {
-                    int result = new SalesMenuDAO().UpdateMenu(salesMenuVO, oldMenuCode);
-                    if (result < 1)
-                    {
-                        MessageBox.Show("수정 실패");
-                    }
-                    else
-                    {
-                        MessageBox.Show(result + "행이 영향을 받음");
-                    }
-
-                }
-                catch (SqlException ex)
-                {
-                    if (ex.Message.Contains("PRIMARY"))
-                    {
-                        MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
-                    }
-                    else
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
                 //수정전 과 수정후가 같고 그것이 샌드위치이면..
                 if (oldDivision == salesMenuVO.Division && oldDivision == 0)
                 {
-                    bool necess = false;
-                    int ingrAmount = 0;
-                    foreach (InventoryTypeVO item in testList)
-                    {
-                        MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
-                        menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
-                        menuRecipeVO.MenuCode = menuCode;
-                        foreach (FlowLayoutPanel panel in FlowPanel.Controls)
-                        {
-                            foreach (var ctrl in panel.Controls)
-                            {
-                                if (ctrl.GetType() == typeof(RadioButton))
-                                {
-                                    RadioButton rbtn = ctrl as RadioButton;
-                                    if (item.InventoryName.Equals(rbtn.Text))
-                                    {
-                                        necess = rbtn.Checked;
-                                    }
-                                }
-                                if (ctrl.GetType() == typeof(CheckBox))
-                                {
-                                    CheckBox cbx = ctrl as CheckBox;
-                                    if (item.InventoryName.Equals(cbx.Text))
-                                    {
-                                        necess = cbx.Checked;
-                                    }
-                                }
-                                if (ctrl.GetType() == typeof(NumericUpDown))
-                                {
-                                    NumericUpDown numeric = ctrl as NumericUpDown;
-                                    if (item.InventoryTypeCode.Equals(numeric.Name))
-                                    {
-                                        ingrAmount = (int)numeric.Value;
-                                    }
-                                }
-                            }
-                        }
-                        menuRecipeVO.Necessary = necess;
-                        menuRecipeVO.IngredientAmount = ingrAmount;
-                        try
-                        {
-                            int result = new MenuRecipeDAO().UpdateRecipes(menuRecipeVO);
-                            if (result < 1)
-                            {
-                                MessageBox.Show("레시피 수정 실패 " + item.InventoryName);
-                            }
-                            else
-                            {
-                                sucessUpdateRecipe = true;
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
+                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                    sucessUpdateRecipe = RecipeUpdate(menuCode, sucessUpdateRecipe);
+                    btnClear_Click(null, null);
                 }
-                else if (oldDivision == 0 && salesMenuVO.Division != 0)
+                if (oldDivision == 0 && salesMenuVO.Division != 0)
                 {
                     try
                     {
                         if (new MenuRecipeDAO().DeleteRecipesByMenuCode(salesMenuVO.MenuCode))
                         {
-                            MessageBox.Show("레시피 삭제 성공");
+                            //MessageBox.Show("레시피 삭제 성공");
+                            sucessdeleteRecipe = true;
                         }
                     }
                     catch (SqlException ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
+                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                    btnClear_Click(null, null);
                 }
                 else if (oldDivision != 0 && salesMenuVO.Division == 0)
                 {
+                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
+                    btnClear_Click(null, null);
                 }
 
                 ReflashData();
             }
-            //만약 바뀌기 전 후가 전부 샌드위치이면
-            //메뉴 업데이트 -> 레이피 업데이트
-            //만약 oldDivision이 샌드위치이고, division이 샌드위치가 아니면
-            //레시피 삭제 -> 메뉴 업데이트
-            //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
-            //만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
-            //메뉴 수정 - > 레시피 등록
-            //insert into 메뉴코드 = 어쩌고
+            if (menuUpdateSucess && sucessUpdateRecipe)
+            {
+                MessageBox.Show("레시피 수정 완료");
+            }
+            else if (menuUpdateSucess && sucessdeleteRecipe)
+            {
+                MessageBox.Show("메뉴 수정 성공(이전 레시피 삭제)");
+            }
+            else if (menuUpdateSucess && successInsertRecipe)
+            {
+                MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
+            }
+            else
+            {
+                MessageBox.Show("test");
+            }
         }
 
+        private bool RecipeUpdate(string menuCode, bool sucessUpdateRecipe)
+        {
+            bool necess = false;
+            int ingrAmount = 0;
+            foreach (InventoryTypeVO item in testList)
+            {
+                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
+                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
+                menuRecipeVO.MenuCode = menuCode;
+                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                {
+                    foreach (var ctrl in panel.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            RadioButton rbtn = ctrl as RadioButton;
+                            if (item.InventoryName.Equals(rbtn.Text))
+                            {
+                                necess = rbtn.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(CheckBox))
+                        {
+                            CheckBox cbx = ctrl as CheckBox;
+                            if (item.InventoryName.Equals(cbx.Text))
+                            {
+                                necess = cbx.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(NumericUpDown))
+                        {
+                            NumericUpDown numeric = ctrl as NumericUpDown;
+                            if (item.InventoryTypeCode.Equals(numeric.Name))
+                            {
+                                ingrAmount = (int)numeric.Value;
+                            }
+                        }
+                    }
+                }
+                menuRecipeVO.Necessary = necess;
+                menuRecipeVO.IngredientAmount = ingrAmount;
+                try
+                {
+                    int result = new MenuRecipeDAO().UpdateRecipes(menuRecipeVO);
+                    if (result < 1)
+                    {
+                        MessageBox.Show("레시피 수정 실패 " + item.InventoryName);
+                        sucessUpdateRecipe = false;
+                    }
+                    else
+                    {
+                        sucessUpdateRecipe = true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return sucessUpdateRecipe;
+        }
+
+        private bool MenuUpdate(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
+        {
+            try
+            {
+                int result = new SalesMenuDAO().UpdateMenu(salesMenuVO, oldMenuCode);
+                if (result < 1)
+                {
+                    MessageBox.Show(result.ToString());
+                    menuUpdateSucess = false;
+                }
+                else
+                {
+                    menuUpdateSucess = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("PRIMARY"))
+                {
+                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return menuUpdateSucess;
+        }
 
         private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
