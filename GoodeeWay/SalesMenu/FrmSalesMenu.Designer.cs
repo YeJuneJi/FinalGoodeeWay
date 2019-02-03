@@ -232,6 +232,7 @@
             this.btnMnuDelete.TabIndex = 18;
             this.btnMnuDelete.Text = "삭제";
             this.btnMnuDelete.UseVisualStyleBackColor = true;
+            this.btnMnuDelete.Click += new System.EventHandler(this.btnMnuDelete_Click);
             // 
             // btnMnuSearch
             // 

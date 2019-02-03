@@ -12,6 +12,32 @@ namespace GoodeeWay.DAO
     {
         MemoryStream memoryStream;
         DBConnection connection;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <returns></returns>
+        public bool DeleteMenu(string menuCode)
+        {
+            connection = new DBConnection();
+            string storedProcedure = "DeleteSales";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("menuCode", menuCode)
+            };
+            try
+            {
+                return connection.Delete(storedProcedure, sqlParameters);
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+
         /// <summary>
         /// 메뉴를 등록 시키는 메서드입니다.
         /// </summary>
@@ -79,6 +105,11 @@ namespace GoodeeWay.DAO
             }
         }
 
+
+        /// <summary>
+        /// 모든 메뉴를 검색하는OutPutAllMenus 메서드
+        /// </summary>
+        /// <returns>모든메뉴를 List<SalesMenuVO>화 시켜 반환</returns>
         public List<SalesMenuVO> OutPutAllMenus()
         {
             List<SalesMenuVO> lst = new List<SalesMenuVO>();

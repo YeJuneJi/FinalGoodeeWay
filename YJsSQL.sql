@@ -168,3 +168,22 @@ create procedure DeleteRecipesByMenuCode
 as
 delete from dbo.Recipes where menuCode = @menuCode;
 GO
+
+
+--메뉴 삭제하는 DeleteSales 저장프로시저
+create procedure DeleteSales
+@menuCode nvarchar(10)
+as
+declare @division int
+set @division = (select division from Sales where menuCode = @menuCode)
+if (@division != 0)
+	begin
+		delete from dbo.Sales
+		where menuCode = @menuCode
+	end
+else
+	begin
+		exec DeleteRecipesByMenuCode @menuCode;
+		delete from dbo.Sales
+		where menuCode = @menuCode;
+	end

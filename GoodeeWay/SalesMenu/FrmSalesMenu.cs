@@ -319,7 +319,6 @@ namespace GoodeeWay.SalesMenu
             {
                 msktbxMnuCode.Focus();
                 MessageBox.Show("메뉴코드의 자리수를 맞춰주세요.");
-
             }
             else
             {
@@ -655,10 +654,51 @@ namespace GoodeeWay.SalesMenu
             }
             else
             {
-                MessageBox.Show("test");
+                MessageBox.Show("메뉴 수정 실패");
             }
         }
 
+        private void btnMnuDelete_Click(object sender, EventArgs e)
+        {
+            string menuCode = msktbxMnuCode.Text;
+            int count = 0;
+            foreach (SalesMenuVO item in salesMenuList)
+            {
+                if (item.MenuCode.Equals(menuCode))
+                {
+                    count++;
+                    break;
+                }
+            }
+            if (ValidateMenuCode(menuCode))
+            {
+                if (count == 0)
+                {
+                    MessageBox.Show("삭제하실 메뉴가 없습니다.");
+                    return;
+                }
+                try
+                {
+                    if (new SalesMenuDAO().DeleteMenu(menuCode))
+                    {
+                        MessageBox.Show("메뉴 삭제 성공");
+                    }
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("메뉴 삭제 실패");
+                }
+            }
+            btnClear_Click(null, null);
+            ReflashData();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="sucessUpdateRecipe"></param>
+        /// <returns></returns>
         private bool RecipeUpdate(string menuCode, bool sucessUpdateRecipe)
         {
             bool necess = false;
@@ -722,6 +762,12 @@ namespace GoodeeWay.SalesMenu
             return sucessUpdateRecipe;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="salesMenuVO"></param>
+        /// <param name="menuUpdateSucess"></param>
+        /// <returns></returns>
         private bool MenuUpdate(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
         {
             try
@@ -831,5 +877,7 @@ namespace GoodeeWay.SalesMenu
                 }
             }
         }
+
+        
     }
 }
