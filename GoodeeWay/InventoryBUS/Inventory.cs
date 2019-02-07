@@ -18,14 +18,15 @@ using DataTable = System.Data.DataTable;
 
 namespace GoodeeWay
 {
-    public partial class Inventory : Form
+    public partial class inventory : Form
     {
 
         List<ReceivingDetailsVO> receivingDetailsList;
         List<InventoryTypeVO> inventoryTypeVOList;
+        DataTable inventoryTypeDateTable;
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
-        public Inventory()
+        public inventory()
         {
             InitializeComponent();
             InventoryTypeSelect();
@@ -33,6 +34,8 @@ namespace GoodeeWay
             InventoryTableSelect();
             btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             InventoryTableTemp = true;
+            tabControl1.Size = new Size(916, 659);
+            this.Size = new Size(951, 722);
         }
 
         #region 입고내역
@@ -199,7 +202,7 @@ namespace GoodeeWay
         {
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("입고날짜");
-            
+
             foreach (var item in new ReceivingDetailsDAO().ReceivingDetailsList())
             {
                 DataRow row = dataTable.NewRow();
@@ -303,7 +306,7 @@ namespace GoodeeWay
             {
                 MessageBox.Show("정상제품에 대해서만 반품내역 추가할 수 있습니다.");
             }
-        } 
+        }
         #endregion
 
         #region 재고테이블
@@ -333,10 +336,10 @@ namespace GoodeeWay
             dgvInventoryTable.Columns["ReceivingDetailsID"].HeaderText = "입고번호";
             dgvInventoryTable.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
             #endregion
-        } 
+        }
         #endregion
 
-        #region 재고종류 버튼 관련 메서드
+        #region 재고종류
         /// <summary>
         /// 재고종류 추가폼 띄우는 버튼
         /// </summary>
@@ -367,16 +370,19 @@ namespace GoodeeWay
         /// </summary>
         private void InventoryTypeSelect()
         {
-            inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
-            dgvInventoryType.DataSource = inventoryTypeVOList;
+            //inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
+            inventoryTypeDateTable = new InventoryTypeDAO().InventoryTypeSelect();
+            dgvInventoryType.DataSource = inventoryTypeDateTable;
+
 
             #region 재고종류테이블 컬럼명 변경
-            dgvInventoryType.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
-            dgvInventoryType.Columns["ReceivingQuantity"].HeaderText = "입고정량";
-            dgvInventoryType.Columns["InventoryName"].HeaderText = "재고명";
-            dgvInventoryType.Columns["MaterialClassification"].HeaderText = "재료구분";
+            //dgvInventoryType.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
+            //dgvInventoryType.Columns["ReceivingQuantity"].HeaderText = "입고정량";
+            //dgvInventoryType.Columns["InventoryName"].HeaderText = "재고명";
+            //dgvInventoryType.Columns["MaterialClassification"].HeaderText = "재료구분";
             #endregion
         }
+
         /// <summary>
         /// 재고종류 삭제
         /// </summary>
@@ -386,7 +392,7 @@ namespace GoodeeWay
         {
             try
             {
-                new InventoryTypeDAO().InventoryTypeDelete(dgvInventoryType.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString());
+                new InventoryTypeDAO().InventoryTypeDelete(dgvInventoryType.SelectedRows[0].Cells["재고종류코드"].Value.ToString());
             }
             catch (SqlException)
             {
@@ -395,20 +401,25 @@ namespace GoodeeWay
             InventoryTypeSelect();
         }
 
+        /// <summary>
+        /// 재고종류 업데이트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             InventoryTypeVO inventoryTypeVO = new InventoryTypeVO()
             {
-                InventoryTypeCode = dgvInventoryType.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString(),
-                ReceivingQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["ReceivingQuantity"].Value.ToString()),
-                InventoryName = dgvInventoryType.SelectedRows[0].Cells["InventoryName"].Value.ToString(),
-                MaterialClassification = dgvInventoryType.SelectedRows[0].Cells["MaterialClassification"].Value.ToString(),
+                InventoryTypeCode = dgvInventoryType.SelectedRows[0].Cells["재고종류코드"].Value.ToString(),
+                ReceivingQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["입고정량"].Value.ToString()),
+                InventoryName = dgvInventoryType.SelectedRows[0].Cells["재고명"].Value.ToString(),
+                MaterialClassification = dgvInventoryType.SelectedRows[0].Cells["재료구분"].Value.ToString(),
             };
 
             new InventoryTypeDAO().InventoryTypeUpdate(inventoryTypeVO);
             InventoryTypeSelect();
 
-        } 
+        }
         #endregion
 
         #region 재고테이블 선택 시 재고종류 선택
@@ -431,10 +442,10 @@ namespace GoodeeWay
             {
                 for (int i = 0; i < dgvInventoryType.Rows.Count; i++)
                 {
-                    if (dgvInventoryType["InventoryTypeCode", i].Value.ToString() == dgvInventoryTable.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString())
+                    if (dgvInventoryType["재고종류코드", i].Value.ToString() == dgvInventoryTable.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString())
                     {
 
-                        dgvInventoryType["InventoryTypeCode", i].Selected = true;
+                        dgvInventoryType["재고종류코드", i].Selected = true;
                         break;
                     }
                 }
@@ -448,7 +459,26 @@ namespace GoodeeWay
         private void dgvInventoryTable_KeyUp(object sender, KeyEventArgs e)
         {
             InventoryTableRowSelected();
-        } 
+        }
         #endregion
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0:
+                    tabControl1.Size = new Size(916, 659);
+                    this.Size = new Size(951, 722);
+                    break;
+                case 1:
+                    tabControl1.Size = new Size(1093, 659);
+                    this.Size = new Size(1122, 722);
+                    break;
+                case 2:
+                    tabControl1.Size = new Size(847, 659);
+                    this.Size = new Size(889, 722);
+                    break;
+            }
+        }
     }
 }

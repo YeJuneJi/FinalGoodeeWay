@@ -20,7 +20,7 @@ namespace GoodeeWay
 
         private void 재고ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Inventory inventory = new Inventory();
+            inventory inventory = new inventory();
             inventory.ShowDialog();
         }
         private void MainForm_Load(object sender, EventArgs e)

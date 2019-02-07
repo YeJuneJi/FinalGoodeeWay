@@ -2,6 +2,7 @@
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -29,21 +30,37 @@ namespace GoodeeWay.DAO
         /// 재고종류 전체 출력하기(select)
         /// </summary>
         /// <returns>재고종류 데이터 리스트</returns>
-        internal List<InventoryTypeVO> InventoryTypeSelect()
+        internal DataTable InventoryTypeSelect()
         {
             SqlParameter[] selectInventoryTypeParameters = null;
             SqlDataReader dr = new DBConnection().Select("SelectInventoryType", selectInventoryTypeParameters);
             List<InventoryTypeVO> inventoryTypeVOList = new List<InventoryTypeVO>();
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("재고종류코드");
+            dataTable.Columns.Add("재고명");
+            dataTable.Columns.Add("입고정량");
+            dataTable.Columns.Add("재고합계");
+            dataTable.Columns.Add("재고총량");
+            dataTable.Columns.Add("재료구분");
             while (dr.Read())
             {
-                InventoryTypeVO inventoryTypeVO = new InventoryTypeVO();
-                inventoryTypeVO.InventoryTypeCode= dr["InventoryTypeCode"].ToString();
-                inventoryTypeVO.ReceivingQuantity = Int32.Parse(dr["ReceivingQuantity"].ToString());
-                inventoryTypeVO.InventoryName = dr["InventoryName"].ToString();
-                inventoryTypeVO.MaterialClassification = dr["MaterialClassification"].ToString();
-                inventoryTypeVOList.Add(inventoryTypeVO);
+                //InventoryTypeVO inventoryTypeVO = new InventoryTypeVO();
+                //inventoryTypeVO.InventoryTypeCode= dr["InventoryTypeCode"].ToString();
+                //inventoryTypeVO.ReceivingQuantity = Int32.Parse(dr["ReceivingQuantity"].ToString());
+                //inventoryTypeVO.InventoryName = dr["InventoryName"].ToString();
+                //inventoryTypeVO.MaterialClassification = dr["MaterialClassification"].ToString();
+                //inventoryTypeVOList.Add(inventoryTypeVO);
+                
+                DataRow dataRow = dataTable.NewRow();
+                dataRow["재고종류코드"]=dr["InventoryTypeCode"].ToString();
+                dataRow["재고명"] = dr["InventoryName"].ToString();
+                dataRow["입고정량"] = dr["ReceivingQuantity"].ToString();
+                dataRow["재고합계"] =dr["SumReceivingQuantuty"].ToString();
+                dataRow["재고총량"] =dr["TotalReceivingQuantuty"].ToString();
+                dataRow["재료구분"] = dr["MaterialClassification"].ToString();
+                dataTable.Rows.Add(dataRow);
             }
-            return inventoryTypeVOList;
+            return dataTable;
         }
 
         internal void InventoryTypeDelete(string inventoryTypeCode)

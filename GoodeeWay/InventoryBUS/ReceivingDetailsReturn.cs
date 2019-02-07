@@ -73,7 +73,7 @@ namespace GoodeeWay.InventoryBUS
                 Rdvo.ReturnStatus = "교환";
                 Rdvo.ReceivingDetailsID=Rdvo.ReceivingDetailsID.Replace("I", "E");
             }
-            Inventory i = (Inventory)Owner;
+            inventory i = (inventory)Owner;
             i.ReceivingDetailsVOReturn = Rdvo;
             this.DialogResult = DialogResult.OK;
         }

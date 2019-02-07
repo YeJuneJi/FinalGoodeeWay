@@ -80,7 +80,11 @@ Go
 CREATE PROCEDURE [dbo].SelectInventoryType
 
 AS
-	select * from InventoryType;
+	select InventoryTypeCode, InventoryName, ReceivingQuantity, 
+	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	(isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)*IT.ReceivingQuantity) 'TotalReceivingQuantuty',
+	MaterialClassification 
+	from InventoryType IT
 
 Go
 --입고내역리스트 저장프로시져
