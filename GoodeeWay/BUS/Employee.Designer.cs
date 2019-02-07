@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtBank = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
@@ -46,7 +45,6 @@
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtDepartment = new System.Windows.Forms.TextBox();
-            this.txtJob = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtNum = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,14 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtBank
-            // 
-            this.txtBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtBank.Location = new System.Drawing.Point(94, 543);
-            this.txtBank.Name = "txtBank";
-            this.txtBank.Size = new System.Drawing.Size(73, 21);
-            this.txtBank.TabIndex = 89;
-            // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -81,6 +71,7 @@
             this.btnDelete.TabIndex = 63;
             this.btnDelete.Text = "직원 삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -233,14 +224,6 @@
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(100, 21);
             this.txtDepartment.TabIndex = 80;
-            // 
-            // txtJob
-            // 
-            this.txtJob.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtJob.Location = new System.Drawing.Point(94, 509);
-            this.txtJob.Name = "txtJob";
-            this.txtJob.Size = new System.Drawing.Size(100, 21);
-            this.txtJob.TabIndex = 79;
             // 
             // txtName
             // 
@@ -411,7 +394,6 @@
             this.Controls.Add(this.cbJob);
             this.Controls.Add(this.cbBank);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.txtBank);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnInsert);
@@ -429,7 +411,6 @@
             this.Controls.Add(this.txtSalary);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtDepartment);
-            this.Controls.Add(this.txtJob);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtNum);
             this.Controls.Add(this.label10);
@@ -451,8 +432,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtBank;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnInsert;
@@ -470,7 +449,6 @@
         private System.Windows.Forms.TextBox txtSalary;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtDepartment;
-        private System.Windows.Forms.TextBox txtJob;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtNum;
         private System.Windows.Forms.Label label10;

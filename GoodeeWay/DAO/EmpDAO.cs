@@ -25,7 +25,7 @@ namespace GoodeeWay.DAO
             //}
             
             string sp = "proc_emp_insert";
-            SqlParameter[] sqlParameters = new SqlParameter[12];
+            SqlParameter[] sqlParameters = new SqlParameter[11];
             sqlParameters[0] = new SqlParameter("empno", emp.Empno);
             sqlParameters[1] = new SqlParameter("job", emp.Job);
             sqlParameters[2] = new SqlParameter("Pay", emp.Pay);
@@ -33,11 +33,11 @@ namespace GoodeeWay.DAO
             sqlParameters[4] = new SqlParameter("Department", emp.Department);
             sqlParameters[5] = new SqlParameter("Mobile", emp.Mobile);
             sqlParameters[6] = new SqlParameter("JoinDate", emp.JoinDate);
-            sqlParameters[7] = new SqlParameter("LeaveDate", emp.LeaveDate);
-            sqlParameters[8] = new SqlParameter("BankAccountNo", emp.BankAccountNo);
-            sqlParameters[9] = new SqlParameter("Bank", emp.Bank);
-            sqlParameters[10] = new SqlParameter("Email", emp.Email);
-            sqlParameters[11] = new SqlParameter("Note", emp.Note);
+            //sqlParameters[7] = new SqlParameter("LeaveDate", emp.LeaveDate);
+            sqlParameters[7] = new SqlParameter("BankAccountNo", emp.BankAccountNo);
+            sqlParameters[8] = new SqlParameter("Bank", emp.Bank);
+            sqlParameters[9] = new SqlParameter("Email", emp.Email);
+            sqlParameters[10] = new SqlParameter("Note", emp.Note);
 
             return new DBConnection().Insert(sp, sqlParameters);
         }

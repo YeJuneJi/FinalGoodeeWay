@@ -18,6 +18,7 @@ namespace GoodeeWay.BUS
     public partial class Employee : Form
     {
         List<EmpVO> lst;
+        EmpVO emp = new EmpVO();
 
         public Employee()
         {
@@ -29,26 +30,54 @@ namespace GoodeeWay.BUS
             lst = new EmpDAO().OutputAllBoard();
             this.dataGridView1.DataSource = lst;
 
-            txtNum.Text = dataGridView1.SelectedCells[0].Value.ToString()+1;
+            try
+            {
+                var t = Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString().Substring(3)) + 1;
+                switch (t / 10)
+                {
+                    case 0:
+                        txtNum.Text = "EMP00000" + t.ToString();
+                        break;
+                    case 1:
+                        txtNum.Text = "EMP0000" + t.ToString();
+                        break;
+                    case 10:
+                        txtNum.Text = "EMP000" + t.ToString();
+                        break;
+                    case 100:
+                        txtNum.Text = "EMP00" + t.ToString();
+                        break;
+                    case 1000:
+                        txtNum.Text = "EMP0" + t.ToString();
+                        break;
+                    case 10000:
+                        txtNum.Text = "EMP" + t.ToString();
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            var empvo = new EmpVO();
-
             try
             {
                 if (check())
                 {
-                    if (dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
-                    {
-                        DateTime temp = dtpLeave.Value;
-                        dtpLeave.Value = dtpJoin.Value;
-                        dtpJoin.Value = temp;
-                    }
-                    if (dtpLeave.Enabled)
-                    {
-                        empvo = new EmpVO()
+                    //if (dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
+                    //{
+                    //    DateTime temp = dtpLeave.Value;
+                    //    dtpLeave.Value = dtpJoin.Value;
+                    //    dtpJoin.Value = temp;
+                    //}
+                    //if (dtpLeave.Enabled)
+                    //{
+                        emp = new EmpVO()
                         {
                             Empno = txtNum.Text,
                             Name = txtName.Text,
@@ -63,11 +92,10 @@ namespace GoodeeWay.BUS
                             Email = txtEmail.Text,
                             Note = txtNote.Text
                         };
-                    }
                     
                     try
                     {
-                        if (new EmpDAO().InsertBoard(empvo))
+                        if (new EmpDAO().InsertBoard(emp))
                         {
                             MessageBox.Show("저장 성공");
                         }
@@ -78,9 +106,9 @@ namespace GoodeeWay.BUS
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("오류");
+                MessageBox.Show("오류" + ex);
             }
 
             Employee_Load(null, null);
@@ -90,11 +118,11 @@ namespace GoodeeWay.BUS
         {
             txtNum.Text = "";
             txtName.Text = "";
-            txtBank.Text = "";
+            cbBank.Text = "";
             txtBankAccountNo.Text = "";
             txtDepartment.Text = "";
             txtEmail.Text = "";
-            txtJob.Text = "";
+            cbJob.Text = "";
             txtNote.Text = "";
             txtPhone.Text = "";
             txtSalary.Text = "";
@@ -137,29 +165,29 @@ namespace GoodeeWay.BUS
             {
                 if (check())
                 {
-                    EmpVO emp = new EmpVO();
                     string sp = "proc_emp_update";
                     SqlParameter[] sqlParameters = new SqlParameter[12];
-                    sqlParameters[0] = new SqlParameter("empno", emp.Empno);
-                    sqlParameters[1] = new SqlParameter("job", emp.Job);
-                    sqlParameters[2] = new SqlParameter("Pay", emp.Pay);
-                    sqlParameters[3] = new SqlParameter("name", emp.Name);
-                    sqlParameters[4] = new SqlParameter("Department", emp.Department);
-                    sqlParameters[5] = new SqlParameter("Mobile", emp.Mobile);
-                    sqlParameters[6] = new SqlParameter("JoinDate", emp.JoinDate);
-                    //sqlParameters[7] = new SqlParameter("LeaveDate", emp.LeaveDate);
-                    sqlParameters[8] = new SqlParameter("BankAccountNo", emp.BankAccountNo);
-                    sqlParameters[9] = new SqlParameter("Bank", emp.Bank);
-                    sqlParameters[10] = new SqlParameter("Email", emp.Email);
-                    sqlParameters[11] = new SqlParameter("Note", emp.Note);
+                    sqlParameters[0] = new SqlParameter("empno", txtNum.Text);
+                    sqlParameters[1] = new SqlParameter("job", cbJob.Text);
+                    sqlParameters[2] = new SqlParameter("Pay", txtSalary.Text);
+                    sqlParameters[3] = new SqlParameter("name", txtName.Text);
+                    sqlParameters[4] = new SqlParameter("Department", txtDepartment.Text);
+                    sqlParameters[5] = new SqlParameter("Mobile", txtPhone.Text);
+                    sqlParameters[6] = new SqlParameter("JoinDate", dtpJoin.Value);
+                    sqlParameters[7] = new SqlParameter("LeaveDate", dtpLeave.Value);
+                    sqlParameters[8] = new SqlParameter("BankAccountNo", txtBankAccountNo.Text);
+                    sqlParameters[9] = new SqlParameter("Bank", cbBank.Text);
+                    sqlParameters[10] = new SqlParameter("Email", txtEmail.Text);
+                    sqlParameters[11] = new SqlParameter("Note", txtNote.Text);
 
                     new DBConnection().Update(sp, sqlParameters);
+
+                    MessageBox.Show("수정 성공");
                 }
-                MessageBox.Show("수정 성공");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("저장 실패" + ex);
+                MessageBox.Show("수정 실패");
             }
 
             Employee_Load(null, null);
@@ -172,7 +200,7 @@ namespace GoodeeWay.BUS
         {
             bool result = false;
 
-            if (!(string.IsNullOrEmpty(txtNum.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text) ))
+            if (!(string.IsNullOrEmpty(txtNum.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text)))
             {
                 result = true;
             }
@@ -183,9 +211,9 @@ namespace GoodeeWay.BUS
             return result;
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e) 
+        private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtEmail_Leave(object sender, EventArgs e)// 이메일 유효성 검사
@@ -195,7 +223,8 @@ namespace GoodeeWay.BUS
                 bool emailCheck = Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
                 if (!(emailCheck))
                 {
-                    MessageBox.Show("올바르지않는 이메일 주소");
+                    MessageBox.Show("올바르지 않은 이메일 주소입니다");
+                    txtEmail.Text = "";
                 }
             }
         }
@@ -204,9 +233,35 @@ namespace GoodeeWay.BUS
         {
             if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장"))
             {
-                MessageBox.Show("직급이 올바르지 않습니다");
+                MessageBox.Show("존재하지 않는 직급입니다");
                 cbJob.Text = "";
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("정말 삭제하시겠습니까?", "",btn);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    string sp = "proc_emp_delete";
+                    SqlParameter[] sqlParameters = new SqlParameter[1];
+                    sqlParameters[0] = new SqlParameter("empno", txtNum.Text);
+                    new DBConnection().Delete(sp, sqlParameters);
+                    MessageBox.Show("삭제 성공");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("삭제 실패");
+                }
+            }
+            else
+            {
+                MessageBox.Show("취소되었습니다");
+            }
+            Employee_Load(null, null);
         }
     }
 }
