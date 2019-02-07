@@ -187,3 +187,81 @@ else
 		delete from dbo.Sales
 		where menuCode = @menuCode;
 	end
+GO
+
+
+--원래 만드려고 했던 메뉴코드별 정렬시킨 SelectmenuByMenuCode 
+create procedure SelectmenuByMenuCode
+@menuCode nvarchar(10),
+@checkAscDesc bit,
+@standard int
+as
+if(@checkAscDesc != 0)
+begin
+	select * from sales where menuCode = @menuCode order by (case @standard
+																	when 1 then menuCode
+																	when 2 then menuName
+																	when 3 then price
+																	when 4 then kCal
+																	when 5 then menuImage
+																	when 6 then division
+																	when 7 then additionalContext
+																	end) asc;
+end
+else
+begin
+	select * from sales where menuCode = @menuCode order by (case @standard
+																	when 1 then menuCode
+																	when 2 then menuName
+																	when 3 then price
+																	when 4 then kCal
+																	when 5 then menuImage
+																	when 6 then division
+																	when 7 then additionalContext
+																	end) desc;
+end
+GO
+
+
+-- 변경 후 SelectmenuByMenuCode
+create procedure SelectMenuByMenuCode
+@menuCode nvarchar(10),
+@division int
+as
+if(@division != 0)
+begin
+select * from sales where menuCode like '%' + @menuCode +'%' and division = @division-1; 
+end
+else
+begin
+select * from Sales where menuCode like '%' + @menuCode +'%';
+end
+GO
+
+create procedure SelectMenuByMenuName
+@menuName nvarchar(30),
+@division int
+as
+if(@division != 0)
+begin
+select * from sales where menuName like '%' + @menuName +'%' and division = @division-1; 
+end
+else
+begin
+select * from Sales where menuName like '%' + @menuName +'%';
+end
+GO
+
+create procedure SelectMenuByAdditional
+@additional nvarchar(200),
+@division int
+as
+if(@division != 0)
+begin
+select * from sales where additionalContext like '%' + @additional +'%' and division = @division-1; 
+end
+else
+begin
+select * from Sales where additionalContext like '%' + @additional +'%';
+end
+GO

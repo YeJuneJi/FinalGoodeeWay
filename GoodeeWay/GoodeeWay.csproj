@@ -50,6 +50,7 @@
     <Compile Include="DAO\MenuRecipeDAO.cs" />
     <Compile Include="DAO\SalesMenuDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
+    <Compile Include="ImageConverter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +64,12 @@
     </Compile>
     <Compile Include="SalesMenu\FrmSalesMenu.Designer.cs">
       <DependentUpon>FrmSalesMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SalesMenu\SalesMenuSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesMenu\SalesMenuSearch.Designer.cs">
+      <DependentUpon>SalesMenuSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
       <SubType>Form</SubType>
@@ -87,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="SalesMenu\FrmSalesMenu.resx">
       <DependentUpon>FrmSalesMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesMenu\SalesMenuSearch.resx">
+      <DependentUpon>SalesMenuSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SandwichMakingBus\FrmSandwichMaking.resx">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>

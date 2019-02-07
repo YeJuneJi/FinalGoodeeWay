@@ -15,7 +15,7 @@ namespace GoodeeWay.DAO
 
 
         /// <summary>
-        /// 
+        /// 메뉴 삭제 메서드
         /// </summary>
         /// <param name="menuCode"></param>
         /// <returns></returns>
@@ -36,7 +36,6 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
-
 
         /// <summary>
         /// 메뉴를 등록 시키는 메서드입니다.
@@ -105,6 +104,110 @@ namespace GoodeeWay.DAO
             }
         }
 
+        internal List<SalesMenuVO> SelectMenuByAdditional(string additional, int division)
+        {
+            List<SalesMenuVO> lst = new List<SalesMenuVO>();
+            string sp = "SelectMenuByAdditional";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("additional", additional),
+                new SqlParameter("division", division)
+            };
+            try
+            {
+                SqlDataReader sdr = new DBConnection().Select(sp, sqlParameters);
+                while (sdr.Read())
+                {
+                    SalesMenuVO salesMenu = new SalesMenuVO();
+                    salesMenu.MenuCode = sdr["menuCode"].ToString();
+                    salesMenu.MenuName = sdr["menuName"].ToString();
+                    salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
+                    salesMenu.Division = int.Parse(sdr["division"].ToString());
+                    salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
+                    byte[] imgArr = sdr["menuImage"] as byte[];
+                    memoryStream = new MemoryStream(imgArr);
+                    Image image = Image.FromStream(memoryStream);
+                    salesMenu.MenuImage = image;
+                    salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    lst.Add(salesMenu);
+                }
+                return lst;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        internal List<SalesMenuVO> SelectMenuByMenuName(string menuName, int division)
+        {
+            List<SalesMenuVO> lst = new List<SalesMenuVO>();
+            string sp = "SelectMenuByMenuName";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("menuName", menuName),
+                new SqlParameter("division", division)
+            };
+            try
+            {
+                SqlDataReader sdr = new DBConnection().Select(sp, sqlParameters);
+                while (sdr.Read())
+                {
+                    SalesMenuVO salesMenu = new SalesMenuVO();
+                    salesMenu.MenuCode = sdr["menuCode"].ToString();
+                    salesMenu.MenuName = sdr["menuName"].ToString();
+                    salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
+                    salesMenu.Division = int.Parse(sdr["division"].ToString());
+                    salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
+                    byte[] imgArr = sdr["menuImage"] as byte[];
+                    memoryStream = new MemoryStream(imgArr);
+                    Image image = Image.FromStream(memoryStream);
+                    salesMenu.MenuImage = image;
+                    salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    lst.Add(salesMenu);
+                }
+                return lst;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public List<SalesMenuVO> SelectMenuByMenuCode(string menuCode, int division)
+        {
+            List<SalesMenuVO> lst = new List<SalesMenuVO>();
+            string sp = "SelectMenuByMenuCode";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("menuCode", menuCode),
+                new SqlParameter("division", division)
+            };
+            try
+            {
+                SqlDataReader sdr = new DBConnection().Select(sp, sqlParameters);
+                while (sdr.Read())
+                {
+                    SalesMenuVO salesMenu = new SalesMenuVO();
+                    salesMenu.MenuCode = sdr["menuCode"].ToString();
+                    salesMenu.MenuName = sdr["menuName"].ToString();
+                    salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
+                    salesMenu.Division = int.Parse(sdr["division"].ToString());
+                    salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
+                    byte[] imgArr = sdr["menuImage"] as byte[];
+                    memoryStream = new MemoryStream(imgArr);
+                    Image image = Image.FromStream(memoryStream);
+                    salesMenu.MenuImage = image;
+                    salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    lst.Add(salesMenu);
+                }
+                return lst;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
 
         /// <summary>
         /// 모든 메뉴를 검색하는OutPutAllMenus 메서드

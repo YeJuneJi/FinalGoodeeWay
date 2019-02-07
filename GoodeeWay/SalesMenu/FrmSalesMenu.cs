@@ -44,7 +44,13 @@ namespace GoodeeWay.SalesMenu
             {
                 cbxDivision.Items.Add(item);
             }
-
+            salesMenuGView.Columns[0].HeaderText = "메뉴코드";
+            salesMenuGView.Columns[1].HeaderText = "메뉴명";
+            salesMenuGView.Columns[2].HeaderText = "가격";
+            salesMenuGView.Columns[3].HeaderText = "Kcal";
+            salesMenuGView.Columns[4].HeaderText = "사진";
+            salesMenuGView.Columns[5].HeaderText = "구분";
+            salesMenuGView.Columns[6].HeaderText = "부가설명";
             #region 테스트 코드입니다 ^ㅡ^
             testList.Add(new InventoryTypeVO()
             {
@@ -148,7 +154,6 @@ namespace GoodeeWay.SalesMenu
 
             #endregion
         }
-
         private void btnMnuInsert_Click(object sender, EventArgs e)
         {
             string menuCode = msktbxMnuCode.Text;
@@ -180,11 +185,11 @@ namespace GoodeeWay.SalesMenu
             }
 
 
-            if (!sucessRecipe)
+            if (sucessMenu && !sucessRecipe)
             {
                 MessageBox.Show("저장 성공!");
             }
-            else
+            else if(sucessMenu && sucessRecipe)
             {
                 MessageBox.Show("저장 성공!(기본 레시피 저장 포함)");
             }
@@ -307,7 +312,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 메뉴코드의 유효성검사
         /// </summary>
         /// <param name="menuCode"></param>
         /// <returns></returns>
@@ -328,7 +333,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// Null 유효성 검사 메서드
         /// </summary>
         /// <param name="menuCode"></param>
         /// <param name="menuName"></param>
@@ -354,7 +359,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 타입 유효성 검사 메서드
         /// </summary>
         /// <param name="price"></param>
         /// <param name="kcal"></param>
@@ -377,7 +382,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 그리드뷰와 리스트의를 초기화하는 메서드
         /// </summary>
         private void ReflashData()
         {
@@ -612,7 +617,6 @@ namespace GoodeeWay.SalesMenu
                 {
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     sucessUpdateRecipe = RecipeUpdate(menuCode, sucessUpdateRecipe);
-                    btnClear_Click(null, null);
                 }
                 if (oldDivision == 0 && salesMenuVO.Division != 0)
                 {
@@ -620,7 +624,6 @@ namespace GoodeeWay.SalesMenu
                     {
                         if (new MenuRecipeDAO().DeleteRecipesByMenuCode(salesMenuVO.MenuCode))
                         {
-                            //MessageBox.Show("레시피 삭제 성공");
                             sucessdeleteRecipe = true;
                         }
                     }
@@ -629,13 +632,11 @@ namespace GoodeeWay.SalesMenu
                         MessageBox.Show(ex.Message);
                     }
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
-                    btnClear_Click(null, null);
                 }
                 else if (oldDivision != 0 && salesMenuVO.Division == 0)
                 {
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
-                    btnClear_Click(null, null);
                 }
 
                 ReflashData();
@@ -656,6 +657,7 @@ namespace GoodeeWay.SalesMenu
             {
                 MessageBox.Show("메뉴 수정 실패");
             }
+            btnClear_Click(null, null);
         }
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
@@ -694,7 +696,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 레시피를 업데이트 하는 메서드
         /// </summary>
         /// <param name="menuCode"></param>
         /// <param name="sucessUpdateRecipe"></param>
@@ -763,7 +765,7 @@ namespace GoodeeWay.SalesMenu
         }
 
         /// <summary>
-        /// 
+        /// 메뉴를 업데이트 하는 메서드
         /// </summary>
         /// <param name="salesMenuVO"></param>
         /// <param name="menuUpdateSucess"></param>
@@ -878,6 +880,11 @@ namespace GoodeeWay.SalesMenu
             }
         }
 
-        
+        private void btnMnuSearch_Click(object sender, EventArgs e)
+        {
+            SalesMenuSearch menuSearch = new SalesMenuSearch();
+            menuSearch.ShowDialog();
+        }
+
     }
 }

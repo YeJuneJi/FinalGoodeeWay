@@ -48,7 +48,6 @@
             this.btnMnuUpdate = new System.Windows.Forms.Button();
             this.btnMnuDelete = new System.Windows.Forms.Button();
             this.btnMnuSearch = new System.Windows.Forms.Button();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
@@ -206,7 +205,7 @@
             // 
             // btnMnuInsert
             // 
-            this.btnMnuInsert.Location = new System.Drawing.Point(15, 157);
+            this.btnMnuInsert.Location = new System.Drawing.Point(25, 157);
             this.btnMnuInsert.Name = "btnMnuInsert";
             this.btnMnuInsert.Size = new System.Drawing.Size(100, 23);
             this.btnMnuInsert.TabIndex = 16;
@@ -216,7 +215,7 @@
             // 
             // btnMnuUpdate
             // 
-            this.btnMnuUpdate.Location = new System.Drawing.Point(126, 157);
+            this.btnMnuUpdate.Location = new System.Drawing.Point(142, 157);
             this.btnMnuUpdate.Name = "btnMnuUpdate";
             this.btnMnuUpdate.Size = new System.Drawing.Size(100, 23);
             this.btnMnuUpdate.TabIndex = 17;
@@ -226,7 +225,7 @@
             // 
             // btnMnuDelete
             // 
-            this.btnMnuDelete.Location = new System.Drawing.Point(237, 157);
+            this.btnMnuDelete.Location = new System.Drawing.Point(259, 157);
             this.btnMnuDelete.Name = "btnMnuDelete";
             this.btnMnuDelete.Size = new System.Drawing.Size(100, 23);
             this.btnMnuDelete.TabIndex = 18;
@@ -236,25 +235,17 @@
             // 
             // btnMnuSearch
             // 
-            this.btnMnuSearch.Location = new System.Drawing.Point(348, 157);
+            this.btnMnuSearch.Location = new System.Drawing.Point(376, 157);
             this.btnMnuSearch.Name = "btnMnuSearch";
             this.btnMnuSearch.Size = new System.Drawing.Size(100, 23);
             this.btnMnuSearch.TabIndex = 19;
             this.btnMnuSearch.Text = "검색";
             this.btnMnuSearch.UseVisualStyleBackColor = true;
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Location = new System.Drawing.Point(459, 157);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(100, 23);
-            this.btnExcel.TabIndex = 20;
-            this.btnExcel.Text = "엑셀";
-            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnMnuSearch.Click += new System.EventHandler(this.btnMnuSearch_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(570, 157);
+            this.btnClose.Location = new System.Drawing.Point(493, 157);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 21;
@@ -302,7 +293,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btnMnuSearch);
             this.Controls.Add(this.btnMnuDelete);
             this.Controls.Add(this.btnMnuUpdate);
@@ -355,7 +345,6 @@
         private System.Windows.Forms.Button btnMnuUpdate;
         private System.Windows.Forms.Button btnMnuDelete;
         private System.Windows.Forms.Button btnMnuSearch;
-        private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.OpenFileDialog oFdialogPhoto;
