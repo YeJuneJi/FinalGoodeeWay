@@ -32,6 +32,13 @@ namespace GoodeeWay.VO
             get { return materialClassification; }
             set { materialClassification = value; }
         }
+        private int minimumQuantity;
+        public int MinimumQuantity
+        {
+            get { return minimumQuantity; }
+            set { minimumQuantity = value; }
+        }
+
 
         public InventoryTypeVO(string InventoryTypeCode, string ReceivingQuantity, string InventoryName, string MaterialClassification)
         {

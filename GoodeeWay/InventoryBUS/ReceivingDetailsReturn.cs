@@ -66,7 +66,7 @@ namespace GoodeeWay.InventoryBUS
             if (rdoReturn.Checked)
             {
                 Rdvo.ReturnStatus = "반품";
-                Rdvo.ReceivingDetailsID=Rdvo.ReceivingDetailsID.Replace("I", "O");
+                Rdvo.ReceivingDetailsID=Rdvo.ReceivingDetailsID.Replace("I", "R");
             }
             else
             {

@@ -44,7 +44,7 @@ namespace GoodeeWay.InventoryBUS
                 inventoryTypeCode = a+"";
             }
             bool temp = false;
-            if (cmbClassification.Text=="빵"|| cmbClassification.Text == "치즈" || cmbClassification.Text == "채소" || cmbClassification.Text == "소스" || cmbClassification.Text == "추가토핑" || cmbClassification.Text == "부가재료")
+            if (cmbClassification.Text=="Bread"|| cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional")
             {
                 temp = true;
             }

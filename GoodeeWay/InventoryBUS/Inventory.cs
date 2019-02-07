@@ -36,6 +36,33 @@ namespace GoodeeWay
             InventoryTableTemp = true;
             tabControl1.Size = new Size(916, 659);
             this.Size = new Size(951, 722);
+            
+
+
+        }
+
+        /// <summary>
+        /// 폼사이즈 동적설정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0:
+                    tabControl1.Size = new Size(916, 659);
+                    this.Size = new Size(951, 722);
+                    break;
+                case 1:
+                    tabControl1.Size = new Size(1136, 659);
+                    this.Size = new Size(1187, 722);
+                    break;
+                case 2:
+                    tabControl1.Size = new Size(729, 659);
+                    this.Size = new Size(764, 722);
+                    break;
+            }
         }
 
         #region 입고내역
@@ -133,9 +160,9 @@ namespace GoodeeWay
                 rd.InventoryTypeCode = worksheet.Cells[row, 8].Value.ToString();
                 for (int i = 0; i < dgvInventoryType.Rows.Count; i++)
                 {
-                    if (dgvInventoryType["InventoryTypeCode", i].Value.ToString() == rd.InventoryTypeCode)
+                    if (dgvInventoryType["재고종류코드", i].Value.ToString() == rd.InventoryTypeCode)
                     {
-                        rd.InventoryName = dgvInventoryType["InventoryName", i].Value.ToString();
+                        rd.InventoryName = dgvInventoryType["재고명", i].Value.ToString();
                         break;
                     }
                 }
@@ -195,6 +222,7 @@ namespace GoodeeWay
                 btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             }
         }
+
         /// <summary>
         /// 입고내역리스트 테이블
         /// </summary>
@@ -212,6 +240,7 @@ namespace GoodeeWay
             dgvReceivingDetailsList.DataSource = dataTable;
             dgvReceivingDetailsList.AllowUserToAddRows = false;
         }
+
         /// <summary>
         /// 입고내역리스트 더블클릭->입고내역상세뷰
         /// </summary>
@@ -412,6 +441,7 @@ namespace GoodeeWay
             {
                 InventoryTypeCode = dgvInventoryType.SelectedRows[0].Cells["재고종류코드"].Value.ToString(),
                 ReceivingQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["입고정량"].Value.ToString()),
+                MinimumQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["최소재고"].Value.ToString()),
                 InventoryName = dgvInventoryType.SelectedRows[0].Cells["재고명"].Value.ToString(),
                 MaterialClassification = dgvInventoryType.SelectedRows[0].Cells["재료구분"].Value.ToString(),
             };
@@ -462,23 +492,15 @@ namespace GoodeeWay
         }
         #endregion
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        public void CalculationOrderDetails()
         {
-            switch (tabControl1.SelectedIndex)
-            {
-                case 0:
-                    tabControl1.Size = new Size(916, 659);
-                    this.Size = new Size(951, 722);
-                    break;
-                case 1:
-                    tabControl1.Size = new Size(1093, 659);
-                    this.Size = new Size(1122, 722);
-                    break;
-                case 2:
-                    tabControl1.Size = new Size(847, 659);
-                    this.Size = new Size(889, 722);
-                    break;
-            }
+            dgvNeedInventoryDetailView.DataSource = null;
+            dgvNeedInventoryDetailView.DataSource = new InventoryTypeDAO().InventoryTypeNeedSelect();
+        }
+
+        private void btnOrderDisplay_Click(object sender, EventArgs e)
+        {
+            CalculationOrderDetails();
         }
     }
 }

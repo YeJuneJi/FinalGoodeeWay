@@ -39,6 +39,7 @@ namespace GoodeeWay.DAO
             dataTable.Columns.Add("재고종류코드");
             dataTable.Columns.Add("재고명");
             dataTable.Columns.Add("입고정량");
+            dataTable.Columns.Add("최소재고");
             dataTable.Columns.Add("재고합계");
             dataTable.Columns.Add("재고총량");
             dataTable.Columns.Add("재료구분");
@@ -54,9 +55,10 @@ namespace GoodeeWay.DAO
                 DataRow dataRow = dataTable.NewRow();
                 dataRow["재고종류코드"]=dr["InventoryTypeCode"].ToString();
                 dataRow["재고명"] = dr["InventoryName"].ToString();
-                dataRow["입고정량"] = dr["ReceivingQuantity"].ToString();
-                dataRow["재고합계"] =dr["SumReceivingQuantuty"].ToString();
-                dataRow["재고총량"] =dr["TotalReceivingQuantuty"].ToString();
+                dataRow["입고정량"] = Int32.Parse(dr["ReceivingQuantity"].ToString());
+                dataRow["최소재고"] = Int32.Parse(dr["MinimumQuantity"].ToString());
+                dataRow["재고합계"] = Int32.Parse(dr["SumReceivingQuantuty"].ToString());
+                dataRow["재고총량"] = Int32.Parse(dr["TotalReceivingQuantuty"].ToString());
                 dataRow["재료구분"] = dr["MaterialClassification"].ToString();
                 dataTable.Rows.Add(dataRow);
             }
@@ -80,13 +82,54 @@ namespace GoodeeWay.DAO
 
         internal void InventoryTypeUpdate(InventoryTypeVO inventoryTypeVO)
         {
-            SqlParameter[] updateInventoryTypeParameter = new SqlParameter[4];
+            SqlParameter[] updateInventoryTypeParameter = new SqlParameter[5];
             updateInventoryTypeParameter[0] = new SqlParameter("InventoryTypeCode", inventoryTypeVO.InventoryTypeCode);
             updateInventoryTypeParameter[1] = new SqlParameter("ReceivingQuantity", inventoryTypeVO.ReceivingQuantity);
             updateInventoryTypeParameter[2] = new SqlParameter("InventoryName", inventoryTypeVO.InventoryName);
             updateInventoryTypeParameter[3] = new SqlParameter("MaterialClassification", inventoryTypeVO.MaterialClassification);
+            updateInventoryTypeParameter[4] = new SqlParameter("MinimumQuantity", inventoryTypeVO.MinimumQuantity);
             new DBConnection().Update("UpdateInventoryType", updateInventoryTypeParameter);
 
+        }
+
+        internal DataTable InventoryTypeNeedSelect()
+        {
+            SqlParameter[] sqlParameters = null;
+            SqlDataReader dr = new DBConnection().Select("SelectInventoryTypeNeed", sqlParameters);
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("재고종류코드");
+            dataTable.Columns.Add("재고명");
+            dataTable.Columns.Add("현재수량");
+            dataTable.Columns.Add("필요수량");
+            dataTable.Columns.Add("발주종류");
+            while (dr.Read())
+            {
+                DataRow dataRow = dataTable.NewRow();
+                dataRow["재고종류코드"] = dr["InventoryTypeCode"].ToString();
+                dataRow["재고명"] = dr["InventoryName"].ToString();
+                dataRow["현재수량"] = dr["SumReceivingQuantuty"].ToString();
+                dataRow["필요수량"] = dr["NeedQuantity"].ToString();
+                dataRow["발주종류"] = "Order";
+
+                dataTable.Rows.Add(dataRow);
+            }
+
+            SqlParameter[] RDITsqlParameters = null;
+            SqlDataReader dr2 = new DBConnection().Select("SelectReceivingDetailsInventorytype", RDITsqlParameters);
+            while (dr2.Read())
+            {
+                DataRow dataRow = dataTable.NewRow();
+                dataRow["재고종류코드"] = dr2["InventoryTypeCode"].ToString();
+                dataRow["재고명"] = dr2["InventoryName"].ToString();
+                dataRow["현재수량"] = dr2["SumReceivingQuantuty"].ToString();
+                dataRow["필요수량"] = dr2["NeedQuantity"].ToString();
+                if (dr2["ReturnStatus"].ToString()=="반품"){dataRow["발주종류"] = "Return";}
+                else if (dr2["ReturnStatus"].ToString() == "교환") { dataRow["발주종류"] = "Exchange"; }
+            
+                dataTable.Rows.Add(dataRow);
+            }
+
+            return dataTable;
         }
     }
 }

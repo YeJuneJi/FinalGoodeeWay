@@ -48,20 +48,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvInventoryType = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
+            this.dgvNeedInventoryList = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnOrderDisplay = new System.Windows.Forms.Button();
+            this.dgvNeedInventoryDetailView = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).BeginInit();
@@ -70,12 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryType)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNeedInventoryList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNeedInventoryDetailView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,7 +76,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(849, 659);
+            this.tabControl1.Size = new System.Drawing.Size(936, 659);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -102,7 +92,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(908, 633);
+            this.tabPage1.Size = new System.Drawing.Size(928, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "입고내역";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -165,7 +155,7 @@
             this.btnReceivingDetailsSave.Name = "btnReceivingDetailsSave";
             this.btnReceivingDetailsSave.Size = new System.Drawing.Size(162, 40);
             this.btnReceivingDetailsSave.TabIndex = 20;
-            this.btnReceivingDetailsSave.Text = "입고내역 적용";
+            this.btnReceivingDetailsSave.Text = "입고내역 저장";
             this.btnReceivingDetailsSave.UseVisualStyleBackColor = true;
             this.btnReceivingDetailsSave.Click += new System.EventHandler(this.btnReceivingDetailsSave_Click);
             // 
@@ -193,14 +183,14 @@
             this.tabPage3.Controls.Add(this.dgvInventoryType);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1080, 633);
+            this.tabPage3.Size = new System.Drawing.Size(928, 633);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(332, 15);
+            this.btnUpdate.Location = new System.Drawing.Point(386, 15);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(59, 23);
             this.btnUpdate.TabIndex = 14;
@@ -210,7 +200,7 @@
             // 
             // btnNewTable
             // 
-            this.btnNewTable.Location = new System.Drawing.Point(196, 15);
+            this.btnNewTable.Location = new System.Drawing.Point(250, 15);
             this.btnNewTable.Name = "btnNewTable";
             this.btnNewTable.Size = new System.Drawing.Size(65, 23);
             this.btnNewTable.TabIndex = 13;
@@ -220,7 +210,7 @@
             // 
             // btnInventoryTypeAdd
             // 
-            this.btnInventoryTypeAdd.Location = new System.Drawing.Point(267, 15);
+            this.btnInventoryTypeAdd.Location = new System.Drawing.Point(321, 15);
             this.btnInventoryTypeAdd.Name = "btnInventoryTypeAdd";
             this.btnInventoryTypeAdd.Size = new System.Drawing.Size(59, 23);
             this.btnInventoryTypeAdd.TabIndex = 12;
@@ -230,7 +220,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(397, 15);
+            this.btnDelete.Location = new System.Drawing.Point(451, 15);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(59, 23);
             this.btnDelete.TabIndex = 11;
@@ -241,7 +231,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(462, 26);
+            this.label3.Location = new System.Drawing.Point(514, 26);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 4;
@@ -249,7 +239,7 @@
             // 
             // btnInventoryNewTable
             // 
-            this.btnInventoryNewTable.Location = new System.Drawing.Point(994, 15);
+            this.btnInventoryNewTable.Location = new System.Drawing.Point(1037, 15);
             this.btnInventoryNewTable.Name = "btnInventoryNewTable";
             this.btnInventoryNewTable.Size = new System.Drawing.Size(75, 23);
             this.btnInventoryNewTable.TabIndex = 3;
@@ -261,12 +251,12 @@
             // 
             this.dgvInventoryTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvInventoryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventoryTable.Location = new System.Drawing.Point(462, 41);
+            this.dgvInventoryTable.Location = new System.Drawing.Point(516, 41);
             this.dgvInventoryTable.MultiSelect = false;
             this.dgvInventoryTable.Name = "dgvInventoryTable";
             this.dgvInventoryTable.RowTemplate.Height = 23;
             this.dgvInventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventoryTable.Size = new System.Drawing.Size(607, 589);
+            this.dgvInventoryTable.Size = new System.Drawing.Size(596, 589);
             this.dgvInventoryTable.TabIndex = 2;
             this.dgvInventoryTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventoryTable_CellMouseClick);
             this.dgvInventoryTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvInventoryTable_KeyUp);
@@ -285,166 +275,104 @@
             this.dgvInventoryType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvInventoryType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventoryType.Location = new System.Drawing.Point(13, 41);
+            this.dgvInventoryType.MultiSelect = false;
             this.dgvInventoryType.Name = "dgvInventoryType";
             this.dgvInventoryType.RowTemplate.Height = 23;
             this.dgvInventoryType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventoryType.Size = new System.Drawing.Size(443, 589);
+            this.dgvInventoryType.Size = new System.Drawing.Size(497, 589);
             this.dgvInventoryType.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.tabControl2);
-            this.tabPage2.Controls.Add(this.button12);
-            this.tabPage2.Controls.Add(this.button13);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.dgvNeedInventoryList);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button3);
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.btnOrderDisplay);
+            this.tabPage2.Controls.Add(this.dgvNeedInventoryDetailView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(841, 633);
+            this.tabPage2.Size = new System.Drawing.Size(928, 633);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "발주내역";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabControl2
+            // dgvNeedInventoryList
             // 
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Location = new System.Drawing.Point(12, 6);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(364, 575);
-            this.tabControl2.TabIndex = 31;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(356, 549);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "현재 필요재고량";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(345, 537);
-            this.dataGridView1.TabIndex = 8;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dataGridView5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(356, 549);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "반품 및 재 발주내역";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(3, 6);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.RowTemplate.Height = 23;
-            this.dataGridView5.Size = new System.Drawing.Size(350, 537);
-            this.dataGridView5.TabIndex = 29;
-            // 
-            // button12
-            // 
-            this.button12.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button12.Location = new System.Drawing.Point(382, 382);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 60);
-            this.button12.TabIndex = 28;
-            this.button12.Text = "전체\r\n←";
-            this.button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            this.button13.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button13.Location = new System.Drawing.Point(380, 170);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 60);
-            this.button13.TabIndex = 27;
-            this.button13.Text = "전체\r\n→";
-            this.button13.UseVisualStyleBackColor = true;
+            this.dgvNeedInventoryList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNeedInventoryList.Location = new System.Drawing.Point(6, 44);
+            this.dgvNeedInventoryList.Name = "dgvNeedInventoryList";
+            this.dgvNeedInventoryList.RowTemplate.Height = 23;
+            this.dgvNeedInventoryList.Size = new System.Drawing.Size(125, 543);
+            this.dgvNeedInventoryList.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(467, 23);
+            this.label2.Location = new System.Drawing.Point(6, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(73, 12);
             this.label2.TabIndex = 15;
-            this.label2.Text = "발주내역";
+            this.label2.Text = "발주내역List";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(749, 587);
+            this.button4.Location = new System.Drawing.Point(597, 593);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(112, 23);
             this.button4.TabIndex = 13;
             this.button4.Text = "excel추출";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnOrderDisplay
             // 
-            this.button3.Location = new System.Drawing.Point(634, 587);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 23);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "수정내용 적용";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnOrderDisplay.Location = new System.Drawing.Point(597, 15);
+            this.btnOrderDisplay.Name = "btnOrderDisplay";
+            this.btnOrderDisplay.Size = new System.Drawing.Size(112, 23);
+            this.btnOrderDisplay.TabIndex = 12;
+            this.btnOrderDisplay.Text = "발주내역 산출";
+            this.btnOrderDisplay.UseVisualStyleBackColor = true;
+            this.btnOrderDisplay.Click += new System.EventHandler(this.btnOrderDisplay_Click);
             // 
-            // button2
+            // dgvNeedInventoryDetailView
             // 
-            this.button2.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(382, 334);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 33);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "←";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(382, 252);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 35);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "→";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(469, 38);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(355, 543);
-            this.dataGridView2.TabIndex = 9;
+            this.dgvNeedInventoryDetailView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNeedInventoryDetailView.Location = new System.Drawing.Point(137, 44);
+            this.dgvNeedInventoryDetailView.Name = "dgvNeedInventoryDetailView";
+            this.dgvNeedInventoryDetailView.RowTemplate.Height = 23;
+            this.dgvNeedInventoryDetailView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvNeedInventoryDetailView.Size = new System.Drawing.Size(572, 543);
+            this.dgvNeedInventoryDetailView.TabIndex = 9;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(479, 593);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "발주내역 저장";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(135, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 12);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "발주내역 DetailView";
+            // 
             // inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 683);
+            this.ClientSize = new System.Drawing.Size(960, 683);
             this.Controls.Add(this.tabControl1);
             this.Name = "inventory";
             this.Text = "Inventory";
@@ -459,12 +387,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryType)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNeedInventoryList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNeedInventoryDetailView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,19 +401,11 @@
         private System.Windows.Forms.Button btnReceivingDetailsSave;
         private System.Windows.Forms.DataGridView dgvReceivingDetails;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.DataGridView dgvNeedInventoryList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnOrderDisplay;
+        private System.Windows.Forms.DataGridView dgvNeedInventoryDetailView;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnInventoryNewTable;
@@ -505,5 +421,7 @@
         private System.Windows.Forms.Button btnNewTable;
         private System.Windows.Forms.Button btnReturnAdd;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
     }
 }

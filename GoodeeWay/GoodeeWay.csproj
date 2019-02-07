@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DAO\InventoryDAO.cs" />
     <Compile Include="DAO\InventoryTypeDAO.cs" />
+    <Compile Include="DAO\OrderDetailsDAO.cs" />
     <Compile Include="DAO\ReceivingDetailsDAO.cs" />
     <Compile Include="InventoryBUS\Inventory.cs">
       <SubType>Form</SubType>

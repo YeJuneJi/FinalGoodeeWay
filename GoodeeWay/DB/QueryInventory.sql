@@ -80,7 +80,7 @@ Go
 CREATE PROCEDURE [dbo].SelectInventoryType
 
 AS
-	select InventoryTypeCode, InventoryName, ReceivingQuantity, 
+	select InventoryTypeCode, InventoryName, ReceivingQuantity, isnull(IT.MinimumQuantity,0)'MinimumQuantity',
 	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
 	(isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)*IT.ReceivingQuantity) 'TotalReceivingQuantuty',
 	MaterialClassification 
@@ -127,8 +127,35 @@ CREATE PROCEDURE [dbo].UpdateInventoryType
 	@InventoryTypeCode nvarchar(6),
 	@ReceivingQuantity nvarchar(20),
 	@InventoryName nvarchar(47),
-	@MaterialClassification nvarchar(30)
+	@MaterialClassification nvarchar(30),
+	@MinimumQuantity int
 AS
 	update  InventoryType
-	set ReceivingQuantity=@ReceivingQuantity,InventoryName=@InventoryName,MaterialClassification=@MaterialClassification
+	set ReceivingQuantity=@ReceivingQuantity,InventoryName=@InventoryName,MaterialClassification=@MaterialClassification, MinimumQuantity=@MinimumQuantity
 	where InventoryTypeCode=@InventoryTypeCode;
+
+Go
+--발주내역 산출 프로시져
+
+CREATE PROCEDURE [dbo].SelectInventoryTypeNeed
+
+AS
+	select InventoryTypeCode, InventoryName, 
+	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	(isnull(IT.MinimumQuantity,0)+isnull(IT.MinimumQuantity,0)-
+	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)) 'NeedQuantity'
+	
+	from InventoryType IT
+Go
+--발주내역산출을 위한 입고내역 & 재고종류 테이블 select
+CREATE PROCEDURE [dbo].SelectReceivingDetailsInventorytype
+
+AS
+	
+	select i.InventoryTypeCode 'InventoryTypeCode', i.InventoryName 'InventoryName', 
+	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=i.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	R.Quantity 'NeedQuantity',
+	r.ReturnStatus 'ReturnStatus', r.ReceivingDetailsID 'ReceivingDetailsID'
+	
+	from InventoryType i, ReceivingDetails r where i.InventoryTypeCode=r.InventoryTypeCode and r.ReturnStatus!=N'정상입';
+	

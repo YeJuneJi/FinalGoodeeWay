@@ -94,17 +94,17 @@
             // 
             this.cmbClassification.FormattingEnabled = true;
             this.cmbClassification.Items.AddRange(new object[] {
-            "빵",
-            "치즈",
-            "채소",
-            "소스",
-            "추가토핑",
-            "부가재료"});
+            "Bread",
+            "Cheese",
+            "Vegetable",
+            "Sauce",
+            "Additional",
+            "Topping"});
             this.cmbClassification.Location = new System.Drawing.Point(105, 62);
             this.cmbClassification.Name = "cmbClassification";
             this.cmbClassification.Size = new System.Drawing.Size(100, 20);
             this.cmbClassification.TabIndex = 8;
-            this.cmbClassification.Text = "채소";
+            this.cmbClassification.Text = "Vegetable";
             // 
             // btnComplete
             // 
