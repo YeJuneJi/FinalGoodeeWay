@@ -181,26 +181,5 @@ namespace GoodeeWay.DB
             }
             return result;
         }
-        internal SqlDataReader Display(string sp)
-        {
-            SqlConnection sqlCon = OpenConnection();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = sqlCon;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = sp;
-
-
-            try
-            {
-
-                return cmd.ExecuteReader();
-            }
-            catch (SqlException)
-            {
-
-                throw;
-            }
-
-        }
     }
 }

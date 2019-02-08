@@ -263,5 +263,44 @@ namespace GoodeeWay.BUS
             }
             Employee_Load(null, null);
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = "";
+            lst.Clear();
+            if (txtSearch.Text == "")
+            {
+                Employee_Load(null, null);
+            }
+            else
+            {
+                string sp = "proc_emp_select";
+                SqlParameter[] sqlParameters = new SqlParameter[1];
+                sqlParameters[0] = new SqlParameter("name", txtSearch.Text);
+              
+                SqlDataReader sr= new DBConnection().Select(sp, sqlParameters);
+
+                while (sr.Read())
+                {
+                    lst.Add(new EmpVO()
+                    {
+                        Empno = sr["empno"].ToString(),
+                        Name = sr["name"].ToString(),
+                        Job = sr["job"].ToString(),
+                        Pay = float.Parse(sr["pay"].ToString()),
+                        Department = sr["Department"].ToString(),
+                        Mobile = sr["Mobile"].ToString(),
+                        JoinDate = DateTime.Parse(sr["JoinDate"].ToString()),
+                        LeaveDate = DateTime.Parse(sr["LeaveDate"].ToString()),
+                        BankAccountNo = sr["BankAccountNo"].ToString(),
+                        Bank = sr["Bank"].ToString(),
+                        Email = sr["Email"].ToString(),
+                        Note = sr["Note"].ToString(),
+                    });
+                }
+
+                dataGridView1.DataSource = lst;
+            }
+        }
     }
 }

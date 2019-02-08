@@ -51,7 +51,7 @@ namespace GoodeeWay.DAO
         {
             List<EmpVO> lst = new List<EmpVO>();
             string sp = "Display";
-            SqlDataReader sr = new DBConnection().Display(sp);
+            SqlDataReader sr = new DBConnection().Select(sp,null);
             while (sr.Read())
             {
                 lst.Add(new EmpVO()

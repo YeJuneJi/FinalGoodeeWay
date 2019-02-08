@@ -53,6 +53,12 @@
     <Compile Include="BUS\Employee.Designer.cs">
       <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="BUS\Insert_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Insert_Emp.Designer.cs">
+      <DependentUpon>Insert_Emp.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\EmpDAO.cs" />
     <Compile Include="DAO\IEmp.cs" />
     <Compile Include="DB\DBConnection.cs" />

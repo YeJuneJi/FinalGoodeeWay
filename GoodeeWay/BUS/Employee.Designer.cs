@@ -59,13 +59,17 @@
             this.label14 = new System.Windows.Forms.Label();
             this.cbBank = new System.Windows.Forms.ComboBox();
             this.cbJob = new System.Windows.Forms.ComboBox();
+            this.btnSal = new System.Windows.Forms.Button();
+            this.btn = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(927, 509);
+            this.btnDelete.Location = new System.Drawing.Point(927, 541);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 53);
             this.btnDelete.TabIndex = 63;
@@ -76,7 +80,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnUpdate.Location = new System.Drawing.Point(1044, 450);
+            this.btnUpdate.Location = new System.Drawing.Point(1044, 482);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 53);
             this.btnUpdate.TabIndex = 62;
@@ -87,7 +91,7 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnInsert.Location = new System.Drawing.Point(927, 451);
+            this.btnInsert.Location = new System.Drawing.Point(927, 483);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(111, 53);
             this.btnInsert.TabIndex = 61;
@@ -138,7 +142,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnClear.Location = new System.Drawing.Point(1044, 509);
+            this.btnClear.Location = new System.Drawing.Point(1044, 541);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(111, 53);
             this.btnClear.TabIndex = 65;
@@ -386,11 +390,52 @@
             this.cbJob.TabIndex = 92;
             this.cbJob.Leave += new System.EventHandler(this.cbJob_Leave);
             // 
+            // btnSal
+            // 
+            this.btnSal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSal.Location = new System.Drawing.Point(927, 423);
+            this.btnSal.Name = "btnSal";
+            this.btnSal.Size = new System.Drawing.Size(111, 53);
+            this.btnSal.TabIndex = 93;
+            this.btnSal.Text = "월 급여 대장";
+            this.btnSal.UseVisualStyleBackColor = true;
+            // 
+            // btn
+            // 
+            this.btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btn.Location = new System.Drawing.Point(1044, 423);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(111, 53);
+            this.btn.TabIndex = 94;
+            this.btn.Text = "근태기록";
+            this.btn.UseVisualStyleBackColor = true;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(498, 32);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(100, 21);
+            this.txtSearch.TabIndex = 95;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(611, 29);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(57, 23);
+            this.btnSearch.TabIndex = 96;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 580);
+            this.ClientSize = new System.Drawing.Size(1174, 596);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.btn);
+            this.Controls.Add(this.btnSal);
             this.Controls.Add(this.cbJob);
             this.Controls.Add(this.cbBank);
             this.Controls.Add(this.label14);
@@ -463,5 +508,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbBank;
         private System.Windows.Forms.ComboBox cbJob;
+        private System.Windows.Forms.Button btnSal;
+        private System.Windows.Forms.Button btn;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
