@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using GoodeeWay.DAO;
 using GoodeeWay.InventoryBUS;
 using GoodeeWay.VO;
-using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 
 namespace GoodeeWay
@@ -23,7 +23,9 @@ namespace GoodeeWay
 
         List<ReceivingDetailsVO> receivingDetailsList;
         List<InventoryTypeVO> inventoryTypeVOList;
+        List<OrderDetailsVO> orderDetailsVOsList;
         DataTable inventoryTypeDateTable;
+        DataTable orderDetailsDataTable;
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
         public inventory()
@@ -36,9 +38,11 @@ namespace GoodeeWay
             InventoryTableTemp = true;
             tabControl1.Size = new Size(916, 659);
             this.Size = new Size(951, 722);
-            
-
-
+            dgvNeedInventoryDetailView.AllowUserToAddRows = false;
+            SelectOrderDetailsList();
+            dgvOrderDetailsList.AllowUserToAddRows = false;
+            btnSaveOrderDetails.Enabled = false;
+            btnExcelExport.Enabled = false;
         }
 
         /// <summary>
@@ -78,7 +82,10 @@ namespace GoodeeWay
             {
                 string filePath = openFileDialog1.FileName;
                 receivingDetailsList = ExcelLoading(filePath);
-
+                if (receivingDetailsList is null)
+                {
+                    return;
+                }
 
                 dgvReceivingDetails.DataSource = receivingDetailsList;
                 #region 입고내역 상세테이블 컬럼명 변경
@@ -121,15 +128,15 @@ namespace GoodeeWay
         {
             receivingDetailsList = new List<ReceivingDetailsVO>();
 
-            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Excel.Application excelApp = new Excel.Application();
 
             if (excelApp == null)
             {
                 MessageBox.Show("Excel 응용프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
                 return null;
             }
-            Workbook workbook;
-            Worksheet worksheet;
+            Excel.Workbook workbook;
+            Excel.Worksheet worksheet;
             object missingValue = System.Reflection.Missing.Value;
             if (!filePath.Contains(".xls"))
             {
@@ -402,7 +409,9 @@ namespace GoodeeWay
             //inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
             inventoryTypeDateTable = new InventoryTypeDAO().InventoryTypeSelect();
             dgvInventoryType.DataSource = inventoryTypeDateTable;
-
+            dgvInventoryType.Columns["재고종류코드"].ReadOnly = true;
+            dgvInventoryType.Columns["재고합계"].ReadOnly = true;
+            dgvInventoryType.Columns["재고총량"].ReadOnly = true;
 
             #region 재고종류테이블 컬럼명 변경
             //dgvInventoryType.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
@@ -492,15 +501,151 @@ namespace GoodeeWay
         }
         #endregion
 
+        #region 발주내역
+
+        /// <summary>
+        /// 발주내역 산출 버튼으로 입고내역에 있는 반품,교환 내역과 재고종류의 모든 재고에 대한 내역을 산출한다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOrderDisplay_Click(object sender, EventArgs e)
+        {
+            CalculationOrderDetails();
+            dgvNeedInventoryDetailView.Columns["재고종류코드"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["현재수량"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
+
+            btnSaveOrderDetails.Enabled = true;
+            btnExcelExport.Enabled = false;
+        }
         public void CalculationOrderDetails()
         {
             dgvNeedInventoryDetailView.DataSource = null;
             dgvNeedInventoryDetailView.DataSource = new InventoryTypeDAO().InventoryTypeNeedSelect();
         }
 
-        private void btnOrderDisplay_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 발주내역을 DB에 저장 시키고 입고내역의 교환이나 반품은 교환완이나 반품완으로 수정한다. 그리고 발주내역 LIST에 날짜로 출력시켜준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveOrderDetails_Click(object sender, EventArgs e)
         {
-            CalculationOrderDetails();
+            orderDetailsVOsList = new List<OrderDetailsVO>();
+            string date = DateTime.Now.ToShortDateString().Replace("-", "").Substring(2, 6);
+            for (int i = 0; i < dgvNeedInventoryDetailView.Rows.Count; i++)
+            {
+                if (Int32.Parse(dgvNeedInventoryDetailView["필요수량", i].Value.ToString()) > 0)
+                {
+                    OrderDetailsVO orderDetailsVO = new OrderDetailsVO();
+
+                    if (dgvNeedInventoryDetailView["발주종류", i].Value.ToString() == "주문")
+                    {
+                        orderDetailsVO.OrderID = "OR" + date + (dgvNeedInventoryDetailView["재고종류코드", i].Value.ToString()).Substring(4, 2);
+                    }
+                    else if (dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Contains("반품"))
+                    {
+                        orderDetailsVO.OrderID = "RE" + date + (dgvNeedInventoryDetailView["재고종류코드", i].Value.ToString()).Substring(4, 2);
+                        new ReceivingDetailsDAO().UpdateReceivingDetails(dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Substring(2, 10),
+                            dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Substring(0, 2));
+                    }
+                    else if (dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Contains("교환"))
+                    {
+                        orderDetailsVO.OrderID = "EX" + date + (dgvNeedInventoryDetailView["재고종류코드", i].Value.ToString()).Substring(4, 2);
+                        new ReceivingDetailsDAO().UpdateReceivingDetails(dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Substring(2, 10),
+                            dgvNeedInventoryDetailView["발주종류", i].Value.ToString().Substring(0, 2));
+                    }
+                    orderDetailsVO.OrderDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    orderDetailsVO.InventoryTypeCode = dgvNeedInventoryDetailView["재고종류코드", i].Value.ToString();
+                    orderDetailsVO.Quantity = Int32.Parse(dgvNeedInventoryDetailView["필요수량", i].Value.ToString());
+                    orderDetailsVOsList.Add(orderDetailsVO);
+                }
+            }
+            try
+            {
+                new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
+                MessageBox.Show("발주내역 저장완료");
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("이미 발주처리되었습니다. 수정하여 발주내역을 작성하시기 바랍니다.");
+            }
+
+            
+
+            SelectOrderDetailsList();
+        }
+
+        /// <summary>
+        /// 발주내역 List 출력
+        /// </summary>
+        private void SelectOrderDetailsList()
+        {
+            orderDetailsDataTable = new OrderDetailsDAO().SelectOrderDetailsList();
+            dgvOrderDetailsList.DataSource = orderDetailsDataTable;
+        }
+
+        /// <summary>
+        /// 발주내역 List Double Click 시 상세내역 출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnSaveOrderDetails.Enabled = false;
+            btnExcelExport.Enabled = true;
+            dgvNeedInventoryDetailView.DataSource = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
+            dgvNeedInventoryDetailView.Columns["발주번호"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["재고종류코드"].ReadOnly = true;
+        }
+
+
+        #endregion
+        private void btnExcelExport_Click(object sender, EventArgs e)
+        {
+            Excel.Application excelApp = new Excel.Application();
+            if (excelApp==null)
+            {
+                MessageBox.Show("Excel 응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
+                return;
+            }
+
+            Excel.Workbook workbook;
+            Excel.Worksheet worksheet;
+            object missingValue = System.Reflection.Missing.Value;
+
+            workbook = excelApp.Workbooks.Open(@"C:\Users\GD4\Desktop\FinalProject\OrderDetails.xlsx");
+            worksheet = workbook.Sheets.Item[1];
+
+            for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
+            {
+                worksheet.Cells[i, 1] = i-3;
+                worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호",i-4].Value.ToString();
+                worksheet.Cells[i, 3] = dgvNeedInventoryDetailView["재고명", i - 4].Value.ToString();
+                worksheet.Cells[i, 4] = dgvNeedInventoryDetailView["수량", i - 4].Value.ToString();
+                worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
+
+                
+                Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i+1,1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
+                r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
+            }
+
+           
+
+            try
+            {
+                workbook.SaveAs(Application.StartupPath + @"\발주내역서.", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            excelApp.Quit();
+            Marshal.ReleaseComObject(worksheet);
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(excelApp);
         }
     }
 }

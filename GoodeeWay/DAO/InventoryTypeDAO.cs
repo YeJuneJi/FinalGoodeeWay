@@ -36,14 +36,14 @@ namespace GoodeeWay.DAO
             SqlDataReader dr = new DBConnection().Select("SelectInventoryType", selectInventoryTypeParameters);
             List<InventoryTypeVO> inventoryTypeVOList = new List<InventoryTypeVO>();
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("재고종류코드");
-            dataTable.Columns.Add("재고명");
-            dataTable.Columns.Add("입고정량");
-            dataTable.Columns.Add("최소재고");
-            dataTable.Columns.Add("재고합계");
-            dataTable.Columns.Add("재고총량");
-            dataTable.Columns.Add("재료구분");
-            while (dr.Read())
+            dataTable.Columns.Add("재고종류코드",typeof(string));
+            dataTable.Columns.Add("재고명", typeof(string));
+            dataTable.Columns.Add("입고정량",typeof(int));
+            dataTable.Columns.Add("최소재고",typeof(int));
+            dataTable.Columns.Add("재고합계",typeof(int));
+            dataTable.Columns.Add("재고총량",typeof(int));
+            dataTable.Columns.Add("재료구분",typeof(string));
+            while (dr.Read())               
             {
                 //InventoryTypeVO inventoryTypeVO = new InventoryTypeVO();
                 //inventoryTypeVO.InventoryTypeCode= dr["InventoryTypeCode"].ToString();
@@ -93,38 +93,46 @@ namespace GoodeeWay.DAO
         }
 
         internal DataTable InventoryTypeNeedSelect()
-        {
+        { 
             SqlParameter[] sqlParameters = null;
-            SqlDataReader dr = new DBConnection().Select("SelectInventoryTypeNeed", sqlParameters);
+            SqlDataReader dr = new DBConnection().Select("SelectInventoryTypeNeed", sqlParameters);//재고종류에 있는 모든 내역을 가져옴
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("재고종류코드");
-            dataTable.Columns.Add("재고명");
-            dataTable.Columns.Add("현재수량");
-            dataTable.Columns.Add("필요수량");
-            dataTable.Columns.Add("발주종류");
+            dataTable.Columns.Add("재고종류코드", typeof(string));
+            dataTable.Columns.Add("재고명", typeof(string));
+            dataTable.Columns.Add("현재수량", typeof(string));
+            dataTable.Columns.Add("필요수량", typeof(string));
+            dataTable.Columns.Add("발주종류", typeof(string));
             while (dr.Read())
             {
                 DataRow dataRow = dataTable.NewRow();
                 dataRow["재고종류코드"] = dr["InventoryTypeCode"].ToString();
                 dataRow["재고명"] = dr["InventoryName"].ToString();
-                dataRow["현재수량"] = dr["SumReceivingQuantuty"].ToString();
-                dataRow["필요수량"] = dr["NeedQuantity"].ToString();
+                dataRow["현재수량"] = Int32.Parse(dr["SumReceivingQuantuty"].ToString());
+                if (Int32.Parse(dr["NeedQuantity"].ToString())<0)
+                {
+                    dataRow["필요수량"] = 0;
+                }
+                else
+                {
+                    dataRow["필요수량"] = Int32.Parse(dr["NeedQuantity"].ToString());
+                }
+                
                 dataRow["발주종류"] = "주문";
 
                 dataTable.Rows.Add(dataRow);
             }
 
             SqlParameter[] RDITsqlParameters = null;
-            SqlDataReader dr2 = new DBConnection().Select("SelectReceivingDetailsInventorytype", RDITsqlParameters);
+            SqlDataReader dr2 = new DBConnection().Select("SelectReceivingDetailsInventorytype", RDITsqlParameters);//입고내역에서 반품여부에 '정상입'이 아닌 경우만 가져옴
             while (dr2.Read())
             {
                 DataRow dataRow = dataTable.NewRow();
                 dataRow["재고종류코드"] = dr2["InventoryTypeCode"].ToString();
                 dataRow["재고명"] = dr2["InventoryName"].ToString();
-                dataRow["현재수량"] = dr2["SumReceivingQuantuty"].ToString();
-                dataRow["필요수량"] = dr2["NeedQuantity"].ToString();
-                if (dr2["ReturnStatus"].ToString()=="반품"){dataRow["발주종류"] =dr2["ReceivingDetailsID"].ToString()+"반품";}
-                else if (dr2["ReturnStatus"].ToString() == "교환") { dataRow["발주종류"] = dr2["ReceivingDetailsID"].ToString()+"교환"; }
+                dataRow["현재수량"] = Int32.Parse(dr2["SumReceivingQuantuty"].ToString());
+                dataRow["필요수량"] = Int32.Parse(dr2["NeedQuantity"].ToString());
+                if (dr2["ReturnStatus"].ToString()=="반품"){dataRow["발주종류"] = "반품"+dr2["ReceivingDetailsID"].ToString();}
+                else if (dr2["ReturnStatus"].ToString() == "교환") { dataRow["발주종류"] = "교환"+dr2["ReceivingDetailsID"].ToString(); }
             
                 dataTable.Rows.Add(dataRow);
             }

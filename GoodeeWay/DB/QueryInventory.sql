@@ -157,5 +157,45 @@ AS
 	R.Quantity 'NeedQuantity',
 	r.ReturnStatus 'ReturnStatus', r.ReceivingDetailsID 'ReceivingDetailsID'
 	
-	from InventoryType i, ReceivingDetails r where i.InventoryTypeCode=r.InventoryTypeCode and r.ReturnStatus!=N'정상입';
+	from InventoryType i, ReceivingDetails r where i.InventoryTypeCode=r.InventoryTypeCode and (r.ReturnStatus=N'교환' or r.ReturnStatus=N'반품');
+
+Go
+--입고내역 반품여부 컬럼에 '반품' 또는 '교환' 일 경우 '반품완' 또는 '교환완'으로 수정
+CREATE PROCEDURE [dbo].UpdateReceivingDetails
+	@ReceivingDetailsID nvarchar(10),
+	@ReturnStatus nvarchar(10)
+AS
 	
+	if (@ReturnStatus=N'반품')
+	update  ReceivingDetails
+	set 
+	ReturnStatus=N'반품완'
+	where ReceivingDetailsID=@ReceivingDetailsID
+	else if(@ReturnStatus=N'교환')
+	update  ReceivingDetails
+	set 
+	ReturnStatus=N'교환완'
+	where ReceivingDetailsID=@ReceivingDetailsID;
+Go
+--발주내역리스트 저장프로시져
+CREATE PROCEDURE [dbo].SelectOrderDetailsList
+	
+AS
+	SELECT OrderDate from OrderDetails group by OrderDate;
+
+Go
+--발주내역 Insert 저장 프로시져
+CREATE PROCEDURE [dbo].InsertOrderDetails
+	@OrderID nvarchar(10),
+	@OrderDate datetime,
+	@InventoryTypeCode nvarchar(6),
+	@Quantity int
+AS
+	insert into OrderDetails(OrderID,OrderDate,InventoryTypeCode,Quantity)
+	values(@OrderID,@OrderDate,@InventoryTypeCode,@Quantity)
+Go
+--발주내역 상세보기 
+CREATE PROCEDURE [dbo].SelectOrderDetails
+	@OrderDate datetime
+AS
+	SELECT o.OrderID, i.InventoryName,o.Quantity,i.InventoryTypeCode from OrderDetails o, InventoryType i where o.InventoryTypeCode=i.InventoryTypeCode and OrderDate=@OrderDate;

@@ -19,6 +19,7 @@ namespace GoodeeWay.InventoryBUS
             InitializeComponent();
         }
         int a = 0;
+        int b = 0;
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -79,6 +80,31 @@ namespace GoodeeWay.InventoryBUS
             }
             
         }
-        
+
+        private void txtReceivingQuantity_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                b = Int32.Parse((txtReceivingQuantity.Text));
+            }
+            catch (Exception)
+            {
+                txtReceivingQuantity.Text = "";
+                b = 0;
+            }
+            if (b>=10000)
+            {
+                MessageBox.Show("입고정량 범위를 넘었습니다.");
+                txtReceivingQuantity.Text = "";
+            }
+        }
+
+        private void cmbClassification_TextChanged(object sender, EventArgs e)
+        {
+            if (!(cmbClassification.Text == "Bread" || cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional"))
+            {
+                cmbClassification.Text = "Bread";
+            }
+        }
     }
 }

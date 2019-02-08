@@ -89,6 +89,7 @@
             this.txtReceivingQuantity.Name = "txtReceivingQuantity";
             this.txtReceivingQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtReceivingQuantity.TabIndex = 5;
+            this.txtReceivingQuantity.TextChanged += new System.EventHandler(this.txtReceivingQuantity_TextChanged);
             // 
             // cmbClassification
             // 
@@ -105,6 +106,7 @@
             this.cmbClassification.Size = new System.Drawing.Size(100, 20);
             this.cmbClassification.TabIndex = 8;
             this.cmbClassification.Text = "Vegetable";
+            this.cmbClassification.TextChanged += new System.EventHandler(this.cmbClassification_TextChanged);
             // 
             // btnComplete
             // 

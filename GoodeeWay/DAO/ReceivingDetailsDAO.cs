@@ -47,5 +47,13 @@ namespace GoodeeWay.DAO
             }
             return ReceivingDetailsDetailViewVOList;
         }
+
+        internal void UpdateReceivingDetails(string receivingDetailsID, string returnStatus)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+            sqlParameters[1] = new SqlParameter("ReturnStatus", returnStatus);
+            new DBConnection().Update("UpdateReceivingDetails", sqlParameters);//입고내역 중 반품 또는 교환을 반품완 또는 교환완으로 수정하는 프로시져
+        }
     }
 }
