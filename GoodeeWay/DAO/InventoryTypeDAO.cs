@@ -109,7 +109,7 @@ namespace GoodeeWay.DAO
                 dataRow["재고명"] = dr["InventoryName"].ToString();
                 dataRow["현재수량"] = dr["SumReceivingQuantuty"].ToString();
                 dataRow["필요수량"] = dr["NeedQuantity"].ToString();
-                dataRow["발주종류"] = "Order";
+                dataRow["발주종류"] = "주문";
 
                 dataTable.Rows.Add(dataRow);
             }
@@ -123,8 +123,8 @@ namespace GoodeeWay.DAO
                 dataRow["재고명"] = dr2["InventoryName"].ToString();
                 dataRow["현재수량"] = dr2["SumReceivingQuantuty"].ToString();
                 dataRow["필요수량"] = dr2["NeedQuantity"].ToString();
-                if (dr2["ReturnStatus"].ToString()=="반품"){dataRow["발주종류"] = "Return";}
-                else if (dr2["ReturnStatus"].ToString() == "교환") { dataRow["발주종류"] = "Exchange"; }
+                if (dr2["ReturnStatus"].ToString()=="반품"){dataRow["발주종류"] =dr2["ReceivingDetailsID"].ToString()+"반품";}
+                else if (dr2["ReturnStatus"].ToString() == "교환") { dataRow["발주종류"] = dr2["ReceivingDetailsID"].ToString()+"교환"; }
             
                 dataTable.Rows.Add(dataRow);
             }
