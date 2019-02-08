@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipment));
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
@@ -65,13 +64,18 @@
             this.txtSearchForName = new System.Windows.Forms.TextBox();
             this.btnAddEquipment = new System.Windows.Forms.Button();
             this.btnExportAsExcel = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.sfdExcel = new System.Windows.Forms.SaveFileDialog();
+            this.pnlPage = new System.Windows.Forms.Panel();
+            this.btnFrontPage = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEquipmentList
@@ -89,10 +93,12 @@
             this.dgvEquipmentList.ShowEditingIcon = false;
             this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 362);
             this.dgvEquipmentList.TabIndex = 0;
+            this.dgvEquipmentList.DataSourceChanged += new System.EventHandler(this.dgvEquipmentList_DataSourceChanged);
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.dtpPurchaseDate);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnModification);
@@ -240,6 +246,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtSearchForLocation);
             this.groupBox2.Controls.Add(this.label10);
@@ -271,7 +278,7 @@
             // 
             // txtSearchForLocation
             // 
-            this.txtSearchForLocation.Location = new System.Drawing.Point(277, 111);
+            this.txtSearchForLocation.Location = new System.Drawing.Point(321, 114);
             this.txtSearchForLocation.Name = "txtSearchForLocation";
             this.txtSearchForLocation.Size = new System.Drawing.Size(110, 21);
             this.txtSearchForLocation.TabIndex = 13;
@@ -279,7 +286,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(218, 114);
+            this.label10.Location = new System.Drawing.Point(266, 120);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 12;
@@ -441,25 +448,66 @@
             this.btnExportAsExcel.UseVisualStyleBackColor = true;
             this.btnExportAsExcel.Click += new System.EventHandler(this.btnExportAsExcel_Click);
             // 
-            // toolStrip1
+            // pnlPage
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(491, 365);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(66, 25);
-            this.toolStrip1.TabIndex = 5;
-            this.toolStrip1.Text = "toolStrip1";
+            this.pnlPage.Location = new System.Drawing.Point(471, 369);
+            this.pnlPage.Name = "pnlPage";
+            this.pnlPage.Size = new System.Drawing.Size(140, 20);
+            this.pnlPage.TabIndex = 5;
             // 
-            // toolStripButton1
+            // btnFrontPage
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.btnFrontPage.Location = new System.Drawing.Point(441, 368);
+            this.btnFrontPage.Name = "btnFrontPage";
+            this.btnFrontPage.Size = new System.Drawing.Size(24, 21);
+            this.btnFrontPage.TabIndex = 7;
+            this.btnFrontPage.Text = "<";
+            this.btnFrontPage.UseVisualStyleBackColor = true;
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Location = new System.Drawing.Point(648, 368);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(29, 21);
+            this.btnLastPage.TabIndex = 9;
+            this.btnLastPage.Text = ">>";
+            this.btnLastPage.UseVisualStyleBackColor = true;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(618, 368);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(24, 21);
+            this.btnNextPage.TabIndex = 10;
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Location = new System.Drawing.Point(406, 368);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(29, 21);
+            this.btnFirstPage.TabIndex = 11;
+            this.btnFirstPage.Text = "<<";
+            this.btnFirstPage.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(369, 80);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(38, 12);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "\\(원)";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(183, 114);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 12);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "\\(원)";
             // 
             // FrmEquipment
             // 
@@ -468,7 +516,11 @@
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1092, 678);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.btnFirstPage);
+            this.Controls.Add(this.btnNextPage);
+            this.Controls.Add(this.btnLastPage);
+            this.Controls.Add(this.btnFrontPage);
+            this.Controls.Add(this.pnlPage);
             this.Controls.Add(this.btnExportAsExcel);
             this.Controls.Add(this.btnAddEquipment);
             this.Controls.Add(this.groupBox2);
@@ -484,10 +536,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -529,7 +578,13 @@
         private System.Windows.Forms.Button btnExportAsExcel;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.SaveFileDialog sfdExcel;
+        private System.Windows.Forms.Panel pnlPage;
+        private System.Windows.Forms.Button btnFrontPage;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

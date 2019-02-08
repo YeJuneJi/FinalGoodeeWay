@@ -141,6 +141,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Appdata.xml" />
     <Content Include="Equipment\EquipmentSQL.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

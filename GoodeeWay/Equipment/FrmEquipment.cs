@@ -12,6 +12,8 @@ using GoodeeWay.DAO;
 using GoodeeWay.VO;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
+using System.Configuration;
+using System.Threading;
 
 namespace GoodeeWay.Equipment
 {
@@ -87,6 +89,7 @@ namespace GoodeeWay.Equipment
                     DateTime temp = dtpEndDate.Value;
                     dtpEndDate.Value = dtpStartDate.Value;
                     dtpStartDate.Value = temp;
+
                 }
 
                 EquipmentVO equipment = new EquipmentVO()
@@ -165,6 +168,10 @@ namespace GoodeeWay.Equipment
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (tempEquipment is null)
+            {
+                return;
+            }
             EquipmentDAO dAO = new EquipmentDAO();
             DialogResult mbResult = MessageBox.Show("정말로 삭제하시겠습니까? 삭제하면 기록에 남지 않습니다.", "비품삭제", MessageBoxButtons.YesNo);
 
@@ -232,6 +239,24 @@ namespace GoodeeWay.Equipment
 
         private void btnExportAsExcel_Click(object sender, EventArgs e)
         {
+            
+            string fileName = "EQ" + DateTime.Now.ToLongDateString(); //기본 파일이름, 가공되어 saveAs에 들어갈 변수 이름
+                //FileNameCreate(@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls");
+            sfdExcel.FileName = fileName;
+            sfdExcel.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\";
+            sfdExcel.Title = "Excel 저장위치 설정";
+            sfdExcel.DefaultExt = "xls";
+            sfdExcel.Filter = "Xls files(*.xls)|*xls";
+            sfdExcel.CreatePrompt = false;
+            sfdExcel.OverwritePrompt = false;
+            DialogResult address = sfdExcel.ShowDialog();
+            if (address == DialogResult.OK)
+            {
+                fileName = sfdExcel.FileName;
+            }
+            fileName= FileNameCreate(fileName);
+            
+
             Excel.Application excelApp = new Excel.Application();
             if (excelApp == null)
             {
@@ -245,7 +270,7 @@ namespace GoodeeWay.Equipment
             object missingVlaue = System.Reflection.Missing.Value;
             DirectoryInfo directory = new DirectoryInfo(Application.StartupPath);
 
-
+            
             workbook = excelApp.Workbooks.Open(directory.Parent.Parent.Parent.FullName + @"\Equipments\EquipmentExcel.xls");
 
 
@@ -267,7 +292,7 @@ namespace GoodeeWay.Equipment
             //FileNameCreate(@"C:\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls")
             try
             {
-                workbook.SaveAs(FileNameCreate(@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls"), Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
+                workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
             }
             catch (Exception saveExeption)
             {
@@ -284,36 +309,97 @@ namespace GoodeeWay.Equipment
             //Marshal.ReleaseComObject(workbook);
             //Marshal.ReleaseComObject(excelApp);
         }
-        public string FileNameCreate(string path, string fileName)
+        /// <summary>
+        /// 중복된 파일이름을 count하여 이름을 바꿔주는 메서드
+        /// </summary>
+        /// <param name="pathWithfileName">경로가 포함된 파일이름</param>
+        /// <returns></returns>
+        public string FileNameCreate(string pathWithfileName)
         {
-            string saveFileName =path+ fileName;
-
-
-            int dotIndex = fileName.LastIndexOf(".");
-            string strname = fileName.Substring(0, dotIndex);
-            string extentionName = fileName.Substring(dotIndex);
-
+            
+            string path = Path.GetDirectoryName(pathWithfileName);
+            string strname= Path.GetFileNameWithoutExtension(pathWithfileName);
+            string extentionName = Path.GetExtension(pathWithfileName);
+            
             bool exist = true;
             int count = 0;
-
+            MessageBox.Show(pathWithfileName);
             while (exist)
             {
-                string pathCombine = saveFileName; //Path.Combine(path, fileName);
+                string pathCombine = pathWithfileName; //Path.Combine(path, fileName);
                 
                 if (File.Exists(pathCombine))
-
                 {
                     count++;
-                    saveFileName = path+ strname + "(" + count + ")" + extentionName;
+                    pathWithfileName = path+ @"\"+ strname + "(" + count + ")" + extentionName;
                 }
                 else
                 {
                     exist = false;
                 }
             }
-            MessageBox.Show(saveFileName);
-            return saveFileName;
+            MessageBox.Show(pathWithfileName);
+            return pathWithfileName;
         }
+        List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>();
+        List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>();
+        private void dgvEquipmentList_DataSourceChanged(object sender, EventArgs e)
+        {
+            pnlPage.Controls.Clear();
+            int pageRows = 5;
+            int currentPage = 1;
+            int firstNumLocationLength = 12;
+            //int totalPage = baseEquipmentLst.Count % pageRows != 0 ? baseEquipmentLst.Count / pageRows + 1 : baseEquipmentLst.Count / pageRows;
+            int totalPage = 7;
+            
+            if (totalPage - currentPage>4)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "["+(currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (5 - i*2), 5);
+                    pnlPage.Controls[i].Size = new Size(23, 12);
+                }
+            }
+            else if (totalPage -currentPage ==3)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (4 - i * 2), 5);
+                    pnlPage.Controls[i].Size = new Size(23, 12);
+                }
+            }
+            else if (totalPage - currentPage ==2)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (3 - i * 2), 5);
+                    pnlPage.Controls[i].Size = new Size(23, 12);
+                }
+            }
+            else if (totalPage - currentPage == 1)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (2 - i * 2), 5);
+                    pnlPage.Controls[i].Size = new Size(23, 12);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 1; i++)
+                {
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (1 - i * 2), 5);
+                    pnlPage.Controls[i].Size = new Size(23, 12);
+                }
+            }
+         
+        }
+
     }
 
 }
