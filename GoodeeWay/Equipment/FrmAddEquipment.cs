@@ -23,6 +23,11 @@ namespace GoodeeWay.Equipment
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (txtDetailName.Text =="")
+            {
+                MessageBox.Show("품목명을 입력해주세요");
+                return;
+            }
             EquipmentVO equipmentVO = new EquipmentVO()
             {
                 DetailName = txtDetailName.Text,
@@ -34,10 +39,15 @@ namespace GoodeeWay.Equipment
             EquipmentDAO dAO = new EquipmentDAO();
             try
             {
-                if (dAO.InsertEquipment(equipmentVO))
+                DialogResult resurt = MessageBox.Show("저장하시겠습니까?","비품저장",MessageBoxButtons.YesNo);
+                if (resurt == DialogResult.Yes)
                 {
-                    MessageBox.Show("성공적으로 저장되었습니다");
+                    if (dAO.InsertEquipment(equipmentVO))
+                    {
+                        MessageBox.Show("성공적으로 저장되었습니다");
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -50,7 +60,7 @@ namespace GoodeeWay.Equipment
         {
             txtDetailName.Text = "";
             txtLocation.Text = "";
-            txtPrice.Text = "";
+            txtPrice.Text = "0";
             dtpPurchaseDate.Value = DateTime.Now;
             txtNote.Text = "";
         }
@@ -104,6 +114,10 @@ namespace GoodeeWay.Equipment
                 txtPrice.Select(txtPrice.Text.Length, 0);// 커서가 맨뒤로
                 txtPrice.SelectionStart = txtPrice.Text.Length;//맨 마지막 선택...
 
+            }
+            else
+            {
+                txtPrice.Text = "0";
             }
         }
 

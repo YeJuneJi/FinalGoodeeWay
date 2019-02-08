@@ -16,5 +16,10 @@ namespace GoodeeWay.SandwichMakingBus
         {
             InitializeComponent();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToLongDateString() +" "+ DateTime.Now.ToLongTimeString();
+        }
     }
 }

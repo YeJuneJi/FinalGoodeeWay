@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
 using GoodeeWay.VO;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
 
 namespace GoodeeWay.Equipment
 {
@@ -35,7 +37,7 @@ namespace GoodeeWay.Equipment
             //dataTable.Columns.Add("purchasePrice", typeof(float), "구매가격");
             //dataTable.Columns.Add("purchaseDate", typeof(DateTime), "구매날짜");
             //dataTable.Columns.Add("note", typeof(string), "비고");
-
+            
             dataTable.Columns.Add("비품코드", typeof(string));
             dataTable.Columns.Add("상세명칭", typeof(string));
             dataTable.Columns.Add("위치", typeof(string));
@@ -56,6 +58,9 @@ namespace GoodeeWay.Equipment
             chbDate.CheckState = CheckState.Unchecked;
             //dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
             dgvEquipmentList.DataSource = SetDataTable(dAO.AllequipmentVOsList());
+
+
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -106,7 +111,7 @@ namespace GoodeeWay.Equipment
                     PurchasePrice = float.Parse(txtSearchForPrice.Text),
                     State = tempState
                 };
-                dgvEquipmentList.DataSource = SetDataTable( dAO.SelectSearch(equipment, DateTime.Parse("1753-1-1")));
+                dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, DateTime.Parse("1753-1-1")));
             }
         }
 
@@ -132,27 +137,30 @@ namespace GoodeeWay.Equipment
 
         private void dgvEquipmentList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtDetailName.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtLocation.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtPrice.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString();
-            txtNote.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[6].Value.ToString();
-            cbState.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString();
-            if (dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString() != "")
+            if (e.RowIndex != -1)
             {
-                dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString());
-            }
+                txtDetailName.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtLocation.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtPrice.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txtNote.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[6].Value.ToString();
+                cbState.Text = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString();
+                if (dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString() != "")
+                {
+                    dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString());
+                }
 
-            tempEquipment = new EquipmentVO()
-            {
-                EQUCode = dgvEquipmentList.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                DetailName = dgvEquipmentList.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Location = dgvEquipmentList.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                State = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString(),
-                PurchasePrice = float.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString()),
-                PurchaseDate = dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString()),
-                Note = dgvEquipmentList.Rows[e.RowIndex].Cells[6].Value.ToString()
-            };
-            btnModification.Enabled = true;
+                tempEquipment = new EquipmentVO()
+                {
+                    EQUCode = dgvEquipmentList.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    DetailName = dgvEquipmentList.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Location = dgvEquipmentList.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    State = dgvEquipmentList.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    PurchasePrice = float.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[4].Value.ToString()),
+                    PurchaseDate = dtpPurchaseDate.Value = DateTime.Parse(dgvEquipmentList.Rows[e.RowIndex].Cells[5].Value.ToString()),
+                    Note = dgvEquipmentList.Rows[e.RowIndex].Cells[6].Value.ToString()
+                };
+                btnModification.Enabled = true;
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -164,6 +172,7 @@ namespace GoodeeWay.Equipment
             {
                 dAO.DeleteEquipment(tempEquipment);
             }
+            btnSearch_Click(null, null);
 
         }
 
@@ -217,6 +226,7 @@ namespace GoodeeWay.Equipment
                     }
                 }
             }
+            btnSearch_Click(null, null);
 
         }
 
@@ -230,12 +240,80 @@ namespace GoodeeWay.Equipment
             }
 
             Excel.Workbook workbook;
-            Excel.Sheets sheets;
+            Excel.Worksheet sheets;
 
             object missingVlaue = System.Reflection.Missing.Value;
+            DirectoryInfo directory = new DirectoryInfo(Application.StartupPath);
 
-            workbook = excelApp.Workbooks.Open(@".\Equipments\EquipmentExcel.xlsx");
 
+            workbook = excelApp.Workbooks.Open(directory.Parent.Parent.Parent.FullName + @"\Equipments\EquipmentExcel.xls");
+
+
+            sheets = workbook.Sheets.Item[1];
+
+            for (int i = 0; i < dgvEquipmentList.Rows.Count; i++)
+            {
+                sheets.Cells[i + 5, 1] = dgvEquipmentList.Rows[i].Cells[0].Value.ToString();
+                sheets.Cells[i + 5, 2] = dgvEquipmentList.Rows[i].Cells[1].Value.ToString();
+                sheets.Cells[i + 5, 3] = dgvEquipmentList.Rows[i].Cells[2].Value.ToString();
+                sheets.Cells[i + 5, 4] = dgvEquipmentList.Rows[i].Cells[3].Value.ToString();
+                sheets.Cells[i + 5, 5] = dgvEquipmentList.Rows[i].Cells[4].Value.ToString();
+                sheets.Cells[i + 5, 6] = dgvEquipmentList.Rows[i].Cells[6].Value.ToString();
+                sheets.Cells[3, 9] = DateTime.Now.ToShortDateString();
+
+            }
+
+            //@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\"
+            //FileNameCreate(@"C:\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls")
+            try
+            {
+                workbook.SaveAs(FileNameCreate(@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls"), Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
+            }
+            catch (Exception saveExeption)
+            {
+                MessageBox.Show(saveExeption.Message);
+            }
+
+            workbook.Close(false, missingVlaue, missingVlaue);
+            excelApp.Quit();
+
+            Marshal.FinalReleaseComObject(sheets);
+            Marshal.FinalReleaseComObject(workbook);
+            Marshal.FinalReleaseComObject(excelApp);
+            //Marshal.ReleaseComObject(sheets);
+            //Marshal.ReleaseComObject(workbook);
+            //Marshal.ReleaseComObject(excelApp);
+        }
+        public string FileNameCreate(string path, string fileName)
+        {
+            string saveFileName =path+ fileName;
+
+
+            int dotIndex = fileName.LastIndexOf(".");
+            string strname = fileName.Substring(0, dotIndex);
+            string extentionName = fileName.Substring(dotIndex);
+
+            bool exist = true;
+            int count = 0;
+
+            while (exist)
+            {
+                string pathCombine = saveFileName; //Path.Combine(path, fileName);
+                
+                if (File.Exists(pathCombine))
+
+                {
+                    count++;
+                    saveFileName = path+ strname + "(" + count + ")" + extentionName;
+                }
+                else
+                {
+                    exist = false;
+                }
+            }
+            MessageBox.Show(saveFileName);
+            return saveFileName;
         }
     }
+
 }

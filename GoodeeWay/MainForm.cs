@@ -22,6 +22,9 @@ namespace GoodeeWay
         {
             GoodeeWay.Equipment.FrmEquipment frmEquipment = new Equipment.FrmEquipment();
             frmEquipment.Show();
+
+            GoodeeWay.SandwichMakingBus.FrmSandwichMaking frmSandwichMaking = new SandwichMakingBus.FrmSandwichMaking();
+            frmSandwichMaking.Show();
         }
     }
 }

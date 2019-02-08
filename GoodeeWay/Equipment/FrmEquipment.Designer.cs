@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEquipment));
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
@@ -64,10 +65,13 @@
             this.txtSearchForName = new System.Windows.Forms.TextBox();
             this.btnAddEquipment = new System.Windows.Forms.Button();
             this.btnExportAsExcel = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEquipmentList
@@ -83,7 +87,7 @@
             this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEquipmentList.ShowEditingIcon = false;
-            this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 390);
+            this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 362);
             this.dgvEquipmentList.TabIndex = 0;
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
             // 
@@ -437,13 +441,34 @@
             this.btnExportAsExcel.UseVisualStyleBackColor = true;
             this.btnExportAsExcel.Click += new System.EventHandler(this.btnExportAsExcel_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(491, 365);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(66, 25);
+            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
             // FrmEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1092, 672);
+            this.ClientSize = new System.Drawing.Size(1092, 678);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnExportAsExcel);
             this.Controls.Add(this.btnAddEquipment);
             this.Controls.Add(this.groupBox2);
@@ -459,7 +484,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -501,5 +529,7 @@
         private System.Windows.Forms.Button btnExportAsExcel;
         private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

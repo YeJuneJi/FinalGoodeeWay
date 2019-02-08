@@ -47,3 +47,48 @@ go
  @EQUCode nvarchar(10)
  as
  delete from dbo.EquipmentRegister where EQUCode = @EQUCode;
+
+ go
+
+ --비품 detail 검색
+ create procedure [dbo].[SelectDitalsByEquipment_PROC]
+@detailName nvarchar(50),
+@location nvarchar(20),
+@state nvarchar(10),
+@purchasePrice float,
+@purchaseDate datetime,
+@anotherDate datetime
+as
+
+if (@location ='')begin
+	if (@anotherDate =  '1753-1-1')
+	begin select * from dbo.EquipmentRegister
+	where detailName like '%'+ @detailName +'%'
+	and @state like '%' + @state+'%'
+	and purchasePrice >= @purchasePrice
+	end
+	 else begin
+	select * from dbo.EquipmentRegister
+	where detailName like '%'+ @detailName +'%'
+	and @state like '%' + @state+'%'
+	and purchasePrice >= @purchasePrice
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	end
+end
+else begin
+	if @anotherDate =  '1753-1-1'
+	begin select * from dbo.EquipmentRegister
+	where detailName like '%'+ @detailName +'%'
+	and location like '%' + @location +'%' 
+	and state like '%' +@state+'%'
+	and purchasePrice >= @purchasePrice
+	end
+	else begin
+	select * from dbo.EquipmentRegister
+	where detailName like '%'+ @detailName +'%'
+	 and location like '%' + @location +'%' 
+	and purchasePrice >= @purchasePrice
+	and state like '%'+@state+'%'
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	end
+ end
