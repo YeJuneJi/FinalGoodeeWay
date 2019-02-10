@@ -23,6 +23,7 @@ namespace GoodeeWay
         {
             MemoryStream memoryStream = new MemoryStream(bytes);
             Image image = Image.FromStream(memoryStream);
+            memoryStream.Close();
             return image;
         }
     }

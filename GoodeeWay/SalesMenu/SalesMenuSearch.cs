@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GoodeeWay.SalesMenu
 {
@@ -16,6 +17,7 @@ namespace GoodeeWay.SalesMenu
     {
         List<SalesMenuVO> searchlist;
         DataTable searchMenu;
+        DataColumn[] dataColoumns;
         public SalesMenuSearch()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace GoodeeWay.SalesMenu
             menuSearchGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             menuSearchGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             menuSearchGView.AllowUserToAddRows = false;
-            DataColumn[] dataColoumns = new DataColumn[]
+            dataColoumns = new DataColumn[]
             {
                 new DataColumn("메뉴코드"),
                 new DataColumn("메뉴명"),
@@ -96,6 +98,23 @@ namespace GoodeeWay.SalesMenu
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
+            Excel.Application excelApp = new Excel.Application();
+            if (excelApp == null)
+            {
+                MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
+                return;
+            }
+            Excel.Workbook workBook;
+            Excel.Worksheet workSheet;
+            object missingValue = System.Reflection.Missing.Value;
+            workBook = excelApp.Workbooks.Add(missingValue);
+            workSheet = workBook.Worksheets.Item[1];
+
+            for (int i = 1; i < dataColoumns.Length+1; i++)
+            {
+                workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
+            }
+
             List<SalesMenuVO> list = new List<SalesMenuVO>();
             foreach (DataGridViewRow item in menuSearchGView.Rows)
             {
@@ -105,7 +124,7 @@ namespace GoodeeWay.SalesMenu
                     MenuName = item.Cells[1].Value.ToString(),
                     Price = float.Parse(item.Cells[2].Value.ToString()),
                     Kcal = int.Parse(item.Cells[3].Value.ToString()),
-                    MenuImage = Encoding.UTF8.GetBytes(item.Cells[4].Value.ToString()).ByteArrayToImage(),
+                    MenuImage = ((byte[])menuSearchGView.Rows[0].Cells[4].Value).ByteArrayToImage(),
                     Division = Convert.ToInt32(item.Cells[5].Value),
                     AdditionalContext = item.Cells[6].Value.ToString()
                 });
