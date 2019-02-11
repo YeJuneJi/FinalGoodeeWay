@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -77,7 +79,7 @@ namespace GoodeeWay.SalesMenu
             }
             if (rdoMenuName.Checked)
             {
-               string menuName = tbxSearch.Text.Replace(" ", "").Trim();
+                string menuName = tbxSearch.Text.Replace(" ", "").Trim();
                 menuSearchGView.DataSource = null;
                 searchlist.Clear();
                 searchMenu.Rows.Clear();
@@ -98,37 +100,68 @@ namespace GoodeeWay.SalesMenu
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            Excel.Application excelApp = new Excel.Application();
-            if (excelApp == null)
+            if (ExcelSaveFileDlg.ShowDialog() != DialogResult.Cancel)
             {
-                MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
-                return;
-            }
-            Excel.Workbook workBook;
-            Excel.Worksheet workSheet;
-            object missingValue = System.Reflection.Missing.Value;
-            workBook = excelApp.Workbooks.Add(missingValue);
-            workSheet = workBook.Worksheets.Item[1];
-
-            for (int i = 1; i < dataColoumns.Length+1; i++)
-            {
-                workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
-            }
-
-            List<SalesMenuVO> list = new List<SalesMenuVO>();
-            foreach (DataGridViewRow item in menuSearchGView.Rows)
-            {
-                list.Add(new SalesMenuVO()
+                Excel.Application excelApp = new Excel.Application();
+                if (excelApp == null)
                 {
-                    MenuCode = item.Cells[0].Value.ToString(),
-                    MenuName = item.Cells[1].Value.ToString(),
-                    Price = float.Parse(item.Cells[2].Value.ToString()),
-                    Kcal = int.Parse(item.Cells[3].Value.ToString()),
-                    MenuImage = ((byte[])menuSearchGView.Rows[0].Cells[4].Value).ByteArrayToImage(),
-                    Division = Convert.ToInt32(item.Cells[5].Value),
-                    AdditionalContext = item.Cells[6].Value.ToString()
-                });
+                    MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
+                    return;
+                }
+                Excel.Workbook workBook;
+                Excel.Worksheet workSheet;
+                object missingValue = System.Reflection.Missing.Value;
+                workBook = excelApp.Workbooks.Add(missingValue);
+                workSheet = workBook.Worksheets.Item[1];
+
+                for (int i = 1; i < dataColoumns.Length + 1; i++)
+                {
+                    workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
+                }
+
+                for (int i = 2; i < menuSearchGView.Rows.Count + 2; i++)
+                {
+                    Clipboard.Clear();
+                    workSheet.Cells[i, 1] = menuSearchGView.Rows[i - 2].Cells[0].Value.ToString();
+                    workSheet.Cells[i, 2] = menuSearchGView.Rows[i - 2].Cells[1].Value.ToString();
+                    workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
+                    workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
+                    Excel.Range pictureRange = workSheet.Cells[i, 5];
+                    Image img = ((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value).ByteArrayToImage(); //바이트 배열을 Image로 변환하는 확장 메서드를 사용.
+                    Clipboard.SetDataObject(img, true); //Ctrl + C
+                    workSheet.Paste(pictureRange, img); //Ctrl + V                  
+                    workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
+                    workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
+                }
+
+                try
+                {
+                    workBook.SaveAs(ExcelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                excelApp.Quit();
+                Marshal.FinalReleaseComObject(workSheet);
+                Marshal.FinalReleaseComObject(workBook);
+                Marshal.FinalReleaseComObject(excelApp);
             }
+
+            //List<SalesMenuVO> list = new List<SalesMenuVO>();
+            //foreach (DataGridViewRow item in menuSearchGView.Rows)
+            //{
+            //    list.Add(new SalesMenuVO()
+            //    {
+            //        MenuCode = item.Cells[0].Value.ToString(),
+            //        MenuName = item.Cells[1].Value.ToString(),
+            //        Price = float.Parse(item.Cells[2].Value.ToString()),
+            //        Kcal = int.Parse(item.Cells[3].Value.ToString()),
+            //        MenuImage = ((byte[])menuSearchGView.Rows[0].Cells[4].Value).ByteArrayToImage(),
+            //        Division = Convert.ToInt32(item.Cells[5].Value),
+            //        AdditionalContext = item.Cells[6].Value.ToString()
+            //    });
+            //}
         }
     }
 }

@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbxDivision = new System.Windows.Forms.ComboBox();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.ExcelSaveFileDlg = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.menuSearchGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +137,10 @@
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // ExcelSaveFileDlg
+            // 
+            this.ExcelSaveFileDlg.Filter = "xls 파일|*.xls";
+            // 
             // SalesMenuSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -172,5 +177,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbxDivision;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.SaveFileDialog ExcelSaveFileDlg;
     }
 }
