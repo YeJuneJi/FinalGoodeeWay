@@ -27,11 +27,25 @@ namespace GoodeeWay.Equipment
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
         private DataRow dataRow;
 
+       const int pageRows = 5;
+        int currentPage = 1;
+        int firstNumLocationLength = 15; //페이지 번호 맨앞 숫자 위치정보(panel중간 지점으로 부터 떨어진 길이)
+        int totalPage = 0;
+        
 
+        List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>();
+        List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equipmentLst"></param>
+        /// <returns></returns>
         private DataTable SetDataTable(List<EquipmentVO> equipmentLst)
         {
             dataTable = new DataTable("Equipment");
-
+            baseEquipmentLst = equipmentLst;
+            TempListAdd();
             //dataTable.Columns.Add("EQUCode", typeof(string), "비품코드");
             //dataTable.Columns.Add("detailName", typeof(string), "상세명칭");
             //dataTable.Columns.Add("location", typeof(string), "위치");
@@ -47,7 +61,7 @@ namespace GoodeeWay.Equipment
             dataTable.Columns.Add("구매가격", typeof(float));
             dataTable.Columns.Add("구매날짜", typeof(DateTime));
             dataTable.Columns.Add("비고", typeof(string));
-            foreach (var item in equipmentLst)
+            foreach (var item in tempEquipmentLst)
             {
                 dataTable.Rows.Add(item.EQUCode, item.DetailName, item.Location, item.State, item.PurchasePrice, item.PurchaseDate, item.Note);
             }
@@ -58,15 +72,15 @@ namespace GoodeeWay.Equipment
             EquipmentDAO dAO = new EquipmentDAO();
             dgvEquipmentList.AllowUserToAddRows = false;
             chbDate.CheckState = CheckState.Unchecked;
-            //dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
             dgvEquipmentList.DataSource = SetDataTable(dAO.AllequipmentVOsList());
-
-
-            
+            //dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
+            //dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+            Paging();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            currentPage = 1;
             EquipmentDAO dAO = new EquipmentDAO();
             string tempState = "";
             if (rbDiscard.Checked)
@@ -103,6 +117,7 @@ namespace GoodeeWay.Equipment
 
                 DateTime endDate = dtpEndDate.Value;
                 dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, endDate));
+                
             }
             else
             {
@@ -115,7 +130,9 @@ namespace GoodeeWay.Equipment
                     State = tempState
                 };
                 dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, DateTime.Parse("1753-1-1")));
+               
             }
+            Paging();
         }
 
         private void btnAddEquipment_Click(object sender, EventArgs e)
@@ -341,42 +358,93 @@ namespace GoodeeWay.Equipment
             MessageBox.Show(pathWithfileName);
             return pathWithfileName;
         }
-        List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>();
-        List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>();
+       
         private void dgvEquipmentList_DataSourceChanged(object sender, EventArgs e)
         {
-            pnlPage.Controls.Clear();
-            int pageRows = 5;
-            int currentPage = 1;
-            int firstNumLocationLength = 12;
-            //int totalPage = baseEquipmentLst.Count % pageRows != 0 ? baseEquipmentLst.Count / pageRows + 1 : baseEquipmentLst.Count / pageRows;
-            int totalPage = 7;
             
-            if (totalPage - currentPage>4)
+        }
+       
+        
+        private void LikButton(object sender , EventArgs e)
+        {
+            //MessageBox.Show(this.Name); 
+            //MessageBox.Show(sender.ToString());
+            //string pageNumber = sender.ToString().Substring(39, 1);
+            //MessageBox.Show(sender.ToString().Substring( sender.ToString().IndexOf(']')-1));
+            string senderStr = sender.ToString();
+            string pageNumber = senderStr.Substring(senderStr.IndexOf("[") + 1, (senderStr.Length) - senderStr.IndexOf("[")-2);
+            currentPage = Int32.Parse(pageNumber);
+            TempListAdd();
+            dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+        }
+
+        private void TempListAdd()
+        {
+            int datasourcestartIndex = (currentPage - 1) * pageRows;
+            tempEquipmentLst = new List<EquipmentVO>();
+            for (int i = datasourcestartIndex; i < datasourcestartIndex + pageRows; i++)
+            {
+                if (i >= baseEquipmentLst.Count)
+                    break;
+
+                tempEquipmentLst.Add(baseEquipmentLst[i]);
+            }
+            
+        }
+
+        private void Paging()
+        {
+            
+            pnlPage.Controls.Clear();
+            totalPage = baseEquipmentLst.Count % pageRows != 0 ? baseEquipmentLst.Count / pageRows + 1 : baseEquipmentLst.Count / pageRows;
+            if (totalPage - currentPage < 4)
+            {
+                btnNextPage.Enabled = false;
+            }
+            else
+            {
+                btnNextPage.Enabled = true;
+            }
+            if (currentPage<6)
+            {
+                btnFrontPage.Enabled = false;
+            }
+            else
+            {
+                btnFrontPage.Enabled = true;
+            }
+            //int totalPage = 7;
+
+            if (totalPage - currentPage >= 4)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "["+(currentPage + i) + "]" });
-                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (5 - i*2), 5);
-                    pnlPage.Controls[i].Size = new Size(23, 12);
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (5 - i * 2), 5);
+                    pnlPage.Controls[i].Size = new Size(30, 12);
+                    pnlPage.Controls[i].Click += new EventHandler(LikButton);
+                    
                 }
             }
-            else if (totalPage -currentPage ==3)
+            else if (totalPage - currentPage == 3)
             {
                 for (int i = 0; i < 4; i++)
                 {
                     pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
                     pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (4 - i * 2), 5);
-                    pnlPage.Controls[i].Size = new Size(23, 12);
+                    pnlPage.Controls[i].Size = new Size(30, 12);
+                    pnlPage.Controls[i].Click += new EventHandler(LikButton);
                 }
             }
-            else if (totalPage - currentPage ==2)
+            else if (totalPage - currentPage == 2)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
-                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (3 - i * 2), 5);
-                    pnlPage.Controls[i].Size = new Size(23, 12);
+                    pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (3 - i*2 ), 5);
+                    pnlPage.Controls[i].Size = new Size(30, 12);
+                    pnlPage.Controls[i].Click += new EventHandler(LikButton);
+                    
                 }
             }
             else if (totalPage - currentPage == 1)
@@ -385,7 +453,8 @@ namespace GoodeeWay.Equipment
                 {
                     pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
                     pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (2 - i * 2), 5);
-                    pnlPage.Controls[i].Size = new Size(23, 12);
+                    pnlPage.Controls[i].Size = new Size(30, 12);
+                    pnlPage.Controls[i].Click += new EventHandler(LikButton);
                 }
             }
             else
@@ -394,12 +463,51 @@ namespace GoodeeWay.Equipment
                 {
                     pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]" });
                     pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (1 - i * 2), 5);
-                    pnlPage.Controls[i].Size = new Size(23, 12);
+                    pnlPage.Controls[i].Size = new Size(30, 12);
+                    pnlPage.Controls[i].Click += new EventHandler(LikButton);
                 }
             }
-         
         }
 
+        private void btnFirstPage_Click(object sender, EventArgs e)
+        {
+            currentPage = 1;
+            
+            dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+            Paging();
+            if (currentPage+4 < totalPage)
+            {
+                btnNextPage.Enabled = true;
+            }
+        }
+
+        private void btnLastPage_Click(object sender, EventArgs e)
+        {
+            if (totalPage %5 !=1)
+            {
+
+            }
+            else
+            {
+                currentPage = totalPage;
+                dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+                Paging();
+            }
+            
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+           currentPage= currentPage%5 !=0?(6-(currentPage % 5)) + currentPage:currentPage+1;
+            dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+            Paging();
+        }
+
+        private void btnFrontPage_Click(object sender, EventArgs e)
+        {
+            currentPage = currentPage % 5 != 0 ? currentPage - (4+(currentPage % 5))   : currentPage - 9;
+            Paging();
+        }
     }
 
 }

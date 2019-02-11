@@ -30,6 +30,7 @@
         {
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnModification = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearchForLocation = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -70,8 +72,6 @@
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -119,6 +119,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "품목정보";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(369, 80);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(38, 12);
+            this.label11.TabIndex = 16;
+            this.label11.Text = "\\(원)";
             // 
             // dtpPurchaseDate
             // 
@@ -266,6 +275,15 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "검색";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(183, 114);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 12);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "\\(원)";
             // 
             // label4
             // 
@@ -450,64 +468,50 @@
             // 
             // pnlPage
             // 
-            this.pnlPage.Location = new System.Drawing.Point(471, 369);
+            this.pnlPage.Location = new System.Drawing.Point(435, 369);
             this.pnlPage.Name = "pnlPage";
-            this.pnlPage.Size = new System.Drawing.Size(140, 20);
+            this.pnlPage.Size = new System.Drawing.Size(180, 20);
             this.pnlPage.TabIndex = 5;
             // 
             // btnFrontPage
             // 
-            this.btnFrontPage.Location = new System.Drawing.Point(441, 368);
+            this.btnFrontPage.Location = new System.Drawing.Point(405, 369);
             this.btnFrontPage.Name = "btnFrontPage";
             this.btnFrontPage.Size = new System.Drawing.Size(24, 21);
             this.btnFrontPage.TabIndex = 7;
             this.btnFrontPage.Text = "<";
             this.btnFrontPage.UseVisualStyleBackColor = true;
+            this.btnFrontPage.Click += new System.EventHandler(this.btnFrontPage_Click);
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Location = new System.Drawing.Point(648, 368);
+            this.btnLastPage.Location = new System.Drawing.Point(651, 368);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(29, 21);
             this.btnLastPage.TabIndex = 9;
             this.btnLastPage.Text = ">>";
             this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(618, 368);
+            this.btnNextPage.Location = new System.Drawing.Point(621, 368);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(24, 21);
             this.btnNextPage.TabIndex = 10;
             this.btnNextPage.Text = ">";
             this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Location = new System.Drawing.Point(406, 368);
+            this.btnFirstPage.Location = new System.Drawing.Point(370, 369);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(29, 21);
             this.btnFirstPage.TabIndex = 11;
             this.btnFirstPage.Text = "<<";
             this.btnFirstPage.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(369, 80);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(38, 12);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "\\(원)";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(183, 114);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 12);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "\\(원)";
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
             // FrmEquipment
             // 
