@@ -68,5 +68,16 @@ namespace GoodeeWay.DAO
             }
             return dataTable;
         }
+
+        internal void UpdateOrderDetails(List<OrderDetailsVO> orderDetailsVOList)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            foreach (var item in orderDetailsVOList)
+            {
+                sqlParameters[0] = new SqlParameter("OrderID", item.OrderID);
+                sqlParameters[1] = new SqlParameter("Quantity", item.Quantity);
+                new DBConnection().Update("UpdateOrderDetails", sqlParameters);
+            }
+        }
     }
 }

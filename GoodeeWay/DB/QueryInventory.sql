@@ -199,3 +199,14 @@ CREATE PROCEDURE [dbo].SelectOrderDetails
 	@OrderDate datetime
 AS
 	SELECT o.OrderID, i.InventoryName,o.Quantity,i.InventoryTypeCode from OrderDetails o, InventoryType i where o.InventoryTypeCode=i.InventoryTypeCode and OrderDate=@OrderDate;
+
+Go
+--발주내역 업데이트
+CREATE PROCEDURE [dbo].UpdateOrderDetails
+	@OrderID nvarchar(10),
+	@Quantity int
+AS
+	update  OrderDetails
+	set 
+	Quantity=@Quantity
+	where Quantity!=@Quantity and OrderID=@OrderID

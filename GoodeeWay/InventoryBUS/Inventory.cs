@@ -518,6 +518,7 @@ namespace GoodeeWay
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
         }
         public void CalculationOrderDetails()
         {
@@ -569,7 +570,7 @@ namespace GoodeeWay
             }
             catch (SqlException)
             {
-                MessageBox.Show("이미 발주처리되었습니다. 수정하여 발주내역을 작성하시기 바랍니다.");
+                MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
             }
 
             
@@ -594,7 +595,9 @@ namespace GoodeeWay
         private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnSaveOrderDetails.Enabled = false;
-            btnExcelExport.Enabled = true;
+            btnUpdateOrder.Enabled=btnAddOrder.Enabled=btnExcelExport.Enabled = true;
+
+            //dgvNeedInventoryDetailView.DataSource = null;
             dgvNeedInventoryDetailView.DataSource = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
             dgvNeedInventoryDetailView.Columns["발주번호"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
@@ -602,7 +605,11 @@ namespace GoodeeWay
         }
 
 
-        #endregion
+        /// <summary>
+        /// 발주내역서 Excel로 추출
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExcelExport_Click(object sender, EventArgs e)
         {
             Excel.Application excelApp = new Excel.Application();
@@ -646,6 +653,29 @@ namespace GoodeeWay
             Marshal.ReleaseComObject(worksheet);
             Marshal.ReleaseComObject(workbook);
             Marshal.ReleaseComObject(excelApp);
+        }
+
+
+
+        #endregion
+        /// <summary>
+        /// 발주 내역 수정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpdateOrder_Click(object sender, EventArgs e)
+        {
+            List<OrderDetailsVO> orderDetailsVOList = new List<OrderDetailsVO>();
+            for (int i = 0; i < dgvNeedInventoryDetailView.Rows.Count; i++)
+            {
+                var orderDetailsVO = new OrderDetailsVO();
+                orderDetailsVO.OrderID = dgvNeedInventoryDetailView["발주번호", i].Value.ToString();
+                orderDetailsVO.Quantity = Int32.Parse(dgvNeedInventoryDetailView["수량", i].Value.ToString());
+                orderDetailsVOList.Add(orderDetailsVO);
+            }
+            new OrderDetailsDAO().UpdateOrderDetails(orderDetailsVOList);
+            dgvNeedInventoryDetailView.DataSource = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
+            MessageBox.Show("발주내역이 수정되었습니다.");
         }
     }
 }

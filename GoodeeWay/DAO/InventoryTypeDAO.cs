@@ -97,11 +97,12 @@ namespace GoodeeWay.DAO
             SqlParameter[] sqlParameters = null;
             SqlDataReader dr = new DBConnection().Select("SelectInventoryTypeNeed", sqlParameters);//재고종류에 있는 모든 내역을 가져옴
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("재고종류코드", typeof(string));
             dataTable.Columns.Add("재고명", typeof(string));
             dataTable.Columns.Add("현재수량", typeof(string));
             dataTable.Columns.Add("필요수량", typeof(string));
             dataTable.Columns.Add("발주종류", typeof(string));
+            dataTable.Columns.Add("재고종류코드", typeof(string));
+
             while (dr.Read())
             {
                 DataRow dataRow = dataTable.NewRow();
