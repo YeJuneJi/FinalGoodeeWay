@@ -621,6 +621,8 @@ namespace GoodeeWay
         /// <param name="e"></param>
         private void btnExcelExport_Click(object sender, EventArgs e)
         {
+            OrderDetailsListDataTable = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
+            dgvNeedInventoryDetailView.DataSource = OrderDetailsListDataTable;
             Excel.Application excelApp = new Excel.Application();
             if (excelApp==null)
             {
@@ -628,13 +630,13 @@ namespace GoodeeWay
                 return;
             }
 
-            Excel.Workbook workbook;
+            Excel.Workbook workbook; 
             Excel.Worksheet worksheet;
             object missingValue = System.Reflection.Missing.Value;
 
             workbook = excelApp.Workbooks.Open(@"C:\Users\GD4\Desktop\FinalProject\OrderDetails.xlsx");
             worksheet = workbook.Sheets.Item[1];
-
+            worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
             for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
             {
                 worksheet.Cells[i, 1] = i-3;
@@ -648,11 +650,11 @@ namespace GoodeeWay
                 r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
             }
 
-           
 
+            string s = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString().Replace("-", "");
             try
             {
-                workbook.SaveAs(Application.StartupPath + @"\발주내역서.", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                workbook.SaveAs(Application.StartupPath + @"\"+s+ "발주내역서.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
             }
             catch (Exception)
             {
