@@ -1,20 +1,12 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GoodeeWay.SalesMenu
+namespace GoodeeWay.Sales
 {
     public partial class FrmSalesMenu : Form
     {
@@ -39,18 +31,18 @@ namespace GoodeeWay.SalesMenu
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
             salesMenuGView.DataSource = salesMenuList;
-
-            foreach (Division item in Enum.GetValues(typeof(Division))) //Enum Type 반복하며 ComboBox에 등록.
-            {
-                cbxDivision.Items.Add(item);
-            }
             salesMenuGView.Columns[0].HeaderText = "메뉴코드";
             salesMenuGView.Columns[1].HeaderText = "메뉴명";
             salesMenuGView.Columns[2].HeaderText = "가격";
             salesMenuGView.Columns[3].HeaderText = "Kcal";
-            salesMenuGView.Columns[4].HeaderText = "사진";
+            salesMenuGView.Columns[4].HeaderText = "이미지";
             salesMenuGView.Columns[5].HeaderText = "구분";
             salesMenuGView.Columns[6].HeaderText = "부가설명";
+            foreach (Division item in Enum.GetValues(typeof(Division))) //Enum Type 반복하며 ComboBox에 등록.
+            {
+                cbxDivision.Items.Add(item);
+            }
+            
             #region 테스트 코드입니다 ^ㅡ^
             testList.Add(new InventoryTypeVO()
             {
@@ -390,6 +382,13 @@ namespace GoodeeWay.SalesMenu
             salesMenuGView.DataSource = null;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
             salesMenuGView.DataSource = salesMenuList;
+            salesMenuGView.Columns[0].HeaderText = "메뉴코드";
+            salesMenuGView.Columns[1].HeaderText = "메뉴명";
+            salesMenuGView.Columns[2].HeaderText = "가격";
+            salesMenuGView.Columns[3].HeaderText = "Kcal";
+            salesMenuGView.Columns[4].HeaderText = "이미지";
+            salesMenuGView.Columns[5].HeaderText = "구분";
+            salesMenuGView.Columns[6].HeaderText = "부가설명";
         }
 
         private void btnPhoto_Click(object sender, EventArgs e)
@@ -882,7 +881,7 @@ namespace GoodeeWay.SalesMenu
 
         private void btnMnuSearch_Click(object sender, EventArgs e)
         {
-            SalesMenuSearch menuSearch = new SalesMenuSearch();
+            FrmSalesMenuSearch menuSearch = new FrmSalesMenuSearch();
             menuSearch.ShowDialog();
         }
 

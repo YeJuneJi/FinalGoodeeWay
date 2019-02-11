@@ -1,4 +1,4 @@
-﻿namespace GoodeeWay.SalesMenu
+﻿namespace GoodeeWay.Sales
 {
     partial class FrmSalesMenu
     {

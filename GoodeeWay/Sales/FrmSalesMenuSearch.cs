@@ -8,19 +8,20 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace GoodeeWay.SalesMenu
+namespace GoodeeWay.Sales
 {
-    public partial class SalesMenuSearch : Form
+    public partial class FrmSalesMenuSearch : Form
     {
         List<SalesMenuVO> searchlist;
         DataTable searchMenu;
         DataColumn[] dataColoumns;
-        public SalesMenuSearch()
+        public FrmSalesMenuSearch()
         {
             InitializeComponent();
         }
@@ -65,6 +66,7 @@ namespace GoodeeWay.SalesMenu
             }
             menuSearchGView.DataSource = searchMenu;
         }
+
 
         private void btnResult_Click(object sender, EventArgs e)
         {
@@ -122,6 +124,7 @@ namespace GoodeeWay.SalesMenu
                 for (int i = 2; i < menuSearchGView.Rows.Count + 2; i++)
                 {
                     Clipboard.Clear();
+
                     workSheet.Cells[i, 1] = menuSearchGView.Rows[i - 2].Cells[0].Value.ToString();
                     workSheet.Cells[i, 2] = menuSearchGView.Rows[i - 2].Cells[1].Value.ToString();
                     workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
@@ -132,6 +135,7 @@ namespace GoodeeWay.SalesMenu
                     workSheet.Paste(pictureRange, img); //Ctrl + V                  
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
+                    
                 }
 
                 try

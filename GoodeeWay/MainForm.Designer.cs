@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnSalesMenu = new System.Windows.Forms.Button();
+            this.btnSaleRecords = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSalesMenu
@@ -41,11 +42,22 @@
             this.btnSalesMenu.UseVisualStyleBackColor = true;
             this.btnSalesMenu.Click += new System.EventHandler(this.btnSalesMenu_Click);
             // 
+            // btnSaleRecords
+            // 
+            this.btnSaleRecords.Location = new System.Drawing.Point(93, 12);
+            this.btnSaleRecords.Name = "btnSaleRecords";
+            this.btnSaleRecords.Size = new System.Drawing.Size(75, 23);
+            this.btnSaleRecords.TabIndex = 1;
+            this.btnSaleRecords.Text = "판매기록관리";
+            this.btnSaleRecords.UseVisualStyleBackColor = true;
+            this.btnSaleRecords.Click += new System.EventHandler(this.btnSaleRecords_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSaleRecords);
             this.Controls.Add(this.btnSalesMenu);
             this.Name = "MainForm";
             this.Text = "Main";
@@ -57,6 +69,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnSalesMenu;
+        private System.Windows.Forms.Button btnSaleRecords;
     }
 }
 

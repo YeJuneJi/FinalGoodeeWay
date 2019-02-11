@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\MenuRecipeDAO.cs" />
+    <Compile Include="DAO\SaleRecordsDAO.cs" />
     <Compile Include="DAO\SalesMenuDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
     <Compile Include="ImageConverter.cs" />
@@ -59,17 +60,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SalesMenu\FrmSalesMenu.cs">
+    <Compile Include="SaleRecords\FrmSaleRecords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesMenu\FrmSalesMenu.Designer.cs">
+    <Compile Include="SaleRecords\FrmSaleRecords.Designer.cs">
+      <DependentUpon>FrmSaleRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\FrmSalesMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\FrmSalesMenu.Designer.cs">
       <DependentUpon>FrmSalesMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="SalesMenu\SalesMenuSearch.cs">
+    <Compile Include="Sales\FrmSalesMenuSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SalesMenu\SalesMenuSearch.Designer.cs">
-      <DependentUpon>SalesMenuSearch.cs</DependentUpon>
+    <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
+      <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
       <SubType>Form</SubType>
@@ -79,6 +86,7 @@
     </Compile>
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MenuRecipeVO.cs" />
+    <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -92,11 +100,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SalesMenu\FrmSalesMenu.resx">
+    <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
+      <DependentUpon>FrmSaleRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\FrmSalesMenu.resx">
       <DependentUpon>FrmSalesMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SalesMenu\SalesMenuSearch.resx">
-      <DependentUpon>SalesMenuSearch.cs</DependentUpon>
+    <EmbeddedResource Include="Sales\FrmSalesMenuSearch.resx">
+      <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SandwichMakingBus\FrmSandwichMaking.resx">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
@@ -143,5 +154,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

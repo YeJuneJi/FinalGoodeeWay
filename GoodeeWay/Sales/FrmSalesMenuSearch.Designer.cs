@@ -1,6 +1,6 @@
-﻿namespace GoodeeWay.SalesMenu
+﻿namespace GoodeeWay.Sales
 {
-    partial class SalesMenuSearch
+    partial class FrmSalesMenuSearch
     {
         /// <summary>
         /// Required designer variable.
