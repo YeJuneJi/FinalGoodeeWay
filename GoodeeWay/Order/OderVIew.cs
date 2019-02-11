@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace GoodeeWay.Order
 {
     public partial class OderVIew : Form
     {
+        enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
+
         List<Menu> menuList = new List<Menu>(); // 전체 메뉴 리스트
         List<ListViewItem> listViewItemList = new List<ListViewItem>(); // 메뉴 리스트를 리스트뷰 아이템으로 만든 리스트
 
@@ -90,15 +93,15 @@ namespace GoodeeWay.Order
 
         private void listViewOrder_Click(object sender, EventArgs e) // 상품 클릭시 처리 
         {
-            ListView lvi = (ListView)sender;
-
+            ListView lvi = (ListView)sender;           
+            
             foreach (Menu item in menuList)
             {                
                 if (item.MenuName == lvi.SelectedItems[0].Text)
-                {
-                    if (!item.Division.Equals("샌드위치")) // 구분이 Sandwich가 아니면 그냥 처리
+                {                    
+                    if (!item.Division.Equals(Convert.ToString((int)Division.샌드위치))) // 구분이 Sandwich가 아니면 그냥 처리
                     {
-                        bucketMenuList.Add(item.Clone());
+                        bucketMenuList.Add(item.Clone()); 
                         MenuAndDetails menuAndDetails = new MenuAndDetails();
                         menuAndDetails.Menu = item;
                         menuAndDetails.MenuDetailList = null;
@@ -106,7 +109,7 @@ namespace GoodeeWay.Order
                         bucketMenuAndDetailList.Add(menuAndDetails);
                     }
                     else // 구분이 Sandwich이면 상세 페이지로 이동
-                    {
+                    {                        
                         OrderDetail orderDetail = new OrderDetail(item, bucketMenuList, bucketMenuAndDetailList);
                         orderDetail.ShowDialog();
                     }                    
@@ -153,17 +156,24 @@ namespace GoodeeWay.Order
         private void SetBasketListBox() // 장바구니 리스트에 따라 listview 목록을 refresh 해주는 메소드
         {
             listViewBasket.Clear();
-
+            float price = 0;
+            int kCal = 0;
             foreach (Menu menu in bucketMenuList)
             {
                 foreach (ListViewItem listViewItem in listViewItemList)
                 {
                     if (listViewItem.Name.Equals(menu.MenuName))
                     {
+                        price += menu.Price;
+                        kCal += menu.Kcal;
+
                         listViewBasket.Items.Add((ListViewItem)listViewItem.Clone());
                     }
                 }
             }
+
+            lblPrice.Text = "가격 : " + price;
+            lblKcal.Text = "칼로리 : " + kCal;
         }
 
         bool result = false;
