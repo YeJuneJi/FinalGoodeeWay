@@ -26,6 +26,39 @@ namespace GoodeeWay.DAO
             new DBConnection().Insert("InsertInventoryType", InventoryTypeInsertParameters);
         }
 
+        internal DataTable selectOrderDetailsAdd(DataTable orderDetailsListDataTable)
+        {
+            SqlParameter[] sqlParameters = null;
+            SqlDataReader dr = new DBConnection().Select("SelectInventoryTypeNeed", sqlParameters);//재고종류에 있는 모든 내역을 가져옴
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("재고명", typeof(string));
+            dataTable.Columns.Add("수량", typeof(int));
+            dataTable.Columns.Add("재고종류코드", typeof(string));
+            
+            while (dr.Read())
+            {
+                DataRow dataRow = dataTable.NewRow();
+
+                dataRow["재고종류코드"] = dr["InventoryTypeCode"].ToString();
+                dataRow["수량"] = 0;
+                dataRow["재고명"] = dr["InventoryName"].ToString();
+                dataTable.Rows.Add(dataRow);
+            }
+
+            for (int i = 0; i < orderDetailsListDataTable.Rows.Count; i++)
+            {
+                foreach (DataRow item in dataTable.Rows)
+                {
+                    if(orderDetailsListDataTable.Rows[i]["재고종류코드"].ToString()==item["재고종류코드"].ToString() && orderDetailsListDataTable.Rows[i]["발주번호"].ToString().Substring(0,2)=="OR")
+                    {
+                        dataTable.Rows.Remove(item);
+                        break;
+                    }
+                }
+            }
+            return dataTable;
+        }
+
         /// <summary>
         /// 재고종류 전체 출력하기(select)
         /// </summary>

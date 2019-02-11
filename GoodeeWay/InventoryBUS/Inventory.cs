@@ -26,6 +26,9 @@ namespace GoodeeWay
         List<OrderDetailsVO> orderDetailsVOsList;
         DataTable inventoryTypeDateTable;
         DataTable orderDetailsDataTable;
+        DataTable OrderDetailsListDataTable;
+
+
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
         public inventory()
@@ -594,11 +597,17 @@ namespace GoodeeWay
         /// <param name="e"></param>
         private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            OrderDetailsListSelect();
+        }
+
+        private void OrderDetailsListSelect()
+        {
             btnSaveOrderDetails.Enabled = false;
-            btnUpdateOrder.Enabled=btnAddOrder.Enabled=btnExcelExport.Enabled = true;
+            btnUpdateOrder.Enabled = btnAddOrder.Enabled = btnExcelExport.Enabled = true;
 
             //dgvNeedInventoryDetailView.DataSource = null;
-            dgvNeedInventoryDetailView.DataSource = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
+            OrderDetailsListDataTable = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
+            dgvNeedInventoryDetailView.DataSource = OrderDetailsListDataTable;
             dgvNeedInventoryDetailView.Columns["발주번호"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["재고종류코드"].ReadOnly = true;
@@ -657,7 +666,6 @@ namespace GoodeeWay
 
 
 
-        #endregion
         /// <summary>
         /// 발주 내역 수정
         /// </summary>
@@ -677,5 +685,19 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.DataSource = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
             MessageBox.Show("발주내역이 수정되었습니다.");
         }
+
+        private void btnAddOrder_Click(object sender, EventArgs e)
+        {
+            OrderDetailsAdd orderDetailsAdd = new OrderDetailsAdd(OrderDetailsListDataTable);
+            if (orderDetailsAdd.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("저장완료");
+                OrderDetailsListSelect();
+            }
+        }
+
+        #endregion
+
+
     }
 }
