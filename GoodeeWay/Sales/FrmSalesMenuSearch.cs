@@ -132,7 +132,9 @@ namespace GoodeeWay.Sales
                     Excel.Range pictureRange = workSheet.Cells[i, 5];
                     Image img = ((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value).ByteArrayToImage(); //바이트 배열을 Image로 변환하는 확장 메서드를 사용.
                     Clipboard.SetDataObject(img, true); //Ctrl + C
-                    workSheet.Paste(pictureRange, img); //Ctrl + V                  
+                    workSheet.Paste(pictureRange, img); //Ctrl + V     
+                    pictureRange.ColumnWidth = img.Width;
+                    pictureRange.RowHeight = img.Height;
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
 
