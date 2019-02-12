@@ -36,6 +36,7 @@
             this.btnBiPoom = new System.Windows.Forms.Button();
             this.btnInsa = new System.Windows.Forms.Button();
             this.btnJoomoon = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,11 +115,22 @@
             this.btnJoomoon.UseVisualStyleBackColor = true;
             this.btnJoomoon.Click += new System.EventHandler(this.btnJoomoon_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(434, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "매출관리";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 549);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnJoomoon);
             this.Controls.Add(this.btnInsa);
             this.Controls.Add(this.btnBiPoom);
@@ -146,6 +158,7 @@
         private System.Windows.Forms.Button btnBiPoom;
         private System.Windows.Forms.Button btnInsa;
         private System.Windows.Forms.Button btnJoomoon;
+        private System.Windows.Forms.Button button1;
     }
 }
 

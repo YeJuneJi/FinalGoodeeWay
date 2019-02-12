@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\ResourceManagemanet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\ResourceManagemanet.Designer.cs">
+      <DependentUpon>ResourceManagemanet.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\MenuRecipeDAO.cs" />
     <Compile Include="DAO\SaleRecordsDAO.cs" />
     <Compile Include="DAO\SalesMenuDAO.cs" />
@@ -304,9 +310,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <Folder Include="DB\" />
-    <Folder Include="DAO\" />
-    <Folder Include="VO\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

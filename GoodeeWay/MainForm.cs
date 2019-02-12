@@ -69,5 +69,11 @@ namespace GoodeeWay
             OderVIew oderVIew = new OderVIew();
             oderVIew.Show();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ResourceManagemanet resourceManagemanet = new ResourceManagemanet();
+            resourceManagemanet.Show();
+        }
     }
 }
