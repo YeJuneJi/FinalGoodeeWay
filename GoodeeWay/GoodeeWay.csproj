@@ -76,6 +76,8 @@
     </Compile>
     <Compile Include="DAO\EmpDAO.cs" />
     <Compile Include="DAO\IEmp.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\OrderDetailDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
     <Compile Include="ImageConverter.cs" />
     <Compile Include="DAO\InventoryDAO.cs" />
@@ -125,6 +127,27 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\Menu.cs" />
+    <Compile Include="Order\MenuAndDetails.cs" />
+    <Compile Include="Order\MenuDetail.cs" />
+    <Compile Include="Order\OderVIew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\OderVIew.Designer.cs">
+      <DependentUpon>OderVIew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\Order.Designer.cs">
+      <DependentUpon>Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order\OrderDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\OrderDetail.Designer.cs">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,6 +224,15 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Order\OderVIew.resx">
+      <DependentUpon>OderVIew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\Order.resx">
+      <DependentUpon>Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\OrderDetail.resx">
+      <DependentUpon>OrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -272,6 +304,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <Folder Include="DB\" />
+    <Folder Include="DAO\" />
+    <Folder Include="VO\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

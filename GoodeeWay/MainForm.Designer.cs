@@ -33,8 +33,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.재고ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnBiPoom = new System.Windows.Forms.Button();
+            this.btnInsa = new System.Windows.Forms.Button();
+            this.btnJoomoon = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,33 +84,44 @@
             this.재고ToolStripMenuItem1.Text = "재고";
             this.재고ToolStripMenuItem1.Click += new System.EventHandler(this.재고ToolStripMenuItem1_Click);
             // 
-            // button1
+            // btnBiPoom
             // 
-            this.button1.Location = new System.Drawing.Point(191, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "비품관리";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBiPoom.Location = new System.Drawing.Point(191, 47);
+            this.btnBiPoom.Name = "btnBiPoom";
+            this.btnBiPoom.Size = new System.Drawing.Size(75, 23);
+            this.btnBiPoom.TabIndex = 2;
+            this.btnBiPoom.Text = "비품관리";
+            this.btnBiPoom.UseVisualStyleBackColor = true;
+            this.btnBiPoom.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnInsa
             // 
-            this.button2.Location = new System.Drawing.Point(272, 47);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "인사관리";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnInsa.Location = new System.Drawing.Point(272, 47);
+            this.btnInsa.Name = "btnInsa";
+            this.btnInsa.Size = new System.Drawing.Size(75, 23);
+            this.btnInsa.TabIndex = 3;
+            this.btnInsa.Text = "인사관리";
+            this.btnInsa.UseVisualStyleBackColor = true;
+            this.btnInsa.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnJoomoon
+            // 
+            this.btnJoomoon.Location = new System.Drawing.Point(353, 47);
+            this.btnJoomoon.Name = "btnJoomoon";
+            this.btnJoomoon.Size = new System.Drawing.Size(75, 23);
+            this.btnJoomoon.TabIndex = 4;
+            this.btnJoomoon.Text = "주문관리";
+            this.btnJoomoon.UseVisualStyleBackColor = true;
+            this.btnJoomoon.Click += new System.EventHandler(this.btnJoomoon_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1169, 549);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnJoomoon);
+            this.Controls.Add(this.btnInsa);
+            this.Controls.Add(this.btnBiPoom);
             this.Controls.Add(this.btnSaleRecords);
             this.Controls.Add(this.btnSalesMenu);
             this.Controls.Add(this.menuStrip1);
@@ -131,8 +143,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnBiPoom;
+        private System.Windows.Forms.Button btnInsa;
+        private System.Windows.Forms.Button btnJoomoon;
     }
 }
 

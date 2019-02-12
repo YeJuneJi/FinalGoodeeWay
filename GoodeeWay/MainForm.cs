@@ -1,5 +1,6 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
+﻿using GoodeeWay.Order;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,6 +61,13 @@ namespace GoodeeWay
         {
             Employee employee = new Employee();
             employee.Show();
+
+        }
+
+        private void btnJoomoon_Click(object sender, EventArgs e)
+        {
+            OderVIew oderVIew = new OderVIew();
+            oderVIew.Show();
         }
     }
 }
