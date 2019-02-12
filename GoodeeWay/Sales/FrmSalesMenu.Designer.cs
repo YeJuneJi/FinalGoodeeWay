@@ -275,7 +275,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(902, 22);
+            this.label8.Location = new System.Drawing.Point(912, 22);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(192, 32);
             this.label8.TabIndex = 24;
@@ -286,7 +286,7 @@
             this.FlowPanel.AutoScroll = true;
             this.FlowPanel.Location = new System.Drawing.Point(755, 57);
             this.FlowPanel.Name = "FlowPanel";
-            this.FlowPanel.Size = new System.Drawing.Size(537, 448);
+            this.FlowPanel.Size = new System.Drawing.Size(500, 450);
             this.FlowPanel.TabIndex = 25;
             // 
             // tbxDiscountRatio
