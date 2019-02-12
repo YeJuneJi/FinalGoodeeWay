@@ -19,7 +19,7 @@ namespace GoodeeWay.BUS
     {
         List<EmpVO> lst;
         EmpVO emp = new EmpVO();
-
+        
         public Employee()
         {
             InitializeComponent();
@@ -65,52 +65,13 @@ namespace GoodeeWay.BUS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (check())
-                {
-                    //if (dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
-                    //{
-                    //    DateTime temp = dtpLeave.Value;
-                    //    dtpLeave.Value = dtpJoin.Value;
-                    //    dtpJoin.Value = temp;
-                    //}
-                    //if (dtpLeave.Enabled)
-                    //{
-                        emp = new EmpVO()
-                        {
-                            Empno = txtNum.Text,
-                            Name = txtName.Text,
-                            Job = cbJob.Text, //Job = txtJob.Text,
-                            Pay = float.Parse(txtSalary.Text),
-                            Department = txtDepartment.Text,
-                            Mobile = txtPhone.Text,
-                            JoinDate = dtpJoin.Value,
-                            //LeaveDate = dtpLeave.Value,
-                            BankAccountNo = txtBankAccountNo.Text,
-                            Bank = cbBank.Text, // txtBank.Text,
-                            Email = txtEmail.Text,
-                            Note = txtNote.Text
-                        };
-                    
-                    try
-                    {
-                        if (new EmpDAO().InsertBoard(emp))
-                        {
-                            MessageBox.Show("저장 성공");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("저장 실패" + ex);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류" + ex);
-            }
+            Insert_Emp ie = new Insert_Emp();
+            ie.FormClosed += new FormClosedEventHandler(newForm_FormClosed);
+            ie.Show();
+        }
 
+        private void newForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
             Employee_Load(null, null);
         }
 
@@ -300,6 +261,14 @@ namespace GoodeeWay.BUS
                 }
 
                 dataGridView1.DataSource = lst;
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(null, null);
             }
         }
     }

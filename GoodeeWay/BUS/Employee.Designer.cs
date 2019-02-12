@@ -412,10 +412,12 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(498, 32);
+            this.txtSearch.Location = new System.Drawing.Point(466, 32);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(100, 21);
+            this.txtSearch.Size = new System.Drawing.Size(132, 21);
             this.txtSearch.TabIndex = 95;
+            this.txtSearch.Enter += new System.EventHandler(this.btnSearch_Click);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnSearch
             // 
@@ -468,7 +470,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Employee";
-            this.Text = "Employee";
+            this.Text = "인사관리";
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

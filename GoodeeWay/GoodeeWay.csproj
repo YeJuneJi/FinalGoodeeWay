@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Attendance.Designer.cs">
+      <DependentUpon>Attendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\Employee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,12 @@
     </Compile>
     <Compile Include="BUS\Insert_Emp.Designer.cs">
       <DependentUpon>Insert_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Salary.Designer.cs">
+      <DependentUpon>Salary.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\EmpDAO.cs" />
     <Compile Include="DAO\IEmp.cs" />
@@ -84,8 +96,17 @@
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.Designer.cs">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BUS\Attendance.resx">
+      <DependentUpon>Attendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\Employee.resx">
       <DependentUpon>Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Insert_Emp.resx">
+      <DependentUpon>Insert_Emp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Salary.resx">
+      <DependentUpon>Salary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Equipment\FrmEquipment.resx">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
