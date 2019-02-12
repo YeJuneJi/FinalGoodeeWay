@@ -27,7 +27,7 @@ namespace GoodeeWay
         DataTable inventoryTypeDateTable;
         DataTable orderDetailsDataTable;
         DataTable OrderDetailsListDataTable;
-
+        DataTable inventoryDataTable;
 
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
@@ -55,7 +55,8 @@ namespace GoodeeWay
         /// <param name="e"></param>
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (tabControl1.SelectedIndex)
+            1
+                switch (tabControl1.SelectedIndex)
             {
                 case 0:
                     tabControl1.Size = new Size(916, 659);
@@ -355,29 +356,29 @@ namespace GoodeeWay
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnInventoryNewTable_Click(object sender, EventArgs e)
-        {
-            InventoryTableSelect();
-        }
-
-        /// <summary>
-        /// 재고 테이블
+        private void btnInventoryNewTable_Click(object sender, EventArgs e)                         
+        {                                                                                           
+            InventoryTableSelect();                                                                 
+        }                                                                                           
+                                                                                                    
+        /// <summary>                                                                               
+        /// 재고 테이블                                                                             
         /// </summary>
         private void InventoryTableSelect()
         {
-            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
-            #region 재고테이블 컬럼명 변경
-            dgvInventoryTable.Columns["InventoryID"].HeaderText = "재고번호";
-            dgvInventoryTable.Columns["InventoryName"].HeaderText = "재고명";
-            dgvInventoryTable.Columns["InventoryQuantity"].HeaderText = "재고량";
-            dgvInventoryTable.Columns["DateOfUse"].HeaderText = "사용날짜";
-            dgvInventoryTable.Columns["DateOfDisposal"].HeaderText = "유통기한";
-            dgvInventoryTable.Columns["ReceivingDetailsID"].HeaderText = "입고번호";
-            dgvInventoryTable.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
-            #endregion
-        }
-        #endregion
-
+            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();                     
+            dgvInventoryTable.Columns["재고번호"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["재고명"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["재고량"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["출고량"].ReadOnly = false;                                         
+            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["유통기한"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["입고번호"].ReadOnly = true;                                         
+            dgvInventoryTable.Columns["출고량"].HeaderText = "출고량*";                                 
+        }                                                                                                 
+        #endregion                                                                                        
+                                                                                                          
         #region 재고종류
         /// <summary>
         /// 재고종류 추가폼 띄우는 버튼
@@ -415,6 +416,11 @@ namespace GoodeeWay
             dgvInventoryType.Columns["재고종류코드"].ReadOnly = true;
             dgvInventoryType.Columns["재고합계"].ReadOnly = true;
             dgvInventoryType.Columns["재고총량"].ReadOnly = true;
+
+            dgvInventoryType.Columns["재고명"].HeaderText = "재고명*";
+            dgvInventoryType.Columns["입고정량"].HeaderText = "입고정량*";
+            dgvInventoryType.Columns["최소재고"].HeaderText = "최소재고*";
+            dgvInventoryType.Columns["재료구분"].HeaderText = "재료구분*";
 
             #region 재고종류테이블 컬럼명 변경
             //dgvInventoryType.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
@@ -462,7 +468,7 @@ namespace GoodeeWay
             InventoryTypeSelect();
 
         }
-        #endregion
+        #endregion                                                                                          "재고종류코드"
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
@@ -484,7 +490,7 @@ namespace GoodeeWay
             {
                 for (int i = 0; i < dgvInventoryType.Rows.Count; i++)
                 {
-                    if (dgvInventoryType["재고종류코드", i].Value.ToString() == dgvInventoryTable.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString())
+                    if (dgvInventoryType["재고종류코드", i].Value.ToString() == dgvInventoryTable.SelectedRows[0].Cells["재고종류코드"].Value.ToString())
                     {
 
                         dgvInventoryType["재고종류코드", i].Selected = true;
@@ -518,6 +524,8 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["현재수량"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
+            dgvNeedInventoryDetailView.Columns["필요수량"].HeaderText = "필요수량*";
+            
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
@@ -611,6 +619,10 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["발주번호"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["재고종류코드"].ReadOnly = true;
+
+            dgvNeedInventoryDetailView.Columns["수량"].HeaderText = "수량*";
+
+
         }
 
 
@@ -698,8 +710,12 @@ namespace GoodeeWay
             }
         }
 
+
         #endregion
 
+        private void btnRelease_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
