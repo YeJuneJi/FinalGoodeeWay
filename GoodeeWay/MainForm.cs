@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GoodeeWay.DAO;
+using GoodeeWay.VO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +12,7 @@ using System.Windows.Forms;
 using GoodeeWay.DB;
 using GoodeeWay.SaleRecords;
 using GoodeeWay.Sales;
+using GoodeeWay.BUS;
 
 namespace GoodeeWay
 {
@@ -28,6 +31,7 @@ namespace GoodeeWay
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            
             
         }
 
@@ -50,6 +54,12 @@ namespace GoodeeWay
 
             GoodeeWay.SandwichMakingBus.FrmSandwichMaking frmSandwichMaking = new SandwichMakingBus.FrmSandwichMaking();
             frmSandwichMaking.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Employee employee = new Employee();
+            employee.Show();
         }
     }
 }

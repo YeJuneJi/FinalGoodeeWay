@@ -184,6 +184,5 @@ namespace GoodeeWay.DB
             }
             return result;
         }
-
     }
 }

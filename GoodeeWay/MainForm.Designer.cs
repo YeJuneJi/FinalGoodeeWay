@@ -34,6 +34,7 @@
             this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.재고ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             this.btnSaleRecords.Location = new System.Drawing.Point(99, 47);
             this.btnSaleRecords.Name = "btnSaleRecords";
-            this.btnSaleRecords.Size = new System.Drawing.Size(75, 23);
+            this.btnSaleRecords.Size = new System.Drawing.Size(86, 23);
             this.btnSaleRecords.TabIndex = 1;
             this.btnSaleRecords.Text = "판매기록관리";
             this.btnSaleRecords.UseVisualStyleBackColor = true;
@@ -63,7 +64,7 @@
             this.재고ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1169, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -92,11 +93,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(272, 47);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "인사관리";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1169, 549);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSaleRecords);
             this.Controls.Add(this.btnSalesMenu);
@@ -120,6 +132,7 @@
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
