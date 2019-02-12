@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,10 +73,15 @@
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLblTime = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEquipmentList
@@ -88,7 +94,7 @@
             this.dgvEquipmentList.Name = "dgvEquipmentList";
             this.dgvEquipmentList.ReadOnly = true;
             this.dgvEquipmentList.RowTemplate.Height = 23;
-            this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEquipmentList.ShowEditingIcon = false;
             this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 362);
@@ -296,7 +302,7 @@
             // 
             // txtSearchForLocation
             // 
-            this.txtSearchForLocation.Location = new System.Drawing.Point(321, 114);
+            this.txtSearchForLocation.Location = new System.Drawing.Point(321, 111);
             this.txtSearchForLocation.Name = "txtSearchForLocation";
             this.txtSearchForLocation.Size = new System.Drawing.Size(110, 21);
             this.txtSearchForLocation.TabIndex = 13;
@@ -304,7 +310,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(266, 120);
+            this.label10.Location = new System.Drawing.Point(266, 114);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 12;
@@ -513,13 +519,44 @@
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLblTime,
+            this.toolStripLabel2});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 671);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1092, 25);
+            this.toolStrip1.TabIndex = 12;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLblTime
+            // 
+            this.toolStripLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLblTime.Name = "toolStripLblTime";
+            this.toolStripLblTime.Size = new System.Drawing.Size(0, 22);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripLabel2.Text = "(주)GoodeeWay";
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // FrmEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1092, 678);
+            this.ClientSize = new System.Drawing.Size(1092, 696);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.btnNextPage);
             this.Controls.Add(this.btnLastPage);
@@ -540,7 +577,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -590,5 +630,9 @@
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLblTime;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.Timer timer;
     }
 }

@@ -27,7 +27,7 @@ namespace GoodeeWay.Equipment
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
         private DataRow dataRow;
 
-       const int pageRows = 5;
+       const int pageRows = 15;
         int currentPage = 1;
         int firstNumLocationLength = 15; //페이지 번호 맨앞 숫자 위치정보(panel중간 지점으로 부터 떨어진 길이)
         int totalPage = 0;
@@ -393,11 +393,10 @@ namespace GoodeeWay.Equipment
         }
 
         private void Paging()
-        {
-            
+        {   
             pnlPage.Controls.Clear();
             totalPage = baseEquipmentLst.Count % pageRows != 0 ? baseEquipmentLst.Count / pageRows + 1 : baseEquipmentLst.Count / pageRows;
-            if (totalPage - currentPage < 4)
+            if (totalPage - currentPage < 5)
             {
                 btnNextPage.Enabled = false;
             }
@@ -413,7 +412,6 @@ namespace GoodeeWay.Equipment
             {
                 btnFrontPage.Enabled = true;
             }
-            //int totalPage = 7;
 
             if (totalPage - currentPage >= 4)
             {
@@ -483,17 +481,23 @@ namespace GoodeeWay.Equipment
 
         private void btnLastPage_Click(object sender, EventArgs e)
         {
-            if (totalPage %5 !=1)
-            {
-
-            }
-            else
-            {
-                currentPage = totalPage;
-                dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
-                Paging();
-            }
-            
+            //if (totalPage %5 !=1)
+            //{
+            //    currentPage = totalPage % 5 != 0 ? (6 - (totalPage % 5)) + totalPage-4 : totalPage -4;
+            //    Paging();
+            //    currentPage = totalPage;
+            //    dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+            //}
+            //else
+            //{
+            //    currentPage = totalPage;
+            //    dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
+            //    Paging();
+            //}
+            currentPage = totalPage % 5 != 0 ? (6 - (totalPage % 5)) + totalPage - 5 : totalPage - 4;
+            Paging();
+            currentPage = totalPage;
+            dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
@@ -506,7 +510,13 @@ namespace GoodeeWay.Equipment
         private void btnFrontPage_Click(object sender, EventArgs e)
         {
             currentPage = currentPage % 5 != 0 ? currentPage - (4+(currentPage % 5))   : currentPage - 9;
+            dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+           toolStrip1.Items["toolStripLblTime"].Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
         }
     }
 
