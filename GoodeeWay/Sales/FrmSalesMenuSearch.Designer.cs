@@ -140,8 +140,9 @@
             // ExcelSaveFileDlg
             // 
             this.ExcelSaveFileDlg.Filter = "xls 파일|*.xls";
+            this.ExcelSaveFileDlg.OverwritePrompt = false;
             // 
-            // SalesMenuSearch
+            // FrmSalesMenuSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,7 +157,7 @@
             this.Controls.Add(this.rdoMenuCode);
             this.Controls.Add(this.btnResult);
             this.Controls.Add(this.tbxSearch);
-            this.Name = "SalesMenuSearch";
+            this.Name = "FrmSalesMenuSearch";
             this.Text = "메뉴 검색";
             this.Load += new System.EventHandler(this.SalesMenuSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.menuSearchGView)).EndInit();

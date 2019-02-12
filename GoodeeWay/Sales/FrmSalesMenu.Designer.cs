@@ -55,6 +55,9 @@
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tbxDiscountRatio = new System.Windows.Forms.TextBox();
             this.할인율 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
             this.SuspendLayout();
@@ -302,11 +305,41 @@
             this.할인율.TabIndex = 26;
             this.할인율.Text = "할인율";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(265, 85);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(16, 12);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "\\";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(265, 112);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 12);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Kcal";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(265, 140);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(15, 12);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "%";
+            // 
             // FrmSalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 517);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.tbxDiscountRatio);
             this.Controls.Add(this.할인율);
             this.Controls.Add(this.FlowPanel);
@@ -372,5 +405,8 @@
         private System.Windows.Forms.FlowLayoutPanel FlowPanel;
         private System.Windows.Forms.TextBox tbxDiscountRatio;
         private System.Windows.Forms.Label 할인율;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

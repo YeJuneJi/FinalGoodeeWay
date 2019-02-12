@@ -40,13 +40,14 @@
             this.rdoSalesNo = new System.Windows.Forms.RadioButton();
             this.rdoDate = new System.Windows.Forms.RadioButton();
             this.rdoTotalSearch = new System.Windows.Forms.RadioButton();
+            this.excelSaveFileDlg = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.salesRecordsGView)).BeginInit();
             this.SuspendLayout();
             // 
             // salesRecordsGView
             // 
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.salesRecordsGView.Location = new System.Drawing.Point(8, 121);
+            this.salesRecordsGView.Location = new System.Drawing.Point(7, 100);
             this.salesRecordsGView.MultiSelect = false;
             this.salesRecordsGView.Name = "salesRecordsGView";
             this.salesRecordsGView.ReadOnly = true;
@@ -88,18 +89,19 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.Location = new System.Drawing.Point(313, 92);
+            this.btnExcel.Location = new System.Drawing.Point(574, 62);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(75, 23);
             this.btnExcel.TabIndex = 18;
             this.btnExcel.Text = "엑셀";
             this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(20, 92);
+            this.btnSearch.Location = new System.Drawing.Point(472, 32);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(77, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 17;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -107,7 +109,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(216, 92);
+            this.btnDelete.Location = new System.Drawing.Point(472, 62);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 16;
@@ -117,7 +119,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(119, 92);
+            this.btnUpdate.Location = new System.Drawing.Point(574, 32);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 15;
@@ -160,11 +162,16 @@
             this.rdoTotalSearch.UseVisualStyleBackColor = true;
             this.rdoTotalSearch.CheckedChanged += new System.EventHandler(this.rdoCheck_CheckedChanged);
             // 
+            // excelSaveFileDlg
+            // 
+            this.excelSaveFileDlg.Filter = "xls 파일|*.xls";
+            this.excelSaveFileDlg.OverwritePrompt = false;
+            // 
             // FrmSaleRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 511);
+            this.ClientSize = new System.Drawing.Size(706, 487);
             this.Controls.Add(this.rdoTotalSearch);
             this.Controls.Add(this.rdoDate);
             this.Controls.Add(this.rdoSalesNo);
@@ -200,5 +207,6 @@
         private System.Windows.Forms.RadioButton rdoSalesNo;
         private System.Windows.Forms.RadioButton rdoDate;
         private System.Windows.Forms.RadioButton rdoTotalSearch;
+        private System.Windows.Forms.SaveFileDialog excelSaveFileDlg;
     }
 }

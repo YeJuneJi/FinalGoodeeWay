@@ -135,7 +135,7 @@ namespace GoodeeWay.Sales
                     workSheet.Paste(pictureRange, img); //Ctrl + V                  
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
-                    
+
                 }
 
                 try
@@ -151,21 +151,6 @@ namespace GoodeeWay.Sales
                 Marshal.FinalReleaseComObject(workBook);
                 Marshal.FinalReleaseComObject(excelApp);
             }
-
-            //List<SalesMenuVO> list = new List<SalesMenuVO>();
-            //foreach (DataGridViewRow item in menuSearchGView.Rows)
-            //{
-            //    list.Add(new SalesMenuVO()
-            //    {
-            //        MenuCode = item.Cells[0].Value.ToString(),
-            //        MenuName = item.Cells[1].Value.ToString(),
-            //        Price = float.Parse(item.Cells[2].Value.ToString()),
-            //        Kcal = int.Parse(item.Cells[3].Value.ToString()),
-            //        MenuImage = ((byte[])menuSearchGView.Rows[0].Cells[4].Value).ByteArrayToImage(),
-            //        Division = Convert.ToInt32(item.Cells[5].Value),
-            //        AdditionalContext = item.Cells[6].Value.ToString()
-            //    });
-            //}
         }
     }
 }

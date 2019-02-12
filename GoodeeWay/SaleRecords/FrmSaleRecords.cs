@@ -3,7 +3,9 @@ using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GoodeeWay.SaleRecords
 {
@@ -215,6 +217,53 @@ namespace GoodeeWay.SaleRecords
                     MessageBox.Show("삭제 성공");
                 }
                 OutputAllSaleRecords();
+            }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            if (excelSaveFileDlg.ShowDialog() != DialogResult.Cancel)
+            {
+                Excel.Application excelApp = new Excel.Application();
+                if (excelApp == null)
+                {
+                    MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
+                    return;
+                }
+                Excel.Workbook workBook;
+                Excel.Worksheet workSheet;
+                object missingValue = System.Reflection.Missing.Value;
+                workBook = excelApp.Workbooks.Add(missingValue);
+                workSheet = workBook.Worksheets.Item[1];
+
+                for (int i = 1; i < dataColoumns.Length + 1; i++)
+                {
+                    workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
+                }
+
+                for (int i = 2; i < salesRecordsGView.Rows.Count + 2; i++)
+                {
+                    workSheet.Cells[i, 1] = int.Parse(salesRecordsGView.Rows[i - 2].Cells[0].Value.ToString());
+                    workSheet.Cells[i, 2] = salesRecordsGView.Rows[i - 2].Cells[1].Value.ToString();
+                    workSheet.Cells[i, 3] = salesRecordsGView.Rows[i - 2].Cells[2].Value.ToString();
+                    workSheet.Cells[i, 4] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[3].Value.ToString());
+                    workSheet.Cells[i, 5] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[4].Value.ToString());       
+                    workSheet.Cells[i, 6] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[5].Value.ToString());       
+                    workSheet.Cells[i, 7] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[6].Value.ToString());       
+                    workSheet.Cells[i, 8] = salesRecordsGView.Rows[i - 2].Cells[7].Value.ToString();
+                }
+                try
+                {
+                    workBook.SaveAs(excelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                excelApp.Quit();
+                Marshal.FinalReleaseComObject(workSheet);
+                Marshal.FinalReleaseComObject(workBook);
+                Marshal.FinalReleaseComObject(excelApp);
             }
         }
     }
