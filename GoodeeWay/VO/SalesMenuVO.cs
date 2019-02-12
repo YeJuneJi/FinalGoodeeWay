@@ -64,5 +64,14 @@ namespace GoodeeWay.VO
             get { return additionalContext; }
             set { additionalContext = value; }
         }
+
+        private float discountRatio;
+
+        public float DiscountRatio
+        {
+            get { return discountRatio; }
+            set { discountRatio = value; }
+        }
+
     }
 }

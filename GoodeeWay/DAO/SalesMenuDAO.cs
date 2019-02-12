@@ -57,7 +57,8 @@ namespace GoodeeWay.DAO
                 new SqlParameter("kCal", salesMenuVO.Kcal),
                 new SqlParameter("menuImage", imageBytes),
                 new SqlParameter("division", salesMenuVO.Division),
-                new SqlParameter("additionalContext", salesMenuVO.AdditionalContext)
+                new SqlParameter("additionalContext", salesMenuVO.AdditionalContext),
+                new SqlParameter("discountRatio", salesMenuVO.DiscountRatio)
             };
             memoryStream.Close();
             try
@@ -91,6 +92,7 @@ namespace GoodeeWay.DAO
                 new SqlParameter("menuImage", imageBytes),
                 new SqlParameter("division", salesMenuVO.Division),
                 new SqlParameter("additionalContext", salesMenuVO.AdditionalContext),
+                new SqlParameter("discountRatio", salesMenuVO.DiscountRatio),
                 new SqlParameter("oldMenuCode", oldeMenuCode)
             };
             memoryStream.Close();
@@ -129,6 +131,7 @@ namespace GoodeeWay.DAO
                     Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImage = image;
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
                     lst.Add(salesMenu);
                 }
                 return lst;
@@ -164,6 +167,7 @@ namespace GoodeeWay.DAO
                     Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImage = image;
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
                     lst.Add(salesMenu);
                 }
                 return lst;
@@ -199,6 +203,7 @@ namespace GoodeeWay.DAO
                     Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImage = image;
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
                     lst.Add(salesMenu);
                 }
                 return lst;
@@ -234,6 +239,7 @@ namespace GoodeeWay.DAO
                     Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImage = image;
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
+                    salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
                     lst.Add(salesMenu);
                 }
                 return lst;

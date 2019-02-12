@@ -9,6 +9,7 @@ kCal int constraint sales_kcal_nn not null,
 menuImage image constraint sales_mImage_nn not null default 0x00,
 division int constraint sales_div_nn not null,
 additionalContext nvarchar(200) constraint sales_addcon_nn not null,
+discountRatio float constraint sales_disRatio_chk check(discountRatio >= 0 AND discountRatio<=101) default 0,
 constraint sales_mcode_pk primary key(menuCode),
 constraint sales_mname_uk unique(menuName),
 );
@@ -194,10 +195,11 @@ CREATE PROCEDURE dbo.InsertMenu
 @kCal int,
 @menuImage image ,
 @division int,
-@additionalContext nvarchar(200)
+@additionalContext nvarchar(200),
+@discountRatio float
 as
 insert into dbo.Sales
-values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext);
+values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext, @discountRatio);
 GO
 
 --SaleRecords 테이블의 Insert 프로시저
@@ -297,9 +299,10 @@ create procedure UpdateSales
 @menuImage image,
 @division int,
 @additionalContext nvarchar(200),
-@oldMenuCode nvarchar(10)
+@oldMenuCode nvarchar(10),
+@discountRatio float
 as
-update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal, division = @division, additionalContext = @additionalContext
+update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
 where menuCode = @oldMenuCode;
 GO
 

@@ -47,21 +47,25 @@
             // 
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.salesRecordsGView.Location = new System.Drawing.Point(8, 121);
+            this.salesRecordsGView.MultiSelect = false;
             this.salesRecordsGView.Name = "salesRecordsGView";
+            this.salesRecordsGView.ReadOnly = true;
             this.salesRecordsGView.RowTemplate.Height = 23;
+            this.salesRecordsGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.salesRecordsGView.Size = new System.Drawing.Size(693, 381);
             this.salesRecordsGView.TabIndex = 0;
+            this.salesRecordsGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellClick);
             // 
             // dtpPeriodStart
             // 
-            this.dtpPeriodStart.Location = new System.Drawing.Point(13, 61);
+            this.dtpPeriodStart.Location = new System.Drawing.Point(21, 61);
             this.dtpPeriodStart.Name = "dtpPeriodStart";
             this.dtpPeriodStart.Size = new System.Drawing.Size(200, 21);
             this.dtpPeriodStart.TabIndex = 10;
             // 
             // dtpPeriodEnd
             // 
-            this.dtpPeriodEnd.Location = new System.Drawing.Point(238, 61);
+            this.dtpPeriodEnd.Location = new System.Drawing.Point(246, 61);
             this.dtpPeriodEnd.Name = "dtpPeriodEnd";
             this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 21);
             this.dtpPeriodEnd.TabIndex = 9;
@@ -69,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 65);
+            this.label1.Location = new System.Drawing.Point(228, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 12);
             this.label1.TabIndex = 11;
@@ -77,7 +81,7 @@
             // 
             // tbxSalesNo
             // 
-            this.tbxSalesNo.Location = new System.Drawing.Point(13, 34);
+            this.tbxSalesNo.Location = new System.Drawing.Point(21, 34);
             this.tbxSalesNo.Name = "tbxSalesNo";
             this.tbxSalesNo.Size = new System.Drawing.Size(425, 21);
             this.tbxSalesNo.TabIndex = 13;
@@ -109,6 +113,7 @@
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -118,6 +123,7 @@
             this.btnUpdate.TabIndex = 15;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // rdoSalesNo
             // 

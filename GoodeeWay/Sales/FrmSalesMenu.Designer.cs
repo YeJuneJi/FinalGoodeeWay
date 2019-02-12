@@ -53,6 +53,8 @@
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
             this.label8 = new System.Windows.Forms.Label();
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tbxDiscountRatio = new System.Windows.Forms.TextBox();
+            this.할인율 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             // salesMenuGView
             // 
             this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.salesMenuGView.Location = new System.Drawing.Point(12, 186);
+            this.salesMenuGView.Location = new System.Drawing.Point(12, 194);
             this.salesMenuGView.MultiSelect = false;
             this.salesMenuGView.Name = "salesMenuGView";
             this.salesMenuGView.ReadOnly = true;
@@ -173,7 +175,7 @@
             this.cbxDivision.Location = new System.Drawing.Point(389, 54);
             this.cbxDivision.Name = "cbxDivision";
             this.cbxDivision.Size = new System.Drawing.Size(121, 20);
-            this.cbxDivision.TabIndex = 12;
+            this.cbxDivision.TabIndex = 14;
             this.cbxDivision.SelectedIndexChanged += new System.EventHandler(this.cbxDivision_SelectedIndexChanged);
             // 
             // btnPhoto
@@ -205,7 +207,7 @@
             // 
             // btnMnuInsert
             // 
-            this.btnMnuInsert.Location = new System.Drawing.Point(25, 157);
+            this.btnMnuInsert.Location = new System.Drawing.Point(25, 164);
             this.btnMnuInsert.Name = "btnMnuInsert";
             this.btnMnuInsert.Size = new System.Drawing.Size(100, 23);
             this.btnMnuInsert.TabIndex = 16;
@@ -215,7 +217,7 @@
             // 
             // btnMnuUpdate
             // 
-            this.btnMnuUpdate.Location = new System.Drawing.Point(142, 157);
+            this.btnMnuUpdate.Location = new System.Drawing.Point(142, 164);
             this.btnMnuUpdate.Name = "btnMnuUpdate";
             this.btnMnuUpdate.Size = new System.Drawing.Size(100, 23);
             this.btnMnuUpdate.TabIndex = 17;
@@ -225,7 +227,7 @@
             // 
             // btnMnuDelete
             // 
-            this.btnMnuDelete.Location = new System.Drawing.Point(259, 157);
+            this.btnMnuDelete.Location = new System.Drawing.Point(259, 164);
             this.btnMnuDelete.Name = "btnMnuDelete";
             this.btnMnuDelete.Size = new System.Drawing.Size(100, 23);
             this.btnMnuDelete.TabIndex = 18;
@@ -235,7 +237,7 @@
             // 
             // btnMnuSearch
             // 
-            this.btnMnuSearch.Location = new System.Drawing.Point(376, 157);
+            this.btnMnuSearch.Location = new System.Drawing.Point(376, 164);
             this.btnMnuSearch.Name = "btnMnuSearch";
             this.btnMnuSearch.Size = new System.Drawing.Size(100, 23);
             this.btnMnuSearch.TabIndex = 19;
@@ -245,7 +247,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(493, 157);
+            this.btnClose.Location = new System.Drawing.Point(493, 164);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 23);
             this.btnClose.TabIndex = 21;
@@ -284,11 +286,29 @@
             this.FlowPanel.Size = new System.Drawing.Size(537, 448);
             this.FlowPanel.TabIndex = 25;
             // 
+            // tbxDiscountRatio
+            // 
+            this.tbxDiscountRatio.Location = new System.Drawing.Point(95, 136);
+            this.tbxDiscountRatio.Name = "tbxDiscountRatio";
+            this.tbxDiscountRatio.Size = new System.Drawing.Size(164, 21);
+            this.tbxDiscountRatio.TabIndex = 12;
+            // 
+            // 할인율
+            // 
+            this.할인율.AutoSize = true;
+            this.할인율.Location = new System.Drawing.Point(22, 140);
+            this.할인율.Name = "할인율";
+            this.할인율.Size = new System.Drawing.Size(41, 12);
+            this.할인율.TabIndex = 26;
+            this.할인율.Text = "할인율";
+            // 
             // FrmSalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 517);
+            this.Controls.Add(this.tbxDiscountRatio);
+            this.Controls.Add(this.할인율);
             this.Controls.Add(this.FlowPanel);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClear);
@@ -350,5 +370,7 @@
         private System.Windows.Forms.OpenFileDialog oFdialogPhoto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.FlowLayoutPanel FlowPanel;
+        private System.Windows.Forms.TextBox tbxDiscountRatio;
+        private System.Windows.Forms.Label 할인율;
     }
 }

@@ -12,6 +12,7 @@ namespace GoodeeWay.SaleRecords
         List<SaleRecordsVO> searchlist;
         DataTable searchRecords;
         DataColumn[] dataColoumns;
+        SaleRecordsVO saleRecords;
         public FrmSaleRecords()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace GoodeeWay.SaleRecords
 
         private void ListToGridView(List<SaleRecordsVO> saleRecords)
         {
-            foreach (var item in searchlist)
+            foreach (var item in saleRecords)
             {
                 searchRecords.Rows.Add(item.SalesNo, item.SalesDate, item.SalesitemName, item.SalesPrice, item.Discount, item.Duty,item.SalesTotal, item.PaymentPlan);
             }
@@ -57,11 +58,11 @@ namespace GoodeeWay.SaleRecords
         {
             searchlist.Clear();
             salesRecordsGView.DataSource = null;
+            searchRecords.Rows.Clear();
             if (rdoTotalSearch.Checked)
             {
-                searchlist = new SaleRecordsDAO().OutPutAllSaleRecords();
-                ListToGridView(searchlist);
-                
+                OutputAllSaleRecords();
+
             }
             else if (rdoSalesNo.Checked)
             {
@@ -74,12 +75,17 @@ namespace GoodeeWay.SaleRecords
             }
             else
             {
-                
+                TimeSpan breakingDawn = new TimeSpan(00, 00 ,01);
+                TimeSpan eclipse = new TimeSpan(23, 59 ,59);
                 DateTime periodStart = dtpPeriodStart.Value;
                 DateTime periodEnd = dtpPeriodEnd.Value;
+                periodStart =  periodStart.Date + breakingDawn;
+                periodEnd =  periodEnd.Date + eclipse;
+
                 if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
                 {
                     MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
+                    dtpPeriodStart.Value = dtpPeriodEnd.Value = DateTime.Now;
                     return;
                 }
                 else
@@ -88,6 +94,15 @@ namespace GoodeeWay.SaleRecords
                     ListToGridView(searchlist);
                 }
             }
+        }
+
+        private void OutputAllSaleRecords()
+        {
+            searchlist.Clear();
+            salesRecordsGView.DataSource = null;
+            searchRecords.Rows.Clear();
+            searchlist = new SaleRecordsDAO().OutPutAllSaleRecords();
+            ListToGridView(searchlist);
         }
 
         private bool ValidateSalesNo(string salesNo)
@@ -120,10 +135,6 @@ namespace GoodeeWay.SaleRecords
             return result;
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void rdoCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -156,6 +167,55 @@ namespace GoodeeWay.SaleRecords
                 }
             }
 
+        }
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (saleRecords == null)
+            {
+                MessageBox.Show("수정할 기록을 선택 해 주세요.");
+            }
+            else
+            {
+                FrmUpdateSaleRecords updateSaleRecords = new FrmUpdateSaleRecords(saleRecords);
+                updateSaleRecords.ShowDialog();
+                OutputAllSaleRecords();
+            }
+            
+        }
+
+        private void salesRecordsGView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                saleRecords = new SaleRecordsVO()
+                {
+                    SalesNo = int.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[0].Value.ToString()),
+                    SalesDate = DateTime.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[1].Value.ToString()),
+                    SalesitemName = salesRecordsGView.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    SalesPrice = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[3].Value.ToString()),
+                    Discount = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[4].Value.ToString()),
+                    Duty = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[5].Value.ToString()),
+                    SalesTotal = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[6].Value.ToString()),
+                    PaymentPlan = salesRecordsGView.Rows[e.RowIndex].Cells[7].Value.ToString()
+                }; 
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (saleRecords == null)
+            {
+                MessageBox.Show("삭제할 기록을 선택 해 주세요.");
+            }
+            else
+            {  
+                if (MessageBox.Show("정말로 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) != DialogResult.No)
+                {
+                    new SaleRecordsDAO().DeleteSaleRecordsbysalesNo(saleRecords.SalesNo.ToString());
+                    MessageBox.Show("삭제 성공");
+                }
+                OutputAllSaleRecords();
+            }
         }
     }
 }
