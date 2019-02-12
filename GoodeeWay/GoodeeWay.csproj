@@ -52,6 +52,41 @@
     <Compile Include="DAO\SalesMenuDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
     <Compile Include="ImageConverter.cs" />
+    <Compile Include="DAO\InventoryDAO.cs" />
+    <Compile Include="DAO\InventoryTypeDAO.cs" />
+    <Compile Include="DAO\OrderDetailsDAO.cs" />
+    <Compile Include="DAO\ReceivingDetailsDAO.cs" />
+    <Compile Include="InventoryBUS\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\Inventory.Designer.cs">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\FrmEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\FrmEquipment.Designer.cs">
+      <DependentUpon>FrmEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\EquipmentStatus.cs" />
+    <Compile Include="InventoryBUS\InventoryTypeAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\InventoryTypeAdd.Designer.cs">
+      <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryBUS\OrderDetailsAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\OrderDetailsAdd.Designer.cs">
+      <DependentUpon>OrderDetailsAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryBUS\ReceivingDetailsReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\ReceivingDetailsReturn.Designer.cs">
+      <DependentUpon>ReceivingDetailsReturn.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,16 +119,35 @@
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="VO\InventoryInventoryTypeVO.cs" />
+    <Compile Include="VO\InventoryTypeVO.cs" />
+    <Compile Include="VO\OrderDetailsVO.cs" />
+    <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
+    <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="InventoryBUS\Inventory.resx">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.Designer.cs">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
-    <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MenuRecipeVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
+    <EmbeddedResource Include="Equipment\FrmEquipment.resx">
+      <DependentUpon>FrmEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\InventoryTypeAdd.resx">
+      <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\OrderDetailsAdd.resx">
+      <DependentUpon>OrderDetailsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\ReceivingDetailsReturn.resx">
+      <DependentUpon>ReceivingDetailsReturn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +188,39 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DB\QueryInventory.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
@@ -162,6 +249,7 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <Content Include="Equipment\EquipmentSQL.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

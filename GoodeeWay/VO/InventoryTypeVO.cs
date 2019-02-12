@@ -9,7 +9,6 @@ namespace GoodeeWay.VO
     class InventoryTypeVO
     {
         private string inventoryTypeCode;
-
         public string InventoryTypeCode
         {
             get { return inventoryTypeCode; }
@@ -25,7 +24,6 @@ namespace GoodeeWay.VO
         }
 
         private string inventoryName;
-
         public string InventoryName
         {
             get { return inventoryName; }
@@ -33,13 +31,29 @@ namespace GoodeeWay.VO
         }
 
         private string materialClassification;
-
         public string MaterialClassification
         {
             get { return materialClassification; }
             set { materialClassification = value; }
         }
+        private int minimumQuantity;
+        public int MinimumQuantity
+        {
+            get { return minimumQuantity; }
+            set { minimumQuantity = value; }
+        }
 
 
+        public InventoryTypeVO(string InventoryTypeCode, string ReceivingQuantity, string InventoryName, string MaterialClassification)
+        {
+            this.inventoryTypeCode = "ST" + InventoryTypeCode;
+            this.receivingQuantity = Int32.Parse(ReceivingQuantity);
+            this.inventoryName = InventoryName;
+            this.materialClassification = MaterialClassification;
+        }
+
+        public InventoryTypeVO()
+        {
+        }
     }
 }

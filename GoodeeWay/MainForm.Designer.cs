@@ -30,11 +30,15 @@
         {
             this.btnSalesMenu = new System.Windows.Forms.Button();
             this.btnSaleRecords = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.재고ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSalesMenu
             // 
-            this.btnSalesMenu.Location = new System.Drawing.Point(12, 12);
+            this.btnSalesMenu.Location = new System.Drawing.Point(18, 47);
             this.btnSalesMenu.Name = "btnSalesMenu";
             this.btnSalesMenu.Size = new System.Drawing.Size(75, 23);
             this.btnSalesMenu.TabIndex = 0;
@@ -44,13 +48,38 @@
             // 
             // btnSaleRecords
             // 
-            this.btnSaleRecords.Location = new System.Drawing.Point(93, 12);
+            this.btnSaleRecords.Location = new System.Drawing.Point(99, 47);
             this.btnSaleRecords.Name = "btnSaleRecords";
             this.btnSaleRecords.Size = new System.Drawing.Size(75, 23);
             this.btnSaleRecords.TabIndex = 1;
             this.btnSaleRecords.Text = "판매기록관리";
             this.btnSaleRecords.UseVisualStyleBackColor = true;
             this.btnSaleRecords.Click += new System.EventHandler(this.btnSaleRecords_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.재고ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 재고ToolStripMenuItem
+            // 
+            this.재고ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.재고ToolStripMenuItem1});
+            this.재고ToolStripMenuItem.Name = "재고ToolStripMenuItem";
+            this.재고ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.재고ToolStripMenuItem.Text = "재고";
+            // 
+            // 재고ToolStripMenuItem1
+            // 
+            this.재고ToolStripMenuItem1.Name = "재고ToolStripMenuItem1";
+            this.재고ToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
+            this.재고ToolStripMenuItem1.Text = "재고";
+            this.재고ToolStripMenuItem1.Click += new System.EventHandler(this.재고ToolStripMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -59,10 +88,15 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnSaleRecords);
             this.Controls.Add(this.btnSalesMenu);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -70,6 +104,9 @@
 
         private System.Windows.Forms.Button btnSalesMenu;
         private System.Windows.Forms.Button btnSaleRecords;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem1;
     }
 }
 
