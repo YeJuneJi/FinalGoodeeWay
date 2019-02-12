@@ -275,7 +275,6 @@ namespace GoodeeWay.Sales
             salesMenuVO.Price = float.Parse(price);
             salesMenuVO.Kcal = int.Parse(kcal);
             salesMenuVO.MenuImage = image;
-            salesMenuVO.DiscountRatio = float.Parse(discountRatio);
             foreach (Division item in Enum.GetValues(typeof(Division)))
             {
                 if (item.ToString().Equals(division))
@@ -284,6 +283,7 @@ namespace GoodeeWay.Sales
                 }
             }
             salesMenuVO.AdditionalContext = addContxt;
+            salesMenuVO.DiscountRatio = float.Parse(discountRatio);
             try
             {
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
@@ -362,9 +362,9 @@ namespace GoodeeWay.Sales
         private bool ValidateType(string price, string kcal, string discountRatio)
         {
             bool result = false;
-            float fprice, fkcal;
+            float fprice, fkcal, fdiscountRatio;
 
-            if (float.TryParse(price, out fprice) && float.TryParse(kcal, out fkcal) && float.TryParse(discountRatio, out float fdiscountRatio))
+            if (float.TryParse(price, out fprice) && float.TryParse(kcal, out fkcal) && float.TryParse(discountRatio, out fdiscountRatio))
             {
                 result = true;
             }
@@ -599,7 +599,7 @@ namespace GoodeeWay.Sales
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
             bool sucessdeleteRecipe = false;
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt,discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
             {
                 SalesMenuVO salesMenuVO = new SalesMenuVO();
                 salesMenuVO.MenuCode = menuCode;
@@ -607,7 +607,6 @@ namespace GoodeeWay.Sales
                 salesMenuVO.Price = float.Parse(price);
                 salesMenuVO.Kcal = int.Parse(kcal);
                 salesMenuVO.MenuImage = image;
-                salesMenuVO.DiscountRatio = float.Parse(discountRatio);
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (item.ToString().Equals(division))
@@ -616,6 +615,7 @@ namespace GoodeeWay.Sales
                     }
                 }
                 salesMenuVO.AdditionalContext = addContxt;
+                salesMenuVO.DiscountRatio = float.Parse(discountRatio);
                 //수정전 과 수정후가 같고 그것이 샌드위치이면..
                 if (oldDivision == salesMenuVO.Division && oldDivision == 0)
                 {
@@ -642,10 +642,18 @@ namespace GoodeeWay.Sales
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
                 }
+                else if(oldDivision != 0 && salesMenuVO.Division != 0)
+                {
+                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                }
+                else
+                {
+                    MessageBox.Show("수정 실패");
+                }
 
                 ReflashData();
             }
-            if (menuUpdateSucess && sucessUpdateRecipe)
+            if ((menuUpdateSucess && sucessUpdateRecipe) || menuUpdateSucess)
             {
                 MessageBox.Show("레시피 수정 완료");
             }
@@ -658,9 +666,6 @@ namespace GoodeeWay.Sales
                 MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
             }
             else
-            {
-                MessageBox.Show("메뉴 수정 실패");
-            }
             btnClear_Click(null, null);
         }
 
