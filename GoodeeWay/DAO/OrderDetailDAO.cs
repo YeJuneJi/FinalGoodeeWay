@@ -32,6 +32,7 @@ namespace GoodeeWay.DAO
                     menuDetail.InventoryName = sdr["InventoryName"].ToString();
                     menuDetail.Division = sdr["MaterialClassification"].ToString();
                     menuDetail.MenuName = sdr["menuName"].ToString();
+                    menuDetail.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
 
                     menuDetailList.Add(menuDetail);
                 }

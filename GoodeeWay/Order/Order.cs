@@ -25,11 +25,7 @@ namespace GoodeeWay.Order
         }
 
         private void Order_Load(object sender, EventArgs e)
-        {
-            // 메뉴테이블이 짜여지면 Table에서 가져와서 선택한 메뉴 이름을 기준으로 Count ++ 
-            // -> datagridview에 추가 
-            // -> 통해서 계산            
-
+        {            
             List<Menu> menuList = new List<Menu>();
             float price = 0;
 
@@ -84,8 +80,7 @@ namespace GoodeeWay.Order
         }
 
         private void btnWon_Click(object sender, EventArgs e)
-        {
-
+        {   
             Button b = (Button)sender;
             txtPaid.Text = (double.Parse(txtPaid.Text.Replace("," , "")) + double.Parse(b.Text)).ToString();
 
@@ -115,6 +110,33 @@ namespace GoodeeWay.Order
                 txt = txt.Insert(i, ",");
             }
             txtPaid.Text = txt;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTimePicker dt = new DateTimePicker();
+            DateTimePicker dt2 = new DateTimePicker();
+            DateTime d = dt.Value;
+            DateTime d2 = dt2.Value;
+            TimeSpan tt = new TimeSpan(0, 0, 0);
+
+            d = d.Date + tt;
+
+            MessageBox.Show(d.ToLongDateString() + d.ToLongTimeString());
+
+            
+
+            //if (DateTime.Parse(d.ToLongDateString()) > DateTime.Parse(d2.ToLongDateString()))
+            //{
+            //    MessageBox.Show("앞에꺼 먼저");
+            //}
+            //else if (DateTime.Parse(d.ToLongDateString()) == DateTime.Parse(d2.ToLongDateString()))
+            //{
+            //    MessageBox.Show("같다");
+            //}else
+            //{
+            //    MessageBox.Show("뒤에꺼 먼저");
+            //}
         }
     }
 }

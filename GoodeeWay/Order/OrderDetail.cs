@@ -144,8 +144,7 @@ namespace GoodeeWay.Order
                     cb.Checked = item.Compulsory;
                     additionalGroup.Controls.Add(cb);
                 }
-            }
-            
+            }            
 
             flowLayoutPanel1.Controls.Add(breadGroup);
             flowLayoutPanel1.Controls.Add(cheeseGroup);

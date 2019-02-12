@@ -212,7 +212,5 @@ namespace GoodeeWay.Order
         {
             result = true;            
         }
-
-        
     }
 }
