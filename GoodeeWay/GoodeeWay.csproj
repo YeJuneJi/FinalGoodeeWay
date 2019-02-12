@@ -62,13 +62,20 @@
     <Compile Include="InventoryBUS\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\EquipmentDAO.cs" />
+    <Compile Include="DAO\IEquipmentDAO.cs" />
+    <Compile Include="Equipment\FrmAddEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Equipment\FrmAddEquipment.Designer.cs">
+      <DependentUpon>FrmAddEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\FrmEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Equipment\FrmEquipment.Designer.cs">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Equipment\EquipmentStatus.cs" />
     <Compile Include="InventoryBUS\InventoryTypeAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +143,10 @@
     <Compile Include="VO\MenuRecipeVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
+    <Compile Include="VO\EquipmentVO.cs" />
+    <EmbeddedResource Include="Equipment\FrmAddEquipment.resx">
+      <DependentUpon>FrmAddEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Equipment\FrmEquipment.resx">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +208,7 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -206,6 +218,7 @@
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>8</VersionMinor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -249,6 +262,7 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <Content Include="Appdata.xml" />
     <Content Include="Equipment\EquipmentSQL.sql" />
   </ItemGroup>
   <ItemGroup />

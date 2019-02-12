@@ -42,5 +42,14 @@ namespace GoodeeWay
             FrmSaleRecords saleRecords = new FrmSaleRecords();
             saleRecords.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GoodeeWay.Equipment.FrmEquipment frmEquipment = new Equipment.FrmEquipment();
+            frmEquipment.Show();
+
+            GoodeeWay.SandwichMakingBus.FrmSandwichMaking frmSandwichMaking = new SandwichMakingBus.FrmSandwichMaking();
+            frmSandwichMaking.Show();
+        }
     }
 }
