@@ -365,7 +365,8 @@ namespace GoodeeWay
         /// </summary>
         private void InventoryTableSelect()
         {
-            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();                     
+            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
+            dgvInventoryTable.AllowUserToAddRows = false;
             dgvInventoryTable.Columns["재고번호"].ReadOnly = true;                                         
             dgvInventoryTable.Columns["재고명"].ReadOnly = true;                                         
             dgvInventoryTable.Columns["재고량"].ReadOnly = true;                                         
@@ -412,6 +413,7 @@ namespace GoodeeWay
             //inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
             inventoryTypeDateTable = new InventoryTypeDAO().InventoryTypeSelect();
             dgvInventoryType.DataSource = inventoryTypeDateTable;
+            dgvInventoryType.AllowUserToAddRows = false;
             dgvInventoryType.Columns["재고종류코드"].ReadOnly = true;
             dgvInventoryType.Columns["재고합계"].ReadOnly = true;
             dgvInventoryType.Columns["재고총량"].ReadOnly = true;
