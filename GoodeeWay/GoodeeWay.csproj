@@ -47,11 +47,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\Insert_Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Insert_Salary.Designer.cs">
+      <DependentUpon>Insert_Salary.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\ResourceManagemanet.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BUS\ResourceManagemanet.Designer.cs">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Update_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Emp.Designer.cs">
+      <DependentUpon>Update_Emp.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\MenuRecipeDAO.cs" />
     <Compile Include="DAO\SaleRecordsDAO.cs" />
@@ -186,6 +198,12 @@
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\Insert_Salary.resx">
+      <DependentUpon>Insert_Salary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Update_Emp.resx">
+      <DependentUpon>Update_Emp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>

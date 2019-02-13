@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,7 +41,7 @@ namespace GoodeeWay.BUS
                     //{
                     var emp = new EmpVO()
                     {
-                        Empno = txtNum.Text,
+                        //Empno = txtNum.Text,
                         Name = txtName.Text,
                         Job = cbJob.Text, //Job = txtJob.Text,
                         Pay = float.Parse(txtSalary.Text),
@@ -79,7 +80,7 @@ namespace GoodeeWay.BUS
         {
             bool result = false;
 
-            if (!(string.IsNullOrEmpty(txtNum.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text)))
+            if (!(string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text)))
             {
                 result = true;
             }
@@ -88,6 +89,57 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("필수입력란을 모두 입력해주세요");
             }
             return result;
+        }
+
+        private void txtSalary_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("시급은 숫자만 입력가능합니다");
+                txtSalary.Text = "";
+            }
+        }
+
+        private void cbBank_Leave(object sender, EventArgs e)
+        {
+            bool b = true;
+
+            for (int i = 0; i < cbBank.Items.Count; i++)
+            {
+                if ((cbBank.Items[i].ToString() == cbBank.Text)) // 콤보에 있으면
+                {
+                    b = false;
+                }
+            }
+
+            if (b)
+            {
+                MessageBox.Show(cbBank.Text + "는 존재하지 않는 은행명입니다");
+                cbBank.Text = "";
+            }
+        }
+
+        private void cbJob_Leave(object sender, EventArgs e)
+        {
+            if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장" || cbJob.Text == ""))
+            {
+                MessageBox.Show(cbJob.Text + "는 존재하지 않는 직급입니다");
+                cbJob.Text = "";
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (!(txtEmail.Text == ""))
+            {
+                bool emailCheck = Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+                if (!(emailCheck))
+                {
+                    MessageBox.Show("올바르지 않은 이메일 주소입니다");
+                    txtEmail.Text = "";
+                }
+            }
         }
     }
 }

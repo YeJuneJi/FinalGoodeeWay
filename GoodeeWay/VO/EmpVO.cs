@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class EmpVO
+   public class EmpVO
     {
         private string empno;
 
@@ -38,8 +38,6 @@ namespace GoodeeWay.VO
             get { return pay; }
             set { pay = value; }
         }
-
-
 
         private string department;
 

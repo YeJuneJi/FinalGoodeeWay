@@ -19,7 +19,7 @@ namespace GoodeeWay.BUS
     {
         List<EmpVO> lst;
         EmpVO emp = new EmpVO();
-        
+
         public Employee()
         {
             InitializeComponent();
@@ -60,19 +60,20 @@ namespace GoodeeWay.BUS
 
                 throw;
             }
-            
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Emp ie = new Insert_Emp();
-            ie.FormClosed += new FormClosedEventHandler(newForm_FormClosed);
+            ie.FormClosed += new FormClosedEventHandler(newForm_FormClosed); // 닫으면 폼이 새로고침됨
             ie.Show();
         }
 
         private void newForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Employee_Load(null, null);
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -95,12 +96,12 @@ namespace GoodeeWay.BUS
 
         private void txtSalary_TextChanged(object sender, EventArgs e) // 시급은 숫자만 입력 가능하게 하기
         {
-            string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
-            if (str.Length > 0)
-            {
-                MessageBox.Show("시급은 숫자만 입력가능합니다");
-                txtSalary.Text = "";
-            }
+            //string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
+            //if (str.Length > 0)
+            //{
+            //    MessageBox.Show("시급은 숫자만 입력가능합니다");
+            //    txtSalary.Text = "";
+            //}
 
         }
 
@@ -122,42 +123,15 @@ namespace GoodeeWay.BUS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (check())
-                {
-                    string sp = "proc_emp_update";
-                    SqlParameter[] sqlParameters = new SqlParameter[12];
-                    sqlParameters[0] = new SqlParameter("empno", txtNum.Text);
-                    sqlParameters[1] = new SqlParameter("job", cbJob.Text);
-                    sqlParameters[2] = new SqlParameter("Pay", txtSalary.Text);
-                    sqlParameters[3] = new SqlParameter("name", txtName.Text);
-                    sqlParameters[4] = new SqlParameter("Department", txtDepartment.Text);
-                    sqlParameters[5] = new SqlParameter("Mobile", txtPhone.Text);
-                    sqlParameters[6] = new SqlParameter("JoinDate", dtpJoin.Value);
-                    sqlParameters[7] = new SqlParameter("LeaveDate", dtpLeave.Value);
-                    sqlParameters[8] = new SqlParameter("BankAccountNo", txtBankAccountNo.Text);
-                    sqlParameters[9] = new SqlParameter("Bank", cbBank.Text);
-                    sqlParameters[10] = new SqlParameter("Email", txtEmail.Text);
-                    sqlParameters[11] = new SqlParameter("Note", txtNote.Text);
+            MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
 
-                    new DBConnection().Update(sp, sqlParameters);
 
-                    MessageBox.Show("수정 성공");
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("수정 실패");
-            }
-
-            Employee_Load(null, null);
         }
         /// <summary>
         /// 필수입력란 bool로 확인
         /// </summary>
         /// <returns>결과값</returns>
-        private bool check()
+        public bool check()
         {
             bool result = false;
 
@@ -179,30 +153,30 @@ namespace GoodeeWay.BUS
 
         private void txtEmail_Leave(object sender, EventArgs e)// 이메일 유효성 검사
         {
-            if (!(txtEmail.Text == ""))
-            {
-                bool emailCheck = Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
-                if (!(emailCheck))
-                {
-                    MessageBox.Show("올바르지 않은 이메일 주소입니다");
-                    txtEmail.Text = "";
-                }
-            }
+            //if (!(txtEmail.Text == ""))
+            //{
+            //    bool emailCheck = Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+            //    if (!(emailCheck))
+            //    {
+            //        MessageBox.Show("올바르지 않은 이메일 주소입니다");
+            //        txtEmail.Text = "";
+            //    }
+            //}
         }
 
         private void cbJob_Leave(object sender, EventArgs e)//직급 유효성 검사
         {
-            if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장"))
-            {
-                MessageBox.Show("존재하지 않는 직급입니다");
-                cbJob.Text = "";
-            }
+            //if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장"))
+            //{
+            //    MessageBox.Show("존재하지 않는 직급입니다");
+            //    cbJob.Text = "";
+            //}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("정말 삭제하시겠습니까?", "",btn);
+            DialogResult result = MessageBox.Show("정말 삭제하시겠습니까?", "", btn);
             if (result == DialogResult.Yes)
             {
                 try
@@ -238,8 +212,8 @@ namespace GoodeeWay.BUS
                 string sp = "proc_emp_select";
                 SqlParameter[] sqlParameters = new SqlParameter[1];
                 sqlParameters[0] = new SqlParameter("name", txtSearch.Text);
-              
-                SqlDataReader sr= new DBConnection().Select(sp, sqlParameters);
+
+                SqlDataReader sr = new DBConnection().Select(sp, sqlParameters);
 
                 while (sr.Read())
                 {
@@ -270,6 +244,20 @@ namespace GoodeeWay.BUS
             {
                 btnSearch_Click(null, null);
             }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            EmpVO tempVO = new EmpVO()
+            {
+                Empno = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()
+            };
+            // Update_Emp ue = new Update_Emp(tempVO);
+            Update_Emp ue = new Update_Emp();
+            ue.bo.Empno = tempVO.Empno;
+            ue.FormClosed += new FormClosedEventHandler(newForm_FormClosed);
+            ue.Show();
+            //ue.FormClosing += new FormClosingEventHandler(show_some);
         }
     }
 }
