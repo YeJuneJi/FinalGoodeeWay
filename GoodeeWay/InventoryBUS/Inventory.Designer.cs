@@ -44,6 +44,7 @@
             this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
             this.dgvReceivingDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnRelease = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnInventoryTypeAdd = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.btnOrderDisplay = new System.Windows.Forms.Button();
             this.dgvNeedInventoryDetailView = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnRelease = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).BeginInit();
@@ -217,6 +217,16 @@
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // btnRelease
+            // 
+            this.btnRelease.Location = new System.Drawing.Point(969, 9);
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(75, 23);
+            this.btnRelease.TabIndex = 15;
+            this.btnRelease.Text = "출고";
+            this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
+            // 
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(399, 9);
@@ -291,6 +301,7 @@
             this.dgvInventoryTable.Location = new System.Drawing.Point(529, 35);
             this.dgvInventoryTable.MultiSelect = false;
             this.dgvInventoryTable.Name = "dgvInventoryTable";
+            this.dgvInventoryTable.ReadOnly = true;
             this.dgvInventoryTable.RowTemplate.Height = 23;
             this.dgvInventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventoryTable.Size = new System.Drawing.Size(596, 589);
@@ -460,16 +471,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnRelease
-            // 
-            this.btnRelease.Location = new System.Drawing.Point(969, 9);
-            this.btnRelease.Name = "btnRelease";
-            this.btnRelease.Size = new System.Drawing.Size(75, 23);
-            this.btnRelease.TabIndex = 15;
-            this.btnRelease.Text = "출고";
-            this.btnRelease.UseVisualStyleBackColor = true;
-            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
             // inventory
             // 

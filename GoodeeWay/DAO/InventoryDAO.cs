@@ -75,7 +75,7 @@ namespace GoodeeWay.DAO
             inventoryDataTable.Columns.Add("재고번호", typeof(string));
             inventoryDataTable.Columns.Add("재고명", typeof(string));
             inventoryDataTable.Columns.Add("재고량", typeof(int));
-            inventoryDataTable.Columns.Add("출고량", typeof(int));
+            inventoryDataTable.Columns.Add("남은수량", typeof(int));
             inventoryDataTable.Columns.Add("사용날짜", typeof(string));
             inventoryDataTable.Columns.Add("유통기한", typeof(string));
             inventoryDataTable.Columns.Add("입고번호", typeof(string));
@@ -103,7 +103,7 @@ namespace GoodeeWay.DAO
                 row["재고번호"] = dr["InventoryID"].ToString();
                 row["재고명"] = dr["InventoryName"].ToString();
                 row["재고량"] = Int32.Parse(dr["InventoryQuantity"].ToString());
-                row["출고량"] = 0;
+                row["남은수량"] = 0;
                 row["사용날짜"] = dr["DateOfUse"].ToString();
                 row["유통기한"] = dr["DateOfDisposal"].ToString();
                 row["입고번호"] = dr["ReceivingDetailsID"].ToString();

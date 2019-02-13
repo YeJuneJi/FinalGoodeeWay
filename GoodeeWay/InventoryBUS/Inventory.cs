@@ -367,15 +367,7 @@ namespace GoodeeWay
         {
             dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
             dgvInventoryTable.AllowUserToAddRows = false;
-            dgvInventoryTable.Columns["재고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고명"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고량"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].ReadOnly = false;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["유통기한"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["입고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].HeaderText = "출고량*";                                 
+                                           
         }                                                                                                 
         #endregion                                                                                        
                                                                                                           
