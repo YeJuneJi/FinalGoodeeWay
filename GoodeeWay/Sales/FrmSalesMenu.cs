@@ -36,7 +36,7 @@ namespace GoodeeWay.Sales
 
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
-            FlowPanel.BorderStyle = BorderStyle.FixedSingle;
+            FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
@@ -54,11 +54,13 @@ namespace GoodeeWay.Sales
                 cbxDivision.Items.Add(item);
             }
 
+            //InventoryTypeDAO에 정의되어있는 InventoryTypeSelect() 메서드를호출하여 
+            //InventoryType테이블의 데이터를Datatable에 저장한다.
             inventoryTypeTable = new InventoryTypeDAO().InventoryTypeSelect();
-
-            foreach (DataRow item in inventoryTypeTable.Rows)
+            foreach (DataRow item in inventoryTypeTable.Rows)//데이터 테이블의 로우의만큼 반복하며
             {
-                inventoryTypeList.Add(new InventoryTypeVO()
+                
+                inventoryTypeList.Add(new InventoryTypeVO()//inventoryTypeList에 저장한다.
                 {
                     InventoryName = item[1].ToString(),
                     InventoryTypeCode = item[0].ToString(),
@@ -71,6 +73,7 @@ namespace GoodeeWay.Sales
 
         private void btnMnuInsert_Click(object sender, EventArgs e)
         {
+            //메뉴를 등록하기 이전 유효성 검사를 하기위해 컨트롤들의 내용의 공백을 제거하거나 이미지를 지정한다..
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -79,37 +82,45 @@ namespace GoodeeWay.Sales
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
             Image image = pbxPhoto.Image;
-            bool sucessRecipe = false;
-            bool sucessMenu = false;
 
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
+            
+            bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
+            
+            bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
+
+            
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
             {
+                //만약 선택된 분류가 샌드위치가 아니라면
                 if (cbxDivision.SelectedIndex != 0)
                 {
+                    //메뉴를 등록하고 메뉴등록 성공여부를 반환한다.
                     sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
                 }
+                //만약 선택된 분류가 샌드위치라면
                 else
                 {
+                    //메뉴를 등록하고 메뉴 등록성공여부를 반환 후
                     sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
                     if (!sucessMenu)
                     {
                         return;
                     }
+                    //그 메뉴코드에 해당하는 레시피들을 등록하고 레시피 등록 성공 여부를 반환한다.
                     sucessRecipe = InsertingRecipe(menuCode, sucessRecipe);
                 }
-                btnClear_Click(null, null);
+                btnClear_Click(null, null);//모든 컨트롤 내용 초기화.
             }
 
-
-            if (sucessMenu && !sucessRecipe)
+            if (sucessMenu && !sucessRecipe) //만약 메뉴만 등록되었다면
             {
                 MessageBox.Show("저장 성공!");
             }
-            else if (sucessMenu && sucessRecipe)
+            else if (sucessMenu && sucessRecipe) //메뉴와 레시피가 모두 등록 되었다면.
             {
                 MessageBox.Show("저장 성공!(기본 레시피 저장 포함)");
             }
-            ReflashData();
+            ReflashData(); //데이터 그리드 뷰 새로고침
         }
 
         private void btnPhoto_Click(object sender, EventArgs e)
@@ -122,14 +133,14 @@ namespace GoodeeWay.Sales
 
         private void cbxDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxDivision.SelectedIndex != 0)
+            if (cbxDivision.SelectedIndex != 0)//만약 샌드위치가 아니라면 
             {
-                this.Size = new Size(757, 556);
+                this.Size = new Size(757, 556); //사이즈 변경 없음.
             }
             else
             {
                 FlowPanel.Controls.Clear();
-                this.Size = new Size(1280, 556);
+                this.Size = new Size(1280, 556); //사이즈를 변경하고
                 breadPanel = new FlowLayoutPanel();
                 cheesePanel = new FlowLayoutPanel();
                 vegetablePanel = new FlowLayoutPanel();
@@ -140,7 +151,7 @@ namespace GoodeeWay.Sales
                 breadPanel.AutoSize = cheesePanel.AutoSize = vegetablePanel.AutoSize = saucePanel.AutoSize = toppingPanel.AutoSize = additionalPanel.AutoSize = true;
                 breadPanel.BorderStyle = cheesePanel.BorderStyle = vegetablePanel.BorderStyle = saucePanel.BorderStyle = toppingPanel.BorderStyle = additionalPanel.BorderStyle = BorderStyle.FixedSingle;
 
-
+                //라벨 동적 생성
                 Label lblBread = new Label();
                 lblBread.Text = "빵";
 
@@ -159,16 +170,20 @@ namespace GoodeeWay.Sales
                 Label lbladd = new Label();
                 lbladd.Text = "부가";
 
+                //라벨의 형식을 지정
                 NameLabelFormatter(lblBread, lblcheese, lblvege, lblsause, lbltopping, lbladd);
+
+                //라벨들을 각각의 판넬의 컨트롤에 추가
                 breadPanel.Controls.Add(lblBread);
                 cheesePanel.Controls.Add(lblcheese);
                 vegetablePanel.Controls.Add(lblvege);
                 saucePanel.Controls.Add(lblsause);
                 toppingPanel.Controls.Add(lbltopping);
                 additionalPanel.Controls.Add(lbladd);
-                foreach (InventoryTypeVO inventoryType in inventoryTypeList)
+                
+                foreach (InventoryTypeVO inventoryType in inventoryTypeList)//inventoryTypeList를 반복하며
                 {
-                    if (inventoryType.MaterialClassification == "Bread")
+                    if (inventoryType.MaterialClassification == "Bread") //만약 재료 구분이 Bread라면
                     {
                         //라디오버튼
                         RadioButton radioBread = new RadioButton();
@@ -262,10 +277,9 @@ namespace GoodeeWay.Sales
                         additionalPanel.Controls.AddRange(new Control[] { cbxAdd, labelAdd, nmrUpDownAdd });
                     }
                 }
-                (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true;
-                (breadPanel.Controls[3] as NumericUpDown).Enabled = (cheesePanel.Controls[3] as NumericUpDown).Enabled = true;
-                FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });
-                
+                (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true; // 패널의 라디오버튼의 첫번째 체크 여부를 true로 초기화
+                (breadPanel.Controls[3] as NumericUpDown).Enabled = (cheesePanel.Controls[3] as NumericUpDown).Enabled = true; //패널의 뉴메릭업다운의 첫번째 Enable를 true 로 초기화
+                FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });//동적으로 생성된 패널들을 FlowPanel의 컨트롤에 추가
             }
         }
 

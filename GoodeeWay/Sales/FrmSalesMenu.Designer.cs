@@ -366,6 +366,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.salesMenuGView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmSalesMenu";
             this.Text = "Sales";
             this.Load += new System.EventHandler(this.FrmSalesMenu_Load);
