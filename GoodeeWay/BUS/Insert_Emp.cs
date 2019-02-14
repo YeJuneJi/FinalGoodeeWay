@@ -41,16 +41,14 @@ namespace GoodeeWay.BUS
                     //{
                     var emp = new EmpVO()
                     {
-                        //Empno = txtNum.Text,
                         Name = txtName.Text,
-                        Job = cbJob.Text, //Job = txtJob.Text,
+                        Job = cbJob.Text,
                         Pay = float.Parse(txtSalary.Text),
                         Department = txtDepartment.Text,
                         Mobile = txtPhone.Text,
                         JoinDate = dtpJoin.Value,
-                        //LeaveDate = dtpLeave.Value,
                         BankAccountNo = txtBankAccountNo.Text,
-                        Bank = cbBank.Text, // txtBank.Text,
+                        Bank = cbBank.Text,
                         Email = txtEmail.Text,
                         Note = txtNote.Text
                     };
@@ -73,9 +71,7 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("오류" + ex);
             }
         }
-
         
-
         private bool check()
         {
             bool result = false;
@@ -140,6 +136,20 @@ namespace GoodeeWay.BUS
                     txtEmail.Text = "";
                 }
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            cbBank.Text = "";
+            txtBankAccountNo.Text = "";
+            txtDepartment.Text = "";
+            txtEmail.Text = "";
+            cbJob.Text = "";
+            txtNote.Text = "";
+            txtPhone.Text = "";
+            txtSalary.Text = "";
+            dtpJoin.Text = "";
         }
     }
 }

@@ -29,37 +29,37 @@ namespace GoodeeWay.BUS
         {
             lst = new EmpDAO().OutputAllBoard();
             this.dataGridView1.DataSource = lst;
+            lblTotalCount.Text = "현재 인원: "+dataGridView1.RowCount.ToString() + "명";
+            //try
+            //{
+            //    var t = Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString().Substring(3)) + 1;
+            //    switch (t / 10)
+            //    {
+            //        case 0:
+            //            txtNum.Text = "EMP00000" + t.ToString();
+            //            break;
+            //        case 1:
+            //            txtNum.Text = "EMP0000" + t.ToString();
+            //            break;
+            //        case 10:
+            //            txtNum.Text = "EMP000" + t.ToString();
+            //            break;
+            //        case 100:
+            //            txtNum.Text = "EMP00" + t.ToString();
+            //            break;
+            //        case 1000:
+            //            txtNum.Text = "EMP0" + t.ToString();
+            //            break;
+            //        case 10000:
+            //            txtNum.Text = "EMP" + t.ToString();
+            //            break;
+            //    }
+            //}
+            //catch (Exception)
+            //{
 
-            try
-            {
-                var t = Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString().Substring(3)) + 1;
-                switch (t / 10)
-                {
-                    case 0:
-                        txtNum.Text = "EMP00000" + t.ToString();
-                        break;
-                    case 1:
-                        txtNum.Text = "EMP0000" + t.ToString();
-                        break;
-                    case 10:
-                        txtNum.Text = "EMP000" + t.ToString();
-                        break;
-                    case 100:
-                        txtNum.Text = "EMP00" + t.ToString();
-                        break;
-                    case 1000:
-                        txtNum.Text = "EMP0" + t.ToString();
-                        break;
-                    case 10000:
-                        txtNum.Text = "EMP" + t.ToString();
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            //    throw;
+            //}
 
         }
 
@@ -73,7 +73,6 @@ namespace GoodeeWay.BUS
         private void newForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Employee_Load(null, null);
-
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -124,14 +123,12 @@ namespace GoodeeWay.BUS
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
-
-
         }
         /// <summary>
         /// 필수입력란 bool로 확인
         /// </summary>
         /// <returns>결과값</returns>
-        public bool check()
+        private bool check()
         {
             bool result = false;
 
@@ -175,8 +172,8 @@ namespace GoodeeWay.BUS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            MessageBoxButtons btn = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("정말 삭제하시겠습니까?", "", btn);
+            DialogResult result = MessageBox.Show("'" + dataGridView1.SelectedCells[1].Value + "' 직원을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None,MessageBoxDefaultButton.Button2);
+
             if (result == DialogResult.Yes)
             {
                 try
@@ -250,14 +247,42 @@ namespace GoodeeWay.BUS
         {
             EmpVO tempVO = new EmpVO()
             {
-                Empno = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()
+                Empno = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                Job = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                Pay = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString()),
+                Department = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                Mobile = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString(),
+                JoinDate = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()),
+                LeaveDate = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString()),
+                BankAccountNo = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString(),
+                Bank = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString(),
+                Email = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString(),
+                Note = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString(),
             };
-            // Update_Emp ue = new Update_Emp(tempVO);
+
             Update_Emp ue = new Update_Emp();
             ue.bo.Empno = tempVO.Empno;
+            ue.bo.Name = tempVO.Name;
+            ue.bo.Job = tempVO.Job;
+            ue.bo.Pay = tempVO.Pay;
+            ue.bo.Department = tempVO.Department;
+            ue.bo.Mobile = tempVO.Mobile;
+            ue.bo.JoinDate = tempVO.JoinDate;
+            ue.bo.LeaveDate = tempVO.LeaveDate;
+            ue.bo.BankAccountNo = tempVO.BankAccountNo;
+            ue.bo.Bank = tempVO.Bank;
+            ue.bo.Email = tempVO.Email;
+            ue.bo.Note = tempVO.Note;
+
             ue.FormClosed += new FormClosedEventHandler(newForm_FormClosed);
             ue.Show();
-            //ue.FormClosing += new FormClosingEventHandler(show_some);
+        }
+
+        private void btnSalary_Click(object sender, EventArgs e)
+        {
+            Salary s = new Salary();
+            s.Show();
         }
     }
 }

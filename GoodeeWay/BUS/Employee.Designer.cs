@@ -65,6 +65,7 @@
             this.btnExcel = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblTotalCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,7 +139,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(111, 53);
             this.btnClear.TabIndex = 65;
-            this.btnClear.Text = "내용 초기화";
+            this.btnClear.Text = "새로고침";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -392,6 +393,7 @@
             this.btnSalary.TabIndex = 93;
             this.btnSalary.Text = "월 급여 대장";
             this.btnSalary.UseVisualStyleBackColor = true;
+            this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
             // 
             // btnAttendance
             // 
@@ -451,11 +453,20 @@
             this.label1.TabIndex = 99;
             this.label1.Text = "직원검색";
             // 
+            // lblTotalCount
+            // 
+            this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.Location = new System.Drawing.Point(1188, 424);
+            this.lblTotalCount.Name = "lblTotalCount";
+            this.lblTotalCount.Size = new System.Drawing.Size(0, 12);
+            this.lblTotalCount.TabIndex = 100;
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1288, 832);
+            this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExcel);
@@ -540,5 +551,6 @@
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotalCount;
     }
 }

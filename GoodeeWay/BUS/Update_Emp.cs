@@ -15,7 +15,6 @@ namespace GoodeeWay.BUS
 {
     public partial class Update_Emp : Form
     {
-        Employee emp = new Employee();
        public EmpVO bo = new EmpVO();
 
         public Update_Emp()
@@ -30,10 +29,19 @@ namespace GoodeeWay.BUS
 
         private void Update_Emp_Load(object sender, EventArgs e)
         {
-
-            //List<EmpVO> ev = new List<EmpVO>();
-            //txtName.Text = ev[1].Name;
-
+            txtNum.Text = bo.Empno;
+            txtName.Text = bo.Name;
+            cbJob.Text = bo.Job;
+            txtSalary.Text = bo.Pay.ToString();
+            txtDepartment.Text = bo.Department;
+            txtPhone.Text = bo.Mobile;
+            dtpJoin.Text = bo.JoinDate.ToString();
+            dtpLeave.Text = bo.LeaveDate.ToString();
+            txtBankAccountNo.Text = bo.BankAccountNo;
+            cbBank.Text = bo.Bank;
+            txtEmail.Text = bo.Email;
+            txtNote.Text = bo.Note;
+            
             //txtNum.Text = emp.dataGridView1.SelectedCells[0].Value.ToString();
             //txtName.Text = emp.dataGridView1.SelectedCells[1].Value.ToString();
             //cbJob.Text = emp.dataGridView1.SelectedCells[2].Value.ToString();
@@ -46,9 +54,6 @@ namespace GoodeeWay.BUS
             //cbBank.Text = emp.dataGridView1.SelectedCells[9].Value.ToString();
             //txtEmail.Text = emp.dataGridView1.SelectedCells[10].Value.ToString();
             //txtNote.Text = emp.dataGridView1.SelectedCells[11].Value.ToString();
-
-            txtNum.Text = bo.Empno;
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -60,7 +65,7 @@ namespace GoodeeWay.BUS
         {
             try
             {
-                if (emp.check())
+                if (check())
                 {
                     string sp = "proc_emp_update";
                     SqlParameter[] sqlParameters = new SqlParameter[12];
@@ -86,8 +91,21 @@ namespace GoodeeWay.BUS
             {
                 MessageBox.Show("수정 실패");
             }
+        }
 
-            //Employee_Load(null, null);
+        private bool check()
+        {
+            bool result = false;
+
+            if (!(string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text)))
+            {
+                result = true;
+            }
+            else
+            {
+                MessageBox.Show("필수입력란을 모두 입력해주세요");
+            }
+            return result;
         }
     }
 }

@@ -92,16 +92,16 @@
             "우체국",
             "하나",
             "신한"});
-            this.cbBank.Location = new System.Drawing.Point(56, 122);
+            this.cbBank.Location = new System.Drawing.Point(56, 119);
             this.cbBank.Name = "cbBank";
-            this.cbBank.Size = new System.Drawing.Size(73, 20);
+            this.cbBank.Size = new System.Drawing.Size(100, 20);
             this.cbBank.TabIndex = 116;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label14.Location = new System.Drawing.Point(367, 122);
+            this.label14.Location = new System.Drawing.Point(21, 205);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(197, 16);
             this.label14.TabIndex = 115;
@@ -149,11 +149,10 @@
             // 
             // dtpLeave
             // 
-            this.dtpLeave.Enabled = false;
             this.dtpLeave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.dtpLeave.Location = new System.Drawing.Point(404, 53);
             this.dtpLeave.Name = "dtpLeave";
-            this.dtpLeave.Size = new System.Drawing.Size(123, 21);
+            this.dtpLeave.Size = new System.Drawing.Size(177, 21);
             this.dtpLeave.TabIndex = 113;
             // 
             // dtpJoin
@@ -161,16 +160,16 @@
             this.dtpJoin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.dtpJoin.Location = new System.Drawing.Point(404, 19);
             this.dtpJoin.Name = "dtpJoin";
-            this.dtpJoin.Size = new System.Drawing.Size(123, 21);
+            this.dtpJoin.Size = new System.Drawing.Size(177, 21);
             this.dtpJoin.TabIndex = 112;
             // 
             // txtNote
             // 
             this.txtNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtNote.Location = new System.Drawing.Point(573, 19);
+            this.txtNote.Location = new System.Drawing.Point(56, 148);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(117, 49);
+            this.txtNote.Size = new System.Drawing.Size(525, 40);
             this.txtNote.TabIndex = 111;
             // 
             // txtEmail
@@ -178,15 +177,15 @@
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.txtEmail.Location = new System.Drawing.Point(404, 85);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(123, 21);
+            this.txtEmail.Size = new System.Drawing.Size(177, 21);
             this.txtEmail.TabIndex = 110;
             // 
             // txtBankAccountNo
             // 
             this.txtBankAccountNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtBankAccountNo.Location = new System.Drawing.Point(194, 119);
+            this.txtBankAccountNo.Location = new System.Drawing.Point(225, 119);
             this.txtBankAccountNo.Name = "txtBankAccountNo";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(167, 21);
+            this.txtBankAccountNo.Size = new System.Drawing.Size(275, 21);
             this.txtBankAccountNo.TabIndex = 109;
             // 
             // txtSalary
@@ -234,7 +233,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label10.Location = new System.Drawing.Point(538, 22);
+            this.label10.Location = new System.Drawing.Point(21, 151);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 15);
             this.label10.TabIndex = 103;
@@ -254,7 +253,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label12.Location = new System.Drawing.Point(132, 122);
+            this.label12.Location = new System.Drawing.Point(163, 122);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 15);
             this.label12.TabIndex = 101;
@@ -313,7 +312,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(717, 156);
+            this.button2.Location = new System.Drawing.Point(506, 197);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 32);
             this.button2.TabIndex = 121;
@@ -324,7 +323,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(636, 156);
+            this.button1.Location = new System.Drawing.Point(425, 197);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 120;
@@ -336,7 +335,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 200);
+            this.ClientSize = new System.Drawing.Size(604, 238);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cbJob);
