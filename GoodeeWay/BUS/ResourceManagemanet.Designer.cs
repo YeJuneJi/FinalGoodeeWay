@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             this.btnEquipment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -41,14 +42,20 @@
             this.btnEquipment.UseVisualStyleBackColor = true;
             this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
             // 
+
+            this.SuspendLayout();
+            // 
+
             // ResourceManagemanet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+
             this.Controls.Add(this.btnEquipment);
             this.Name = "ResourceManagemanet";
             this.Text = "ResourceManagemanet";
+            this.Name = "ResourceManagemanet";
             this.ResumeLayout(false);
 
         }
