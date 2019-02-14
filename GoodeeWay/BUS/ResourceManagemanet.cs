@@ -16,5 +16,11 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
+
+        private void btnEquipment_Click(object sender, EventArgs e)
+        {
+            FrmUsingOfEquipment frmUsingOfEquipment = new FrmUsingOfEquipment();
+            frmUsingOfEquipment.Show();
+        }
     }
 }

@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnEquipment = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnEquipment
+            // 
+            this.btnEquipment.Location = new System.Drawing.Point(58, 105);
+            this.btnEquipment.Name = "btnEquipment";
+            this.btnEquipment.Size = new System.Drawing.Size(75, 23);
+            this.btnEquipment.TabIndex = 0;
+            this.btnEquipment.Text = "비품";
+            this.btnEquipment.UseVisualStyleBackColor = true;
+            this.btnEquipment.Click += new System.EventHandler(this.btnEquipment_Click);
+            // 
+            // ResourceManagemanet
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEquipment);
+            this.Name = "ResourceManagemanet";
             this.Text = "ResourceManagemanet";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnEquipment;
     }
 }

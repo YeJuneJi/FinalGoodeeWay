@@ -43,9 +43,9 @@ namespace GoodeeWay.VO
             get { return purchasePrice; }
             set { purchasePrice = value; }
         }
-        private DateTime? purchaseDate;
+        private DateTime purchaseDate;
 
-        public DateTime? PurchaseDate
+        public DateTime PurchaseDate
         {
             get { return purchaseDate; }
             set { purchaseDate = value; }

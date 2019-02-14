@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\FrmUsingOfEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\FrmUsingOfEquipment.Designer.cs">
+      <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\ResourceManagemanet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +193,12 @@
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\FrmUsingOfEquipment.resx">
+      <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
+      <DependentUpon>ResourceManagemanet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
