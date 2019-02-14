@@ -380,8 +380,7 @@ namespace GoodeeWay
             InventoryUseDetails inventoryUseDetails = new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString());
             inventoryUseDetails.ShowDialog();
             InventoryTableSelect();
-
-
+            InventoryTypeSelect();
         }
         #endregion
 
@@ -477,7 +476,7 @@ namespace GoodeeWay
             InventoryTypeSelect();
 
         }
-        #endregion                                                                                          "재고종류코드"
+        #endregion                                                                                          
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>

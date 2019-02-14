@@ -19,7 +19,7 @@ namespace GoodeeWay.DAO
         public void InventoryInsert(List<ReceivingDetailsVO> receivingDetailsList)
         {
             SqlParameter[] ReceivingDetailsParameters = new SqlParameter[7];
-            SqlParameter[] InventoryParameters = new SqlParameter[4];
+            SqlParameter[] InventoryParameters = new SqlParameter[5];
 
             foreach (var item in receivingDetailsList)
             {
@@ -48,6 +48,7 @@ namespace GoodeeWay.DAO
                     InventoryParameters[1] = new SqlParameter("DateOfDisposal", item.ExpirationDate);
                     InventoryParameters[2] = new SqlParameter("ReceivingDetailsID", item.ReceivingDetailsID);
                     InventoryParameters[3] = new SqlParameter("InventoryTypeCode", item.InventoryTypeCode);
+                    InventoryParameters[4] = new SqlParameter("RemainingQuantity", item.Quantity);
                     #endregion
                     new DBConnection().Insert("InsertInventory", InventoryParameters);
 
