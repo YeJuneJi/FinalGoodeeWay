@@ -63,7 +63,14 @@ namespace GoodeeWay.BUS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (!(dtpLeave.Text == "1900-01-01") && dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
+            {
+                DateTime temp = dtpLeave.Value;
+                dtpLeave.Value = dtpJoin.Value;
+                dtpJoin.Value = temp;
+                MessageBox.Show("퇴사일이 입사일보다 빨라 치환되었습니다.");
+            }
+                try
             {
                 if (check())
                 {
@@ -75,8 +82,8 @@ namespace GoodeeWay.BUS
                     sqlParameters[3] = new SqlParameter("name", txtName.Text);
                     sqlParameters[4] = new SqlParameter("Department", txtDepartment.Text);
                     sqlParameters[5] = new SqlParameter("Mobile", txtPhone.Text);
-                    sqlParameters[6] = new SqlParameter("JoinDate", dtpJoin.Value);
-                    sqlParameters[7] = new SqlParameter("LeaveDate", dtpLeave.Value);
+                    sqlParameters[6] = new SqlParameter("JoinDate", DateTime.Parse(dtpJoin.Text));
+                    sqlParameters[7] = new SqlParameter("LeaveDate", DateTime.Parse(dtpLeave.Text));
                     sqlParameters[8] = new SqlParameter("BankAccountNo", txtBankAccountNo.Text);
                     sqlParameters[9] = new SqlParameter("Bank", cbBank.Text);
                     sqlParameters[10] = new SqlParameter("Email", txtEmail.Text);
@@ -92,7 +99,10 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("수정 실패");
             }
         }
-
+        /// <summary>
+        /// 필수입력란 bool로 확인
+        /// </summary>
+        /// <returns>결과값</returns>
         private bool check()
         {
             bool result = false;

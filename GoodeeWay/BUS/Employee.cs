@@ -77,70 +77,22 @@ namespace GoodeeWay.BUS
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            txtNum.Text = "";
-            txtName.Text = "";
-            cbBank.Text = "";
-            txtBankAccountNo.Text = "";
-            txtDepartment.Text = "";
-            txtEmail.Text = "";
-            cbJob.Text = "";
-            txtNote.Text = "";
-            txtPhone.Text = "";
-            txtSalary.Text = "";
-            dtpJoin.Text = "";
-            dtpLeave.Text = "";
-
             Employee_Load(null, null);
         }
 
         private void txtSalary_TextChanged(object sender, EventArgs e) // 시급은 숫자만 입력 가능하게 하기
         {
-            //string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
-            //if (str.Length > 0)
-            //{
-            //    MessageBox.Show("시급은 숫자만 입력가능합니다");
-            //    txtSalary.Text = "";
-            //}
 
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtNum.Text = dataGridView1.SelectedCells[0].Value.ToString();
-            txtName.Text = dataGridView1.SelectedCells[1].Value.ToString();
-            cbJob.Text = dataGridView1.SelectedCells[2].Value.ToString(); //txtJob.Text
-            txtSalary.Text = dataGridView1.SelectedCells[3].Value.ToString();
-            txtDepartment.Text = dataGridView1.SelectedCells[4].Value.ToString();
-            txtPhone.Text = dataGridView1.SelectedCells[5].Value.ToString();
-            dtpJoin.Value = DateTime.Parse(dataGridView1.SelectedCells[6].Value.ToString());
-            dtpLeave.Value = DateTime.Parse(dataGridView1.SelectedCells[7].Value.ToString());
-            txtBankAccountNo.Text = dataGridView1.SelectedCells[8].Value.ToString();
-            cbBank.Text = dataGridView1.SelectedCells[9].Value.ToString(); //txtBank.Text
-            txtEmail.Text = dataGridView1.SelectedCells[10].Value.ToString();
-            txtNote.Text = dataGridView1.SelectedCells[11].Value.ToString();
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
-        }
-        /// <summary>
-        /// 필수입력란 bool로 확인
-        /// </summary>
-        /// <returns>결과값</returns>
-        private bool check()
-        {
-            bool result = false;
-
-            if (!(string.IsNullOrEmpty(txtNum.Text) || string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSalary.Text) || string.IsNullOrEmpty(txtBankAccountNo.Text) || string.IsNullOrEmpty(cbBank.Text)))
-            {
-                result = true;
-            }
-            else
-            {
-                MessageBox.Show("필수입력란을 모두 입력해주세요");
-            }
-            return result;
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -180,7 +132,7 @@ namespace GoodeeWay.BUS
                 {
                     string sp = "proc_emp_delete";
                     SqlParameter[] sqlParameters = new SqlParameter[1];
-                    sqlParameters[0] = new SqlParameter("empno", txtNum.Text);
+                    sqlParameters[0] = new SqlParameter("empno", dataGridView1.SelectedCells[0].Value);
                     new DBConnection().Delete(sp, sqlParameters);
                     MessageBox.Show("삭제 성공");
                 }

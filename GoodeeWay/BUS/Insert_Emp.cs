@@ -31,14 +31,6 @@ namespace GoodeeWay.BUS
             {
                 if (check())
                 {
-                    //if (dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
-                    //{
-                    //    DateTime temp = dtpLeave.Value;
-                    //    dtpLeave.Value = dtpJoin.Value;
-                    //    dtpJoin.Value = temp;
-                    //}
-                    //if (dtpLeave.Enabled)
-                    //{
                     var emp = new EmpVO()
                     {
                         Name = txtName.Text,
@@ -46,7 +38,7 @@ namespace GoodeeWay.BUS
                         Pay = float.Parse(txtSalary.Text),
                         Department = txtDepartment.Text,
                         Mobile = txtPhone.Text,
-                        JoinDate = dtpJoin.Value,
+                        JoinDate = DateTime.Parse(dtpJoin.Text),
                         BankAccountNo = txtBankAccountNo.Text,
                         Bank = cbBank.Text,
                         Email = txtEmail.Text,
@@ -71,7 +63,10 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("오류" + ex);
             }
         }
-        
+        /// <summary>
+        /// 필수입력란 bool로 확인
+        /// </summary>
+        /// <returns>결과값</returns>
         private bool check()
         {
             bool result = false;

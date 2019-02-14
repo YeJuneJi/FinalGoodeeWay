@@ -142,7 +142,7 @@
             this.dtpJoin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpJoin.Location = new System.Drawing.Point(74, 162);
             this.dtpJoin.Name = "dtpJoin";
-            this.dtpJoin.Size = new System.Drawing.Size(123, 21);
+            this.dtpJoin.Size = new System.Drawing.Size(100, 21);
             this.dtpJoin.TabIndex = 112;
             // 
             // txtNote
