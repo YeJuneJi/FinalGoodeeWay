@@ -89,5 +89,14 @@ namespace GoodeeWay
             employee.MdiParent = this;
             employee.Show();
         }
+
+
+
+        private void 매출관리ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResourceManagemanet resourceManagemanet = new ResourceManagemanet();
+            resourceManagemanet.MdiParent = this;
+            resourceManagemanet.Show();
+        }
     }
 }

@@ -124,17 +124,17 @@ namespace GoodeeWay.Sales
                 for (int i = 2; i < menuSearchGView.Rows.Count + 2; i++)
                 {
                     Clipboard.Clear();
-
                     workSheet.Cells[i, 1] = menuSearchGView.Rows[i - 2].Cells[0].Value.ToString();
                     workSheet.Cells[i, 2] = menuSearchGView.Rows[i - 2].Cells[1].Value.ToString();
                     workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
                     workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
                     Excel.Range pictureRange = workSheet.Cells[i, 5];
                     Image img = ((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value).ByteArrayToImage(); //바이트 배열을 Image로 변환하는 확장 메서드를 사용.
+                    img = (Image)new Bitmap(img, new Size(100, 100));
+                    pictureRange.ColumnWidth = 11.88;
+                    pictureRange.RowHeight = 75.00;
                     Clipboard.SetDataObject(img, true); //Ctrl + C
                     workSheet.Paste(pictureRange, img); //Ctrl + V     
-                    pictureRange.ColumnWidth = img.Width;
-                    pictureRange.RowHeight = img.Height;
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
 

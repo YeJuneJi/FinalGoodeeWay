@@ -2,6 +2,7 @@
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,8 +17,16 @@ namespace GoodeeWay.Sales
         FlowLayoutPanel saucePanel;
         FlowLayoutPanel toppingPanel;
         FlowLayoutPanel additionalPanel;
-        List<InventoryTypeVO> testList = new List<InventoryTypeVO>();
+        NumericUpDown nmrUpDownBread;
+        NumericUpDown nmrUpDownCheese;
+        NumericUpDown nmrUpDownVege;
+        NumericUpDown nmrUpDownSauce;
+        NumericUpDown nmrUpDownTopping;
+        NumericUpDown nmrUpDownAdd;
+        DataTable inventoryTypeTable;
+        List<InventoryTypeVO> inventoryTypeList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
+
         string oldMenuCode;
         int oldDivision;
         public FrmSalesMenu()
@@ -27,6 +36,7 @@ namespace GoodeeWay.Sales
 
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
+            FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
@@ -43,112 +53,27 @@ namespace GoodeeWay.Sales
             {
                 cbxDivision.Items.Add(item);
             }
-            
-            #region 테스트 코드입니다 ^ㅡ^
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "허니오트",
-                InventoryTypeCode = "ST0010",
-                MaterialClassification = "Bread",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "하티",
-                InventoryTypeCode = "ST0011",
-                MaterialClassification = "Bread",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "위트",
-                InventoryTypeCode = "ST0012",
-                MaterialClassification = "Bread",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "양상추",
-                InventoryTypeCode = "ST0012",
-                MaterialClassification = "Vegetable",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "토마토",
-                InventoryTypeCode = "ST0104",
-                MaterialClassification = "Vegetable",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "아메리칸치즈",
-                InventoryTypeCode = "ST0105",
-                MaterialClassification = "Cheese",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "슈레드치즈",
-                InventoryTypeCode = "ST0106",
-                MaterialClassification = "Cheese",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "스위트어니언",
-                InventoryTypeCode = "ST0107",
-                MaterialClassification = "Sauce",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "허니머스터드",
-                InventoryTypeCode = "ST0108",
-                MaterialClassification = "Sauce",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "미트볼",
-                InventoryTypeCode = "ST0109",
-                MaterialClassification = "Additional",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "폴드포크",
-                InventoryTypeCode = "ST0001",
-                MaterialClassification = "Additional",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "햄",
-                InventoryTypeCode = "ST0113",
-                MaterialClassification = "Additional",
-                ReceivingQuantity = 200
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "토핑쓰",
-                InventoryTypeCode = "ST0013",
-                MaterialClassification = "Topping",
-                ReceivingQuantity = 300
-            });
-            testList.Add(new InventoryTypeVO()
-            {
-                InventoryName = "토핑스",
-                InventoryTypeCode = "ST0014",
-                MaterialClassification = "Topping",
-                ReceivingQuantity = 200
-            });
 
-
-            #endregion
+            //InventoryTypeDAO에 정의되어있는 InventoryTypeSelect() 메서드를호출하여 
+            //InventoryType테이블의 데이터를Datatable에 저장한다.
+            inventoryTypeTable = new InventoryTypeDAO().InventoryTypeSelect();
+            foreach (DataRow item in inventoryTypeTable.Rows)//데이터 테이블의 로우의만큼 반복하며
+            {
+                
+                inventoryTypeList.Add(new InventoryTypeVO()//inventoryTypeList에 저장한다.
+                {
+                    InventoryName = item[1].ToString(),
+                    InventoryTypeCode = item[0].ToString(),
+                    MaterialClassification = item[6].ToString(),
+                    ReceivingQuantity = int.Parse(item[2].ToString()),
+                    MinimumQuantity = int.Parse(item[3].ToString()),
+                });
+            }
         }
+
         private void btnMnuInsert_Click(object sender, EventArgs e)
         {
+            //메뉴를 등록하기 이전 유효성 검사를 하기위해 컨트롤들의 내용의 공백을 제거하거나 이미지를 지정한다..
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -157,242 +82,45 @@ namespace GoodeeWay.Sales
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
             Image image = pbxPhoto.Image;
-            bool sucessRecipe = false;
-            bool sucessMenu = false;
 
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt,discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
+            
+            bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
+            
+            bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
+
+            
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
             {
+                //만약 선택된 분류가 샌드위치가 아니라면
                 if (cbxDivision.SelectedIndex != 0)
                 {
+                    //메뉴를 등록하고 메뉴등록 성공여부를 반환한다.
                     sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
                 }
+                //만약 선택된 분류가 샌드위치라면
                 else
                 {
+                    //메뉴를 등록하고 메뉴 등록성공여부를 반환 후
                     sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
                     if (!sucessMenu)
                     {
                         return;
                     }
+                    //그 메뉴코드에 해당하는 레시피들을 등록하고 레시피 등록 성공 여부를 반환한다.
                     sucessRecipe = InsertingRecipe(menuCode, sucessRecipe);
                 }
-                btnClear_Click(null, null);
+                btnClear_Click(null, null);//모든 컨트롤 내용 초기화.
             }
 
-
-            if (sucessMenu && !sucessRecipe)
+            if (sucessMenu && !sucessRecipe) //만약 메뉴만 등록되었다면
             {
                 MessageBox.Show("저장 성공!");
             }
-            else if(sucessMenu && sucessRecipe)
+            else if (sucessMenu && sucessRecipe) //메뉴와 레시피가 모두 등록 되었다면.
             {
                 MessageBox.Show("저장 성공!(기본 레시피 저장 포함)");
             }
-            ReflashData();
-        }
-
-        /// <summary>
-        /// 레시피를 등록하기위한 InsertingRecipe 메서드
-        /// </summary>
-        /// <param name="menuCode"></param>
-        /// <param name="sucessRecipe"></param>
-        /// <returns></returns>
-        private bool InsertingRecipe(string menuCode, bool succRecip)
-        {
-            int ingrAmount = 0;
-            succRecip = false;
-            bool necess = false;
-            foreach (InventoryTypeVO item in testList)
-            {
-                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
-                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
-                menuRecipeVO.MenuCode = menuCode;
-                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
-                {
-                    foreach (var ctrl in panel.Controls)
-                    {
-                        if (ctrl.GetType() == typeof(RadioButton))
-                        {
-                            RadioButton rbtn = ctrl as RadioButton;
-                            if (item.InventoryName.Equals(rbtn.Text))
-                            {
-                                necess = rbtn.Checked;
-                            }
-                        }
-                        if (ctrl.GetType() == typeof(CheckBox))
-                        {
-                            CheckBox cbx = ctrl as CheckBox;
-                            if (item.InventoryName.Equals(cbx.Text))
-                            {
-                                necess = cbx.Checked;
-                            }
-                        }
-                        if (ctrl.GetType() == typeof(NumericUpDown))
-                        {
-                            NumericUpDown numeric = ctrl as NumericUpDown;
-                            if (item.InventoryTypeCode.Equals(numeric.Name))
-                            {
-                                ingrAmount = (int)numeric.Value;
-                            }
-                        }
-                    }
-                }
-                menuRecipeVO.Necessary = necess;
-                menuRecipeVO.IngredientAmount = ingrAmount;
-                try
-                {
-                    if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
-                    {
-                        succRecip = true;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-            return succRecip;
-        }
-
-        /// <summary>
-        /// 메뉴를 등록하기위해 데이터를 받아와 DAO단으로 전송해주는 메서드
-        /// </summary>
-        /// <param name="menuCode"></param>
-        /// <param name="menuName"></param>
-        /// <param name="price"></param>
-        /// <param name="kcal"></param>
-        /// <param name="division"></param>
-        /// <param name="addContxt"></param>
-        /// <param name="image"></param>
-        /// <param name="sucessMenu"></param>
-        /// <returns></returns>
-        private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, Image image, bool sucessMenu)
-        {
-            sucessMenu = false;
-            SalesMenuVO salesMenuVO = new SalesMenuVO();
-            salesMenuVO.MenuCode = menuCode;
-            salesMenuVO.MenuName = menuName;
-            salesMenuVO.Price = float.Parse(price);
-            salesMenuVO.Kcal = int.Parse(kcal);
-            salesMenuVO.MenuImage = image;
-            salesMenuVO.DiscountRatio = float.Parse(discountRatio);
-            foreach (Division item in Enum.GetValues(typeof(Division)))
-            {
-                if (item.ToString().Equals(division))
-                {
-                    salesMenuVO.Division = (int)item;
-                }
-            }
-            salesMenuVO.AdditionalContext = addContxt;
-            try
-            {
-                if (new SalesMenuDAO().InsertMenu(salesMenuVO))
-                {
-                    sucessMenu = true;
-                }
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Message.Contains("PRIMARY"))
-                {
-                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-            return sucessMenu;
-        }
-
-        /// <summary>
-        /// 메뉴코드의 유효성검사
-        /// </summary>
-        /// <param name="menuCode"></param>
-        /// <returns></returns>
-        private bool ValidateMenuCode(string menuCode)
-        {
-            bool result = false;
-
-            if (msktbxMnuCode.Text.Substring(3).Replace(" ", "").Length != 7)
-            {
-                msktbxMnuCode.Focus();
-                MessageBox.Show("메뉴코드의 자리수를 맞춰주세요.");
-            }
-            else
-            {
-                result = true;
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Null 유효성 검사 메서드
-        /// </summary>
-        /// <param name="menuCode"></param>
-        /// <param name="menuName"></param>
-        /// <param name="price"></param>
-        /// <param name="kcal"></param>
-        /// <param name="division"></param>
-        /// <param name="addContxt"></param>
-        /// <param name="image"></param>
-        /// <returns></returns>
-        private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt,string discountRatio, Image image)
-        {
-            bool result = false;
-            if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) ||string.IsNullOrEmpty(discountRatio)|| image == null))
-            {
-                result = true;
-            }
-            else
-            {
-                msktbxMnuCode.Focus();
-                MessageBox.Show("값을 모두 입력 해 주세요!");
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 타입 유효성 검사 메서드
-        /// </summary>
-        /// <param name="price"></param>
-        /// <param name="kcal"></param>
-        /// <returns></returns>
-        private bool ValidateType(string price, string kcal, string discountRatio)
-        {
-            bool result = false;
-            float fprice, fkcal;
-
-            if (float.TryParse(price, out fprice) && float.TryParse(kcal, out fkcal) && float.TryParse(discountRatio, out float fdiscountRatio))
-            {
-                result = true;
-            }
-            else
-            {
-                tbxPrice.Focus();
-                MessageBox.Show("가격과 칼로리와 할인율은 숫자만 입력 해 주세요!");
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// 그리드뷰와 리스트의를 초기화하는 메서드
-        /// </summary>
-        private void ReflashData()
-        {
-            salesMenuList.Clear();
-            salesMenuGView.DataSource = null;
-            salesMenuList = new SalesMenuDAO().OutPutAllMenus();
-            salesMenuGView.DataSource = salesMenuList;
-            salesMenuGView.Columns[0].HeaderText = "메뉴코드";
-            salesMenuGView.Columns[1].HeaderText = "메뉴명";
-            salesMenuGView.Columns[2].HeaderText = "가격";
-            salesMenuGView.Columns[3].HeaderText = "Kcal";
-            salesMenuGView.Columns[4].HeaderText = "이미지";
-            salesMenuGView.Columns[5].HeaderText = "구분";
-            salesMenuGView.Columns[6].HeaderText = "부가설명";
-            salesMenuGView.Columns[7].HeaderText = "할인율";
+            ReflashData(); //데이터 그리드 뷰 새로고침
         }
 
         private void btnPhoto_Click(object sender, EventArgs e)
@@ -405,173 +133,205 @@ namespace GoodeeWay.Sales
 
         private void cbxDivision_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxDivision.SelectedIndex != 0)
+            if (cbxDivision.SelectedIndex != 0)//만약 샌드위치가 아니라면 
             {
-                this.Size = new Size(757, 556);
+                this.Size = new Size(757, 556); //사이즈 변경 없음.
             }
             else
             {
                 FlowPanel.Controls.Clear();
-                this.Size = new Size(1320, 556);
+                this.Size = new Size(1280, 556); //사이즈를 변경하고
                 breadPanel = new FlowLayoutPanel();
                 cheesePanel = new FlowLayoutPanel();
                 vegetablePanel = new FlowLayoutPanel();
                 saucePanel = new FlowLayoutPanel();
                 toppingPanel = new FlowLayoutPanel();
                 additionalPanel = new FlowLayoutPanel();
+
                 breadPanel.AutoSize = cheesePanel.AutoSize = vegetablePanel.AutoSize = saucePanel.AutoSize = toppingPanel.AutoSize = additionalPanel.AutoSize = true;
                 breadPanel.BorderStyle = cheesePanel.BorderStyle = vegetablePanel.BorderStyle = saucePanel.BorderStyle = toppingPanel.BorderStyle = additionalPanel.BorderStyle = BorderStyle.FixedSingle;
+
+                //라벨 동적 생성
                 Label lblBread = new Label();
                 lblBread.Text = "빵";
-                lblBread.Size = new Size(50, 50);
-                lblBread.Padding = new Padding(10);
-                breadPanel.Controls.Add(lblBread);
 
                 Label lblcheese = new Label();
                 lblcheese.Text = "치즈";
-                lblcheese.Size = new Size(50, 50);
-                lblcheese.Padding = new Padding(10);
-                cheesePanel.Controls.Add(lblcheese);
 
                 Label lblvege = new Label();
                 lblvege.Text = "채소";
-                lblvege.Size = new Size(50, 50);
-                lblvege.Padding = new Padding(10);
-                vegetablePanel.Controls.Add(lblvege);
 
                 Label lblsause = new Label();
                 lblsause.Text = "소스";
-                lblsause.Size = new Size(50, 50);
-                lblsause.Padding = new Padding(10);
-                saucePanel.Controls.Add(lblsause);
 
                 Label lbltopping = new Label();
                 lbltopping.Text = "토핑";
-                lbltopping.Size = new Size(50, 50);
-                lbltopping.Padding = new Padding(10);
-                toppingPanel.Controls.Add(lbltopping);
 
                 Label lbladd = new Label();
                 lbladd.Text = "부가";
-                lbladd.Size = new Size(50, 50);
-                lbladd.Padding = new Padding(10);
-                additionalPanel.Controls.Add(lbladd);
 
-                foreach (InventoryTypeVO inventoryType in testList)
+                //라벨의 형식을 지정
+                NameLabelFormatter(lblBread, lblcheese, lblvege, lblsause, lbltopping, lbladd);
+
+                //라벨들을 각각의 판넬의 컨트롤에 추가
+                breadPanel.Controls.Add(lblBread);
+                cheesePanel.Controls.Add(lblcheese);
+                vegetablePanel.Controls.Add(lblvege);
+                saucePanel.Controls.Add(lblsause);
+                toppingPanel.Controls.Add(lbltopping);
+                additionalPanel.Controls.Add(lbladd);
+                
+                foreach (InventoryTypeVO inventoryType in inventoryTypeList)//inventoryTypeList를 반복하며
                 {
-                    if (inventoryType.MaterialClassification == "Bread")
+                    if (inventoryType.MaterialClassification == "Bread") //만약 재료 구분이 Bread라면
                     {
                         //라디오버튼
                         RadioButton radioBread = new RadioButton();
                         radioBread.Text = inventoryType.InventoryName;
                         radioBread.Name = inventoryType.InventoryTypeCode;
+                        radioBread.CheckedChanged += Radio_CheckedChanged;
                         //라벨
                         Label labelBread = new Label();
-                        labelBread.Text = "사용량 :";
-                        labelBread.Padding = new Padding(0, 8, 0, 0);
-                        labelBread.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelBread);
                         //뉴메릭
-                        NumericUpDown nmrUpDownBread = new NumericUpDown();
+                        nmrUpDownBread = new NumericUpDown();
                         nmrUpDownBread.Size = new Size(40, 21);
                         nmrUpDownBread.Name = inventoryType.InventoryTypeCode;
-                        breadPanel.Controls.Add(radioBread);
-                        breadPanel.Controls.Add(labelBread);
-                        breadPanel.Controls.Add(nmrUpDownBread);
+                        nmrUpDownBread.Enabled = false;
+                        breadPanel.Controls.AddRange(new Control[] { radioBread, labelBread, nmrUpDownBread });
+
                     }
                     if (inventoryType.MaterialClassification == "Cheese")
                     {
                         RadioButton radioCheese = new RadioButton();
                         radioCheese.Text = inventoryType.InventoryName;
                         radioCheese.Name = inventoryType.InventoryTypeCode;
+                        radioCheese.CheckedChanged += Radio_CheckedChanged;
                         Label labelCheese = new Label();
-                        labelCheese.Text = "사용량 :";
-                        labelCheese.Padding = new Padding(0, 8, 0, 0);
-                        labelCheese.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelCheese);
                         //뉴메릭
-                        NumericUpDown nmrUpDownCheese = new NumericUpDown();
+                        nmrUpDownCheese = new NumericUpDown();
                         nmrUpDownCheese.Size = new Size(40, 21);
                         nmrUpDownCheese.Name = inventoryType.InventoryTypeCode;
-                        cheesePanel.Controls.Add(radioCheese);
-                        cheesePanel.Controls.Add(labelCheese);
-                        cheesePanel.Controls.Add(nmrUpDownCheese);
+                        nmrUpDownCheese.Enabled = false;
+                        cheesePanel.Controls.AddRange(new Control[] { radioCheese, labelCheese, nmrUpDownCheese });
                     }
                     if (inventoryType.MaterialClassification == "Vegetable")
                     {
                         CheckBox cbxVege = new CheckBox();
                         cbxVege.Text = inventoryType.InventoryName;
                         cbxVege.Name = inventoryType.InventoryTypeCode;
+                        cbxVege.CheckedChanged += Cbx_CheckedChanged;
                         Label labelVege = new Label();
-                        labelVege.Text = "사용량 :";
-                        labelVege.Padding = new Padding(0, 8, 0, 0);
-                        labelVege.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelVege);
                         //뉴메릭
-                        NumericUpDown nmrUpDownVege = new NumericUpDown();
+                        nmrUpDownVege = new NumericUpDown();
                         nmrUpDownVege.Size = new Size(40, 21);
                         nmrUpDownVege.Name = inventoryType.InventoryTypeCode;
-                        vegetablePanel.Controls.Add(cbxVege);
-                        vegetablePanel.Controls.Add(labelVege);
-                        vegetablePanel.Controls.Add(nmrUpDownVege);
+                        nmrUpDownVege.Enabled = false;
+                        vegetablePanel.Controls.AddRange(new Control[] { cbxVege, labelVege, nmrUpDownVege });
                     }
                     if (inventoryType.MaterialClassification == "Sauce")
                     {
                         CheckBox cbxSauce = new CheckBox();
                         cbxSauce.Text = inventoryType.InventoryName;
                         cbxSauce.Name = inventoryType.InventoryTypeCode;
+                        cbxSauce.CheckedChanged += Cbx_CheckedChanged;
                         Label labelSauce = new Label();
-                        labelSauce.Text = "사용량 :";
-                        labelSauce.Padding = new Padding(0, 8, 0, 0);
-                        labelSauce.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelSauce);
                         //뉴메릭
-                        NumericUpDown nmrUpDownSauce = new NumericUpDown();
+                        nmrUpDownSauce = new NumericUpDown();
                         nmrUpDownSauce.Size = new Size(40, 21);
                         nmrUpDownSauce.Name = inventoryType.InventoryTypeCode;
-                        saucePanel.Controls.Add(cbxSauce);
-                        saucePanel.Controls.Add(labelSauce);
-                        saucePanel.Controls.Add(nmrUpDownSauce);
+                        nmrUpDownSauce.Enabled = false;
+                        saucePanel.Controls.AddRange(new Control[] { cbxSauce, labelSauce, nmrUpDownSauce });
                     }
                     if (inventoryType.MaterialClassification == "Topping")
                     {
                         CheckBox cbxTopping = new CheckBox();
                         cbxTopping.Text = inventoryType.InventoryName;
                         cbxTopping.Name = inventoryType.InventoryTypeCode;
+                        cbxTopping.CheckedChanged += Cbx_CheckedChanged;
                         Label labelTopping = new Label();
-                        labelTopping.Text = "사용량 :";
-                        labelTopping.Padding = new Padding(0, 8, 0, 0);
-                        labelTopping.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelTopping);
                         //뉴메릭
-                        NumericUpDown nmrUpDownTopping = new NumericUpDown();
+                        nmrUpDownTopping = new NumericUpDown();
                         nmrUpDownTopping.Size = new Size(40, 21);
                         nmrUpDownTopping.Name = inventoryType.InventoryTypeCode;
-                        toppingPanel.Controls.Add(cbxTopping);
-                        toppingPanel.Controls.Add(labelTopping);
-                        toppingPanel.Controls.Add(nmrUpDownTopping);
+                        nmrUpDownTopping.Enabled = false;
+                        toppingPanel.Controls.AddRange(new Control[] { cbxTopping, labelTopping, nmrUpDownTopping });
                     }
                     if (inventoryType.MaterialClassification == "Additional")
                     {
                         CheckBox cbxAdd = new CheckBox();
                         cbxAdd.Text = inventoryType.InventoryName;
                         cbxAdd.Name = inventoryType.InventoryTypeCode;
+                        cbxAdd.CheckedChanged += Cbx_CheckedChanged;
                         Label labelAdd = new Label();
-                        labelAdd.Text = "사용량 :";
-                        labelAdd.Padding = new Padding(0, 8, 0, 0);
-                        labelAdd.Size = new Size(50, 20);
+                        MaterialLabelFormatter(labelAdd);
                         //뉴메릭
-                        NumericUpDown nmrUpDownAdd = new NumericUpDown();
+                        nmrUpDownAdd = new NumericUpDown();
                         nmrUpDownAdd.Size = new Size(40, 21);
                         nmrUpDownAdd.Name = inventoryType.InventoryTypeCode;
-                        additionalPanel.Controls.Add(cbxAdd);
-                        additionalPanel.Controls.Add(labelAdd);
-                        additionalPanel.Controls.Add(nmrUpDownAdd);
+                        nmrUpDownAdd.Enabled = false;
+                        additionalPanel.Controls.AddRange(new Control[] { cbxAdd, labelAdd, nmrUpDownAdd });
                     }
                 }
-                (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true;
-                FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });
+                (breadPanel.Controls[1] as RadioButton).Checked = (cheesePanel.Controls[1] as RadioButton).Checked = true; // 패널의 라디오버튼의 첫번째 체크 여부를 true로 초기화
+                (breadPanel.Controls[3] as NumericUpDown).Enabled = (cheesePanel.Controls[3] as NumericUpDown).Enabled = true; //패널의 뉴메릭업다운의 첫번째 Enable를 true 로 초기화
+                FlowPanel.Controls.AddRange(new Control[] { breadPanel, cheesePanel, vegetablePanel, saucePanel, toppingPanel, additionalPanel });//동적으로 생성된 패널들을 FlowPanel의 컨트롤에 추가
+            }
+        }
+
+        private void Cbx_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox radio = sender as CheckBox;
+            foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+            {
+                foreach (var ctrl in panel.Controls)
+                {
+                    if (ctrl.GetType() == typeof(NumericUpDown))
+                    {
+                        NumericUpDown nume = ctrl as NumericUpDown;
+                        if (nume.Name == radio.Name && radio.Checked)
+                        {
+                            nume.Enabled = true;
+                        }
+                        else if (nume.Name == radio.Name && !radio.Checked)
+                        {
+                            nume.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = sender as RadioButton;
+            foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+            {
+                foreach (var ctrl in panel.Controls)
+                {
+                    if (ctrl.GetType() == typeof(NumericUpDown))  
+                    {
+                        NumericUpDown nume = ctrl as NumericUpDown;
+                        if (nume.Name == radio.Name && radio.Checked)
+                        {
+                            nume.Enabled = true;
+                        }
+                        else if (nume.Name == radio.Name && !radio.Checked)
+                        {
+                            nume.Enabled = false;
+                        } 
+                    }
+                }
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            msktbxMnuCode.Text = tbxAddContxt.Text = tbxKcal.Text = tbxMnuName.Text = tbxPrice.Text = tbxDiscountRatio.Text ="";
+            msktbxMnuCode.Text = tbxAddContxt.Text = tbxKcal.Text = tbxMnuName.Text = tbxPrice.Text = tbxDiscountRatio.Text = "";
             pbxPhoto.Image = null;
             cbxDivision.SelectedIndex = -1;
             msktbxMnuCode.Focus();
@@ -599,7 +359,7 @@ namespace GoodeeWay.Sales
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
             bool sucessdeleteRecipe = false;
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt,discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
             {
                 SalesMenuVO salesMenuVO = new SalesMenuVO();
                 salesMenuVO.MenuCode = menuCode;
@@ -607,7 +367,6 @@ namespace GoodeeWay.Sales
                 salesMenuVO.Price = float.Parse(price);
                 salesMenuVO.Kcal = int.Parse(kcal);
                 salesMenuVO.MenuImage = image;
-                salesMenuVO.DiscountRatio = float.Parse(discountRatio);
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (item.ToString().Equals(division))
@@ -616,6 +375,7 @@ namespace GoodeeWay.Sales
                     }
                 }
                 salesMenuVO.AdditionalContext = addContxt;
+                salesMenuVO.DiscountRatio = float.Parse(discountRatio);
                 //수정전 과 수정후가 같고 그것이 샌드위치이면..
                 if (oldDivision == salesMenuVO.Division && oldDivision == 0)
                 {
@@ -642,10 +402,18 @@ namespace GoodeeWay.Sales
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
                 }
+                else if (oldDivision != 0 && salesMenuVO.Division != 0)
+                {
+                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                }
+                else
+                {
+                    MessageBox.Show("수정 실패");
+                }
 
                 ReflashData();
             }
-            if (menuUpdateSucess && sucessUpdateRecipe)
+            if ((menuUpdateSucess && sucessUpdateRecipe) || menuUpdateSucess)
             {
                 MessageBox.Show("레시피 수정 완료");
             }
@@ -658,10 +426,7 @@ namespace GoodeeWay.Sales
                 MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
             }
             else
-            {
-                MessageBox.Show("메뉴 수정 실패");
-            }
-            btnClear_Click(null, null);
+                btnClear_Click(null, null);
         }
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
@@ -697,110 +462,6 @@ namespace GoodeeWay.Sales
             }
             btnClear_Click(null, null);
             ReflashData();
-        }
-
-        /// <summary>
-        /// 레시피를 업데이트 하는 메서드
-        /// </summary>
-        /// <param name="menuCode"></param>
-        /// <param name="sucessUpdateRecipe"></param>
-        /// <returns></returns>
-        private bool RecipeUpdate(string menuCode, bool sucessUpdateRecipe)
-        {
-            bool necess = false;
-            int ingrAmount = 0;
-            foreach (InventoryTypeVO item in testList)
-            {
-                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
-                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
-                menuRecipeVO.MenuCode = menuCode;
-                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
-                {
-                    foreach (var ctrl in panel.Controls)
-                    {
-                        if (ctrl.GetType() == typeof(RadioButton))
-                        {
-                            RadioButton rbtn = ctrl as RadioButton;
-                            if (item.InventoryName.Equals(rbtn.Text))
-                            {
-                                necess = rbtn.Checked;
-                            }
-                        }
-                        if (ctrl.GetType() == typeof(CheckBox))
-                        {
-                            CheckBox cbx = ctrl as CheckBox;
-                            if (item.InventoryName.Equals(cbx.Text))
-                            {
-                                necess = cbx.Checked;
-                            }
-                        }
-                        if (ctrl.GetType() == typeof(NumericUpDown))
-                        {
-                            NumericUpDown numeric = ctrl as NumericUpDown;
-                            if (item.InventoryTypeCode.Equals(numeric.Name))
-                            {
-                                ingrAmount = (int)numeric.Value;
-                            }
-                        }
-                    }
-                }
-                menuRecipeVO.Necessary = necess;
-                menuRecipeVO.IngredientAmount = ingrAmount;
-                try
-                {
-                    int result = new MenuRecipeDAO().UpdateRecipes(menuRecipeVO);
-                    if (result < 1)
-                    {
-                        MessageBox.Show("레시피 수정 실패 " + item.InventoryName);
-                        sucessUpdateRecipe = false;
-                    }
-                    else
-                    {
-                        sucessUpdateRecipe = true;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-            return sucessUpdateRecipe;
-        }
-
-        /// <summary>
-        /// 메뉴를 업데이트 하는 메서드
-        /// </summary>
-        /// <param name="salesMenuVO"></param>
-        /// <param name="menuUpdateSucess"></param>
-        /// <returns></returns>
-        private bool MenuUpdate(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
-        {
-            try
-            {
-                int result = new SalesMenuDAO().UpdateMenu(salesMenuVO, oldMenuCode);
-                if (result < 1)
-                {
-                    MessageBox.Show(result.ToString());
-                    menuUpdateSucess = false;
-                }
-                else
-                {
-                    menuUpdateSucess = true;
-                }
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Message.Contains("PRIMARY"))
-                {
-                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
-                }
-                else
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            return menuUpdateSucess;
         }
 
         private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -891,5 +552,330 @@ namespace GoodeeWay.Sales
             menuSearch.ShowDialog();
         }
 
+        /// <summary>
+        /// 메뉴를 등록하기위해 데이터를 받아와 DAO단으로 전송해주는 메서드
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="menuName"></param>
+        /// <param name="price"></param>
+        /// <param name="kcal"></param>
+        /// <param name="division"></param>
+        /// <param name="addContxt"></param>
+        /// <param name="image"></param>
+        /// <param name="sucessMenu"></param>
+        /// <returns></returns>
+        private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, Image image, bool sucessMenu)
+        {
+            sucessMenu = false;
+            SalesMenuVO salesMenuVO = new SalesMenuVO();
+            salesMenuVO.MenuCode = menuCode;
+            salesMenuVO.MenuName = menuName;
+            salesMenuVO.Price = float.Parse(price);
+            salesMenuVO.Kcal = int.Parse(kcal);
+            salesMenuVO.MenuImage = image;
+            foreach (Division item in Enum.GetValues(typeof(Division)))
+            {
+                if (item.ToString().Equals(division))
+                {
+                    salesMenuVO.Division = (int)item;
+                }
+            }
+            salesMenuVO.AdditionalContext = addContxt;
+            salesMenuVO.DiscountRatio = float.Parse(discountRatio);
+            try
+            {
+                if (new SalesMenuDAO().InsertMenu(salesMenuVO))
+                {
+                    sucessMenu = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("PRIMARY"))
+                {
+                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return sucessMenu;
+        }
+
+        /// <summary>
+        /// 메뉴를 업데이트 하는 메서드
+        /// </summary>
+        /// <param name="salesMenuVO"></param>
+        /// <param name="menuUpdateSucess"></param>
+        /// <returns></returns>
+        private bool MenuUpdate(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
+        {
+            try
+            {
+                int result = new SalesMenuDAO().UpdateMenu(salesMenuVO, oldMenuCode);
+                if (result < 1)
+                {
+                    MessageBox.Show(result.ToString());
+                    menuUpdateSucess = false;
+                }
+                else
+                {
+                    menuUpdateSucess = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("PRIMARY"))
+                {
+                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return menuUpdateSucess;
+        }
+
+        /// <summary>
+        /// 레시피를 등록하기위한 InsertingRecipe 메서드
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="sucessRecipe"></param>
+        /// <returns></returns>
+        private bool InsertingRecipe(string menuCode, bool succRecip)
+        {
+            int ingrAmount = 0;
+            succRecip = false;
+            bool necess = false;
+            foreach (InventoryTypeVO item in inventoryTypeList)
+            {
+                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
+                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
+                menuRecipeVO.MenuCode = menuCode;
+                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                {
+                    foreach (var ctrl in panel.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            RadioButton rbtn = ctrl as RadioButton;
+                            if (item.InventoryName.Equals(rbtn.Text))
+                            {
+                                necess = rbtn.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(CheckBox))
+                        {
+                            CheckBox cbx = ctrl as CheckBox;
+                            if (item.InventoryName.Equals(cbx.Text))
+                            {
+                                necess = cbx.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(NumericUpDown))
+                        {
+                            NumericUpDown numeric = ctrl as NumericUpDown;
+                            if (item.InventoryTypeCode.Equals(numeric.Name))
+                            {
+                                ingrAmount = (int)numeric.Value;
+                            }
+                        }
+                    }
+                }
+                menuRecipeVO.Necessary = necess;
+                menuRecipeVO.IngredientAmount = ingrAmount;
+                try
+                {
+                    if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
+                    {
+                        succRecip = true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return succRecip;
+        }
+
+        /// <summary>
+        /// 레시피를 업데이트 하는 메서드
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="sucessUpdateRecipe"></param>
+        /// <returns></returns>
+        private bool RecipeUpdate(string menuCode, bool sucessUpdateRecipe)
+        {
+            bool necess = false;
+            int ingrAmount = 0;
+            foreach (InventoryTypeVO item in inventoryTypeList)
+            {
+                MenuRecipeVO menuRecipeVO = new MenuRecipeVO();
+                menuRecipeVO.InventoryTypeCode = item.InventoryTypeCode;
+                menuRecipeVO.MenuCode = menuCode;
+                foreach (FlowLayoutPanel panel in FlowPanel.Controls)
+                {
+                    foreach (var ctrl in panel.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            RadioButton rbtn = ctrl as RadioButton;
+                            if (item.InventoryName.Equals(rbtn.Text))
+                            {
+                                necess = rbtn.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(CheckBox))
+                        {
+                            CheckBox cbx = ctrl as CheckBox;
+                            if (item.InventoryName.Equals(cbx.Text))
+                            {
+                                necess = cbx.Checked;
+                            }
+                        }
+                        if (ctrl.GetType() == typeof(NumericUpDown))
+                        {
+                            NumericUpDown numeric = ctrl as NumericUpDown;
+                            if (item.InventoryTypeCode.Equals(numeric.Name))
+                            {
+                                ingrAmount = (int)numeric.Value;
+                            }
+                        }
+                    }
+                }
+                menuRecipeVO.Necessary = necess;
+                menuRecipeVO.IngredientAmount = ingrAmount;
+                try
+                {
+                    int result = new MenuRecipeDAO().UpdateRecipes(menuRecipeVO);
+                    if (result < 1)
+                    {
+                        MessageBox.Show("레시피 수정 실패 " + item.InventoryName);
+                        sucessUpdateRecipe = false;
+                    }
+                    else
+                    {
+                        sucessUpdateRecipe = true;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return sucessUpdateRecipe;
+        }
+
+        /// <summary>
+        /// 메뉴코드의 유효성검사
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <returns></returns>
+        private bool ValidateMenuCode(string menuCode)
+        {
+            bool result = false;
+
+            if (msktbxMnuCode.Text.Substring(3).Replace(" ", "").Length != 7)
+            {
+                msktbxMnuCode.Focus();
+                MessageBox.Show("메뉴코드의 자리수를 맞춰주세요.");
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Null 유효성 검사 메서드
+        /// </summary>
+        /// <param name="menuCode"></param>
+        /// <param name="menuName"></param>
+        /// <param name="price"></param>
+        /// <param name="kcal"></param>
+        /// <param name="division"></param>
+        /// <param name="addContxt"></param>
+        /// <param name="image"></param>
+        /// <returns></returns>
+        private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, Image image)
+        {
+            bool result = false;
+            if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || image == null))
+            {
+                result = true;
+            }
+            else
+            {
+                msktbxMnuCode.Focus();
+                MessageBox.Show("값을 모두 입력 해 주세요!");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 타입 유효성 검사 메서드
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="kcal"></param>
+        /// <returns></returns>
+        private bool ValidateType(string price, string kcal, string discountRatio)
+        {
+            bool result = false;
+            float fprice, fkcal, fdiscountRatio;
+
+            if (float.TryParse(price, out fprice) && float.TryParse(kcal, out fkcal) && float.TryParse(discountRatio, out fdiscountRatio))
+            {
+                result = true;
+            }
+            else
+            {
+                tbxPrice.Focus();
+                MessageBox.Show("가격과 칼로리와 할인율은 숫자만 입력 해 주세요!");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 그리드뷰와 리스트의를 초기화하는 메서드
+        /// </summary>
+        private void ReflashData()
+        {
+            salesMenuList.Clear();
+            salesMenuGView.DataSource = null;
+            salesMenuList = new SalesMenuDAO().OutPutAllMenus();
+            salesMenuGView.DataSource = salesMenuList;
+            salesMenuGView.Columns[0].HeaderText = "메뉴코드";
+            salesMenuGView.Columns[1].HeaderText = "메뉴명";
+            salesMenuGView.Columns[2].HeaderText = "가격";
+            salesMenuGView.Columns[3].HeaderText = "Kcal";
+            salesMenuGView.Columns[4].HeaderText = "이미지";
+            salesMenuGView.Columns[5].HeaderText = "구분";
+            salesMenuGView.Columns[6].HeaderText = "부가설명";
+            salesMenuGView.Columns[7].HeaderText = "할인율";
+        }
+
+        private void NameLabelFormatter(params Label[] labels)
+        {
+            foreach (var item in labels)
+            {
+                item.Size = new Size(50, 50);
+                item.Padding = new Padding(10);
+                item.Width = 460;
+            }
+        }
+
+        private void MaterialLabelFormatter(Label label)
+        {
+            label.Text = "사용량 :";
+            label.Padding = new Padding(0, 8, 0, 0);
+            label.Size = new Size(50, 20);
+        }
     }
 }

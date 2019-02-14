@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.주문ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.메뉴관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.판매기록관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.비품관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.인사관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.매출관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,19 +47,13 @@
             this.메뉴관리ToolStripMenuItem,
             this.판매기록관리ToolStripMenuItem,
             this.비품관리ToolStripMenuItem,
-            this.인사관리ToolStripMenuItem});
+            this.인사관리ToolStripMenuItem,
+            this.매출관리ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1484, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 재고ToolStripMenuItem
-            // 
-            this.재고ToolStripMenuItem.Name = "재고ToolStripMenuItem";
-            this.재고ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.재고ToolStripMenuItem.Text = "재고관리";
-            this.재고ToolStripMenuItem.Click += new System.EventHandler(this.재고ToolStripMenuItem_Click);
             // 
             // 주문ToolStripMenuItem
             // 
@@ -66,6 +61,13 @@
             this.주문ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.주문ToolStripMenuItem.Text = "주문";
             this.주문ToolStripMenuItem.Click += new System.EventHandler(this.주문ToolStripMenuItem_Click);
+            // 
+            // 재고ToolStripMenuItem
+            // 
+            this.재고ToolStripMenuItem.Name = "재고ToolStripMenuItem";
+            this.재고ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.재고ToolStripMenuItem.Text = "재고관리";
+            this.재고ToolStripMenuItem.Click += new System.EventHandler(this.재고ToolStripMenuItem_Click);
             // 
             // 메뉴관리ToolStripMenuItem
             // 
@@ -95,6 +97,13 @@
             this.인사관리ToolStripMenuItem.Text = "인사관리";
             this.인사관리ToolStripMenuItem.Click += new System.EventHandler(this.인사관리ToolStripMenuItem_Click);
             // 
+            // 매출관리ToolStripMenuItem
+            // 
+            this.매출관리ToolStripMenuItem.Name = "매출관리ToolStripMenuItem";
+            this.매출관리ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.매출관리ToolStripMenuItem.Text = "매출관리";
+            this.매출관리ToolStripMenuItem.Click += new System.EventHandler(this.매출관리ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -122,6 +131,7 @@
         private System.Windows.Forms.ToolStripMenuItem 판매기록관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 비품관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 인사관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 매출관리ToolStripMenuItem;
     }
 }
 
