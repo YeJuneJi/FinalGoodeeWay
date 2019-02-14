@@ -37,6 +37,7 @@ namespace GoodeeWay.DAO
                     menu.MenuImage = img;
                     menu.Division = sdr["division"].ToString();
                     menu.AdditionalContext = sdr["additionalContext"].ToString();
+                    menu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
 
                     menuList.Add(menu);
                 }

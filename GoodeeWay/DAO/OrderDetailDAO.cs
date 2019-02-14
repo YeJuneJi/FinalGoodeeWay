@@ -31,8 +31,8 @@ namespace GoodeeWay.DAO
                     menuDetail.Compulsory = bool.Parse(sdr["necessary"].ToString());
                     menuDetail.InventoryName = sdr["InventoryName"].ToString();
                     menuDetail.Division = sdr["MaterialClassification"].ToString();
-                    menuDetail.MenuName = sdr["menuName"].ToString();
-                    menuDetail.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
+                    menuDetail.MenuName = sdr["menuName"].ToString();                    
+                    //menuDetail.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
 
                     menuDetailList.Add(menuDetail);
                 }

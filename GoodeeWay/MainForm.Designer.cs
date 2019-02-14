@@ -28,105 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSalesMenu = new System.Windows.Forms.Button();
-            this.btnSaleRecords = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.재고ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnBiPoom = new System.Windows.Forms.Button();
-            this.btnInsa = new System.Windows.Forms.Button();
-            this.btnJoomoon = new System.Windows.Forms.Button();
+            this.주문ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.메뉴관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.판매기록관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.비품관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.인사관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnSalesMenu
-            // 
-            this.btnSalesMenu.Location = new System.Drawing.Point(18, 47);
-            this.btnSalesMenu.Name = "btnSalesMenu";
-            this.btnSalesMenu.Size = new System.Drawing.Size(75, 23);
-            this.btnSalesMenu.TabIndex = 0;
-            this.btnSalesMenu.Text = "메뉴관리";
-            this.btnSalesMenu.UseVisualStyleBackColor = true;
-            this.btnSalesMenu.Click += new System.EventHandler(this.btnSalesMenu_Click);
-            // 
-            // btnSaleRecords
-            // 
-            this.btnSaleRecords.Location = new System.Drawing.Point(99, 47);
-            this.btnSaleRecords.Name = "btnSaleRecords";
-            this.btnSaleRecords.Size = new System.Drawing.Size(86, 23);
-            this.btnSaleRecords.TabIndex = 1;
-            this.btnSaleRecords.Text = "판매기록관리";
-            this.btnSaleRecords.UseVisualStyleBackColor = true;
-            this.btnSaleRecords.Click += new System.EventHandler(this.btnSaleRecords_Click);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.재고ToolStripMenuItem});
+            this.주문ToolStripMenuItem,
+            this.재고ToolStripMenuItem,
+            this.메뉴관리ToolStripMenuItem,
+            this.판매기록관리ToolStripMenuItem,
+            this.비품관리ToolStripMenuItem,
+            this.인사관리ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1169, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1484, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 재고ToolStripMenuItem
             // 
-            this.재고ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.재고ToolStripMenuItem1});
             this.재고ToolStripMenuItem.Name = "재고ToolStripMenuItem";
-            this.재고ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.재고ToolStripMenuItem.Text = "재고";
+            this.재고ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.재고ToolStripMenuItem.Text = "재고관리";
+            this.재고ToolStripMenuItem.Click += new System.EventHandler(this.재고ToolStripMenuItem_Click);
             // 
-            // 재고ToolStripMenuItem1
+            // 주문ToolStripMenuItem
             // 
-            this.재고ToolStripMenuItem1.Name = "재고ToolStripMenuItem1";
-            this.재고ToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
-            this.재고ToolStripMenuItem1.Text = "재고";
-            this.재고ToolStripMenuItem1.Click += new System.EventHandler(this.재고ToolStripMenuItem1_Click);
+            this.주문ToolStripMenuItem.Name = "주문ToolStripMenuItem";
+            this.주문ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.주문ToolStripMenuItem.Text = "주문";
+            this.주문ToolStripMenuItem.Click += new System.EventHandler(this.주문ToolStripMenuItem_Click);
             // 
-            // btnBiPoom
+            // 메뉴관리ToolStripMenuItem
             // 
-            this.btnBiPoom.Location = new System.Drawing.Point(191, 47);
-            this.btnBiPoom.Name = "btnBiPoom";
-            this.btnBiPoom.Size = new System.Drawing.Size(75, 23);
-            this.btnBiPoom.TabIndex = 2;
-            this.btnBiPoom.Text = "비품관리";
-            this.btnBiPoom.UseVisualStyleBackColor = true;
-            this.btnBiPoom.Click += new System.EventHandler(this.button1_Click);
+            this.메뉴관리ToolStripMenuItem.Name = "메뉴관리ToolStripMenuItem";
+            this.메뉴관리ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.메뉴관리ToolStripMenuItem.Text = "메뉴관리";
+            this.메뉴관리ToolStripMenuItem.Click += new System.EventHandler(this.메뉴관리ToolStripMenuItem_Click);
             // 
-            // btnInsa
+            // 판매기록관리ToolStripMenuItem
             // 
-            this.btnInsa.Location = new System.Drawing.Point(272, 47);
-            this.btnInsa.Name = "btnInsa";
-            this.btnInsa.Size = new System.Drawing.Size(75, 23);
-            this.btnInsa.TabIndex = 3;
-            this.btnInsa.Text = "인사관리";
-            this.btnInsa.UseVisualStyleBackColor = true;
-            this.btnInsa.Click += new System.EventHandler(this.button2_Click);
+            this.판매기록관리ToolStripMenuItem.Name = "판매기록관리ToolStripMenuItem";
+            this.판매기록관리ToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.판매기록관리ToolStripMenuItem.Text = "판매기록관리";
+            this.판매기록관리ToolStripMenuItem.Click += new System.EventHandler(this.판매기록관리ToolStripMenuItem_Click);
             // 
-            // btnJoomoon
+            // 비품관리ToolStripMenuItem
             // 
-            this.btnJoomoon.Location = new System.Drawing.Point(353, 47);
-            this.btnJoomoon.Name = "btnJoomoon";
-            this.btnJoomoon.Size = new System.Drawing.Size(75, 23);
-            this.btnJoomoon.TabIndex = 4;
-            this.btnJoomoon.Text = "주문관리";
-            this.btnJoomoon.UseVisualStyleBackColor = true;
-            this.btnJoomoon.Click += new System.EventHandler(this.btnJoomoon_Click);
+            this.비품관리ToolStripMenuItem.Name = "비품관리ToolStripMenuItem";
+            this.비품관리ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.비품관리ToolStripMenuItem.Text = "비품관리";
+            this.비품관리ToolStripMenuItem.Click += new System.EventHandler(this.비품관리ToolStripMenuItem_Click);
+            // 
+            // 인사관리ToolStripMenuItem
+            // 
+            this.인사관리ToolStripMenuItem.Name = "인사관리ToolStripMenuItem";
+            this.인사관리ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.인사관리ToolStripMenuItem.Text = "인사관리";
+            this.인사관리ToolStripMenuItem.Click += new System.EventHandler(this.인사관리ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1169, 549);
-            this.Controls.Add(this.btnJoomoon);
-            this.Controls.Add(this.btnInsa);
-            this.Controls.Add(this.btnBiPoom);
-            this.Controls.Add(this.btnSaleRecords);
-            this.Controls.Add(this.btnSalesMenu);
+            this.ClientSize = new System.Drawing.Size(1484, 961);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -137,15 +115,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnSalesMenu;
-        private System.Windows.Forms.Button btnSaleRecords;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem1;
-        private System.Windows.Forms.Button btnBiPoom;
-        private System.Windows.Forms.Button btnInsa;
-        private System.Windows.Forms.Button btnJoomoon;
+        private System.Windows.Forms.ToolStripMenuItem 주문ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 메뉴관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 판매기록관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 비품관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 인사관리ToolStripMenuItem;
     }
 }
 

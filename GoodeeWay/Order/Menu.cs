@@ -80,5 +80,14 @@ namespace GoodeeWay.Order
 
             return menu;
         }
+
+        private float discountRatio;
+
+        public float DiscountRatio
+        {
+            get { return discountRatio; }
+            set { discountRatio = value; }
+        }
+
     }
 }

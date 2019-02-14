@@ -55,17 +55,17 @@
             this.btn9 = new System.Windows.Forms.Button();
             this.btn0 = new System.Windows.Forms.Button();
             this.gbButton = new System.Windows.Forms.GroupBox();
-            this.gbWon = new System.Windows.Forms.GroupBox();
-            this.btn10 = new System.Windows.Forms.Button();
-            this.btn50 = new System.Windows.Forms.Button();
-            this.btn100 = new System.Windows.Forms.Button();
-            this.btn500 = new System.Windows.Forms.Button();
-            this.btn1000 = new System.Windows.Forms.Button();
-            this.btn5000 = new System.Windows.Forms.Button();
-            this.btn10000 = new System.Windows.Forms.Button();
-            this.btn50000 = new System.Windows.Forms.Button();
-            this.btnBackSpace = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnBackSpace = new System.Windows.Forms.Button();
+            this.gbWon = new System.Windows.Forms.GroupBox();
+            this.btn50000 = new System.Windows.Forms.Button();
+            this.btn10000 = new System.Windows.Forms.Button();
+            this.btn5000 = new System.Windows.Forms.Button();
+            this.btn1000 = new System.Windows.Forms.Button();
+            this.btn500 = new System.Windows.Forms.Button();
+            this.btn100 = new System.Windows.Forms.Button();
+            this.btn50 = new System.Windows.Forms.Button();
+            this.btn10 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbButton.SuspendLayout();
@@ -155,6 +155,7 @@
             this.txtPaid.Name = "txtPaid";
             this.txtPaid.Size = new System.Drawing.Size(271, 21);
             this.txtPaid.TabIndex = 9;
+            this.txtPaid.TextChanged += new System.EventHandler(this.txtPaid_TextChanged);
             // 
             // lblChange
             // 
@@ -332,6 +333,26 @@
             this.gbButton.TabStop = false;
             this.gbButton.Text = "버튼";
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(14, 172);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(31, 38);
+            this.btnClear.TabIndex = 28;
+            this.btnClear.Text = "C";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnBackSpace
+            // 
+            this.btnBackSpace.Location = new System.Drawing.Point(88, 174);
+            this.btnBackSpace.Name = "btnBackSpace";
+            this.btnBackSpace.Size = new System.Drawing.Size(31, 38);
+            this.btnBackSpace.TabIndex = 27;
+            this.btnBackSpace.Text = "<-";
+            this.btnBackSpace.UseVisualStyleBackColor = true;
+            this.btnBackSpace.Click += new System.EventHandler(this.btnBackSpace_Click);
+            // 
             // gbWon
             // 
             this.gbWon.Controls.Add(this.btn50000);
@@ -349,65 +370,15 @@
             this.gbWon.TabStop = false;
             this.gbWon.Text = "원";
             // 
-            // btn10
+            // btn50000
             // 
-            this.btn10.Location = new System.Drawing.Point(10, 206);
-            this.btn10.Name = "btn10";
-            this.btn10.Size = new System.Drawing.Size(113, 25);
-            this.btn10.TabIndex = 20;
-            this.btn10.Text = "10";
-            this.btn10.UseVisualStyleBackColor = true;
-            this.btn10.Click += new System.EventHandler(this.btnWon_Click);
-            // 
-            // btn50
-            // 
-            this.btn50.Location = new System.Drawing.Point(10, 179);
-            this.btn50.Name = "btn50";
-            this.btn50.Size = new System.Drawing.Size(113, 25);
-            this.btn50.TabIndex = 21;
-            this.btn50.Text = "50";
-            this.btn50.UseVisualStyleBackColor = true;
-            this.btn50.Click += new System.EventHandler(this.btnWon_Click);
-            // 
-            // btn100
-            // 
-            this.btn100.Location = new System.Drawing.Point(10, 152);
-            this.btn100.Name = "btn100";
-            this.btn100.Size = new System.Drawing.Size(113, 25);
-            this.btn100.TabIndex = 22;
-            this.btn100.Text = "100";
-            this.btn100.UseVisualStyleBackColor = true;
-            this.btn100.Click += new System.EventHandler(this.btnWon_Click);
-            // 
-            // btn500
-            // 
-            this.btn500.Location = new System.Drawing.Point(10, 126);
-            this.btn500.Name = "btn500";
-            this.btn500.Size = new System.Drawing.Size(113, 25);
-            this.btn500.TabIndex = 23;
-            this.btn500.Text = "500";
-            this.btn500.UseVisualStyleBackColor = true;
-            this.btn500.Click += new System.EventHandler(this.btnWon_Click);
-            // 
-            // btn1000
-            // 
-            this.btn1000.Location = new System.Drawing.Point(10, 101);
-            this.btn1000.Name = "btn1000";
-            this.btn1000.Size = new System.Drawing.Size(113, 25);
-            this.btn1000.TabIndex = 24;
-            this.btn1000.Text = "1000";
-            this.btn1000.UseVisualStyleBackColor = true;
-            this.btn1000.Click += new System.EventHandler(this.btnWon_Click);
-            // 
-            // btn5000
-            // 
-            this.btn5000.Location = new System.Drawing.Point(10, 76);
-            this.btn5000.Name = "btn5000";
-            this.btn5000.Size = new System.Drawing.Size(113, 25);
-            this.btn5000.TabIndex = 25;
-            this.btn5000.Text = "5000";
-            this.btn5000.UseVisualStyleBackColor = true;
-            this.btn5000.Click += new System.EventHandler(this.btnWon_Click);
+            this.btn50000.Location = new System.Drawing.Point(10, 22);
+            this.btn50000.Name = "btn50000";
+            this.btn50000.Size = new System.Drawing.Size(113, 25);
+            this.btn50000.TabIndex = 27;
+            this.btn50000.Text = "50000";
+            this.btn50000.UseVisualStyleBackColor = true;
+            this.btn50000.Click += new System.EventHandler(this.btnWon_Click);
             // 
             // btn10000
             // 
@@ -419,35 +390,65 @@
             this.btn10000.UseVisualStyleBackColor = true;
             this.btn10000.Click += new System.EventHandler(this.btnWon_Click);
             // 
-            // btn50000
+            // btn5000
             // 
-            this.btn50000.Location = new System.Drawing.Point(10, 22);
-            this.btn50000.Name = "btn50000";
-            this.btn50000.Size = new System.Drawing.Size(113, 25);
-            this.btn50000.TabIndex = 27;
-            this.btn50000.Text = "50000";
-            this.btn50000.UseVisualStyleBackColor = true;
-            this.btn50000.Click += new System.EventHandler(this.btnWon_Click);
+            this.btn5000.Location = new System.Drawing.Point(10, 76);
+            this.btn5000.Name = "btn5000";
+            this.btn5000.Size = new System.Drawing.Size(113, 25);
+            this.btn5000.TabIndex = 25;
+            this.btn5000.Text = "5000";
+            this.btn5000.UseVisualStyleBackColor = true;
+            this.btn5000.Click += new System.EventHandler(this.btnWon_Click);
             // 
-            // btnBackSpace
+            // btn1000
             // 
-            this.btnBackSpace.Location = new System.Drawing.Point(88, 174);
-            this.btnBackSpace.Name = "btnBackSpace";
-            this.btnBackSpace.Size = new System.Drawing.Size(31, 38);
-            this.btnBackSpace.TabIndex = 27;
-            this.btnBackSpace.Text = "<-";
-            this.btnBackSpace.UseVisualStyleBackColor = true;
-            this.btnBackSpace.Click += new System.EventHandler(this.btnBackSpace_Click);
+            this.btn1000.Location = new System.Drawing.Point(10, 101);
+            this.btn1000.Name = "btn1000";
+            this.btn1000.Size = new System.Drawing.Size(113, 25);
+            this.btn1000.TabIndex = 24;
+            this.btn1000.Text = "1000";
+            this.btn1000.UseVisualStyleBackColor = true;
+            this.btn1000.Click += new System.EventHandler(this.btnWon_Click);
             // 
-            // btnClear
+            // btn500
             // 
-            this.btnClear.Location = new System.Drawing.Point(14, 172);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(31, 38);
-            this.btnClear.TabIndex = 28;
-            this.btnClear.Text = "C";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btn500.Location = new System.Drawing.Point(10, 126);
+            this.btn500.Name = "btn500";
+            this.btn500.Size = new System.Drawing.Size(113, 25);
+            this.btn500.TabIndex = 23;
+            this.btn500.Text = "500";
+            this.btn500.UseVisualStyleBackColor = true;
+            this.btn500.Click += new System.EventHandler(this.btnWon_Click);
+            // 
+            // btn100
+            // 
+            this.btn100.Location = new System.Drawing.Point(10, 152);
+            this.btn100.Name = "btn100";
+            this.btn100.Size = new System.Drawing.Size(113, 25);
+            this.btn100.TabIndex = 22;
+            this.btn100.Text = "100";
+            this.btn100.UseVisualStyleBackColor = true;
+            this.btn100.Click += new System.EventHandler(this.btnWon_Click);
+            // 
+            // btn50
+            // 
+            this.btn50.Location = new System.Drawing.Point(10, 179);
+            this.btn50.Name = "btn50";
+            this.btn50.Size = new System.Drawing.Size(113, 25);
+            this.btn50.TabIndex = 21;
+            this.btn50.Text = "50";
+            this.btn50.UseVisualStyleBackColor = true;
+            this.btn50.Click += new System.EventHandler(this.btnWon_Click);
+            // 
+            // btn10
+            // 
+            this.btn10.Location = new System.Drawing.Point(10, 206);
+            this.btn10.Name = "btn10";
+            this.btn10.Size = new System.Drawing.Size(113, 25);
+            this.btn10.TabIndex = 20;
+            this.btn10.Text = "10";
+            this.btn10.UseVisualStyleBackColor = true;
+            this.btn10.Click += new System.EventHandler(this.btnWon_Click);
             // 
             // button1
             // 

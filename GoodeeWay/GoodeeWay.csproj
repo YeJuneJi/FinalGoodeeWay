@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
+    <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
@@ -304,9 +305,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-    <Folder Include="DB\" />
-    <Folder Include="DAO\" />
-    <Folder Include="VO\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

@@ -14,8 +14,6 @@ namespace GoodeeWay.Order
 {
     public partial class OderVIew : Form
     {
-        enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
-
         List<Menu> menuList = new List<Menu>(); // 전체 메뉴 리스트
         List<ListViewItem> listViewItemList = new List<ListViewItem>(); // 메뉴 리스트를 리스트뷰 아이템으로 만든 리스트
 
@@ -178,39 +176,47 @@ namespace GoodeeWay.Order
 
         bool result = false;
 
+        Order order;
         private void btnOK_Click(object sender, EventArgs e) // 결제 버튼 클릭시 작동
         {
-            Order order = new Order(bucketMenuAndDetailList); // 결제 창으로 이동
-
-            order.FormClosed += new FormClosedEventHandler(this.formClosed);
-
-            foreach (var item in order.Controls)
+            if (bucketMenuAndDetailList.Count == 0)
             {
-                if (item.GetType() == typeof(Button))
+                MessageBox.Show("메뉴를 선택해 주세요");
+            }
+            else
+            {
+                order = new Order(bucketMenuAndDetailList); // 결제 창으로 이동
+
+                order.FormClosed += new FormClosedEventHandler(this.formClosed);
+
+                foreach (var item in order.Controls)
                 {
-                    Button bt = (Button)item;
-                    if (bt.Name.Equals("btnOk"))
+                    if (item.GetType() == typeof(Button))
                     {
-                        bt.Click += new System.EventHandler(this.orderBtnOK);
+                        Button bt = (Button)item;
+                        if (bt.Name.Equals("btnOk"))
+                        {
+                            bt.Click += new System.EventHandler(this.orderBtnOK);
+                        }
                     }
                 }
-            }
 
-            order.ShowDialog();
-        }
+                order.ShowDialog();
+            }            
+        }                                           
         
         private void formClosed(object sender, EventArgs e) // 결제창이 닫히면 작동
         {
-            if (result == true)
+            if (order.result == true)
             {
                 MessageBox.Show("정상 결제 완료");
-                this.Close();
+                //this.Close();   
             }
         }
 
         private void orderBtnOK(object sender, EventArgs e) // 결제창에서 ok 버튼 클릭시 작동
         {
-            result = true;            
+            
         }
     }
 }
