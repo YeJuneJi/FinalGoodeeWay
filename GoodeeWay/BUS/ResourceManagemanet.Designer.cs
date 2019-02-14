@@ -55,6 +55,7 @@
             this.메뉴별판매량ToolStripMenuItem.Name = "메뉴별판매량ToolStripMenuItem";
             this.메뉴별판매량ToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.메뉴별판매량ToolStripMenuItem.Text = "메뉴별 판매량";
+            this.메뉴별판매량ToolStripMenuItem.Click += new System.EventHandler(this.메뉴별판매량ToolStripMenuItem_Click);
             // 
             // 재고별판매량ToolStripMenuItem
             // 

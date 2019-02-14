@@ -24,6 +24,7 @@ namespace GoodeeWay.Sales
         NumericUpDown nmrUpDownTopping;
         NumericUpDown nmrUpDownAdd;
         DataTable inventoryTypeTable;
+        PictureBox picturePanel;
         List<InventoryTypeVO> inventoryTypeList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
 
@@ -36,6 +37,7 @@ namespace GoodeeWay.Sales
 
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -135,12 +137,18 @@ namespace GoodeeWay.Sales
         {
             if (cbxDivision.SelectedIndex != 0)//만약 샌드위치가 아니라면 
             {
-                this.Size = new Size(757, 556); //사이즈 변경 없음.
+                FlowPanel.Controls.Clear();
+                picturePanel = new PictureBox();
+                picturePanel.BorderStyle = BorderStyle.Fixed3D;
+                picturePanel.Dock = DockStyle.Top;
+                picturePanel.Size = FlowPanel.Size;
+                picturePanel.SizeMode = PictureBoxSizeMode.StretchImage;
+                picturePanel.Image = Properties.Resources.GoodeeWayHead;
+                FlowPanel.Controls.Add(picturePanel);
             }
             else
             {
                 FlowPanel.Controls.Clear();
-                this.Size = new Size(1280, 556); //사이즈를 변경하고
                 breadPanel = new FlowLayoutPanel();
                 cheesePanel = new FlowLayoutPanel();
                 vegetablePanel = new FlowLayoutPanel();
@@ -865,9 +873,8 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in labels)
             {
-                item.Size = new Size(50, 50);
-                item.Padding = new Padding(10);
-                item.Width = 460;
+                item.Size = new Size(50, 20);
+                item.Padding = new Padding(0,8,0,0);
             }
         }
 

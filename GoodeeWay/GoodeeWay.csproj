@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\godns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\godns.Designer.cs">
+      <DependentUpon>godns.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\ResourceManagemanet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,9 +189,13 @@
     </Compile>
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
+    <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\godns.resx">
+      <DependentUpon>godns.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +260,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
       <DependentUpon>FrmSaleRecords.cs</DependentUpon>
@@ -282,6 +293,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <Content Include="Images\GoodeeWayHead.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

@@ -16,5 +16,10 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
+
+        private void 메뉴별판매량ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
