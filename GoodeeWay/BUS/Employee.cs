@@ -24,12 +24,17 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
+        private void TotalCount()
+        {
+            lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
+        }
 
         private void Employee_Load(object sender, EventArgs e)
         {
+            cbFilter.Text = "사원명";
             lst = new EmpDAO().OutputAllBoard();
             this.dataGridView1.DataSource = lst;
-            lblTotalCount.Text = "현재 인원: "+dataGridView1.RowCount.ToString() + "명";
+            TotalCount();
             //try
             //{
             //    var t = Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString().Substring(3)) + 1;
@@ -160,8 +165,15 @@ namespace GoodeeWay.BUS
             {
                 string sp = "proc_emp_select";
                 SqlParameter[] sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("name", txtSearch.Text);
-
+                if (cbFilter.Text == "사원명")
+                {
+                    sqlParameters[0] = new SqlParameter("name", txtSearch.Text);
+                }
+                else if(cbFilter.Text == "사원번호")
+                {
+                    sp = "proc_emp_select2";
+                    sqlParameters[0] = new SqlParameter("empno", txtSearch.Text);
+                }
                 SqlDataReader sr = new DBConnection().Select(sp, sqlParameters);
 
                 while (sr.Read())
@@ -185,6 +197,7 @@ namespace GoodeeWay.BUS
 
                 dataGridView1.DataSource = lst;
             }
+            TotalCount();
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -235,6 +248,16 @@ namespace GoodeeWay.BUS
         {
             Salary s = new Salary();
             s.Show();
+        }
+
+        private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+
+            if (cbFilter.Text == "사원번호")
+            {
+                txtSearch.Text = "EMP000000";
+            }
         }
     }
 }
