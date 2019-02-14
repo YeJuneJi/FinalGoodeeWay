@@ -68,6 +68,62 @@ namespace GoodeeWay.DAO
 
         }
 
+        internal void InventoryUseDetailsInsert(int InventoryQuantity, string receivingDetailsID)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0]=new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+            SqlDataReader dr =new DBConnection().Select("SelectInventoryDetailsForInsert", sqlParameters);
+
+            SqlParameter[] InsertSqlParameters = new SqlParameter[5];
+
+            while(dr.Read())
+            {
+                InsertSqlParameters[0] = new SqlParameter("InventoryQuantity", InventoryQuantity);
+                InsertSqlParameters[1] = new SqlParameter("DateOfUse", DateTime.Now);
+                InsertSqlParameters[2] = new SqlParameter("DateOfDisposal", DateTime.Parse(dr["DateOfDisposal"].ToString()));
+                InsertSqlParameters[3] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+                InsertSqlParameters[4] = new SqlParameter("InventoryTypeCode", dr["InventoryTypeCode"].ToString());
+            }
+            new DBConnection().Insert("InsertInventoryUseDetails", InsertSqlParameters);
+        }
+
+        /// <summary>
+        /// 재고사용내역 select
+        /// </summary>
+        /// <param name="receivingDetailsID">입고번호</param>
+        /// <returns></returns>
+        internal DataTable InventoryUseDetails(string receivingDetailsID)
+        {
+            SqlParameter[] sqlParameter = new SqlParameter[1];
+            sqlParameter[0] = new SqlParameter("@ReceivingDetailsID", receivingDetailsID);
+
+            SqlDataReader dr= new DBConnection().Select("SelectInventoryDetails", sqlParameter);
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("재고명", typeof(string));
+            dataTable.Columns.Add("사용구분", typeof(string));
+            dataTable.Columns.Add("수량", typeof(int));
+            dataTable.Columns.Add("사용날짜", typeof(string));
+
+            while (dr.Read())
+            {
+                DataRow row = dataTable.NewRow();
+                row["재고명"] = dr["InventoryName"].ToString();
+                row["사용구분"] = dr["InventoryID"].ToString();
+                row["수량"] = dr["InventoryQuantity"].ToString();
+                string s = dr["DateOfUse"].ToString();
+                if (s != "")
+                {
+                    row["사용날짜"] = dr["DateOfUse"].ToString().Substring(0, 10);
+                }
+                else
+                {
+                    row["사용날짜"] = null;
+                }
+                dataTable.Rows.Add(row);
+            }
+            return dataTable;
+        }
+
         internal DataTable InventoryTableSelect()
         {
             SqlDataReader dr =  new DBConnection().Select("SelectInventory_InventoryType", null);
@@ -103,7 +159,7 @@ namespace GoodeeWay.DAO
                 row["재고번호"] = dr["InventoryID"].ToString();
                 row["재고명"] = dr["InventoryName"].ToString();
                 row["재고량"] = Int32.Parse(dr["InventoryQuantity"].ToString());
-                row["남은수량"] = 0;
+                row["남은수량"] = Int32.Parse(dr["RemainingQuantity"].ToString());
                 row["사용날짜"] = dr["DateOfUse"].ToString();
                 row["유통기한"] = dr["DateOfDisposal"].ToString();
                 row["입고번호"] = dr["ReceivingDetailsID"].ToString();

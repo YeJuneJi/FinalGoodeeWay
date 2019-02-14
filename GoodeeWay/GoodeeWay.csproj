@@ -110,6 +110,12 @@
     <Compile Include="InventoryBUS\InventoryTypeAdd.Designer.cs">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.Designer.cs">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryBUS\OrderDetailsAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\InventoryTypeAdd.resx">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\InventoryUseDetails.resx">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\OrderDetailsAdd.resx">
       <DependentUpon>OrderDetailsAdd.cs</DependentUpon>

@@ -40,6 +40,7 @@
             // 
             // dgvInventoryUseDetails
             // 
+            this.dgvInventoryUseDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInventoryUseDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventoryUseDetails.Location = new System.Drawing.Point(12, 64);
             this.dgvInventoryUseDetails.Name = "dgvInventoryUseDetails";
@@ -64,6 +65,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "닫기";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // txtInventoryQuantity
             // 
@@ -71,6 +73,7 @@
             this.txtInventoryQuantity.Name = "txtInventoryQuantity";
             this.txtInventoryQuantity.Size = new System.Drawing.Size(100, 21);
             this.txtInventoryQuantity.TabIndex = 4;
+            this.txtInventoryQuantity.TextChanged += new System.EventHandler(this.txtInventoryQuantity_TextChanged);
             // 
             // btnAdd
             // 
@@ -80,6 +83,7 @@
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "추가";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label2
             // 

@@ -108,10 +108,19 @@ Go
 --재고테이블 재고종류테이블 조인 저장프로시져
 CREATE PROCEDURE [dbo].SelectInventory_InventoryType
 AS
-	SELECT I.InventoryID, IT.InventoryName,I.InventoryQuantity,Convert(nvarchar(10),I.DateOfUse,23) 'DateOfUse',Convert(nvarchar(10),I.DateOfDisposal,23) 'DateOfDisposal',
+	SELECT I.InventoryID, IT.InventoryName,I.InventoryQuantity,
+
+isnull((select I3.Inventoryquantity-
+			isnull((select sum(I2.Inventoryquantity) 
+			from Inventory I2 
+			where I2.ReceivingDetailsID=I.ReceivingDetailsID and substring(I2.InventoryID,4,2)='UN'),0)
+		from Inventory I3 
+		where I3.ReceivingDetailsID=I.ReceivingDetailsID and substring(I3.InventoryID,4,2)='00'),0) 'RemainingQuantity',
+
+Convert(nvarchar(10),I.DateOfUse,23) 'DateOfUse',Convert(nvarchar(10),I.DateOfDisposal,23) 'DateOfDisposal',
 	I.ReceivingDetailsID,I.InventoryTypeCode
 	from Inventory I, InventoryType IT
-	where I.InventoryTypeCode=IT.InventoryTypeCode
+	where I.InventoryTypeCode=IT.InventoryTypeCode and substring(I.InventoryID,4,2)='00';
 
 Go
 --재고종류 삭제 프로시져
@@ -210,3 +219,38 @@ AS
 	set 
 	Quantity=@Quantity
 	where Quantity!=@Quantity and OrderID=@OrderID
+
+GO
+--재고사용내역 select
+CREATE PROCEDURE [dbo].SelectInventoryDetails
+	@ReceivingDetailsID nvarchar(10)
+AS
+	SELECT it.InventoryName,
+	case 
+	when substring(i.InventoryID,4,2)='00' then N'총재고'
+	when substring(i.InventoryID,4,2)='UN' then N'사용'
+	end 'InventoryID',
+	i.InventoryQuantity,i.DateOfUse
+	from Inventory i, InventoryType it
+	where i.InventoryTypeCode=it.InventoryTypeCode and ReceivingDetailsID=@ReceivingDetailsID;
+
+Go
+--입고번호 입력하여 한개 row 에 대한 재고 가져오기
+CREATE PROCEDURE [dbo].SelectInventoryDetailsForInsert
+	@receivingDetailsID nvarchar(10)
+AS
+	SELECT CONVERT(NVARCHAR(10),DateOfDisposal,23) 'DateOfDisposal',InventoryTypeCode from Inventory
+	where ReceivingDetailsID=@receivingDetailsID;
+
+GO
+-- 재고사용내역 추가
+CREATE PROCEDURE [dbo].InsertInventoryUseDetails
+	@InventoryQuantity int,
+	@DateOfUse datetime,
+	@DateOfDisposal datetime,
+	@ReceivingDetailsID nvarchar(10),
+	@InventoryTypeCode nvarchar(6)
+AS
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfUse,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
+	values('STR'+ 'UN'+REPLICATE('0',5  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),
+	@InventoryQuantity,@DateOfUse,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode);
