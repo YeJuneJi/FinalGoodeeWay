@@ -16,14 +16,36 @@ namespace GoodeeWay.VO
             set { resourceDate = value; }
         }
 
-        private float resourcePrice;
+        private float totInvestPrice;
 
-        public float ResourcePrice
+        public float TotInvestPrice
         {
-            get { return resourcePrice; }
-            set { resourcePrice = value; }
+            get { return totInvestPrice; }
+            set { totInvestPrice = value; }
         }
 
+        private float equipPrice;
 
+        public float EquipPrice
+        {
+            get { return equipPrice; }
+            set { equipPrice = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            ResourceManagementVO resource = obj as ResourceManagementVO;
+            if (resource == null)
+            {
+                return false;
+            }
+            equipPrice = resource.EquipPrice;
+            return resourceDate == resource.resourceDate;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1119966897 + resourceDate.GetHashCode();
+        }
     }
 }

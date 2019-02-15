@@ -12,22 +12,18 @@ namespace GoodeeWay.BUS
     {
         private bool mainDragging = false;
         private int mainPanelOffsetX, mainPanelOffsetY;
-        DataTable totRsrcTab; 
+        DataTable totRsrcTab;
         DataColumn[] dataColumns;
         List<EquipmentVO> equipmentList;
         List<SaleRecordsVO> saleRecordList;
         List<ResourceManagementVO> totInvestList;
-        List<ResourceManagementVO> totEquipslist;
-        List<ResourceManagementVO> resourcelist;
-        float netprofit; //순이익
-
-
+        List<ResourceManagementVO> equipList;
 
         public ResourceMain()
         {
             InitializeComponent();
             totInvestList = new List<ResourceManagementVO>();
-            totEquipslist = new List<ResourceManagementVO>();
+            equipList = new List<ResourceManagementVO>();
             dataColumns = new DataColumn[]
             {
                 new DataColumn("기간"),
@@ -86,27 +82,18 @@ namespace GoodeeWay.BUS
             }
             else
             {
-                var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
-                                                          let equipDate = equipment.PurchaseDate.Date
-                                                          where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
-                                                          select new { equipDate, equipment.PurchasePrice })
-                                          group equips by equips.equipDate;
-
                 var dayPerRealTot = from records in (from saleRecord in saleRecordList
                                                      let salesDate = saleRecord.SalesDate.Date
                                                      where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
                                                      select new { salesDate, saleRecord.SalesTotal })
                                     group records by records.salesDate;
 
-                foreach (var item in dayPerEquipPriceTot)
-                {
-                    float sum = 0;
-                    foreach (var group in item)
-                    {
-                        sum += group.PurchasePrice;
-                    }
-                    totEquipslist.Add(new ResourceManagementVO() { ResourceDate = item.Key, ResourcePrice = sum });
-                }
+                var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
+                                                          let equipDate = equipment.PurchaseDate.Date
+                                                          where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
+                                                          select new { equipDate, equipment.PurchasePrice })
+                                          group equips by equips.equipDate;
+
 
                 foreach (var item in dayPerRealTot)
                 {
@@ -115,15 +102,26 @@ namespace GoodeeWay.BUS
                     {
                         sum += group.SalesTotal;
                     }
-                    totInvestList.Add(new ResourceManagementVO() { ResourceDate = item.Key, ResourcePrice = sum });
+                    totInvestList.Add(new ResourceManagementVO() { ResourceDate = item.Key, TotInvestPrice = sum });
                 }
-                var query = from real in dayPerRealTot
-                            join equip in dayPerEquipPriceTot on real.Key equals equip.Key into gj
-                            from subpet in gj.DefaultIfEmpty()
-                            select new { };
-                dayPerEquipPriceTot.
-                resourceDataGView.DataSource = totEquipslist;
-                //resourceDataGView.DataSource = totRsrcTab;
+                foreach (var item in dayPerEquipPriceTot)
+                {
+                    float sum = 0;
+                    foreach (var group in item)
+                    {
+                        sum += group.PurchasePrice;
+                    }
+                    equipList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EquipPrice = sum });
+                }
+
+                var mergeList = totInvestList.Union(equipList).OrderBy(x => x.ResourceDate).ToList();
+
+                foreach (var item in mergeList)
+                {
+                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, item.EquipPrice);
+                }
+
+                resourceDataGView.DataSource = totRsrcTab;
 
             }
         }
