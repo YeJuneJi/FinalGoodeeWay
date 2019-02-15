@@ -22,8 +22,9 @@ namespace GoodeeWay.BUS
         private void FrmUsingOfEquipment_Load(object sender, EventArgs e)
         {
             
-            crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM월 dd일"; //"dd.MM-hh:mm";
-            crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "000,000\\";
+            crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
+            crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
+            crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
             DAO.EquipmentDAO dAO = new DAO.EquipmentDAO();
             equipment= dAO.AllequipmentVOsList();
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;

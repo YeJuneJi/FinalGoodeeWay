@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
@@ -77,30 +76,13 @@
             this.toolStripLblTime = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
+            this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvEquipmentList
-            // 
-            this.dgvEquipmentList.AllowUserToDeleteRows = false;
-            this.dgvEquipmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 0);
-            this.dgvEquipmentList.MultiSelect = false;
-            this.dgvEquipmentList.Name = "dgvEquipmentList";
-            this.dgvEquipmentList.ReadOnly = true;
-            this.dgvEquipmentList.RowTemplate.Height = 23;
-            this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEquipmentList.ShowEditingIcon = false;
-            this.dgvEquipmentList.Size = new System.Drawing.Size(1091, 362);
-            this.dgvEquipmentList.TabIndex = 0;
-            this.dgvEquipmentList.DataSourceChanged += new System.EventHandler(this.dgvEquipmentList_DataSourceChanged);
-            this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
             // 
             // groupBox1
             // 
@@ -125,6 +107,7 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "품목정보";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label11
             // 
@@ -281,6 +264,7 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "검색";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label12
             // 
@@ -397,7 +381,7 @@
             this.groupBox3.Controls.Add(this.rbDiscard);
             this.groupBox3.Controls.Add(this.rbUsing);
             this.groupBox3.Controls.Add(this.rbAll);
-            this.groupBox3.Location = new System.Drawing.Point(6, 14);
+            this.groupBox3.Location = new System.Drawing.Point(6, 9);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(265, 41);
             this.groupBox3.TabIndex = 14;
@@ -474,13 +458,16 @@
             // 
             // pnlPage
             // 
+            this.pnlPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPage.Location = new System.Drawing.Point(435, 369);
             this.pnlPage.Name = "pnlPage";
             this.pnlPage.Size = new System.Drawing.Size(180, 20);
             this.pnlPage.TabIndex = 5;
+            this.pnlPage.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPage_Paint);
             // 
             // btnFrontPage
             // 
+            this.btnFrontPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnFrontPage.Location = new System.Drawing.Point(405, 369);
             this.btnFrontPage.Name = "btnFrontPage";
             this.btnFrontPage.Size = new System.Drawing.Size(24, 21);
@@ -491,6 +478,7 @@
             // 
             // btnLastPage
             // 
+            this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnLastPage.Location = new System.Drawing.Point(651, 368);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(29, 21);
@@ -501,6 +489,7 @@
             // 
             // btnNextPage
             // 
+            this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnNextPage.Location = new System.Drawing.Point(621, 368);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(24, 21);
@@ -511,6 +500,7 @@
             // 
             // btnFirstPage
             // 
+            this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnFirstPage.Location = new System.Drawing.Point(370, 369);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(29, 21);
@@ -549,11 +539,32 @@
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // dgvEquipmentList
+            // 
+            this.dgvEquipmentList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvEquipmentList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 0);
+            this.dgvEquipmentList.MultiSelect = false;
+            this.dgvEquipmentList.Name = "dgvEquipmentList";
+            this.dgvEquipmentList.ReadOnly = true;
+            this.dgvEquipmentList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvEquipmentList.RowTemplate.Height = 23;
+            this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEquipmentList.ShowEditingIcon = false;
+            this.dgvEquipmentList.Size = new System.Drawing.Size(1092, 362);
+            this.dgvEquipmentList.TabIndex = 0;
+            this.dgvEquipmentList.DataSourceChanged += new System.EventHandler(this.dgvEquipmentList_DataSourceChanged);
+            this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
+            this.dgvEquipmentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellContentClick);
+            // 
             // FrmEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1092, 696);
             this.Controls.Add(this.toolStrip1);
@@ -570,7 +581,6 @@
             this.Name = "FrmEquipment";
             this.Text = "비품관리";
             this.Load += new System.EventHandler(this.FrmEquipment_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -579,14 +589,13 @@
             this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvEquipmentList;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -634,5 +643,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLblTime;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.DataGridView dgvEquipmentList;
     }
 }
