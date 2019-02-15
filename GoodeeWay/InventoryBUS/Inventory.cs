@@ -62,7 +62,7 @@ namespace GoodeeWay
                     this.Size = new Size(951, 722);
                     break;
                 case 1:
-                    tabControl1.Size = new Size(1136, 659);
+                    tabControl1.Size = new Size(1159, 659);
                     this.Size = new Size(1187, 722);
                     break;
                 case 2:
@@ -365,19 +365,27 @@ namespace GoodeeWay
         /// </summary>
         private void InventoryTableSelect()
         {
-            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();                     
-            dgvInventoryTable.Columns["재고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고명"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고량"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].ReadOnly = false;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["유통기한"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["입고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].HeaderText = "출고량*";                                 
-        }                                                                                                 
-        #endregion                                                                                        
-                                                                                                          
+            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
+            dgvInventoryTable.AllowUserToAddRows = false;
+                                           
+        }
+
+        /// <summary>
+        /// 재고사용내역 폼 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRelease_Click(object sender, EventArgs e)
+        {
+            InventoryUseDetails inventoryUseDetails = new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString());
+            inventoryUseDetails.ShowDialog();
+            InventoryTableSelect();
+            InventoryTypeSelect();
+        }
+        #endregion
+
+
+
         #region 재고종류
         /// <summary>
         /// 재고종류 추가폼 띄우는 버튼
@@ -412,6 +420,7 @@ namespace GoodeeWay
             //inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
             inventoryTypeDateTable = new InventoryTypeDAO().InventoryTypeSelect();
             dgvInventoryType.DataSource = inventoryTypeDateTable;
+            dgvInventoryType.AllowUserToAddRows = false;
             dgvInventoryType.Columns["재고종류코드"].ReadOnly = true;
             dgvInventoryType.Columns["재고합계"].ReadOnly = true;
             dgvInventoryType.Columns["재고총량"].ReadOnly = true;
@@ -467,7 +476,7 @@ namespace GoodeeWay
             InventoryTypeSelect();
 
         }
-        #endregion                                                                                          "재고종류코드"
+        #endregion                                                                                          
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
@@ -508,6 +517,8 @@ namespace GoodeeWay
             InventoryTableRowSelected();
         }
         #endregion
+
+
 
         #region 발주내역
 
@@ -712,9 +723,7 @@ namespace GoodeeWay
 
         #endregion
 
-        private void btnRelease_Click(object sender, EventArgs e)
-        {
 
-        }
+        
     }
 }

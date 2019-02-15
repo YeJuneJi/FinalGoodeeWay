@@ -55,12 +55,14 @@ Go
 --재고insert 저장프로시져
 CREATE PROCEDURE [dbo].InsertInventory
 	@InventoryQuantity int,
+	@RemainingQuantity int,
 	@DateOfDisposal datetime,
 	@ReceivingDetailsID nvarchar(10),
 	@InventoryTypeCode nvarchar(6)
 AS
-	insert into Inventory(InventoryID,InventoryQuantity,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
-	values('STR'+ REPLICATE('0',7  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),@InventoryQuantity,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode);
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode,RemainingQuantity)
+	values('STR'+ REPLICATE('0',7  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ)
+	,@InventoryQuantity,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode,@RemainingQuantity);
 
 Go
 
@@ -77,12 +79,14 @@ AS
 
 Go
 --재고종류 전체 select 저장프로시져
+Go
+--1
 CREATE PROCEDURE [dbo].SelectInventoryType
 
 AS
 	select InventoryTypeCode, InventoryName, ReceivingQuantity, isnull(IT.MinimumQuantity,0)'MinimumQuantity',
-	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
-	(isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)*IT.ReceivingQuantity) 'TotalReceivingQuantuty',
+	isnull((select sum(RemainingQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	(isnull((select sum(RemainingQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)*IT.ReceivingQuantity) 'TotalReceivingQuantuty',
 	MaterialClassification 
 	from InventoryType IT
 
@@ -108,10 +112,12 @@ Go
 --재고테이블 재고종류테이블 조인 저장프로시져
 CREATE PROCEDURE [dbo].SelectInventory_InventoryType
 AS
-	SELECT I.InventoryID, IT.InventoryName,I.InventoryQuantity,Convert(nvarchar(10),I.DateOfUse,23) 'DateOfUse',Convert(nvarchar(10),I.DateOfDisposal,23) 'DateOfDisposal',
+	SELECT I.InventoryID, IT.InventoryName,I.InventoryQuantity,I.RemainingQuantity,
+	Convert(nvarchar(10),I.DateOfUse,23) 'DateOfUse',
+	Convert(nvarchar(10),I.DateOfDisposal,23) 'DateOfDisposal',
 	I.ReceivingDetailsID,I.InventoryTypeCode
 	from Inventory I, InventoryType IT
-	where I.InventoryTypeCode=IT.InventoryTypeCode
+	where I.InventoryTypeCode=IT.InventoryTypeCode and substring(I.InventoryID,4,2)='00';
 
 Go
 --재고종류 삭제 프로시져
@@ -140,12 +146,18 @@ Go
 CREATE PROCEDURE [dbo].SelectInventoryTypeNeed
 
 AS
-	select InventoryTypeCode, InventoryName, 
-	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	select IT.InventoryTypeCode, IT.InventoryName, 
+
+	isnull((select sum(RemainingQuantity) 
+			from Inventory I2 
+			where I2.InventoryTypeCode=IT.InventoryTypeCode and Substring(I2.InventoryID,4,2)='00'),0) 'SumReceivingQuantuty',
+
 	(isnull(IT.MinimumQuantity,0)+isnull(IT.MinimumQuantity,0)-
-	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=IT.InventoryTypeCode),0)) 'NeedQuantity'
+	isnull((select sum(RemainingQuantity) 
+			from Inventory I2
+			where I2.InventoryTypeCode=IT.InventoryTypeCode and Substring(I2.InventoryID,4,2)='00'),0)) 'NeedQuantity'
 	
-	from InventoryType IT
+	from InventoryType IT ;
 Go
 --발주내역산출을 위한 입고내역 & 재고종류 테이블 select
 CREATE PROCEDURE [dbo].SelectReceivingDetailsInventorytype
@@ -153,11 +165,18 @@ CREATE PROCEDURE [dbo].SelectReceivingDetailsInventorytype
 AS
 	
 	select i.InventoryTypeCode 'InventoryTypeCode', i.InventoryName 'InventoryName', 
-	isnull((select sum(InventoryQuantity) from Inventory I2 where I2.InventoryTypeCode=i.InventoryTypeCode),0) 'SumReceivingQuantuty',
+	isnull((select sum(InventoryQuantity) 
+			from Inventory I2 
+			where I2.InventoryTypeCode=i.InventoryTypeCode and Substring(I2.InventoryID,4,2)='00'),0) 'SumReceivingQuantuty',
+
 	R.Quantity 'NeedQuantity',
-	r.ReturnStatus 'ReturnStatus', r.ReceivingDetailsID 'ReceivingDetailsID'
+	r.ReturnStatus 'ReturnStatus', 
+	r.ReceivingDetailsID 'ReceivingDetailsID'
 	
 	from InventoryType i, ReceivingDetails r where i.InventoryTypeCode=r.InventoryTypeCode and (r.ReturnStatus=N'교환' or r.ReturnStatus=N'반품');
+
+
+
 
 Go
 --입고내역 반품여부 컬럼에 '반품' 또는 '교환' 일 경우 '반품완' 또는 '교환완'으로 수정
@@ -210,3 +229,63 @@ AS
 	set 
 	Quantity=@Quantity
 	where Quantity!=@Quantity and OrderID=@OrderID
+
+GO
+--재고사용내역 select
+CREATE PROCEDURE [dbo].SelectInventoryDetails
+	@ReceivingDetailsID nvarchar(10)
+AS
+	SELECT it.InventoryName,
+	case 
+	when substring(i.InventoryID,4,2)='00' then N'총재고'
+	when substring(i.InventoryID,4,2)='UN' then N'사용'
+	end 'InventoryID',
+	i.InventoryQuantity,i.DateOfUse
+	from Inventory i, InventoryType it
+	where i.InventoryTypeCode=it.InventoryTypeCode and ReceivingDetailsID=@ReceivingDetailsID;
+
+Go
+--입고번호 입력하여 한개 row 에 대한 재고 가져오기
+CREATE PROCEDURE [dbo].SelectInventoryDetailsForInsert
+	@receivingDetailsID nvarchar(10)
+AS
+	SELECT CONVERT(NVARCHAR(10),I.DateOfDisposal,23) 'DateOfDisposal',I.InventoryTypeCode,IT.ReceivingQuantity from Inventory I, InventoryType IT
+	where ReceivingDetailsID=@receivingDetailsID and I.InventoryTypeCode=IT.InventoryTypeCode;
+
+GO
+-- 재고사용내역 추가
+CREATE PROCEDURE [dbo].InsertInventoryUseDetails
+	@InventoryQuantity int,
+	@DateOfUse datetime,
+	@DateOfDisposal datetime,
+	@ReceivingDetailsID nvarchar(10),
+	@InventoryTypeCode nvarchar(6)
+AS
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfUse,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
+	values('STR'+ 'UN'+REPLICATE('0',5  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),
+	@InventoryQuantity,@DateOfUse,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode);
+Go
+	
+
+
+	CREATE PROCEDURE [dbo].InsertInventoryUseDetails
+	@RealUseQuantity int,
+	@DateOfUse datetime,
+	@DateOfDisposal datetime,
+	@ReceivingDetailsID nvarchar(10),
+	@InventoryTypeCode nvarchar(6),
+	@ReceivingQuantity int,
+	@InventoryQuantity int,
+	@UseQuantity int
+AS
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfUse,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
+	values('STR'+ 'UN'+REPLICATE('0',5  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),
+	@RealUseQuantity,@DateOfUse,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode)
+
+	update  Inventory
+	set RemainingQuantity=@InventoryQuantity-((@UseQuantity+@RealUseQuantity)/@ReceivingQuantity)
+	where ReceivingDetailsID=@ReceivingDetailsID;
+
+
+Go
+--

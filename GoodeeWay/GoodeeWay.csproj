@@ -116,6 +116,12 @@
     <Compile Include="InventoryBUS\InventoryTypeAdd.Designer.cs">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.Designer.cs">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryBUS\OrderDetailsAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     <EmbeddedResource Include="InventoryBUS\InventoryTypeAdd.resx">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\InventoryUseDetails.resx">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\OrderDetailsAdd.resx">
       <DependentUpon>OrderDetailsAdd.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,7 +294,6 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
-      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -295,7 +303,6 @@
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>8</VersionMinor>
-      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

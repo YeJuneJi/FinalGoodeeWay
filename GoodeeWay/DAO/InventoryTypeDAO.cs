@@ -153,7 +153,8 @@ namespace GoodeeWay.DAO
                 
                 dataRow["발주종류"] = "주문";
 
-                dataTable.Rows.Add(dataRow);
+                dataTable.Rows.Add(dataRow); 
+                
             }
 
             SqlParameter[] RDITsqlParameters = null;
