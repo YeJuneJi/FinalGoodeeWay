@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
@@ -72,15 +71,10 @@
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLblTime = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -381,7 +375,7 @@
             this.groupBox3.Controls.Add(this.rbDiscard);
             this.groupBox3.Controls.Add(this.rbUsing);
             this.groupBox3.Controls.Add(this.rbAll);
-            this.groupBox3.Location = new System.Drawing.Point(6, 9);
+            this.groupBox3.Location = new System.Drawing.Point(6, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(265, 41);
             this.groupBox3.TabIndex = 14;
@@ -509,36 +503,6 @@
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLblTime,
-            this.toolStripLabel2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 671);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1092, 25);
-            this.toolStrip1.TabIndex = 12;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLblTime
-            // 
-            this.toolStripLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLblTime.Name = "toolStripLblTime";
-            this.toolStripLblTime.Size = new System.Drawing.Size(0, 22);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(91, 22);
-            this.toolStripLabel2.Text = "(주)GoodeeWay";
-            // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
             // dgvEquipmentList
             // 
             this.dgvEquipmentList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -567,7 +531,6 @@
             this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1092, 696);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.btnNextPage);
             this.Controls.Add(this.btnLastPage);
@@ -587,11 +550,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipmentList)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -639,10 +599,6 @@
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripLabel toolStripLblTime;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.DataGridView dgvEquipmentList;
     }
 }

@@ -92,3 +92,14 @@ else begin
 	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
 	end
  end
+ go
+--비품 날짜 별 통계를위해 일단위로 그룹화 한 프로시져
+ create procedure GroupingDateEquipment_PROC
+@startDate datetime,
+@endDate datetime
+
+as
+select sum(purchasePrice),purchaseDate
+from dbo.EquipmentRegister
+where purchaseDate between @startDate and @endDate
+group by purchaseDate

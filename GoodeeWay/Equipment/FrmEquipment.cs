@@ -513,12 +513,7 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
         }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-           toolStrip1.Items["toolStripLblTime"].Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
-        }
-
+        
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 

@@ -98,5 +98,10 @@ namespace GoodeeWay
             resourceManagemanet.MdiParent = this;
             resourceManagemanet.Show();
         }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            tsLblTime.Text = DateTime.Now.ToLongDateString()+ DateTime.Now.ToLongTimeString();
+        }
     }
 }
