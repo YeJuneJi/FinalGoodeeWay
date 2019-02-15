@@ -35,11 +35,29 @@ namespace GoodeeWay
         {
             InitializeComponent();
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
+            MdiClient ctlMDI;
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl.GetType() == typeof(MenuStrip))
+                {
+                    continue;
+                }
+                else
+                {
+                    ctlMDI = ctl as MdiClient;
+                }
+                
+                if (ctlMDI.GetType() != typeof(MenuStrip))
+                {
+                    ctlMDI.BackColor = this.BackColor;
+                    break;
+                }
+            }
             frmSandwichMaking = new FrmSandwichMaking();
             frmSandwichMaking.Show();
+            
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,13 +200,6 @@ namespace GoodeeWay
             {
                 resourceManagemanet.BringToFront();
             }
-            
-        }
-
-        private void godnsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            godns gd = new godns();
-            gd.Show();
         }
     }
 }

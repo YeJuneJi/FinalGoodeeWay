@@ -47,11 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS\godns.cs">
-      <SubType>Form</SubType>
+    <Compile Include="BUS\ResourceMain.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BUS\godns.Designer.cs">
-      <DependentUpon>godns.cs</DependentUpon>
+    <Compile Include="BUS\ResourceMain.Designer.cs">
+      <DependentUpon>ResourceMain.cs</DependentUpon>
     </Compile>
     <Compile Include="BUS\ResourceManagemanet.cs">
       <SubType>Form</SubType>
@@ -193,8 +193,8 @@
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
-    <EmbeddedResource Include="BUS\godns.resx">
-      <DependentUpon>godns.cs</DependentUpon>
+    <EmbeddedResource Include="BUS\ResourceMain.resx">
+      <DependentUpon>ResourceMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
@@ -210,6 +210,7 @@
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\MenuRecipeVO.cs" />
+    <Compile Include="VO\ResourceManagementVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
     <Compile Include="VO\EquipmentVO.cs" />
