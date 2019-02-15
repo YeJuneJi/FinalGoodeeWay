@@ -57,7 +57,12 @@ namespace GoodeeWay.DAO
 
         }
 
-        public bool InsertSaleRecords(SaleRecordsVO saleRecordsVO)
+        /// <summary>
+        /// 판매기록 Insert 메서드
+        /// </summary>
+        /// <param name="saleRecordsVO"></param>
+        /// <returns></returns>
+        public bool InsertSaleRecords(SaleRecordsVO saleRecordsVO) 
         {
             DBConnection connection = new DBConnection();
             string storedProcedure = "InsertSaleRecords";

@@ -1,4 +1,5 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace GoodeeWay.Order
 {
     public partial class OrderDetail : Form
     {
-        List<MenuDetail> menuDetailList = new List<MenuDetail>();
+        List<MenuDetail> menuDetailList = new List<MenuDetail>();        
 
         Menu item;
         List<Menu> bucketMenuList;
