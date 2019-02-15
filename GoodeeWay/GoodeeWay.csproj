@@ -189,9 +189,13 @@
     </Compile>
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
+    <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
+      <DependentUpon>ResourceManagemanet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
