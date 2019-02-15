@@ -65,7 +65,9 @@
     <Compile Include="BUS\Update_Emp.Designer.cs">
       <DependentUpon>Update_Emp.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DAO\MenuRecipeDAO.cs" />
+    <Compile Include="DAO\SalaryDAO.cs" />
     <Compile Include="DAO\SaleRecordsDAO.cs" />
     <Compile Include="DAO\SalesMenuDAO.cs" />
     <Compile Include="BUS\Attendance.cs">
@@ -193,6 +195,7 @@
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="VO\AttendanceVO.cs" />
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
@@ -215,6 +218,7 @@
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\MenuRecipeVO.cs" />
+    <Compile Include="VO\SalaryVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
     <Compile Include="VO\EquipmentVO.cs" />

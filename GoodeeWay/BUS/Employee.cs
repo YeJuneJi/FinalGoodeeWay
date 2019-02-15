@@ -34,6 +34,18 @@ namespace GoodeeWay.BUS
             cbFilter.Text = "사원명";
             lst = new EmpDAO().OutputAllBoard();
             this.dataGridView1.DataSource = lst;
+            dataGridView1.Columns["empno"].HeaderText = "사원번호";
+            dataGridView1.Columns["name"].HeaderText = "사원명";
+            dataGridView1.Columns["job"].HeaderText = "직급";
+            dataGridView1.Columns["pay"].HeaderText = "시급";
+            dataGridView1.Columns["Department"].HeaderText = "부서";
+            dataGridView1.Columns["Mobile"].HeaderText = "휴대폰번호";
+            dataGridView1.Columns["JoinDate"].HeaderText = "입사일";
+            dataGridView1.Columns["LeaveDate"].HeaderText = "퇴사일";
+            dataGridView1.Columns["BankAccountNo"].HeaderText = "계좌번호";
+            dataGridView1.Columns["Bank"].HeaderText = "은행명";
+            dataGridView1.Columns["Email"].HeaderText = "이메일주소";
+            dataGridView1.Columns["Note"].HeaderText = "비고";
             TotalCount();
             //try
             //{
@@ -62,10 +74,8 @@ namespace GoodeeWay.BUS
             //}
             //catch (Exception)
             //{
-
             //    throw;
             //}
-
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -198,6 +208,7 @@ namespace GoodeeWay.BUS
                 dataGridView1.DataSource = lst;
             }
             TotalCount();
+            txtSearch.Text = "";
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -258,6 +269,17 @@ namespace GoodeeWay.BUS
             {
                 txtSearch.Text = "EMP000000";
             }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAttendance_Click(object sender, EventArgs e)
+        {
+            Attendance ad = new Attendance();
+            ad.Show();
         }
     }
 }

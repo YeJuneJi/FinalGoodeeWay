@@ -38,7 +38,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
@@ -48,22 +47,22 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(364, 530);
+            this.btnDelete.Location = new System.Drawing.Point(247, 433);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(111, 66);
+            this.btnDelete.Size = new System.Drawing.Size(111, 48);
             this.btnDelete.TabIndex = 63;
-            this.btnDelete.Text = "직원 삭제";
+            this.btnDelete.Text = "선택 삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnUpdate.Location = new System.Drawing.Point(247, 530);
+            this.btnUpdate.Location = new System.Drawing.Point(130, 433);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(111, 66);
+            this.btnUpdate.Size = new System.Drawing.Size(111, 48);
             this.btnUpdate.TabIndex = 62;
             this.btnUpdate.Text = "직원 수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -72,10 +71,10 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnInsert.Location = new System.Drawing.Point(130, 530);
+            this.btnInsert.Location = new System.Drawing.Point(13, 433);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(111, 66);
+            this.btnInsert.Size = new System.Drawing.Size(111, 48);
             this.btnInsert.TabIndex = 61;
             this.btnInsert.Text = "직원 추가";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -84,10 +83,10 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnClear.Location = new System.Drawing.Point(481, 530);
+            this.btnClear.Location = new System.Drawing.Point(364, 433);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(111, 66);
+            this.btnClear.Size = new System.Drawing.Size(111, 48);
             this.btnClear.TabIndex = 65;
             this.btnClear.Text = "새로고침";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -103,7 +102,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1264, 454);
+            this.dataGridView1.Size = new System.Drawing.Size(1246, 357);
             this.dataGridView1.TabIndex = 64;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -111,7 +110,7 @@
             // btnSalary
             // 
             this.btnSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSalary.Location = new System.Drawing.Point(933, 11);
+            this.btnSalary.Location = new System.Drawing.Point(916, 12);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
             this.btnSalary.Size = new System.Drawing.Size(111, 49);
@@ -123,18 +122,19 @@
             // btnAttendance
             // 
             this.btnAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnAttendance.Location = new System.Drawing.Point(1050, 11);
+            this.btnAttendance.Location = new System.Drawing.Point(1033, 12);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(111, 49);
             this.btnAttendance.TabIndex = 94;
             this.btnAttendance.Text = "근태기록";
             this.btnAttendance.UseVisualStyleBackColor = true;
+            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(216, 26);
+            this.txtSearch.Location = new System.Drawing.Point(194, 26);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 21);
@@ -145,7 +145,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSearch.Location = new System.Drawing.Point(392, 20);
+            this.btnSearch.Location = new System.Drawing.Point(370, 18);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(83, 36);
@@ -157,30 +157,20 @@
             // btnExcel
             // 
             this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnExcel.Location = new System.Drawing.Point(1165, 11);
+            this.btnExcel.Location = new System.Drawing.Point(1148, 12);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(111, 49);
             this.btnExcel.TabIndex = 97;
             this.btnExcel.Text = "엑셀로 저장";
             this.btnExcel.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.button1.Location = new System.Drawing.Point(13, 530);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 66);
-            this.button1.TabIndex = 98;
-            this.button1.Text = "퇴사 등록";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(28, 31);
+            this.label1.Location = new System.Drawing.Point(28, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 99;
@@ -190,11 +180,11 @@
             // 
             this.lblTotalCount.AutoSize = true;
             this.lblTotalCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblTotalCount.Location = new System.Drawing.Point(1183, 530);
+            this.lblTotalCount.Location = new System.Drawing.Point(1161, 433);
             this.lblTotalCount.Name = "lblTotalCount";
-            this.lblTotalCount.Size = new System.Drawing.Size(10, 15);
+            this.lblTotalCount.Size = new System.Drawing.Size(86, 15);
             this.lblTotalCount.TabIndex = 100;
-            this.lblTotalCount.Text = " ";
+            this.lblTotalCount.Text = "현재 인원 : 0명";
             // 
             // cbFilter
             // 
@@ -205,10 +195,10 @@
             this.cbFilter.Items.AddRange(new object[] {
             "사원명",
             "사원번호"});
-            this.cbFilter.Location = new System.Drawing.Point(89, 26);
+            this.cbFilter.Location = new System.Drawing.Point(89, 25);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(121, 23);
+            this.cbFilter.Size = new System.Drawing.Size(99, 23);
             this.cbFilter.TabIndex = 101;
             this.cbFilter.Tag = "";
             this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
@@ -217,11 +207,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1288, 612);
+            this.ClientSize = new System.Drawing.Size(1268, 494);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
@@ -254,7 +243,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalCount;
         private System.Windows.Forms.ComboBox cbFilter;

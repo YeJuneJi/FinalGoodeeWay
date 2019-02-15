@@ -103,7 +103,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label14.Location = new System.Drawing.Point(21, 256);
+            this.label14.Location = new System.Drawing.Point(21, 368);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(197, 16);
             this.label14.TabIndex = 115;
@@ -153,7 +153,7 @@
             // 
             this.dtpLeave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.dtpLeave.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpLeave.Location = new System.Drawing.Point(378, 66);
+            this.dtpLeave.Location = new System.Drawing.Point(56, 222);
             this.dtpLeave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpLeave.Name = "dtpLeave";
             this.dtpLeave.Size = new System.Drawing.Size(134, 21);
@@ -163,7 +163,7 @@
             // 
             this.dtpJoin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.dtpJoin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpJoin.Location = new System.Drawing.Point(378, 24);
+            this.dtpJoin.Location = new System.Drawing.Point(56, 180);
             this.dtpJoin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpJoin.Name = "dtpJoin";
             this.dtpJoin.Size = new System.Drawing.Size(134, 21);
@@ -172,17 +172,17 @@
             // txtNote
             // 
             this.txtNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtNote.Location = new System.Drawing.Point(56, 185);
+            this.txtNote.Location = new System.Drawing.Point(56, 297);
             this.txtNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(456, 49);
+            this.txtNote.Size = new System.Drawing.Size(254, 49);
             this.txtNote.TabIndex = 111;
             // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtEmail.Location = new System.Drawing.Point(361, 106);
+            this.txtEmail.Location = new System.Drawing.Point(56, 258);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(151, 21);
@@ -194,7 +194,7 @@
             this.txtBankAccountNo.Location = new System.Drawing.Point(225, 149);
             this.txtBankAccountNo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBankAccountNo.Name = "txtBankAccountNo";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(287, 21);
+            this.txtBankAccountNo.Size = new System.Drawing.Size(119, 21);
             this.txtBankAccountNo.TabIndex = 109;
             // 
             // txtSalary
@@ -247,7 +247,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label10.Location = new System.Drawing.Point(21, 189);
+            this.label10.Location = new System.Drawing.Point(21, 301);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 15);
             this.label10.TabIndex = 103;
@@ -257,7 +257,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label11.Location = new System.Drawing.Point(314, 110);
+            this.label11.Location = new System.Drawing.Point(9, 262);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(43, 15);
             this.label11.TabIndex = 102;
@@ -277,7 +277,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label6.Location = new System.Drawing.Point(320, 71);
+            this.label6.Location = new System.Drawing.Point(-2, 227);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 15);
             this.label6.TabIndex = 100;
@@ -287,7 +287,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label7.Location = new System.Drawing.Point(316, 28);
+            this.label7.Location = new System.Drawing.Point(-6, 184);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 15);
             this.label7.TabIndex = 99;
@@ -326,7 +326,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(437, 246);
+            this.button2.Location = new System.Drawing.Point(196, 389);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 40);
@@ -338,7 +338,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(356, 246);
+            this.button1.Location = new System.Drawing.Point(115, 389);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 40);
@@ -351,7 +351,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 298);
+            this.ClientSize = new System.Drawing.Size(527, 442);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cbJob);
@@ -382,7 +382,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Update_Emp";
-            this.Text = "Update_Emp";
+            this.Text = "직원 수정";
             this.Load += new System.EventHandler(this.Update_Emp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

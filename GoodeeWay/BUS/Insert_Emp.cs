@@ -1,4 +1,5 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.DB;
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace GoodeeWay.BUS
 {
     public partial class Insert_Emp : Form
     {
+        EmpDAO ed;
+
         public Insert_Emp()
         {
             InitializeComponent();
@@ -27,41 +30,66 @@ namespace GoodeeWay.BUS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (check())
             {
-                if (check())
+                var emp = new EmpVO()
                 {
-                    var emp = new EmpVO()
-                    {
-                        Name = txtName.Text,
-                        Job = cbJob.Text,
-                        Pay = float.Parse(txtSalary.Text),
-                        Department = txtDepartment.Text,
-                        Mobile = txtPhone.Text,
-                        JoinDate = DateTime.Parse(dtpJoin.Text),
-                        BankAccountNo = txtBankAccountNo.Text,
-                        Bank = cbBank.Text,
-                        Email = txtEmail.Text,
-                        Note = txtNote.Text
-                    };
+                    Name = txtName.Text,
+                    Job = cbJob.Text,
+                    Pay = float.Parse(txtSalary.Text),
+                    Department = txtDepartment.Text,
+                    Mobile = txtPhone.Text,
+                    JoinDate = DateTime.Parse(dtpJoin.Text),
+                    BankAccountNo = txtBankAccountNo.Text,
+                    Bank = cbBank.Text,
+                    Email = txtEmail.Text,
+                    Note = txtNote.Text
+                };
 
-                    try
-                    {
-                        if (new EmpDAO().InsertBoard(emp))
-                        {
-                            MessageBox.Show("저장 성공");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("저장 실패" + ex);
-                    }
+                if (ed.InsertBoard(emp))
+                {
+                    MessageBox.Show("저장 성공");
+                }
+                else
+                {
+                    MessageBox.Show("저장 실패");
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("오류" + ex);
-            }
+            //try
+            //{
+            //    if (check())
+            //    {
+            //        var emp = new EmpVO()
+            //        {
+            //            Name = txtName.Text,
+            //            Job = cbJob.Text,
+            //            Pay = float.Parse(txtSalary.Text),
+            //            Department = txtDepartment.Text,
+            //            Mobile = txtPhone.Text,
+            //            JoinDate = DateTime.Parse(dtpJoin.Text),
+            //            BankAccountNo = txtBankAccountNo.Text,
+            //            Bank = cbBank.Text,
+            //            Email = txtEmail.Text,
+            //            Note = txtNote.Text
+            //        };
+
+            //        try
+            //        {
+            //            if (new EmpDAO().InsertBoard(emp))
+            //            {
+            //                MessageBox.Show("저장 성공");
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("저장 실패" + ex);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("오류" + ex);
+            //}
         }
         /// <summary>
         /// 필수입력란 bool로 확인

@@ -4,6 +4,7 @@ using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,12 @@ namespace GoodeeWay.DAO
             sqlParameters[7] = new SqlParameter("Bank", emp.Bank);
             sqlParameters[8] = new SqlParameter("Email", emp.Email);
             sqlParameters[9] = new SqlParameter("Note", emp.Note);
-
-            return new DBConnection().Insert(sp, sqlParameters);
+            bool result = false;
+            if (new DBConnection().Insert(sp, sqlParameters))
+            {
+                result = true;
+            }
+            return result;
         }
 
         public List<EmpVO> OutputAllBoard()
@@ -49,14 +54,16 @@ namespace GoodeeWay.DAO
                     Mobile = sr["Mobile"].ToString(),
                     JoinDate = DateTime.Parse(sr["JoinDate"].ToString()),
                     LeaveDate = DateTime.Parse(sr["LeaveDate"].ToString()),
-                    BankAccountNo = sr["BankAccountNo"].ToString(),
                     Bank = sr["Bank"].ToString(),
+                    BankAccountNo = sr["BankAccountNo"].ToString(),
                     Email = sr["Email"].ToString(),
                     Note = sr["Note"].ToString(),
                 });
             }
             return lst;
         }
+
+        
 
 
     }

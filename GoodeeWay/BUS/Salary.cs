@@ -31,5 +31,10 @@ namespace GoodeeWay.BUS
         {
 
         }
+
+        private void Salary_Load(object sender, EventArgs e)
+        {
+            //dataGridView1.DataSource = lst;
+        }
     }
 }
