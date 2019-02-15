@@ -62,7 +62,7 @@ namespace GoodeeWay
                     this.Size = new Size(951, 722);
                     break;
                 case 1:
-                    tabControl1.Size = new Size(1136, 659);
+                    tabControl1.Size = new Size(1159, 659);
                     this.Size = new Size(1187, 722);
                     break;
                 case 2:

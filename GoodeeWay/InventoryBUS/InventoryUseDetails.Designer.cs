@@ -31,10 +31,12 @@
             this.dgvInventoryUseDetails = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtInventoryQuantity = new System.Windows.Forms.TextBox();
+            this.txtRealUseQuantity = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblInventoryName = new System.Windows.Forms.Label();
+            this.lblUseQuantity = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryUseDetails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,13 +69,14 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // txtInventoryQuantity
+            // txtRealUseQuantity
             // 
-            this.txtInventoryQuantity.Location = new System.Drawing.Point(57, 37);
-            this.txtInventoryQuantity.Name = "txtInventoryQuantity";
-            this.txtInventoryQuantity.Size = new System.Drawing.Size(100, 21);
-            this.txtInventoryQuantity.TabIndex = 4;
-            this.txtInventoryQuantity.TextChanged += new System.EventHandler(this.txtInventoryQuantity_TextChanged);
+            this.txtRealUseQuantity.Location = new System.Drawing.Point(57, 37);
+            this.txtRealUseQuantity.Name = "txtRealUseQuantity";
+            this.txtRealUseQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtRealUseQuantity.TabIndex = 4;
+            this.txtRealUseQuantity.Text = "0";
+            this.txtRealUseQuantity.TextChanged += new System.EventHandler(this.txtInventoryQuantity_TextChanged);
             // 
             // btnAdd
             // 
@@ -103,20 +106,42 @@
             this.lblInventoryName.TabIndex = 7;
             this.lblInventoryName.Text = "명";
             // 
+            // lblUseQuantity
+            // 
+            this.lblUseQuantity.AutoSize = true;
+            this.lblUseQuantity.ForeColor = System.Drawing.Color.Red;
+            this.lblUseQuantity.Location = new System.Drawing.Point(319, 9);
+            this.lblUseQuantity.Name = "lblUseQuantity";
+            this.lblUseQuantity.Size = new System.Drawing.Size(0, 12);
+            this.lblUseQuantity.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(208, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 12);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "사용가능:";
+            // 
             // InventoryUseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(423, 289);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblUseQuantity);
             this.Controls.Add(this.lblInventoryName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtInventoryQuantity);
+            this.Controls.Add(this.txtRealUseQuantity);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvInventoryUseDetails);
             this.Name = "InventoryUseDetails";
             this.Text = "InventoryUseDetails";
+            this.Load += new System.EventHandler(this.InventoryUseDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryUseDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,9 +153,11 @@
         private System.Windows.Forms.DataGridView dgvInventoryUseDetails;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox txtInventoryQuantity;
+        private System.Windows.Forms.TextBox txtRealUseQuantity;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblInventoryName;
+        private System.Windows.Forms.Label lblUseQuantity;
+        private System.Windows.Forms.Label label3;
     }
 }

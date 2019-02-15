@@ -63,27 +63,30 @@ namespace GoodeeWay.DAO
                     ReceivingDetailsParameters[5] = new SqlParameter("ReturnStatus", item.ReturnStatus);
                     ReceivingDetailsParameters[6] = new SqlParameter("InventoryTypeCode", item.InventoryTypeCode);
                     new DBConnection().Insert("InsertReceivingDetails", ReceivingDetailsParameters);
-
                 }
             }
 
         }
 
-        internal void InventoryUseDetailsInsert(int InventoryQuantity, string receivingDetailsID)
+        internal void InventoryUseDetailsInsert(int realUseQuantity, string receivingDetailsID, string receivingQuantity, int inventoryQuantity, int useQuantity)
         {
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0]=new SqlParameter("ReceivingDetailsID", receivingDetailsID);
             SqlDataReader dr =new DBConnection().Select("SelectInventoryDetailsForInsert", sqlParameters);
 
-            SqlParameter[] InsertSqlParameters = new SqlParameter[5];
+            SqlParameter[] InsertSqlParameters = new SqlParameter[8];
 
             while(dr.Read())
             {
-                InsertSqlParameters[0] = new SqlParameter("InventoryQuantity", InventoryQuantity);
+                
+                InsertSqlParameters[0] = new SqlParameter("RealUseQuantity", realUseQuantity);
                 InsertSqlParameters[1] = new SqlParameter("DateOfUse", DateTime.Now);
                 InsertSqlParameters[2] = new SqlParameter("DateOfDisposal", DateTime.Parse(dr["DateOfDisposal"].ToString()));
                 InsertSqlParameters[3] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
                 InsertSqlParameters[4] = new SqlParameter("InventoryTypeCode", dr["InventoryTypeCode"].ToString());
+                InsertSqlParameters[5] = new SqlParameter("ReceivingQuantity", Int32.Parse(receivingQuantity));
+                InsertSqlParameters[6] = new SqlParameter("InventoryQuantity", inventoryQuantity);
+                InsertSqlParameters[7] = new SqlParameter("UseQuantity", useQuantity);
             }
             new DBConnection().Insert("InsertInventoryUseDetails", InsertSqlParameters);
         }
@@ -102,7 +105,9 @@ namespace GoodeeWay.DAO
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("재고명", typeof(string));
             dataTable.Columns.Add("사용구분", typeof(string));
+            dataTable.Columns.Add("실제사용수량", typeof(float));
             dataTable.Columns.Add("수량", typeof(int));
+            dataTable.Columns.Add("입고정량", typeof(int));
             dataTable.Columns.Add("사용날짜", typeof(string));
 
             while (dr.Read())
@@ -110,7 +115,18 @@ namespace GoodeeWay.DAO
                 DataRow row = dataTable.NewRow();
                 row["재고명"] = dr["InventoryName"].ToString();
                 row["사용구분"] = dr["InventoryID"].ToString();
-                row["수량"] = dr["InventoryQuantity"].ToString();
+
+                if (dr["InventoryID"].ToString()=="총재고")
+                {
+                    row["수량"] = Int32.Parse(dr["InventoryQuantity"].ToString());
+                    row["실제사용수량"] = Int32.Parse(dr["InventoryQuantity"].ToString())* Int32.Parse(dr["ReceivingQuantity"].ToString());
+                }
+                else
+                {
+                    double a = Double.Parse(dr["InventoryQuantity"].ToString()) / Double.Parse(dr["ReceivingQuantity"].ToString());
+                    row["수량"] = (int)(Math.Ceiling(a));
+                    row["실제사용수량"] = Int32.Parse(dr["InventoryQuantity"].ToString());
+                }
                 string s = dr["DateOfUse"].ToString();
                 if (s != "")
                 {
@@ -120,6 +136,10 @@ namespace GoodeeWay.DAO
                 {
                     row["사용날짜"] = null;
                 }
+                row["입고정량"] = Int32.Parse(dr["ReceivingQuantity"].ToString());
+
+
+
                 dataTable.Rows.Add(row);
             }
             return dataTable;

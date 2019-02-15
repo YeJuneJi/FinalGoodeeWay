@@ -13,21 +13,34 @@ namespace GoodeeWay.InventoryBUS
 {
     public partial class InventoryUseDetails : Form
     {
+        int receivingQuantity = 0;
+        int inventoryQuantity = 0;
+        int maximun = 0;
+        int useQuantity = 0;
+        int a = 0;
+        DataTable dataTable;
+
         string receivingDetailsID;
         public InventoryUseDetails(string receivingDetailsID)
         {
             InitializeComponent();
             this.receivingDetailsID = receivingDetailsID;
-            txtInventoryQuantity.Text = "";
+            txtRealUseQuantity.Text = "0";
             InventoryUseDetailsSelect();
+            
+            NowCanUseQuantity();
         }
         public void InventoryUseDetailsSelect()
         {
-            DataTable dataTable = new InventoryDAO().InventoryUseDetails(receivingDetailsID);
+            dataTable = new InventoryDAO().InventoryUseDetails(receivingDetailsID);
             lblInventoryName.Text = dataTable.Rows[0]["재고명"].ToString();
-
+            receivingQuantity = Int32.Parse(dataTable.Rows[0]["입고정량"].ToString());
+            inventoryQuantity = Int32.Parse(dataTable.Rows[0]["수량"].ToString());
+            maximun = inventoryQuantity * receivingQuantity;
+            dataTable.Columns.Remove("수량");
             dataTable.Columns.Remove("재고명");
             dgvInventoryUseDetails.DataSource = dataTable;
+
             dgvInventoryUseDetails.AllowUserToAddRows = false;
             dgvInventoryUseDetails.ReadOnly = true;
             //dgvInventoryUseDetails
@@ -42,40 +55,52 @@ namespace GoodeeWay.InventoryBUS
         {
             try
             {
-                int InventoryQuantity = Int32.Parse(txtInventoryQuantity.Text);
+                int InventoryQuantity = Int32.Parse(txtRealUseQuantity.Text);
             }
             catch (Exception)
             {
-                txtInventoryQuantity.Text = "";
+                txtRealUseQuantity.Text = "";
             }
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int maximun = Int32.Parse(dgvInventoryUseDetails["수량", 0].Value.ToString());
-            int useQuantity = 0;
+            NowCanUseQuantity();
+            
 
-            if (dgvInventoryUseDetails.Rows.Count>0)
+            if (!(a < 0))
+            {
+                new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID,dgvInventoryUseDetails["입고정량",0].Value.ToString(), inventoryQuantity, useQuantity);
+                MessageBox.Show("추가완료");
+                InventoryUseDetailsSelect();
+            }
+            else
+            {
+                MessageBox.Show("수량한도를 초과했습니다.");
+                txtRealUseQuantity.Text = 0 + "";
+                NowCanUseQuantity();
+            }
+
+        }
+
+        private void NowCanUseQuantity()
+        {
+            useQuantity = 0;
+            if (dgvInventoryUseDetails.Rows.Count > 0)
             {
                 for (int i = 1; i < dgvInventoryUseDetails.Rows.Count; i++)
                 {
-                    useQuantity += Int32.Parse(dgvInventoryUseDetails["수량", i].Value.ToString());
-                } 
+                    useQuantity += Int32.Parse(dgvInventoryUseDetails["실제사용수량", i].Value.ToString());
+                }
             }
+            a = (maximun - useQuantity) - Int32.Parse(txtRealUseQuantity.Text);
+            lblUseQuantity.Text = a + "";
+        }
 
-            
-                if (!((maximun - useQuantity - Int32.Parse(txtInventoryQuantity.Text)) < 0))
-                {
-                    new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtInventoryQuantity.Text),receivingDetailsID);
-                    MessageBox.Show("추가완료");
-                    InventoryUseDetailsSelect();
-                }
-                else
-                {
-                    MessageBox.Show("수량한도를 초과했습니다.");
-                }
-            
+        private void InventoryUseDetails_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
