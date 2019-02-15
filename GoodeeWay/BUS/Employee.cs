@@ -94,47 +94,11 @@ namespace GoodeeWay.BUS
         {
             Employee_Load(null, null);
         }
-
-        private void txtSalary_TextChanged(object sender, EventArgs e) // 시급은 숫자만 입력 가능하게 하기
-        {
-
-        }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
-        }
-
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtEmail_Leave(object sender, EventArgs e)// 이메일 유효성 검사
-        {
-            //if (!(txtEmail.Text == ""))
-            //{
-            //    bool emailCheck = Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
-            //    if (!(emailCheck))
-            //    {
-            //        MessageBox.Show("올바르지 않은 이메일 주소입니다");
-            //        txtEmail.Text = "";
-            //    }
-            //}
-        }
-
-        private void cbJob_Leave(object sender, EventArgs e)//직급 유효성 검사
-        {
-            //if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장"))
-            //{
-            //    MessageBox.Show("존재하지 않는 직급입니다");
-            //    cbJob.Text = "";
-            //}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

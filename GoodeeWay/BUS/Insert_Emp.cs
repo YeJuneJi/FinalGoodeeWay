@@ -16,7 +16,7 @@ namespace GoodeeWay.BUS
 {
     public partial class Insert_Emp : Form
     {
-        EmpDAO ed;
+        EmpDAO ed = new EmpDAO();
 
         public Insert_Emp()
         {
@@ -28,7 +28,7 @@ namespace GoodeeWay.BUS
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // insert
         {
             if (check())
             {
