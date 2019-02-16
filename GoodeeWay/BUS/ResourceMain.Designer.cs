@@ -41,6 +41,8 @@
             this.rdoYear = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.resourceDataGView = new System.Windows.Forms.DataGridView();
+            this.lblbeppr = new System.Windows.Forms.Label();
+            this.lblBEPpredict = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +80,7 @@
             // 
             // tbxTotInvest
             // 
-            this.tbxTotInvest.Location = new System.Drawing.Point(159, 48);
+            this.tbxTotInvest.Location = new System.Drawing.Point(174, 38);
             this.tbxTotInvest.Name = "tbxTotInvest";
             this.tbxTotInvest.Size = new System.Drawing.Size(100, 21);
             this.tbxTotInvest.TabIndex = 4;
@@ -86,7 +88,7 @@
             // lblTotInvest
             // 
             this.lblTotInvest.AutoSize = true;
-            this.lblTotInvest.Location = new System.Drawing.Point(56, 51);
+            this.lblTotInvest.Location = new System.Drawing.Point(57, 41);
             this.lblTotInvest.Name = "lblTotInvest";
             this.lblTotInvest.Size = new System.Drawing.Size(69, 12);
             this.lblTotInvest.TabIndex = 5;
@@ -95,15 +97,15 @@
             // periodBEP
             // 
             this.periodBEP.AutoSize = true;
-            this.periodBEP.Location = new System.Drawing.Point(56, 91);
+            this.periodBEP.Location = new System.Drawing.Point(57, 77);
             this.periodBEP.Name = "periodBEP";
-            this.periodBEP.Size = new System.Drawing.Size(77, 12);
+            this.periodBEP.Size = new System.Drawing.Size(111, 12);
             this.periodBEP.TabIndex = 7;
-            this.periodBEP.Text = "손익분기기간";
+            this.periodBEP.Text = "손익분기기간(개월)";
             // 
             // tbxBEP
             // 
-            this.tbxBEP.Location = new System.Drawing.Point(159, 88);
+            this.tbxBEP.Location = new System.Drawing.Point(174, 74);
             this.tbxBEP.Name = "tbxBEP";
             this.tbxBEP.Size = new System.Drawing.Size(100, 21);
             this.tbxBEP.TabIndex = 6;
@@ -157,17 +159,38 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resourceDataGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resourceDataGView.Location = new System.Drawing.Point(15, 232);
+            this.resourceDataGView.Location = new System.Drawing.Point(16, 214);
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
-            this.resourceDataGView.Size = new System.Drawing.Size(958, 313);
+            this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.resourceDataGView.Size = new System.Drawing.Size(531, 279);
             this.resourceDataGView.TabIndex = 12;
+            // 
+            // lblbeppr
+            // 
+            this.lblbeppr.AutoSize = true;
+            this.lblbeppr.Location = new System.Drawing.Point(317, 47);
+            this.lblbeppr.Name = "lblbeppr";
+            this.lblbeppr.Size = new System.Drawing.Size(117, 12);
+            this.lblbeppr.TabIndex = 13;
+            this.lblbeppr.Text = "손익분기 예상금액 : ";
+            // 
+            // lblBEPpredict
+            // 
+            this.lblBEPpredict.AutoSize = true;
+            this.lblBEPpredict.Location = new System.Drawing.Point(440, 47);
+            this.lblBEPpredict.Name = "lblBEPpredict";
+            this.lblBEPpredict.Size = new System.Drawing.Size(11, 12);
+            this.lblBEPpredict.TabIndex = 14;
+            this.lblBEPpredict.Text = "-";
             // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+            this.Controls.Add(this.lblBEPpredict);
+            this.Controls.Add(this.lblbeppr);
             this.Controls.Add(this.resourceDataGView);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.rdoYear);
@@ -182,7 +205,7 @@
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(997, 563);
+            this.Size = new System.Drawing.Size(1080, 559);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseUp);
@@ -207,5 +230,7 @@
         private System.Windows.Forms.RadioButton rdoYear;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView resourceDataGView;
+        private System.Windows.Forms.Label lblbeppr;
+        private System.Windows.Forms.Label lblBEPpredict;
     }
 }

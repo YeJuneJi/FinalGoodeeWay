@@ -24,16 +24,18 @@ namespace GoodeeWay.BUS
             InitializeComponent();
             totInvestList = new List<ResourceManagementVO>();
             equipList = new List<ResourceManagementVO>();
+            resourceDataGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            resourceDataGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            resourceDataGView.AllowUserToAddRows = false;
             dataColumns = new DataColumn[]
             {
                 new DataColumn("기간"),
                 new DataColumn("총 매출"),
-                new DataColumn("비품 사용비"),
                 new DataColumn("원 재료비"),
                 new DataColumn("관리비"),
                 new DataColumn("인사급여"),
+                new DataColumn("기타"),
                 new DataColumn("순이익"),
-                new DataColumn("손익분기예산금액"),
             };
 
             totRsrcTab = new DataTable("totRsrcTab");
@@ -62,7 +64,6 @@ namespace GoodeeWay.BUS
                 this.Top = e.Y + this.Top - mainPanelOffsetY;
             }
         }
-
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -115,12 +116,19 @@ namespace GoodeeWay.BUS
                 }
 
                 var mergeList = totInvestList.Union(equipList).OrderBy(x => x.ResourceDate).ToList();
-
+                float fixedCost = 0;//고정비
+                float variableCost = 0; ; //변동비
+                float totalInvesetPrice = 0;
                 foreach (var item in mergeList)
                 {
-                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, item.EquipPrice);
+                    
+                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, item.EquipPrice, /*관리비*/0, /*인사급여*/0, /*기타*/0, /*순이익*/0);
+                    variableCost += item.EquipPrice;
+                    fixedCost += 
+                    totalInvesetPrice += item.TotInvestPrice;
                 }
 
+                var netIncome = fixedCost/(1 - (variableCost - totalInvesetPrice)); //손익 분기점 매출액 = 고정비/(1-(변동비/매출액))
                 resourceDataGView.DataSource = totRsrcTab;
 
             }
