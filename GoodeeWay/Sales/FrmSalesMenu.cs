@@ -354,7 +354,7 @@ namespace GoodeeWay.Sales
             //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
             //3. 만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
             //메뉴 수정 - > 레시피 등록
-            //insert into 메뉴코드 = 어쩌고
+            //insert into 메뉴코드 = 메뉴코드 .....
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -414,10 +414,6 @@ namespace GoodeeWay.Sales
                 {
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                 }
-                else
-                {
-                    MessageBox.Show("수정 실패");
-                }
 
                 ReflashData();
             }
@@ -434,7 +430,10 @@ namespace GoodeeWay.Sales
                 MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
             }
             else
-                btnClear_Click(null, null);
+            { 
+                    MessageBox.Show("수정 실패");
+            }
+            btnClear_Click(null, null);
         }
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
@@ -883,6 +882,11 @@ namespace GoodeeWay.Sales
             label.Text = "사용량 :";
             label.Padding = new Padding(0, 8, 0, 0);
             label.Size = new Size(50, 20);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
