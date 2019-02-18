@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crtEquipment = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
@@ -52,16 +52,18 @@
             // 
             // crtEquipment
             // 
-            chartArea2.Name = "ChartArea1";
-            this.crtEquipment.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.crtEquipment.Legends.Add(legend2);
+            this.crtEquipment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea3.Name = "ChartArea1";
+            this.crtEquipment.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.crtEquipment.Legends.Add(legend3);
             this.crtEquipment.Location = new System.Drawing.Point(12, 77);
             this.crtEquipment.Name = "crtEquipment";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.crtEquipment.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.crtEquipment.Series.Add(series3);
             this.crtEquipment.Size = new System.Drawing.Size(791, 172);
             this.crtEquipment.TabIndex = 0;
             // 
@@ -125,7 +127,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 12);
             this.label2.TabIndex = 27;
-            this.label2.Text = "최고 지출(일) : ";
+            this.label2.Text = "지출 합계(일) : ";
             // 
             // lblMaxDate
             // 
@@ -146,7 +148,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(704, 427);
+            this.label5.Location = new System.Drawing.Point(585, 400);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 12);
             this.label5.TabIndex = 30;

@@ -21,6 +21,11 @@ namespace GoodeeWay.BUS
 
         private void FrmUsingOfEquipment_Load(object sender, EventArgs e)
         {
+            //crtEquipment.ChartAreas[0].AxisY.Style |= AxisStyles.HideText;
+            //crtEquipment.AxisY.Style |= AxisStyles.Hide;
+            crtEquipment.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
+            crtEquipment.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+
             crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
             crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
             crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
@@ -49,9 +54,8 @@ namespace GoodeeWay.BUS
             crtEquipment.Series[0].LegendText = "총액";
 
             var totalE = from eq in equipment
-                        select eq.PurchasePrice;
-          
-            
+                         select eq.PurchasePrice;
+
             var total = from eq in equipment
                         where eq.PurchasePrice == totalE.Max()
                         select eq;
@@ -61,13 +65,83 @@ namespace GoodeeWay.BUS
                 lblMaxDate.Text = String.Format("{0:#,###}원", Convert.ToInt32(item.PurchasePrice)) + " / " + item.PurchaseDate.ToLongDateString();
             }
 
-          
             string lgsText;
             lgsText = totalE.Sum().ToString().Replace(",", ""); //숫자변환시 콤마로 발생하는 에러 방지
             lblTotalExpenditure.Text = String.Format("{0:#,###}원", Convert.ToInt32(lgsText));
 
+            //var monthMax = from eq in equipment
+            //               group eq by new
+            //               {
+            //                   eq.PurchaseDate.Month,
+            //                   eq.PurchaseDate.Year
+            //               };
+            var monthMax = from eq in equipment
+                           group eq by new
+                           {
+                               eq.PurchaseDate.Month,
+                               eq.PurchaseDate.Year
+                           };
+            var monthToList = monthMax.ToList();
 
-            // lblTotalExpenditure.Text = totalE.ToString();
+            List<VO.EquipmentVO> tempMonthPrice = new List<VO.EquipmentVO>();
+            foreach (var item in monthToList)
+            {
+                float sumPrice = 0;
+                foreach (var value in item)
+                {
+                    sumPrice += value.PurchasePrice;
+                }
+                tempMonthPrice.Add(new VO.EquipmentVO() { PurchaseDate =new DateTime(item.Key.Year,item.Key.Month,1), PurchasePrice = sumPrice });
+            }
+
+            var maxMonth = from equip in tempMonthPrice
+                           where equip.PurchasePrice == tempMonthPrice.Max(price => price.PurchasePrice)
+                           select equip.PurchasePrice;
+                           
+            foreach (var item in maxMonth)
+            {
+                MessageBox.Show(item +" \t" );// +item.Month
+            }
+            //MessageBox.Show(maxMonth.Max(price => price.purchasePrice).ToString());   
+            //MessageBox.Show(tempMonthPrice.Max(price =>price.PurchasePrice).ToString());
+            //foreach (var item in maxMonth)
+            //{
+            //    MessageBox.Show(item.PurchasePrice + "\t" +item.PurchaseDate);    
+            //}
+
+            //   var maxMon= tempMonthPrice.Max(Equip => Equip.PurchasePrice);
+            //   MessageBox.Show(maxMon);
+
+
+            //   MessageBox.Show(maxMon.PurchaseDate + "\t" + maxMon.PurchasePrice);
+            //var test = from records in (from saleRecord in saleRecordList
+            //                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+            //                            select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+            //           group records by records.SalesDate;
+
+
+
+
+            //var temp = from ee in monthMax
+            //           select new
+            //           {
+            //               PurchaseDate = ee.Sum(ee.)
+            //           };
+
+            //foreach (var item in temp)
+            //{
+            //    MessageBox.Show(item.Max().PurchaseDate + "\t" + item.Max().PurchasePrice);
+            //}
+
+
+
+
+
+
+
+
+
+            //lblTotalExpenditure.Text = totalE.ToString();
 
             //var dateOf = from equip in equipment
             //             group equip by equip.PurchaseDate;
