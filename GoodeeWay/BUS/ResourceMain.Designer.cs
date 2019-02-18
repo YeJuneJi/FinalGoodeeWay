@@ -43,6 +43,7 @@
             this.resourceDataGView = new System.Windows.Forms.DataGridView();
             this.lblbeppr = new System.Windows.Forms.Label();
             this.lblBEPpredict = new System.Windows.Forms.Label();
+            this.tbxResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,11 +185,24 @@
             this.lblBEPpredict.TabIndex = 14;
             this.lblBEPpredict.Text = "-";
             // 
+            // tbxResult
+            // 
+            this.tbxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbxResult.Location = new System.Drawing.Point(579, 19);
+            this.tbxResult.Multiline = true;
+            this.tbxResult.Name = "tbxResult";
+            this.tbxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxResult.Size = new System.Drawing.Size(480, 515);
+            this.tbxResult.TabIndex = 15;
+            // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+            this.Controls.Add(this.tbxResult);
             this.Controls.Add(this.lblBEPpredict);
             this.Controls.Add(this.lblbeppr);
             this.Controls.Add(this.resourceDataGView);
@@ -232,5 +246,6 @@
         private System.Windows.Forms.DataGridView resourceDataGView;
         private System.Windows.Forms.Label lblbeppr;
         private System.Windows.Forms.Label lblBEPpredict;
+        private System.Windows.Forms.TextBox tbxResult;
     }
 }

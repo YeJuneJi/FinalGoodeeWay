@@ -57,7 +57,6 @@ namespace GoodeeWay
             }
             frmSandwichMaking = new FrmSandwichMaking();
             frmSandwichMaking.Show();
-            
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)

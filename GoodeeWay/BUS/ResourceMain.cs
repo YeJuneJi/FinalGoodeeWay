@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace GoodeeWay.BUS
 {
@@ -32,6 +34,7 @@ namespace GoodeeWay.BUS
                 new DataColumn("기간"),
                 new DataColumn("총 매출"),
                 new DataColumn("원 재료비"),
+                new DataColumn("비품비"),
                 new DataColumn("관리비"),
                 new DataColumn("인사급여"),
                 new DataColumn("기타"),
@@ -64,6 +67,10 @@ namespace GoodeeWay.BUS
                 this.Top = e.Y + this.Top - mainPanelOffsetY;
             }
         }
+        private void ResourceMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.mainDragging = false;
+        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -74,7 +81,6 @@ namespace GoodeeWay.BUS
             DateTime periodEnd = resourceEnd.Value;
             periodStart = periodStart.Date + breakingDawn;
             periodEnd = periodEnd.Date + eclipse;
-
             if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
             {
                 MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
@@ -86,7 +92,7 @@ namespace GoodeeWay.BUS
                 var dayPerRealTot = from records in (from saleRecord in saleRecordList
                                                      let salesDate = saleRecord.SalesDate.Date
                                                      where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                                                     select new { salesDate, saleRecord.SalesTotal })
+                                                     select new { salesDate, saleRecord.SalesTotal, saleRecord.SalesitemName })
                                     group records by records.salesDate;
 
                 var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
@@ -95,7 +101,21 @@ namespace GoodeeWay.BUS
                                                           select new { equipDate, equipment.PurchasePrice })
                                           group equips by equips.equipDate;
 
+                var test = from records in (from saleRecord in saleRecordList
+                                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                                            select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                           group records by records.SalesDate;
 
+                var test2 = from saleRecord in saleRecordList
+                           where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                           select new { SalesDate = saleRecord.SalesDate.Month, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName };
+                           
+                foreach (var item in test2)
+                {
+                    tbxResult.Text += item.SalesDate + "\r\n" + "=================================" + item.SitemName;
+                   // var list = JsonExtenstions
+                }
+                       
                 foreach (var item in dayPerRealTot)
                 {
                     float sum = 0;
@@ -115,27 +135,24 @@ namespace GoodeeWay.BUS
                     equipList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EquipPrice = sum });
                 }
 
-                var mergeList = totInvestList.Union(equipList).OrderBy(x => x.ResourceDate).ToList();
+                var mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
                 float fixedCost = 0;//고정비
                 float variableCost = 0; ; //변동비
                 float totalInvesetPrice = 0;
                 foreach (var item in mergeList)
                 {
-                    
-                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, item.EquipPrice, /*관리비*/0, /*인사급여*/0, /*기타*/0, /*순이익*/0);
+
+                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, /*원재료비*/0, item.EquipPrice, /*관리비*/0, /*인사급여*/0, /*기타*/0, /*순이익*/0);
                     variableCost += item.EquipPrice;
-                    fixedCost += 
+                    //fixedCost += 
                     totalInvesetPrice += item.TotInvestPrice;
                 }
 
-                var netIncome = fixedCost/(1 - (variableCost - totalInvesetPrice)); //손익 분기점 매출액 = 고정비/(1-(변동비/매출액))
+                var netIncome = fixedCost / (1 - (variableCost - totalInvesetPrice)); //손익 분기점 매출액 = 고정비/(1-(변동비/매출액))
                 resourceDataGView.DataSource = totRsrcTab;
 
             }
         }
-        private void ResourceMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.mainDragging = false;
-        }
+
     }
 }
