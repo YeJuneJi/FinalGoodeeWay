@@ -7,9 +7,27 @@ using System.Windows.Forms;
 using System;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace GoodeeWay.BUS
 {
+    public static partial class JsonExtensions
+    {
+        public static IEnumerable<T> FromDelimitedJson<T>(TextReader reader, JsonSerializerSettings settings = null)
+        {
+            using (var jsonReader = new JsonTextReader(reader) { CloseInput = false, SupportMultipleContent = true })
+            {
+                var serializer = JsonSerializer.CreateDefault(settings);
+
+                while (jsonReader.Read())
+                {
+                    if (jsonReader.TokenType == JsonToken.Comment)
+                        continue;
+                    yield return serializer.Deserialize<T>(jsonReader);
+                }
+            }
+        }
+    }
     public partial class ResourceMain : UserControl
     {
         private bool mainDragging = false;
@@ -108,14 +126,11 @@ namespace GoodeeWay.BUS
 
                 var test2 = from saleRecord in saleRecordList
                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                           select new { SalesDate = saleRecord.SalesDate.Month, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName };
-                           
-                foreach (var item in test2)
-                {
-                    tbxResult.Text += item.SalesDate + "\r\n" + "=================================" + item.SitemName;
-                   // var list = JsonExtenstions
-                }
-                       
+                           select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName };
+
+                
+
+                
                 foreach (var item in dayPerRealTot)
                 {
                     float sum = 0;
@@ -136,6 +151,7 @@ namespace GoodeeWay.BUS
                 }
 
                 var mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
+
                 float fixedCost = 0;//고정비
                 float variableCost = 0; ; //변동비
                 float totalInvesetPrice = 0;
