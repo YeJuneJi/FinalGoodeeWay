@@ -307,6 +307,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

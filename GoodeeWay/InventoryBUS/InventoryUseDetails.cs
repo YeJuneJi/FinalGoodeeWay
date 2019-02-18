@@ -40,7 +40,7 @@ namespace GoodeeWay.InventoryBUS
             dataTable.Columns.Remove("수량");
             dataTable.Columns.Remove("재고명");
             dgvInventoryUseDetails.DataSource = dataTable;
-
+            
             dgvInventoryUseDetails.AllowUserToAddRows = false;
             dgvInventoryUseDetails.ReadOnly = true;
             //dgvInventoryUseDetails
@@ -67,19 +67,32 @@ namespace GoodeeWay.InventoryBUS
         private void btnAdd_Click(object sender, EventArgs e)
         {
             NowCanUseQuantity();
-            
 
-            if (!(a < 0))
+
+            if (txtRealUseQuantity.Text!="0")
             {
-                new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID,dgvInventoryUseDetails["입고정량",0].Value.ToString(), inventoryQuantity, useQuantity);
-                MessageBox.Show("추가완료");
-                InventoryUseDetailsSelect();
+                if (!(a < 0))
+                {
+                    new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID, dgvInventoryUseDetails["입고정량", 0].Value.ToString(), inventoryQuantity, useQuantity);
+                    MessageBox.Show("추가완료");
+                    if (a == 0)
+                    {
+                        new InventoryDAO().InventoryUseDateUpdate(receivingDetailsID);
+                    }
+                    InventoryUseDetailsSelect();
+
+                }
+                else
+                {
+                    MessageBox.Show("수량한도를 초과했습니다.");
+                    txtRealUseQuantity.Text = 0 + "";
+                    NowCanUseQuantity();
+                } 
             }
             else
             {
-                MessageBox.Show("수량한도를 초과했습니다.");
+                MessageBox.Show("0이상의 숫자를 입력해주세요.");
                 txtRealUseQuantity.Text = 0 + "";
-                NowCanUseQuantity();
             }
 
         }
@@ -87,15 +100,23 @@ namespace GoodeeWay.InventoryBUS
         private void NowCanUseQuantity()
         {
             useQuantity = 0;
-            if (dgvInventoryUseDetails.Rows.Count > 0)
+            if (lblUseQuantity.Text!="0")
             {
-                for (int i = 1; i < dgvInventoryUseDetails.Rows.Count; i++)
+                if (dgvInventoryUseDetails.Rows.Count > 0)
                 {
-                    useQuantity += Int32.Parse(dgvInventoryUseDetails["실제사용수량", i].Value.ToString());
+                    for (int i = 1; i < dgvInventoryUseDetails.Rows.Count; i++)
+                    {
+                        useQuantity += Int32.Parse(dgvInventoryUseDetails["실제사용수량", i].Value.ToString());
+                    }
+                }
+                a = (maximun - useQuantity) - Int32.Parse(txtRealUseQuantity.Text);
+                lblUseQuantity.Text = a + "";
+                if (lblUseQuantity.Text == "0")
+                {
+                    btnAdd.Enabled = false;
                 }
             }
-            a = (maximun - useQuantity) - Int32.Parse(txtRealUseQuantity.Text);
-            lblUseQuantity.Text = a + "";
+            
         }
 
         private void InventoryUseDetails_Load(object sender, EventArgs e)

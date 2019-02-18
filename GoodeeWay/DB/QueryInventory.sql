@@ -288,4 +288,12 @@ AS
 
 
 Go
---
+--재고사용내역 재고 소진 시 날짜 입력
+
+CREATE PROCEDURE [dbo].UpdateInventoryUseDate
+	@DateOfUse datetime,
+	@ReceivingDetailsID nvarchar(10)
+AS
+	update Inventory
+	set DateOfUse=@DateOfUse
+	where ReceivingDetailsID=@ReceivingDetailsID and SUBSTRING(InventoryID,4,2)='00';

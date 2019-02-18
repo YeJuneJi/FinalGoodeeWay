@@ -68,6 +68,14 @@ namespace GoodeeWay.DAO
 
         }
 
+        internal void InventoryUseDateUpdate(string receivingDetailsID)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("DateOfUse", DateTime.Now);
+            sqlParameters[1] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+            new DBConnection().Insert("UpdateInventoryUseDate", sqlParameters);
+        }
+
         internal void InventoryUseDetailsInsert(int realUseQuantity, string receivingDetailsID, string receivingQuantity, int inventoryQuantity, int useQuantity)
         {
             SqlParameter[] sqlParameters = new SqlParameter[1];
