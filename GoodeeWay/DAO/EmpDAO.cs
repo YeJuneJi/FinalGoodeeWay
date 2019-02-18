@@ -38,10 +38,10 @@ namespace GoodeeWay.DAO
             return result;
         }
 
-        public List<EmpVO> OutputAllBoard()
+        public List<EmpVO> SelectAll()
         {
             lst = new List<EmpVO>();
-            string sp = "Display";
+            string sp = "proc_emp_selectall";
             SqlDataReader sr = new DBConnection().Select(sp,null);
             while (sr.Read())
             {

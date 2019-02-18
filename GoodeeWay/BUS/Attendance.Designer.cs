@@ -35,8 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnInsert = new System.Windows.Forms.Button();
             this.lblTotalCount = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -107,26 +107,29 @@
             this.lblTotalCount.TabIndex = 101;
             this.lblTotalCount.Text = "현재 인원 : 0명";
             // 
-            // button2
+            // btnUpdate
             // 
-            this.button2.Location = new System.Drawing.Point(93, 284);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 32);
-            this.button2.TabIndex = 106;
-            this.button2.Text = "수정";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(93, 284);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 32);
+            this.btnUpdate.TabIndex = 106;
+            this.btnUpdate.Text = "수정";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // button3
+            // btnDelete
             // 
-            this.button3.Location = new System.Drawing.Point(174, 284);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 32);
-            this.button3.TabIndex = 107;
-            this.button3.Text = "삭제";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(174, 284);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 32);
+            this.btnDelete.TabIndex = 107;
+            this.btnDelete.Text = "삭제";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // button4
             // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.button4.Location = new System.Drawing.Point(255, 284);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 32);
@@ -141,8 +144,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 423);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.label1);
@@ -170,8 +173,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.Label lblTotalCount;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button button4;
     }
 }

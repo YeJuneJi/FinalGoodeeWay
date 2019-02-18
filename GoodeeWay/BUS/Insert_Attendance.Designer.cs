@@ -38,12 +38,10 @@
             this.dtpIn = new System.Windows.Forms.DateTimePicker();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.txtTotalpay = new System.Windows.Forms.TextBox();
-            this.txtDepartment = new System.Windows.Forms.TextBox();
             this.txtEmpno = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.dtpOut = new System.Windows.Forms.DateTimePicker();
@@ -57,18 +55,19 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClear.Location = new System.Drawing.Point(186, 333);
+            this.btnClear.Location = new System.Drawing.Point(149, 331);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 144;
             this.btnClear.Text = "다시작성";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnClose.Location = new System.Drawing.Point(267, 333);
+            this.btnClose.Location = new System.Drawing.Point(231, 331);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 40);
@@ -80,7 +79,7 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("함초롬돋움", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnInsert.Location = new System.Drawing.Point(105, 333);
+            this.btnInsert.Location = new System.Drawing.Point(69, 331);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(75, 40);
@@ -103,7 +102,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label5.Location = new System.Drawing.Point(39, 112);
+            this.label5.Location = new System.Drawing.Point(38, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 15);
             this.label5.TabIndex = 122;
@@ -158,22 +157,13 @@
             this.txtTotalpay.Size = new System.Drawing.Size(100, 21);
             this.txtTotalpay.TabIndex = 133;
             // 
-            // txtDepartment
-            // 
-            this.txtDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtDepartment.Location = new System.Drawing.Point(257, 109);
-            this.txtDepartment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtDepartment.Name = "txtDepartment";
-            this.txtDepartment.Size = new System.Drawing.Size(100, 21);
-            this.txtDepartment.TabIndex = 131;
-            // 
             // txtEmpno
             // 
             this.txtEmpno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.txtEmpno.Location = new System.Drawing.Point(77, 68);
             this.txtEmpno.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmpno.Name = "txtEmpno";
-            this.txtEmpno.Size = new System.Drawing.Size(148, 21);
+            this.txtEmpno.Size = new System.Drawing.Size(147, 21);
             this.txtEmpno.TabIndex = 130;
             // 
             // label10
@@ -205,16 +195,6 @@
             this.label8.Size = new System.Drawing.Size(46, 15);
             this.label8.TabIndex = 125;
             this.label8.Text = "총 시간";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label9.Location = new System.Drawing.Point(224, 112);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 15);
-            this.label9.TabIndex = 124;
-            this.label9.Text = "부서";
             // 
             // label4
             // 
@@ -250,7 +230,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(39, 33);
+            this.label1.Location = new System.Drawing.Point(38, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 15);
             this.label1.TabIndex = 147;
@@ -320,15 +300,14 @@
             this.Controls.Add(this.dtpIn);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.txtTotalpay);
-            this.Controls.Add(this.txtDepartment);
             this.Controls.Add(this.txtEmpno);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Name = "Insert_Attendance";
             this.Text = "근태 입력";
+            this.Load += new System.EventHandler(this.Insert_Attendance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,12 +325,10 @@
         private System.Windows.Forms.DateTimePicker dtpIn;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.TextBox txtTotalpay;
-        private System.Windows.Forms.TextBox txtDepartment;
         private System.Windows.Forms.TextBox txtEmpno;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.DateTimePicker dtpOut;

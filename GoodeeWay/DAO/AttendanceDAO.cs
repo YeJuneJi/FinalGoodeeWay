@@ -84,5 +84,18 @@ namespace GoodeeWay.DAO
 
             return lst;
         }
+
+        public bool DeleteAttendance(int no)
+        {
+            string sp = "proc_attendance_delete";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("no", no);
+            bool result = false;
+            if (new DBConnection().Delete(sp, sqlParameters))
+            {
+                result = true;
+            }
+            return result;
+        }
     }
 }

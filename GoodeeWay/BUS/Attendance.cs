@@ -16,6 +16,8 @@ namespace GoodeeWay.BUS
 {
     public partial class Attendance : Form
     {
+        AttendanceDAO ad = new AttendanceDAO();
+
         public Attendance()
         {
             InitializeComponent();
@@ -32,14 +34,20 @@ namespace GoodeeWay.BUS
                 dateTimePicker2.Value = temp;
             }
 
-            AttendanceDAO ad = new AttendanceDAO();
+            ad = new AttendanceDAO();
             dataGridView1.DataSource = ad.Select2Attendance(dateTimePicker1.Value, dateTimePicker2.Value);
+            ColumnSetKorean();
         }
 
         private void Attendance_Load(object sender, EventArgs e)
         {
             List<AttendanceVO> lst = new AttendanceDAO().SelectAttendance();
             dataGridView1.DataSource = lst;
+            ColumnSetKorean();
+        }
+
+        private void ColumnSetKorean()
+        {
             dataGridView1.Columns["no"].HeaderText = "일련번호";
             dataGridView1.Columns["Empno"].HeaderText = "사원번호";
             dataGridView1.Columns["TimeIn"].HeaderText = "출근시간";
@@ -60,6 +68,34 @@ namespace GoodeeWay.BUS
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Attendance_Load(null, null);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("일련번호 " + dataGridView1.SelectedCells[0].Value + "번 기록을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    ad.DeleteAttendance(Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString()));
+                    MessageBox.Show("삭제 성공");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("삭제 실패");
+                }
+            }
+            else
+            {
+                MessageBox.Show("취소되었습니다");
+            }
             Attendance_Load(null, null);
         }
     }

@@ -33,42 +33,13 @@ namespace GoodeeWay.BUS
         private void Employee_Load(object sender, EventArgs e)
         {
             cbFilter.Text = "사원명";
-            lst = new EmpDAO().OutputAllBoard();
+            lst = new EmpDAO().SelectAll();
             this.dataGridView1.DataSource = lst;
             ColumnSettingKorean();
             TotalCount();
-            //try
-            //{
-            //    var t = Int32.Parse(dataGridView1.SelectedCells[0].Value.ToString().Substring(3)) + 1;
-            //    switch (t / 10)
-            //    {
-            //        case 0:
-            //            txtNum.Text = "EMP00000" + t.ToString();
-            //            break;
-            //        case 1:
-            //            txtNum.Text = "EMP0000" + t.ToString();
-            //            break;
-            //        case 10:
-            //            txtNum.Text = "EMP000" + t.ToString();
-            //            break;
-            //        case 100:
-            //            txtNum.Text = "EMP00" + t.ToString();
-            //            break;
-            //        case 1000:
-            //            txtNum.Text = "EMP0" + t.ToString();
-            //            break;
-            //        case 10000:
-            //            txtNum.Text = "EMP" + t.ToString();
-            //            break;
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
         }
 
-        private void ColumnSettingKorean()
+        private void ColumnSettingKorean() // 컬럼명 한글화
         {
             dataGridView1.Columns["empno"].HeaderText = "사원번호";
             dataGridView1.Columns["name"].HeaderText = "사원명";
@@ -84,7 +55,7 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["Note"].HeaderText = "비고";
         }
 
-        private void btnInsert_Click(object sender, EventArgs e)
+        private void btnInsert_Click(object sender, EventArgs e) // 추가
         {
             Insert_Emp ie = new Insert_Emp();
             ie.FormClosed += new FormClosedEventHandler(newForm_FormClosed); // 닫으면 폼이 새로고침됨
@@ -96,19 +67,19 @@ namespace GoodeeWay.BUS
             Employee_Load(null, null);
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e) // 새로고침
         {
             Employee_Load(null, null);
         }
-        
-        private void btnUpdate_Click(object sender, EventArgs e)
+
+        private void btnUpdate_Click(object sender, EventArgs e) // 수정버튼
         {
             MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e) // 삭제
         {
-            DialogResult result = MessageBox.Show("'" + dataGridView1.SelectedCells[1].Value + "' 직원을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None,MessageBoxDefaultButton.Button2);
+            DialogResult result = MessageBox.Show("'" + dataGridView1.SelectedCells[1].Value + "' 직원을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
 
             if (result == DialogResult.Yes)
             {
@@ -135,9 +106,9 @@ namespace GoodeeWay.BUS
         private void btnSearch_Click(object sender, EventArgs e)
         {
             EmpDAO empDAO = new EmpDAO();
-            
+
             dataGridView1.DataSource = "";
-            
+
             if (txtSearch.Text == "")
             {
                 Employee_Load(null, null);
@@ -146,15 +117,12 @@ namespace GoodeeWay.BUS
             {
                 bool a = false;
 
-                if (cbFilter.Text == "사원명")
-                {
-                    lst = empDAO.nameSelect(a, txtSearch.Text);
-                }
-                else
+                if (cbFilter.Text == "사원번호")
                 {
                     a = true;
-                    lst = empDAO.nameSelect(a, txtSearch.Text);
                 }
+
+                lst = empDAO.nameSelect(a, txtSearch.Text);
                 dataGridView1.DataSource = lst;
             }
             ColumnSettingKorean();
