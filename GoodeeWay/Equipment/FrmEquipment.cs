@@ -25,7 +25,6 @@ namespace GoodeeWay.Equipment
         }
         private EquipmentVO tempEquipment;//선택된 비품임시저장
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
-        private DataRow dataRow;
 
        const int pageRows = 15;
         int currentPage = 1;
