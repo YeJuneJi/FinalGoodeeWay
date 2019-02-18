@@ -1,5 +1,6 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,33 +78,47 @@ namespace GoodeeWay.Order
 
                     string toMaking = String.Empty;
 
-                    // 제조 테이블에 넘겨줄 string 내용 작성 후 넘겨줌
-                    foreach (MenuAndDetails item in bucketMenuAndDetailList)
+                    foreach (var item in bucketMenuAndDetailList)
                     {
-                        toMaking += "@";
-                        if (item.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
-                        {
-                            toMaking += "샌드위치[" + item.Menu.MenuName + "]";
-                            foreach (MenuDetail menuDetail in item.MenuDetailList)
-                            {
-                                toMaking += "|" + menuDetail.InventoryName;
-                            }
-                        }
-                        else if (item.Menu.Division.Equals(Convert.ToString((int)Division.찹샐러드)))
-                        {
-                            toMaking += "찹샐러드" + item.Menu.MenuName;
-                        }
-                        else if (item.Menu.Division.Equals(Convert.ToString((int)Division.사이드)))
-                        {
-                            toMaking += "사이드" + item.Menu.MenuName;
-                        }
-                        else if (item.Menu.Division.Equals(Convert.ToString((int)Division.음료)))
-                        {
-                            toMaking += "음료" + item.Menu.MenuName;
-                        }
+                        toMaking += JsonConvert.SerializeObject(item, Formatting.Indented);
                     }
 
+                    //MessageBox.Show(toMaking);
+                    // 제조 테이블에 넘겨줄 string 내용 작성 후 넘겨줌
+                    //foreach (MenuAndDetails item in bucketMenuAndDetailList)
+                    //{
+                    //    toMaking += "@";
+                    //    if (item.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
+                    //    {
+                    //        toMaking += "샌드위치[" + item.Menu.MenuName + "]";
+                    //        foreach (MenuDetail menuDetail in item.MenuDetailList)
+                    //        {
+                    //            toMaking += "|" + menuDetail.InventoryName;
+                    //        }
+                    //    }
+                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.찹샐러드)))
+                    //    {
+                    //        toMaking += "찹샐러드" + item.Menu.MenuName;
+                    //    }
+                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.사이드)))
+                    //    {
+                    //        toMaking += "사이드" + item.Menu.MenuName;
+                    //    }
+                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.음료)))
+                    //    {
+                    //        toMaking += "음료" + item.Menu.MenuName;
+                    //    }
+                    //}
+
                     MainForm.frmSandwichMaking.GetString(toMaking);
+                    try
+                    {
+                        new MakingDAO().InsertMaking(toMaking);
+                    }
+                    catch (Exception ee)
+                    {
+                        MessageBox.Show(ee.StackTrace);
+                    }
 
                     // 판매기록 테이블에 기입할 내용 넘겨줌
                     SaleRecordsVO saleRecord = new SaleRecordsVO();

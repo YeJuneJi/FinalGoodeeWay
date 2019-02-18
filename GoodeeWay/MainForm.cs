@@ -31,8 +31,8 @@ namespace GoodeeWay
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            frmSandwichMaking = new FrmSandwichMaking();
-            frmSandwichMaking.Show();
+            //frmSandwichMaking = new FrmSandwichMaking();
+            //frmSandwichMaking.Show();
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
