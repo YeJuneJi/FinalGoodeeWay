@@ -189,6 +189,7 @@
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
+    <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
     <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
