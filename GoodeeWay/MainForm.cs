@@ -98,5 +98,12 @@ namespace GoodeeWay
             resourceManagemanet.MdiParent = this;
             resourceManagemanet.Show();
         }
+
+        private void 제조현황ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmSandwichMaking fsm = new FrmSandwichMaking();
+            fsm.MdiParent = this;
+            fsm.Show();
+        }
     }
 }

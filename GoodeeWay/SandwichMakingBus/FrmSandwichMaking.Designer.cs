@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSB = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridViewING = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewING)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewSB
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1201, 226);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridViewSB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSB.Location = new System.Drawing.Point(12, 43);
+            this.dataGridViewSB.Name = "dataGridViewSB";
+            this.dataGridViewSB.RowTemplate.Height = 23;
+            this.dataGridViewSB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSB.Size = new System.Drawing.Size(1171, 232);
+            this.dataGridViewSB.TabIndex = 0;
+            this.dataGridViewSB.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label1
             // 
@@ -57,14 +58,6 @@
             this.label1.Size = new System.Drawing.Size(124, 27);
             this.label1.TabIndex = 1;
             this.label1.Text = "제조현황";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 275);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1201, 278);
-            this.textBox1.TabIndex = 2;
             // 
             // lblTime
             // 
@@ -79,18 +72,30 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // dataGridViewING
+            // 
+            this.dataGridViewING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewING.Location = new System.Drawing.Point(12, 311);
+            this.dataGridViewING.Name = "dataGridViewING";
+            this.dataGridViewING.RowTemplate.Height = 23;
+            this.dataGridViewING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewING.Size = new System.Drawing.Size(1171, 233);
+            this.dataGridViewING.TabIndex = 4;
+            // 
             // FrmSandwichMaking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1248, 565);
+            this.ClientSize = new System.Drawing.Size(1199, 565);
+            this.Controls.Add(this.dataGridViewING);
             this.Controls.Add(this.lblTime);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewSB);
             this.Name = "FrmSandwichMaking";
             this.Text = "FrmSandwichMaking";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmSandwichMaking_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewING)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,10 +103,10 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewSB;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridView dataGridViewING;
     }
 }
