@@ -36,6 +36,7 @@
             this.비품관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.인사관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.매출관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.제조현황ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             this.판매기록관리ToolStripMenuItem,
             this.비품관리ToolStripMenuItem,
             this.인사관리ToolStripMenuItem,
-            this.매출관리ToolStripMenuItem});
+            this.매출관리ToolStripMenuItem,
+            this.제조현황ToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
             this.MainMenuStrip.Size = new System.Drawing.Size(1484, 24);
@@ -105,6 +107,13 @@
             this.매출관리ToolStripMenuItem.Text = "매출관리";
             this.매출관리ToolStripMenuItem.Click += new System.EventHandler(this.매출관리ToolStripMenuItem_Click);
             // 
+            // 제조현황ToolStripMenuItem
+            // 
+            this.제조현황ToolStripMenuItem.Name = "제조현황ToolStripMenuItem";
+            this.제조현황ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.제조현황ToolStripMenuItem.Text = "제조현황";
+            this.제조현황ToolStripMenuItem.Click += new System.EventHandler(this.제조현황ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -132,6 +141,7 @@
         private System.Windows.Forms.ToolStripMenuItem 비품관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 인사관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 매출관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 제조현황ToolStripMenuItem;
     }
 }
 

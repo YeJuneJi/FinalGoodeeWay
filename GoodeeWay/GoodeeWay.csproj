@@ -196,6 +196,7 @@
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
+    <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
     <EmbeddedResource Include="BUS\ResourceMain.resx">
@@ -293,6 +294,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RealMenu.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

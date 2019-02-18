@@ -28,7 +28,7 @@ namespace GoodeeWay.Order
         }
 
         private void Order_Load(object sender, EventArgs e)
-        {            
+        {
             List<Menu> menuList = new List<Menu>();
             float price = 0;
             float discount = 0;
@@ -42,20 +42,20 @@ namespace GoodeeWay.Order
             txtChange.Text = "0";
 
             foreach (var item in bucketMenuAndDetailList)
-            {                
+            {
                 price += item.Menu.Price; // 구입한 메뉴들 가격 총 계산
                 discount += ((item.Menu.Price * item.Menu.DiscountRatio) / 100);
                 tax += (item.Menu.Price * 10) / 100;
 
-                menuList.Add(item.Menu); 
+                menuList.Add(item.Menu);
             }
 
             txtPrice.Text = price.ToString(); // 가격 입력
             txtSale.Text = discount.ToString(); // 할인 입력
             txtTax.Text = tax.ToString(); // 세금 입력
             txtTotal.Text = (price - discount).ToString();
-            
-            dataGridView1.DataSource = menuList; 
+
+            dataGridView1.DataSource = menuList;
         }
 
         public bool result = false;
@@ -78,10 +78,23 @@ namespace GoodeeWay.Order
 
                     string toMaking = String.Empty;
 
+                    RealMenuVO rm = new RealMenuVO();
+                    MenuAndDetails[] bb = new MenuAndDetails[bucketMenuAndDetailList.Count];
+
+                    int i = 0;
                     foreach (var item in bucketMenuAndDetailList)
                     {
-                        toMaking += JsonConvert.SerializeObject(item, Formatting.Indented);
+                        bb[i] = item;
+                        i++;
+                        //toMaking += JsonConvert.SerializeObject(item, Formatting.Indented);
                     }
+
+                    rm.RealMenu = bb;
+
+                    toMaking += JsonConvert.SerializeObject(rm, Formatting.Indented);
+                    MessageBox.Show(toMaking);
+
+                    //MessageBox.Show(toMaking);
 
                     //MessageBox.Show(toMaking);
                     // 제조 테이블에 넘겨줄 string 내용 작성 후 넘겨줌
@@ -108,9 +121,12 @@ namespace GoodeeWay.Order
                     //    {
                     //        toMaking += "음료" + item.Menu.MenuName;
                     //    }
-                    //}
+                    //}                                        
 
-                    //MainForm.frmSandwichMaking.GetString(toMaking);
+                    ////////////////////////////////////////
+
+                    MainForm.frmSandwichMaking.CallMaking();
+
                     try
                     {
                         new MakingDAO().InsertMaking(toMaking);
@@ -142,7 +158,7 @@ namespace GoodeeWay.Order
                     result = true;
                     this.Close();
                 }
-            } 
+            }
         }
 
         /// <summary>
@@ -162,24 +178,24 @@ namespace GoodeeWay.Order
         /// <param name="e"></param>
         private void btnNum_Click(object sender, EventArgs e)
         {
-            Button b = (Button)sender; 
-            
+            Button b = (Button)sender;
+
             if (txtPaid.Text.Length > 0)
             {
                 if (txtPaid.Text.ElementAt(0).ToString().Equals("0"))
                 {
-                    txtPaid.Text = b.Text;                    
+                    txtPaid.Text = b.Text;
                 }
                 else
                 {
                     txtPaid.Text += b.Text;
-                }                
+                }
             }
             else
             {
                 txtPaid.Text += b.Text;
             }
-            
+
             CommaSet(txtPaid.Text.Replace(",", ""));
         }
 
@@ -189,9 +205,9 @@ namespace GoodeeWay.Order
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnWon_Click(object sender, EventArgs e)
-        {   
+        {
             Button b = (Button)sender;
-            txtPaid.Text = (double.Parse(txtPaid.Text.Replace("," , "")) + double.Parse(b.Text)).ToString();
+            txtPaid.Text = (double.Parse(txtPaid.Text.Replace(",", "")) + double.Parse(b.Text)).ToString();
 
             CommaSet(txtPaid.Text);
         }
@@ -215,7 +231,7 @@ namespace GoodeeWay.Order
         {
             if (txtPaid.Text.Length > 0)
             {
-                txtPaid.Text = txtPaid.Text.Replace("," , "").Remove(txtPaid.Text.Replace("," , "").Length - 1);
+                txtPaid.Text = txtPaid.Text.Replace(",", "").Remove(txtPaid.Text.Replace(",", "").Length - 1);
             }
 
             CommaSet(txtPaid.Text);
@@ -228,7 +244,7 @@ namespace GoodeeWay.Order
         private void CommaSet(string txt)
         {
             txtPaid.Text = String.Empty;
-            for (int i = txt.Length - 3 ; i > 1; i = i-3)
+            for (int i = txt.Length - 3; i > 1; i = i - 3)
             {
                 txt = txt.Insert(i, ",");
             }

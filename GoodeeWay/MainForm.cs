@@ -200,5 +200,12 @@ namespace GoodeeWay
                 resourceManagemanet.BringToFront();
             }
         }
+
+        private void 제조현황ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //FrmSandwichMaking frmSandwichMaking = new FrmSandwichMaking();
+            //frmSandwichMaking.MdiParent = this;
+            //frmSandwichMaking.Show();
+        }
     }
 }

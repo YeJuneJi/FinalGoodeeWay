@@ -1,4 +1,5 @@
-﻿using GoodeeWay.VO;
+﻿using GoodeeWay.DAO;
+using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,13 @@ namespace GoodeeWay.SandwichMakingBus
 {
     public partial class FrmSandwichMaking : Form
     {
-        int count = 0;
+        int count = 0;        
+        List<MakingFormVO> stringList = new List<MakingFormVO>();
+        
+        private void FrmSandwichMaking_Load(object sender, EventArgs e)
+        {
+            GridViewSBReset();
+        }
 
         public FrmSandwichMaking()
         {
@@ -25,55 +32,51 @@ namespace GoodeeWay.SandwichMakingBus
             lblTime.Text = DateTime.Now.ToLongDateString() +" "+ DateTime.Now.ToLongTimeString();
         }
 
-        List<MakingFormVO> stringList = new List<MakingFormVO>();
+        private void GridViewSBReset()
+        {
+            dataGridViewSB.Columns.Clear();
+            dataGridViewSB.DataSource = null;
 
-        public void GetString(string toMaking)
-        {            
-            MakingFormVO mfVO = new MakingFormVO();
-            mfVO.Num = count++;
+            stringList = new MakingDAO().SelectMaking();
 
-            string[] splitString = toMaking.Split('@');
-            
-            foreach (var item in splitString)
+            foreach (var makingFormVO in stringList)
             {
-                if (item.Contains("샌드위치"))
+                string[] splitString = makingFormVO.ToMaking.Split('@');
+
+                foreach (var item in splitString)
                 {
-                    mfVO.SandwichRecipe += item.Replace("샌드위치", "") + "@";
-                    
+                    if (item.Contains("샌드위치"))
+                    {
+                        makingFormVO.SandwichRecipe += item.Replace("샌드위치", "") + "@";
+                    }
+                    else if (item.Contains("찹샐러드"))
+                    {
+                        makingFormVO.Salad += item.Replace("찹샐러드", "") + "|";
+                    }
+                    else if (item.Contains("사이드"))
+                    {
+                        makingFormVO.Side += item.Replace("사이드", "") + "|";
+                    }
+                    else if (item.Contains("음료"))
+                    {
+                        makingFormVO.Drink += item.Replace("음료", "") + "|";
+                    }
                 }
-                else if (item.Contains("찹샐러드"))
-                {
-                    mfVO.Salad += item.Replace("찹샐러드", "") + "|";
-                }
-                else if (item.Contains("사이드"))
-                {
-                    mfVO.Side += item.Replace("사이드", "") + "|";
-                }
-                else if (item.Contains("음료"))
-                {
-                    mfVO.Drink += item.Replace("음료", "") + "|";
-                }
+
+                dataGridViewSB.DataSource = stringList;
             }
 
             DataGridViewButtonColumn startButton = new DataGridViewButtonColumn();
             startButton.Text = "시작";
+            startButton.Name = "시작";
             startButton.UseColumnTextForButtonValue = true;
-            DataGridViewButtonColumn endButton = new DataGridViewButtonColumn();
-            endButton.Text = "종료";
-            endButton.UseColumnTextForButtonValue = true;
 
-            mfVO.StartButton = startButton;
-            mfVO.EndButto = endButton;
-
-            stringList.Add(mfVO);
-
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = stringList;            
+            dataGridViewSB.Columns.Add(startButton);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string[] splitString = dataGridView1.SelectedRows[0].Cells[1].Value.ToString().Split('@');
+            string[] splitString = dataGridViewSB.SelectedRows[0].Cells[1].Value.ToString().Split('@');
 
             foreach (string item in splitString)
             {
@@ -82,6 +85,11 @@ namespace GoodeeWay.SandwichMakingBus
                     
                 }
             }
+        }
+
+        internal void CallMaking()
+        {
+            GridViewSBReset();
         }
     }
 }

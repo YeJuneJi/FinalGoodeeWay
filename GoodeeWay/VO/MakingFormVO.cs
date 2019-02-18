@@ -17,6 +17,15 @@ namespace GoodeeWay.VO
             set { num = value; }
         }
 
+        private string toMaking;
+
+        public string ToMaking
+        {
+            get { return toMaking; }
+            set { toMaking = value; }
+        }
+
+
         private string sandwichRecipe;
 
         public string SandwichRecipe
@@ -49,21 +58,12 @@ namespace GoodeeWay.VO
             set { side = value; }
         }
 
-        private DataGridViewButtonColumn startButton;
+        private string division;
 
-        public DataGridViewButtonColumn StartButton
+        public string Division
         {
-            get { return startButton; }
-            set { startButton = value; }
+            get { return division; }
+            set { division = value; }
         }
-
-        private DataGridViewButtonColumn endButton;
-
-        public DataGridViewButtonColumn EndButto
-        {
-            get { return endButton; }
-            set { endButton = value; }
-        }
-
     }
 }

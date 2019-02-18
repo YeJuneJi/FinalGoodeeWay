@@ -8,26 +8,10 @@ using System;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
+using GoodeeWay.Order;
 
 namespace GoodeeWay.BUS
 {
-    public static partial class JsonExtensions
-    {
-        public static IEnumerable<T> FromDelimitedJson<T>(TextReader reader, JsonSerializerSettings settings = null)
-        {
-            using (var jsonReader = new JsonTextReader(reader) { CloseInput = false, SupportMultipleContent = true })
-            {
-                var serializer = JsonSerializer.CreateDefault(settings);
-
-                while (jsonReader.Read())
-                {
-                    if (jsonReader.TokenType == JsonToken.Comment)
-                        continue;
-                    yield return serializer.Deserialize<T>(jsonReader);
-                }
-            }
-        }
-    }
     public partial class ResourceMain : UserControl
     {
         private bool mainDragging = false;
@@ -128,9 +112,41 @@ namespace GoodeeWay.BUS
                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
                            select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName };
 
+
+                //foreach (var item in test2)
+                //{
+                //    tbxResult.Text ="===================================\r\n\r\n" + item.SitemName;
+                //    JObject realMenu = JObject.Parse(item.SitemName);
+                //    JArray realArray = JArray.Parse(realMenu.SelectToken("RealMenu").ToString());
+                //    foreach (JObject realarr in realArray)
+                //    {
+                //        string menu = realarr["Menu"].ToString();
+                //        string recipeMenu = realarr["MenuDetailList"].ToString();
+                //        JArray recipeJarr = JArray.Parse(recipeMenu);
+                //        foreach (var recipArr in recipeJarr)
+                //        {
+                //            new MenuDetail()
+                //            {
+                //                RecipeCode = recipArr["RecipeCode"].ToString()
+                //            };
+                //        }
+                //    }
+                //}
+                foreach (var item in test2)
+                {
+                    RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(item.SitemName);
+                    foreach (var real in rv.RealMenu)
+                    {
+                        tbxResult.Text += "메뉴이름 : " + real.Menu.MenuName + "\r\n";
+                        foreach (var item2 in real.MenuDetailList)
+                        {
+                            tbxResult.Text += "재료이름 : " + item2.InventoryName + "\r\n";
+                        }
+
+                    }
+                }
                 
 
-                
                 foreach (var item in dayPerRealTot)
                 {
                     float sum = 0;
@@ -170,5 +186,23 @@ namespace GoodeeWay.BUS
             }
         }
 
+    }
+
+    public static partial class JsonExtensions
+    {
+        public static IEnumerable<T> FromDelimitedJson<T>(TextReader reader, JsonSerializerSettings settings = null)
+        {
+            using (var jsonReader = new JsonTextReader(reader) { CloseInput = false, SupportMultipleContent = true })
+            {
+                var serializer = JsonSerializer.CreateDefault(settings);
+
+                while (jsonReader.Read())
+                {
+                    if (jsonReader.TokenType == JsonToken.Comment)
+                        continue;
+                    yield return serializer.Deserialize<T>(jsonReader);
+                }
+            }
+        }
     }
 }
