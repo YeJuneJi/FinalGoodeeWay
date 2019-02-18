@@ -110,7 +110,7 @@ namespace GoodeeWay.Order
                     //    }
                     //}
 
-                    MainForm.frmSandwichMaking.GetString(toMaking);
+                    //MainForm.frmSandwichMaking.GetString(toMaking);
                     try
                     {
                         new MakingDAO().InsertMaking(toMaking);
