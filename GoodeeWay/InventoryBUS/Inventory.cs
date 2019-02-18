@@ -377,10 +377,17 @@ namespace GoodeeWay
         /// <param name="e"></param>
         private void btnRelease_Click(object sender, EventArgs e)
         {
-            InventoryUseDetails inventoryUseDetails = new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString());
-            inventoryUseDetails.ShowDialog();
-            InventoryTableSelect();
-            InventoryTypeSelect();
+            try
+            {
+                InventoryUseDetails inventoryUseDetails = new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString());
+                inventoryUseDetails.ShowDialog();
+                InventoryTableSelect();
+                InventoryTypeSelect();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("먼저 재고내역을 선택해주세요");
+            }
         }
         #endregion
 
@@ -661,15 +668,17 @@ namespace GoodeeWay
             worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
             for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
             {
-                worksheet.Cells[i, 1] = i-3;
-                worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호",i-4].Value.ToString();
-                worksheet.Cells[i, 3] = dgvNeedInventoryDetailView["재고명", i - 4].Value.ToString();
-                worksheet.Cells[i, 4] = dgvNeedInventoryDetailView["수량", i - 4].Value.ToString();
-                worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
+                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString())>0)
+                {
+                    worksheet.Cells[i, 1] = i - 3;
+                    worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호", i - 4].Value.ToString();
+                    worksheet.Cells[i, 3] = dgvNeedInventoryDetailView["재고명", i - 4].Value.ToString();
+                    worksheet.Cells[i, 4] = dgvNeedInventoryDetailView["수량", i - 4].Value.ToString();
+                    worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
 
-                
-                Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i+1,1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
-                r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
+                    Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i + 1, 1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
+                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue); 
+                }
             }
 
 
