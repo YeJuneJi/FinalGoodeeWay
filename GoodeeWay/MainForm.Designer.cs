@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.주문ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.메뉴관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,12 +37,12 @@
             this.인사관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.매출관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.제조현황ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.MainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // MainMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.주문ToolStripMenuItem,
             this.재고ToolStripMenuItem,
             this.메뉴관리ToolStripMenuItem,
@@ -51,11 +51,11 @@
             this.인사관리ToolStripMenuItem,
             this.매출관리ToolStripMenuItem,
             this.제조현황ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1484, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MainMenuStrip.Name = "MainMenuStrip";
+            this.MainMenuStrip.Size = new System.Drawing.Size(1484, 24);
+            this.MainMenuStrip.TabIndex = 0;
+            this.MainMenuStrip.Text = "menuStrip1";
             // 
             // 주문ToolStripMenuItem
             // 
@@ -118,22 +118,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 961);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.MainMenuStrip);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MainMenuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MainMenuStrip.ResumeLayout(false);
+            this.MainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem 재고ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 주문ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 메뉴관리ToolStripMenuItem;
