@@ -19,7 +19,7 @@ namespace GoodeeWay.BUS
             InitializeComponent();
         }
 
-        AttendanceDAO atDao = new AttendanceDAO();
+        AttendanceDAO atd = new AttendanceDAO();
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -33,8 +33,7 @@ namespace GoodeeWay.BUS
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            //List<AttendanceVO> lst = new List<AttendanceVO>();
-            var at = new AttendanceVO
+            var at = new AttendanceVO()
             {
                 Empno = txtEmpno.Text,
                 Date = DateTime.Parse(dtpDate.Text),
@@ -45,7 +44,7 @@ namespace GoodeeWay.BUS
                 TotalTime = DateTime.Parse(dtpTotaltime.Text),
                 Note = txtNote.Text
             };
-            if (atDao.InsertAttendance(at))
+            if (atd.InsertAttendance(at))
             {
                 MessageBox.Show("입력 성공");
             }

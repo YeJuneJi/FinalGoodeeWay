@@ -1,9 +1,11 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.DB;
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,6 @@ namespace GoodeeWay.BUS
 {
     public partial class Attendance : Form
     {
-
         public Attendance()
         {
             InitializeComponent();
@@ -22,33 +23,44 @@ namespace GoodeeWay.BUS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if(dateTimePicker1.Value > dateTimePicker2.Value)
+            dataGridView1.DataSource = "";
+
+            if (dateTimePicker1.Value > dateTimePicker2.Value)
             {
                 var temp = dateTimePicker1.Value;
                 dateTimePicker1.Value = dateTimePicker2.Value;
                 dateTimePicker2.Value = temp;
             }
+
+            AttendanceDAO ad = new AttendanceDAO();
+            dataGridView1.DataSource = ad.Select2Attendance(dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
         private void Attendance_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = new AttendanceDAO().SelectAttendance();
-            //dataGridView1.Columns["no"].HeaderText = "일련번호";
-            //dataGridView1.Columns["Empno"].HeaderText = "사원번호";
-            //dataGridView1.Columns["TimeIn"].HeaderText = "출근시간";
-            //dataGridView1.Columns["TimeOut"].HeaderText = "퇴근시간";
-            //dataGridView1.Columns["TotalTime"].HeaderText = "총 시간";
-            //dataGridView1.Columns["Date"].HeaderText = "날짜";
-            //dataGridView1.Columns["TotalPay"].HeaderText = "급여";
-            //dataGridView1.Columns["OverTime"].HeaderText = "초과시간";
-            //dataGridView1.Columns["Note"].HeaderText = "비고";
-            //dataGridView1.Columns["ename"].HeaderText = "사원명";
+            List<AttendanceVO> lst = new AttendanceDAO().SelectAttendance();
+            dataGridView1.DataSource = lst;
+            dataGridView1.Columns["no"].HeaderText = "일련번호";
+            dataGridView1.Columns["Empno"].HeaderText = "사원번호";
+            dataGridView1.Columns["TimeIn"].HeaderText = "출근시간";
+            dataGridView1.Columns["TimeOut"].HeaderText = "퇴근시간";
+            dataGridView1.Columns["TotalTime"].HeaderText = "총 시간";
+            dataGridView1.Columns["Date"].HeaderText = "날짜";
+            dataGridView1.Columns["TotalPay"].HeaderText = "급여";
+            dataGridView1.Columns["OverTime"].HeaderText = "초과시간";
+            dataGridView1.Columns["Note"].HeaderText = "비고";
+            dataGridView1.Columns["name"].HeaderText = "사원명";
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Attendance ia = new Insert_Attendance();
             ia.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Attendance_Load(null, null);
         }
     }
 }

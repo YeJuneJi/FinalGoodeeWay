@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.DAO
 {
-    class EmpDAO : IEmp
+    class EmpDAO
     {
+        List<EmpVO> lst = new List<EmpVO>();
 
         public bool InsertBoard(EmpVO emp)
         {
@@ -39,7 +40,7 @@ namespace GoodeeWay.DAO
 
         public List<EmpVO> OutputAllBoard()
         {
-            List<EmpVO> lst = new List<EmpVO>();
+            lst = new List<EmpVO>();
             string sp = "Display";
             SqlDataReader sr = new DBConnection().Select(sp,null);
             while (sr.Read())
@@ -63,7 +64,44 @@ namespace GoodeeWay.DAO
             return lst;
         }
 
-        
+        public List<EmpVO> nameSelect(bool a, string search)
+        {
+            lst = new List<EmpVO>();
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            string sp = "";
+
+            if (a)
+            {
+                sqlParameters[0] = new SqlParameter("empno", search);
+                sp = "proc_emp_select2";
+            }
+            else
+            {
+                sqlParameters[0] = new SqlParameter("name", search);
+                sp = "proc_emp_select";
+            }
+
+            SqlDataReader sdr = new DBConnection().Select(sp, sqlParameters);
+            while (sdr.Read())
+            {
+                lst.Add(new EmpVO()
+                {
+                    Empno = sdr["empno"].ToString(),
+                    Name = sdr["name"].ToString(),
+                    Job = sdr["job"].ToString(),
+                    Pay = float.Parse(sdr["pay"].ToString()),
+                    Department = sdr["Department"].ToString(),
+                    Mobile = sdr["Mobile"].ToString(),
+                    JoinDate = DateTime.Parse(sdr["JoinDate"].ToString()),
+                    LeaveDate = DateTime.Parse(sdr["LeaveDate"].ToString()),
+                    Bank = sdr["Bank"].ToString(),
+                    BankAccountNo = sdr["BankAccountNo"].ToString(),
+                    Email = sdr["Email"].ToString(),
+                    Note = sdr["Note"].ToString(),
+                });
+            }
+            return lst;
+        }
 
 
     }

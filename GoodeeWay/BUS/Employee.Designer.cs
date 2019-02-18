@@ -138,7 +138,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 21);
             this.txtSearch.TabIndex = 95;
-            this.txtSearch.Enter += new System.EventHandler(this.btnSearch_Click);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnSearch
