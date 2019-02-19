@@ -37,7 +37,7 @@ namespace GoodeeWay.Sales
                 new DataColumn("메뉴명"),
                 new DataColumn("가격"),
                 new DataColumn("Kcal"),
-                new DataColumn("이미지",typeof(byte[])),
+                new DataColumn("이미지", typeof(byte[])),
                 new DataColumn("구분"),
                 new DataColumn("부가설명"),
             };
@@ -62,7 +62,7 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in salesMenus)
             {
-                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, item.MenuImage.ImageToByteArray(), item.Division, item.AdditionalContext);
+                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, Image.FromFile(item.MenuImageLocation).ImageToByteArray(), item.Division, item.AdditionalContext);
             }
             menuSearchGView.DataSource = searchMenu;
         }
@@ -129,7 +129,7 @@ namespace GoodeeWay.Sales
                     workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
                     workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
                     Excel.Range pictureRange = workSheet.Cells[i, 5];
-                    Image img = ((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value).ByteArrayToImage(); //바이트 배열을 Image로 변환하는 확장 메서드를 사용.
+                    Image img = Image.FromFile((menuSearchGView.Rows[i - 2].Cells[4].Value.ToString()));
                     img = (Image)new Bitmap(img, new Size(100, 100));
                     pictureRange.ColumnWidth = 11.88;
                     pictureRange.RowHeight = 75.00;

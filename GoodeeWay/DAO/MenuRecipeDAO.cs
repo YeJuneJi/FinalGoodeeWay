@@ -11,7 +11,6 @@ namespace GoodeeWay.DAO
 {
     class MenuRecipeDAO
     {
-
         public bool DeleteRecipesByMenuCode(string menuCode)
         {
             DBConnection connection = new DBConnection();
@@ -49,8 +48,7 @@ namespace GoodeeWay.DAO
             catch (SqlException)
             {
                 throw;
-            }
-            
+            }            
         }
 
 
@@ -103,7 +101,5 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
-
-        
     }
 }

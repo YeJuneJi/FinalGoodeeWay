@@ -22,6 +22,13 @@ cache;
 
 go
 
+--전체 비품목록을 
+create procedure [dbo].[SerchEquipment]
+as
+select * from dbo.EquipmentRegister
+order by EQUCode desc;
+
+go
 --비품대장에 insert시키는 프로시저
 create procedure dbo.InsertEquipment_PROC
 @detailName nvarchar(50),
@@ -64,15 +71,17 @@ if (@location ='')begin
 	if (@anotherDate =  '1753-1-1')
 	begin select * from dbo.EquipmentRegister
 	where detailName like '%'+ @detailName +'%'
-	and @state like '%' + @state+'%'
+	and state like '%' + @state+'%'
 	and purchasePrice >= @purchasePrice
+	order by EQUCode desc;
 	end
 	 else begin
 	select * from dbo.EquipmentRegister
 	where detailName like '%'+ @detailName +'%'
-	and @state like '%' + @state+'%'
+	and state like '%' + @state+'%'
 	and purchasePrice >= @purchasePrice
-	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23)
+	order by EQUCode desc;
 	end
 end
 else begin
@@ -82,6 +91,7 @@ else begin
 	and location like '%' + @location +'%' 
 	and state like '%' +@state+'%'
 	and purchasePrice >= @purchasePrice
+	order by EQUCode desc;
 	end
 	else begin
 	select * from dbo.EquipmentRegister
@@ -89,7 +99,8 @@ else begin
 	 and location like '%' + @location +'%' 
 	and purchasePrice >= @purchasePrice
 	and state like '%'+@state+'%'
-	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23)
+	order by EQUCode desc;
 	end
  end
  go

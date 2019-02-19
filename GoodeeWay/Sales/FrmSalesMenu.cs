@@ -24,6 +24,7 @@ namespace GoodeeWay.Sales
         NumericUpDown nmrUpDownTopping;
         NumericUpDown nmrUpDownAdd;
         DataTable inventoryTypeTable;
+        PictureBox picturePanel;
         List<InventoryTypeVO> inventoryTypeList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
 
@@ -36,6 +37,8 @@ namespace GoodeeWay.Sales
 
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
+            oFdialogPhoto.InitialDirectory = Application.StartupPath + "\\Images\\";
+            this.WindowState = FormWindowState.Maximized;
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -45,7 +48,7 @@ namespace GoodeeWay.Sales
             salesMenuGView.Columns[1].HeaderText = "메뉴명";
             salesMenuGView.Columns[2].HeaderText = "가격";
             salesMenuGView.Columns[3].HeaderText = "Kcal";
-            salesMenuGView.Columns[4].HeaderText = "이미지";
+            salesMenuGView.Columns[4].HeaderText = "이미지경로";
             salesMenuGView.Columns[5].HeaderText = "구분";
             salesMenuGView.Columns[6].HeaderText = "부가설명";
             salesMenuGView.Columns[7].HeaderText = "할인율";
@@ -81,7 +84,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text;
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
-            Image image = pbxPhoto.Image;
+            string imageLocation = pbxPhoto.ImageLocation;
 
             
             bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
@@ -89,19 +92,19 @@ namespace GoodeeWay.Sales
             bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
 
             
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, imageLocation) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
             {
                 //만약 선택된 분류가 샌드위치가 아니라면
                 if (cbxDivision.SelectedIndex != 0)
                 {
                     //메뉴를 등록하고 메뉴등록 성공여부를 반환한다.
-                    sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
+                    sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, imageLocation, sucessMenu);
                 }
                 //만약 선택된 분류가 샌드위치라면
                 else
                 {
                     //메뉴를 등록하고 메뉴 등록성공여부를 반환 후
-                    sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image, sucessMenu);
+                    sucessMenu = InsertingMenu(menuCode, menuName, price, kcal, division, addContxt, discountRatio, imageLocation, sucessMenu);
                     if (!sucessMenu)
                     {
                         return;
@@ -135,12 +138,18 @@ namespace GoodeeWay.Sales
         {
             if (cbxDivision.SelectedIndex != 0)//만약 샌드위치가 아니라면 
             {
-                this.Size = new Size(757, 556); //사이즈 변경 없음.
+                FlowPanel.Controls.Clear();
+                picturePanel = new PictureBox();
+                picturePanel.BorderStyle = BorderStyle.Fixed3D;
+                picturePanel.Dock = DockStyle.Top;
+                picturePanel.Size = FlowPanel.Size;
+                picturePanel.SizeMode = PictureBoxSizeMode.StretchImage;
+                picturePanel.Image = Properties.Resources.GoodeeWayHead;
+                FlowPanel.Controls.Add(picturePanel);
             }
             else
             {
                 FlowPanel.Controls.Clear();
-                this.Size = new Size(1280, 556); //사이즈를 변경하고
                 breadPanel = new FlowLayoutPanel();
                 cheesePanel = new FlowLayoutPanel();
                 vegetablePanel = new FlowLayoutPanel();
@@ -333,6 +342,7 @@ namespace GoodeeWay.Sales
         {
             msktbxMnuCode.Text = tbxAddContxt.Text = tbxKcal.Text = tbxMnuName.Text = tbxPrice.Text = tbxDiscountRatio.Text = "";
             pbxPhoto.Image = null;
+            pbxPhoto.ImageLocation = string.Empty;
             cbxDivision.SelectedIndex = -1;
             msktbxMnuCode.Focus();
         }
@@ -346,7 +356,7 @@ namespace GoodeeWay.Sales
             //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
             //3. 만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
             //메뉴 수정 - > 레시피 등록
-            //insert into 메뉴코드 = 어쩌고
+            //insert into 메뉴코드 = 메뉴코드 .....
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -354,19 +364,19 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(" ", "").Trim();
-            Image image = pbxPhoto.Image;
+            string ImageLocation = pbxPhoto.ImageLocation;
             bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
             bool sucessdeleteRecipe = false;
-            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, image) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
+            if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, ImageLocation) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))
             {
                 SalesMenuVO salesMenuVO = new SalesMenuVO();
                 salesMenuVO.MenuCode = menuCode;
                 salesMenuVO.MenuName = menuName;
                 salesMenuVO.Price = float.Parse(price);
                 salesMenuVO.Kcal = int.Parse(kcal);
-                salesMenuVO.MenuImage = image;
+                salesMenuVO.MenuImageLocation = ImageLocation;
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (item.ToString().Equals(division))
@@ -406,10 +416,6 @@ namespace GoodeeWay.Sales
                 {
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                 }
-                else
-                {
-                    MessageBox.Show("수정 실패");
-                }
 
                 ReflashData();
             }
@@ -426,7 +432,10 @@ namespace GoodeeWay.Sales
                 MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
             }
             else
-                btnClear_Click(null, null);
+            { 
+                    MessageBox.Show("수정 실패");
+            }
+            btnClear_Click(null, null);
         }
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
@@ -474,7 +483,7 @@ namespace GoodeeWay.Sales
                 tbxKcal.Text = salesMenuGView.Rows[e.RowIndex].Cells[3].Value.ToString();
                 tbxAddContxt.Text = salesMenuGView.Rows[e.RowIndex].Cells[6].Value.ToString();
                 tbxDiscountRatio.Text = salesMenuGView.Rows[e.RowIndex].Cells[7].Value.ToString();
-                pbxPhoto.Image = salesMenuGView.Rows[e.RowIndex].Cells[4].Value as Image;
+                pbxPhoto.ImageLocation = salesMenuGView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (salesMenuGView.Rows[e.RowIndex].Cells[5].Value.Equals((int)item))
@@ -561,10 +570,10 @@ namespace GoodeeWay.Sales
         /// <param name="kcal"></param>
         /// <param name="division"></param>
         /// <param name="addContxt"></param>
-        /// <param name="image"></param>
+        /// <param name="ImageLocation"></param>
         /// <param name="sucessMenu"></param>
         /// <returns></returns>
-        private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, Image image, bool sucessMenu)
+        private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation, bool sucessMenu)
         {
             sucessMenu = false;
             SalesMenuVO salesMenuVO = new SalesMenuVO();
@@ -572,7 +581,7 @@ namespace GoodeeWay.Sales
             salesMenuVO.MenuName = menuName;
             salesMenuVO.Price = float.Parse(price);
             salesMenuVO.Kcal = int.Parse(kcal);
-            salesMenuVO.MenuImage = image;
+            salesMenuVO.MenuImageLocation = imageLocation;
             foreach (Division item in Enum.GetValues(typeof(Division)))
             {
                 if (item.ToString().Equals(division))
@@ -802,12 +811,12 @@ namespace GoodeeWay.Sales
         /// <param name="kcal"></param>
         /// <param name="division"></param>
         /// <param name="addContxt"></param>
-        /// <param name="image"></param>
+        /// <param name="ImageLocation"></param>
         /// <returns></returns>
-        private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, Image image)
+        private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation)
         {
             bool result = false;
-            if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || image == null))
+            if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || string.IsNullOrEmpty(imageLocation)))
             {
                 result = true;
             }
@@ -855,7 +864,7 @@ namespace GoodeeWay.Sales
             salesMenuGView.Columns[1].HeaderText = "메뉴명";
             salesMenuGView.Columns[2].HeaderText = "가격";
             salesMenuGView.Columns[3].HeaderText = "Kcal";
-            salesMenuGView.Columns[4].HeaderText = "이미지";
+            salesMenuGView.Columns[4].HeaderText = "이미지경로";
             salesMenuGView.Columns[5].HeaderText = "구분";
             salesMenuGView.Columns[6].HeaderText = "부가설명";
             salesMenuGView.Columns[7].HeaderText = "할인율";
@@ -865,9 +874,8 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in labels)
             {
-                item.Size = new Size(50, 50);
-                item.Padding = new Padding(10);
-                item.Width = 460;
+                item.Size = new Size(50, 20);
+                item.Padding = new Padding(0,8,0,0);
             }
         }
 
@@ -876,6 +884,11 @@ namespace GoodeeWay.Sales
             label.Text = "사용량 :";
             label.Padding = new Padding(0, 8, 0, 0);
             label.Size = new Size(50, 20);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
