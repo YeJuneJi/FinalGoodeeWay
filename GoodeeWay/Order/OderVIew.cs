@@ -40,8 +40,8 @@ namespace GoodeeWay.Order
         private void GetMenuList() // menuList 세팅
         {
             foreach (Menu item in menuList) // 메뉴리스트에 있는 목록을 각각 별로 listview에 띄어줌
-            {
-                imgList.Images.Add(item.MenuCode, item.MenuImage);
+            {                
+                imgList.Images.Add(item.MenuCode, Image.FromFile(Application.StartupPath + item.MenuImage));
                 imgList.ImageSize = new Size(128, 128);
                 listViewOrder.LargeImageList = imgList;
                 listViewBasket.LargeImageList = imgList;
