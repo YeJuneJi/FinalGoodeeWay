@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crtEquipment = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
@@ -41,30 +41,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblMaxDate = new System.Windows.Forms.Label();
             this.lblTotalExpenditure = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaxMonth = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblMaxYear = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvtotalList = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.crtEquipment)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvtotalList)).BeginInit();
             this.SuspendLayout();
             // 
             // crtEquipment
             // 
             this.crtEquipment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.crtEquipment.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.crtEquipment.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.crtEquipment.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.crtEquipment.Legends.Add(legend4);
             this.crtEquipment.Location = new System.Drawing.Point(12, 77);
             this.crtEquipment.Name = "crtEquipment";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.crtEquipment.Series.Add(series3);
-            this.crtEquipment.Size = new System.Drawing.Size(791, 172);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.crtEquipment.Series.Add(series4);
+            this.crtEquipment.Size = new System.Drawing.Size(791, 188);
             this.crtEquipment.TabIndex = 0;
             // 
             // label1
@@ -123,16 +126,16 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 22);
+            this.label2.Location = new System.Drawing.Point(48, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 12);
+            this.label2.Size = new System.Drawing.Size(87, 12);
             this.label2.TabIndex = 27;
-            this.label2.Text = "지출 합계(일) : ";
+            this.label2.Text = "지출 합계(일) :";
             // 
             // lblMaxDate
             // 
             this.lblMaxDate.AutoSize = true;
-            this.lblMaxDate.Location = new System.Drawing.Point(123, 22);
+            this.lblMaxDate.Location = new System.Drawing.Point(142, 28);
             this.lblMaxDate.Name = "lblMaxDate";
             this.lblMaxDate.Size = new System.Drawing.Size(0, 12);
             this.lblMaxDate.TabIndex = 28;
@@ -140,24 +143,23 @@
             // lblTotalExpenditure
             // 
             this.lblTotalExpenditure.AutoSize = true;
-            this.lblTotalExpenditure.Location = new System.Drawing.Point(546, 22);
+            this.lblTotalExpenditure.Location = new System.Drawing.Point(568, 28);
             this.lblTotalExpenditure.Name = "lblTotalExpenditure";
             this.lblTotalExpenditure.Size = new System.Drawing.Size(0, 12);
             this.lblTotalExpenditure.TabIndex = 29;
             // 
-            // label5
+            // lblMaxMonth
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(585, 400);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 12);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "label5";
+            this.lblMaxMonth.AutoSize = true;
+            this.lblMaxMonth.Location = new System.Drawing.Point(142, 45);
+            this.lblMaxMonth.Name = "lblMaxMonth";
+            this.lblMaxMonth.Size = new System.Drawing.Size(0, 12);
+            this.lblMaxMonth.TabIndex = 30;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(462, 22);
+            this.label6.Location = new System.Drawing.Point(484, 28);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 12);
             this.label6.TabIndex = 31;
@@ -166,41 +168,67 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(77, 39);
+            this.label10.Location = new System.Drawing.Point(99, 45);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 12);
+            this.label10.Size = new System.Drawing.Size(35, 12);
             this.label10.TabIndex = 33;
-            this.label10.Text = "(월) : ";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.lblMaxDate);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.lblTotalExpenditure);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(39, 274);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(703, 100);
-            this.panel1.TabIndex = 34;
+            this.label10.Text = "(월) :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(77, 59);
+            this.label4.Location = new System.Drawing.Point(99, 65);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 12);
+            this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 34;
-            this.label4.Text = "(년) : ";
+            this.label4.Text = "(년) :";
+            // 
+            // lblMaxYear
+            // 
+            this.lblMaxYear.AutoSize = true;
+            this.lblMaxYear.Location = new System.Drawing.Point(142, 65);
+            this.lblMaxYear.Name = "lblMaxYear";
+            this.lblMaxYear.Size = new System.Drawing.Size(0, 12);
+            this.lblMaxYear.TabIndex = 35;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblMaxYear);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblTotalExpenditure);
+            this.groupBox1.Controls.Add(this.lblMaxMonth);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMaxDate);
+            this.groupBox1.Location = new System.Drawing.Point(14, 271);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(789, 88);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "기간별 최대지출";
+            // 
+            // dgvtotalList
+            // 
+            this.dgvtotalList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvtotalList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvtotalList.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvtotalList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvtotalList.Location = new System.Drawing.Point(14, 366);
+            this.dgvtotalList.Name = "dgvtotalList";
+            this.dgvtotalList.RowTemplate.Height = 23;
+            this.dgvtotalList.Size = new System.Drawing.Size(789, 150);
+            this.dgvtotalList.TabIndex = 36;
             // 
             // FrmUsingOfEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(822, 519);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dgvtotalList);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.label8);
@@ -212,8 +240,9 @@
             this.Text = "FrmUsingOfEquipment";
             this.Load += new System.EventHandler(this.FrmUsingOfEquipment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.crtEquipment)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvtotalList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,10 +260,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblMaxDate;
         private System.Windows.Forms.Label lblTotalExpenditure;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblMaxMonth;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblMaxYear;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridView dgvtotalList;
     }
 }

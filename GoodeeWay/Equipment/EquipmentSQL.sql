@@ -103,3 +103,14 @@ select sum(purchasePrice),purchaseDate
 from dbo.EquipmentRegister
 where purchaseDate between @startDate and @endDate
 group by purchaseDate
+
+go
+
+--기간 별 비품 프로시져
+create procedure EquipmentBYDate_PROC
+@startDate datetime,
+@endDate datetime
+
+as
+select * from EquipmentRegister
+where purchaseDate between CONVERT(CHAR(10), @startDate, 23) and CONVERT(CHAR(10), @endDate, 23);

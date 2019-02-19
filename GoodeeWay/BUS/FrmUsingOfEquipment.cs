@@ -16,13 +16,13 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
         List<VO.EquipmentVO> equipment = new List<VO.EquipmentVO>();
 
         private void FrmUsingOfEquipment_Load(object sender, EventArgs e)
         {
-            //crtEquipment.ChartAreas[0].AxisY.Style |= AxisStyles.HideText;
-            //crtEquipment.AxisY.Style |= AxisStyles.Hide;
+            dgvtotalList.AllowUserToAddRows = false;
+            //초기화면 chart 설정 변경, x축 dot형식, y축 바탕과 같은 색으로, 축lable 형식 변경, 차이가 많은 데이터 짤라보기
             crtEquipment.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
             crtEquipment.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
 
@@ -43,15 +43,15 @@ namespace GoodeeWay.BUS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
-            crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
-            crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
-            crtEquipment.ChartAreas[0].AxisY.LabelAutoFitMinFontSize = 5;
+            //crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
+            //crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
+            //crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
+           // crtEquipment.ChartAreas[0].AxisY.LabelAutoFitMinFontSize = 5;
             DAO.EquipmentDAO dAO = new DAO.EquipmentDAO();
             equipment = dAO.GroupingDateEquipment(dtpStartDate.Value, dtpEndDate.Value);
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
             crtEquipment.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
-            crtEquipment.Series[0].LegendText = "총액";
+           // crtEquipment.Series[0].LegendText = "총액";
 
             var totalE = from eq in equipment
                          select eq.PurchasePrice;
@@ -69,12 +69,7 @@ namespace GoodeeWay.BUS
             lgsText = totalE.Sum().ToString().Replace(",", ""); //숫자변환시 콤마로 발생하는 에러 방지
             lblTotalExpenditure.Text = String.Format("{0:#,###}원", Convert.ToInt32(lgsText));
 
-            //var monthMax = from eq in equipment
-            //               group eq by new
-            //               {
-            //                   eq.PurchaseDate.Month,
-            //                   eq.PurchaseDate.Year
-            //               };
+          
             var monthMax = from eq in equipment
                            group eq by new
                            {
@@ -96,82 +91,68 @@ namespace GoodeeWay.BUS
 
             var maxMonth = from equip in tempMonthPrice
                            where equip.PurchasePrice == tempMonthPrice.Max(price => price.PurchasePrice)
-                           select equip.PurchasePrice;
+                           select equip;
                            
             foreach (var item in maxMonth)
             {
-                MessageBox.Show(item +" \t" );// +item.Month
+               lblMaxMonth.Text = String.Format("{0:#,###}원", Convert.ToInt32(item.PurchasePrice)) + " / " +item.PurchaseDate.ToLongDateString().Substring(0,8);
             }
-            //MessageBox.Show(maxMonth.Max(price => price.purchasePrice).ToString());   
-            //MessageBox.Show(tempMonthPrice.Max(price =>price.PurchasePrice).ToString());
-            //foreach (var item in maxMonth)
-            //{
-            //    MessageBox.Show(item.PurchasePrice + "\t" +item.PurchaseDate);    
-            //}
-
-            //   var maxMon= tempMonthPrice.Max(Equip => Equip.PurchasePrice);
-            //   MessageBox.Show(maxMon);
 
 
-            //   MessageBox.Show(maxMon.PurchaseDate + "\t" + maxMon.PurchasePrice);
-            //var test = from records in (from saleRecord in saleRecordList
-            //                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-            //                            select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-            //           group records by records.SalesDate;
+            List<VO.EquipmentVO> tempYearPrice = new List<VO.EquipmentVO>();
+            var YearMax = from eq in tempMonthPrice
+                          group eq by new { eq.PurchaseDate.Year };
 
+            foreach (var item in YearMax)
+            {
+                float sumPrice = 0;
+                foreach (var value in item)
+                {
+                    sumPrice += value.PurchasePrice;
+                }
+                tempYearPrice.Add(new VO.EquipmentVO() { PurchaseDate = new DateTime(item.Key.Year, 1, 1), PurchasePrice = sumPrice });
+            }
+            var maxYear = from equip in tempYearPrice
+                          where equip.PurchasePrice == tempYearPrice.Max(price => price.PurchasePrice)
+                          select equip;
 
+            foreach (var item in maxYear)
+            {
+                lblMaxYear.Text = String.Format("{0:#,###}원", Convert.ToInt32(item.PurchasePrice)) + " / " + item.PurchaseDate.ToLongDateString().Substring(0, 5);
+            }
+            //EquipmentBYDate_PROC
 
-
-            //var temp = from ee in monthMax
-            //           select new
-            //           {
-            //               PurchaseDate = ee.Sum(ee.)
-            //           };
-
-            //foreach (var item in temp)
-            //{
-            //    MessageBox.Show(item.Max().PurchaseDate + "\t" + item.Max().PurchasePrice);
-            //}
+            dgvtotalList.DataSource =SetDataTable(dAO.EquipmentByDate(dtpStartDate.Value, dtpEndDate.Value));
 
 
 
-
-
-
-
-
-
-            //lblTotalExpenditure.Text = totalE.ToString();
-
-            //var dateOf = from equip in equipment
-            //             group equip by equip.PurchaseDate;
-
-
-
-            // IEnumerable<VO.EquipmentVO> equi = from ew in equipment
-            //                                  group ew by ew.PurchaseDate
-
-            //foreach (var itemGroup in dateOf)
-            //{
-            //    DateTime date;
-            //    float price =0;
-            //    foreach (var item in itemGroup)
-            //    {
-            //        price += item.PurchasePrice;
-            //    }
-
-            //    var dates = from ee in itemGroup
-            //                where ee.PurchaseDate = itemGroup.Key
-            //                select 
-            //crtCircle.Series[0].Points.AddXY(itemGroup.Key, price);
-
-            //}
-
-
-            // crtCircle.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            // crtCircle.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
-
-            //crtCircle.Series[0].IsValueShownAsLabel = true;
         }
+        private DataTable SetDataTable(List<VO.EquipmentVO> equipmentLst)
+        {
+               dataTable = new DataTable("Equipment");
+            
+            //dataTable.Columns.Add("EQUCode", typeof(string), "비품코드");
+            //dataTable.Columns.Add("detailName", typeof(string), "상세명칭");
+            //dataTable.Columns.Add("location", typeof(string), "위치");
+            //dataTable.Columns.Add("state", typeof(string), "상태");
+            //dataTable.Columns.Add("purchasePrice", typeof(float), "구매가격");
+            //dataTable.Columns.Add("purchaseDate", typeof(DateTime), "구매날짜");
+            //dataTable.Columns.Add("note", typeof(string), "비고");
+
+            dataTable.Columns.Add("비품코드", typeof(string));
+            dataTable.Columns.Add("상세명칭", typeof(string));
+            dataTable.Columns.Add("위치", typeof(string));
+            dataTable.Columns.Add("상태", typeof(string));
+            dataTable.Columns.Add("구매가격", typeof(float));
+            dataTable.Columns.Add("구매날짜", typeof(DateTime));
+            dataTable.Columns.Add("비고", typeof(string));
+            foreach (var item in equipmentLst)
+            {
+                dataTable.Rows.Add(item.EQUCode, item.DetailName, item.Location, item.State, item.PurchasePrice, item.PurchaseDate, item.Note);
+            }
+            return dataTable;
+        }
+
+
     }
 }
