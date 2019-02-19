@@ -310,7 +310,6 @@
             this.Controls.Add(this.label4);
             this.Name = "Insert_Attendance";
             this.Text = "근태 입력";
-            this.Load += new System.EventHandler(this.Insert_Attendance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

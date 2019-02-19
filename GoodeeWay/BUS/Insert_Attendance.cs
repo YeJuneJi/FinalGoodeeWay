@@ -38,9 +38,11 @@ namespace GoodeeWay.BUS
         {
             txtEmpno.Text = ase.empno;
         }
-
+        
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            //dtpTotaltime.Value = TimeSpan.FromHours.dtpTotaltime;
+
             var at = new AttendanceVO()
             {
                 Empno = txtEmpno.Text,
@@ -70,10 +72,5 @@ namespace GoodeeWay.BUS
             txtNote.Text = "";
         }
 
-        private void Insert_Attendance_Load(object sender, EventArgs e)
-        {
-
-        }
-        
     }
 }
