@@ -62,7 +62,8 @@ namespace GoodeeWay.Order
             additionalGroup.BorderStyle = BorderStyle.FixedSingle;
 
             // 선택한 메뉴에대한 사항 로드
-            menuImage.Image = Image.FromFile(item.MenuImage);
+            menuImage.Image = Image.FromFile(Application.StartupPath + item.MenuImage);
+            
             lblMenuName.Text = item.MenuName;            
             lblPrice.Text = item.Price.ToString() + " 원";
             lblKcal.Text = item.Kcal.ToString() + " Kcal";
