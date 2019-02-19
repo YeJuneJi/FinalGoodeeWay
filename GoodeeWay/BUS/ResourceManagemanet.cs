@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoodeeWay.InventoryBUS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace GoodeeWay.BUS
         public ResourceManagemanet()
         {
             InitializeComponent();
+        }
+
+        private void btnInventorySales_Click(object sender, EventArgs e)
+        {
+            InventorySales inventorySales = new InventorySales();
+            inventorySales.Show();
+
         }
     }
 }

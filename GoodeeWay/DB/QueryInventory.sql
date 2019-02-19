@@ -297,3 +297,20 @@ AS
 	update Inventory
 	set DateOfUse=@DateOfUse
 	where ReceivingDetailsID=@ReceivingDetailsID and SUBSTRING(InventoryID,4,2)='00';
+
+
+Go
+--재고별판매량 출력(재고명, 사용수량),입력(재료종류,시작날짜,종료날짜)
+create procedure [dbo].SelectInventoryTypeChart
+	@MaterialClassification nvarchar(30),
+	@StartDate datetime,
+	@EndDate dateTime
+AS
+select t.InventoryName,sum(i.InventoryQuantity) 'UseInventory'
+from Inventory i, InventoryType t
+where i.InventoryTypeCode=t.InventoryTypeCode 
+	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and t.MaterialClassification=@MaterialClassification
+	and i.DateOfUse >=@StartDate
+	and i.DateOfUse <=@EndDate
+group by t.InventoryName;

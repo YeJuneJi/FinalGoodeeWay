@@ -39,7 +39,26 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +76,7 @@
     <Compile Include="BUS\ResourceManagemanet.Designer.cs">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\InventorySalesDAO.cs" />
     <Compile Include="DAO\MakingDAO.cs" />
     <Compile Include="DAO\MenuRecipeDAO.cs" />
     <Compile Include="DAO\SaleRecordsDAO.cs" />
@@ -199,6 +219,7 @@
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
+    <Compile Include="VO\InventoryTypeSalesVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
@@ -307,6 +328,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
