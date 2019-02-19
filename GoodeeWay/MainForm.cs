@@ -55,8 +55,9 @@ namespace GoodeeWay
                     break;
                 }
             }
-            frmSandwichMaking = new FrmSandwichMaking();
-            frmSandwichMaking.Show();
+
+            //frmSandwichMaking = new FrmSandwichMaking();
+            //frmSandwichMaking.Show();
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,9 +204,23 @@ namespace GoodeeWay
 
         private void 제조현황ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FrmSandwichMaking frmSandwichMaking = new FrmSandwichMaking();
-            //frmSandwichMaking.MdiParent = this;
-            //frmSandwichMaking.Show();
+            if (frmSandwichMaking == null)
+            {
+                frmSandwichMaking = new FrmSandwichMaking();
+                frmSandwichMaking.MdiParent = this;
+                frmSandwichMaking.Show();
+            }
+            else if (frmSandwichMaking.IsDisposed)
+            {
+                frmSandwichMaking = new FrmSandwichMaking();
+                frmSandwichMaking.MdiParent = this;
+                frmSandwichMaking.Show();
+            }
+            else
+            {
+                frmSandwichMaking.BringToFront();
+            }
+            
         }
     }
 }

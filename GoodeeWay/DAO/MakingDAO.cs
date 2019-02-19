@@ -58,7 +58,7 @@ namespace GoodeeWay.DAO
             }
         }
 
-        internal bool DeleteMaking(string num)
+        internal bool DeleteMaking(int num)
         {
             DBConnection connection = new DBConnection();
             string storedProcedure = "DeleteMaking";
@@ -78,7 +78,7 @@ namespace GoodeeWay.DAO
             }
         }
 
-        internal int UpdateMaking(string num)
+        internal int UpdateMaking(int num)
         {
             DBConnection connection = new DBConnection();
             string storedProcedure = "UpdateMaking";
@@ -87,7 +87,6 @@ namespace GoodeeWay.DAO
             {
                 new SqlParameter("num", num)
             };
-
 
             try
             {

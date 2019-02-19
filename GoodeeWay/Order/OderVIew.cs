@@ -40,9 +40,16 @@ namespace GoodeeWay.Order
         private void GetMenuList() // menuList 세팅
         {
             foreach (Menu item in menuList) // 메뉴리스트에 있는 목록을 각각 별로 listview에 띄어줌
-            {                
-                imgList.Images.Add(item.MenuCode, Image.FromFile(Application.StartupPath + item.MenuImage));
-                imgList.ImageSize = new Size(128, 128);
+            {
+                try
+                {
+                    imgList.Images.Add(item.MenuCode, Image.FromFile(Application.StartupPath + item.MenuImage));
+                    imgList.ImageSize = new Size(128, 128);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("이미지를 로드할 수 없습니다. 경로를 확인해 주세요");
+                }
                 listViewOrder.LargeImageList = imgList;
                 listViewBasket.LargeImageList = imgList;
 
@@ -211,6 +218,10 @@ namespace GoodeeWay.Order
             if (order.result == true)
             {
                 MessageBox.Show("정상 결제 완료");
+                bucketMenuList.Clear();
+                bucketMenuDetailList.Clear();
+                bucketMenuAndDetailList.Clear();
+                SetBasketListBox();
                 //this.Close();   
             }
         }

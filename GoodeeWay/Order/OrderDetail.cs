@@ -62,7 +62,14 @@ namespace GoodeeWay.Order
             additionalGroup.BorderStyle = BorderStyle.FixedSingle;
 
             // 선택한 메뉴에대한 사항 로드
-            menuImage.Image = Image.FromFile(Application.StartupPath + item.MenuImage);
+            try
+            {
+                menuImage.Image = Image.FromFile(Application.StartupPath + item.MenuImage);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("이미지를 로드 할 수 없습니다. 경로를 확인해 주세요");
+            }
             
             lblMenuName.Text = item.MenuName;            
             lblPrice.Text = item.Price.ToString() + " 원";

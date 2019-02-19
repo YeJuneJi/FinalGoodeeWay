@@ -70,6 +70,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // dataGridViewING
@@ -81,6 +82,7 @@
             this.dataGridViewING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewING.Size = new System.Drawing.Size(1171, 233);
             this.dataGridViewING.TabIndex = 4;
+            this.dataGridViewING.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewING_CellContentClick);
             // 
             // FrmSandwichMaking
             // 
@@ -93,6 +95,7 @@
             this.Controls.Add(this.dataGridViewSB);
             this.Name = "FrmSandwichMaking";
             this.Text = "FrmSandwichMaking";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmSandwichMaking_FormClosed);
             this.Load += new System.EventHandler(this.FrmSandwichMaking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewING)).EndInit();
