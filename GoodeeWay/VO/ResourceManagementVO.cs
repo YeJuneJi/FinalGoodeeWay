@@ -32,6 +32,14 @@ namespace GoodeeWay.VO
             set { equipPrice = value; }
         }
 
+        private float rawMaterialCost;
+
+        public float RawMaterialCost
+        {
+            get { return rawMaterialCost; }
+            set { rawMaterialCost = value; }
+        }
+
         public override bool Equals(object obj)
         {
             ResourceManagementVO resource = obj as ResourceManagementVO;
@@ -40,6 +48,7 @@ namespace GoodeeWay.VO
                 return false;
             }
             equipPrice = resource.EquipPrice;
+            rawMaterialCost = resource.RawMaterialCost;
             return resourceDate == resource.resourceDate;
         }
 

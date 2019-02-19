@@ -31,6 +31,5 @@ namespace GoodeeWay.BUS
         {
             this.WindowState = FormWindowState.Maximized;
         }
-
     }
 }

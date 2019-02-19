@@ -43,9 +43,9 @@ namespace GoodeeWay.Order
             set { kcal = value; }
         }
 
-        private Image menuImage;
+        private string menuImage;
 
-        public Image MenuImage
+        public string MenuImage
         {
             get { return menuImage; }
             set { menuImage = value; }

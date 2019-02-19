@@ -49,7 +49,7 @@
             this.메인ToolStripMenuItem});
             this.resourceMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.resourceMenuStrip.Name = "resourceMenuStrip";
-            this.resourceMenuStrip.Size = new System.Drawing.Size(850, 24);
+            this.resourceMenuStrip.Size = new System.Drawing.Size(1125, 24);
             this.resourceMenuStrip.TabIndex = 0;
             this.resourceMenuStrip.Text = "resourceMenuStrip";
             // 
@@ -89,18 +89,19 @@
             // 
             // mainPanel
             // 
+            this.mainPanel.AutoScroll = true;
             this.mainPanel.BackColor = System.Drawing.Color.Transparent;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(850, 428);
+            this.mainPanel.Size = new System.Drawing.Size(1125, 521);
             this.mainPanel.TabIndex = 1;
             // 
             // ResourceManagemanet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 452);
+            this.ClientSize = new System.Drawing.Size(1125, 545);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.resourceMenuStrip);
             this.MainMenuStrip = this.resourceMenuStrip;

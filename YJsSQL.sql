@@ -56,6 +56,11 @@ GO
 --
 --
 
+--ReceiveingDetails 테이블의 Select 프로시저
+create procedure OutPutAllReceiveingDetails
+as
+select ReceivingDetailsID,UnitPrice , InventoryTypeCode from ReceivingDetails;
+GO
 --Sales 테이블의 Select 프로시저
 CREATE PROCEDURE dbo.SelectMenu
 as
@@ -371,3 +376,15 @@ GO
 -- Sequence를 특정값으로 재설정
 ALTER SEQUENCE dbo.CountRecipeNo RESTART WITH 100;
 GO
+
+
+--
+--
+--
+--재고별 단가 출력 쿼리문
+--
+--
+--
+select inven.InventoryTypeCode, rcv.UnitPrice
+from InventoryType as inven, ReceivingDetails as rcv
+where inven.InventoryTypeCode = rcv.InventoryTypeCode;

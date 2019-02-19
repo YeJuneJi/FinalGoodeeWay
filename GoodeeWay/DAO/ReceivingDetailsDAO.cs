@@ -55,5 +55,28 @@ namespace GoodeeWay.DAO
             sqlParameters[1] = new SqlParameter("ReturnStatus", returnStatus);
             new DBConnection().Update("UpdateReceivingDetails", sqlParameters);//입고내역 중 반품 또는 교환을 반품완 또는 교환완으로 수정하는 프로시져
         }
+
+        internal List<ReceivingDetailsVO> OutPutAllSaleRecords()
+        {
+            List<ReceivingDetailsVO> lst = new List<ReceivingDetailsVO>();
+            string sp = "OutPutAllReceiveingDetails";
+            try
+            {
+                SqlDataReader sdr = new DBConnection().Select(sp, null);
+                while (sdr.Read())
+                {
+                    ReceivingDetailsVO receivingDetailsVO = new ReceivingDetailsVO();
+                    receivingDetailsVO.ReceivingDetailsID = sdr["ReceivingDetailsID"].ToString();
+                    receivingDetailsVO.UnitPrice = float.Parse(sdr["UnitPrice"].ToString());
+                    receivingDetailsVO.InventoryTypeCode = sdr["InventoryTypeCode"].ToString();
+                    lst.Add(receivingDetailsVO);
+                }
+                return lst;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
     }
 }

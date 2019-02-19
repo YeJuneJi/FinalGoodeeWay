@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GoodeeWay.Sales
@@ -85,7 +86,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text;
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
-            string imageLocation = "//image//"+images;
+            string imageLocation = "\\images\\"+images;
             bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
             
             bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
@@ -129,7 +130,7 @@ namespace GoodeeWay.Sales
             images = string.Empty;
             if (oFdialogPhoto.ShowDialog() != DialogResult.Cancel)
             {
-                pbxPhoto.ImageLocation = oFdialogPhoto.FileName;
+                pbxPhoto.ImageLocation =oFdialogPhoto.FileName;
                 images = oFdialogPhoto.SafeFileName;
             }
         }
@@ -364,7 +365,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(" ", "").Trim();
-            string ImageLocation = pbxPhoto.ImageLocation;
+            string ImageLocation = "\\images\\" + images;
             bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
@@ -392,6 +393,7 @@ namespace GoodeeWay.Sales
                     menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
                     sucessUpdateRecipe = RecipeUpdate(menuCode, sucessUpdateRecipe);
                 }
+                //수정 전은 샌드위치고 수정후는 샌드위치가 아니면
                 if (oldDivision == 0 && salesMenuVO.Division != 0)
                 {
                     try
@@ -581,7 +583,7 @@ namespace GoodeeWay.Sales
             salesMenuVO.MenuName = menuName;
             salesMenuVO.Price = float.Parse(price);
             salesMenuVO.Kcal = int.Parse(kcal);
-            salesMenuVO.MenuImageLocation = "//images//"+images;
+            salesMenuVO.MenuImageLocation = "\\images\\"+images;
             foreach (Division item in Enum.GetValues(typeof(Division)))
             {
                 if (item.ToString().Equals(division))
@@ -595,6 +597,7 @@ namespace GoodeeWay.Sales
             {
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
                 {
+                    pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
                     sucessMenu = true;
                 }
             }
@@ -631,6 +634,7 @@ namespace GoodeeWay.Sales
                 }
                 else
                 {
+                    pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
                     menuUpdateSucess = true;
                 }
             }
@@ -816,7 +820,7 @@ namespace GoodeeWay.Sales
         private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation)
         {
             bool result = false;
-            imageLocation = imageLocation.Substring(9);
+            imageLocation = imageLocation.Substring(8);
             if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || string.IsNullOrEmpty(imageLocation)))
             {
                 result = true;
