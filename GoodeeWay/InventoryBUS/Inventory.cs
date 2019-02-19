@@ -34,6 +34,7 @@ namespace GoodeeWay
         public inventory()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             InventoryTypeSelect();
             ReceivingDetailsListSelect();
             InventoryTableSelect();

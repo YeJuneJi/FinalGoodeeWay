@@ -30,6 +30,7 @@ namespace GoodeeWay.Order
 
         private void OderVIew_Load(object sender, EventArgs e) // 
         {
+            this.WindowState = FormWindowState.Maximized;
             new OrderDAO().GetAllMenu(menuList); // 메뉴 테이블에서 모든 메뉴를 뽑아와 리스트에 등록
 
             GetMenuList();

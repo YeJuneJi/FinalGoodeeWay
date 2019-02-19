@@ -42,6 +42,7 @@
             // 
             // MainMenuStrip
             // 
+            this.MainMenuStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.주문ToolStripMenuItem,
             this.재고ToolStripMenuItem,
@@ -120,7 +121,6 @@
             this.ClientSize = new System.Drawing.Size(1484, 961);
             this.Controls.Add(this.MainMenuStrip);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.MainMenuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";

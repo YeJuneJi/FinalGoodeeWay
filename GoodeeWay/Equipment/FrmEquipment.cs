@@ -68,6 +68,7 @@ namespace GoodeeWay.Equipment
         }
         private void FrmEquipment_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             EquipmentDAO dAO = new EquipmentDAO();
             dgvEquipmentList.AllowUserToAddRows = false;
             chbDate.CheckState = CheckState.Unchecked;

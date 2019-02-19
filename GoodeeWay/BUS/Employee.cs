@@ -27,6 +27,7 @@ namespace GoodeeWay.BUS
 
         private void Employee_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             lst = new EmpDAO().OutputAllBoard();
             this.dataGridView1.DataSource = lst;
 
