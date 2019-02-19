@@ -62,7 +62,7 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in salesMenus)
             {
-                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, Image.FromFile(item.MenuImageLocation).ImageToByteArray(), item.Division, item.AdditionalContext);
+                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, Image.FromFile(Application.StartupPath + item.MenuImageLocation).ImageToByteArray(), item.Division, item.AdditionalContext);
             }
             menuSearchGView.DataSource = searchMenu;
         }

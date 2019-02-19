@@ -34,7 +34,7 @@ namespace GoodeeWay.Order
             get { return price; }
             set { price = value; }
         }
-
+        
         private int kcal;
 
         public int Kcal

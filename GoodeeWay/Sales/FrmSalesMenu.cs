@@ -30,6 +30,7 @@ namespace GoodeeWay.Sales
 
         string oldMenuCode;
         int oldDivision;
+        string images;
         public FrmSalesMenu()
         {
             InitializeComponent();
@@ -84,14 +85,11 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text;
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
-            string imageLocation = pbxPhoto.ImageLocation;
-
-            
+            string imageLocation = "//image//"+images;
             bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
             
             bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
 
-            
             if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, imageLocation) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
             {
                 //만약 선택된 분류가 샌드위치가 아니라면
@@ -128,9 +126,11 @@ namespace GoodeeWay.Sales
 
         private void btnPhoto_Click(object sender, EventArgs e)
         {
+            images = string.Empty;
             if (oFdialogPhoto.ShowDialog() != DialogResult.Cancel)
             {
                 pbxPhoto.ImageLocation = oFdialogPhoto.FileName;
+                images = oFdialogPhoto.SafeFileName;
             }
         }
 
@@ -483,7 +483,7 @@ namespace GoodeeWay.Sales
                 tbxKcal.Text = salesMenuGView.Rows[e.RowIndex].Cells[3].Value.ToString();
                 tbxAddContxt.Text = salesMenuGView.Rows[e.RowIndex].Cells[6].Value.ToString();
                 tbxDiscountRatio.Text = salesMenuGView.Rows[e.RowIndex].Cells[7].Value.ToString();
-                pbxPhoto.ImageLocation = salesMenuGView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                pbxPhoto.ImageLocation =Application.StartupPath + salesMenuGView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (salesMenuGView.Rows[e.RowIndex].Cells[5].Value.Equals((int)item))
@@ -581,7 +581,7 @@ namespace GoodeeWay.Sales
             salesMenuVO.MenuName = menuName;
             salesMenuVO.Price = float.Parse(price);
             salesMenuVO.Kcal = int.Parse(kcal);
-            salesMenuVO.MenuImageLocation = imageLocation;
+            salesMenuVO.MenuImageLocation = "//images//"+images;
             foreach (Division item in Enum.GetValues(typeof(Division)))
             {
                 if (item.ToString().Equals(division))
@@ -816,6 +816,7 @@ namespace GoodeeWay.Sales
         private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation)
         {
             bool result = false;
+            imageLocation = imageLocation.Substring(9);
             if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || string.IsNullOrEmpty(imageLocation)))
             {
                 result = true;
