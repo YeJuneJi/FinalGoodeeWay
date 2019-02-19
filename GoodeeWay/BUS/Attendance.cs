@@ -44,12 +44,13 @@ namespace GoodeeWay.BUS
             List<AttendanceVO> lst = new AttendanceDAO().SelectAttendance();
             dataGridView1.DataSource = lst;
             ColumnSetKorean();
+            lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
         }
 
         private void ColumnSetKorean()
         {
-            dataGridView1.Columns["no"].HeaderText = "일련번호";
-            dataGridView1.Columns["Empno"].HeaderText = "사원번호";
+            dataGridView1.Columns["no"].HeaderText = "번호";
+            dataGridView1.Columns["Empno"].HeaderText = "사번";
             dataGridView1.Columns["TimeIn"].HeaderText = "출근시간";
             dataGridView1.Columns["TimeOut"].HeaderText = "퇴근시간";
             dataGridView1.Columns["TotalTime"].HeaderText = "총 시간";
@@ -73,7 +74,7 @@ namespace GoodeeWay.BUS
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -98,5 +99,6 @@ namespace GoodeeWay.BUS
             }
             Attendance_Load(null, null);
         }
+
     }
 }

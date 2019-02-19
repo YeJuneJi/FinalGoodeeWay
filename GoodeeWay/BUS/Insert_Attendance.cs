@@ -20,6 +20,7 @@ namespace GoodeeWay.BUS
         }
 
         AttendanceDAO atd = new AttendanceDAO();
+        Attendance_SearchEmpno ase = new Attendance_SearchEmpno();
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -28,8 +29,14 @@ namespace GoodeeWay.BUS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Attendance_SearchEmpno ase = new Attendance_SearchEmpno();
+            ase = new Attendance_SearchEmpno();
+            ase.FormClosed += new FormClosedEventHandler(aseForm_FormClosed);
             ase.Show();
+        }
+
+        private void aseForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            txtEmpno.Text = ase.empno;
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -43,8 +50,9 @@ namespace GoodeeWay.BUS
                 TimeOut = DateTime.Parse(dtpOut.Text),
                 OverTime = DateTime.Parse(dtpOvertime.Text),
                 TotalTime = DateTime.Parse(dtpTotaltime.Text),
-                Note = txtNote.Text,
+                Note = txtNote.Text
             };
+
             if (atd.InsertAttendance(at))
             {
                 MessageBox.Show("입력 성공");
@@ -66,5 +74,6 @@ namespace GoodeeWay.BUS
         {
 
         }
+        
     }
 }

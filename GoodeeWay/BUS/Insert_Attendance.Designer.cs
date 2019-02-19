@@ -215,6 +215,7 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(100, 21);
             this.dtpDate.TabIndex = 145;
+            this.dtpDate.Value = new System.DateTime(2019, 2, 19, 0, 0, 0, 0);
             // 
             // dtpOut
             // 
@@ -225,6 +226,7 @@
             this.dtpOut.Name = "dtpOut";
             this.dtpOut.Size = new System.Drawing.Size(100, 21);
             this.dtpOut.TabIndex = 146;
+            this.dtpOut.Value = new System.DateTime(2019, 2, 19, 4, 26, 0, 0);
             // 
             // label1
             // 
@@ -267,6 +269,7 @@
             this.dtpOvertime.Name = "dtpOvertime";
             this.dtpOvertime.Size = new System.Drawing.Size(100, 21);
             this.dtpOvertime.TabIndex = 152;
+            this.dtpOvertime.Value = new System.DateTime(2019, 2, 19, 16, 26, 0, 0);
             // 
             // dtpTotaltime
             // 
