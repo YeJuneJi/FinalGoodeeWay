@@ -322,3 +322,25 @@ CREATE PROCEDURE [dbo].SelectInventoryName
 	
 AS
 	SELECT InventoryName from InventoryType group by InventoryName;
+
+Go
+--재고별판매량 출력(사용수량, 기간), 입력(재고명,시작날짜,종료날짜)
+create procedure [dbo].SelectInventorySalesChart
+	@InventoryName nvarchar(30),
+	@StartDate datetime,
+	@EndDate dateTime,
+	@MonthYear int
+AS
+select 
+	case when @MonthYear=0 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,5) when @MonthYear=1 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,2) end 'DateOfUse' ,
+	sum(i.InventoryQuantity) 'InventoryQuantity'
+
+from Inventory i, InventoryType t
+
+where i.InventoryTypeCode=t.InventoryTypeCode 
+	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and t.InventoryName=@InventoryName
+	and i.DateOfUse >=@StartDate
+	and i.DateOfUse <=@EndDate
+group by case when @MonthYear=0 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,5) when @MonthYear=1 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,2) end
+order by case when @MonthYear=0 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,5) when @MonthYear=1 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,2) end;

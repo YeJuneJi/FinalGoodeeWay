@@ -15,15 +15,15 @@ namespace GoodeeWay.InventoryBUS
     
     public partial class InventorySales : Form
     {
-        List<InventoryTypeSalesVO> lst;
+        List<InventoryTypeSalesVO> InventoryTypeList;
+        List<InventoryTypeSalesVO> InventoryList;
         List<InventoryTypeSalesVO> avgList;
         string[] type1 = new string[] { "Bread", "Cheese", "Vegetable", "Sauce", "Additional", "Topping", "Side" };
         public InventorySales()
         {
             InitializeComponent();
             dtpStartDate.Value = dtpStartDate.Value.AddDays(-1);
-            InventorySalesChart.Series.Add("종류기준");
-            InventorySalesChart.Series.Add("평균");
+            
             rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
             cmbType.Items.AddRange(type1);
         }
@@ -32,36 +32,76 @@ namespace GoodeeWay.InventoryBUS
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var displayChart = new Display();
+            InventorySalesChart.Series.Clear();
+            
             if (rdoInventoryType.Checked == true)
             {
-                lst = displayChart.DisplayChart(new InventoryTypeChart()
-                { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value }, cmbType.Text);
-                
-                InventorySalesChart.Series["종류기준"].Points.DataBind(lst, "InventoryName", "UseInventory", null);
-                dgvData.DataSource = lst;
-                avgList = new List<InventoryTypeSalesVO>();
-                foreach (var item in lst)
-                {
-                    InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
-                    {
-                        InventoryName = item.InventoryName,
-                        UseInventory = (int)(from avgList in lst select avgList.UseInventory).Average()
-                    };
+                InventorySalesChart.Series.Add("종류기준");
+                InventoryTypeList = displayChart.DisplayChart(new InventoryTypeChart()
+                { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, false);
 
-                    
-                    avgList.Add(inventoryTypeSalesVO);
-                }
-                InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
+                InventorySalesChart.Series["종류기준"].Points.DataBind(InventoryTypeList, "InventoryName", "UseInventory", null);
+                
+                AverageDisplay(InventoryTypeList);
+                dgvDisplay(InventoryTypeList, rdoInventoryType.Checked);
             }
             else
             {
-                displayChart.DisplayChart(new InventoryChart(), cmbType.Text);
+                InventorySalesChart.Series.Add(cmbType.Text);
+                InventoryList = displayChart.DisplayChart(new InventoryChart()
+                { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, rdoMonth.Checked);
+                InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "InventoryName", "UseInventory", null);
+                AverageDisplay(InventoryList);
+                dgvDisplay(InventoryList, rdoInventoryType.Checked);
             }
             lblStartDate.Text = dtpStartDate.Value.ToShortDateString();
             lblEndDate.Text = dtpEndDate.Value.ToShortDateString();
             
 
+
+        }
+
+        private void AverageDisplay(List<InventoryTypeSalesVO> List)
+        {
+            InventorySalesChart.Series.Add("평균");
+            avgList = new List<InventoryTypeSalesVO>();
+            foreach (var item in List)
+            {
+                InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
+                {
+                    InventoryName = item.InventoryName,
+                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Average()
+                };
+                avgList.Add(inventoryTypeSalesVO);
+            }
+            InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
+        }
+
+        private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
+        {
+            int sum = 0;
+            foreach (var item in List)
+            {
+                sum += item.UseInventory;
+            }
+            int count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text, rdoInventoryType.Checked);
+            List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = sum/count });
+            List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum });
+            dgvData.DataSource = List;
+            if (@checked)
+            {
+                dgvData.Columns["InventoryName"].HeaderText = "재고명";
+                dgvData.Columns["UseInventory"].HeaderText = "사용수량";
+                
+            }
+            else
+            {
+                dgvData.Columns["InventoryName"].HeaderText = "날짜";
+                dgvData.Columns["UseInventory"].HeaderText = "사용수량"; 
+            }
+
+            
 
         }
 
@@ -130,9 +170,10 @@ namespace GoodeeWay.InventoryBUS
         #endregion
 
 
+        #region 종류,재고 기준 설정
         private void rdoInventoryType_CheckedChanged(object sender, EventArgs e)
         {
-            rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible=rdoYear.Visible= false;
+            rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
             cmbType.Items.Clear();
             cmbType.Items.AddRange(type1);
             cmbType.Text = cmbType.Items[0].ToString();
@@ -141,7 +182,7 @@ namespace GoodeeWay.InventoryBUS
 
         private void rdoInventory_CheckedChanged(object sender, EventArgs e)
         {
-            rdoMonth.Checked=rdoMonth.Visible=rdoYear.Visible= true;
+            rdoMonth.Checked = rdoMonth.Visible = rdoYear.Visible = true;
             cmbType.Items.Clear();
 
             foreach (var item in new InventoryTypeDAO().InventoryNameSelect())
@@ -149,21 +190,26 @@ namespace GoodeeWay.InventoryBUS
                 cmbType.Items.Add(item);
             }
             cmbType.Text = cmbType.Items[0].ToString();
-        }
+        } 
+        #endregion
     }
+
+
     class Display
     {
         private IChart chart;
-        public List<InventoryTypeSalesVO> DisplayChart(IChart chart, string type)
+        public List<InventoryTypeSalesVO> DisplayChart(IChart chart, string type, bool monthYear)
         {
             this.chart = chart;
-            return this.chart.Chart(type, this.chart);
+            return this.chart.Chart(this.chart, type, monthYear);
         }
     }
     interface IChart
     {
-        List<InventoryTypeSalesVO> Chart(string type, IChart chart);
+
+        List<InventoryTypeSalesVO> Chart(IChart chart, string type, bool monthYear);
     }
+    //-----------------------------------------------------------------------
     class InventoryTypeChart : IChart
     {
         private DateTime startDate;
@@ -179,16 +225,30 @@ namespace GoodeeWay.InventoryBUS
             set { endDate = value; }
         }
 
-        public List<InventoryTypeSalesVO> Chart(string type, IChart chart)
+        public List<InventoryTypeSalesVO> Chart(IChart chart, string type, bool monthYear)
         {
-            return new InventorySalesDAO().InventorySalesSelect(type, chart);
+            return new InventorySalesDAO().InventoryTypeSelect(type, chart);
         }
+        
     }
+    //-----------------------------------------------------------------------
     class InventoryChart : IChart
     {
-        public List<InventoryTypeSalesVO> Chart(string type, IChart chart)
+        private DateTime startDate;
+        public DateTime StartDate
         {
-            throw new NotImplementedException();
+            get { return startDate; }
+            set { startDate = value; }
+        }
+        private DateTime endDate;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { endDate = value; }
+        }
+        public List<InventoryTypeSalesVO> Chart(IChart chart, string InventoryName, bool monthYear)
+        {
+            return new InventorySalesDAO().InventorySalesSelect(InventoryName, chart,monthYear);
         }
     }
     

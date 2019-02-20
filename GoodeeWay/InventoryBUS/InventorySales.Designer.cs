@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.InventorySalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,6 +40,8 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.gbLastestDate = new System.Windows.Forms.GroupBox();
+            this.rdoYear = new System.Windows.Forms.RadioButton();
+            this.rdoMonth = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -56,8 +58,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoInventory = new System.Windows.Forms.RadioButton();
             this.rdoInventoryType = new System.Windows.Forms.RadioButton();
-            this.rdoMonth = new System.Windows.Forms.RadioButton();
-            this.rdoYear = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.gbLastestDate.SuspendLayout();
@@ -65,10 +65,10 @@
             // 
             // InventorySalesChart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.InventorySalesChart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.InventorySalesChart.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.InventorySalesChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.InventorySalesChart.Legends.Add(legend1);
             this.InventorySalesChart.Location = new System.Drawing.Point(23, 37);
             this.InventorySalesChart.Name = "InventorySalesChart";
             this.InventorySalesChart.Size = new System.Drawing.Size(846, 499);
@@ -141,6 +141,7 @@
             // 
             // dgvData
             // 
+            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Location = new System.Drawing.Point(877, 37);
             this.dgvData.Name = "dgvData";
@@ -168,6 +169,28 @@
             this.gbLastestDate.TabIndex = 34;
             this.gbLastestDate.TabStop = false;
             this.gbLastestDate.Text = "최근기간으로 설정";
+            // 
+            // rdoYear
+            // 
+            this.rdoYear.AutoSize = true;
+            this.rdoYear.Location = new System.Drawing.Point(80, 115);
+            this.rdoYear.Name = "rdoYear";
+            this.rdoYear.Size = new System.Drawing.Size(59, 16);
+            this.rdoYear.TabIndex = 36;
+            this.rdoYear.Text = "연단위";
+            this.rdoYear.UseVisualStyleBackColor = true;
+            // 
+            // rdoMonth
+            // 
+            this.rdoMonth.AutoSize = true;
+            this.rdoMonth.Checked = true;
+            this.rdoMonth.Location = new System.Drawing.Point(15, 115);
+            this.rdoMonth.Name = "rdoMonth";
+            this.rdoMonth.Size = new System.Drawing.Size(59, 16);
+            this.rdoMonth.TabIndex = 35;
+            this.rdoMonth.TabStop = true;
+            this.rdoMonth.Text = "월단위";
+            this.rdoMonth.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -326,28 +349,6 @@
             this.rdoInventoryType.Text = "종류기준";
             this.rdoInventoryType.UseVisualStyleBackColor = true;
             this.rdoInventoryType.CheckedChanged += new System.EventHandler(this.rdoInventoryType_CheckedChanged);
-            // 
-            // rdoMonth
-            // 
-            this.rdoMonth.AutoSize = true;
-            this.rdoMonth.Checked = true;
-            this.rdoMonth.Location = new System.Drawing.Point(15, 115);
-            this.rdoMonth.Name = "rdoMonth";
-            this.rdoMonth.Size = new System.Drawing.Size(59, 16);
-            this.rdoMonth.TabIndex = 35;
-            this.rdoMonth.TabStop = true;
-            this.rdoMonth.Text = "월단위";
-            this.rdoMonth.UseVisualStyleBackColor = true;
-            // 
-            // rdoYear
-            // 
-            this.rdoYear.AutoSize = true;
-            this.rdoYear.Location = new System.Drawing.Point(80, 115);
-            this.rdoYear.Name = "rdoYear";
-            this.rdoYear.Size = new System.Drawing.Size(59, 16);
-            this.rdoYear.TabIndex = 36;
-            this.rdoYear.Text = "연단위";
-            this.rdoYear.UseVisualStyleBackColor = true;
             // 
             // InventorySales
             // 

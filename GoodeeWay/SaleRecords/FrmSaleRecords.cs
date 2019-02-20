@@ -22,6 +22,7 @@ namespace GoodeeWay.SaleRecords
 
         private void FrmSaleRecords_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             tbxSalesNo.Enabled = false;
             dtpPeriodStart.Enabled = false;
             dtpPeriodEnd.Enabled = false;

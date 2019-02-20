@@ -23,7 +23,14 @@ namespace GoodeeWay.DAO
             InventoryTypeInsertParameters[1] = new SqlParameter("ReceivingQuantity", inventoryTypeVO.ReceivingQuantity);
             InventoryTypeInsertParameters[2] = new SqlParameter("InventoryName", inventoryTypeVO.InventoryName);
             InventoryTypeInsertParameters[3] = new SqlParameter("MaterialClassification", inventoryTypeVO.MaterialClassification);
-            new DBConnection().Insert("InsertInventoryType", InventoryTypeInsertParameters);
+            try
+            {
+                new DBConnection().Insert("InsertInventoryType", InventoryTypeInsertParameters);
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
         }
 
         internal DataTable selectOrderDetailsAdd(DataTable orderDetailsListDataTable)

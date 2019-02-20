@@ -6,7 +6,7 @@ menuCode nvarchar(10) constraint sales_mcode_nn not null,
 menuName nvarchar(30) constraint sales_mname_nn not null,
 price float constraint sales_price_nn not null default 0,
 kCal int constraint sales_kcal_nn not null,
-menuImage image constraint sales_mImage_nn not null default 0x00,
+menuImageLocation nvarchar(max) constraint sales_mImageLoc_nn not null,
 division int constraint sales_div_nn not null,
 additionalContext nvarchar(200) constraint sales_addcon_nn not null,
 discountRatio float constraint sales_disRatio_chk check(discountRatio >= 0 AND discountRatio<=101) default 0,
@@ -193,13 +193,13 @@ CREATE PROCEDURE dbo.InsertMenu
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image ,
+@menuImageLocation nvarchar(max) ,
 @division int,
 @additionalContext nvarchar(200),
 @discountRatio float
 as
 insert into dbo.Sales
-values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext, @discountRatio);
+values (@menuCode, @menuName, @price, @kCal, @menuImageLocation, @division, @additionalContext, @discountRatio);
 GO
 
 --SaleRecords 테이블의 Insert 프로시저
@@ -257,7 +257,7 @@ create procedure UpdateSalesNRecipes
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image,
+@menuImageLocation nvarchar(max),
 @additionalContext nvarchar(200)
 as
 declare @updateNecessary bit,
@@ -265,7 +265,7 @@ declare @updateNecessary bit,
 @num int,
 if(@division != 0)
 	begin
-		update dbo.Sales set menuName = @menuName, price = @price, menuImage = @menuImage, division = @division, additionalContext = @additionalContext
+		update dbo.Sales set menuName = @menuName, price = @price, menuImageLocation = @menuImageLocation, division = @division, additionalContext = @additionalContext
 		where menuCode = @menuCode;
 	end
 else
@@ -296,13 +296,13 @@ create procedure UpdateSales
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image,
+@menuImageLocation nvarchar(max),
 @division int,
 @additionalContext nvarchar(200),
 @oldMenuCode nvarchar(10),
 @discountRatio float
 as
-update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
+update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
 where menuCode = @oldMenuCode;
 GO
 
