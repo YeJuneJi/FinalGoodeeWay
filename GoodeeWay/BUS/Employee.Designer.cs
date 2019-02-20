@@ -41,13 +41,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
+            this.lblFirst = new System.Windows.Forms.Label();
+            this.lblLast = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(247, 433);
+            this.btnDelete.Location = new System.Drawing.Point(245, 468);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 48);
@@ -59,7 +67,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnUpdate.Location = new System.Drawing.Point(130, 433);
+            this.btnUpdate.Location = new System.Drawing.Point(128, 468);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 48);
@@ -71,7 +79,7 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnInsert.Location = new System.Drawing.Point(13, 433);
+            this.btnInsert.Location = new System.Drawing.Point(11, 468);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(111, 48);
@@ -83,7 +91,7 @@
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnClear.Location = new System.Drawing.Point(364, 433);
+            this.btnClear.Location = new System.Drawing.Point(362, 468);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(111, 48);
@@ -95,7 +103,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 103);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -109,7 +117,7 @@
             // btnSalary
             // 
             this.btnSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSalary.Location = new System.Drawing.Point(916, 12);
+            this.btnSalary.Location = new System.Drawing.Point(914, 47);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
             this.btnSalary.Size = new System.Drawing.Size(111, 49);
@@ -121,7 +129,7 @@
             // btnAttendance
             // 
             this.btnAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnAttendance.Location = new System.Drawing.Point(1033, 12);
+            this.btnAttendance.Location = new System.Drawing.Point(1031, 47);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(111, 49);
@@ -133,7 +141,7 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(194, 26);
+            this.txtSearch.Location = new System.Drawing.Point(192, 61);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 21);
@@ -143,7 +151,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSearch.Location = new System.Drawing.Point(370, 18);
+            this.btnSearch.Location = new System.Drawing.Point(368, 53);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(83, 36);
@@ -155,7 +163,7 @@
             // btnExcel
             // 
             this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnExcel.Location = new System.Drawing.Point(1148, 12);
+            this.btnExcel.Location = new System.Drawing.Point(1146, 47);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(111, 49);
@@ -168,7 +176,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(28, 29);
+            this.label1.Location = new System.Drawing.Point(26, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 99;
@@ -178,7 +186,7 @@
             // 
             this.lblTotalCount.AutoSize = true;
             this.lblTotalCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblTotalCount.Location = new System.Drawing.Point(1161, 433);
+            this.lblTotalCount.Location = new System.Drawing.Point(1159, 468);
             this.lblTotalCount.Name = "lblTotalCount";
             this.lblTotalCount.Size = new System.Drawing.Size(86, 15);
             this.lblTotalCount.TabIndex = 100;
@@ -193,7 +201,7 @@
             this.cbFilter.Items.AddRange(new object[] {
             "사원명",
             "사원번호"});
-            this.cbFilter.Location = new System.Drawing.Point(89, 25);
+            this.cbFilter.Location = new System.Drawing.Point(87, 60);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(99, 23);
@@ -201,11 +209,92 @@
             this.cbFilter.Tag = "";
             this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
+            // lblFirst
+            // 
+            this.lblFirst.AutoSize = true;
+            this.lblFirst.Location = new System.Drawing.Point(665, 473);
+            this.lblFirst.Name = "lblFirst";
+            this.lblFirst.Size = new System.Drawing.Size(14, 15);
+            this.lblFirst.TabIndex = 108;
+            this.lblFirst.Text = "1";
+            // 
+            // lblLast
+            // 
+            this.lblLast.AutoSize = true;
+            this.lblLast.Location = new System.Drawing.Point(698, 473);
+            this.lblLast.Name = "lblLast";
+            this.lblLast.Size = new System.Drawing.Size(14, 15);
+            this.lblLast.TabIndex = 107;
+            this.lblLast.Text = "1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(683, 473);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(10, 15);
+            this.label2.TabIndex = 106;
+            this.label2.Text = "/";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(721, 468);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(33, 23);
+            this.btnNext.TabIndex = 105;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            // 
+            // btnLast
+            // 
+            this.btnLast.Location = new System.Drawing.Point(760, 468);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(33, 23);
+            this.btnLast.TabIndex = 104;
+            this.btnLast.Text = ">>";
+            this.btnLast.UseVisualStyleBackColor = true;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Location = new System.Drawing.Point(587, 468);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(33, 23);
+            this.btnFirst.TabIndex = 103;
+            this.btnFirst.Text = "<<";
+            this.btnFirst.UseVisualStyleBackColor = true;
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(626, 468);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(33, 23);
+            this.btnPrev.TabIndex = 102;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(584, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 29);
+            this.label3.TabIndex = 109;
+            this.label3.Text = "인사관리";
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1268, 494);
+            this.ClientSize = new System.Drawing.Size(1268, 529);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblFirst);
+            this.Controls.Add(this.lblLast);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnLast);
+            this.Controls.Add(this.btnFirst);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.label1);
@@ -244,5 +333,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalCount;
         private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.Label lblFirst;
+        private System.Windows.Forms.Label lblLast;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label label3;
     }
 }

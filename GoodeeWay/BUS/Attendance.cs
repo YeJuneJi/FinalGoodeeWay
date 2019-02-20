@@ -64,7 +64,13 @@ namespace GoodeeWay.BUS
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Attendance ia = new Insert_Attendance();
+            ia.FormClosed += Ia_FormClosed;
             ia.Show();
+        }
+
+        private void Ia_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Attendance_Load(null, null);
         }
 
         private void button4_Click(object sender, EventArgs e)

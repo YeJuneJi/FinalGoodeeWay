@@ -11,34 +11,58 @@ namespace GoodeeWay.DAO
 {
     class SalaryDAO
     {
-        public List<SalaryVO> selectsalary()
-        {
-            List<SalaryVO> lst = new List<SalaryVO>();
+        List<SalaryVO> lst = new List<SalaryVO>();
 
+        public List<SalaryVO> SelectAll()
+        {
             string sp = "proc_salary_select";
-            //SqlParameter[] sqlParameters = null;
-            //DataTable dt = con.ExecuteSelect(sp, sqlParameters);
             SqlDataReader sdr = new DBConnection().Select(sp, null);
             while (sdr.Read())
             {
-                lst.Add(
-                    new SalaryVO
-                    {
-                        //Empno
-                        //Salary
-                        //Tax
-                        //Bonus
-                        //TotalSalary
-                        //Payday
-                        //                    No = Int32.Parse(item["no"].ToString()),
-                        //                    Name = item["name"].ToString(),
-                        //                    Mobile = item["mobile"].ToString(),
-                        //                    Address = item["address"].ToString()
-                    });
+                lst.Add(new SalaryVO()
+                {
+                    No = sdr["No"].ToString(),
+                    Empno = sdr["Empno"].ToString(),
+                    Name = sdr["Name"].ToString(),
+                    Salary = float.Parse(sdr["Salary"].ToString()),
+                    Tax = float.Parse(sdr["Tax"].ToString()),
+                    Bonus = float.Parse(sdr["Bonus"].ToString()),
+                    TotalSalary = float.Parse(sdr["TotalSalary"].ToString()),
+                    Payday = DateTime.Parse(sdr["Payday"].ToString())
+                });
             }
-
-
             return lst;
+        }
+
+        public bool InsertSalary(SalaryVO s)
+        {
+            string sp = "proc_salary_insert";//저장프로시져 이름
+            SqlParameter[] sqlParameters = new SqlParameter[6];
+            sqlParameters[0] = new SqlParameter("Empno", s.Empno);
+            sqlParameters[1] = new SqlParameter("Salary", s.Salary);
+            sqlParameters[2] = new SqlParameter("Tax", s.Tax);
+            sqlParameters[3] = new SqlParameter("Bonus", s.Bonus);
+            sqlParameters[4] = new SqlParameter("TotalSalary", s.TotalSalary);
+            sqlParameters[5] = new SqlParameter("Payday", s.Payday);
+            bool result = false;
+            if (new DBConnection().Insert(sp, sqlParameters))
+            {
+                result = true;
+            }
+            return result;
+        }
+
+        public bool DeleteSalary(string no)
+        {
+            string sp = "proc_salary_delete";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("no", no);
+            bool result = false;
+            if (new DBConnection().Delete(sp, sqlParameters))
+            {
+                result = true;
+            }
+            return result;
         }
     }
 }
