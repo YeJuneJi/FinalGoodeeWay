@@ -65,7 +65,6 @@ namespace GoodeeWay.Order
             set { inventoryName = value; }
         }
 
-
         private string division;
 
         public string Division

@@ -78,20 +78,23 @@ namespace GoodeeWay.Order
 
                     string toMaking = String.Empty;
 
+                    RealMenuVO rm = new RealMenuVO();
                     MenuAndDetails[] bb = new MenuAndDetails[bucketMenuAndDetailList.Count];
 
                     int i = 0;
                     foreach (var item in bucketMenuAndDetailList)
                     {
-
                         bb[i] = item;
                         i++;
                         //toMaking += JsonConvert.SerializeObject(item, Formatting.Indented);
                     }
 
-                    toMaking += JsonConvert.SerializeObject(bb, Formatting.Indented);
+                    rm.RealMenu = bb;
 
+                    toMaking += JsonConvert.SerializeObject(rm, Formatting.Indented);
                     MessageBox.Show(toMaking);
+
+                    //MessageBox.Show(toMaking);
 
                     //MessageBox.Show(toMaking);
                     // 제조 테이블에 넘겨줄 string 내용 작성 후 넘겨줌
@@ -119,6 +122,8 @@ namespace GoodeeWay.Order
                     //        toMaking += "음료" + item.Menu.MenuName;
                     //    }
                     //}                                        
+
+                    ////////////////////////////////////////
 
                     MainForm.frmSandwichMaking.CallMaking();
 
