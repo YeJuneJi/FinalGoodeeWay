@@ -68,13 +68,12 @@ namespace GoodeeWay.DAO
              
         }
 
-        internal int InventorySalesCountSelect(DateTime startDate, DateTime endDate, string type, bool temp)
+        internal int InventorySalesCountSelect(DateTime startDate, DateTime endDate, string type)
         {
-            SqlParameter[] sqlParameters = new SqlParameter[4];
+            SqlParameter[] sqlParameters = new SqlParameter[3];
             sqlParameters[0] = new SqlParameter("StartDate", startDate);
             sqlParameters[1] = new SqlParameter("EndDate", endDate);
             sqlParameters[2] = new SqlParameter("Type", type);
-            sqlParameters[3] = new SqlParameter("Temp", (temp) ? 0 : 1);
 
             SqlDataReader dr = new DBConnection().Select("SelectInventorySalesCount", sqlParameters);
             int i = 0;

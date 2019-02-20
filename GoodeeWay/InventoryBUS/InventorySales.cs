@@ -65,12 +65,19 @@ namespace GoodeeWay.InventoryBUS
         {
             InventorySalesChart.Series.Add("평균");
             avgList = new List<InventoryTypeSalesVO>();
+            int sum = 0;
+            foreach (var item in List)
+            {
+                sum += item.UseInventory;
+            }
+            int count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text);
+
             foreach (var item in List)
             {
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
                     InventoryName = item.InventoryName,
-                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Average()
+                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Sum()
                 };
                 avgList.Add(inventoryTypeSalesVO);
             }
@@ -80,12 +87,7 @@ namespace GoodeeWay.InventoryBUS
 
         private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
         {
-            int sum = 0;
-            foreach (var item in List)
-            {
-                sum += item.UseInventory;
-            }
-            int count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text, rdoInventoryType.Checked);
+            
             List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = sum/count });
             List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum });
             dgvData.DataSource = List;

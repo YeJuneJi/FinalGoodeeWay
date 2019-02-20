@@ -344,3 +344,22 @@ where i.InventoryTypeCode=t.InventoryTypeCode
 	and i.DateOfUse <=@EndDate
 group by case when @MonthYear=0 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,5) when @MonthYear=1 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,2) end
 order by case when @MonthYear=0 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,5) when @MonthYear=1 then SUBSTRING(CONVERT(NVARCHAR(10),i.DateOfUse,23),3,2) end;
+
+Go
+--재고별판매량 평균을 위한 count 수 출력
+create procedure [dbo].SelectInventorySalesCount
+	@Type nvarchar(30),
+	@StartDate datetime,
+	@EndDate dateTime,
+	@Temp int
+AS
+
+select 
+	count(i.InventoryQuantity) 'Count'
+from Inventory i, InventoryType t
+
+where i.InventoryTypeCode=t.InventoryTypeCode 
+	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and (t.MaterialClassification=@Type or t.InventoryName=@Type)
+	and i.DateOfUse >=@StartDate
+	and i.DateOfUse <=@EndDate;
