@@ -28,19 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.crtSalesVolumeByDate = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.crtAllMenuPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.crtTopMenuPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
@@ -54,60 +53,60 @@
             // 
             // crtSalesVolumeByDate
             // 
-            chartArea4.Name = "ChartArea1";
-            this.crtSalesVolumeByDate.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.crtSalesVolumeByDate.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.crtSalesVolumeByDate.ChartAreas.Add(chartArea1);
             this.crtSalesVolumeByDate.Location = new System.Drawing.Point(55, 109);
             this.crtSalesVolumeByDate.Name = "crtSalesVolumeByDate";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.crtSalesVolumeByDate.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.crtSalesVolumeByDate.Series.Add(series1);
             this.crtSalesVolumeByDate.Size = new System.Drawing.Size(761, 169);
             this.crtSalesVolumeByDate.TabIndex = 0;
             this.crtSalesVolumeByDate.Text = "chart1";
             // 
             // crtAllMenuPercent
             // 
-            chartArea5.Name = "ChartArea1";
-            this.crtAllMenuPercent.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.crtAllMenuPercent.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.crtAllMenuPercent.ChartAreas.Add(chartArea2);
+            legend1.Name = "Legend1";
+            this.crtAllMenuPercent.Legends.Add(legend1);
             this.crtAllMenuPercent.Location = new System.Drawing.Point(55, 329);
             this.crtAllMenuPercent.Name = "crtAllMenuPercent";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.crtAllMenuPercent.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.LabelFormat = "00%";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.crtAllMenuPercent.Series.Add(series2);
             this.crtAllMenuPercent.Size = new System.Drawing.Size(253, 231);
             this.crtAllMenuPercent.TabIndex = 1;
             this.crtAllMenuPercent.Text = "chart2";
+            this.crtAllMenuPercent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.crtAllMenuPercent_MouseMove);
             // 
             // crtTopMenuPercent
             // 
-            chartArea6.Name = "ChartArea1";
-            this.crtTopMenuPercent.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.crtTopMenuPercent.Legends.Add(legend6);
+            chartArea3.Name = "ChartArea1";
+            this.crtTopMenuPercent.ChartAreas.Add(chartArea3);
+            legend2.Name = "Legend1";
+            this.crtTopMenuPercent.Legends.Add(legend2);
             this.crtTopMenuPercent.Location = new System.Drawing.Point(363, 329);
             this.crtTopMenuPercent.Name = "crtTopMenuPercent";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.crtTopMenuPercent.Series.Add(series6);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.crtTopMenuPercent.Series.Add(series3);
             this.crtTopMenuPercent.Size = new System.Drawing.Size(253, 231);
             this.crtTopMenuPercent.TabIndex = 2;
             this.crtTopMenuPercent.Text = "chart3";
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.Location = new System.Drawing.Point(553, 69);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "검색";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearch.Location = new System.Drawing.Point(553, 69);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 31;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dtpEndDate
             // 
@@ -149,7 +148,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(143, 21);
             this.label1.TabIndex = 32;
-            this.label1.Text = "메뉴별 판메량";
+            this.label1.Text = "메뉴별 판매량";
             // 
             // textBox1
             // 
@@ -167,7 +166,7 @@
             this.ClientSize = new System.Drawing.Size(955, 581);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dtpEndDate);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dtpStartDate);
@@ -191,7 +190,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart crtSalesVolumeByDate;
         private System.Windows.Forms.DataVisualization.Charting.Chart crtAllMenuPercent;
         private System.Windows.Forms.DataVisualization.Charting.Chart crtTopMenuPercent;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dtpStartDate;
