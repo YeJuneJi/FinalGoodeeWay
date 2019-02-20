@@ -16,6 +16,7 @@ namespace GoodeeWay.BUS
     {
         private bool mainDragging = false;
         private int mainPanelOffsetX, mainPanelOffsetY;
+        float netIncome;
         DataTable totRsrcTab;
         DataColumn[] dataColumns;
         List<EquipmentVO> equipmentList;
@@ -25,6 +26,7 @@ namespace GoodeeWay.BUS
         DataTable inventoryTypeList;
         List<ResourceManagementVO> totInvestList;
         List<ResourceManagementVO> equipList;
+        List<ResourceManagementVO> mergeList;
 
         public ResourceMain()
         {
@@ -40,9 +42,7 @@ namespace GoodeeWay.BUS
                 new DataColumn("총 매출"),
                 new DataColumn("원 재료비"),
                 new DataColumn("비품비"),
-                new DataColumn("관리비"),
                 new DataColumn("인사급여"),
-                new DataColumn("기타"),
                 new DataColumn("순이익"),
             };
 
@@ -84,9 +84,26 @@ namespace GoodeeWay.BUS
 
         }
 
+        private void btnNetIncome_Click(object sender, EventArgs e)
+        {
+            if (netIncome == 0)
+            {
+                MessageBox.Show("먼저 검색을 해 주세요.");
+            }
+            else
+            {
+                lblNetIncome.Text = "약 " + Math.Round(netIncome).ToString() + " 원";
+            }
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             totRsrcTab.Rows.Clear();
+            lbltotalInvesetPrice.Text = "총매출 : ";
+            lblRawMaterialCost.Text = "총 원재료비: ";
+            lblEquipPrice.Text = "총 비품비: ";
+            lblEmployeeCost.Text = "총 인사비 : ";
+
             TimeSpan breakingDawn = new TimeSpan(00, 00, 01);
             TimeSpan eclipse = new TimeSpan(23, 59, 59);
             DateTime periodStart = resourceStart.Value;
@@ -101,24 +118,17 @@ namespace GoodeeWay.BUS
             }
             else
             {
-                //var dayPerRealTot = from records in (from saleRecord in saleRecordList
-                //                                     let salesDate = saleRecord.SalesDate.Date
-                //                                     where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                //                                     select new { salesDate, saleRecord.SalesTotal, saleRecord.SalesitemName })
-                //                    group records by records.salesDate;
 
-
+                var dayPerRealTot = from records in (from saleRecord in saleRecordList
+                                                     where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                                                     select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                                    group records by records.SalesDate;
 
                 var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
                                                           let equipDate = equipment.PurchaseDate.Date
                                                           where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
                                                           select new { equipDate, equipment.PurchasePrice })
                                           group equips by equips.equipDate;
-
-                var dayPerRealTot = from records in (from saleRecord in saleRecordList
-                                            where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                                            select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-                           group records by records.SalesDate;
 
                 var calUnitPrice = from inven in convertInventoryTypetoList
                                    join rcv in receivingDetailList
@@ -129,39 +139,7 @@ namespace GoodeeWay.BUS
                                        UnitPrice = rcv.UnitPrice
                                    };
 
-                //foreach (var item in test2)
-                //{
-                //    tbxResult.Text ="===================================\r\n\r\n" + item.SitemName;
-                //    JObject realMenu = JObject.Parse(item.SitemName);
-                //    JArray realArray = JArray.Parse(realMenu.SelectToken("RealMenu").ToString());
-                //    foreach (JObject realarr in realArray)
-                //    {
-                //        string menu = realarr["Menu"].ToString();
-                //        string recipeMenu = realarr["MenuDetailList"].ToString();
-                //        JArray recipeJarr = JArray.Parse(recipeMenu);
-                //        foreach (var recipArr in recipeJarr)
-                //        {
-                //            new MenuDetail()
-                //            {
-                //                RecipeCode = recipArr["RecipeCode"].ToString()
-                //            };
-                //        }
-                //    }
-                //}
-
-                //foreach (var item in test2)
-                //{
-                //    RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(item.SitemName);
-                //    foreach (var real in rv.RealMenu)
-                //    {
-                //        tbxResult.Text += "메뉴이름 : " + real.Menu.MenuName + "\r\n";
-                //        foreach (var item2 in real.MenuDetailList)
-                //        {
-                //            tbxResult.Text += "재료이름 : " + item2.InventoryName + "\r\n";
-                //        }
-                //    }
-                //}
-
+                //총 매출과 원 재료비 계산을 위한 반복문
                 foreach (var item in dayPerRealTot)
                 {
                     float rawMaterialCost = 0;
@@ -169,6 +147,7 @@ namespace GoodeeWay.BUS
                     foreach (var group in item)
                     {
                         investSum += group.Stotal;
+                        #region jsonParsing 분석
                         RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(group.SitemName);
                         foreach (var real in rv.RealMenu)
                         {
@@ -180,21 +159,24 @@ namespace GoodeeWay.BUS
                                     {
                                         if (item2.InventoryTypeCode.Equals(gazua.InventoryTypeCode))
                                         {
+                                            //tbxResult.Text += "재료이름 : " + item2.InventoryName + "\r\n";
                                             rawMaterialCost += gazua.UnitPrice;
-                                            tbxResult.Text += "재료이름 : " + item2.InventoryName + "재고코드 : " + item2.InventoryTypeCode + " 단가 : " + gazua.UnitPrice + "\r\n";
                                         }
                                     }
                                 }
                             }
                             else
                             {
-                                //tbxResult.Text += "메뉴이름 : " + real.Menu.MenuName + "\r\n";
+                                rawMaterialCost += real.Menu.Price;
+                                //tbxResult.Text += "메뉴이름 : " + real.Menu.MenuName + "\r\n" + real.Menu.Price;
                             }
                         }
-                        totInvestList.Add(new ResourceManagementVO() { ResourceDate = item.Key, RawMaterialCost = rawMaterialCost, TotInvestPrice = investSum });
+                        #endregion
                     }
+                    totInvestList.Add(new ResourceManagementVO() { ResourceDate = item.Key, RawMaterialCost = rawMaterialCost, TotInvestPrice = investSum });
                 }
 
+                //비품비 계산을 위한 반복문
                 foreach (var item in dayPerEquipPriceTot)
                 {
                     float sum = 0;
@@ -205,42 +187,39 @@ namespace GoodeeWay.BUS
                     equipList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EquipPrice = sum });
                 }
 
-                var mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
+                mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
 
-                float fixedCost = 0;//고정비
-                float variableCost = 0; ; //변동비
-                float totalInvesetPrice = 0;
+
+                float totalInvesetPrice = 0; //매출액
+                float RawMaterialCost = 0;//원재료비
+                float EquipPrice = 0;//비품비
+                float EmployeePrice = 0;//직원급여
                 foreach (var item in mergeList)
                 {
-
-                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), item.TotInvestPrice, item.RawMaterialCost, item.EquipPrice, /*관리비*/0, /*인사급여*/0, /*기타*/0, /*순이익*/0);
-                    variableCost += item.EquipPrice;
-                    //fixedCost += 
+                    float netProfit = item.TotInvestPrice - item.RawMaterialCost - item.EquipPrice;
+                    var tempEmployee = 50000;
+                    totRsrcTab.Rows.Add(item.ResourceDate.ToShortDateString(), (decimal)item.TotInvestPrice, (decimal)item.RawMaterialCost, (decimal)item.EquipPrice, /*인사급여*/(decimal)tempEmployee, (decimal)netProfit);
+                    EquipPrice += item.EquipPrice;
+                    RawMaterialCost += item.RawMaterialCost;
+                    EmployeePrice += tempEmployee;
                     totalInvesetPrice += item.TotInvestPrice;
                 }
 
-                var netIncome = fixedCost / (1 - (variableCost - totalInvesetPrice)); //손익 분기점 매출액 = 고정비/(1-(변동비/매출액))
-                resourceDataGView.DataSource = totRsrcTab;
-
-            }
-        }
-
-    }
-
-    public static partial class JsonExtensions
-    {
-        public static IEnumerable<T> FromDelimitedJson<T>(TextReader reader, JsonSerializerSettings settings = null)
-        {
-            using (var jsonReader = new JsonTextReader(reader) { CloseInput = false, SupportMultipleContent = true })
-            {
-                var serializer = JsonSerializer.CreateDefault(settings);
-
-                while (jsonReader.Read())
+                if (rdoDate.Checked)
                 {
-                    if (jsonReader.TokenType == JsonToken.Comment)
-                        continue;
-                    yield return serializer.Deserialize<T>(jsonReader);
+                    lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
+                    lblRawMaterialCost.Text += ((decimal)RawMaterialCost).ToString();
+                    lblEquipPrice.Text += ((decimal)EquipPrice).ToString();
+                    lblEmployeeCost.Text += ((decimal)EmployeePrice).ToString();
+                    resourceDataGView.DataSource = totRsrcTab;
                 }
+                else if (rdoMonth.Checked)
+                {
+                    resourceDataGView.DataSource = null;
+                }
+                
+                
+                
             }
         }
     }

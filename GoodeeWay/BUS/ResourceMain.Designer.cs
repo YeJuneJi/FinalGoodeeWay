@@ -43,6 +43,12 @@
             this.resourceDataGView = new System.Windows.Forms.DataGridView();
             this.lblbeppr = new System.Windows.Forms.Label();
             this.lblBEPpredict = new System.Windows.Forms.Label();
+            this.btnNetIncome = new System.Windows.Forms.Button();
+            this.lblNetIncome = new System.Windows.Forms.Label();
+            this.lbltotalInvesetPrice = new System.Windows.Forms.Label();
+            this.lblEquipPrice = new System.Windows.Forms.Label();
+            this.lblRawMaterialCost = new System.Windows.Forms.Label();
+            this.lblEmployeeCost = new System.Windows.Forms.Label();
             this.tbxResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
@@ -114,6 +120,7 @@
             // rdoDate
             // 
             this.rdoDate.AutoSize = true;
+            this.rdoDate.Checked = true;
             this.rdoDate.Location = new System.Drawing.Point(59, 188);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(47, 16);
@@ -129,7 +136,6 @@
             this.rdoMonth.Name = "rdoMonth";
             this.rdoMonth.Size = new System.Drawing.Size(47, 16);
             this.rdoMonth.TabIndex = 9;
-            this.rdoMonth.TabStop = true;
             this.rdoMonth.Text = "월별";
             this.rdoMonth.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +146,6 @@
             this.rdoYear.Name = "rdoYear";
             this.rdoYear.Size = new System.Drawing.Size(47, 16);
             this.rdoYear.TabIndex = 10;
-            this.rdoYear.TabStop = true;
             this.rdoYear.Text = "연별";
             this.rdoYear.UseVisualStyleBackColor = true;
             // 
@@ -164,13 +169,13 @@
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(531, 279);
+            this.resourceDataGView.Size = new System.Drawing.Size(531, 267);
             this.resourceDataGView.TabIndex = 12;
             // 
             // lblbeppr
             // 
             this.lblbeppr.AutoSize = true;
-            this.lblbeppr.Location = new System.Drawing.Point(317, 47);
+            this.lblbeppr.Location = new System.Drawing.Point(299, 41);
             this.lblbeppr.Name = "lblbeppr";
             this.lblbeppr.Size = new System.Drawing.Size(117, 12);
             this.lblbeppr.TabIndex = 13;
@@ -179,22 +184,80 @@
             // lblBEPpredict
             // 
             this.lblBEPpredict.AutoSize = true;
-            this.lblBEPpredict.Location = new System.Drawing.Point(440, 47);
+            this.lblBEPpredict.Location = new System.Drawing.Point(422, 41);
             this.lblBEPpredict.Name = "lblBEPpredict";
             this.lblBEPpredict.Size = new System.Drawing.Size(11, 12);
             this.lblBEPpredict.TabIndex = 14;
             this.lblBEPpredict.Text = "-";
             // 
+            // btnNetIncome
+            // 
+            this.btnNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNetIncome.Location = new System.Drawing.Point(16, 586);
+            this.btnNetIncome.Name = "btnNetIncome";
+            this.btnNetIncome.Size = new System.Drawing.Size(131, 23);
+            this.btnNetIncome.TabIndex = 15;
+            this.btnNetIncome.Text = "손익분기매출액";
+            this.btnNetIncome.UseVisualStyleBackColor = true;
+            this.btnNetIncome.Click += new System.EventHandler(this.btnNetIncome_Click);
+            // 
+            // lblNetIncome
+            // 
+            this.lblNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblNetIncome.AutoSize = true;
+            this.lblNetIncome.Location = new System.Drawing.Point(166, 591);
+            this.lblNetIncome.Name = "lblNetIncome";
+            this.lblNetIncome.Size = new System.Drawing.Size(11, 12);
+            this.lblNetIncome.TabIndex = 16;
+            this.lblNetIncome.Text = "-";
+            // 
+            // lbltotalInvesetPrice
+            // 
+            this.lbltotalInvesetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbltotalInvesetPrice.AutoSize = true;
+            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(17, 494);
+            this.lbltotalInvesetPrice.Name = "lbltotalInvesetPrice";
+            this.lbltotalInvesetPrice.Size = new System.Drawing.Size(53, 12);
+            this.lbltotalInvesetPrice.TabIndex = 17;
+            this.lbltotalInvesetPrice.Text = "총매출 : ";
+            // 
+            // lblEquipPrice
+            // 
+            this.lblEquipPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblEquipPrice.AutoSize = true;
+            this.lblEquipPrice.Location = new System.Drawing.Point(17, 534);
+            this.lblEquipPrice.Name = "lblEquipPrice";
+            this.lblEquipPrice.Size = new System.Drawing.Size(69, 12);
+            this.lblEquipPrice.TabIndex = 18;
+            this.lblEquipPrice.Text = "총 비품비 : ";
+            // 
+            // lblRawMaterialCost
+            // 
+            this.lblRawMaterialCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRawMaterialCost.AutoSize = true;
+            this.lblRawMaterialCost.Location = new System.Drawing.Point(17, 514);
+            this.lblRawMaterialCost.Name = "lblRawMaterialCost";
+            this.lblRawMaterialCost.Size = new System.Drawing.Size(81, 12);
+            this.lblRawMaterialCost.TabIndex = 19;
+            this.lblRawMaterialCost.Text = "총 원재료비 : ";
+            // 
+            // lblEmployeeCost
+            // 
+            this.lblEmployeeCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblEmployeeCost.AutoSize = true;
+            this.lblEmployeeCost.Location = new System.Drawing.Point(17, 554);
+            this.lblEmployeeCost.Name = "lblEmployeeCost";
+            this.lblEmployeeCost.Size = new System.Drawing.Size(69, 12);
+            this.lblEmployeeCost.TabIndex = 20;
+            this.lblEmployeeCost.Text = "총 인사비 : ";
+            // 
             // tbxResult
             // 
-            this.tbxResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxResult.Location = new System.Drawing.Point(579, 19);
+            this.tbxResult.Location = new System.Drawing.Point(585, 55);
             this.tbxResult.Multiline = true;
             this.tbxResult.Name = "tbxResult";
-            this.tbxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxResult.Size = new System.Drawing.Size(480, 515);
-            this.tbxResult.TabIndex = 15;
+            this.tbxResult.Size = new System.Drawing.Size(447, 519);
+            this.tbxResult.TabIndex = 21;
             // 
             // ResourceMain
             // 
@@ -202,6 +265,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.tbxResult);
+            this.Controls.Add(this.lblEmployeeCost);
+            this.Controls.Add(this.lblRawMaterialCost);
+            this.Controls.Add(this.lblEquipPrice);
+            this.Controls.Add(this.lbltotalInvesetPrice);
+            this.Controls.Add(this.lblNetIncome);
+            this.Controls.Add(this.btnNetIncome);
             this.Controls.Add(this.lblBEPpredict);
             this.Controls.Add(this.lblbeppr);
             this.Controls.Add(this.resourceDataGView);
@@ -218,7 +287,7 @@
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(1080, 559);
+            this.Size = new System.Drawing.Size(1080, 634);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseUp);
@@ -245,6 +314,12 @@
         private System.Windows.Forms.DataGridView resourceDataGView;
         private System.Windows.Forms.Label lblbeppr;
         private System.Windows.Forms.Label lblBEPpredict;
+        private System.Windows.Forms.Button btnNetIncome;
+        private System.Windows.Forms.Label lblNetIncome;
+        private System.Windows.Forms.Label lbltotalInvesetPrice;
+        private System.Windows.Forms.Label lblEquipPrice;
+        private System.Windows.Forms.Label lblRawMaterialCost;
+        private System.Windows.Forms.Label lblEmployeeCost;
         private System.Windows.Forms.TextBox tbxResult;
     }
 }
