@@ -1,5 +1,7 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +17,11 @@ namespace GoodeeWay.SandwichMakingBus
 {
     public partial class FrmSandwichMaking : Form
     {
-        int count = 3;
+        int count = 5;
 
         List<MakingFormVO> odList = new List<MakingFormVO>();
         List<MakingFormVO> standByList = new List<MakingFormVO>();
-        List<MakingFormVO> makingList = new List<MakingFormVO>();
-        Thread t1;
+        List<MakingFormVO> makingList = new List<MakingFormVO>();        
 
         public FrmSandwichMaking()
         {
@@ -30,46 +31,25 @@ namespace GoodeeWay.SandwichMakingBus
         private void FrmSandwichMaking_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            t1 = new Thread(new ThreadStart(tt));
-            t1.Start();
 
-        }
-
-        private void tt()
-        {
-            DataGridView dataGridViewSB2 = new DataGridView();
-            DataGridView dataGridViewING2 = new DataGridView();
-
-            dataGridViewSB2.Size = new Size(200, 500);                        
-            
-            this.Controls.Add(dataGridViewSB);
-            this.Controls.Add(dataGridViewING);
-
-            while (true)
-            {
-                if (count == 3)
-                {
-                    GridViewReset(dataGridViewSB2, dataGridViewING2);
-
-                    count = 0;
-                }
-            }
-        }
-
-        private void FrmSandwichMaking_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            t1.Abort();
+            GridViewReset();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+            if (count >= 5)
+            {                
+                GridViewReset();
+                count = 0;
+            }
+
             count++;
         }
 
         internal void CallMaking()
         {
-            //GridViewReset();
+            
         }
 
         private void Classify()
@@ -93,14 +73,14 @@ namespace GoodeeWay.SandwichMakingBus
             }
         }
 
-        private void GridViewReset(DataGridView dataGridViewSB2, DataGridView dataGridViewING2)
+        private void GridViewReset()
         {
             Classify();
-            MessageBox.Show("시작됬다");
-            dataGridViewSB2.Columns.Clear();
-            dataGridViewSB2.DataSource = null;
+            
+            dataGridViewSB.Columns.Clear();
+            dataGridViewSB.DataSource = null;
 
-            dataGridViewSB2.DataSource = standByList;
+            dataGridViewSB.DataSource = standByList;
 
             DataGridViewButtonColumn startButton = new DataGridViewButtonColumn();
             startButton.Text = "시작";
@@ -112,137 +92,152 @@ namespace GoodeeWay.SandwichMakingBus
             cancelButton.Name = "취소";
             cancelButton.UseColumnTextForButtonValue = true;
 
-            dataGridViewSB2.Columns.Add(startButton);
-            dataGridViewSB2.Columns.Add(cancelButton);
+            dataGridViewSB.Columns.Add(startButton);
+            dataGridViewSB.Columns.Add(cancelButton);
 
-            dataGridViewING2.Columns.Clear();
-            dataGridViewING2.DataSource = null;
+            dataGridViewING.Columns.Clear();
+            dataGridViewING.DataSource = null;
 
-            dataGridViewING2.DataSource = makingList;
+            dataGridViewING.DataSource = makingList;
 
             DataGridViewButtonColumn endButton = new DataGridViewButtonColumn();
             endButton.Text = "완료";
             endButton.Name = "완료";
             endButton.UseColumnTextForButtonValue = true;
 
-            dataGridViewING2.Columns.Add(endButton);
-
-            //DataGridViewButtonColumn disposalButton = new DataGridViewButtonColumn();
-            //disposalButton.Text = "폐기";
-            //disposalButton.Name = "폐기";
-            //disposalButton.UseColumnTextForButtonValue = true;
-
-            //dataGridViewING.Columns.Add(disposalButton);
+            dataGridViewING.Columns.Add(endButton);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //var senderGrid = (DataGridView)sender;
+            var senderGrid = (DataGridView)sender;
 
-            //if (e.RowIndex >= 0)
-            //{
-            //    if (senderGrid.Columns[e.ColumnIndex].Name.Equals("시작"))
-            //    {
-            //        if (dataGridViewSB.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
-            //        {
-            //            int num = (int)dataGridViewSB.SelectedRows[0].Cells[0].Value;
-            //            if (MessageBox.Show(num + "의 제조를 시작하겠습니까?", "시작", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //            {
-            //                // 수정 메서드 작동 
-            //                try
-            //                {
-            //                    new MakingDAO().UpdateMaking(num);
-            //                }
-            //                catch (Exception)
-            //                {
-            //                    MessageBox.Show("시작 할 수 없습니다");
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("다시 선택해 주세요");
-            //        }
+            if (e.RowIndex >= 0)
+            {
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("시작"))
+                {
+                    if (dataGridViewSB.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
+                    {
+                        int num = (int)dataGridViewSB.SelectedRows[0].Cells[0].Value;
+                        if (MessageBox.Show(num + "의 제조를 시작하겠습니까?", "시작", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            // 수정 메서드 작동 
+                            try
+                            {
+                                new MakingDAO().UpdateMaking(num);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("시작 할 수 없습니다");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해 주세요");
+                    }
 
-            //        GridViewReset();
-            //    }
-            //    else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("취소"))
-            //    {
-            //        if (dataGridViewSB.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
-            //        {
-            //            int num = (int)dataGridViewSB.SelectedRows[0].Cells[0].Value;
-            //            if (MessageBox.Show(num + "를 취소하겠습니까?", "취소", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //            {
-            //                // 삭제 메서드 작동
-            //                try
-            //                {
-            //                    new MakingDAO().DeleteMaking(num);
-            //                }
-            //                catch (Exception)
-            //                {
-            //                    MessageBox.Show("삭제 할 수 없습니다");
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("다시 선택해 주세요");
-            //        }
+                    GridViewReset();
+                }
+                else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("취소"))
+                {
+                    if (dataGridViewSB.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
+                    {
+                        int num = (int)dataGridViewSB.SelectedRows[0].Cells[0].Value;
+                        if (MessageBox.Show(num + "를 취소하겠습니까?", "취소", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            // 삭제 메서드 작동
+                            try
+                            {
+                                new MakingDAO().DeleteMaking(num);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("삭제 할 수 없습니다");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해 주세요");
+                    }
 
-            //        GridViewReset();
-            //    }
-            //}
+                    GridViewReset();
+                }
+            }
         }
 
-        private void dataGridViewING_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewING_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-        //    var senderGrid = (DataGridView)sender;
+            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(dataGridViewING.SelectedRows[0].Cells[1].Value.ToString());
 
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        //int num 
-        //        if (senderGrid.Columns[e.ColumnIndex].Name.Equals("완료"))
-        //        {
-        //            if (dataGridViewING.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
-        //            {
-        //                int num = (int)dataGridViewING.SelectedRows[0].Cells[0].Value;
+            tbList.Text = String.Empty;
 
-        //                if (MessageBox.Show(num + "완료?", "완료", MessageBoxButtons.OKCancel) == DialogResult.OK)
-        //                {
-        //                    // 삭제 메서드 작동
-        //                    try
-        //                    {
-        //                        new MakingDAO().DeleteMaking(num);
-        //                    }
-        //                    catch (Exception)
-        //                    {
-        //                        MessageBox.Show("완료 할 수 없습니다");
-        //                    }
-        //                }
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("다시 선택해 주세요");
-        //            }
+            tbList.Text += "========================================\r\n";
+            foreach (var rmv in realMenuVO.RealMenu)
+            {
+                if (rmv.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
+                {
+                    tbList.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>" + rmv.Menu.MenuName;
+                    tbList.Text += "\r\n\r\n재료 : ==>";
+                    foreach (var mdl in rmv.MenuDetailList)
+                    {
+                        tbList.Text += "\t" + mdl.InventoryName + ", ";
+                    }
+                }
+                else
+                {
+                    tbList.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
+                }
 
-        //            GridViewReset();
-        //        }
-        //        //else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("폐기"))
-        //        //{
-        //        //    if (dataGridViewING.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
-        //        //    {
-        //        //        MessageBox.Show(dataGridViewING.SelectedRows[0].Cells[0].Value.ToString() + "를 취소하겠습니까?", "폐기", MessageBoxButtons.OKCancel);
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        MessageBox.Show("다시 선택해 주세요");
-        //        //    }
+            }
 
-        //        //    // 삭제 메서드 작동
+            var senderGrid = (DataGridView)sender;
 
-        //        //    GridViewSBReset();
-        //        //}
-        //    }
+            if (e.RowIndex >= 0)
+            {
+                if (senderGrid.Columns[e.ColumnIndex].Name.Equals("완료"))
+                {
+                    if (dataGridViewING.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
+                    {
+                        int num = (int)dataGridViewING.SelectedRows[0].Cells[0].Value;
+
+                        if (MessageBox.Show(num + "완료?", "완료", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            // 삭제 메서드 작동
+                            try
+                            {
+                                new MakingDAO().DeleteMaking(num);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("완료 할 수 없습니다");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("다시 선택해 주세요");
+                    }
+
+                    GridViewReset();
+                }
+                //else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("폐기"))
+                //{
+                //    if (dataGridViewING.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
+                //    {
+                //        MessageBox.Show(dataGridViewING.SelectedRows[0].Cells[0].Value.ToString() + "를 취소하겠습니까?", "폐기", MessageBoxButtons.OKCancel);
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show("다시 선택해 주세요");
+                //    }
+
+                //    // 삭제 메서드 작동
+
+                //    GridViewReset();
+                //}
+            }
         }
     }
 }

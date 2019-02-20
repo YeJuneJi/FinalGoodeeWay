@@ -34,6 +34,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewING = new System.Windows.Forms.DataGridView();
+            this.tbList = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewING)).BeginInit();
             this.SuspendLayout();
@@ -82,20 +83,29 @@
             this.dataGridViewING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewING.Size = new System.Drawing.Size(1171, 233);
             this.dataGridViewING.TabIndex = 4;
-            this.dataGridViewING.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewING_CellContentClick);
+            this.dataGridViewING.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewING_CellClick);
+            // 
+            // tbList
+            // 
+            this.tbList.Location = new System.Drawing.Point(12, 560);
+            this.tbList.Multiline = true;
+            this.tbList.Name = "tbList";
+            this.tbList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbList.Size = new System.Drawing.Size(1171, 402);
+            this.tbList.TabIndex = 5;
             // 
             // FrmSandwichMaking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1199, 565);
+            this.ClientSize = new System.Drawing.Size(1199, 991);
+            this.Controls.Add(this.tbList);
             this.Controls.Add(this.dataGridViewING);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSB);
             this.Name = "FrmSandwichMaking";
             this.Text = "FrmSandwichMaking";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmSandwichMaking_FormClosed);
             this.Load += new System.EventHandler(this.FrmSandwichMaking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewING)).EndInit();
@@ -111,5 +121,6 @@
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridView dataGridViewING;
+        private System.Windows.Forms.TextBox tbList;
     }
 }

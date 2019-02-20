@@ -16,6 +16,7 @@ using GoodeeWay.Sales;
 using GoodeeWay.BUS;
 using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
+using System.Threading;
 
 namespace GoodeeWay
 {
@@ -201,13 +202,13 @@ namespace GoodeeWay
                 resourceManagemanet.BringToFront();
             }
         }
-
+        
         private void 제조현황ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (frmSandwichMaking == null)
             {
                 frmSandwichMaking = new FrmSandwichMaking();
-                frmSandwichMaking.MdiParent = this;
+                frmSandwichMaking.MdiParent = this;                
                 frmSandwichMaking.Show();
             }
             else if (frmSandwichMaking.IsDisposed)
@@ -220,7 +221,6 @@ namespace GoodeeWay
             {
                 frmSandwichMaking.BringToFront();
             }
-            
         }
     }
 }
