@@ -17,14 +17,17 @@ namespace GoodeeWay.InventoryBUS
     {
         List<InventoryTypeSalesVO> lst;
         List<InventoryTypeSalesVO> avgList;
+        string[] type1 = new string[] { "Bread", "Cheese", "Vegetable", "Sauce", "Additional", "Topping", "Side" };
         public InventorySales()
         {
             InitializeComponent();
             dtpStartDate.Value = dtpStartDate.Value.AddDays(-1);
             InventorySalesChart.Series.Add("종류기준");
             InventorySalesChart.Series.Add("평균");
-
+            rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
+            cmbType.Items.AddRange(type1);
         }
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -36,15 +39,20 @@ namespace GoodeeWay.InventoryBUS
                 
                 InventorySalesChart.Series["종류기준"].Points.DataBind(lst, "InventoryName", "UseInventory", null);
                 dgvData.DataSource = lst;
-                InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
-                {
-                    InventoryName = "평균",
-                    UseInventory = (int)(from avgList in lst select avgList.UseInventory).Average()
-                };
                 avgList = new List<InventoryTypeSalesVO>();
-                avgList.Add(inventoryTypeSalesVO);
+                foreach (var item in lst)
+                {
+                    InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
+                    {
+                        InventoryName = item.InventoryName,
+                        UseInventory = (int)(from avgList in lst select avgList.UseInventory).Average()
+                    };
+
+                    
+                    avgList.Add(inventoryTypeSalesVO);
+                }
                 InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                InventorySalesChart.Series["평균"].Points.AddY((from avgList in lst select avgList.UseInventory).Average());
+                InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
             }
             else
             {
@@ -120,6 +128,28 @@ namespace GoodeeWay.InventoryBUS
             dtpStartDate.Value = dtpEndDate.Value.AddYears(-3);
         }
         #endregion
+
+
+        private void rdoInventoryType_CheckedChanged(object sender, EventArgs e)
+        {
+            rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible=rdoYear.Visible= false;
+            cmbType.Items.Clear();
+            cmbType.Items.AddRange(type1);
+            cmbType.Text = cmbType.Items[0].ToString();
+
+        }
+
+        private void rdoInventory_CheckedChanged(object sender, EventArgs e)
+        {
+            rdoMonth.Checked=rdoMonth.Visible=rdoYear.Visible= true;
+            cmbType.Items.Clear();
+
+            foreach (var item in new InventoryTypeDAO().InventoryNameSelect())
+            {
+                cmbType.Items.Add(item);
+            }
+            cmbType.Text = cmbType.Items[0].ToString();
+        }
     }
     class Display
     {

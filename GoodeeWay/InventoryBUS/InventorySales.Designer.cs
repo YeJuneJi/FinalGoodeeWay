@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.InventorySalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.rdoInventoryType = new System.Windows.Forms.RadioButton();
-            this.rdoInventory = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblEndDate = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbLastestDate = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn1Year = new System.Windows.Forms.Button();
             this.btn3Week = new System.Windows.Forms.Button();
@@ -54,26 +54,23 @@
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.rdoInventory = new System.Windows.Forms.RadioButton();
+            this.rdoInventoryType = new System.Windows.Forms.RadioButton();
+            this.rdoMonth = new System.Windows.Forms.RadioButton();
+            this.rdoYear = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbLastestDate.SuspendLayout();
             this.SuspendLayout();
             // 
             // InventorySalesChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.InventorySalesChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.InventorySalesChart.Legends.Add(legend1);
+            chartArea4.Name = "ChartArea1";
+            this.InventorySalesChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.InventorySalesChart.Legends.Add(legend4);
             this.InventorySalesChart.Location = new System.Drawing.Point(23, 37);
             this.InventorySalesChart.Name = "InventorySalesChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.InventorySalesChart.Series.Add(series1);
             this.InventorySalesChart.Size = new System.Drawing.Size(846, 499);
             this.InventorySalesChart.TabIndex = 0;
             this.InventorySalesChart.Text = "chart1";
@@ -81,17 +78,9 @@
             // cmbType
             // 
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Items.AddRange(new object[] {
-            "Bread",
-            "Cheese",
-            "Vegetable",
-            "Sauce",
-            "Additional",
-            "Topping",
-            "Side"});
             this.cmbType.Location = new System.Drawing.Point(914, 314);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(96, 20);
+            this.cmbType.Size = new System.Drawing.Size(153, 20);
             this.cmbType.TabIndex = 12;
             this.cmbType.Text = "Bread";
             // 
@@ -103,28 +92,6 @@
             this.label4.Size = new System.Drawing.Size(37, 12);
             this.label4.TabIndex = 16;
             this.label4.Text = "종류 :";
-            // 
-            // rdoInventoryType
-            // 
-            this.rdoInventoryType.AutoSize = true;
-            this.rdoInventoryType.Checked = true;
-            this.rdoInventoryType.Location = new System.Drawing.Point(1014, 317);
-            this.rdoInventoryType.Name = "rdoInventoryType";
-            this.rdoInventoryType.Size = new System.Drawing.Size(71, 16);
-            this.rdoInventoryType.TabIndex = 19;
-            this.rdoInventoryType.TabStop = true;
-            this.rdoInventoryType.Text = "종류기준";
-            this.rdoInventoryType.UseVisualStyleBackColor = true;
-            // 
-            // rdoInventory
-            // 
-            this.rdoInventory.AutoSize = true;
-            this.rdoInventory.Location = new System.Drawing.Point(1089, 317);
-            this.rdoInventory.Name = "rdoInventory";
-            this.rdoInventory.Size = new System.Drawing.Size(71, 16);
-            this.rdoInventory.TabIndex = 20;
-            this.rdoInventory.Text = "재고기준";
-            this.rdoInventory.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -164,9 +131,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(1082, 339);
+            this.btnSearch.Location = new System.Drawing.Point(1082, 367);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 201);
+            this.btnSearch.Size = new System.Drawing.Size(75, 169);
             this.btnSearch.TabIndex = 25;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -181,30 +148,62 @@
             this.dgvData.Size = new System.Drawing.Size(280, 268);
             this.dgvData.TabIndex = 29;
             // 
-            // groupBox1
+            // gbLastestDate
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btn1Year);
-            this.groupBox1.Controls.Add(this.btn3Week);
-            this.groupBox1.Controls.Add(this.btn2Week);
-            this.groupBox1.Controls.Add(this.btn1Week);
-            this.groupBox1.Controls.Add(this.btn3Year);
-            this.groupBox1.Controls.Add(this.btn2Year);
-            this.groupBox1.Location = new System.Drawing.Point(879, 394);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(188, 143);
-            this.groupBox1.TabIndex = 34;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "최근기간으로 설정";
+            this.gbLastestDate.Controls.Add(this.rdoYear);
+            this.gbLastestDate.Controls.Add(this.rdoMonth);
+            this.gbLastestDate.Controls.Add(this.button1);
+            this.gbLastestDate.Controls.Add(this.button2);
+            this.gbLastestDate.Controls.Add(this.button3);
+            this.gbLastestDate.Controls.Add(this.label1);
+            this.gbLastestDate.Controls.Add(this.btn1Year);
+            this.gbLastestDate.Controls.Add(this.btn3Week);
+            this.gbLastestDate.Controls.Add(this.btn2Week);
+            this.gbLastestDate.Controls.Add(this.btn1Week);
+            this.gbLastestDate.Controls.Add(this.btn3Year);
+            this.gbLastestDate.Controls.Add(this.btn2Year);
+            this.gbLastestDate.Location = new System.Drawing.Point(879, 394);
+            this.gbLastestDate.Name = "gbLastestDate";
+            this.gbLastestDate.Size = new System.Drawing.Size(188, 142);
+            this.gbLastestDate.TabIndex = 34;
+            this.gbLastestDate.TabStop = false;
+            this.gbLastestDate.Text = "최근기간으로 설정";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(123, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "3달";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(69, 42);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(50, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "2달";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(15, 42);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(50, 23);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "1달";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(13, 112);
+            this.label1.Location = new System.Drawing.Point(13, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 12);
             this.label1.TabIndex = 16;
@@ -212,7 +211,7 @@
             // 
             // btn1Year
             // 
-            this.btn1Year.Location = new System.Drawing.Point(15, 78);
+            this.btn1Year.Location = new System.Drawing.Point(15, 69);
             this.btn1Year.Name = "btn1Year";
             this.btn1Year.Size = new System.Drawing.Size(50, 23);
             this.btn1Year.TabIndex = 2;
@@ -222,7 +221,7 @@
             // 
             // btn3Week
             // 
-            this.btn3Week.Location = new System.Drawing.Point(123, 20);
+            this.btn3Week.Location = new System.Drawing.Point(123, 15);
             this.btn3Week.Name = "btn3Week";
             this.btn3Week.Size = new System.Drawing.Size(50, 23);
             this.btn3Week.TabIndex = 15;
@@ -232,7 +231,7 @@
             // 
             // btn2Week
             // 
-            this.btn2Week.Location = new System.Drawing.Point(69, 20);
+            this.btn2Week.Location = new System.Drawing.Point(69, 15);
             this.btn2Week.Name = "btn2Week";
             this.btn2Week.Size = new System.Drawing.Size(50, 23);
             this.btn2Week.TabIndex = 14;
@@ -242,7 +241,7 @@
             // 
             // btn1Week
             // 
-            this.btn1Week.Location = new System.Drawing.Point(15, 20);
+            this.btn1Week.Location = new System.Drawing.Point(15, 15);
             this.btn1Week.Name = "btn1Week";
             this.btn1Week.Size = new System.Drawing.Size(50, 23);
             this.btn1Week.TabIndex = 13;
@@ -252,7 +251,7 @@
             // 
             // btn3Year
             // 
-            this.btn3Year.Location = new System.Drawing.Point(123, 78);
+            this.btn3Year.Location = new System.Drawing.Point(123, 69);
             this.btn3Year.Name = "btn3Year";
             this.btn3Year.Size = new System.Drawing.Size(50, 23);
             this.btn3Year.TabIndex = 10;
@@ -262,7 +261,7 @@
             // 
             // btn2Year
             // 
-            this.btn2Year.Location = new System.Drawing.Point(69, 78);
+            this.btn2Year.Location = new System.Drawing.Point(69, 69);
             this.btn2Year.Name = "btn2Year";
             this.btn2Year.Size = new System.Drawing.Size(50, 23);
             this.btn2Year.TabIndex = 9;
@@ -275,23 +274,23 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(875, 345);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 12);
+            this.label5.Size = new System.Drawing.Size(37, 12);
             this.label5.TabIndex = 32;
-            this.label5.Text = "시작";
+            this.label5.Text = "시작 :";
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(910, 340);
+            this.dtpStartDate.Location = new System.Drawing.Point(914, 340);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(157, 21);
+            this.dtpStartDate.Size = new System.Drawing.Size(153, 21);
             this.dtpStartDate.TabIndex = 30;
             this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(910, 367);
+            this.dtpEndDate.Location = new System.Drawing.Point(914, 367);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(157, 21);
+            this.dtpEndDate.Size = new System.Drawing.Size(153, 21);
             this.dtpEndDate.TabIndex = 31;
             this.dtpEndDate.ValueChanged += new System.EventHandler(this.dtpEndDate_ValueChanged);
             // 
@@ -300,46 +299,62 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(875, 372);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
+            this.label6.Size = new System.Drawing.Size(37, 12);
             this.label6.TabIndex = 33;
-            this.label6.Text = "종료";
+            this.label6.Text = "종료 :";
             // 
-            // button1
+            // rdoInventory
             // 
-            this.button1.Location = new System.Drawing.Point(123, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "3달";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.rdoInventory.AutoSize = true;
+            this.rdoInventory.Location = new System.Drawing.Point(1082, 343);
+            this.rdoInventory.Name = "rdoInventory";
+            this.rdoInventory.Size = new System.Drawing.Size(71, 16);
+            this.rdoInventory.TabIndex = 20;
+            this.rdoInventory.Text = "재고기준";
+            this.rdoInventory.UseVisualStyleBackColor = true;
+            this.rdoInventory.CheckedChanged += new System.EventHandler(this.rdoInventory_CheckedChanged);
             // 
-            // button2
+            // rdoInventoryType
             // 
-            this.button2.Location = new System.Drawing.Point(69, 49);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "2달";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.rdoInventoryType.AutoSize = true;
+            this.rdoInventoryType.Checked = true;
+            this.rdoInventoryType.Location = new System.Drawing.Point(1082, 317);
+            this.rdoInventoryType.Name = "rdoInventoryType";
+            this.rdoInventoryType.Size = new System.Drawing.Size(71, 16);
+            this.rdoInventoryType.TabIndex = 19;
+            this.rdoInventoryType.TabStop = true;
+            this.rdoInventoryType.Text = "종류기준";
+            this.rdoInventoryType.UseVisualStyleBackColor = true;
+            this.rdoInventoryType.CheckedChanged += new System.EventHandler(this.rdoInventoryType_CheckedChanged);
             // 
-            // button3
+            // rdoMonth
             // 
-            this.button3.Location = new System.Drawing.Point(15, 49);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(50, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "1달";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.rdoMonth.AutoSize = true;
+            this.rdoMonth.Checked = true;
+            this.rdoMonth.Location = new System.Drawing.Point(15, 115);
+            this.rdoMonth.Name = "rdoMonth";
+            this.rdoMonth.Size = new System.Drawing.Size(59, 16);
+            this.rdoMonth.TabIndex = 35;
+            this.rdoMonth.TabStop = true;
+            this.rdoMonth.Text = "월단위";
+            this.rdoMonth.UseVisualStyleBackColor = true;
+            // 
+            // rdoYear
+            // 
+            this.rdoYear.AutoSize = true;
+            this.rdoYear.Location = new System.Drawing.Point(80, 115);
+            this.rdoYear.Name = "rdoYear";
+            this.rdoYear.Size = new System.Drawing.Size(59, 16);
+            this.rdoYear.TabIndex = 36;
+            this.rdoYear.Text = "연단위";
+            this.rdoYear.UseVisualStyleBackColor = true;
             // 
             // InventorySales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 551);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbLastestDate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpStartDate);
             this.Controls.Add(this.dtpEndDate);
@@ -359,8 +374,8 @@
             this.Text = "InventorySales";
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbLastestDate.ResumeLayout(false);
+            this.gbLastestDate.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,15 +386,13 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart InventorySalesChart;
         private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton rdoInventoryType;
-        private System.Windows.Forms.RadioButton rdoInventory;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblEndDate;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbLastestDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn1Year;
         private System.Windows.Forms.Button btn3Week;
@@ -394,5 +407,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.RadioButton rdoInventory;
+        private System.Windows.Forms.RadioButton rdoInventoryType;
+        private System.Windows.Forms.RadioButton rdoYear;
+        private System.Windows.Forms.RadioButton rdoMonth;
     }
 }

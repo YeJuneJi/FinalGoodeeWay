@@ -113,6 +113,18 @@ namespace GoodeeWay.DAO
             }
         }
 
+        internal List<string> InventoryNameSelect()
+        {
+            SqlParameter[] sqlParameters = null;
+            SqlDataReader dr= new DBConnection().Select("SelectInventoryName", sqlParameters);
+            List<string> List = new List<string>();
+            while (dr.Read())
+            {
+                List.Add(dr["InventoryName"].ToString());
+            }
+            return List;
+        }
+
         internal void InventoryTypeUpdate(InventoryTypeVO inventoryTypeVO)
         {
             SqlParameter[] updateInventoryTypeParameter = new SqlParameter[5];

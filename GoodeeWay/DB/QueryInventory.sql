@@ -314,3 +314,11 @@ where i.InventoryTypeCode=t.InventoryTypeCode
 	and i.DateOfUse >=@StartDate
 	and i.DateOfUse <=@EndDate
 group by t.InventoryName;
+
+
+Go
+--재고별매출에서 콤보박스에 넣을 재고명 select
+CREATE PROCEDURE [dbo].SelectInventoryName
+	
+AS
+	SELECT InventoryName from InventoryType group by InventoryName;
