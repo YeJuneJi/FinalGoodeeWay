@@ -322,9 +322,6 @@
     <Content Include="Images\Chocolate Chip.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Eggmayo.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\GoodeeWayHead.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

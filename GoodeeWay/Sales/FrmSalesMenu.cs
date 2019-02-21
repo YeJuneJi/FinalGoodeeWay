@@ -365,7 +365,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(" ", "").Trim();
-            string ImageLocation = images;
+            string ImageLocation = "\\images\\" +images;
             bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
@@ -599,6 +599,7 @@ namespace GoodeeWay.Sales
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
                 {
                     pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    
                     sucessMenu = true;
                 }
             }
