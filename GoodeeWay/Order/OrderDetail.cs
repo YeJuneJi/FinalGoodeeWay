@@ -72,7 +72,7 @@ namespace GoodeeWay.Order
             }
             
             lblMenuName.Text = item.MenuName;            
-            lblPrice.Text = item.Price.ToString() + " 원";
+            lblPrice.Text = ((decimal)item.Price).ToString() + " 원";
             lblKcal.Text = item.Kcal.ToString() + " Kcal";
 
             // 메뉴 레시피들을 받아와 리스트에 저장

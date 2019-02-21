@@ -47,11 +47,6 @@ namespace GoodeeWay.SandwichMakingBus
             count++;
         }
 
-        internal void CallMaking()
-        {
-            
-        }
-
         private void Classify()
         {
             odList.Clear();
@@ -221,22 +216,7 @@ namespace GoodeeWay.SandwichMakingBus
                     }
 
                     GridViewReset();
-                }
-                //else if (senderGrid.Columns[e.ColumnIndex].Name.Equals("폐기"))
-                //{
-                //    if (dataGridViewING.SelectedRows[0].Cells[0].Value.GetType() == typeof(int))
-                //    {
-                //        MessageBox.Show(dataGridViewING.SelectedRows[0].Cells[0].Value.ToString() + "를 취소하겠습니까?", "폐기", MessageBoxButtons.OKCancel);
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("다시 선택해 주세요");
-                //    }
-
-                //    // 삭제 메서드 작동
-
-                //    GridViewReset();
-                //}
+                }                
             }
         }
     }
