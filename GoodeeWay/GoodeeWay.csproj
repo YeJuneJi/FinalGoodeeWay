@@ -207,6 +207,7 @@
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="VO\ByMenuVO.cs" />
     <Compile Include="VO\CostOfRawMaterials.cs" />
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
