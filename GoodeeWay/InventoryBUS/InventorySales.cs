@@ -41,6 +41,7 @@ namespace GoodeeWay.InventoryBUS
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, false);
 
                 InventorySalesChart.Series["종류기준"].Points.DataBind(InventoryTypeList, "InventoryName", "UseInventory", null);
+                InventorySalesChart.Series["종류기준"].Label = "#VALY";
                 
                 AverageDisplay(InventoryTypeList);
                 dgvDisplay(InventoryTypeList, rdoInventoryType.Checked);
@@ -51,6 +52,8 @@ namespace GoodeeWay.InventoryBUS
                 InventoryList = displayChart.DisplayChart(new InventoryChart()
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, rdoMonth.Checked);
                 InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "InventoryName", "UseInventory", null);
+                InventorySalesChart.Series[cmbType.Text].Label = "#VALY";
+
                 AverageDisplay(InventoryList);
                 dgvDisplay(InventoryList, rdoInventoryType.Checked);
             }
@@ -65,31 +68,42 @@ namespace GoodeeWay.InventoryBUS
         {
             InventorySalesChart.Series.Add("평균");
             avgList = new List<InventoryTypeSalesVO>();
-            int sum = 0;
-            foreach (var item in List)
-            {
-                sum += item.UseInventory;
-            }
-            int count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text);
+            //sum = 0;
+            //count = 0;
+            //foreach (var item in List)
+            //{
+            //    sum += item.UseInventory;
+            //}
+            //count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text);
 
             foreach (var item in List)
             {
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
                     InventoryName = item.InventoryName,
-                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Sum()
+                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Average()
                 };
                 avgList.Add(inventoryTypeSalesVO);
             }
             InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
+            InventorySalesChart.Series["평균"].Label = "#AVG";
         }
 
         private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
         {
-            
-            List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = sum/count });
-            List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum });
+            int sum = 0;
+            foreach (var item in List)
+            {
+                sum += item.UseInventory;
+            }
+
+
+            if (List.Count >0)
+            {
+                List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = sum / List.Count() });
+                List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum }); 
+            }
             dgvData.DataSource = List;
             if (@checked)
             {
@@ -212,7 +226,7 @@ namespace GoodeeWay.InventoryBUS
         List<InventoryTypeSalesVO> Chart(IChart chart, string type, bool monthYear);
     }
     //-----------------------------------------------------------------------
-    class InventoryTypeChart : IChart
+    class InventoryTypeChart : IChart//종류기준일 때 차트 출력을 위한 class
     {
         private DateTime startDate;
         public DateTime StartDate
@@ -234,7 +248,7 @@ namespace GoodeeWay.InventoryBUS
         
     }
     //-----------------------------------------------------------------------
-    class InventoryChart : IChart
+    class InventoryChart : IChart//재고기준일 때 차트 출력을 위한 class
     {
         private DateTime startDate;
         public DateTime StartDate

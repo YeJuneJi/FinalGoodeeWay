@@ -350,8 +350,7 @@ Go
 create procedure [dbo].SelectInventorySalesCount
 	@Type nvarchar(30),
 	@StartDate datetime,
-	@EndDate dateTime,
-	@Temp int
+	@EndDate dateTime
 AS
 
 select 

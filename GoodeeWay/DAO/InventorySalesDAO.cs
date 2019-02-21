@@ -79,7 +79,7 @@ namespace GoodeeWay.DAO
             int i = 0;
             while (dr.Read())
             {
-                i=Int32.Parse(dr["Count"].ToString());
+                i = Int32.Parse(dr["Count"].ToString());
             }
             return i;
         }
