@@ -58,7 +58,7 @@ namespace GoodeeWay
                 }
             }
 
-            CheckUpdate();
+            new CheckImages().DoAllCheck();            
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -221,29 +221,6 @@ namespace GoodeeWay
             {
                 frmSandwichMaking.BringToFront();
             }
-        }
-
-        private void CheckUpdate()
-        {
-            //List<string> nameList = new ImagesDAO().SelectImagesName();
-            //List<string> hasImageList = new List<string>();
-
-            //DirectoryInfo di = new DirectoryInfo(Application.StartupPath + "\\images");
-
-            //foreach (var fileName in di.GetFiles())
-            //{                
-            //    hasImageList.Add(fileName.Name);
-            //}
-
-            //foreach (var name in nameList)
-            //{
-            //    if (hasImageList.Contains(name))
-            //    {
-            //        hasImageList.Remove(name);
-            //    }
-            //}
-
-
         }
     }
 }
