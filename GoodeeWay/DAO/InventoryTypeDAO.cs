@@ -151,7 +151,7 @@ namespace GoodeeWay.DAO
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("재고명", typeof(string));
             dataTable.Columns.Add("현재수량", typeof(string));
-            dataTable.Columns.Add("필요수량", typeof(string));
+            dataTable.Columns.Add("필요수량", typeof(int));
             dataTable.Columns.Add("발주종류", typeof(string));
             dataTable.Columns.Add("재고종류코드", typeof(string));
 

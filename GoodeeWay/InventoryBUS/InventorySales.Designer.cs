@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.InventorySalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -66,17 +64,11 @@
             // 
             // InventorySalesChart
             // 
+            this.InventorySalesChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.Text;
             chartArea1.Name = "ChartArea1";
             this.InventorySalesChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.InventorySalesChart.Legends.Add(legend1);
-            this.InventorySalesChart.Location = new System.Drawing.Point(23, 37);
+            this.InventorySalesChart.Location = new System.Drawing.Point(23, 40);
             this.InventorySalesChart.Name = "InventorySalesChart";
-            series1.ChartArea = "ChartArea1";
-            series1.LabelToolTip = "#LEGENDTEXT";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.InventorySalesChart.Series.Add(series1);
             this.InventorySalesChart.Size = new System.Drawing.Size(846, 499);
             this.InventorySalesChart.TabIndex = 0;
             this.InventorySalesChart.Text = "chart1";

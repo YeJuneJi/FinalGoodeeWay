@@ -28,6 +28,7 @@ namespace GoodeeWay
         DataTable orderDetailsDataTable;
         DataTable OrderDetailsListDataTable;
         DataTable inventoryDataTable;
+        string[] MaterialClassification = new string[7] { "Bread", "Cheese", "Additional", "Sauce", "Topping", "Vegetable", "Side" };
 
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
@@ -542,8 +543,10 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["현재수량"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
+
             dgvNeedInventoryDetailView.Columns["필요수량"].HeaderText = "필요수량*";
             
+
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
@@ -731,9 +734,34 @@ namespace GoodeeWay
         }
 
 
+
+
         #endregion
 
-
+        private void dgvInventoryType_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("숫자를 입력해주세요");
+        }
         
+        private void dgvNeedInventoryDetailView_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("숫자를 입력해주세요");
+        }
+
+        private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (!MaterialClassification.Contains(dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value.ToString()))
+                {
+                    MessageBox.Show("Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side 중 하나의 재료를 입력해주세요.");
+                    dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value = "Bread";
+                }
+            }
+            catch (Exception)
+            {
+            }
+            
+        }
     }
 }

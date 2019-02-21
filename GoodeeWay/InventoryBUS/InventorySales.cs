@@ -41,7 +41,7 @@ namespace GoodeeWay.InventoryBUS
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, false);
 
                 InventorySalesChart.Series["종류기준"].Points.DataBind(InventoryTypeList, "InventoryName", "UseInventory", null);
-                InventorySalesChart.Series["종류기준"].Label = "#VALY";
+                InventorySalesChart.Series["종류기준"].Label = "#VALYg";
                 
                 AverageDisplay(InventoryTypeList);
                 dgvDisplay(InventoryTypeList, rdoInventoryType.Checked);
@@ -52,7 +52,7 @@ namespace GoodeeWay.InventoryBUS
                 InventoryList = displayChart.DisplayChart(new InventoryChart()
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, rdoMonth.Checked);
                 InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "InventoryName", "UseInventory", null);
-                InventorySalesChart.Series[cmbType.Text].Label = "#VALY";
+                InventorySalesChart.Series[cmbType.Text].Label = "#VALYg";
 
                 AverageDisplay(InventoryList);
                 dgvDisplay(InventoryList, rdoInventoryType.Checked);
@@ -87,7 +87,8 @@ namespace GoodeeWay.InventoryBUS
             }
             InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
-            InventorySalesChart.Series["평균"].Label = "#AVG";
+            InventorySalesChart.Series["평균"].Points[0].Label = "평균 : #AVG";
+            InventorySalesChart.Series["평균"].Points[0].LabelForeColor =Color.Red;
         }
 
         private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
