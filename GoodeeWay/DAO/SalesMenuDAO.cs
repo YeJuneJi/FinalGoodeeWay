@@ -120,9 +120,6 @@ namespace GoodeeWay.DAO
                     salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
                     salesMenu.Division = int.Parse(sdr["division"].ToString());
                     salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
-                    byte[] imgArr = sdr["menuImage"] as byte[];
-                    memoryStream = new MemoryStream(imgArr);
-                    Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImageLocation = sdr["menuImageLocation"].ToString();
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
                     salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
@@ -156,9 +153,6 @@ namespace GoodeeWay.DAO
                     salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
                     salesMenu.Division = int.Parse(sdr["division"].ToString());
                     salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
-                    byte[] imgArr = sdr["menuImage"] as byte[];
-                    memoryStream = new MemoryStream(imgArr);
-                    Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImageLocation = sdr["menuImageLocation"].ToString();
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
                     salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
@@ -192,9 +186,6 @@ namespace GoodeeWay.DAO
                     salesMenu.AdditionalContext = sdr["additionalContext"].ToString();
                     salesMenu.Division = int.Parse(sdr["division"].ToString());
                     salesMenu.Kcal = Convert.ToInt32(sdr["kCal"]);
-                    byte[] imgArr = sdr["menuImage"] as byte[];
-                    memoryStream = new MemoryStream(imgArr);
-                    Image image = Image.FromStream(memoryStream);
                     salesMenu.MenuImageLocation = sdr["menuImageLocation"].ToString();
                     salesMenu.Price = float.Parse(sdr["price"].ToString());
                     salesMenu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());

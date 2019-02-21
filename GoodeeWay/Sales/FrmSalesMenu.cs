@@ -365,7 +365,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(" ", "").Trim();
-            string ImageLocation = "\\images\\" + images;
+            string ImageLocation = images;
             bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
@@ -486,6 +486,7 @@ namespace GoodeeWay.Sales
                 tbxAddContxt.Text = salesMenuGView.Rows[e.RowIndex].Cells[6].Value.ToString();
                 tbxDiscountRatio.Text = salesMenuGView.Rows[e.RowIndex].Cells[7].Value.ToString();
                 pbxPhoto.ImageLocation =Application.StartupPath + salesMenuGView.Rows[e.RowIndex].Cells[4].Value.ToString();
+                images = salesMenuGView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 foreach (Division item in Enum.GetValues(typeof(Division)))
                 {
                     if (salesMenuGView.Rows[e.RowIndex].Cells[5].Value.Equals((int)item))
@@ -634,7 +635,8 @@ namespace GoodeeWay.Sales
                 }
                 else
                 {
-                    pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+
+                    //pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
                     menuUpdateSucess = true;
                 }
             }
