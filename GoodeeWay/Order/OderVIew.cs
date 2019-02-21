@@ -40,9 +40,16 @@ namespace GoodeeWay.Order
         private void GetMenuList() // menuList 세팅
         {
             foreach (Menu item in menuList) // 메뉴리스트에 있는 목록을 각각 별로 listview에 띄어줌
-            {                
-                imgList.Images.Add(item.MenuCode, Image.FromFile(Application.StartupPath + item.MenuImage));
-                imgList.ImageSize = new Size(128, 128);
+            {
+                try
+                {
+                    imgList.Images.Add(item.MenuCode, Image.FromFile(Application.StartupPath + item.MenuImage));
+                    imgList.ImageSize = new Size(128, 128);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("이미지를 로드할 수 없습니다. 경로를 확인해 주세요");
+                }
                 listViewOrder.LargeImageList = imgList;
                 listViewBasket.LargeImageList = imgList;
 
@@ -146,7 +153,8 @@ namespace GoodeeWay.Order
         }
 
         private void btnCancelOne_Click(object sender, EventArgs e) // 취소 버튼 클릭시 작동
-        {
+        {            
+            
             bucketMenuList.RemoveAt(listViewBasket.SelectedItems[0].Index);
             bucketMenuAndDetailList.RemoveAt(listViewBasket.SelectedItems[0].Index);
             SetBasketListBox();
@@ -155,7 +163,7 @@ namespace GoodeeWay.Order
         private void SetBasketListBox() // 장바구니 리스트에 따라 listview 목록을 refresh 해주는 메소드
         {
             listViewBasket.Clear();
-            float price = 0;
+            decimal price = 0;
             int kCal = 0;
             foreach (Menu menu in bucketMenuList)
             {
@@ -163,7 +171,7 @@ namespace GoodeeWay.Order
                 {
                     if (listViewItem.Name.Equals(menu.MenuName))
                     {
-                        price += menu.Price;
+                        price += (decimal)menu.Price;
                         kCal += menu.Kcal;
 
                         listViewBasket.Items.Add((ListViewItem)listViewItem.Clone());
@@ -211,6 +219,10 @@ namespace GoodeeWay.Order
             if (order.result == true)
             {
                 MessageBox.Show("정상 결제 완료");
+                bucketMenuList.Clear();
+                bucketMenuDetailList.Clear();
+                bucketMenuAndDetailList.Clear();
+                SetBasketListBox();
                 //this.Close();   
             }
         }
@@ -218,6 +230,13 @@ namespace GoodeeWay.Order
         private void orderBtnOK(object sender, EventArgs e) // 결제창에서 ok 버튼 클릭시 작동
         {
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            testForm tf = new testForm();
+            tf.ShowDialog();
+
         }
     }
 }

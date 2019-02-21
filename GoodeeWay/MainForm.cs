@@ -1,6 +1,6 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
-﻿using GoodeeWay.Order;
+using GoodeeWay.Order;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +16,8 @@ using GoodeeWay.Sales;
 using GoodeeWay.BUS;
 using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
+using System.Threading;
+using System.IO;
 
 namespace GoodeeWay
 {
@@ -48,21 +50,21 @@ namespace GoodeeWay
                 {
                     ctlMDI = ctl as MdiClient;
                 }
-                
+
                 if (ctlMDI.GetType() != typeof(MenuStrip))
                 {
                     ctlMDI.BackColor = this.BackColor;
                     break;
                 }
             }
-            frmSandwichMaking = new FrmSandwichMaking();
-            frmSandwichMaking.Show();
+
+            CheckUpdate();
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
-        {                        
+        {
             if (oderVIew == null)
-            {                
+            {
                 oderVIew = new OderVIew();
                 oderVIew.MdiParent = this;
                 oderVIew.Show();
@@ -137,7 +139,7 @@ namespace GoodeeWay
             {
                 saleRecords.BringToFront();
             }
-            
+
         }
 
         private void 비품관리ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,7 +180,7 @@ namespace GoodeeWay
             {
                 employee.BringToFront();
             }
-            
+
         }
 
         private void 매출관리ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,9 +205,45 @@ namespace GoodeeWay
 
         private void 제조현황ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //FrmSandwichMaking frmSandwichMaking = new FrmSandwichMaking();
-            //frmSandwichMaking.MdiParent = this;
-            //frmSandwichMaking.Show();
+            if (frmSandwichMaking == null)
+            {
+                frmSandwichMaking = new FrmSandwichMaking();
+                frmSandwichMaking.MdiParent = this;
+                frmSandwichMaking.Show();
+            }
+            else if (frmSandwichMaking.IsDisposed)
+            {
+                frmSandwichMaking = new FrmSandwichMaking();
+                frmSandwichMaking.MdiParent = this;
+                frmSandwichMaking.Show();
+            }
+            else
+            {
+                frmSandwichMaking.BringToFront();
+            }
+        }
+
+        private void CheckUpdate()
+        {
+            //List<string> nameList = new ImagesDAO().SelectImagesName();
+            //List<string> hasImageList = new List<string>();
+
+            //DirectoryInfo di = new DirectoryInfo(Application.StartupPath + "\\images");
+
+            //foreach (var fileName in di.GetFiles())
+            //{                
+            //    hasImageList.Add(fileName.Name);
+            //}
+
+            //foreach (var name in nameList)
+            //{
+            //    if (hasImageList.Contains(name))
+            //    {
+            //        hasImageList.Remove(name);
+            //    }
+            //}
+
+
         }
     }
 }

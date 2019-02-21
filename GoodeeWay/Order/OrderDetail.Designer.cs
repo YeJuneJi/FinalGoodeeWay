@@ -43,6 +43,7 @@
             this.menuImage.Location = new System.Drawing.Point(14, 12);
             this.menuImage.Name = "menuImage";
             this.menuImage.Size = new System.Drawing.Size(164, 146);
+            this.menuImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuImage.TabIndex = 0;
             this.menuImage.TabStop = false;
             // 

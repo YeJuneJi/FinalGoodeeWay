@@ -66,7 +66,6 @@
             this.btn100 = new System.Windows.Forms.Button();
             this.btn50 = new System.Windows.Forms.Button();
             this.btn10 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbButton.SuspendLayout();
             this.gbWon.SuspendLayout();
@@ -450,22 +449,11 @@
             this.btn10.UseVisualStyleBackColor = true;
             this.btn10.Click += new System.EventHandler(this.btnWon_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(807, 424);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 721);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.gbWon);
             this.Controls.Add(this.gbButton);
             this.Controls.Add(this.dataGridView1);
@@ -535,6 +523,5 @@
         private System.Windows.Forms.Button btn100;
         private System.Windows.Forms.Button btn50;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button button1;
     }
 }

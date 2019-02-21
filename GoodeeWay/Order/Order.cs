@@ -30,9 +30,9 @@ namespace GoodeeWay.Order
         private void Order_Load(object sender, EventArgs e)
         {
             List<Menu> menuList = new List<Menu>();
-            float price = 0;
-            float discount = 0;
-            float tax = 0;
+            decimal price = 0;
+            decimal discount = 0;
+            decimal tax = 0;
 
             txtPrice.Text = "0";
             txtSale.Text = "0";
@@ -43,9 +43,9 @@ namespace GoodeeWay.Order
 
             foreach (var item in bucketMenuAndDetailList)
             {
-                price += item.Menu.Price; // 구입한 메뉴들 가격 총 계산
-                discount += ((item.Menu.Price * item.Menu.DiscountRatio) / 100);
-                tax += (item.Menu.Price * 10) / 100;
+                price += (decimal)item.Menu.Price; // 구입한 메뉴들 가격 총 계산
+                discount += (decimal)((item.Menu.Price * item.Menu.DiscountRatio) / 100);
+                tax += (decimal)(item.Menu.Price * 10) / 100;
 
                 menuList.Add(item.Menu);
             }
@@ -85,47 +85,12 @@ namespace GoodeeWay.Order
                     foreach (var item in bucketMenuAndDetailList)
                     {
                         bb[i] = item;
-                        i++;
-                        //toMaking += JsonConvert.SerializeObject(item, Formatting.Indented);
+                        i++;                        
                     }
 
                     rm.RealMenu = bb;
 
                     toMaking += JsonConvert.SerializeObject(rm, Formatting.Indented);
-                    MessageBox.Show(toMaking);
-
-                    //MessageBox.Show(toMaking);
-
-                    //MessageBox.Show(toMaking);
-                    // 제조 테이블에 넘겨줄 string 내용 작성 후 넘겨줌
-                    //foreach (MenuAndDetails item in bucketMenuAndDetailList)
-                    //{
-                    //    toMaking += "@";
-                    //    if (item.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
-                    //    {
-                    //        toMaking += "샌드위치[" + item.Menu.MenuName + "]";
-                    //        foreach (MenuDetail menuDetail in item.MenuDetailList)
-                    //        {
-                    //            toMaking += "|" + menuDetail.InventoryName;
-                    //        }
-                    //    }
-                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.찹샐러드)))
-                    //    {
-                    //        toMaking += "찹샐러드" + item.Menu.MenuName;
-                    //    }
-                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.사이드)))
-                    //    {
-                    //        toMaking += "사이드" + item.Menu.MenuName;
-                    //    }
-                    //    else if (item.Menu.Division.Equals(Convert.ToString((int)Division.음료)))
-                    //    {
-                    //        toMaking += "음료" + item.Menu.MenuName;
-                    //    }
-                    //}                                        
-
-                    ////////////////////////////////////////
-
-                    MainForm.frmSandwichMaking.CallMaking();
 
                     try
                     {
@@ -207,7 +172,15 @@ namespace GoodeeWay.Order
         private void btnWon_Click(object sender, EventArgs e)
         {
             Button b = (Button)sender;
-            txtPaid.Text = (double.Parse(txtPaid.Text.Replace(",", "")) + double.Parse(b.Text)).ToString();
+
+            if (txtPaid.Text.Length > 0)
+            {
+                txtPaid.Text = (decimal.Parse(txtPaid.Text.Replace(",", "")) + decimal.Parse(b.Text)).ToString();
+            }
+            else
+            {
+                txtPaid.Text = decimal.Parse(b.Text).ToString();
+            }            
 
             CommaSet(txtPaid.Text);
         }
@@ -220,6 +193,7 @@ namespace GoodeeWay.Order
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtPaid.Text = String.Empty;
+            txtChange.Text = String.Empty;
         }
 
         /// <summary>
@@ -268,7 +242,7 @@ namespace GoodeeWay.Order
         {
             if (txtPaid.Text.Length > 0)
             {
-                txtChange.Text = (float.Parse(txtPaid.Text) - float.Parse(txtTotal.Text)).ToString();
+                txtChange.Text = (decimal.Parse(txtPaid.Text) - decimal.Parse(txtTotal.Text)).ToString();
             }
         }
     }
