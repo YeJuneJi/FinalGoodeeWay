@@ -8,6 +8,7 @@ namespace GoodeeWay.VO
 {
     class ResourceManagementVO
     {
+        //기간
         private DateTime resourceDate;
 
         public DateTime ResourceDate
@@ -15,7 +16,7 @@ namespace GoodeeWay.VO
             get { return resourceDate; }
             set { resourceDate = value; }
         }
-
+        //총매출액
         private float totInvestPrice;
 
         public float TotInvestPrice
@@ -24,6 +25,15 @@ namespace GoodeeWay.VO
             set { totInvestPrice = value; }
         }
 
+        //원재료비
+        private float rawMaterialCost;
+
+        public float RawMaterialCost
+        {
+            get { return rawMaterialCost; }
+            set { rawMaterialCost = value; }
+        }
+        //비품비
         private float equipPrice;
 
         public float EquipPrice
@@ -32,13 +42,15 @@ namespace GoodeeWay.VO
             set { equipPrice = value; }
         }
 
-        private float rawMaterialCost;
+        private float employeePrice;
 
-        public float RawMaterialCost
+        public float EmployeePrice
         {
-            get { return rawMaterialCost; }
-            set { rawMaterialCost = value; }
+            get { return employeePrice; }
+            set { employeePrice = value; }
         }
+
+
 
         public override bool Equals(object obj)
         {
@@ -47,9 +59,11 @@ namespace GoodeeWay.VO
             {
                 return false;
             }
+            //totInvestPrice = resource.TotInvestPrice;
             equipPrice = resource.EquipPrice;
-            rawMaterialCost = resource.RawMaterialCost;
-            return resourceDate == resource.resourceDate;
+            employeePrice = resource.EmployeePrice;
+            //rawMaterialCost = resource.RawMaterialCost;
+            return resourceDate == resource.ResourceDate;
         }
 
         public override int GetHashCode()

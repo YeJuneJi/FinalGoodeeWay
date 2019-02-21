@@ -49,20 +49,19 @@
             this.lblEquipPrice = new System.Windows.Forms.Label();
             this.lblRawMaterialCost = new System.Windows.Forms.Label();
             this.lblEmployeeCost = new System.Windows.Forms.Label();
-            this.tbxResult = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
             // 
             // resourceStart
             // 
-            this.resourceStart.Location = new System.Drawing.Point(92, 126);
+            this.resourceStart.Location = new System.Drawing.Point(47, 140);
             this.resourceStart.Name = "resourceStart";
             this.resourceStart.Size = new System.Drawing.Size(200, 21);
             this.resourceStart.TabIndex = 0;
             // 
             // resourceEnd
             // 
-            this.resourceEnd.Location = new System.Drawing.Point(319, 126);
+            this.resourceEnd.Location = new System.Drawing.Point(274, 140);
             this.resourceEnd.Name = "resourceEnd";
             this.resourceEnd.Size = new System.Drawing.Size(200, 21);
             this.resourceEnd.TabIndex = 1;
@@ -70,7 +69,7 @@
             // lblPeriod
             // 
             this.lblPeriod.AutoSize = true;
-            this.lblPeriod.Location = new System.Drawing.Point(57, 130);
+            this.lblPeriod.Location = new System.Drawing.Point(12, 144);
             this.lblPeriod.Name = "lblPeriod";
             this.lblPeriod.Size = new System.Drawing.Size(29, 12);
             this.lblPeriod.TabIndex = 2;
@@ -79,7 +78,7 @@
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(299, 130);
+            this.lblTo.Location = new System.Drawing.Point(254, 144);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(14, 12);
             this.lblTo.TabIndex = 3;
@@ -121,37 +120,40 @@
             // 
             this.rdoDate.AutoSize = true;
             this.rdoDate.Checked = true;
-            this.rdoDate.Location = new System.Drawing.Point(59, 188);
+            this.rdoDate.Location = new System.Drawing.Point(74, 108);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(47, 16);
             this.rdoDate.TabIndex = 8;
             this.rdoDate.TabStop = true;
             this.rdoDate.Text = "일별";
             this.rdoDate.UseVisualStyleBackColor = true;
+            this.rdoDate.CheckedChanged += new System.EventHandler(this.rdobtn_CheckedChanged);
             // 
             // rdoMonth
             // 
             this.rdoMonth.AutoSize = true;
-            this.rdoMonth.Location = new System.Drawing.Point(130, 188);
+            this.rdoMonth.Location = new System.Drawing.Point(149, 108);
             this.rdoMonth.Name = "rdoMonth";
             this.rdoMonth.Size = new System.Drawing.Size(47, 16);
             this.rdoMonth.TabIndex = 9;
             this.rdoMonth.Text = "월별";
             this.rdoMonth.UseVisualStyleBackColor = true;
+            this.rdoMonth.CheckedChanged += new System.EventHandler(this.rdobtn_CheckedChanged);
             // 
             // rdoYear
             // 
             this.rdoYear.AutoSize = true;
-            this.rdoYear.Location = new System.Drawing.Point(212, 188);
+            this.rdoYear.Location = new System.Drawing.Point(227, 108);
             this.rdoYear.Name = "rdoYear";
             this.rdoYear.Size = new System.Drawing.Size(47, 16);
             this.rdoYear.TabIndex = 10;
             this.rdoYear.Text = "연별";
             this.rdoYear.UseVisualStyleBackColor = true;
+            this.rdoYear.CheckedChanged += new System.EventHandler(this.rdobtn_CheckedChanged);
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(280, 185);
+            this.btnSearch.Location = new System.Drawing.Point(481, 139);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 11;
@@ -165,11 +167,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resourceDataGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resourceDataGView.Location = new System.Drawing.Point(16, 214);
+            this.resourceDataGView.Location = new System.Drawing.Point(16, 181);
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(531, 267);
+            this.resourceDataGView.Size = new System.Drawing.Size(540, 300);
             this.resourceDataGView.TabIndex = 12;
             // 
             // lblbeppr
@@ -251,20 +253,11 @@
             this.lblEmployeeCost.TabIndex = 20;
             this.lblEmployeeCost.Text = "총 인사비 : ";
             // 
-            // tbxResult
-            // 
-            this.tbxResult.Location = new System.Drawing.Point(585, 55);
-            this.tbxResult.Multiline = true;
-            this.tbxResult.Name = "tbxResult";
-            this.tbxResult.Size = new System.Drawing.Size(447, 519);
-            this.tbxResult.TabIndex = 21;
-            // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.Controls.Add(this.tbxResult);
             this.Controls.Add(this.lblEmployeeCost);
             this.Controls.Add(this.lblRawMaterialCost);
             this.Controls.Add(this.lblEquipPrice);
@@ -320,6 +313,5 @@
         private System.Windows.Forms.Label lblEquipPrice;
         private System.Windows.Forms.Label lblRawMaterialCost;
         private System.Windows.Forms.Label lblEmployeeCost;
-        private System.Windows.Forms.TextBox tbxResult;
     }
 }
