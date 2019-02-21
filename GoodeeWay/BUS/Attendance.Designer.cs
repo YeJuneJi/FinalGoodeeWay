@@ -45,6 +45,7 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 86);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 23;
@@ -135,7 +137,7 @@
             this.button4.TabIndex = 108;
             this.button4.Text = "새로고침";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.Attendance_Load);
             // 
             // lblFirst
             // 
@@ -210,11 +212,23 @@
             this.label3.TabIndex = 116;
             this.label3.Text = "근태기록";
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnExcel.Location = new System.Drawing.Point(901, 48);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(83, 32);
+            this.btnExcel.TabIndex = 117;
+            this.btnExcel.Text = "엑셀로 저장";
+            this.btnExcel.UseVisualStyleBackColor = true;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // Attendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 341);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblFirst);
             this.Controls.Add(this.lblLast);
@@ -262,5 +276,6 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

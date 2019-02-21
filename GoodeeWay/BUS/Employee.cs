@@ -21,6 +21,10 @@ namespace GoodeeWay.BUS
     {
         List<EmpVO> lst;
         EmpVO emp = new EmpVO();
+        EmpDAO empDAO = new EmpDAO();
+        List<EmpVO> ev = new List<EmpVO>();
+        int page = 1;
+        int totalcount = 1;
 
         public Employee()
         {
@@ -30,13 +34,30 @@ namespace GoodeeWay.BUS
         private void TotalCount()
         {
             lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
+            lblLast.Text = totalcount.ToString();
         }
 
         private void Employee_Load(object sender, EventArgs e)
         {
             cbFilter.Text = "사원명";
-            lst = new EmpDAO().SelectAll();
-            this.dataGridView1.DataSource = lst;
+            lst = empDAO.SelectAll();
+            totalcount = lst.Count / 10;
+
+            if (totalcount > 0)
+            {
+                lblLast.Text = totalcount.ToString();
+
+                for (int i = page - 1; i <= page * 10; i++)
+                {
+                    ev[i] = lst[i];
+                }
+            }
+            else
+            {
+                ev = lst;
+            }
+
+            this.dataGridView1.DataSource = ev;
             ColumnSettingKorean();
             TotalCount();
         }
@@ -87,10 +108,7 @@ namespace GoodeeWay.BUS
             {
                 try
                 {
-                    string sp = "proc_emp_delete";
-                    SqlParameter[] sqlParameters = new SqlParameter[1];
-                    sqlParameters[0] = new SqlParameter("empno", dataGridView1.SelectedCells[0].Value);
-                    new DBConnection().Delete(sp, sqlParameters);
+                    empDAO.Delete(dataGridView1.SelectedCells[0].Value.ToString());
                     MessageBox.Show("삭제 성공");
                 }
                 catch (Exception)
@@ -107,8 +125,6 @@ namespace GoodeeWay.BUS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            EmpDAO empDAO = new EmpDAO();
-
             dataGridView1.DataSource = "";
 
             if (txtSearch.Text == "")
@@ -193,55 +209,116 @@ namespace GoodeeWay.BUS
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            Excel.Application excelApp = new Excel.Application(); // Excel 응용프로그램 객체
-            if (excelApp == null)
-            {
-                MessageBox.Show("Excel 응용프로그램을 찾을 수 없거나, 설치되지 않았습니다");
-                return;
-            }
-            Excel.Workbook workbook; // 통합문서 객체
-            Excel.Worksheet worksheet; // 워크시트 객체
-            object missingValue = System.Reflection.Missing.Value;
+            DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
 
-            workbook = excelApp.Workbooks.Add(missingValue);
-            worksheet = workbook.Worksheets.Item[1]; // 엑셀은 1부터 시작
-            worksheet.Cells[1,5] = "직원 목록";
-            string a = "";
-            for (int i = 1; i < dataGridView1.Columns.Count; i++)
+            if (result == DialogResult.Yes)
             {
-                worksheet.Cells[2, i] = dataGridView1.Columns[i-1].HeaderText;
-            }
-            
-            for (int j = 0; j < dataGridView1.Rows.Count - 1; j++)
-            {
-                for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                Excel.Application excelApp = new Excel.Application(); // Excel 응용프로그램 객체
+                if (excelApp == null)
                 {
-                    a = dataGridView1.Rows[j].Cells[i].Value.ToString();
-                    worksheet.Cells[j + 3, i + 1] = a;
+                    MessageBox.Show("Excel 응용프로그램을 찾을 수 없거나, 설치되지 않았습니다");
+                    return;
                 }
-            }
-            try
-            {
-                workbook.SaveAs(@"C:\Users\llsw1\Desktop\test.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
-            }
-            catch (Exception)
-            {
-                return;
-            }
+                Excel.Workbook workbook; // 통합문서 객체
+                Excel.Worksheet worksheet; // 워크시트 객체
+                object missingValue = System.Reflection.Missing.Value;
 
-            excelApp.Quit(); // 엑셀 프로그램 종료
+                workbook = excelApp.Workbooks.Add(missingValue);
+                worksheet = workbook.Worksheets.Item[1]; // 엑셀은 1부터 시작
+                worksheet.Cells[1, 5] = "직원 목록";
+                string a = "";
+                for (int i = 1; i < dataGridView1.Columns.Count; i++)
+                {
+                    worksheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                }
 
-            Marshal.ReleaseComObject(worksheet);
-            Marshal.ReleaseComObject(workbook);
-            Marshal.ReleaseComObject(excelApp);
+                for (int j = 0; j < dataGridView1.Rows.Count - 1; j++)
+                {
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                    {
+                        a = dataGridView1.Rows[j].Cells[i].Value.ToString();
+                        worksheet.Cells[j + 3, i + 1] = a;
+                    }
+                }
+                try
+                {
+                    workbook.SaveAs(@"C:\Users\llsw1\Desktop\Employee.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
 
-            MessageBox.Show("엑셀 파일 저장 성공");
+                excelApp.Quit(); // 엑셀 프로그램 종료
+
+                Marshal.ReleaseComObject(worksheet);
+                Marshal.ReleaseComObject(workbook);
+                Marshal.ReleaseComObject(excelApp);
+
+                MessageBox.Show("엑셀 파일 저장 성공");
+            }
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
         {
             Attendance ad = new Attendance();
             ad.Show();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (page == totalcount)
+            {
+                MessageBox.Show("마지막 페이지 입니다.");
+            }
+            else
+            {
+                page++;
+                lblFirst.Text = page.ToString();
+                Employee_Load(null, null);
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+            {
+                MessageBox.Show("첫번째 페이지 입니다.");
+            }
+            else
+            {
+                page--;
+                lblFirst.Text = page.ToString();
+                Employee_Load(null, null);
+            }
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            if (page == totalcount)
+            {
+                MessageBox.Show("마지막 페이지 입니다.");
+            }
+            else
+            {
+                page = totalcount;
+                lblFirst.Text = page.ToString();
+                Employee_Load(null, null);
+            }
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+            {
+                MessageBox.Show("첫번째 페이지 입니다.");
+            }
+            else
+            {
+                page = 1;
+                lblFirst.Text = page.ToString();
+                Employee_Load(null, null);
+            }
         }
     }
 }

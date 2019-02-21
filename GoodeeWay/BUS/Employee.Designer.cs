@@ -141,7 +141,7 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(192, 61);
+            this.txtSearch.Location = new System.Drawing.Point(177, 68);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 21);
@@ -151,7 +151,7 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSearch.Location = new System.Drawing.Point(368, 53);
+            this.btnSearch.Location = new System.Drawing.Point(353, 60);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(83, 36);
@@ -176,7 +176,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(26, 64);
+            this.label1.Location = new System.Drawing.Point(11, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 99;
@@ -201,7 +201,7 @@
             this.cbFilter.Items.AddRange(new object[] {
             "사원명",
             "사원번호"});
-            this.cbFilter.Location = new System.Drawing.Point(87, 60);
+            this.cbFilter.Location = new System.Drawing.Point(72, 67);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(99, 23);
@@ -244,6 +244,7 @@
             this.btnNext.TabIndex = 105;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnLast
             // 
@@ -253,6 +254,7 @@
             this.btnLast.TabIndex = 104;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // btnFirst
             // 
@@ -262,6 +264,7 @@
             this.btnFirst.TabIndex = 103;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnPrev
             // 
@@ -271,6 +274,7 @@
             this.btnPrev.TabIndex = 102;
             this.btnPrev.Text = "<";
             this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // label3
             // 

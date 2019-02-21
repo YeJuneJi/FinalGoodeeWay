@@ -42,7 +42,7 @@ namespace GoodeeWay.DAO
         {
             lst = new List<EmpVO>();
             string sp = "proc_emp_selectall";
-            SqlDataReader sr = new DBConnection().Select(sp,null);
+            SqlDataReader sr = new DBConnection().Select(sp, null);
             while (sr.Read())
             {
                 lst.Add(new EmpVO()
@@ -103,5 +103,17 @@ namespace GoodeeWay.DAO
             return lst;
         }
 
+        public bool Delete(string empno)
+        {
+            string sp = "proc_emp_delete";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("empno", empno);
+            bool result = false;
+            if (new DBConnection().Delete(sp, sqlParameters))
+            {
+                result = true;
+            } 
+            return result;
+        }
     }
 }

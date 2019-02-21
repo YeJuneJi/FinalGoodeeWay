@@ -16,8 +16,11 @@ namespace GoodeeWay.BUS
 {
     public partial class Salary : Form
     {
-        //
+        int page = 1;
+        int totalcount = 1;
         SalaryDAO sd = new SalaryDAO();
+        List<SalaryVO> lst = new List<SalaryVO>();
+        List<SalaryVO> ev = new List<SalaryVO>();
 
         public Salary()
         {
@@ -61,55 +64,91 @@ namespace GoodeeWay.BUS
 
         private void btnExcel_Click(object sender, EventArgs e)
         {
-            Excel.Application excelApp = new Excel.Application(); // Excel 응용프로그램 객체
-            if (excelApp == null)
-            {
-                MessageBox.Show("Excel 응용프로그램을 찾을 수 없거나, 설치되지 않았습니다");
-                return;
-            }
-            Excel.Workbook workbook; // 통합문서 객체
-            Excel.Worksheet worksheet; // 워크시트 객체
-            object missingValue = System.Reflection.Missing.Value;
+            DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
 
-            workbook = excelApp.Workbooks.Add(missingValue);
-            worksheet = workbook.Worksheets.Item[1]; // 엑셀은 1부터 시작
-            worksheet.Cells[1, 5] = "월 급여 대장";
-            string a = "";
-            for (int i = 1; i < dataGridView1.Columns.Count; i++)
+            if (result == DialogResult.Yes)
             {
-                worksheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
-            }
-
-            for (int j = 0; j < dataGridView1.Rows.Count - 1; j++)
-            {
-                for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                Excel.Application excelApp = new Excel.Application(); // Excel 응용프로그램 객체
+                if (excelApp == null)
                 {
-                    a = dataGridView1.Rows[j].Cells[i].Value.ToString();
-                    worksheet.Cells[j + 3, i + 1] = a;
+                    MessageBox.Show("Excel 응용프로그램을 찾을 수 없거나, 설치되지 않았습니다");
+                    return;
                 }
-            }
-            try
-            {
-                workbook.SaveAs(@"C:\Users\llsw1\Desktop\Salary.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
-            }
-            catch (Exception)
-            {
-                return;
-            }
+                Excel.Workbook workbook; // 통합문서 객체
+                Excel.Worksheet worksheet; // 워크시트 객체
+                object missingValue = System.Reflection.Missing.Value;
 
-            excelApp.Quit(); // 엑셀 프로그램 종료
+                workbook = excelApp.Workbooks.Add(missingValue);
+                worksheet = workbook.Worksheets.Item[1]; // 엑셀은 1부터 시작
+                worksheet.Cells[1, 5] = "월 급여 대장";
+                string a = "";
+                for (int i = 1; i < dataGridView1.Columns.Count; i++)
+                {
+                    worksheet.Cells[2, i] = dataGridView1.Columns[i - 1].HeaderText;
+                }
 
-            Marshal.ReleaseComObject(worksheet);
-            Marshal.ReleaseComObject(workbook);
-            Marshal.ReleaseComObject(excelApp);
+                for (int j = 0; j < dataGridView1.Rows.Count - 1; j++)
+                {
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                    {
+                        a = dataGridView1.Rows[j].Cells[i].Value.ToString();
+                        worksheet.Cells[j + 3, i + 1] = a;
+                    }
+                }
+                try
+                {
+                    workbook.SaveAs(@"C:\Users\llsw1\Desktop\Salary.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                }
+                catch (Exception)
+                {
+                    return;
+                }
 
-            MessageBox.Show("엑셀 파일 저장 성공");
+                excelApp.Quit(); // 엑셀 프로그램 종료
+
+                Marshal.ReleaseComObject(worksheet);
+                Marshal.ReleaseComObject(workbook);
+                Marshal.ReleaseComObject(excelApp);
+
+                MessageBox.Show("엑셀 파일 저장 성공");
+            }
         }
 
         private void Salary_Load(object sender, EventArgs e)
         {
-            List<SalaryVO> lst = new SalaryDAO().SelectAll();
-            this.dataGridView1.DataSource = lst;
+            dataGridView1.DataSource = "";
+            lblFirst.Text = page.ToString();
+            comboBox1.Text = comboBox3.Text = "2019";
+            comboBox2.Text = comboBox4.Text = "2";
+            lst = sd.SelectAll();
+            ev = lst;
+
+            if (lst.Count % 10 == 0)
+            {
+                totalcount = lst.Count / 10;
+            }
+            else
+            {
+                totalcount = (lst.Count / 10) + 1;
+            }
+
+            lblLast.Text = totalcount.ToString();
+
+            if (page > 1)
+            {
+                dataGridView1.DataSource = "";
+                ev = new List<SalaryVO>();
+                for (int i = (page - 1) * 10; i <= (page * 10) - 1; i++) // 10~19, 20~29
+                {
+                    ev[i] = lst[i];
+                }
+            }
+            else
+            {
+                ev = lst;
+            }
+
+            dataGridView1.DataSource = ev;
             ColumnSetKor();
         }
 
@@ -123,6 +162,67 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["totalsalary"].HeaderText = "총 지급금액";
             dataGridView1.Columns["payday"].HeaderText = "지급 날짜";
             dataGridView1.Columns["name"].HeaderText = "사원명";
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (page == totalcount)
+            {
+                MessageBox.Show("마지막 페이지 입니다.");
+            }
+            else
+            {
+                page++;
+                lblFirst.Text = page.ToString();
+                Salary_Load(null, null);
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+            {
+                MessageBox.Show("첫번째 페이지 입니다.");
+            }
+            else
+            {
+                page--;
+                lblFirst.Text = page.ToString();
+                Salary_Load(null, null);
+            }
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            if (page == totalcount)
+            {
+                MessageBox.Show("마지막 페이지 입니다.");
+            }
+            else
+            {
+                page = totalcount;
+                lblFirst.Text = page.ToString();
+                Salary_Load(null, null);
+            }
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            if (page == 1)
+            {
+                MessageBox.Show("첫번째 페이지 입니다.");
+            }
+            else
+            {
+                page = 1;
+                lblFirst.Text = page.ToString();
+                Salary_Load(null, null);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
