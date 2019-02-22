@@ -30,7 +30,7 @@ namespace GoodeeWay.BUS
         List<ResourceManagementVO> equipList;
         List<ResourceManagementVO> salList;
         List<ResourceManagementVO> mergeList;
-        
+        FrmResourceChart frmResourceChart;
 
         public ResourceMain()
         {
@@ -470,8 +470,20 @@ namespace GoodeeWay.BUS
 
         private void btnChart_Click(object sender, EventArgs e)
         {
-            FrmResourceChart frmResourceChart = new FrmResourceChart(totRsrcTab);
-            frmResourceChart.Show();
+            if (frmResourceChart == null)
+            {
+                frmResourceChart = new FrmResourceChart(totRsrcTab);
+                frmResourceChart.Show();
+            }
+            else if (frmResourceChart.IsDisposed)
+            {
+                frmResourceChart = new FrmResourceChart(totRsrcTab);
+                frmResourceChart.Show();
+            }
+            else
+            {
+                frmResourceChart.BringToFront();
+            }
         }
 
         private bool ValidateTotInvestandBEP(string totInvest, string bEP)
