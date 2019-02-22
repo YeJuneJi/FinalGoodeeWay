@@ -1,0 +1,224 @@
+﻿{
+  "RealMenu": [
+    {
+      "Menu": {
+        "MenuCode": "MNU0000001",
+        "MenuName": "에그마요",
+        "Price": 3000.0,
+        "Kcal": 30,
+        "MenuImage": "\\images\\Eggmayo.jpg",
+        "Division": "0",
+        "AdditionalContext": "맛있는 에그마요",
+        "DiscountRatio": 0.0
+      },
+      "MenuDetailList": [
+        {
+          "RecipeCode": "RCP0002131",
+          "Amount": 0,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0001",
+          "Compulsory": true,
+          "InventoryName": "허니오트",
+          "Division": "Bread",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002137",
+          "Amount": 0,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0011",
+          "Compulsory": true,
+          "InventoryName": "아메리칸치즈",
+          "Division": "Cheese",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002151",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0031",
+          "Compulsory": true,
+          "InventoryName": "랜치드레싱",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002154",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0034",
+          "Compulsory": true,
+          "InventoryName": "허니머스터드",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002157",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0037",
+          "Compulsory": true,
+          "InventoryName": "사우스웨스트",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002160",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0040",
+          "Compulsory": true,
+          "InventoryName": "사우전아일랜드",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002161",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0041",
+          "Compulsory": true,
+          "InventoryName": "이탈리안드레싱",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002163",
+          "Amount": 5,
+          "MenuCode": "MNU0000001",
+          "MenuName": "에그마요",
+          "InventoryTypeCode": "ST0043",
+          "Compulsory": true,
+          "InventoryName": "레드와인식초",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        }
+      ]
+    },
+    {
+      "Menu": {
+        "MenuCode": "MNU0000002",
+        "MenuName": "터키",
+        "Price": 3000.0,
+        "Kcal": 30,
+        "MenuImage": "\\images\\Turkey.jpg",
+        "Division": "0",
+        "AdditionalContext": "맛있는 터키",
+        "DiscountRatio": 0.0
+      },
+      "MenuDetailList": [
+        {
+          "RecipeCode": "RCP0002259",
+          "Amount": 0,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0001",
+          "Compulsory": true,
+          "InventoryName": "허니오트",
+          "Division": "Bread",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002265",
+          "Amount": 0,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0011",
+          "Compulsory": true,
+          "InventoryName": "아메리칸치즈",
+          "Division": "Cheese",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002279",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0031",
+          "Compulsory": true,
+          "InventoryName": "랜치드레싱",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002282",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0034",
+          "Compulsory": true,
+          "InventoryName": "허니머스터드",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002285",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0037",
+          "Compulsory": true,
+          "InventoryName": "사우스웨스트",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002288",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0040",
+          "Compulsory": true,
+          "InventoryName": "사우전아일랜드",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002289",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0041",
+          "Compulsory": true,
+          "InventoryName": "이탈리안드레싱",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002291",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0043",
+          "Compulsory": true,
+          "InventoryName": "레드와인식초",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        }
+      ]
+    }
+  ]
+}
