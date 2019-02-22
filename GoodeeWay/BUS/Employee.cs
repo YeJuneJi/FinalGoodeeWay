@@ -41,22 +41,7 @@ namespace GoodeeWay.BUS
         {
             cbFilter.Text = "사원명";
             lst = empDAO.SelectAll();
-            //totalcount = lst.Count / 10;
-
-            //if (totalcount > 0)
-            //{
-            //    lblLast.Text = totalcount.ToString();
-
-            //    for (int i = page - 1; i <= page * 10; i++)
-            //    {
-            //        ev[i] = lst[i];
-            //    }
-            //}
-            //else
-            //{
-            //    ev = lst;
-            //}
-
+            
             this.dataGridView1.DataSource = lst;
             ColumnSettingKorean();
             TotalCount();
