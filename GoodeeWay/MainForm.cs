@@ -18,6 +18,7 @@ using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
 using System.Threading;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace GoodeeWay
 {
@@ -58,7 +59,14 @@ namespace GoodeeWay
                 }
             }
 
-            new CheckImages().DoAllCheck();            
+            try
+            {
+                new CheckImages().DoAllCheck();
+            }
+            catch (SqlException ect)
+            {
+                MessageBox.Show(ect.StackTrace);
+            }        
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)

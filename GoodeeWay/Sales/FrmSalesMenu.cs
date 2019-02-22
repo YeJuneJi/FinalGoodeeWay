@@ -86,7 +86,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text;
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(",", "").Trim();
-            string imageLocation = "\\images\\"+images;
+            string imageLocation = images;
             bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
             
             bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
@@ -131,7 +131,7 @@ namespace GoodeeWay.Sales
             if (oFdialogPhoto.ShowDialog() != DialogResult.Cancel)
             {
                 pbxPhoto.ImageLocation =oFdialogPhoto.FileName;
-                images = oFdialogPhoto.SafeFileName;
+                images = "\\images\\"+oFdialogPhoto.SafeFileName;
             }
         }
 
@@ -365,7 +365,7 @@ namespace GoodeeWay.Sales
             string division = cbxDivision.Text.Replace(" ", "").Trim();
             string addContxt = tbxAddContxt.Text.Trim();
             string discountRatio = tbxDiscountRatio.Text.Replace(" ", "").Trim();
-            string ImageLocation = "\\images\\" +images;
+            string ImageLocation = images;
             bool menuUpdateSucess = false;
             bool successInsertRecipe = false;
             bool sucessUpdateRecipe = false;
@@ -390,8 +390,8 @@ namespace GoodeeWay.Sales
                 //수정전 과 수정후가 같고 그것이 샌드위치이면..
                 if (oldDivision == salesMenuVO.Division && oldDivision == 0)
                 {
-                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
-                    sucessUpdateRecipe = RecipeUpdate(menuCode, sucessUpdateRecipe);
+                    menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
+                    sucessUpdateRecipe = UpdatingRecipe(menuCode, sucessUpdateRecipe);
                 }
                 //수정 전은 샌드위치고 수정후는 샌드위치가 아니면
                 if (oldDivision == 0 && salesMenuVO.Division != 0)
@@ -407,16 +407,16 @@ namespace GoodeeWay.Sales
                     {
                         MessageBox.Show(ex.Message);
                     }
-                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                    menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
                 }
                 else if (oldDivision != 0 && salesMenuVO.Division == 0)
                 {
-                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                    menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
                 }
                 else if (oldDivision != 0 && salesMenuVO.Division != 0)
                 {
-                    menuUpdateSucess = MenuUpdate(salesMenuVO, menuUpdateSucess);
+                    menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
                 }
 
                 ReflashData();
@@ -584,7 +584,7 @@ namespace GoodeeWay.Sales
             salesMenuVO.MenuName = menuName;
             salesMenuVO.Price = float.Parse(price);
             salesMenuVO.Kcal = int.Parse(kcal);
-            salesMenuVO.MenuImageLocation = "\\images\\"+images;
+            salesMenuVO.MenuImageLocation = images;
             foreach (Division item in Enum.GetValues(typeof(Division)))
             {
                 if (item.ToString().Equals(division))
@@ -599,15 +599,18 @@ namespace GoodeeWay.Sales
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
                 {
                     pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
-                    
                     sucessMenu = true;
                 }
             }
             catch (SqlException ex)
             {
-                if (ex.Message.Contains("PRIMARY"))
+                if (ex.Message.Contains("PRIMARY") && ex.Message.Contains("constraint"))
                 {
-                    MessageBox.Show("메뉴코드 혹은 메뉴이름에 중복된 데이터가 있습니다!");
+                    MessageBox.Show("메뉴코드에 중복된 데이터가 있습니다!");
+                }
+                else if (ex.Message.Contains("UNIQUE") && ex.Message.Contains("constraint"))
+                {
+                    MessageBox.Show("메뉴이름에 중복된 데이터가 있습니다!");
                 }
                 else
                 {
@@ -624,7 +627,7 @@ namespace GoodeeWay.Sales
         /// <param name="salesMenuVO"></param>
         /// <param name="menuUpdateSucess"></param>
         /// <returns></returns>
-        private bool MenuUpdate(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
+        private bool UpdatingMenu(SalesMenuVO salesMenuVO, bool menuUpdateSucess)
         {
             try
             {
@@ -637,7 +640,7 @@ namespace GoodeeWay.Sales
                 else
                 {
 
-                    //pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
                     menuUpdateSucess = true;
                 }
             }
@@ -651,6 +654,7 @@ namespace GoodeeWay.Sales
                 {
                     MessageBox.Show(ex.Message);
                 }
+                menuUpdateSucess = false;
             }
             return menuUpdateSucess;
         }
@@ -725,7 +729,7 @@ namespace GoodeeWay.Sales
         /// <param name="menuCode"></param>
         /// <param name="sucessUpdateRecipe"></param>
         /// <returns></returns>
-        private bool RecipeUpdate(string menuCode, bool sucessUpdateRecipe)
+        private bool UpdatingRecipe(string menuCode, bool sucessUpdateRecipe)
         {
             bool necess = false;
             int ingrAmount = 0;
@@ -878,6 +882,7 @@ namespace GoodeeWay.Sales
             salesMenuGView.Columns[7].HeaderText = "할인율";
         }
 
+        //Panel 안의 레시피의 대제목을 나타내는 라벨들의 형식을 동일하게 해주기 위한 메서드
         private void NameLabelFormatter(params Label[] labels)
         {
             foreach (var item in labels)
@@ -886,7 +891,7 @@ namespace GoodeeWay.Sales
                 item.Padding = new Padding(0,8,0,0);
             }
         }
-
+        //Panel 안의 레시피들의 라벨형식을 동일하게 해주기 위한 메서드.
         private void MaterialLabelFormatter(Label label)
         {
             label.Text = "사용량 :";
