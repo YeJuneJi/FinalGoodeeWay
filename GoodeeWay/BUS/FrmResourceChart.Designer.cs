@@ -39,24 +39,26 @@
             // 
             chartArea1.Name = "ChartArea1";
             this.chartTotalInvest.ChartAreas.Add(chartArea1);
+            this.chartTotalInvest.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chartTotalInvest.Legends.Add(legend1);
-            this.chartTotalInvest.Location = new System.Drawing.Point(12, 12);
+            this.chartTotalInvest.Location = new System.Drawing.Point(0, 0);
             this.chartTotalInvest.Name = "chartTotalInvest";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedColumn;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTotalInvest.Series.Add(series1);
-            this.chartTotalInvest.Size = new System.Drawing.Size(776, 426);
+            this.chartTotalInvest.Size = new System.Drawing.Size(1784, 561);
             this.chartTotalInvest.TabIndex = 0;
             this.chartTotalInvest.Text = "TotInvestChart";
+            this.chartTotalInvest.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartTotalInvest_MouseMove);
             // 
             // FrmResourceChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1784, 561);
             this.Controls.Add(this.chartTotalInvest);
             this.Name = "FrmResourceChart";
             this.Text = "FrmResourceChart";

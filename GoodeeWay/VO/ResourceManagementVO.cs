@@ -59,10 +59,8 @@ namespace GoodeeWay.VO
             {
                 return false;
             }
-            //totInvestPrice = resource.TotInvestPrice;
             equipPrice = resource.EquipPrice;
             employeePrice = resource.EmployeePrice;
-            //rawMaterialCost = resource.RawMaterialCost;
             return resourceDate == resource.ResourceDate;
         }
 
