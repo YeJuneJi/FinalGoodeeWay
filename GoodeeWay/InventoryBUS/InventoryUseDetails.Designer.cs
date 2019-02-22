@@ -37,6 +37,7 @@
             this.lblInventoryName = new System.Windows.Forms.Label();
             this.lblUseQuantity = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnDisposal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryUseDetails)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,11 +126,22 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "사용가능:";
             // 
+            // btnDisposal
+            // 
+            this.btnDisposal.Location = new System.Drawing.Point(215, 36);
+            this.btnDisposal.Name = "btnDisposal";
+            this.btnDisposal.Size = new System.Drawing.Size(50, 23);
+            this.btnDisposal.TabIndex = 10;
+            this.btnDisposal.Text = "폐기";
+            this.btnDisposal.UseVisualStyleBackColor = true;
+            this.btnDisposal.Click += new System.EventHandler(this.btnDisposal_Click);
+            // 
             // InventoryUseDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(423, 289);
+            this.Controls.Add(this.btnDisposal);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblUseQuantity);
             this.Controls.Add(this.lblInventoryName);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.Label lblInventoryName;
         private System.Windows.Forms.Label lblUseQuantity;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnDisposal;
     }
 }

@@ -381,7 +381,9 @@ namespace GoodeeWay
         {
             try
             {
-                InventoryUseDetails inventoryUseDetails = new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString());
+                InventoryUseDetails inventoryUseDetails = 
+                    new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString(),
+                    dgvInventoryTable.SelectedRows[0].Cells["유통기한"].Value.ToString());
                 inventoryUseDetails.ShowDialog();
                 InventoryTableSelect();
                 InventoryTypeSelect();

@@ -68,6 +68,29 @@ namespace GoodeeWay.DAO
 
         }
 
+        internal void InventoryUseDetailsDisposalInsert(int realUseQuantity, string receivingDetailsID, string receivingQuantity, int inventoryQuantity, int useQuantity)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+            SqlDataReader dr = new DBConnection().Select("SelectInventoryDetailsForInsert", sqlParameters);
+
+            SqlParameter[] InsertSqlParameters = new SqlParameter[8];
+
+            while (dr.Read())
+            {
+
+                InsertSqlParameters[0] = new SqlParameter("RealUseQuantity", realUseQuantity);
+                InsertSqlParameters[1] = new SqlParameter("DateOfUse", DateTime.Now);
+                InsertSqlParameters[2] = new SqlParameter("DateOfDisposal", DateTime.Parse(dr["DateOfDisposal"].ToString()));
+                InsertSqlParameters[3] = new SqlParameter("ReceivingDetailsID", receivingDetailsID);
+                InsertSqlParameters[4] = new SqlParameter("InventoryTypeCode", dr["InventoryTypeCode"].ToString());
+                InsertSqlParameters[5] = new SqlParameter("ReceivingQuantity", Int32.Parse(receivingQuantity));
+                InsertSqlParameters[6] = new SqlParameter("InventoryQuantity", inventoryQuantity);
+                InsertSqlParameters[7] = new SqlParameter("UseQuantity", useQuantity);
+            }
+            new DBConnection().Insert("InsertInventoryUseDetailsDisposal", InsertSqlParameters);
+        }
+
         internal void InventoryUseDateUpdate(string receivingDetailsID)
         {
             SqlParameter[] sqlParameters = new SqlParameter[2];

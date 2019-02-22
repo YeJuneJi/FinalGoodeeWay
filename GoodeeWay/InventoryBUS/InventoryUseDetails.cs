@@ -21,14 +21,18 @@ namespace GoodeeWay.InventoryBUS
         DataTable dataTable;
 
         string receivingDetailsID;
-        public InventoryUseDetails(string receivingDetailsID)
+        public InventoryUseDetails(string receivingDetailsID, string dateOfDisposal)
         {
             InitializeComponent();
             this.receivingDetailsID = receivingDetailsID;
             txtRealUseQuantity.Text = "0";
             InventoryUseDetailsSelect();
-            
             NowCanUseQuantity();
+            if (DateTime.Parse(dateOfDisposal)<=DateTime.Parse(DateTime.Now.ToShortDateString()))
+            {
+                btnAdd.Enabled = false;
+                btnDisposal.Enabled = true;
+            }
         }
         public void InventoryUseDetailsSelect()
         {
@@ -63,7 +67,11 @@ namespace GoodeeWay.InventoryBUS
             }
 
         }
-
+        /// <summary>
+        /// 재고사용 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             NowCanUseQuantity();
@@ -73,11 +81,11 @@ namespace GoodeeWay.InventoryBUS
             {
                 if (!(a < 0))
                 {
-                    new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID, dgvInventoryUseDetails["입고정량", 0].Value.ToString(), inventoryQuantity, useQuantity);
+                    new InventoryDAO().InventoryUseDetailsInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID, dgvInventoryUseDetails["입고정량", 0].Value.ToString(), inventoryQuantity, useQuantity);//재고사용내역을 insert하여 추가시킴
                     MessageBox.Show("추가완료");
                     if (a == 0)
                     {
-                        new InventoryDAO().InventoryUseDateUpdate(receivingDetailsID);
+                        new InventoryDAO().InventoryUseDateUpdate(receivingDetailsID);//재고 사용 가능 수량이 0이 되면 총재고에 오늘 날짜를 표시
                     }
                     InventoryUseDetailsSelect();
 
@@ -114,6 +122,7 @@ namespace GoodeeWay.InventoryBUS
                 if (lblUseQuantity.Text == "0")
                 {
                     btnAdd.Enabled = false;
+                    btnDisposal.Enabled = false;
                 }
             }
             
@@ -122,6 +131,38 @@ namespace GoodeeWay.InventoryBUS
         private void InventoryUseDetails_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDisposal_Click(object sender, EventArgs e)
+        {
+            NowCanUseQuantity();
+
+
+            if (txtRealUseQuantity.Text != "0")
+            {
+                if (!(a < 0))
+                {
+                    new InventoryDAO().InventoryUseDetailsDisposalInsert(Int32.Parse(txtRealUseQuantity.Text), receivingDetailsID, dgvInventoryUseDetails["입고정량", 0].Value.ToString(), inventoryQuantity, useQuantity);
+                    MessageBox.Show("폐기완료");
+                    if (a == 0)
+                    {
+                        new InventoryDAO().InventoryUseDateUpdate(receivingDetailsID);
+                    }
+                    InventoryUseDetailsSelect();
+
+                }
+                else
+                {
+                    MessageBox.Show("수량한도를 초과했습니다.");
+                    txtRealUseQuantity.Text = 0 + "";
+                    NowCanUseQuantity();
+                }
+            }
+            else
+            {
+                MessageBox.Show("0이상의 숫자를 입력해주세요.");
+                txtRealUseQuantity.Text = 0 + "";
+            }
         }
     }
 }

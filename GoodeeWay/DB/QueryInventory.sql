@@ -238,9 +238,10 @@ AS
 	SELECT it.InventoryName,
 	case 
 	when substring(i.InventoryID,4,2)='00' then N'총재고'
-	when substring(i.InventoryID,4,2)='UN' then N'사용'
+	when substring(i.InventoryID,4,3)='UN0' then N'사용'
+	when substring(i.InventoryID,4,3)='UND' then N'폐기'
 	end 'InventoryID',
-	i.InventoryQuantity,i.DateOfUse
+	i.InventoryQuantity,i.DateOfUse,it.ReceivingQuantity
 	from Inventory i, InventoryType it
 	where i.InventoryTypeCode=it.InventoryTypeCode and ReceivingDetailsID=@ReceivingDetailsID;
 
@@ -254,20 +255,6 @@ AS
 
 GO
 -- 재고사용내역 추가
-CREATE PROCEDURE [dbo].InsertInventoryUseDetails
-	@InventoryQuantity int,
-	@DateOfUse datetime,
-	@DateOfDisposal datetime,
-	@ReceivingDetailsID nvarchar(10),
-	@InventoryTypeCode nvarchar(6)
-AS
-	insert into Inventory(InventoryID,InventoryQuantity,DateOfUse,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
-	values('STR'+ 'UN'+REPLICATE('0',5  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),
-	@InventoryQuantity,@DateOfUse,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode);
-Go
-	
-
-
 	CREATE PROCEDURE [dbo].InsertInventoryUseDetails
 	@RealUseQuantity int,
 	@DateOfUse datetime,
@@ -309,7 +296,7 @@ AS
 select t.InventoryName,sum(i.InventoryQuantity) 'UseInventory'
 from Inventory i, InventoryType t
 where i.InventoryTypeCode=t.InventoryTypeCode 
-	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and SUBSTRING(i.InventoryID,4,3)='UN0' 
 	and t.MaterialClassification=@MaterialClassification
 	and i.DateOfUse >=@StartDate
 	and i.DateOfUse <=@EndDate
@@ -325,7 +312,7 @@ AS
 
 Go
 --재고별판매량 출력(사용수량, 기간), 입력(재고명,시작날짜,종료날짜)
-create procedure [dbo].SelectInventorySalesChart
+CREATE procedure [dbo].SelectInventorySalesChart
 	@InventoryName nvarchar(30),
 	@StartDate datetime,
 	@EndDate dateTime,
@@ -338,7 +325,7 @@ select
 from Inventory i, InventoryType t
 
 where i.InventoryTypeCode=t.InventoryTypeCode 
-	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and SUBSTRING(i.InventoryID,4,3)='UN0' 
 	and t.InventoryName=@InventoryName
 	and i.DateOfUse >=@StartDate
 	and i.DateOfUse <=@EndDate
@@ -358,7 +345,27 @@ select
 from Inventory i, InventoryType t
 
 where i.InventoryTypeCode=t.InventoryTypeCode 
-	and SUBSTRING(i.InventoryID,4,2)='UN' 
+	and SUBSTRING(i.InventoryID,4,3)='UN0' 
 	and (t.MaterialClassification=@Type or t.InventoryName=@Type)
 	and i.DateOfUse >=@StartDate
 	and i.DateOfUse <=@EndDate;
+
+Go
+--재고내역 유통기한 지난 것 폐기
+CREATE PROCEDURE [dbo].InsertInventoryUseDetailsDisposal
+	@RealUseQuantity int,
+	@DateOfUse datetime,
+	@DateOfDisposal datetime,
+	@ReceivingDetailsID nvarchar(10),
+	@InventoryTypeCode nvarchar(6),
+	@ReceivingQuantity int,
+	@InventoryQuantity int,
+	@UseQuantity int
+AS
+	insert into Inventory(InventoryID,InventoryQuantity,DateOfUse,DateOfDisposal,ReceivingDetailsID,InventoryTypeCode)
+	values('STR'+ 'UND'+REPLICATE('0',4  - LEN(next value for dbo.Inventory_SEQ))+ convert(nvarchar, next value for dbo.Inventory_SEQ),
+	@RealUseQuantity,@DateOfUse,@DateOfDisposal,@ReceivingDetailsID,@InventoryTypeCode)
+
+	update  Inventory
+	set RemainingQuantity=@InventoryQuantity-((@UseQuantity+@RealUseQuantity)/@ReceivingQuantity)
+	where ReceivingDetailsID=@ReceivingDetailsID;
