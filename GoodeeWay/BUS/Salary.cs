@@ -242,6 +242,11 @@ namespace GoodeeWay.BUS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            SalaryVO sv = new SalaryVO()
+            {
+                No = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+            };
             Update_Salary us = new Update_Salary();
             us.Show();
         }

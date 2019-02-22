@@ -76,7 +76,7 @@ namespace GoodeeWay.DAO
             sqlParameters[4] = new SqlParameter("TotalSalary", s.TotalSalary);
             sqlParameters[5] = new SqlParameter("Payday", s.Payday);
             bool result = false;
-            if (new DBConnection().Update(sp, sqlParameters))
+            new DBConnection().Update(sp, sqlParameters);
             {
                 result = true;
             }
