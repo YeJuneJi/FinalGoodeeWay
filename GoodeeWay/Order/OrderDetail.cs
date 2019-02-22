@@ -105,70 +105,126 @@ namespace GoodeeWay.Order
             foreach (MenuDetail item in menuDetailList)
             {
                 if (item.Division == "Bread")
-                {
-                    RadioButton rb = new RadioButton();
-                    rb.Name = item.InventoryName;
-                    rb.Text = item.InventoryName;
-                    rb.Checked = item.Compulsory;
-                    breadGroup.Controls.Add(rb);
+                {                    
+                    breadGroup.Controls.AddRange(CreateRadioButton(item));
                 }
                 else if (item.Division == "Cheese")
-                {
-                    RadioButton rb = new RadioButton();
-                    rb.Name = item.InventoryName;
-                    rb.Text = item.InventoryName;
-                    rb.Checked = item.Compulsory;
-                    cheeseGroup.Controls.Add(rb);
+                {                    
+                    cheeseGroup.Controls.AddRange(CreateRadioButton(item));                    
                 }
                 else if (item.Division == "Vegetable")
-                {
-                    CheckBox cb = new CheckBox();
-                    cb.Name = item.InventoryName;
-                    cb.Text = item.InventoryName;
-                    cb.Checked = item.Compulsory;
-
-                    vegetableGroup.Controls.Add(cb);                    
+                {                    
+                    vegetableGroup.Controls.AddRange(CreateCheckBox(item));                    
                 }               
                 else if (item.Division == "Sauce")
                 {
-                    CheckBox cb = new CheckBox();
-                    cb.Name = item.InventoryName;
-                    cb.Text = item.InventoryName;
-                    cb.Checked = item.Compulsory;
-                    sauceGroup.Controls.Add(cb);
+                    sauceGroup.Controls.AddRange(CreateCheckBox(item));                    
                 }
                 else if (item.Division == "Topping")
                 {
-                    CheckBox cb = new CheckBox();
-                    cb.Name = item.InventoryName;
-                    cb.Text = item.InventoryName;
-                    cb.Checked = item.Compulsory;
-                    toppingGroup.Controls.Add(cb);
+                    toppingGroup.Controls.AddRange(CreateCheckBox(item));                    
                 }
                 else if (item.Division == "Additional")
                 {
-                    CheckBox cb = new CheckBox();
-                    cb.Name = item.InventoryName;
-                    cb.Text = item.InventoryName;
-                    cb.Checked = item.Compulsory;
-                    additionalGroup.Controls.Add(cb);
+                    additionalGroup.Controls.AddRange(CreateCheckBox(item));                    
                 }
             }            
 
-            flowLayoutPanel1.Controls.Add(breadGroup);
-            flowLayoutPanel1.Controls.Add(cheeseGroup);
-            flowLayoutPanel1.Controls.Add(vegetableGroup);            
-            flowLayoutPanel1.Controls.Add(sauceGroup);
-            flowLayoutPanel1.Controls.Add(toppingGroup);
-            flowLayoutPanel1.Controls.Add(additionalGroup);
+            flowLayoutPanel1.Controls.AddRange(new Control[] { breadGroup, cheeseGroup, vegetableGroup, sauceGroup, toppingGroup, additionalGroup } );
         }
+
+        private Control[] CreateRadioButton(MenuDetail item)
+        {            
+            RadioButton rb = new RadioButton();
+            rb.Name = item.InventoryName;
+            rb.Text = item.InventoryName;
+            rb.Checked = item.Compulsory;
+            rb.CheckedChanged += Radio_CheckedChanged;
+
+            Label lblAmount = new Label();
+            lblAmount.Text = "사용량";
+
+            NumericUpDown nudAmount = new NumericUpDown();
+            nudAmount.Value = item.Amount;
+            nudAmount.Name = item.InventoryName;
+            nudAmount.Enabled = item.Compulsory;
+
+            return new Control[] { rb, lblAmount, nudAmount };
+        }
+
+        private Control[] CreateCheckBox(MenuDetail item)
+        {
+            CheckBox cb = new CheckBox();
+            cb.Name = item.InventoryName;
+            cb.Text = item.InventoryName;
+            cb.Checked = item.Compulsory;
+            cb.CheckedChanged += Cbx_CheckedChanged;
+
+            Label lblAmount = new Label();
+            lblAmount.Text = "사용량";
+
+            NumericUpDown nudAmount = new NumericUpDown();
+            nudAmount.Value = item.Amount;
+            nudAmount.Name = item.InventoryName;
+            nudAmount.Enabled = item.Compulsory;
+
+            return new Control[] { cb, lblAmount, nudAmount };
+        }
+
+
+        private void Cbx_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox radio = sender as CheckBox;
+            foreach (FlowLayoutPanel panel in flowLayoutPanel1.Controls)
+            {
+                foreach (var ctrl in panel.Controls)
+                {
+                    if (ctrl.GetType() == typeof(NumericUpDown))
+                    {
+                        NumericUpDown nume = ctrl as NumericUpDown;
+                        if (nume.Name == radio.Name && radio.Checked)
+                        {
+                            nume.Enabled = true;
+                        }
+                        else if (nume.Name == radio.Name && !radio.Checked)
+                        {
+                            nume.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Radio_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radio = sender as RadioButton;
+            foreach (FlowLayoutPanel panel in flowLayoutPanel1.Controls)
+            {
+                foreach (var ctrl in panel.Controls)
+                {
+                    if (ctrl.GetType() == typeof(NumericUpDown))
+                    {
+                        NumericUpDown nume = ctrl as NumericUpDown;
+                        if (nume.Name == radio.Name && radio.Checked)
+                        {
+                            nume.Enabled = true;
+                        }
+                        else if (nume.Name == radio.Name && !radio.Checked)
+                        {
+                            nume.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+
 
         private void btnOK_Click(object sender, EventArgs e) // 확인 버튼 클릭시 작동
         {            
             bucketMenuList.Add(item);
-            CheckState();
+            CheckState(); // 체크한 레시프들을 저장
 
-            MenuAndDetails menuAndDetails = new MenuAndDetails();
+            MenuAndDetails menuAndDetails = new MenuAndDetails(); // 레시피들을 저장
             menuAndDetails.Menu = item;
             menuAndDetails.MenuDetailList = bucketMenuDetailList;
 
@@ -187,42 +243,56 @@ namespace GoodeeWay.Order
             bucketMenuDetailList.Clear();
             foreach (FlowLayoutPanel panel in flowLayoutPanel1.Controls)
             {
-                foreach (var box in panel.Controls)
-                {
-                    if (box.GetType() == typeof(Label))
+                foreach (var ctrl in panel.Controls)
+                {                    
+                    if (ctrl.GetType() == typeof(RadioButton))
                     {
-
-                    }
-                    else if (box.GetType() == typeof(RadioButton))
-                    {
-                        RadioButton rb = (RadioButton)box;
+                        RadioButton rb = (RadioButton)ctrl;
                         if (rb.Checked)
-                        {
-                            foreach (var item in menuDetailList)
+                        {                            
+                            foreach (MenuDetail item in menuDetailList)
                             {
                                 if (item.InventoryName.Equals(rb.Name))
                                 {
+                                    foreach (var item2 in flowLayoutPanel1.Controls.Find(rb.Name, true))
+                                    {
+                                        if (item2.GetType() == typeof(NumericUpDown))
+                                        {
+                                            NumericUpDown nn = (NumericUpDown)item2;
+                                            item.Amount = (int)nn.Value;
+                                        }
+                                    }
+                                    
                                     bucketMenuDetailList.Add(item);
                                     break;
                                 }
                             }
                         }
                     }
-                    else if (box.GetType() == typeof(CheckBox))
+                    if (ctrl.GetType() == typeof(CheckBox))
                     {
-                        CheckBox cb = (CheckBox)box;
+                        CheckBox cb = (CheckBox)ctrl;
                         if (cb.Checked)
                         {
-                            foreach (var item in menuDetailList)
+                            foreach (MenuDetail item in menuDetailList)
                             {
                                 if (item.InventoryName.Equals(cb.Name))
                                 {
+                                    foreach (var item2 in flowLayoutPanel1.Controls.Find(cb.Name, true))
+                                    {
+                                        if (item2.GetType() == typeof(NumericUpDown))
+                                        {
+                                            NumericUpDown nn = (NumericUpDown)item2;
+                                            item.Amount = (int)nn.Value;
+                                        }
+                                    }
+
                                     bucketMenuDetailList.Add(item);
                                     break;
                                 }
                             }
                         }
-                    }                   
+                    }          
                 }
             }            
         }
