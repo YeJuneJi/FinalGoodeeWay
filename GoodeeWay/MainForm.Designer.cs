@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.mMenuStrip = new System.Windows.Forms.MenuStrip();
             this.주문ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.재고ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,7 +38,12 @@
             this.인사관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.매출관리ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.제조현황ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mToolStrip = new System.Windows.Forms.ToolStrip();
+            this.programNameLblToolstrip = new System.Windows.Forms.ToolStripLabel();
+            this.tsLblTime = new System.Windows.Forms.ToolStripLabel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.mMenuStrip.SuspendLayout();
+            this.mToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mMenuStrip
@@ -114,11 +120,42 @@
             this.제조현황ToolStripMenuItem.Text = "제조현황";
             this.제조현황ToolStripMenuItem.Click += new System.EventHandler(this.제조현황ToolStripMenuItem_Click);
             // 
+            // mToolStrip
+            // 
+            this.mToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.mToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.programNameLblToolstrip,
+            this.tsLblTime});
+            this.mToolStrip.Location = new System.Drawing.Point(0, 936);
+            this.mToolStrip.Name = "mToolStrip";
+            this.mToolStrip.Size = new System.Drawing.Size(1484, 25);
+            this.mToolStrip.TabIndex = 2;
+            this.mToolStrip.Text = "toolStrip1";
+            // 
+            // programNameLblToolstrip
+            // 
+            this.programNameLblToolstrip.Name = "programNameLblToolstrip";
+            this.programNameLblToolstrip.Size = new System.Drawing.Size(91, 22);
+            this.programNameLblToolstrip.Text = "(주)GoodeeWay";
+            // 
+            // tsLblTime
+            // 
+            this.tsLblTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsLblTime.Name = "tsLblTime";
+            this.tsLblTime.Size = new System.Drawing.Size(0, 22);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 961);
+            this.Controls.Add(this.mToolStrip);
             this.Controls.Add(this.mMenuStrip);
             this.IsMdiContainer = true;
             this.Name = "MainForm";
@@ -127,6 +164,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mMenuStrip.ResumeLayout(false);
             this.mMenuStrip.PerformLayout();
+            this.mToolStrip.ResumeLayout(false);
+            this.mToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,6 +180,10 @@
         private System.Windows.Forms.ToolStripMenuItem 비품관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 인사관리ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 매출관리ToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip mToolStrip;
+        private System.Windows.Forms.ToolStripLabel programNameLblToolstrip;
+        private System.Windows.Forms.ToolStripLabel tsLblTime;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ToolStripMenuItem 제조현황ToolStripMenuItem;
     }
 }

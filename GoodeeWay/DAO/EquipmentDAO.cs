@@ -116,5 +116,58 @@ namespace GoodeeWay.DAO
             }
             return true;
         }
+        public List<EquipmentVO> GroupingDateEquipment(DateTime startDate, DateTime endDate)
+        {
+            List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
+            DBConnection dBConnection = new DBConnection();
+            string procedureName = "dbo.GroupingDateEquipment_PROC";
+
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("startDate", startDate);
+            sqlParameters[1] = new SqlParameter("endDate", endDate);
+
+            SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
+
+            while (dataReader.Read())
+            {
+                EquipmentVO equipmentVO = new EquipmentVO()
+                {
+                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                    PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                };
+                equipmentLst.Add(equipmentVO);
+            }
+            return equipmentLst;
+
+        }
+
+        public List<EquipmentVO> EquipmentByDate(DateTime startDate, DateTime endDate)
+        {
+            List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
+            DBConnection dBConnection = new DBConnection();
+            string procedureName = "dbo.EquipmentBYDate_PROC";
+
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("startDate", startDate);
+            sqlParameters[1] = new SqlParameter("endDate", endDate);
+
+            SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
+
+            while (dataReader.Read())
+            {
+                EquipmentVO equipmentVO = new EquipmentVO()
+                {
+                    EQUCode = dataReader["EQUCode"].ToString(),
+                    DetailName = dataReader["detailName"].ToString(),
+                    Location = dataReader["location"].ToString(),
+                    State = dataReader["state"].ToString(),
+                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                    PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                    Note = dataReader["note"].ToString()
+                };
+                equipmentLst.Add(equipmentVO);
+            }
+            return equipmentLst;
+        }
     }
 }

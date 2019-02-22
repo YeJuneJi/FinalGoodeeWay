@@ -43,7 +43,7 @@ namespace GoodeeWay
             MdiClient ctlMDI;
             foreach (Control ctl in this.Controls)
             {
-                if (ctl.GetType() == typeof(MenuStrip))
+                if (ctl.GetType() == typeof(MenuStrip) || ctl.GetType() == typeof(ToolStrip) || ctl.GetType() == typeof(System.Windows.Forms.Timer) || ctl.GetType() == typeof(ToolStripMenuItem) || ctl.GetType() == typeof(ToolStripLabel))
                 {
                     continue;
                 }
@@ -52,7 +52,7 @@ namespace GoodeeWay
                     ctlMDI = ctl as MdiClient;
                 }
 
-                if (ctlMDI.GetType() != typeof(MenuStrip))
+                if (ctlMDI.GetType() != typeof(MenuStrip) && ctlMDI.GetType() != typeof(ToolStrip) || ctlMDI.GetType() != typeof(System.Windows.Forms.Timer) || ctlMDI.GetType() != typeof(ToolStripMenuItem) || ctlMDI.GetType() != typeof(ToolStripLabel))
                 {
                     ctlMDI.BackColor = this.BackColor;
                     break;
@@ -229,6 +229,11 @@ namespace GoodeeWay
             {
                 frmSandwichMaking.BringToFront();
             }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            tsLblTime.Text = DateTime.Now.ToLongDateString()+ DateTime.Now.ToLongTimeString();
         }
     }
 }

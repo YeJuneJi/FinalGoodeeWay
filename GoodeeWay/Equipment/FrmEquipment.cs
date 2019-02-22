@@ -470,7 +470,7 @@ namespace GoodeeWay.Equipment
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             currentPage = 1;
-            
+
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
             if (currentPage+4 < totalPage)
@@ -513,10 +513,25 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
         }
-
-        private void timer_Tick(object sender, EventArgs e)
+        
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
-           toolStrip1.Items["toolStripLblTime"].Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+
+        }
+
+        private void pnlPage_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEquipmentList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

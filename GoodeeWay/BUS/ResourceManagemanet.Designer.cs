@@ -59,6 +59,7 @@
             this.메뉴별판매량ToolStripMenuItem.Name = "메뉴별판매량ToolStripMenuItem";
             this.메뉴별판매량ToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.메뉴별판매량ToolStripMenuItem.Text = "메뉴별 판매량";
+            this.메뉴별판매량ToolStripMenuItem.Click += new System.EventHandler(this.메뉴별판매량ToolStripMenuItem_Click);
             // 
             // 재고별판매량ToolStripMenuItem
             // 
@@ -80,6 +81,7 @@
             this.비품구매통계ToolStripMenuItem.Name = "비품구매통계ToolStripMenuItem";
             this.비품구매통계ToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
             this.비품구매통계ToolStripMenuItem.Text = "비품 구매 통계";
+            this.비품구매통계ToolStripMenuItem.Click += new System.EventHandler(this.비품구매통계ToolStripMenuItem_Click);
             // 
             // 메인ToolStripMenuItem
             // 
@@ -118,6 +120,7 @@
         }
 
         #endregion
+
         private System.Windows.Forms.ToolStripMenuItem 메뉴별판매량ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 재고별판매량ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 인사ToolStripMenuItem;
@@ -125,5 +128,6 @@
         private System.Windows.Forms.ToolStripMenuItem 메인ToolStripMenuItem;
         private System.Windows.Forms.MenuStrip resourceMenuStrip;
         private System.Windows.Forms.Panel mainPanel;
+
     }
 }
