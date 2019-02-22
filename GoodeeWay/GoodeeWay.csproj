@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\CheckImages.cs" />
+    <Compile Include="BUS\FrmResourceChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\FrmResourceChart.Designer.cs">
+      <DependentUpon>FrmResourceChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\ResourceMain.cs">
       <SubType>UserControl</SubType>
     </Compile>

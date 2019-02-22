@@ -49,6 +49,7 @@
             this.lblEquipPrice = new System.Windows.Forms.Label();
             this.lblRawMaterialCost = new System.Windows.Forms.Label();
             this.lblEmployeeCost = new System.Windows.Forms.Label();
+            this.btnChart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,7 +172,7 @@
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(523, 154);
+            this.resourceDataGView.Size = new System.Drawing.Size(540, 154);
             this.resourceDataGView.TabIndex = 12;
             // 
             // lblbeppr
@@ -249,11 +250,23 @@
             this.lblEmployeeCost.TabIndex = 20;
             this.lblEmployeeCost.Text = "총 인사비 : ";
             // 
+            // btnChart
+            // 
+            this.btnChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChart.Location = new System.Drawing.Point(424, 352);
+            this.btnChart.Name = "btnChart";
+            this.btnChart.Size = new System.Drawing.Size(131, 23);
+            this.btnChart.TabIndex = 21;
+            this.btnChart.Text = "차트로 보기";
+            this.btnChart.UseVisualStyleBackColor = true;
+            this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
+            // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+            this.Controls.Add(this.btnChart);
             this.Controls.Add(this.lblEmployeeCost);
             this.Controls.Add(this.lblRawMaterialCost);
             this.Controls.Add(this.lblEquipPrice);
@@ -276,7 +289,7 @@
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(588, 406);
+            this.Size = new System.Drawing.Size(612, 406);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseUp);
@@ -309,5 +322,6 @@
         private System.Windows.Forms.Label lblEquipPrice;
         private System.Windows.Forms.Label lblRawMaterialCost;
         private System.Windows.Forms.Label lblEmployeeCost;
+        private System.Windows.Forms.Button btnChart;
     }
 }

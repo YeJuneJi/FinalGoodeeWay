@@ -599,6 +599,7 @@ namespace GoodeeWay.Sales
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
                 {
                     pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    new BUS.CheckImages().DoAllCheck();
                     sucessMenu = true;
                 }
             }
@@ -639,8 +640,8 @@ namespace GoodeeWay.Sales
                 }
                 else
                 {
-
                     pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    new BUS.CheckImages().DoAllCheck();
                     menuUpdateSucess = true;
                 }
             }

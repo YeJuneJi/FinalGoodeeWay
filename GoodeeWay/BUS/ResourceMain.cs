@@ -402,6 +402,12 @@ namespace GoodeeWay.BUS
             }
         }
 
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            FrmResourceChart frmResourceChart = new FrmResourceChart();
+            frmResourceChart.Show();
+        }
+
         private bool ValidateTotInvestandBEP(string totInvest, string bEP)
         {
             bool result = false;
