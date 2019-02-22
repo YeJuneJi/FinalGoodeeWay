@@ -6,7 +6,7 @@ menuCode nvarchar(10) constraint sales_mcode_nn not null,
 menuName nvarchar(30) constraint sales_mname_nn not null,
 price float constraint sales_price_nn not null default 0,
 kCal int constraint sales_kcal_nn not null,
-menuImage image constraint sales_mImage_nn not null default 0x00,
+menuImageLocation nvarchar(max) constraint sales_mImageLoc_nn not null,
 division int constraint sales_div_nn not null,
 additionalContext nvarchar(200) constraint sales_addcon_nn not null,
 discountRatio float constraint sales_disRatio_chk check(discountRatio >= 0 AND discountRatio<=101) default 0,
@@ -36,7 +36,7 @@ salesNo int constraint saleRecords_sNo_nn not null,
 salesDate datetime constraint saleRecords_sDate_nn not null,
 salesitemName nvarchar(max) constraint saleRecords_salesitem_nn not null default getdate(),
 salesPrice float constraint saleRecords_sPrice_nn default 0,
-discount float constraint saleRecords_discount_chk check (discount >= 0 AND discount<=101) default 0,
+discount float constraint saleRecords_discount_nn not null default 0,
 duty float constraint saleRecords_duty_nn not null default 0,
 salesTotal float constraint saleRecords_total_nn not null default 0,
 paymentPlan nvarchar(10) constraint saleRecords_paymentPlan_nn not null,
@@ -56,6 +56,16 @@ GO
 --
 --
 
+create table Images(
+num int primary key,
+name nvarchar(max) unique,
+image Image not null
+)
+--ReceiveingDetails 테이블의 Select 프로시저
+create procedure OutPutAllReceiveingDetails
+as
+select ReceivingDetailsID,UnitPrice , InventoryTypeCode from ReceivingDetails;
+GO
 --Sales 테이블의 Select 프로시저
 CREATE PROCEDURE dbo.SelectMenu
 as
@@ -193,13 +203,13 @@ CREATE PROCEDURE dbo.InsertMenu
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image ,
+@menuImageLocation nvarchar(max) ,
 @division int,
 @additionalContext nvarchar(200),
 @discountRatio float
 as
 insert into dbo.Sales
-values (@menuCode, @menuName, @price, @kCal, @menuImage, @division, @additionalContext, @discountRatio);
+values (@menuCode, @menuName, @price, @kCal, @menuImageLocation, @division, @additionalContext, @discountRatio);
 GO
 
 --SaleRecords 테이블의 Insert 프로시저
@@ -257,7 +267,7 @@ create procedure UpdateSalesNRecipes
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image,
+@menuImageLocation nvarchar(max),
 @additionalContext nvarchar(200)
 as
 declare @updateNecessary bit,
@@ -265,7 +275,7 @@ declare @updateNecessary bit,
 @num int,
 if(@division != 0)
 	begin
-		update dbo.Sales set menuName = @menuName, price = @price, menuImage = @menuImage, division = @division, additionalContext = @additionalContext
+		update dbo.Sales set menuName = @menuName, price = @price, menuImageLocation = @menuImageLocation, division = @division, additionalContext = @additionalContext
 		where menuCode = @menuCode;
 	end
 else
@@ -296,13 +306,13 @@ create procedure UpdateSales
 @menuName nvarchar(30),
 @price float,
 @kCal int,
-@menuImage image,
+@menuImageLocation nvarchar(max),
 @division int,
 @additionalContext nvarchar(200),
 @oldMenuCode nvarchar(10),
 @discountRatio float
 as
-update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
+update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
 where menuCode = @oldMenuCode;
 GO
 
@@ -371,3 +381,15 @@ GO
 -- Sequence를 특정값으로 재설정
 ALTER SEQUENCE dbo.CountRecipeNo RESTART WITH 100;
 GO
+
+
+--
+--
+--
+--재고별 단가 출력 쿼리문
+--
+--
+--
+select inven.InventoryTypeCode, rcv.UnitPrice
+from InventoryType as inven, ReceivingDetails as rcv
+where inven.InventoryTypeCode = rcv.InventoryTypeCode;

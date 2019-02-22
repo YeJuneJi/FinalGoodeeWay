@@ -64,6 +64,9 @@
             // 
             // salesMenuGView
             // 
+            this.salesMenuGView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.salesMenuGView.BackgroundColor = System.Drawing.Color.White;
             this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.salesMenuGView.Location = new System.Drawing.Point(12, 194);
             this.salesMenuGView.MultiSelect = false;
@@ -256,6 +259,7 @@
             this.btnClose.TabIndex = 21;
             this.btnClose.Text = "닫기";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnClear
             // 
@@ -273,9 +277,10 @@
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(902, 22);
+            this.label8.Location = new System.Drawing.Point(912, 22);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(192, 32);
             this.label8.TabIndex = 24;
@@ -283,10 +288,13 @@
             // 
             // FlowPanel
             // 
+            this.FlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FlowPanel.AutoScroll = true;
             this.FlowPanel.Location = new System.Drawing.Point(755, 57);
             this.FlowPanel.Name = "FlowPanel";
-            this.FlowPanel.Size = new System.Drawing.Size(537, 448);
+            this.FlowPanel.Size = new System.Drawing.Size(500, 450);
             this.FlowPanel.TabIndex = 25;
             // 
             // tbxDiscountRatio
@@ -336,7 +344,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 517);
+            this.ClientSize = new System.Drawing.Size(1270, 517);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -366,6 +374,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.salesMenuGView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmSalesMenu";
             this.Text = "Sales";
             this.Load += new System.EventHandler(this.FrmSalesMenu_Load);

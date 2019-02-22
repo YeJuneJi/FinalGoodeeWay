@@ -43,6 +43,7 @@
             this.menuImage.Location = new System.Drawing.Point(14, 12);
             this.menuImage.Name = "menuImage";
             this.menuImage.Size = new System.Drawing.Size(164, 146);
+            this.menuImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.menuImage.TabIndex = 0;
             this.menuImage.TabStop = false;
             // 
@@ -105,6 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(589, 608);
             this.Controls.Add(this.lblKcal);
             this.Controls.Add(this.lblPrice);

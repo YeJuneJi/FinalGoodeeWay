@@ -22,6 +22,13 @@ cache;
 
 go
 
+--전체 비품목록을 
+create procedure [dbo].[SerchEquipment]
+as
+select * from dbo.EquipmentRegister
+order by EQUCode desc;
+
+go
 --비품대장에 insert시키는 프로시저
 create procedure dbo.InsertEquipment_PROC
 @detailName nvarchar(50),
@@ -64,15 +71,17 @@ if (@location ='')begin
 	if (@anotherDate =  '1753-1-1')
 	begin select * from dbo.EquipmentRegister
 	where detailName like '%'+ @detailName +'%'
-	and @state like '%' + @state+'%'
+	and state like '%' + @state+'%'
 	and purchasePrice >= @purchasePrice
+	order by EQUCode desc;
 	end
 	 else begin
 	select * from dbo.EquipmentRegister
 	where detailName like '%'+ @detailName +'%'
-	and @state like '%' + @state+'%'
+	and state like '%' + @state+'%'
 	and purchasePrice >= @purchasePrice
-	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23)
+	order by EQUCode desc;
 	end
 end
 else begin
@@ -82,6 +91,7 @@ else begin
 	and location like '%' + @location +'%' 
 	and state like '%' +@state+'%'
 	and purchasePrice >= @purchasePrice
+	order by EQUCode desc;
 	end
 	else begin
 	select * from dbo.EquipmentRegister
@@ -89,6 +99,29 @@ else begin
 	 and location like '%' + @location +'%' 
 	and purchasePrice >= @purchasePrice
 	and state like '%'+@state+'%'
-	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23);
+	and purchaseDate between CONVERT(CHAR(10), @purchaseDate, 23) and CONVERT(CHAR(10), @anotherDate, 23)
+	order by EQUCode desc;
 	end
  end
+ go
+--비품 날짜 별 통계를위해 일단위로 그룹화 한 프로시져
+ create procedure GroupingDateEquipment_PROC
+@startDate datetime,
+@endDate datetime
+
+as
+select sum(purchasePrice),purchaseDate
+from dbo.EquipmentRegister
+where purchaseDate between @startDate and @endDate
+group by purchaseDate
+
+go
+
+--기간 별 비품 프로시져
+create procedure EquipmentBYDate_PROC
+@startDate datetime,
+@endDate datetime
+
+as
+select * from EquipmentRegister
+where purchaseDate between CONVERT(CHAR(10), @startDate, 23) and CONVERT(CHAR(10), @endDate, 23);

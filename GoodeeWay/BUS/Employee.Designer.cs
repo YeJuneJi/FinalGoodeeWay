@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Employee));
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
@@ -55,19 +56,19 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.Location = new System.Drawing.Point(245, 468);
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Location = new System.Drawing.Point(64, 468);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(111, 48);
+            this.btnDelete.Size = new System.Drawing.Size(48, 48);
             this.btnDelete.TabIndex = 63;
-            this.btnDelete.Text = "선택 삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnUpdate.Location = new System.Drawing.Point(128, 468);
+            this.btnUpdate.Location = new System.Drawing.Point(118, 468);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 48);
@@ -79,19 +80,19 @@
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnInsert.Location = new System.Drawing.Point(11, 468);
+            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
+            this.btnInsert.Location = new System.Drawing.Point(10, 468);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(111, 48);
+            this.btnInsert.Size = new System.Drawing.Size(48, 48);
             this.btnInsert.TabIndex = 61;
-            this.btnInsert.Text = "직원 추가";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnClear
             // 
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnClear.Location = new System.Drawing.Point(362, 468);
+            this.btnClear.Location = new System.Drawing.Point(235, 468);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(111, 48);
@@ -117,7 +118,7 @@
             // btnSalary
             // 
             this.btnSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSalary.Location = new System.Drawing.Point(914, 47);
+            this.btnSalary.Location = new System.Drawing.Point(961, 47);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
             this.btnSalary.Size = new System.Drawing.Size(111, 49);
@@ -129,7 +130,7 @@
             // btnAttendance
             // 
             this.btnAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnAttendance.Location = new System.Drawing.Point(1031, 47);
+            this.btnAttendance.Location = new System.Drawing.Point(1078, 47);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(111, 49);
@@ -151,24 +152,24 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.Location = new System.Drawing.Point(353, 60);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(83, 36);
+            this.btnSearch.Size = new System.Drawing.Size(51, 36);
             this.btnSearch.TabIndex = 96;
-            this.btnSearch.Text = "검색";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnExcel
             // 
             this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnExcel.Location = new System.Drawing.Point(1146, 47);
+            this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
+            this.btnExcel.Location = new System.Drawing.Point(1195, 47);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(111, 49);
+            this.btnExcel.Size = new System.Drawing.Size(61, 49);
             this.btnExcel.TabIndex = 97;
-            this.btnExcel.Text = "엑셀로 저장";
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 

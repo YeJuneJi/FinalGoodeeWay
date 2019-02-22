@@ -33,9 +33,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,23 +70,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS\Attendance_SearchEmpno.cs">
+    <Compile Include="BUS\CheckImages.cs" />
+    <Compile Include="BUS\FrmResourceChart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BUS\Attendance_SearchEmpno.Designer.cs">
-      <DependentUpon>Attendance_SearchEmpno.cs</DependentUpon>
+    <Compile Include="BUS\ResourceMain.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BUS\Insert_Attendance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BUS\Insert_Attendance.Designer.cs">
-      <DependentUpon>Insert_Attendance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BUS\Insert_Salary.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BUS\Insert_Salary.Designer.cs">
-      <DependentUpon>Insert_Salary.cs</DependentUpon>
+    <Compile Include="BUS\ResourceMain.Designer.cs">
+      <DependentUpon>ResourceMain.cs</DependentUpon>
     </Compile>
     <Compile Include="BUS\ResourceManagemanet.cs">
       <SubType>Form</SubType>
@@ -84,8 +99,9 @@
       <DependentUpon>Update_Salary.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\AttendanceDAO.cs" />
+    <Compile Include="DAO\InventorySalesDAO.cs" />
+    <Compile Include="DAO\MakingDAO.cs" />
     <Compile Include="DAO\MenuRecipeDAO.cs" />
-    <Compile Include="DAO\SalaryDAO.cs" />
     <Compile Include="DAO\SaleRecordsDAO.cs" />
     <Compile Include="DAO\SalesMenuDAO.cs" />
     <Compile Include="BUS\Attendance.cs">
@@ -97,33 +113,14 @@
     <Compile Include="BUS\Employee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BUS\Employee.Designer.cs">
-      <DependentUpon>Employee.cs</DependentUpon>
+    <Compile Include="BUS\FrmResourceChart.Designer.cs">
+      <DependentUpon>FrmResourceChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="BUS\Insert_Emp.cs">
+    <Compile Include="BUS\FrmUsingOfEquipment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BUS\Insert_Emp.Designer.cs">
-      <DependentUpon>Insert_Emp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BUS\Salary.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BUS\Salary.Designer.cs">
-      <DependentUpon>Salary.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAO\EmpDAO.cs" />
-    <Compile Include="DAO\IEmp.cs" />
-    <Compile Include="DAO\OrderDAO.cs" />
-    <Compile Include="DAO\OrderDetailDAO.cs" />
-    <Compile Include="DB\DBConnection.cs" />
-    <Compile Include="ImageConverter.cs" />
-    <Compile Include="DAO\InventoryDAO.cs" />
-    <Compile Include="DAO\InventoryTypeDAO.cs" />
-    <Compile Include="DAO\OrderDetailsDAO.cs" />
-    <Compile Include="DAO\ReceivingDetailsDAO.cs" />
-    <Compile Include="InventoryBUS\Inventory.cs">
-      <SubType>Form</SubType>
+    <Compile Include="BUS\FrmUsingOfEquipment.Designer.cs">
+      <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryBUS\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
@@ -142,11 +139,23 @@
     <Compile Include="Equipment\FrmEquipment.Designer.cs">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryBUS\InventorySales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\InventorySales.Designer.cs">
+      <DependentUpon>InventorySales.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryBUS\InventoryTypeAdd.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InventoryBUS\InventoryTypeAdd.Designer.cs">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\InventoryUseDetails.Designer.cs">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryBUS\OrderDetailsAdd.cs">
       <SubType>Form</SubType>
@@ -210,15 +219,87 @@
     <Compile Include="Sales\FrmSalesMenuSearch.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BUS\Attendance_SearchEmpno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Attendance_SearchEmpno.Designer.cs">
+      <DependentUpon>Attendance_SearchEmpno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Insert_Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Insert_Attendance.Designer.cs">
+      <DependentUpon>Insert_Attendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Insert_Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Insert_Salary.Designer.cs">
+      <DependentUpon>Insert_Salary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\ImagesDAO.cs" />
+    <Compile Include="BUS\SalesVolumeByMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\SalesVolumeByMenu.Designer.cs">
+      <DependentUpon>SalesVolumeByMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\SalaryDAO.cs" />
+    <Compile Include="BUS\Employee.Designer.cs">
+      <DependentUpon>Employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Insert_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Insert_Emp.Designer.cs">
+      <DependentUpon>Insert_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Salary.Designer.cs">
+      <DependentUpon>Salary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\EmpDAO.cs" />
+    <Compile Include="DAO\IEmp.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\OrderDetailDAO.cs" />
+    <Compile Include="DB\DBConnection.cs" />
+    <Compile Include="ImageConverter.cs" />
+    <Compile Include="DAO\InventoryDAO.cs" />
+    <Compile Include="DAO\InventoryTypeDAO.cs" />
+    <Compile Include="DAO\OrderDetailsDAO.cs" />
+    <Compile Include="DAO\ReceivingDetailsDAO.cs" />
+    <Compile Include="InventoryBUS\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="VO\ByMenuVO.cs" />
+    <Compile Include="VO\CostOfRawMaterials.cs" />
+    <Compile Include="VO\ImageVO.cs" />
     <Compile Include="VO\AttendanceVO.cs" />
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
+    <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
+    <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\FrmUsingOfEquipment.resx">
+      <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="VO\InventoryTypeSalesVO.cs" />
+    <EmbeddedResource Include="BUS\ResourceMain.resx">
+      <DependentUpon>ResourceMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\ResourceManagemanet.resx">
+      <DependentUpon>ResourceManagemanet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\SalesVolumeByMenu.resx">
+      <DependentUpon>SalesVolumeByMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\Attendance_SearchEmpno.resx">
       <DependentUpon>Attendance_SearchEmpno.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +326,7 @@
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\MenuRecipeVO.cs" />
+    <Compile Include="VO\ResourceManagementVO.cs" />
     <Compile Include="VO\SalaryVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
     <Compile Include="VO\SalesMenuVO.cs" />
@@ -267,8 +349,14 @@
     <EmbeddedResource Include="Equipment\FrmEquipment.resx">
       <DependentUpon>FrmEquipment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\InventorySales.resx">
+      <DependentUpon>InventorySales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\InventoryTypeAdd.resx">
       <DependentUpon>InventoryTypeAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\InventoryUseDetails.resx">
+      <DependentUpon>InventoryUseDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\OrderDetailsAdd.resx">
       <DependentUpon>OrderDetailsAdd.cs</DependentUpon>
@@ -278,6 +366,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\OderVIew.resx">
       <DependentUpon>OderVIew.cs</DependentUpon>
@@ -296,6 +385,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
       <DependentUpon>FrmSaleRecords.cs</DependentUpon>
@@ -312,6 +402,7 @@
     <EmbeddedResource Include="SandwichMakingBus\FrmSandwichMaking.resx">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -321,6 +412,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RealMenu.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -328,13 +420,33 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="TextFile1.txt" />
+    <Content Include="Images\Blt.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Chocolate Chip.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Eggmayo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\GoodeeWayHead.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Soda.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Turkey.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
-      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -343,7 +455,6 @@
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>8</VersionMinor>
       <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>

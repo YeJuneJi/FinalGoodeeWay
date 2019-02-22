@@ -25,7 +25,6 @@ namespace GoodeeWay.Equipment
         }
         private EquipmentVO tempEquipment;//선택된 비품임시저장
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
-        private DataRow dataRow;
 
        const int pageRows = 15;
         int currentPage = 1;
@@ -69,6 +68,7 @@ namespace GoodeeWay.Equipment
         }
         private void FrmEquipment_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             EquipmentDAO dAO = new EquipmentDAO();
             dgvEquipmentList.AllowUserToAddRows = false;
             chbDate.CheckState = CheckState.Unchecked;
@@ -470,7 +470,7 @@ namespace GoodeeWay.Equipment
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             currentPage = 1;
-            
+
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
             if (currentPage+4 < totalPage)
@@ -513,10 +513,25 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
         }
-
-        private void timer_Tick(object sender, EventArgs e)
+        
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
-           toolStrip1.Items["toolStripLblTime"].Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+
+        }
+
+        private void pnlPage_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEquipmentList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 

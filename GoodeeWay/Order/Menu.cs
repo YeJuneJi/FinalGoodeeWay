@@ -34,7 +34,7 @@ namespace GoodeeWay.Order
             get { return price; }
             set { price = value; }
         }
-
+        
         private int kcal;
 
         public int Kcal
@@ -43,9 +43,9 @@ namespace GoodeeWay.Order
             set { kcal = value; }
         }
 
-        private Image menuImage;
+        private string menuImage;
 
-        public Image MenuImage
+        public string MenuImage
         {
             get { return menuImage; }
             set { menuImage = value; }
@@ -80,5 +80,14 @@ namespace GoodeeWay.Order
 
             return menu;
         }
+
+        private float discountRatio;
+
+        public float DiscountRatio
+        {
+            get { return discountRatio; }
+            set { discountRatio = value; }
+        }
+
     }
 }

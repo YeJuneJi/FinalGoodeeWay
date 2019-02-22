@@ -20,23 +20,13 @@ namespace GoodeeWay.BUS
         int temp = 0;
         int totalcount = 1;
         SalaryDAO sd = new SalaryDAO();
-        List<SalaryVO> lst = new List<SalaryVO>();
+        List<SalaryVO> lst;
         List<SalaryVO> ev = new List<SalaryVO>();
 
         public Salary()
         {
             InitializeComponent();
-            lst = sd.SelectAll();
-            ev = lst;
-            if (lst.Count % 10 == 0)
-            {
-                totalcount = lst.Count / 10;
-            }
-            else
-            {
-                totalcount = (lst.Count / 10) + 1;
-            }
-            lblLast.Text = totalcount.ToString();
+            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -128,42 +118,53 @@ namespace GoodeeWay.BUS
 
         private void Salary_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = "";
             lblFirst.Text = page.ToString();
             comboBox1.Text = comboBox3.Text = "2019";
             comboBox2.Text = comboBox4.Text = "2";
 
-            if (totalcount > 1 && page > 1)
-            {
-                ev = new List<SalaryVO>();
+            //if (totalcount > 1 && page > 1)
+            //{
+            //    ev = new List<SalaryVO>();
 
-                for (int i = (page * 10) - 10; i < (page * 10) - 1; i++) // page 2 : 10~19, 3 : 20~29
-                {
-                    ev.Add(new SalaryVO()
-                    {
-                        No = lst[i].No.ToString(),
-                        Name = lst[i].Name.ToString(),
-                        Empno = lst[i].Empno.ToString(),
-                        Payday = lst[i].Payday,
-                        Salary = lst[i].Salary,
-                        Tax = lst[i].Tax,
-                        TotalSalary = lst[i].TotalSalary,
-                    });
-                    //ev[temp].Name = lst[i].Name;
-                    //ev[temp].Empno = lst[i].Empno;
-                    //ev[temp].Payday = lst[i].Payday;
-                    //ev[temp].Salary = lst[i].Salary;
-                    //ev[temp].Tax = lst[i].Tax;
-                    //ev[temp].TotalSalary = lst[i].TotalSalary;
-                    //ev.Add(lst[i]);
-                }
-                dataGridView1.DataSource = ev;
-            }
-            else
-            {
-                dataGridView1.DataSource = lst;
-            }
+            //    for (int i = (page * 10) - 10; i < (page * 10) - 1; i++) // page 2 : 10~19, 3 : 20~29
+            //    {
+            //        ev.Add(new SalaryVO()
+            //        {
+            //            No = lst[i].No.ToString(),
+            //            Name = lst[i].Name.ToString(),
+            //            Empno = lst[i].Empno.ToString(),
+            //            Payday = lst[i].Payday,
+            //            Salary = lst[i].Salary,
+            //            Tax = lst[i].Tax,
+            //            TotalSalary = lst[i].TotalSalary,
+            //        });
+            //ev[temp].Name = lst[i].Name;
+            //ev[temp].Empno = lst[i].Empno;
+            //ev[temp].Payday = lst[i].Payday;
+            //ev[temp].Salary = lst[i].Salary;
+            //ev[temp].Tax = lst[i].Tax;
+            //ev[temp].TotalSalary = lst[i].TotalSalary;
+            //ev.Add(lst[i]);
+            //    }
+            //    dataGridView1.DataSource = ev;
+            //}
+            //else
+            //{
 
+            //}
+            
+            //ev = lst;
+            //if (lst.Count % 10 == 0)
+            //{
+            //    totalcount = lst.Count / 10;
+            //}
+            //else
+            //{
+            //    totalcount = (lst.Count / 10) + 1;
+            //}
+            lblLast.Text = totalcount.ToString();
+            lst = sd.SelectAll();
+            dataGridView1.DataSource = lst;
             ColumnSetKor();
         }
 
@@ -237,7 +238,30 @@ namespace GoodeeWay.BUS
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource = "";
 
+            DateTime temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text);
+            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text);
+            
+            if (temp1 > temp2)
+            {
+                DateTime temp3;
+                temp3 = temp1;
+                temp1 = temp2;
+                temp2 = temp3;
+
+                string temp = "";
+                string strtemp ="";
+                temp = comboBox1.Text;
+                strtemp = comboBox2.Text;
+                comboBox1.Text = comboBox3.Text;
+                comboBox2.Text = comboBox4.Text;
+                comboBox3.Text = temp;
+                comboBox4.Text = strtemp;
+            }
+            lst = sd.Search(temp1, temp2);
+            dataGridView1.DataSource = lst;
+            ColumnSetKor();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -246,8 +270,23 @@ namespace GoodeeWay.BUS
             SalaryVO sv = new SalaryVO()
             {
                 No = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                Empno = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                Salary = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString()),
+                Tax = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()),
+                Bonus = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString()),
+                TotalSalary = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()),
+                Payday = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString()),
             };
             Update_Salary us = new Update_Salary();
+            us.sv.No = sv.No;
+            us.sv.Empno = sv.Empno;
+            us.sv.Name = sv.Name;
+            us.sv.Salary = sv.Salary;
+            us.sv.Tax = sv.Tax;
+            us.sv.Bonus = sv.Bonus;
+            us.sv.TotalSalary = sv.TotalSalary;
+            us.sv.Payday = sv.Payday;
             us.Show();
         }
     }

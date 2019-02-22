@@ -39,6 +39,7 @@ namespace GoodeeWay.BUS
 
         private void Employee_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             cbFilter.Text = "사원명";
             lst = empDAO.SelectAll();
             

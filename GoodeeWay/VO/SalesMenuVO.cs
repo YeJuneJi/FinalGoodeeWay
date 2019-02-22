@@ -41,12 +41,12 @@ namespace GoodeeWay.VO
             set { kcal = value; }
         }
 
-        private Image menuImage;
+        private string menuImageLocation;
 
-        public Image MenuImage
+        public string MenuImageLocation
         {   
-            get { return menuImage; }
-            set { menuImage = value; }
+            get { return menuImageLocation; }
+            set { menuImageLocation = value; }
         }
 
         private int division;

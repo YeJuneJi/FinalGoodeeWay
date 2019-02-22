@@ -77,7 +77,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 152);
+            this.label4.Location = new System.Drawing.Point(12, 371);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 3;
@@ -86,7 +86,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 190);
+            this.label5.Location = new System.Drawing.Point(12, 409);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(29, 12);
             this.label5.TabIndex = 4;
@@ -95,7 +95,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 228);
+            this.label6.Location = new System.Drawing.Point(12, 447);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 5;
@@ -104,7 +104,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 266);
+            this.label7.Location = new System.Drawing.Point(12, 485);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 6;
@@ -113,7 +113,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 304);
+            this.label8.Location = new System.Drawing.Point(12, 523);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 7;
@@ -129,48 +129,50 @@
             // tbxUpdateName
             // 
             this.tbxUpdateName.Location = new System.Drawing.Point(97, 111);
+            this.tbxUpdateName.Multiline = true;
             this.tbxUpdateName.Name = "tbxUpdateName";
-            this.tbxUpdateName.Size = new System.Drawing.Size(200, 21);
+            this.tbxUpdateName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxUpdateName.Size = new System.Drawing.Size(351, 241);
             this.tbxUpdateName.TabIndex = 9;
             // 
             // tbxUpdatePrice
             // 
-            this.tbxUpdatePrice.Location = new System.Drawing.Point(97, 149);
+            this.tbxUpdatePrice.Location = new System.Drawing.Point(97, 368);
             this.tbxUpdatePrice.Name = "tbxUpdatePrice";
             this.tbxUpdatePrice.Size = new System.Drawing.Size(200, 21);
             this.tbxUpdatePrice.TabIndex = 10;
             // 
             // tbxUpdateDiscount
             // 
-            this.tbxUpdateDiscount.Location = new System.Drawing.Point(97, 187);
+            this.tbxUpdateDiscount.Location = new System.Drawing.Point(97, 406);
             this.tbxUpdateDiscount.Name = "tbxUpdateDiscount";
             this.tbxUpdateDiscount.Size = new System.Drawing.Size(200, 21);
             this.tbxUpdateDiscount.TabIndex = 11;
             // 
             // tbxUpdateduty
             // 
-            this.tbxUpdateduty.Location = new System.Drawing.Point(97, 225);
+            this.tbxUpdateduty.Location = new System.Drawing.Point(97, 444);
             this.tbxUpdateduty.Name = "tbxUpdateduty";
             this.tbxUpdateduty.Size = new System.Drawing.Size(200, 21);
             this.tbxUpdateduty.TabIndex = 12;
             // 
             // tbxUpdateTotal
             // 
-            this.tbxUpdateTotal.Location = new System.Drawing.Point(97, 263);
+            this.tbxUpdateTotal.Location = new System.Drawing.Point(97, 482);
             this.tbxUpdateTotal.Name = "tbxUpdateTotal";
             this.tbxUpdateTotal.Size = new System.Drawing.Size(200, 21);
             this.tbxUpdateTotal.TabIndex = 13;
             // 
             // tbxUpadatePlan
             // 
-            this.tbxUpadatePlan.Location = new System.Drawing.Point(97, 301);
+            this.tbxUpadatePlan.Location = new System.Drawing.Point(97, 520);
             this.tbxUpadatePlan.Name = "tbxUpadatePlan";
             this.tbxUpadatePlan.Size = new System.Drawing.Size(200, 21);
             this.tbxUpadatePlan.TabIndex = 14;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(14, 353);
+            this.btnUpdate.Location = new System.Drawing.Point(14, 561);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 15;
@@ -180,7 +182,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(113, 353);
+            this.btnClose.Location = new System.Drawing.Point(113, 561);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 16;
@@ -192,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(331, 426);
+            this.ClientSize = new System.Drawing.Size(460, 596);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.tbxUpadatePlan);

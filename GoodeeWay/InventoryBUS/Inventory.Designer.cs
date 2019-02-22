@@ -44,6 +44,7 @@
             this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
             this.dgvReceivingDetails = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnRelease = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnInventoryTypeAdd = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.btnOrderDisplay = new System.Windows.Forms.Button();
             this.dgvNeedInventoryDetailView = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnRelease = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceivingDetailsList)).BeginInit();
@@ -85,7 +85,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1205, 659);
+            this.tabControl1.Size = new System.Drawing.Size(1159, 659);
             this.tabControl1.TabIndex = 2;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -101,7 +101,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1197, 633);
+            this.tabPage1.Size = new System.Drawing.Size(1151, 633);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "입고내역";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -212,10 +212,20 @@
             this.tabPage3.Controls.Add(this.dgvInventoryType);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1197, 633);
+            this.tabPage3.Size = new System.Drawing.Size(1151, 633);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnRelease
+            // 
+            this.btnRelease.Location = new System.Drawing.Point(957, 9);
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(98, 23);
+            this.btnRelease.TabIndex = 15;
+            this.btnRelease.Text = "재고사용내역";
+            this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
             // btnUpdate
             // 
@@ -268,7 +278,7 @@
             // 
             // btnInventoryNewTable
             // 
-            this.btnInventoryNewTable.Location = new System.Drawing.Point(1050, 9);
+            this.btnInventoryNewTable.Location = new System.Drawing.Point(1061, 9);
             this.btnInventoryNewTable.Name = "btnInventoryNewTable";
             this.btnInventoryNewTable.Size = new System.Drawing.Size(75, 23);
             this.btnInventoryNewTable.TabIndex = 3;
@@ -291,9 +301,10 @@
             this.dgvInventoryTable.Location = new System.Drawing.Point(529, 35);
             this.dgvInventoryTable.MultiSelect = false;
             this.dgvInventoryTable.Name = "dgvInventoryTable";
+            this.dgvInventoryTable.ReadOnly = true;
             this.dgvInventoryTable.RowTemplate.Height = 23;
             this.dgvInventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventoryTable.Size = new System.Drawing.Size(596, 589);
+            this.dgvInventoryTable.Size = new System.Drawing.Size(607, 589);
             this.dgvInventoryTable.TabIndex = 2;
             this.dgvInventoryTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventoryTable_CellMouseClick);
             this.dgvInventoryTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvInventoryTable_KeyUp);
@@ -326,6 +337,8 @@
             this.dgvInventoryType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventoryType.Size = new System.Drawing.Size(511, 589);
             this.dgvInventoryType.TabIndex = 0;
+            this.dgvInventoryType.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventoryType_CellValueChanged);
+            this.dgvInventoryType.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvInventoryType_DataError);
             // 
             // tabPage2
             // 
@@ -341,7 +354,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1197, 633);
+            this.tabPage2.Size = new System.Drawing.Size(1151, 633);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "발주내역";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -456,20 +469,11 @@
             this.dgvNeedInventoryDetailView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNeedInventoryDetailView.Size = new System.Drawing.Size(572, 543);
             this.dgvNeedInventoryDetailView.TabIndex = 9;
+            this.dgvNeedInventoryDetailView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvNeedInventoryDetailView_DataError_1);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // btnRelease
-            // 
-            this.btnRelease.Location = new System.Drawing.Point(969, 9);
-            this.btnRelease.Name = "btnRelease";
-            this.btnRelease.Size = new System.Drawing.Size(75, 23);
-            this.btnRelease.TabIndex = 15;
-            this.btnRelease.Text = "출고";
-            this.btnRelease.UseVisualStyleBackColor = true;
-            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
             // inventory
             // 

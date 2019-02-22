@@ -41,19 +41,7 @@ namespace GoodeeWay.BUS
             cbBank.Text = bo.Bank;
             txtEmail.Text = bo.Email;
             txtNote.Text = bo.Note;
-
-            //txtNum.Text = emp.dataGridView1.SelectedCells[0].Value.ToString();
-            //txtName.Text = emp.dataGridView1.SelectedCells[1].Value.ToString();
-            //cbJob.Text = emp.dataGridView1.SelectedCells[2].Value.ToString();
-            //txtSalary.Text = emp.dataGridView1.SelectedCells[3].Value.ToString();
-            //txtDepartment.Text = emp.dataGridView1.SelectedCells[4].Value.ToString();
-            //txtPhone.Text = emp.dataGridView1.SelectedCells[5].Value.ToString();
-            //dtpJoin.Value = DateTime.Parse(emp.dataGridView1.SelectedCells[6].Value.ToString());
-            //dtpLeave.Value = DateTime.Parse(emp.dataGridView1.SelectedCells[7].Value.ToString());
-            //txtBankAccountNo.Text = emp.dataGridView1.SelectedCells[8].Value.ToString();
-            //cbBank.Text = emp.dataGridView1.SelectedCells[9].Value.ToString();
-            //txtEmail.Text = emp.dataGridView1.SelectedCells[10].Value.ToString();
-            //txtNote.Text = emp.dataGridView1.SelectedCells[11].Value.ToString();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
