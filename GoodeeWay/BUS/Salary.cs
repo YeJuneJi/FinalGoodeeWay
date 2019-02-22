@@ -17,6 +17,7 @@ namespace GoodeeWay.BUS
     public partial class Salary : Form
     {
         int page = 1;
+        int temp = 0;
         int totalcount = 1;
         SalaryDAO sd = new SalaryDAO();
         List<SalaryVO> lst = new List<SalaryVO>();
@@ -25,6 +26,17 @@ namespace GoodeeWay.BUS
         public Salary()
         {
             InitializeComponent();
+            lst = sd.SelectAll();
+            ev = lst;
+            if (lst.Count % 10 == 0)
+            {
+                totalcount = lst.Count / 10;
+            }
+            else
+            {
+                totalcount = (lst.Count / 10) + 1;
+            }
+            lblLast.Text = totalcount.ToString();
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -120,35 +132,38 @@ namespace GoodeeWay.BUS
             lblFirst.Text = page.ToString();
             comboBox1.Text = comboBox3.Text = "2019";
             comboBox2.Text = comboBox4.Text = "2";
-            lst = sd.SelectAll();
-            ev = lst;
 
-            if (lst.Count % 10 == 0)
+            if (totalcount > 1 && page > 1)
             {
-                totalcount = lst.Count / 10;
-            }
-            else
-            {
-                totalcount = (lst.Count / 10) + 1;
-            }
-
-            lblLast.Text = totalcount.ToString();
-
-            if (page > 1)
-            {
-                dataGridView1.DataSource = "";
                 ev = new List<SalaryVO>();
-                for (int i = (page - 1) * 10; i <= (page * 10) - 1; i++) // 10~19, 20~29
+
+                for (int i = (page * 10) - 10; i < (page * 10) - 1; i++) // page 2 : 10~19, 3 : 20~29
                 {
-                    ev[i] = lst[i];
+                    ev.Add(new SalaryVO()
+                    {
+                        No = lst[i].No.ToString(),
+                        Name = lst[i].Name.ToString(),
+                        Empno = lst[i].Empno.ToString(),
+                        Payday = lst[i].Payday,
+                        Salary = lst[i].Salary,
+                        Tax = lst[i].Tax,
+                        TotalSalary = lst[i].TotalSalary,
+                    });
+                    //ev[temp].Name = lst[i].Name;
+                    //ev[temp].Empno = lst[i].Empno;
+                    //ev[temp].Payday = lst[i].Payday;
+                    //ev[temp].Salary = lst[i].Salary;
+                    //ev[temp].Tax = lst[i].Tax;
+                    //ev[temp].TotalSalary = lst[i].TotalSalary;
+                    //ev.Add(lst[i]);
                 }
+                dataGridView1.DataSource = ev;
             }
             else
             {
-                ev = lst;
+                dataGridView1.DataSource = lst;
             }
 
-            dataGridView1.DataSource = ev;
             ColumnSetKor();
         }
 
