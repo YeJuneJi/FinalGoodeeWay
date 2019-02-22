@@ -15,7 +15,7 @@ namespace GoodeeWay.BUS
 {
     public partial class Update_Emp : Form
     {
-       public EmpVO bo = new EmpVO();
+        public EmpVO bo = new EmpVO();
 
         public Update_Emp()
         {
@@ -41,7 +41,7 @@ namespace GoodeeWay.BUS
             cbBank.Text = bo.Bank;
             txtEmail.Text = bo.Email;
             txtNote.Text = bo.Note;
-            
+
             //txtNum.Text = emp.dataGridView1.SelectedCells[0].Value.ToString();
             //txtName.Text = emp.dataGridView1.SelectedCells[1].Value.ToString();
             //cbJob.Text = emp.dataGridView1.SelectedCells[2].Value.ToString();
@@ -70,7 +70,7 @@ namespace GoodeeWay.BUS
                 dtpJoin.Value = temp;
                 MessageBox.Show("퇴사일이 입사일보다 빨라 치환되었습니다.");
             }
-                try
+            try
             {
                 if (check())
                 {

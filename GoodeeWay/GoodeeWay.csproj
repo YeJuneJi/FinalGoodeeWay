@@ -77,6 +77,12 @@
     <Compile Include="BUS\Update_Emp.Designer.cs">
       <DependentUpon>Update_Emp.cs</DependentUpon>
     </Compile>
+    <Compile Include="BUS\Update_Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Salary.Designer.cs">
+      <DependentUpon>Update_Salary.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DAO\MenuRecipeDAO.cs" />
     <Compile Include="DAO\SalaryDAO.cs" />
@@ -224,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BUS\Update_Emp.resx">
       <DependentUpon>Update_Emp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Update_Salary.resx">
+      <DependentUpon>Update_Salary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>

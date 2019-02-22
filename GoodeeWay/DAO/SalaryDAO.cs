@@ -64,5 +64,23 @@ namespace GoodeeWay.DAO
             }
             return result;
         }
+
+        public bool UpdateSalary(SalaryVO s)
+        {
+            string sp = "proc_salary_update";//저장프로시져 이름
+            SqlParameter[] sqlParameters = new SqlParameter[6];
+            sqlParameters[0] = new SqlParameter("Empno", s.Empno);
+            sqlParameters[1] = new SqlParameter("Salary", s.Salary);
+            sqlParameters[2] = new SqlParameter("Tax", s.Tax);
+            sqlParameters[3] = new SqlParameter("Bonus", s.Bonus);
+            sqlParameters[4] = new SqlParameter("TotalSalary", s.TotalSalary);
+            sqlParameters[5] = new SqlParameter("Payday", s.Payday);
+            bool result = false;
+            if (new DBConnection().Update(sp, sqlParameters))
+            {
+                result = true;
+            }
+            return result;
+        }
     }
 }
