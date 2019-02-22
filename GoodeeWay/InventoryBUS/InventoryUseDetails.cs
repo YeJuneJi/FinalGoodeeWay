@@ -28,6 +28,7 @@ namespace GoodeeWay.InventoryBUS
             txtRealUseQuantity.Text = "0";
             InventoryUseDetailsSelect();
             NowCanUseQuantity();
+            btnDisposal.Enabled = false;
             if (DateTime.Parse(dateOfDisposal)<=DateTime.Parse(DateTime.Now.ToShortDateString()))
             {
                 btnAdd.Enabled = false;
