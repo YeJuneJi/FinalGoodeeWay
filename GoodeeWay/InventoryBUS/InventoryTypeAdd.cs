@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -45,15 +46,24 @@ namespace GoodeeWay.InventoryBUS
                 inventoryTypeCode = a+"";
             }
             bool temp = false;
-            if (cmbClassification.Text=="Bread"|| cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional")
+            if (cmbClassification.Text=="Bread"|| cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional" || cmbClassification.Text == "Side")
             {
                 temp = true;
             }
             if (txtInventoryName.Text!="" && txtReceivingQuantity.Text!= "" && inventoryTypeCode != "" && temp)
             {
-                new InventoryTypeDAO().InventoryTypeInsert(new InventoryTypeVO(inventoryTypeCode, txtReceivingQuantity.Text, txtInventoryName.Text, cmbClassification.Text));
-                
-                this.DialogResult = DialogResult.OK;
+                try
+                {
+                    new InventoryTypeDAO().InventoryTypeInsert(new InventoryTypeVO(inventoryTypeCode, txtReceivingQuantity.Text, txtInventoryName.Text, cmbClassification.Text));
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("재고종류코드 중복입니다. 다시 입력해주세요.");
+                    txtInventoryTypeCode.Text = "";
+                }
+
+
             }
             else
             {
@@ -73,7 +83,7 @@ namespace GoodeeWay.InventoryBUS
                 txtInventoryTypeCode.Text = "";
                 a = 0;
             }
-            if (a>=10000)
+            if (a>10000)
             {
                 MessageBox.Show("재고종류코드는 10000 이상이 될수 없습니다.");
                 txtInventoryTypeCode.Text = "";
@@ -101,7 +111,7 @@ namespace GoodeeWay.InventoryBUS
 
         private void cmbClassification_TextChanged(object sender, EventArgs e)
         {
-            if (!(cmbClassification.Text == "Bread" || cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional"))
+            if (!(cmbClassification.Text == "Bread" || cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional"|| cmbClassification.Text =="Side"))
             {
                 cmbClassification.Text = "Bread";
             }

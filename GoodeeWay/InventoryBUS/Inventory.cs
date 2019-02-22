@@ -28,6 +28,7 @@ namespace GoodeeWay
         DataTable orderDetailsDataTable;
         DataTable OrderDetailsListDataTable;
         DataTable inventoryDataTable;
+        string[] MaterialClassification = new string[7] { "Bread", "Cheese", "Additional", "Sauce", "Topping", "Vegetable", "Side" };
 
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
@@ -63,7 +64,7 @@ namespace GoodeeWay
                     this.Size = new Size(951, 722);
                     break;
                 case 1:
-                    tabControl1.Size = new Size(1136, 659);
+                    tabControl1.Size = new Size(1159, 659);
                     this.Size = new Size(1187, 722);
                     break;
                 case 2:
@@ -366,19 +367,36 @@ namespace GoodeeWay
         /// </summary>
         private void InventoryTableSelect()
         {
-            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();                     
-            dgvInventoryTable.Columns["재고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고명"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["재고량"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].ReadOnly = false;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["사용날짜"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["유통기한"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["입고번호"].ReadOnly = true;                                         
-            dgvInventoryTable.Columns["출고량"].HeaderText = "출고량*";                                 
-        }                                                                                                 
-        #endregion                                                                                        
-                                                                                                          
+            dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
+            dgvInventoryTable.AllowUserToAddRows = false;
+                                           
+        }
+
+        /// <summary>
+        /// 재고사용내역 폼 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRelease_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                InventoryUseDetails inventoryUseDetails = 
+                    new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString(),
+                    dgvInventoryTable.SelectedRows[0].Cells["유통기한"].Value.ToString());
+                inventoryUseDetails.ShowDialog();
+                InventoryTableSelect();
+                InventoryTypeSelect();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("먼저 재고내역을 선택해주세요");
+            }
+        }
+        #endregion
+
+
+
         #region 재고종류
         /// <summary>
         /// 재고종류 추가폼 띄우는 버튼
@@ -413,6 +431,7 @@ namespace GoodeeWay
             //inventoryTypeVOList = new InventoryTypeDAO().InventoryTypeSelect();
             inventoryTypeDateTable = new InventoryTypeDAO().InventoryTypeSelect();
             dgvInventoryType.DataSource = inventoryTypeDateTable;
+            dgvInventoryType.AllowUserToAddRows = false;
             dgvInventoryType.Columns["재고종류코드"].ReadOnly = true;
             dgvInventoryType.Columns["재고합계"].ReadOnly = true;
             dgvInventoryType.Columns["재고총량"].ReadOnly = true;
@@ -468,7 +487,7 @@ namespace GoodeeWay
             InventoryTypeSelect();
 
         }
-        #endregion                                                                                          "재고종류코드"
+        #endregion                                                                                          
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
@@ -510,6 +529,8 @@ namespace GoodeeWay
         }
         #endregion
 
+
+
         #region 발주내역
 
         /// <summary>
@@ -524,8 +545,10 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["재고명"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["현재수량"].ReadOnly = true;
             dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
+
             dgvNeedInventoryDetailView.Columns["필요수량"].HeaderText = "필요수량*";
             
+
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
@@ -651,15 +674,17 @@ namespace GoodeeWay
             worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
             for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
             {
-                worksheet.Cells[i, 1] = i-3;
-                worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호",i-4].Value.ToString();
-                worksheet.Cells[i, 3] = dgvNeedInventoryDetailView["재고명", i - 4].Value.ToString();
-                worksheet.Cells[i, 4] = dgvNeedInventoryDetailView["수량", i - 4].Value.ToString();
-                worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
+                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString())>0)
+                {
+                    worksheet.Cells[i, 1] = i - 3;
+                    worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호", i - 4].Value.ToString();
+                    worksheet.Cells[i, 3] = dgvNeedInventoryDetailView["재고명", i - 4].Value.ToString();
+                    worksheet.Cells[i, 4] = dgvNeedInventoryDetailView["수량", i - 4].Value.ToString();
+                    worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
 
-                
-                Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i+1,1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
-                r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
+                    Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i + 1, 1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
+                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue); 
+                }
             }
 
 
@@ -711,11 +736,34 @@ namespace GoodeeWay
         }
 
 
+
+
         #endregion
 
-        private void btnRelease_Click(object sender, EventArgs e)
+        private void dgvInventoryType_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
+            MessageBox.Show("숫자를 입력해주세요");
+        }
+        
+        private void dgvNeedInventoryDetailView_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("숫자를 입력해주세요");
+        }
 
+        private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (!MaterialClassification.Contains(dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value.ToString()))
+                {
+                    MessageBox.Show("Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side 중 하나의 재료를 입력해주세요.");
+                    dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value = "Bread";
+                }
+            }
+            catch (Exception)
+            {
+            }
+            
         }
     }
 }

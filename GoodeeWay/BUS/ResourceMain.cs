@@ -79,11 +79,9 @@ namespace GoodeeWay.BUS
                 this.Top = e.Y + this.Top - mainPanelOffsetY;
             }
         }
-
         private void ResourceMain_MouseUp(object sender, MouseEventArgs e)
         {
             this.mainDragging = false;
-
         }
 
         private void btnNetIncome_Click(object sender, EventArgs e)

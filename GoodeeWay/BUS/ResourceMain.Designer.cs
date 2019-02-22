@@ -265,7 +265,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.btnChart);
             this.Controls.Add(this.lblEmployeeCost);
             this.Controls.Add(this.lblRawMaterialCost);
@@ -290,9 +290,6 @@
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
             this.Size = new System.Drawing.Size(612, 406);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -81,14 +81,14 @@
             this.txtInventoryName.Location = new System.Drawing.Point(105, 14);
             this.txtInventoryName.Name = "txtInventoryName";
             this.txtInventoryName.Size = new System.Drawing.Size(100, 21);
-            this.txtInventoryName.TabIndex = 4;
+            this.txtInventoryName.TabIndex = 1;
             // 
             // txtReceivingQuantity
             // 
             this.txtReceivingQuantity.Location = new System.Drawing.Point(105, 38);
             this.txtReceivingQuantity.Name = "txtReceivingQuantity";
             this.txtReceivingQuantity.Size = new System.Drawing.Size(100, 21);
-            this.txtReceivingQuantity.TabIndex = 5;
+            this.txtReceivingQuantity.TabIndex = 2;
             this.txtReceivingQuantity.TextChanged += new System.EventHandler(this.txtReceivingQuantity_TextChanged);
             // 
             // cmbClassification
@@ -100,12 +100,13 @@
             "Vegetable",
             "Sauce",
             "Additional",
-            "Topping"});
+            "Topping",
+            "Side"});
             this.cmbClassification.Location = new System.Drawing.Point(105, 62);
             this.cmbClassification.Name = "cmbClassification";
             this.cmbClassification.Size = new System.Drawing.Size(100, 20);
-            this.cmbClassification.TabIndex = 8;
-            this.cmbClassification.Text = "Vegetable";
+            this.cmbClassification.TabIndex = 3;
+            this.cmbClassification.Text = "Bread";
             this.cmbClassification.TextChanged += new System.EventHandler(this.cmbClassification_TextChanged);
             // 
             // btnComplete
@@ -113,7 +114,7 @@
             this.btnComplete.Location = new System.Drawing.Point(24, 122);
             this.btnComplete.Name = "btnComplete";
             this.btnComplete.Size = new System.Drawing.Size(75, 23);
-            this.btnComplete.TabIndex = 9;
+            this.btnComplete.TabIndex = 5;
             this.btnComplete.Text = "추가";
             this.btnComplete.UseVisualStyleBackColor = true;
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
@@ -123,7 +124,7 @@
             this.btnCancel.Location = new System.Drawing.Point(130, 122);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 10;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "취소";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -133,7 +134,7 @@
             this.txtInventoryTypeCode.Location = new System.Drawing.Point(105, 86);
             this.txtInventoryTypeCode.Name = "txtInventoryTypeCode";
             this.txtInventoryTypeCode.Size = new System.Drawing.Size(100, 21);
-            this.txtInventoryTypeCode.TabIndex = 11;
+            this.txtInventoryTypeCode.TabIndex = 4;
             this.txtInventoryTypeCode.TextChanged += new System.EventHandler(this.txtInventoryTypeCode_TextChanged);
             // 
             // InventoryTypeAdd
