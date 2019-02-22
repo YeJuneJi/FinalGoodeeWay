@@ -185,6 +185,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaleRecords\FrmDetailSaleRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleRecords\FrmDetailSaleRecord.Designer.cs">
+      <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleRecords\FrmSaleRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,6 +384,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SaleRecords\FrmDetailSaleRecord.resx">
+      <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
       <DependentUpon>FrmSaleRecords.cs</DependentUpon>
     </EmbeddedResource>

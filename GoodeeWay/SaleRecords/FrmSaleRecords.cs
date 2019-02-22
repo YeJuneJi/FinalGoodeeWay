@@ -1,5 +1,6 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -268,6 +269,15 @@ namespace GoodeeWay.SaleRecords
                 Marshal.FinalReleaseComObject(workBook);
                 Marshal.FinalReleaseComObject(excelApp);
             }
+        }
+
+        private void salesRecordsGView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString());
+
+            FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(realMenuVO);
+            fdsr.ShowDialog();            
+
         }
     }
 }

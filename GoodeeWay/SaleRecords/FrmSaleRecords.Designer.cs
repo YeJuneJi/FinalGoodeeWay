@@ -61,6 +61,7 @@
             this.salesRecordsGView.Size = new System.Drawing.Size(693, 381);
             this.salesRecordsGView.TabIndex = 0;
             this.salesRecordsGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellClick);
+            this.salesRecordsGView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellDoubleClick);
             // 
             // dtpPeriodStart
             // 
