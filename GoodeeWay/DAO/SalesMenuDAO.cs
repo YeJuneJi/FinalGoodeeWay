@@ -10,10 +10,7 @@ namespace GoodeeWay.DAO
 {
     class SalesMenuDAO
     {
-        MemoryStream memoryStream;
         DBConnection connection;
-
-
         /// <summary>
         /// 메뉴 삭제 메서드
         /// </summary>

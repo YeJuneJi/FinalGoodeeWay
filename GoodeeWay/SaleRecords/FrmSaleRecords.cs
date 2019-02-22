@@ -119,6 +119,7 @@ namespace GoodeeWay.SaleRecords
             }
             else
             {
+                tbxSalesNo.Focus();
                 MessageBox.Show("검색 조건을 입력 해 주세요");
                 return false;
             }
@@ -128,6 +129,7 @@ namespace GoodeeWay.SaleRecords
             }
             else
             {
+                tbxSalesNo.Focus();
                 MessageBox.Show("판매번호는 0이상의 정수만 입력 해주세요");
                 return false;
             }

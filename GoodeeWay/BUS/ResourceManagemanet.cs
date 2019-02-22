@@ -18,18 +18,26 @@ namespace GoodeeWay.BUS
         public ResourceManagemanet()
         {
             InitializeComponent();
-            resourceMain.Size = mainPanel.Size;
-            this.resourceMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            resourceMain.Location = new Point(0, 0);
-            this.mainPanel.Controls.Add(resourceMain);
+            
 
         }
 
         private void ResourceManagemanet_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            resourceMain.Size = new Size(Size.Width, Size.Height - resourceMenuStrip.Height*2);
+            resourceMain.Location = new Point(0, 0);
+            this.mainPanel.Controls.Add(resourceMain);
+        }
+
+        private void mainPanel_SizeChanged(object sender, EventArgs e)
+        {
+            resourceMain.Size = new Size(Size.Width, Size.Height - resourceMenuStrip.Height * 2);
+        }
+
+        private void ResourceManagemanet_SizeChanged(object sender, EventArgs e)
+        {
+            mainPanel.Size = this.Size;
         }
     }
 }

@@ -171,7 +171,7 @@
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(540, 300);
+            this.resourceDataGView.Size = new System.Drawing.Size(523, 154);
             this.resourceDataGView.TabIndex = 12;
             // 
             // lblbeppr
@@ -195,7 +195,7 @@
             // btnNetIncome
             // 
             this.btnNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNetIncome.Location = new System.Drawing.Point(16, 586);
+            this.btnNetIncome.Location = new System.Drawing.Point(16, 352);
             this.btnNetIncome.Name = "btnNetIncome";
             this.btnNetIncome.Size = new System.Drawing.Size(131, 23);
             this.btnNetIncome.TabIndex = 15;
@@ -207,7 +207,7 @@
             // 
             this.lblNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNetIncome.AutoSize = true;
-            this.lblNetIncome.Location = new System.Drawing.Point(166, 591);
+            this.lblNetIncome.Location = new System.Drawing.Point(157, 357);
             this.lblNetIncome.Name = "lblNetIncome";
             this.lblNetIncome.Size = new System.Drawing.Size(11, 12);
             this.lblNetIncome.TabIndex = 16;
@@ -215,9 +215,8 @@
             // 
             // lbltotalInvesetPrice
             // 
-            this.lbltotalInvesetPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbltotalInvesetPrice.AutoSize = true;
-            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(17, 494);
+            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(299, 60);
             this.lbltotalInvesetPrice.Name = "lbltotalInvesetPrice";
             this.lbltotalInvesetPrice.Size = new System.Drawing.Size(53, 12);
             this.lbltotalInvesetPrice.TabIndex = 17;
@@ -225,9 +224,8 @@
             // 
             // lblEquipPrice
             // 
-            this.lblEquipPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEquipPrice.AutoSize = true;
-            this.lblEquipPrice.Location = new System.Drawing.Point(17, 534);
+            this.lblEquipPrice.Location = new System.Drawing.Point(299, 98);
             this.lblEquipPrice.Name = "lblEquipPrice";
             this.lblEquipPrice.Size = new System.Drawing.Size(69, 12);
             this.lblEquipPrice.TabIndex = 18;
@@ -235,9 +233,8 @@
             // 
             // lblRawMaterialCost
             // 
-            this.lblRawMaterialCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRawMaterialCost.AutoSize = true;
-            this.lblRawMaterialCost.Location = new System.Drawing.Point(17, 514);
+            this.lblRawMaterialCost.Location = new System.Drawing.Point(299, 79);
             this.lblRawMaterialCost.Name = "lblRawMaterialCost";
             this.lblRawMaterialCost.Size = new System.Drawing.Size(81, 12);
             this.lblRawMaterialCost.TabIndex = 19;
@@ -245,9 +242,8 @@
             // 
             // lblEmployeeCost
             // 
-            this.lblEmployeeCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEmployeeCost.AutoSize = true;
-            this.lblEmployeeCost.Location = new System.Drawing.Point(17, 554);
+            this.lblEmployeeCost.Location = new System.Drawing.Point(299, 117);
             this.lblEmployeeCost.Name = "lblEmployeeCost";
             this.lblEmployeeCost.Size = new System.Drawing.Size(69, 12);
             this.lblEmployeeCost.TabIndex = 20;
@@ -280,7 +276,7 @@
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(1080, 634);
+            this.Size = new System.Drawing.Size(588, 406);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResourceMain_MouseUp);

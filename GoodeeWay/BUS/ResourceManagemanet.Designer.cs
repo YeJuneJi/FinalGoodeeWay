@@ -96,6 +96,7 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1125, 521);
             this.mainPanel.TabIndex = 1;
+            this.mainPanel.SizeChanged += new System.EventHandler(this.mainPanel_SizeChanged);
             // 
             // ResourceManagemanet
             // 
@@ -108,6 +109,7 @@
             this.Name = "ResourceManagemanet";
             this.Text = "매출관리";
             this.Load += new System.EventHandler(this.ResourceManagemanet_Load);
+            this.SizeChanged += new System.EventHandler(this.ResourceManagemanet_SizeChanged);
             this.resourceMenuStrip.ResumeLayout(false);
             this.resourceMenuStrip.PerformLayout();
             this.ResumeLayout(false);

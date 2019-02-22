@@ -65,7 +65,7 @@ namespace GoodeeWay
             }
             catch (SqlException ect)
             {
-                MessageBox.Show(ect.StackTrace);
+                MessageBox.Show(ect.Message);
             }        
         }
 
