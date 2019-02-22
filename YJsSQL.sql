@@ -56,6 +56,11 @@ GO
 --
 --
 
+create table Images(
+num int primary key,
+name nvarchar(max) unique,
+image Image not null
+)
 --ReceiveingDetails 테이블의 Select 프로시저
 create procedure OutPutAllReceiveingDetails
 as

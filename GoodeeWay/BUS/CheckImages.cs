@@ -69,7 +69,7 @@ namespace GoodeeWay.BUS
 
                 imgVO.Image = ms.ToArray();
 
-                new ImagesDAO().InsertImage(imgVO);
+                new ImagesDAO().InsertImage(imgVO);                
             }
         }
 
