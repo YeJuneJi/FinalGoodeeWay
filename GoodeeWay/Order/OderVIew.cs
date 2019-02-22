@@ -231,12 +231,5 @@ namespace GoodeeWay.Order
         {
             
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            testForm tf = new testForm();
-            tf.ShowDialog();
-
-        }
     }
 }

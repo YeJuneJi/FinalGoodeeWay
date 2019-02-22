@@ -42,7 +42,6 @@
             this.btnCancelOne = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblKcal = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.gbCheckDivision.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -186,22 +185,11 @@
             this.lblKcal.TabIndex = 13;
             this.lblKcal.Text = "Kcal :";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(732, 815);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // OderVIew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 876);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblKcal);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.btnCancelOne);
@@ -236,6 +224,5 @@
         private System.Windows.Forms.Button btnCancelOne;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblKcal;
-        private System.Windows.Forms.Button button1;
     }
 }
