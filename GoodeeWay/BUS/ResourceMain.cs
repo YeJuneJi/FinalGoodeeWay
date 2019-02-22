@@ -402,7 +402,7 @@ namespace GoodeeWay.BUS
 
         private void btnChart_Click(object sender, EventArgs e)
         {
-            FrmResourceChart frmResourceChart = new FrmResourceChart();
+            FrmResourceChart frmResourceChart = new FrmResourceChart(totRsrcTab);
             frmResourceChart.Show();
         }
 
@@ -411,6 +411,7 @@ namespace GoodeeWay.BUS
             bool result = false;
             bool nullResult = false;
             bool typeResult = false;
+            bool zeroResult = false;
             if (!(string.IsNullOrEmpty(totInvest) || string.IsNullOrEmpty(bEP)))
             {
                 nullResult = true;
@@ -421,7 +422,7 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("값을 모두 입력 해 주세요!");
                 return false;
             }
-            if (decimal.TryParse(totInvest, out decimal deciTotinvest))
+            if (decimal.TryParse(totInvest, out decimal deciTotinvest) || decimal.TryParse(bEP, out decimal deciBEP))
             {
                 typeResult = true;
             }
@@ -431,7 +432,17 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("숫자만 입력 해 주세요!");
                 return false;
             }
-            if (nullResult && typeResult)
+            if (decimal.Parse(totInvest) != 0 || decimal.Parse(bEP) != 0)
+            {
+                zeroResult = true;
+            }
+            else
+            {
+                tbxTotInvest.Focus();
+                MessageBox.Show("0이외의 숫자만 입력 해 주세요!");
+                return false;
+            }
+            if (nullResult && typeResult && zeroResult)
             {
                 result = true;
             }

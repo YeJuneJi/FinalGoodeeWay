@@ -281,6 +281,9 @@
     <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\FrmResourceChart.resx">
+      <DependentUpon>FrmResourceChart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\FrmUsingOfEquipment.resx">
       <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +320,7 @@
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\MenuRecipeVO.cs" />
+    <Compile Include="VO\ResourceChartVO.cs" />
     <Compile Include="VO\ResourceManagementVO.cs" />
     <Compile Include="VO\SalaryVO.cs" />
     <Compile Include="VO\SaleRecordsVO.cs" />
