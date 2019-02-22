@@ -597,10 +597,23 @@ namespace GoodeeWay
                     orderDetailsVOsList.Add(orderDetailsVO);
                 }
             }
+            bool temp = false;
             try
             {
-                new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
-                MessageBox.Show("발주내역 저장완료");
+                for (int i = 0; i < dgvOrderDetailsList.Rows.Count; i++)
+                {
+                    if(dgvOrderDetailsList["발주날짜",i].Value.ToString()==DateTime.Now.ToShortDateString())
+                    {
+                        temp = true;
+                        MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
+                    }
+                }
+                if (!temp)
+                {
+                    new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
+                    MessageBox.Show("발주내역 저장완료");
+                }
+                
             }
             catch (SqlException)
             {
