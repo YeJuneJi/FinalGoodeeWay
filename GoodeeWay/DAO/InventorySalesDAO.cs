@@ -34,7 +34,7 @@ namespace GoodeeWay.DAO
                 InventoryTypeSalesVO inventoryTypeSales = new InventoryTypeSalesVO()
                 {
                     InventoryName = dr["InventoryName"].ToString(),
-                    UseInventory = Int32.Parse(dr["UseInventory"].ToString())
+                    UseInventory = (float)Math.Round((float.Parse(dr["UseInventory"].ToString()) / 1000), 2)
                 };
                 lst.Add(inventoryTypeSales);
             }
@@ -61,7 +61,7 @@ namespace GoodeeWay.DAO
             {
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO();
                 inventoryTypeSalesVO.InventoryName = dr["DateOfUse"].ToString();
-                inventoryTypeSalesVO.UseInventory = Int32.Parse(dr["InventoryQuantity"].ToString());
+                inventoryTypeSalesVO.UseInventory = (float)Math.Round((float.Parse(dr["InventoryQuantity"].ToString()) / 1000), 2);
                 lst.Add(inventoryTypeSalesVO);
             }
             return lst;

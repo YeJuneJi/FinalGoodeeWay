@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.InventorySalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -67,6 +68,8 @@
             this.InventorySalesChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.Text;
             chartArea1.Name = "ChartArea1";
             this.InventorySalesChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.InventorySalesChart.Legends.Add(legend1);
             this.InventorySalesChart.Location = new System.Drawing.Point(23, 40);
             this.InventorySalesChart.Name = "InventorySalesChart";
             this.InventorySalesChart.Size = new System.Drawing.Size(846, 499);

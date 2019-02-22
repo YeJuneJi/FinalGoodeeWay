@@ -41,8 +41,13 @@ namespace GoodeeWay.InventoryBUS
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, false);
 
                 InventorySalesChart.Series["종류기준"].Points.DataBind(InventoryTypeList, "InventoryName", "UseInventory", null);
-                InventorySalesChart.Series["종류기준"].Label = "#VALYg";
-                
+                InventorySalesChart.Series["종류기준"].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series["종류기준"].Points)
+                {
+                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2)+"kg";
+                }
+
+
                 AverageDisplay(InventoryTypeList);
                 dgvDisplay(InventoryTypeList, rdoInventoryType.Checked);
             }
@@ -52,8 +57,11 @@ namespace GoodeeWay.InventoryBUS
                 InventoryList = displayChart.DisplayChart(new InventoryChart()
                 { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, rdoMonth.Checked);
                 InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "InventoryName", "UseInventory", null);
-                InventorySalesChart.Series[cmbType.Text].Label = "#VALYg";
-
+                InventorySalesChart.Series[cmbType.Text].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series[cmbType.Text].Points)
+                {
+                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
+                }
                 AverageDisplay(InventoryList);
                 dgvDisplay(InventoryList, rdoInventoryType.Checked);
             }
@@ -75,25 +83,32 @@ namespace GoodeeWay.InventoryBUS
             //    sum += item.UseInventory;
             //}
             //count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text);
-
-            foreach (var item in List)
+            
+            foreach (var item in List)//평균 라인을 긋기 위해 x 값은 재고명을 다 넣어주고, y값은 모두 평균값으로 입력
             {
+                double num = (double)((from avgList in List select avgList.UseInventory).Average());
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
                     InventoryName = item.InventoryName,
-                    UseInventory = (int)(from avgList in List select avgList.UseInventory).Average()
+                    UseInventory = (float)Math.Round(num,2)
                 };
                 avgList.Add(inventoryTypeSalesVO);
             }
             InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
-            InventorySalesChart.Series["평균"].Points[0].Label = "평균 : #AVG";
-            InventorySalesChart.Series["평균"].Points[0].LabelForeColor =Color.Red;
+            try
+            {
+                InventorySalesChart.Series["평균"].Points[0].Label = "평균 : "+avgList[0].UseInventory+"kg";
+                InventorySalesChart.Series["평균"].Points[0].LabelForeColor = Color.Red;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
         }
 
         private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
         {
-            int sum = 0;
+            float sum = 0;
             foreach (var item in List)
             {
                 sum += item.UseInventory;
@@ -102,7 +117,7 @@ namespace GoodeeWay.InventoryBUS
 
             if (List.Count >0)
             {
-                List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = sum / List.Count() });
+                List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = (float)Math.Round((sum / List.Count()),2) });
                 List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum }); 
             }
             dgvData.DataSource = List;

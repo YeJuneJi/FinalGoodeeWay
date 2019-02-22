@@ -15,9 +15,9 @@ namespace GoodeeWay.VO
             get { return inventoryName; }
             set { inventoryName = value; }
         }
-        private int useInventory;
+        private float useInventory;
 
-        public int UseInventory
+        public float UseInventory
         {
             get { return useInventory; }
             set { useInventory = value; }
