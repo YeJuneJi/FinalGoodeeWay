@@ -135,7 +135,7 @@ namespace GoodeeWay.Order
                     textBox1.Text += "--> 상세메뉴 :  ";
                     foreach (var item2 in item.MenuDetailList)
                     {
-                        textBox1.Text += item2.InventoryName + " | ";
+                        textBox1.Text += item2.InventoryName + " | " + item2.Amount + "\t";                        
                     }
                 }                
             }
