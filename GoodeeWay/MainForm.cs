@@ -33,7 +33,6 @@ namespace GoodeeWay
         Employee employee;
         ResourceManagemanet resourceManagemanet;
         public static FrmSandwichMaking frmSandwichMaking;
-
         public MainForm()
         {
             InitializeComponent();
@@ -66,7 +65,7 @@ namespace GoodeeWay
             catch (SqlException ect)
             {
                 MessageBox.Show(ect.Message);
-            }        
+            }
         }
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,14 +110,9 @@ namespace GoodeeWay
 
         private void 메뉴관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (salesMenu == null)
+            if (salesMenu == null || salesMenu.IsDisposed)
             {
-                salesMenu = new FrmSalesMenu();
-                salesMenu.MdiParent = this;
-                salesMenu.Show();
-            }
-            else if (salesMenu.IsDisposed)
-            {
+                
                 salesMenu = new FrmSalesMenu();
                 salesMenu.MdiParent = this;
                 salesMenu.Show();

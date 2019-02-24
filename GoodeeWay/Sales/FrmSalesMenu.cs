@@ -31,7 +31,7 @@ namespace GoodeeWay.Sales
 
         string oldMenuCode;
         int oldDivision;
-        string images;
+        string images = "\\Images\\";
         public FrmSalesMenu()
         {
             InitializeComponent();
