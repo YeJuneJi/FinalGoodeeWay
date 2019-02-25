@@ -29,14 +29,9 @@ namespace GoodeeWay.DAO
                     menu.MenuName = sdr["menuName"].ToString();
                     menu.Price = float.Parse(sdr["price"].ToString());
                     menu.Kcal = int.Parse(sdr["kCal"].ToString());
-                                        
-                    //byte[] array = (byte[])sdr["menuImage"];
-                    //MemoryStream ms = new MemoryStream(array);
-                    //Image img = Image.FromStream(ms);
-
                     menu.MenuImage = sdr["menuImageLocation"].ToString();
                     menu.Division = sdr["division"].ToString();
-                    menu.AdditionalContext = sdr["additionalContext"].ToString();
+                    menu.AdditionalContext = sdr["additionalContext"].ToString();                    
                     menu.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
 
                     menuList.Add(menu);

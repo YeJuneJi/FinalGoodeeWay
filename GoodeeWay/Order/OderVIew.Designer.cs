@@ -36,7 +36,6 @@
             this.btn1 = new System.Windows.Forms.Button();
             this.btn0 = new System.Windows.Forms.Button();
             this.btnAll = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancelOne = new System.Windows.Forms.Button();
@@ -49,7 +48,7 @@
             // 
             this.listViewOrder.Location = new System.Drawing.Point(12, 85);
             this.listViewOrder.Name = "listViewOrder";
-            this.listViewOrder.Size = new System.Drawing.Size(685, 427);
+            this.listViewOrder.Size = new System.Drawing.Size(1460, 427);
             this.listViewOrder.TabIndex = 3;
             this.listViewOrder.UseCompatibleStateImageBehavior = false;
             this.listViewOrder.Click += new System.EventHandler(this.listViewOrder_Click);
@@ -58,7 +57,7 @@
             // 
             this.listViewBasket.Location = new System.Drawing.Point(12, 518);
             this.listViewBasket.Name = "listViewBasket";
-            this.listViewBasket.Size = new System.Drawing.Size(685, 280);
+            this.listViewBasket.Size = new System.Drawing.Size(1460, 280);
             this.listViewBasket.TabIndex = 6;
             this.listViewBasket.UseCompatibleStateImageBehavior = false;
             // 
@@ -69,7 +68,7 @@
             this.gbCheckDivision.Controls.Add(this.btn1);
             this.gbCheckDivision.Controls.Add(this.btn0);
             this.gbCheckDivision.Controls.Add(this.btnAll);
-            this.gbCheckDivision.Location = new System.Drawing.Point(12, 13);
+            this.gbCheckDivision.Location = new System.Drawing.Point(434, 13);
             this.gbCheckDivision.Name = "gbCheckDivision";
             this.gbCheckDivision.Size = new System.Drawing.Size(673, 66);
             this.gbCheckDivision.TabIndex = 7;
@@ -126,18 +125,9 @@
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.button_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(703, 85);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(147, 713);
-            this.textBox1.TabIndex = 8;
-            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(460, 846);
+            this.btnOK.Location = new System.Drawing.Point(1235, 813);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 9;
@@ -147,7 +137,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(541, 846);
+            this.btnCancel.Location = new System.Drawing.Point(1316, 813);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 10;
@@ -157,7 +147,7 @@
             // 
             // btnCancelOne
             // 
-            this.btnCancelOne.Location = new System.Drawing.Point(622, 846);
+            this.btnCancelOne.Location = new System.Drawing.Point(1397, 813);
             this.btnCancelOne.Name = "btnCancelOne";
             this.btnCancelOne.Size = new System.Drawing.Size(75, 23);
             this.btnCancelOne.TabIndex = 11;
@@ -179,7 +169,7 @@
             // 
             this.lblKcal.AutoSize = true;
             this.lblKcal.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblKcal.Location = new System.Drawing.Point(270, 813);
+            this.lblKcal.Location = new System.Drawing.Point(354, 813);
             this.lblKcal.Name = "lblKcal";
             this.lblKcal.Size = new System.Drawing.Size(58, 20);
             this.lblKcal.TabIndex = 13;
@@ -189,17 +179,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(873, 876);
+            this.ClientSize = new System.Drawing.Size(1484, 861);
             this.Controls.Add(this.lblKcal);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.btnCancelOne);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.gbCheckDivision);
             this.Controls.Add(this.listViewBasket);
             this.Controls.Add(this.listViewOrder);
             this.Name = "OderVIew";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OderVIew";
             this.Load += new System.EventHandler(this.OderVIew_Load);
             this.gbCheckDivision.ResumeLayout(false);
@@ -218,7 +208,6 @@
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Button btn0;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCancelOne;

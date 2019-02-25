@@ -258,7 +258,7 @@ namespace GoodeeWay
                 {
                     Form mf = (Form)item;
 
-                    if (!mf.Name.Equals(formName.Name))
+                    if (!mf.Name.Equals(formName.Name) && !mf.Name.Equals("FrmSandwichMaking") && !mf.Name.Equals("ResourceManagemanet"))
                     {
                         mf.Close();
                     }
