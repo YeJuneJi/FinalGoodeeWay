@@ -16,8 +16,11 @@ namespace GoodeeWay.InventoryBUS
     public partial class InventorySales : Form
     {
         List<InventoryTypeSalesVO> InventoryTypeList;
+        List<InventoryTypeSalesVO> inventoryTypeSalesList;
         List<InventoryTypeSalesVO> InventoryList;
         List<InventoryTypeSalesVO> avgList;
+        List<InventoryTypeSalesVO> avgList1;
+        List<InventorySalesForChartVO> inventorySalesForChartVOs;
         string[] type1 = new string[] { "Bread", "Cheese", "Vegetable", "Sauce", "Additional", "Topping", "Side" };
         public InventorySales()
         {
@@ -28,42 +31,104 @@ namespace GoodeeWay.InventoryBUS
             cmbType.Items.AddRange(type1);
         }
 
-
+        /// <summary>
+        /// 재고별판매량 검색버튼 클릭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var displayChart = new Display();
             InventorySalesChart.Series.Clear();
             
-            if (rdoInventoryType.Checked == true)
+            if (rdoInventoryType.Checked == true)//종류기준으로 검색할때
             {
-                InventorySalesChart.Series.Add("종류기준");
-                InventoryTypeList = displayChart.DisplayChart(new InventoryTypeChart()
-                { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, false);
 
-                InventorySalesChart.Series["종류기준"].Points.DataBind(InventoryTypeList, "InventoryName", "UseInventory", null);
-                InventorySalesChart.Series["종류기준"].Label = "#VALY";
-                foreach (var item in InventorySalesChart.Series["종류기준"].Points)
+
+                #region 재고량
+                InventorySalesChart.Series.Add(cmbType.Text + " 재고량");
+
+                InventoryTypeList = displayChart.DisplayChart(new InventoryTypeChart()
                 {
-                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2)+"kg";
+                    StartDate = new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
+                    EndDate = new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59)
+                }, cmbType.Text, false);
+
+                InventorySalesChart.Series[cmbType.Text + " 재고량"].Points.DataBind(InventoryTypeList, "XAxis", "UseInventory", null);
+                InventorySalesChart.Series[cmbType.Text + " 재고량"].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series[cmbType.Text + " 재고량"].Points)
+                {
+                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
+                }
+                #endregion
+
+
+                #region 판매량
+                InventorySalesChart.Series.Add(cmbType.Text + " 판매량");
+
+                this.inventoryTypeSalesList = new SaleRecordsDAO().SaleRecordsTypeSelect(
+                    new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
+                    new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59), cmbType.Text);
+
+                var result = from o in this.inventoryTypeSalesList
+                             group o by o.XAxis into g
+                             select new InventoryTypeSalesVO { XAxis = g.Key, UseInventory = g.Sum(c => c.UseInventory) };
+
+
+                List<InventoryTypeSalesVO> inventoryTypeSalesList = new List<InventoryTypeSalesVO>();
+
+                foreach (var item in InventoryTypeList)
+                {
+                    InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO();
+                    inventoryTypeSalesVO.XAxis = item.XAxis;
+                    var i = from o in result where item.XAxis == o.XAxis select o.UseInventory;
+                    if (i != null)
+                    {
+                        foreach (var item1 in i)
+                        {
+                            inventoryTypeSalesVO.UseInventory = item1;
+                        }
+                    }
+                    else
+                    {
+                        inventoryTypeSalesVO.UseInventory = 0;
+                    }
+                    inventoryTypeSalesList.Add(inventoryTypeSalesVO);
                 }
 
 
-                AverageDisplay(InventoryTypeList);
-                dgvDisplay(InventoryTypeList, rdoInventoryType.Checked);
+                InventorySalesChart.Series[cmbType.Text + " 판매량"].Points.DataBind(inventoryTypeSalesList, "XAxis", "UseInventory", null);
+                InventorySalesChart.Series[cmbType.Text + " 판매량"].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series[cmbType.Text + " 판매량"].Points)
+                {
+                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
+                }
+                #endregion
+
+                var totInventoryTypeSalesList = from i1 in InventoryTypeList.AsEnumerable()
+                                                join i2 in inventoryTypeSalesList.AsEnumerable()
+                                                on i1.XAxis equals i2.XAxis
+                                                select new InventorySalesForChartVO{ XAxis= i1.XAxis, InventoryNum= i1.UseInventory, SalesNum=i2.UseInventory};
+                inventorySalesForChartVOs = new List<InventorySalesForChartVO>(totInventoryTypeSalesList);
+                AverageDisplay(inventorySalesForChartVOs);
+                dgvDisplay(inventorySalesForChartVOs, rdoInventoryType.Checked);
             }
-            else
+            else//재고기준으로 검색할때
             {
                 InventorySalesChart.Series.Add(cmbType.Text);
                 InventoryList = displayChart.DisplayChart(new InventoryChart()
-                { StartDate = dtpStartDate.Value, EndDate = dtpEndDate.Value.AddHours(1) }, cmbType.Text, rdoMonth.Checked);
-                InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "InventoryName", "UseInventory", null);
+                {
+                    StartDate = new DateTime(dtpStartDate.Value.Year,dtpStartDate.Value.Month,dtpStartDate.Value.Day,0,0,0),
+                    EndDate = new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59)
+                }, cmbType.Text, rdoMonth.Checked);
+                InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "XAxis", "UseInventory", null);
                 InventorySalesChart.Series[cmbType.Text].Label = "#VALY";
                 foreach (var item in InventorySalesChart.Series[cmbType.Text].Points)
                 {
                     item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
                 }
-                AverageDisplay(InventoryList);
-                dgvDisplay(InventoryList, rdoInventoryType.Checked);
+                AverageDisplay(inventorySalesForChartVOs);
+                dgvDisplay(inventorySalesForChartVOs, rdoInventoryType.Checked);
             }
             lblStartDate.Text = dtpStartDate.Value.ToShortDateString();
             lblEndDate.Text = dtpEndDate.Value.ToShortDateString();
@@ -72,10 +137,16 @@ namespace GoodeeWay.InventoryBUS
 
         }
 
-        private void AverageDisplay(List<InventoryTypeSalesVO> List)
+        /// <summary>
+        /// 각 값들의 평균값을 표시하는 메서드
+        /// </summary>
+        /// <param name="List">조회 시 각 x축 값을 얻어오기 위한 List</param>
+        private void AverageDisplay(List<InventorySalesForChartVO> List)
         {
-            InventorySalesChart.Series.Add("평균");
+            InventorySalesChart.Series.Add("재고량평균");
+            InventorySalesChart.Series.Add("판매량평균");
             avgList = new List<InventoryTypeSalesVO>();
+            avgList1 = new List<InventoryTypeSalesVO>();
             //sum = 0;
             //count = 0;
             //foreach (var item in List)
@@ -86,57 +157,102 @@ namespace GoodeeWay.InventoryBUS
             
             foreach (var item in List)//평균 라인을 긋기 위해 x 값은 재고명을 다 넣어주고, y값은 모두 평균값으로 입력
             {
-                double num = (double)((from avgList in List select avgList.UseInventory).Average());
+                double inventoryNum = (double)((from avgList in List select avgList.InventoryNum).Average());
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
-                    InventoryName = item.InventoryName,
-                    UseInventory = (float)Math.Round(num,2)
+                    XAxis = item.XAxis,
+                    UseInventory = (float)Math.Round(inventoryNum, 2)
                 };
                 avgList.Add(inventoryTypeSalesVO);
             }
-            InventorySalesChart.Series["평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            InventorySalesChart.Series["평균"].Points.DataBind(avgList, "InventoryName", "UseInventory", null);
+            InventorySalesChart.Series["재고량평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            InventorySalesChart.Series["재고량평균"].Points.DataBind(avgList, "XAxis", "UseInventory", null);
             try
             {
-                InventorySalesChart.Series["평균"].Points[0].Label = "평균 : "+avgList[0].UseInventory+"kg";
-                InventorySalesChart.Series["평균"].Points[0].LabelForeColor = Color.Red;
+                InventorySalesChart.Series["재고량평균"].Points[0].Label = "재고량 평균 : "+avgList[0].UseInventory+"kg";
+                InventorySalesChart.Series["재고량평균"].Points[0].LabelForeColor = Color.Red;
             }
             catch (ArgumentOutOfRangeException)
             {
             }
+
+
+
+
+            foreach (var item in List)//평균 라인을 긋기 위해 x 값은 재고명을 다 넣어주고, y값은 모두 평균값으로 입력
+            {
+                double salesNum = (double)((from avgList1 in List select avgList1.SalesNum).Average());
+                InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
+                {
+                    XAxis = item.XAxis,
+                    UseInventory = (float)Math.Round(salesNum, 2)
+                };
+                avgList1.Add(inventoryTypeSalesVO);
+            }
+            InventorySalesChart.Series["판매량평균"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            InventorySalesChart.Series["판매량평균"].Points.DataBind(avgList1, "XAxis", "UseInventory", null);
+            try
+            {
+                InventorySalesChart.Series["판매량평균"].Points[avgList1.Count-1].Label = "판매량평균 : " + avgList1[0].UseInventory + "kg";
+                InventorySalesChart.Series["판매량평균"].Points[avgList1.Count-1].LabelForeColor = Color.Blue;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
+
         }
 
-        private void dgvDisplay(List<InventoryTypeSalesVO> List, bool @checked)
+        /// <summary>
+        /// 기준에 따른 데이터를 DataGridView 에 표시함.
+        /// </summary>
+        /// <param name="List">종류,재고 기준에 따라 표시할 데이터에 대한 List </param>
+        /// <param name="checked">종류, 재고 체크여부</param>
+        private void dgvDisplay(List<InventorySalesForChartVO> List, bool @checked)
         {
-            float sum = 0;
+            float inventoryNum = 0;
+            float salesNum = 0;
             foreach (var item in List)
             {
-                sum += item.UseInventory;
+                inventoryNum += item.InventoryNum;
+                salesNum += item.SalesNum;
             }
 
 
             if (List.Count >0)
             {
-                List.Add(new InventoryTypeSalesVO() { InventoryName = "평균", UseInventory = (float)Math.Round((sum / List.Count()),2) });
-                List.Add(new InventoryTypeSalesVO() { InventoryName = "총합", UseInventory = sum }); 
+                List.Add(new InventorySalesForChartVO()
+                {
+                    XAxis = "평균",
+                    InventoryNum = (float)Math.Round((inventoryNum / List.Count()), 2),
+                    SalesNum = (float)Math.Round((salesNum / List.Count()), 2)
+                });
+                List.Add(new InventorySalesForChartVO()
+                {
+                    XAxis = "총합",
+                    InventoryNum = inventoryNum,
+                    SalesNum= salesNum
+                });
             }
             dgvData.DataSource = List;
             if (@checked)
             {
-                dgvData.Columns["InventoryName"].HeaderText = "재고명";
-                dgvData.Columns["UseInventory"].HeaderText = "사용수량";
+                dgvData.Columns["XAxis"].HeaderText = "재고명";
+                dgvData.Columns["InventoryNum"].HeaderText = "재고량";
+                dgvData.Columns["SalesNum"].HeaderText = "판매량";
                 
             }
             else
             {
-                dgvData.Columns["InventoryName"].HeaderText = "날짜";
-                dgvData.Columns["UseInventory"].HeaderText = "사용수량"; 
+                dgvData.Columns["XAxis"].HeaderText = "날짜";
+                dgvData.Columns["InventoryNum"].HeaderText = "재고량"; 
+                dgvData.Columns["SalesNum"].HeaderText = "판매량"; 
             }
-
-            
-
         }
-
+        /// <summary>
+        /// 날짜 선택 시 시작날짜가 종료날짜보다 작게 만드는 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dtpStartDate_ValueChanged(object sender, EventArgs e)
         {
             if (dtpStartDate.Value>dtpEndDate.Value)
@@ -145,7 +261,11 @@ namespace GoodeeWay.InventoryBUS
                 dtpStartDate.Value= dtpEndDate.Value.AddDays(-1);
             }
         }
-
+        /// <summary>
+        /// 날짜 선택 시 종료날짜가 시작날짜보다 작아질 때 시작날짜를 종료날짜 전날로 바꾸는 메서드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dtpEndDate_ValueChanged(object sender, EventArgs e)
         {
             if (dtpStartDate.Value>dtpEndDate.Value)
@@ -153,6 +273,7 @@ namespace GoodeeWay.InventoryBUS
                 dtpStartDate.Value=dtpEndDate.Value.AddDays(-1);
             }
         }
+
 
         #region 최근기간 설정
         private void btn1Week_Click(object sender, EventArgs e)

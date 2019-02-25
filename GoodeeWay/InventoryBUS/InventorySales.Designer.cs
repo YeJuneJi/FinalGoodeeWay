@@ -58,6 +58,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoInventory = new System.Windows.Forms.RadioButton();
             this.rdoInventoryType = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.gbLastestDate.SuspendLayout();
@@ -354,11 +355,21 @@
             this.rdoInventoryType.UseVisualStyleBackColor = true;
             this.rdoInventoryType.CheckedChanged += new System.EventHandler(this.rdoInventoryType_CheckedChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 12);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "label2";
+            // 
             // InventorySales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 551);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.gbLastestDate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpStartDate);
@@ -416,5 +427,6 @@
         private System.Windows.Forms.RadioButton rdoInventoryType;
         private System.Windows.Forms.RadioButton rdoYear;
         private System.Windows.Forms.RadioButton rdoMonth;
+        private System.Windows.Forms.Label label2;
     }
 }

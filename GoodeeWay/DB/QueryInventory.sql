@@ -369,3 +369,11 @@ AS
 	update  Inventory
 	set RemainingQuantity=@InventoryQuantity-((@UseQuantity+@RealUseQuantity)/@ReceivingQuantity)
 	where ReceivingDetailsID=@ReceivingDetailsID;
+
+Go
+--saleRecords에서 json 얻어오기
+CREATE PROCEDURE [dbo].SelectSaleRecordsType
+	@StartDate datetime,
+	@EndDate datetime
+AS
+	SELECT salesitemName from SaleRecords where salesDate>= @StartDate and salesDate<=@EndDate;
