@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class ResourceManagementVO
+    class ResourceChartVO
     {
         //기간
-        private DateTime resourceDate;
+        private string period;
 
-        public DateTime ResourceDate
+        public string Period
         {
-            get { return resourceDate; }
-            set { resourceDate = value; }
+            get { return period; }
+            set { period = value; }
         }
         //총매출액
         private float totInvestPrice;
@@ -42,6 +42,7 @@ namespace GoodeeWay.VO
             set { equipPrice = value; }
         }
 
+        //인사비
         private float employeePrice;
 
         public float EmployeePrice
@@ -50,23 +51,5 @@ namespace GoodeeWay.VO
             set { employeePrice = value; }
         }
 
-
-
-        public override bool Equals(object obj)
-        {
-            ResourceManagementVO resource = obj as ResourceManagementVO;
-            if (resource == null)
-            {
-                return false;
-            }
-            equipPrice = resource.EquipPrice;
-            employeePrice = resource.EmployeePrice;
-            return resourceDate == resource.ResourceDate;
-        }
-
-        public override int GetHashCode()
-        {
-            return 1119966897 + resourceDate.GetHashCode();
-        }
     }
 }

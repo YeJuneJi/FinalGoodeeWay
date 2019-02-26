@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay
 {
-    public static class ImageConverter
+    public static class Extensions
     {
         public static byte[] ImageToByteArray(this Image image)
         {
@@ -26,5 +26,13 @@ namespace GoodeeWay
             memoryStream.Close();
             return image;
         }
+        /// <summary>
+        /// Icon을 Image로 변경해주는 확장메서드
+        /// </summary>
+        public static Image ToImage(this Icon icon)
+        {
+            return icon.ToBitmap();
+        }
+
     }
 }

@@ -19,7 +19,7 @@ namespace GoodeeWay.DAO
         public bool DeleteMenu(string menuCode)
         {
             connection = new DBConnection();
-            string storedProcedure = "DeleteSales";
+            string storedProcedure = "DeleteSalesMenu";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("menuCode", menuCode)
@@ -74,7 +74,7 @@ namespace GoodeeWay.DAO
         public int UpdateMenu(SalesMenuVO salesMenuVO, string oldeMenuCode)
         {
             connection = new DBConnection();
-            string storedProcedure = "UpdateSales";
+            string storedProcedure = "UpdateSalesMenu";
             SqlParameter[] sqlParameters = new SqlParameter[]
             {
                 new SqlParameter("menuCode", salesMenuVO.MenuCode),

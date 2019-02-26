@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class RealMenuVO
+    public class RealMenuVO
     {
         private MenuAndDetails[] realMenu;
 

@@ -31,7 +31,7 @@ namespace GoodeeWay.Sales
 
         string oldMenuCode;
         int oldDivision;
-        string images;
+        string images = "\\Images\\";
         public FrmSalesMenu()
         {
             InitializeComponent();
@@ -409,11 +409,13 @@ namespace GoodeeWay.Sales
                     }
                     menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
                 }
+                //수정 전은 샌드위치가 아니고, 수정 후 샌드위치이면
                 else if (oldDivision != 0 && salesMenuVO.Division == 0)
                 {
                     menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
                     successInsertRecipe = InsertingRecipe(salesMenuVO.MenuCode, successInsertRecipe);
                 }
+                //수정 전과 수정 후 전부 샌드위치가 아니라면
                 else if (oldDivision != 0 && salesMenuVO.Division != 0)
                 {
                     menuUpdateSucess = UpdatingMenu(salesMenuVO, menuUpdateSucess);
@@ -435,7 +437,7 @@ namespace GoodeeWay.Sales
             }
             else
             { 
-                    MessageBox.Show("수정 실패");
+                MessageBox.Show("수정 실패");
             }
             btnClear_Click(null, null);
         }

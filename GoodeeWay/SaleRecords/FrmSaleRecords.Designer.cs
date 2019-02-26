@@ -58,14 +58,15 @@
             this.salesRecordsGView.ReadOnly = true;
             this.salesRecordsGView.RowTemplate.Height = 23;
             this.salesRecordsGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.salesRecordsGView.Size = new System.Drawing.Size(693, 381);
+            this.salesRecordsGView.Size = new System.Drawing.Size(739, 381);
             this.salesRecordsGView.TabIndex = 0;
             this.salesRecordsGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellClick);
+            this.salesRecordsGView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellDoubleClick);
             // 
             // dtpPeriodStart
             // 
             this.dtpPeriodStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtpPeriodStart.Location = new System.Drawing.Point(21, 61);
+            this.dtpPeriodStart.Location = new System.Drawing.Point(44, 61);
             this.dtpPeriodStart.Name = "dtpPeriodStart";
             this.dtpPeriodStart.Size = new System.Drawing.Size(200, 21);
             this.dtpPeriodStart.TabIndex = 10;
@@ -73,7 +74,7 @@
             // dtpPeriodEnd
             // 
             this.dtpPeriodEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dtpPeriodEnd.Location = new System.Drawing.Point(246, 61);
+            this.dtpPeriodEnd.Location = new System.Drawing.Point(269, 61);
             this.dtpPeriodEnd.Name = "dtpPeriodEnd";
             this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 21);
             this.dtpPeriodEnd.TabIndex = 9;
@@ -82,7 +83,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(228, 65);
+            this.label1.Location = new System.Drawing.Point(251, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 12);
             this.label1.TabIndex = 11;
@@ -91,7 +92,7 @@
             // tbxSalesNo
             // 
             this.tbxSalesNo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbxSalesNo.Location = new System.Drawing.Point(21, 34);
+            this.tbxSalesNo.Location = new System.Drawing.Point(44, 34);
             this.tbxSalesNo.Name = "tbxSalesNo";
             this.tbxSalesNo.Size = new System.Drawing.Size(425, 21);
             this.tbxSalesNo.TabIndex = 13;
@@ -99,7 +100,7 @@
             // btnExcel
             // 
             this.btnExcel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnExcel.Location = new System.Drawing.Point(574, 62);
+            this.btnExcel.Location = new System.Drawing.Point(597, 62);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(75, 23);
             this.btnExcel.TabIndex = 18;
@@ -110,7 +111,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnSearch.Location = new System.Drawing.Point(472, 32);
+            this.btnSearch.Location = new System.Drawing.Point(495, 32);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 17;
@@ -121,7 +122,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnDelete.Location = new System.Drawing.Point(472, 62);
+            this.btnDelete.Location = new System.Drawing.Point(495, 62);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 16;
@@ -132,7 +133,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnUpdate.Location = new System.Drawing.Point(574, 32);
+            this.btnUpdate.Location = new System.Drawing.Point(597, 32);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 15;
@@ -144,7 +145,7 @@
             // 
             this.rdoSalesNo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoSalesNo.AutoSize = true;
-            this.rdoSalesNo.Location = new System.Drawing.Point(107, 12);
+            this.rdoSalesNo.Location = new System.Drawing.Point(130, 12);
             this.rdoSalesNo.Name = "rdoSalesNo";
             this.rdoSalesNo.Size = new System.Drawing.Size(87, 16);
             this.rdoSalesNo.TabIndex = 19;
@@ -156,7 +157,7 @@
             // 
             this.rdoDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoDate.AutoSize = true;
-            this.rdoDate.Location = new System.Drawing.Point(216, 12);
+            this.rdoDate.Location = new System.Drawing.Point(239, 12);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(87, 16);
             this.rdoDate.TabIndex = 20;
@@ -169,7 +170,7 @@
             this.rdoTotalSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoTotalSearch.AutoSize = true;
             this.rdoTotalSearch.Checked = true;
-            this.rdoTotalSearch.Location = new System.Drawing.Point(20, 12);
+            this.rdoTotalSearch.Location = new System.Drawing.Point(43, 12);
             this.rdoTotalSearch.Name = "rdoTotalSearch";
             this.rdoTotalSearch.Size = new System.Drawing.Size(71, 16);
             this.rdoTotalSearch.TabIndex = 21;
@@ -187,7 +188,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 487);
+            this.ClientSize = new System.Drawing.Size(752, 487);
             this.Controls.Add(this.rdoTotalSearch);
             this.Controls.Add(this.rdoDate);
             this.Controls.Add(this.rdoSalesNo);

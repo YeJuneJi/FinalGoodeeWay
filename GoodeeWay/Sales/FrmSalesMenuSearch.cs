@@ -129,7 +129,8 @@ namespace GoodeeWay.Sales
                     workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
                     workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
                     Excel.Range pictureRange = workSheet.Cells[i, 5];
-                    Image img = Image.FromFile((menuSearchGView.Rows[i - 2].Cells[4].Value.ToString()));
+                    MemoryStream ms = new MemoryStream((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value);
+                    Image img = Image.FromStream(ms);
                     img = (Image)new Bitmap(img, new Size(100, 100));
                     pictureRange.ColumnWidth = 11.88;
                     pictureRange.RowHeight = 75.00;
@@ -137,7 +138,7 @@ namespace GoodeeWay.Sales
                     workSheet.Paste(pictureRange, img); //Ctrl + V     
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
-
+                    ms.Close();
                 }
 
                 try
