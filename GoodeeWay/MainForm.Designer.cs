@@ -58,6 +58,7 @@
             // 
             // mToolStrip
             // 
+            this.mToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.mToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.programNameLblToolstrip,
@@ -70,8 +71,10 @@
             // 
             // programNameLblToolstrip
             // 
+            this.programNameLblToolstrip.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.programNameLblToolstrip.ForeColor = System.Drawing.Color.White;
             this.programNameLblToolstrip.Name = "programNameLblToolstrip";
-            this.programNameLblToolstrip.Size = new System.Drawing.Size(91, 22);
+            this.programNameLblToolstrip.Size = new System.Drawing.Size(130, 22);
             this.programNameLblToolstrip.Text = "(주)GoodeeWay";
             // 
             // tsLblTime
