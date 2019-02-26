@@ -16,6 +16,9 @@ namespace GoodeeWay.Order
     public partial class Order : Form
     {
         private List<MenuAndDetails> bucketMenuAndDetailList;
+        DataTable orderRecords;
+        DataColumn[] dataColoumns;
+        string menuList;
 
         public Order()
         {
@@ -55,7 +58,34 @@ namespace GoodeeWay.Order
             txtTax.Text = tax.ToString(); // 세금 입력
             txtTotal.Text = (price - discount).ToString();
 
-            dataGridView1.DataSource = menuList;
+            // DataTable
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dataGridView1.AllowUserToAddRows = false;
+            dataColoumns = new DataColumn[]
+            {
+                new DataColumn("메뉴번호"),
+                new DataColumn("이름"),
+                new DataColumn("가격"),
+                new DataColumn("칼로리")
+            };
+            orderRecords = new DataTable("searchRecords");
+            orderRecords.Columns.AddRange(dataColoumns);
+            
+            ListToGridView(menuList);
+
+            //dataGridView1.DataSource = menuList;
+        }
+
+        private void ListToGridView(List<Menu> menulist)
+        {
+            foreach (var item in menulist)
+            {
+                menuList = string.Empty;
+                                
+                orderRecords.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal);
+            }
+            dataGridView1.DataSource = orderRecords;
         }
 
         public bool result = false;

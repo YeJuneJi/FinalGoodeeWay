@@ -72,16 +72,11 @@ namespace GoodeeWay
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (fov == null)
+            if (fov == null || fov.IsDisposed)
             {
                 fov = new FrmOrderView();
                 panelTest.Controls.Add(fov);
-                //CheckOpenClose(oderVIew);
-            }
-            else if (fov.IsDisposed)
-            {
-                fov = new FrmOrderView();
-                panelTest.Controls.Add(fov);
+                fov.BringToFront();
                 //CheckOpenClose(oderVIew);
             }
             else
@@ -92,7 +87,7 @@ namespace GoodeeWay
 
         private void 재고ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (inventory == null)
+            if (inventory == null )
             {
                 inventory = new inventory();
                 inventory.MdiParent = this;
@@ -223,13 +218,13 @@ namespace GoodeeWay
             if (frmSandwichMaking == null)
             {
                 frmSandwichMaking = new FrmSandwichMaking();
-                frmSandwichMaking.MdiParent = this;
+                //frmSandwichMaking.MdiParent = this;
                 frmSandwichMaking.Show();
             }
             else if (frmSandwichMaking.IsDisposed)
             {
                 frmSandwichMaking = new FrmSandwichMaking();
-                frmSandwichMaking.MdiParent = this;
+                //frmSandwichMaking.MdiParent = this;
                 frmSandwichMaking.Show();
             }
             else
