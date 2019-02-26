@@ -100,6 +100,7 @@ namespace GoodeeWay.Sales
             lblTotal.Text = searchMenu.Rows.Count.ToString() + "개의 결과를 출력하였습니다.";
         }
 
+
         private void btnExcel_Click(object sender, EventArgs e)
         {
             if (ExcelSaveFileDlg.ShowDialog() != DialogResult.Cancel)
@@ -144,10 +145,11 @@ namespace GoodeeWay.Sales
                 try
                 {
                     workBook.SaveAs(ExcelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                    MessageBox.Show("저장 성공!");
                 }
                 catch (Exception)
                 {
-                    throw;
+                    MessageBox.Show("저장 실패!");
                 }
                 excelApp.Quit();
                 Marshal.FinalReleaseComObject(workSheet);

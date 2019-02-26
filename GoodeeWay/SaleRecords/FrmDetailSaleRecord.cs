@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,7 @@ namespace GoodeeWay.SaleRecords
             lblTotalPrice.Text = "금액 : " + totalPrice.ToString();
 
             textBox1.Text += "================주문 내역========================\r\n";
-
-            int i = 0;
-
+            
             foreach (var rmv in realMenuVO.RealMenu)
             {
                 if (rmv.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
@@ -85,7 +84,16 @@ namespace GoodeeWay.SaleRecords
 
         private void btnRefund_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                new SaleRecordsDAO().RefundSaleRecords(salesNo);
+                MessageBox.Show("환불성공");
+                this.Close();
+            }
+            catch (SqlException except)
+            {
+                MessageBox.Show(except.Message);
+            }
         }
     }
 }

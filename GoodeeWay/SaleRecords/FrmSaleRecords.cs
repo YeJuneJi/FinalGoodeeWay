@@ -58,9 +58,9 @@ namespace GoodeeWay.SaleRecords
                 RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
                 foreach (var realMenu in rv.RealMenu)
                 {
-                    salesItemList += realMenu.Menu.MenuName + ", ";
+                    salesItemList += realMenu.Menu.Division + " : " + realMenu.Menu.MenuName + ", ";
                 }
-                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, salesItemList.Remove(salesItemList.Length - 2, 1) , item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
+                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, item.SalesitemName/*salesItemList.Remove(salesItemList.Length - 2, 2)*/ , item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
             }
             salesRecordsGView.DataSource = searchRecords;
         }
@@ -281,13 +281,11 @@ namespace GoodeeWay.SaleRecords
         private void salesRecordsGView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int salesNo = int.Parse(salesRecordsGView.SelectedRows[0].Cells[0].Value.ToString());
-            DateTime salesDate = DateTime.Parse(salesRecordsGView.SelectedRows[0].Cells[1].Value.ToString());            
-            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString());
+            DateTime salesDate = DateTime.Parse(salesRecordsGView.SelectedRows[0].Cells[1].Value.ToString());
+            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString()); 
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
-
             FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
             fdsr.ShowDialog();            
-
         }
     }
 }

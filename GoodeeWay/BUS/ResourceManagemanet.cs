@@ -35,8 +35,7 @@ namespace GoodeeWay.BUS
         {
             FrmUsingOfEquipment usingOfEquipment = new FrmUsingOfEquipment();
             usingOfEquipment.Show();
-        }
-
+        }   
         private void 메뉴별판매량ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SalesVolumeByMenu salesVolumeByMenu = new SalesVolumeByMenu();
