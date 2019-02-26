@@ -80,9 +80,7 @@ namespace GoodeeWay
         {
             if (salesMenu == null || salesMenu.IsDisposed)
             {
-                
                 salesMenu = new FrmSalesMenu();
-                salesMenu.MdiParent = this;
                 salesMenu.Show();
                 CheckOpenClose(salesMenu);
             }
