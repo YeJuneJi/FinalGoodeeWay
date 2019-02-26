@@ -77,7 +77,34 @@ namespace GoodeeWay.BUS
         
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
+            AttendanceVO av = new AttendanceVO()
+            {
+                No = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),
+                Name = dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                Empno = dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
+                TimeIn = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString()),
+                TimeOut = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString()),
+                TotalTime = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[5].Value.ToString()),
+                Date = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[6].Value.ToString()),
+                TotalPay = float.Parse(dataGridView1.SelectedRows[0].Cells[7].Value.ToString()),
+                OverTime = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[8].Value.ToString()),
+                Note = dataGridView1.SelectedRows[0].Cells[9].Value.ToString(),
+            };
+
+            Update_Attendance ua = new Update_Attendance();
+            ua.av.No = av.No;
+            ua.av.Name = av.Name;
+            ua.av.Empno = av.Empno;
+            ua.av.Date = av.Date;
+            ua.av.TotalPay = av.TotalPay;
+            ua.av.TimeIn = av.TimeIn;
+            ua.av.TimeOut = av.TimeOut;
+            ua.av.OverTime = av.OverTime;
+            ua.av.TotalTime = av.TotalTime;
+            ua.av.Note = av.Note;
+
+            ua.FormClosed += new FormClosedEventHandler(Attendance_Load);
+            ua.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -154,6 +181,11 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("엑셀 파일 저장 성공");
             }
 
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnUpdate_Click(null, null);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
-    class AttendanceVO
+    public class AttendanceVO
     {
         private int no;
 

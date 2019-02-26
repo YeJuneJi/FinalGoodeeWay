@@ -89,6 +89,12 @@
     <Compile Include="BUS\ResourceManagemanet.Designer.cs">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
     </Compile>
+    <Compile Include="BUS\Update_Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Attendance.Designer.cs">
+      <DependentUpon>Update_Attendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\Update_Emp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BUS\Insert_Salary.resx">
       <DependentUpon>Insert_Salary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Update_Attendance.resx">
+      <DependentUpon>Update_Attendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BUS\Update_Emp.resx">
       <DependentUpon>Update_Emp.cs</DependentUpon>

@@ -194,6 +194,7 @@
             this.btnUpdate.TabIndex = 77;
             this.btnUpdate.Text = "내역 수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // comboBox1
             // 

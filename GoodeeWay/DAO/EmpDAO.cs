@@ -115,5 +115,33 @@ namespace GoodeeWay.DAO
             } 
             return result;
         }
+
+        public bool Update(EmpVO emp)
+        {
+            string sp = "proc_emp_update";
+            SqlParameter[] sqlParameters = new SqlParameter[12];
+            sqlParameters[0] = new SqlParameter("empno", emp.Empno);
+            sqlParameters[1] = new SqlParameter("job", emp.Job);
+            sqlParameters[2] = new SqlParameter("Pay", emp.Pay);
+            sqlParameters[3] = new SqlParameter("name", emp.Name);
+            sqlParameters[4] = new SqlParameter("Department", emp.Department);
+            sqlParameters[5] = new SqlParameter("Mobile", emp.Mobile);
+            sqlParameters[6] = new SqlParameter("JoinDate", emp.JoinDate);
+            sqlParameters[7] = new SqlParameter("LeaveDate", emp.LeaveDate);
+            sqlParameters[8] = new SqlParameter("BankAccountNo", emp.BankAccountNo);
+            sqlParameters[9] = new SqlParameter("Bank", emp.Bank);
+            sqlParameters[10] = new SqlParameter("Email", emp.Email);
+            sqlParameters[11] = new SqlParameter("Note", emp.Note);
+            bool result = true;
+            try
+            {
+                new DBConnection().Update(sp, sqlParameters);
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            return result;
+        }
     }
 }

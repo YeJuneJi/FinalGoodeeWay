@@ -52,7 +52,7 @@ namespace GoodeeWay.BUS
                 TotalSalary = float.Parse(txtTotal.Text),
                 Payday = DateTime.Parse(dtpDate.Text)
             };
-            bool result = false;
+
             if (new SalaryDAO().UpdateSalary(lst))
             {
                 MessageBox.Show("수정 성공");

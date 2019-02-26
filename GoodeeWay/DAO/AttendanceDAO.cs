@@ -97,5 +97,29 @@ namespace GoodeeWay.DAO
             }
             return result;
         }
+
+        public bool UpdateAttendance(AttendanceVO ad)
+        {
+            string sp = "proc_attendance_update";//저장프로시져 이름
+            SqlParameter[] sqlParameters = new SqlParameter[8];
+            sqlParameters[0] = new SqlParameter("no", ad.No);
+            sqlParameters[1] = new SqlParameter("TimeIn", ad.TimeIn);
+            sqlParameters[2] = new SqlParameter("TimeOut", ad.TimeOut);
+            sqlParameters[3] = new SqlParameter("TotalTime", ad.TotalTime);
+            sqlParameters[4] = new SqlParameter("Date", ad.Date);
+            sqlParameters[5] = new SqlParameter("TotalPay", ad.TotalPay);
+            sqlParameters[6] = new SqlParameter("OverTime", ad.OverTime);
+            sqlParameters[7] = new SqlParameter("Note", ad.Note);
+            bool result = true;
+            try
+            {
+                new DBConnection().Update(sp, sqlParameters);
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            return result;
+        }
     }
 }

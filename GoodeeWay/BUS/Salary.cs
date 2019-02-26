@@ -32,15 +32,10 @@ namespace GoodeeWay.BUS
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Salary ins = new Insert_Salary();
-            ins.FormClosed += new FormClosedEventHandler(newForm_FormClosed); // 닫으면 폼이 새로고침됨
+            ins.FormClosed += new FormClosedEventHandler(Salary_Load); // 닫으면 폼이 새로고침됨
             ins.Show();
         }
-
-        private void newForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Salary_Load(null, null);
-        }
-
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("일련번호 '" + dataGridView1.SelectedCells[0].Value + "'의 기록을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
@@ -266,18 +261,23 @@ namespace GoodeeWay.BUS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnUpdate_Click(null, null);
+        }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
             SalaryVO sv = new SalaryVO()
             {
-                No = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Empno = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Name = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                Salary = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString()),
-                Tax = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString()),
-                Bonus = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString()),
-                TotalSalary = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()),
-                Payday = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString()),
+                No = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
+                Empno = dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                Name = dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
+                Salary = float.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString()),
+                Tax = float.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString()),
+                Bonus = float.Parse(dataGridView1.SelectedRows[0].Cells[5].Value.ToString()),
+                TotalSalary = float.Parse(dataGridView1.SelectedRows[0].Cells[6].Value.ToString()),
+                Payday = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[7].Value.ToString()),
             };
+
             Update_Salary us = new Update_Salary();
             us.sv.No = sv.No;
             us.sv.Empno = sv.Empno;
@@ -287,6 +287,8 @@ namespace GoodeeWay.BUS
             us.sv.Bonus = sv.Bonus;
             us.sv.TotalSalary = sv.TotalSalary;
             us.sv.Payday = sv.Payday;
+
+            us.FormClosed += new FormClosedEventHandler(Salary_Load);
             us.Show();
         }
     }
