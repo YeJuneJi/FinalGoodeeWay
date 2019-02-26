@@ -171,12 +171,6 @@
     <Compile Include="Order\Menu.cs" />
     <Compile Include="Order\MenuAndDetails.cs" />
     <Compile Include="Order\MenuDetail.cs" />
-    <Compile Include="Order\OderVIew.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Order\OderVIew.Designer.cs">
-      <DependentUpon>OderVIew.cs</DependentUpon>
-    </Compile>
     <Compile Include="Order\Order.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -382,9 +376,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Order\FrmOrderView.resx">
       <DependentUpon>FrmOrderView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Order\OderVIew.resx">
-      <DependentUpon>OderVIew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\Order.resx">
       <DependentUpon>Order.cs</DependentUpon>
