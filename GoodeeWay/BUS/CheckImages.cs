@@ -36,7 +36,7 @@ namespace GoodeeWay.BUS
 
             foreach (var fileName in di.GetFiles())
             {
-                hasImageList.Add(fileName.Name);                
+                hasImageList.Add(fileName.Name);
             }
 
             foreach (var name in nameList) // 다운로드 해야 되는 파일
@@ -69,7 +69,7 @@ namespace GoodeeWay.BUS
 
                 imgVO.Image = ms.ToArray();
 
-                new ImagesDAO().InsertImage(imgVO);                
+                new ImagesDAO().InsertImage(imgVO);
             }
         }
 
@@ -77,12 +77,12 @@ namespace GoodeeWay.BUS
         {
             foreach (var name in needsToDownload)
             {
+                MessageBox.Show(name);
                 ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
 
-                if (imgVO.Image != null)
-                {
-                    File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
-                }
+                MessageBox.Show(imgVO.Name);
+                MessageBox.Show("\r\n\r\n" + imgVO.Image);
+                File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
 
             }
         }

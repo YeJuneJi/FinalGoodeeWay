@@ -55,7 +55,16 @@ namespace GoodeeWay.Order
 
                 ListViewItem listViewItem = new ListViewItem();
                 listViewItem.Name = item.MenuName;
-                listViewItem.Text = item.MenuName;
+
+                if (item.DiscountRatio != 0)
+                {
+                    listViewItem.Text = item.MenuName + "\r\n" + "할인! : " + ((decimal)item.Price - ((decimal)item.Price / (decimal)item.DiscountRatio)).ToString() + "원";
+                }
+                else
+                {                    
+                    listViewItem.Text = item.MenuName + "\r\n" + item.Price + "원";
+                }
+
                 listViewItem.ImageKey = item.MenuCode;
 
                 listViewItemList.Add(listViewItem);
@@ -103,7 +112,7 @@ namespace GoodeeWay.Order
             
             foreach (Menu item in menuList)
             {                
-                if (item.MenuName == lvi.SelectedItems[0].Text)
+                if (lvi.SelectedItems[0].Text.Contains(item.MenuName))
                 {                    
                     if (!item.Division.Equals(Convert.ToString((int)Division.샌드위치))) // 구분이 Sandwich가 아니면 그냥 처리
                     {
@@ -121,23 +130,6 @@ namespace GoodeeWay.Order
                     }                    
                     break;
                 }
-            }
-
-            textBox1.Text = "";
-            foreach (var item in bucketMenuAndDetailList)
-            {
-                textBox1.Text += "\r\n";
-                textBox1.Text += item.Menu.MenuName;
-
-                if (item.MenuDetailList != null)
-                {
-                    textBox1.Text += "\r\n";
-                    textBox1.Text += "--> 상세메뉴 :  ";
-                    foreach (var item2 in item.MenuDetailList)
-                    {
-                        textBox1.Text += item2.InventoryName + " | " + item2.Amount + "\t";                        
-                    }
-                }                
             }
             
             SetBasketListBox();
@@ -171,7 +163,15 @@ namespace GoodeeWay.Order
                 {
                     if (listViewItem.Name.Equals(menu.MenuName))
                     {
-                        price += (decimal)menu.Price;
+                        if (menu.DiscountRatio != 0)
+                        {
+                            price += (decimal)menu.Price - ((decimal)menu.Price / (decimal)menu.DiscountRatio);
+                        }
+                        else
+                        {
+                            price += (decimal)menu.Price;
+                        }
+                        
                         kCal += menu.Kcal;
 
                         listViewBasket.Items.Add((ListViewItem)listViewItem.Clone());

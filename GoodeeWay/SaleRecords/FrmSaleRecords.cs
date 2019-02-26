@@ -277,5 +277,17 @@ namespace GoodeeWay.SaleRecords
                 Marshal.FinalReleaseComObject(excelApp);
             }
         }
+
+        private void salesRecordsGView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int salesNo = int.Parse(salesRecordsGView.SelectedRows[0].Cells[0].Value.ToString());
+            DateTime salesDate = DateTime.Parse(salesRecordsGView.SelectedRows[0].Cells[1].Value.ToString());            
+            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString());
+            decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
+
+            FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
+            fdsr.ShowDialog();            
+
+        }
     }
 }

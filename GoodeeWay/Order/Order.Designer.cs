@@ -100,16 +100,16 @@
             // lblTax
             // 
             this.lblTax.AutoSize = true;
-            this.lblTax.Location = new System.Drawing.Point(120, 472);
+            this.lblTax.Location = new System.Drawing.Point(120, 512);
             this.lblTax.Name = "lblTax";
-            this.lblTax.Size = new System.Drawing.Size(29, 12);
+            this.lblTax.Size = new System.Drawing.Size(41, 12);
             this.lblTax.TabIndex = 3;
-            this.lblTax.Text = "세금";
+            this.lblTax.Text = "부가세";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(120, 514);
+            this.lblTotal.Location = new System.Drawing.Point(120, 472);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(29, 12);
             this.lblTotal.TabIndex = 4;
@@ -125,7 +125,7 @@
             // 
             // txtTax
             // 
-            this.txtTax.Location = new System.Drawing.Point(223, 469);
+            this.txtTax.Location = new System.Drawing.Point(223, 509);
             this.txtTax.Name = "txtTax";
             this.txtTax.ReadOnly = true;
             this.txtTax.Size = new System.Drawing.Size(271, 21);
@@ -133,7 +133,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(223, 511);
+            this.txtTotal.Location = new System.Drawing.Point(223, 469);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(271, 21);
