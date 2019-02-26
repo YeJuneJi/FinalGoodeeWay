@@ -22,18 +22,23 @@ namespace GoodeeWay.BUS
         DataColumn[] dataColumns;
         List<EquipmentVO> equipmentList;
         List<SaleRecordsVO> saleRecordList;
+        List<SalaryVO> salaryList;
         List<InventoryTypeVO> convertInventoryTypetoList;
         List<ReceivingDetailsVO> receivingDetailList;
         DataTable inventoryTypeList;
         List<ResourceManagementVO> totInvestList;
         List<ResourceManagementVO> equipList;
+        List<ResourceManagementVO> salList;
         List<ResourceManagementVO> mergeList;
+        FrmResourceChart frmResourceChart;
 
         public ResourceMain()
         {
             InitializeComponent();
             totInvestList = new List<ResourceManagementVO>();
             equipList = new List<ResourceManagementVO>();
+            salList = new List<ResourceManagementVO>();
+            mergeList = new List<ResourceManagementVO>();
             resourceDataGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             resourceDataGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             resourceDataGView.AllowUserToAddRows = false;
@@ -52,7 +57,9 @@ namespace GoodeeWay.BUS
 
             equipmentList = new EquipmentDAO().AllequipmentVOsList();
             saleRecordList = new SaleRecordsDAO().OutPutAllSaleRecords();
+            salaryList = new SalaryDAO().SelectAll();
             inventoryTypeList = new InventoryTypeDAO().InventoryTypeSelect();
+            
             convertInventoryTypetoList = (from DataRow rows in inventoryTypeList.Rows
                                           select new InventoryTypeVO()
                                           {
@@ -98,6 +105,11 @@ namespace GoodeeWay.BUS
 
         private void rdobtn_CheckedChanged(object sender, EventArgs e)
         {
+            resourceDataGView.DataSource = null;
+            totInvestList.Clear();
+            equipList.Clear();
+            salList.Clear();
+            mergeList.Clear();
             RadioButton rdo = sender as RadioButton;
             if (rdo.Name == rdoDate.Name)
             {
@@ -184,6 +196,21 @@ namespace GoodeeWay.BUS
                                                                where equipment.PurchaseDate.Year >= periodStart.Year && equipment.PurchaseDate.Year <= periodEnd.Year
                                                                select new { EquipDate = equipment.PurchaseDate.Year, PurchasePrice = equipment.PurchasePrice })
                                                group equips by equips.EquipDate;
+                    //일별 인건비
+                    var dayPerEmployeeSalaryTot = from sals in(from salary in salaryList
+                                                               where salary.Payday >= periodStart && salary.Payday <= periodEnd
+                                                               select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
+                                                  group sals by sals.Payday;
+                    //월별 인건비
+                    var monthPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                                  where salary.Payday.Month >= periodStart.Month && salary.Payday.Month <= periodEnd.Month
+                                                                select new { Payday = salary.Payday.Month, TotalSalary = salary.TotalSalary })
+                                                group sals by sals.Payday;
+                    //연별 인건비
+                    var yearPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                                  where salary.Payday.Year >= periodStart.Year && salary.Payday.Year <= periodEnd.Year
+                                                                 select new { Payday = salary.Payday.Year, TotalSalary = salary.TotalSalary })
+                                                    group sals by sals.Payday;
 
                     //단가 계산을 위한 InventoryType테이블과 ReceivingDetail 테이블의 Join 쿼리
                     var calUnitPrice = from inven in convertInventoryTypetoList
@@ -200,7 +227,7 @@ namespace GoodeeWay.BUS
                     if (rdoDate.Checked)
                     {
                         datecheck = true;
-                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP)*30)).ToString();
+                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) * 30)).ToString();
                         ////일별 총 매출과 원 재료비 계산을 위한 반복문
                         foreach (var itemgroup in dayPerRealTot)
                         {
@@ -247,7 +274,19 @@ namespace GoodeeWay.BUS
                             equipList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EquipPrice = sum });
                         }
 
+                        
+
+                        foreach (var item in dayPerEmployeeSalaryTot)
+                        {
+                            float sum = 0;
+                            foreach (var group in item)
+                            {
+                                sum += group.TotalSalary;
+                            }
+                            salList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EmployeePrice = sum });
+                        }
                         mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
+                        mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
                     }
                     else if (rdoMonth.Checked)
                     {
@@ -291,7 +330,6 @@ namespace GoodeeWay.BUS
                             totInvestList.Add(new ResourceManagementVO() { ResourceDate = dt, RawMaterialCost = rawMaterialCost, TotInvestPrice = investSum });
                         }
 
-
                         foreach (var item in monthPerEquipPriceTot)
                         {
                             float sum = 0;
@@ -303,12 +341,27 @@ namespace GoodeeWay.BUS
                             dt = new DateTime(1, item.Key, 1) + new TimeSpan(00, 00, 00);
                             equipList.Add(new ResourceManagementVO() { ResourceDate = dt, EquipPrice = sum });
                         }
+                        
+                        foreach (var item in monthPerEmployeeSalaryTot)
+                        {
+                            float sum = 0;
+                            foreach (var group in item)
+                            {
+                                sum += group.TotalSalary;
+                            }
+                            DateTime dt = default(DateTime);
+                            dt = new DateTime(1, item.Key, 1) + new TimeSpan(00, 00, 00);
+                            salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
+                        }
+
                         mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                        mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                        
                     }
                     else if (rdoYear.Checked)
                     {
                         yearcheck = true;
-                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP)/(decimal)3)).ToString();
+                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) / (decimal)3)).ToString();
                         foreach (var itemgroup in yearPerRealTot)
                         {
                             //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
@@ -357,7 +410,21 @@ namespace GoodeeWay.BUS
 
                             equipList.Add(new ResourceManagementVO() { ResourceDate = dt, EquipPrice = sum });
                         }
+                        
+
+                        foreach (var item in yearPerEmployeeSalaryTot)
+                        {
+                            float sum = 0;
+                            foreach (var group in item)
+                            {
+                                sum += group.TotalSalary;
+                            }
+                            DateTime dt = default(DateTime);
+                            dt = new DateTime(item.Key, 1, 1) + new TimeSpan(00, 00, 00);
+                            salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
+                        }
                         mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
+                        mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
                     }
 
 
@@ -370,8 +437,9 @@ namespace GoodeeWay.BUS
                     float totEmployeePrice = 0;//직원급여
                     foreach (var item in mergeList)
                     {
-                        float netProfit = item.TotInvestPrice - item.RawMaterialCost - item.EquipPrice;
-                        var tempEmployee = 50000;
+                        
+                        float netProfit = item.TotInvestPrice - item.RawMaterialCost - item.EquipPrice - item.EmployeePrice;
+
                         string resourceDate = string.Empty;
                         if (datecheck)
                         {
@@ -385,10 +453,10 @@ namespace GoodeeWay.BUS
                         {
                             resourceDate = item.ResourceDate.Year.ToString() + "년";
                         }
-                        totRsrcTab.Rows.Add(resourceDate, (decimal)item.TotInvestPrice, (decimal)item.RawMaterialCost, (decimal)item.EquipPrice, /*인사급여*/(decimal)tempEmployee, (decimal)netProfit);
+                        totRsrcTab.Rows.Add(resourceDate, (decimal)item.TotInvestPrice, (decimal)item.RawMaterialCost, (decimal)item.EquipPrice, /*인사급여*/(decimal)item.EmployeePrice, (decimal)netProfit);
                         totEquipPrice += item.EquipPrice;
                         totRawMaterialCost += item.RawMaterialCost;
-                        totEmployeePrice += tempEmployee;
+                        totEmployeePrice += item.EmployeePrice;
                         totalInvesetPrice += item.TotInvestPrice;
                     }
                     lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
@@ -396,14 +464,26 @@ namespace GoodeeWay.BUS
                     lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
                     lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
                     resourceDataGView.DataSource = totRsrcTab;
-                } 
+                }
             }
         }
 
         private void btnChart_Click(object sender, EventArgs e)
         {
-            FrmResourceChart frmResourceChart = new FrmResourceChart();
-            frmResourceChart.Show();
+            if (frmResourceChart == null)
+            {
+                frmResourceChart = new FrmResourceChart(totRsrcTab);
+                frmResourceChart.Show();
+            }
+            else if (frmResourceChart.IsDisposed)
+            {
+                frmResourceChart = new FrmResourceChart(totRsrcTab);
+                frmResourceChart.Show();
+            }
+            else
+            {
+                frmResourceChart.BringToFront();
+            }
         }
 
         private bool ValidateTotInvestandBEP(string totInvest, string bEP)
@@ -411,6 +491,7 @@ namespace GoodeeWay.BUS
             bool result = false;
             bool nullResult = false;
             bool typeResult = false;
+            bool zeroResult = false;
             if (!(string.IsNullOrEmpty(totInvest) || string.IsNullOrEmpty(bEP)))
             {
                 nullResult = true;
@@ -421,7 +502,7 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("값을 모두 입력 해 주세요!");
                 return false;
             }
-            if (decimal.TryParse(totInvest, out decimal deciTotinvest))
+            if (decimal.TryParse(totInvest, out decimal deciTotinvest) || decimal.TryParse(bEP, out decimal deciBEP))
             {
                 typeResult = true;
             }
@@ -431,7 +512,17 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("숫자만 입력 해 주세요!");
                 return false;
             }
-            if (nullResult && typeResult)
+            if (decimal.Parse(totInvest) != 0 || decimal.Parse(bEP) != 0)
+            {
+                zeroResult = true;
+            }
+            else
+            {
+                tbxTotInvest.Focus();
+                MessageBox.Show("0이외의 숫자만 입력 해 주세요!");
+                return false;
+            }
+            if (nullResult && typeResult && zeroResult)
             {
                 result = true;
             }

@@ -79,7 +79,10 @@ namespace GoodeeWay.BUS
             {
                 ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
 
-                File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
+                if (imgVO.Image != null)
+                {
+                    File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
+                }
 
             }
         }
