@@ -40,6 +40,7 @@ namespace GoodeeWay
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+           
             MdiClient ctlMDI;
             foreach (Control ctl in this.Controls)
             {
