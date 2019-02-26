@@ -25,7 +25,9 @@ namespace GoodeeWay
     enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
     public partial class MainForm : Form
     {
-        OderVIew oderVIew;
+        //OderVIew oderVIew;
+        FrmOrderView fov;
+
         inventory inventory;
         FrmSalesMenu salesMenu;
         FrmSaleRecords saleRecords;
@@ -40,23 +42,23 @@ namespace GoodeeWay
         private void MainForm_Load(object sender, EventArgs e)
         {
             MdiClient ctlMDI;
-            foreach (Control ctl in this.Controls)
-            {
-                if (ctl.GetType() == typeof(MenuStrip) || ctl.GetType() == typeof(ToolStrip) || ctl.GetType() == typeof(System.Windows.Forms.Timer) || ctl.GetType() == typeof(ToolStripMenuItem) || ctl.GetType() == typeof(ToolStripLabel))
-                {
-                    continue;
-                }
-                else
-                {
-                    ctlMDI = ctl as MdiClient;
-                }
+            //foreach (Control ctl in this.Controls)
+            //{
+            //    if (ctl.GetType() == typeof(MenuStrip) || ctl.GetType() == typeof(ToolStrip) || ctl.GetType() == typeof(System.Windows.Forms.Timer) || ctl.GetType() == typeof(ToolStripMenuItem) || ctl.GetType() == typeof(ToolStripLabel))
+            //    {
+            //        continue;
+            //    }
+            //    else
+            //    {
+            //        ctlMDI = ctl as MdiClient;
+            //    }
 
-                if (ctlMDI.GetType() != typeof(MenuStrip) && ctlMDI.GetType() != typeof(ToolStrip) || ctlMDI.GetType() != typeof(System.Windows.Forms.Timer) || ctlMDI.GetType() != typeof(ToolStripMenuItem) || ctlMDI.GetType() != typeof(ToolStripLabel))
-                {
-                    ctlMDI.BackColor = this.BackColor;
-                    break;
-                }
-            }
+            //    if (ctlMDI.GetType() != typeof(MenuStrip) && ctlMDI.GetType() != typeof(ToolStrip) || ctlMDI.GetType() != typeof(System.Windows.Forms.Timer) || ctlMDI.GetType() != typeof(ToolStripMenuItem) || ctlMDI.GetType() != typeof(ToolStripLabel))
+            //    {
+            //        ctlMDI.BackColor = this.BackColor;
+            //        break;
+            //    }
+            //}
 
             try
             {
@@ -70,23 +72,21 @@ namespace GoodeeWay
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (oderVIew == null)
+            if (fov == null)
             {
-                oderVIew = new OderVIew();
-                oderVIew.MdiParent = this;
-                oderVIew.Show();
-                CheckOpenClose(oderVIew);
+                fov = new FrmOrderView();
+                panelTest.Controls.Add(fov);
+                //CheckOpenClose(oderVIew);
             }
-            else if (oderVIew.IsDisposed)
+            else if (fov.IsDisposed)
             {
-                oderVIew = new OderVIew();
-                oderVIew.MdiParent = this;
-                oderVIew.Show();
-                CheckOpenClose(oderVIew);
+                fov = new FrmOrderView();
+                panelTest.Controls.Add(fov);
+                //CheckOpenClose(oderVIew);
             }
             else
             {
-                oderVIew.BringToFront();
+                fov.BringToFront();
             }
         }
 
@@ -261,6 +261,11 @@ namespace GoodeeWay
                     throw;
                 }
             }
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

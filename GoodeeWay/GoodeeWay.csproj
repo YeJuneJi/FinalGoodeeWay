@@ -162,6 +162,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order\FrmOrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Order\FrmOrderView.Designer.cs">
+      <DependentUpon>FrmOrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Order\Menu.cs" />
     <Compile Include="Order\MenuAndDetails.cs" />
     <Compile Include="Order\MenuDetail.cs" />
@@ -185,6 +191,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SaleRecords\FrmDetailSaleRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -370,6 +381,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Order\FrmOrderView.resx">
+      <DependentUpon>FrmOrderView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Order\OderVIew.resx">
       <DependentUpon>OderVIew.cs</DependentUpon>
     </EmbeddedResource>
@@ -381,14 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="SaleRecords\FrmDetailSaleRecord.resx">
       <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -429,10 +438,25 @@
     <Content Include="Images\GooDeeWay.PNG" />
     <Content Include="Images\GW.PNG" />
     <Content Include="Images\Sandwich_100px.png" />
-    <None Include="Resources\Salad_100px.png" />
-    <None Include="Resources\Cookie_100px.png" />
-    <None Include="Resources\Milkshake_96px.png" />
-    <None Include="Resources\Restaurant_100px.png" />
+    <None Include="Resources\Purchase Order_50px.png" />
+    <None Include="Resources\Commodity_50px.png" />
+    <None Include="Resources\Restaurant Menu_50px.png" />
+    <None Include="Resources\Receipt_50px.png" />
+    <None Include="Resources\Employee_50px.png" />
+    <None Include="Resources\Total Sales_50px.png" />
+    <None Include="Resources\Cooking Pot_64px.png" />
+    <None Include="Resources\GWMain2.jpg" />
+    <None Include="Resources\Restaurant_50px.png" />
+    <None Include="Resources\Sandwich_50px.png" />
+    <None Include="Resources\Salad_50px.png" />
+    <None Include="Resources\Cookie_50px.png" />
+    <None Include="Resources\Milkshake_64px.png" />
+    <None Include="Resources\Close Window_64px.png" />
+    <None Include="Resources\GW3.png" />
+    <None Include="Resources\Card Payment_50px.png" />
+    <None Include="Resources\Cancel_64px.png" />
+    <None Include="Resources\Checked_64px.png" />
+    <None Include="Resources\GW31.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
