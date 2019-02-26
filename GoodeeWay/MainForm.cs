@@ -19,6 +19,7 @@ using GoodeeWay.Equipment;
 using System.Threading;
 using System.IO;
 using System.Data.SqlClient;
+using GoodeeWay.InventoryBUS;
 
 namespace GoodeeWay
 {
@@ -27,8 +28,7 @@ namespace GoodeeWay
     {
         //OderVIew oderVIew;
         FrmOrderView fov;
-
-        inventory inventory;
+        FrmInventory fi;
         FrmSalesMenu salesMenu;
         FrmSaleRecords saleRecords;
         FrmEquipment frmEquipment;
@@ -92,23 +92,21 @@ namespace GoodeeWay
 
         private void 재고ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (inventory == null)
+            if (fi == null)
             {
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                CheckOpenClose(inventory);
+                fi = new FrmInventory();
+                panelTest.Controls.Add(fi);
+                fi.BringToFront();
             }
-            else if (inventory.IsDisposed)
+            else if (fi.IsDisposed)
             {
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                CheckOpenClose(inventory);
+                fi = new FrmInventory();
+                panelTest.Controls.Add(fi);
+                fi.BringToFront();
             }
             else
             {
-                inventory.BringToFront();
+                fi.BringToFront();
             }
         }
 
@@ -266,6 +264,11 @@ namespace GoodeeWay
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmOrderView1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

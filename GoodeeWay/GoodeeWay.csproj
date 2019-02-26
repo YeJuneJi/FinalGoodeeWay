@@ -115,9 +115,6 @@
     <Compile Include="InventoryBUS\FrmInventory.Designer.cs">
       <DependentUpon>FrmInventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryBUS\Inventory.Designer.cs">
-      <DependentUpon>Inventory.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAO\EquipmentDAO.cs" />
     <Compile Include="DAO\IEquipmentDAO.cs" />
     <Compile Include="Equipment\FrmAddEquipment.cs">
@@ -287,9 +284,6 @@
     <Compile Include="DAO\InventoryTypeDAO.cs" />
     <Compile Include="DAO\OrderDetailsDAO.cs" />
     <Compile Include="DAO\ReceivingDetailsDAO.cs" />
-    <Compile Include="InventoryBUS\Inventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
@@ -335,9 +329,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\FrmInventory.resx">
       <DependentUpon>FrmInventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InventoryBUS\Inventory.resx">
-      <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="VO\EmpVO.cs" />
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
@@ -466,6 +457,28 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
+    <None Include="Resources\입고.png" />
+    <None Include="Resources\재고1.png" />
+    <None Include="Resources\입고1.png" />
+    <None Include="Resources\재고.png" />
+    <None Include="Resources\재고11.png" />
+    <None Include="Resources\재고2.png" />
+    <None Include="Resources\입고11.png" />
+    <None Include="Resources\발주1.png" />
+    <None Include="Resources\반품.png" />
+    <None Include="Resources\가져오기.png" />
+    <None Include="Resources\저장.png" />
+    <None Include="Resources\새로고침.png" />
+    <None Include="Resources\추가.png" />
+    <None Include="Resources\추가1.png" />
+    <None Include="Resources\추가11.png" />
+    <None Include="Resources\수정.png" />
+    <None Include="Resources\제거.png" />
+    <None Include="Resources\새로고침1.png" />
+    <None Include="Resources\내역.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\산출.png" />
+    <None Include="Resources\저장1.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
