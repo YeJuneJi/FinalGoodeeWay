@@ -30,106 +30,51 @@
         {
             this.listViewOrder = new System.Windows.Forms.ListView();
             this.listViewBasket = new System.Windows.Forms.ListView();
-            this.gbCheckDivision = new System.Windows.Forms.GroupBox();
-            this.btn3 = new System.Windows.Forms.Button();
-            this.btn2 = new System.Windows.Forms.Button();
-            this.btn1 = new System.Windows.Forms.Button();
-            this.btn0 = new System.Windows.Forms.Button();
-            this.btnAll = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancelOne = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblKcal = new System.Windows.Forms.Label();
-            this.gbCheckDivision.SuspendLayout();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn3 = new System.Windows.Forms.Button();
+            this.btnAll = new System.Windows.Forms.Button();
+            this.btn0 = new System.Windows.Forms.Button();
+            this.btn1 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MenuPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewOrder
             // 
-            this.listViewOrder.Location = new System.Drawing.Point(12, 85);
+            this.listViewOrder.Location = new System.Drawing.Point(12, 76);
             this.listViewOrder.Name = "listViewOrder";
-            this.listViewOrder.Size = new System.Drawing.Size(1460, 427);
+            this.listViewOrder.Size = new System.Drawing.Size(1176, 278);
             this.listViewOrder.TabIndex = 3;
             this.listViewOrder.UseCompatibleStateImageBehavior = false;
             this.listViewOrder.Click += new System.EventHandler(this.listViewOrder_Click);
             // 
             // listViewBasket
             // 
-            this.listViewBasket.Location = new System.Drawing.Point(12, 518);
+            this.listViewBasket.Location = new System.Drawing.Point(12, 360);
             this.listViewBasket.Name = "listViewBasket";
-            this.listViewBasket.Size = new System.Drawing.Size(1460, 280);
+            this.listViewBasket.Size = new System.Drawing.Size(1176, 241);
             this.listViewBasket.TabIndex = 6;
             this.listViewBasket.UseCompatibleStateImageBehavior = false;
             // 
-            // gbCheckDivision
-            // 
-            this.gbCheckDivision.Controls.Add(this.btn3);
-            this.gbCheckDivision.Controls.Add(this.btn2);
-            this.gbCheckDivision.Controls.Add(this.btn1);
-            this.gbCheckDivision.Controls.Add(this.btn0);
-            this.gbCheckDivision.Controls.Add(this.btnAll);
-            this.gbCheckDivision.Location = new System.Drawing.Point(434, 13);
-            this.gbCheckDivision.Name = "gbCheckDivision";
-            this.gbCheckDivision.Size = new System.Drawing.Size(673, 66);
-            this.gbCheckDivision.TabIndex = 7;
-            this.gbCheckDivision.TabStop = false;
-            this.gbCheckDivision.Text = "구분";
-            // 
-            // btn3
-            // 
-            this.btn3.Location = new System.Drawing.Point(536, 20);
-            this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(131, 46);
-            this.btn3.TabIndex = 4;
-            this.btn3.Text = "음료";
-            this.btn3.UseVisualStyleBackColor = true;
-            this.btn3.Click += new System.EventHandler(this.button_Click);
-            // 
-            // btn2
-            // 
-            this.btn2.Location = new System.Drawing.Point(403, 20);
-            this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(127, 46);
-            this.btn2.TabIndex = 3;
-            this.btn2.Text = "사이드";
-            this.btn2.UseVisualStyleBackColor = true;
-            this.btn2.Click += new System.EventHandler(this.button_Click);
-            // 
-            // btn1
-            // 
-            this.btn1.Location = new System.Drawing.Point(260, 20);
-            this.btn1.Name = "btn1";
-            this.btn1.Size = new System.Drawing.Size(137, 46);
-            this.btn1.TabIndex = 2;
-            this.btn1.Text = "샐러드";
-            this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.button_Click);
-            // 
-            // btn0
-            // 
-            this.btn0.Location = new System.Drawing.Point(129, 20);
-            this.btn0.Name = "btn0";
-            this.btn0.Size = new System.Drawing.Size(125, 46);
-            this.btn0.TabIndex = 1;
-            this.btn0.Text = "샌드위치";
-            this.btn0.UseVisualStyleBackColor = true;
-            this.btn0.Click += new System.EventHandler(this.button_Click);
-            // 
-            // btnAll
-            // 
-            this.btnAll.Location = new System.Drawing.Point(6, 20);
-            this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(117, 46);
-            this.btnAll.TabIndex = 0;
-            this.btnAll.Text = "전체";
-            this.btnAll.UseVisualStyleBackColor = true;
-            this.btnAll.Click += new System.EventHandler(this.button_Click);
-            // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(1235, 813);
+            this.btnOK.FlatAppearance.BorderSize = 0;
+            this.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(786, 3);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(130, 65);
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "결제";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -137,9 +82,14 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(1316, 813);
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(922, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(130, 65);
             this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "전체취소";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -147,9 +97,14 @@
             // 
             // btnCancelOne
             // 
-            this.btnCancelOne.Location = new System.Drawing.Point(1397, 813);
+            this.btnCancelOne.FlatAppearance.BorderSize = 0;
+            this.btnCancelOne.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnCancelOne.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelOne.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelOne.ForeColor = System.Drawing.Color.White;
+            this.btnCancelOne.Location = new System.Drawing.Point(1058, 3);
             this.btnCancelOne.Name = "btnCancelOne";
-            this.btnCancelOne.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelOne.Size = new System.Drawing.Size(130, 65);
             this.btnCancelOne.TabIndex = 11;
             this.btnCancelOne.Text = "취소";
             this.btnCancelOne.UseVisualStyleBackColor = true;
@@ -159,7 +114,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblPrice.Location = new System.Drawing.Point(12, 813);
+            this.lblPrice.Location = new System.Drawing.Point(12, 24);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(70, 20);
             this.lblPrice.TabIndex = 12;
@@ -169,32 +124,155 @@
             // 
             this.lblKcal.AutoSize = true;
             this.lblKcal.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblKcal.Location = new System.Drawing.Point(354, 813);
+            this.lblKcal.Location = new System.Drawing.Point(323, 24);
             this.lblKcal.Name = "lblKcal";
             this.lblKcal.Size = new System.Drawing.Size(58, 20);
             this.lblKcal.TabIndex = 13;
             this.lblKcal.Text = "Kcal :";
             // 
+            // MenuPanel
+            // 
+            this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.MenuPanel.Controls.Add(this.pictureBox1);
+            this.MenuPanel.Controls.Add(this.btn3);
+            this.MenuPanel.Controls.Add(this.btnAll);
+            this.MenuPanel.Controls.Add(this.btn0);
+            this.MenuPanel.Controls.Add(this.btn1);
+            this.MenuPanel.Controls.Add(this.btn2);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(1200, 70);
+            this.MenuPanel.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.GW;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 73);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btn3
+            // 
+            this.btn3.FlatAppearance.BorderSize = 0;
+            this.btn3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn3.ForeColor = System.Drawing.Color.White;
+            this.btn3.Image = global::GoodeeWay.Properties.Resources.Milkshake_96px;
+            this.btn3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn3.Location = new System.Drawing.Point(826, 2);
+            this.btn3.Name = "btn3";
+            this.btn3.Size = new System.Drawing.Size(150, 65);
+            this.btn3.TabIndex = 4;
+            this.btn3.Text = "음료";
+            this.btn3.UseVisualStyleBackColor = true;
+            this.btn3.Click += new System.EventHandler(this.button_Click);
+            // 
+            // btnAll
+            // 
+            this.btnAll.FlatAppearance.BorderSize = 0;
+            this.btnAll.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAll.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAll.ForeColor = System.Drawing.Color.White;
+            this.btnAll.Image = global::GoodeeWay.Properties.Resources.Restaurant_100px;
+            this.btnAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAll.Location = new System.Drawing.Point(206, 0);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(150, 65);
+            this.btnAll.TabIndex = 0;
+            this.btnAll.Text = "전체";
+            this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.button_Click);
+            // 
+            // btn0
+            // 
+            this.btn0.FlatAppearance.BorderSize = 0;
+            this.btn0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn0.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn0.ForeColor = System.Drawing.Color.White;
+            this.btn0.Image = global::GoodeeWay.Properties.Resources.Sandwich_100px;
+            this.btn0.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn0.Location = new System.Drawing.Point(362, 2);
+            this.btn0.Name = "btn0";
+            this.btn0.Size = new System.Drawing.Size(150, 65);
+            this.btn0.TabIndex = 1;
+            this.btn0.Text = "샌드위치";
+            this.btn0.UseVisualStyleBackColor = true;
+            this.btn0.Click += new System.EventHandler(this.button_Click);
+            // 
+            // btn1
+            // 
+            this.btn1.FlatAppearance.BorderSize = 0;
+            this.btn1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1.ForeColor = System.Drawing.Color.White;
+            this.btn1.Image = global::GoodeeWay.Properties.Resources.Salad_100px;
+            this.btn1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn1.Location = new System.Drawing.Point(514, 0);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(150, 65);
+            this.btn1.TabIndex = 2;
+            this.btn1.Text = "샐러드";
+            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Click += new System.EventHandler(this.button_Click);
+            // 
+            // btn2
+            // 
+            this.btn2.FlatAppearance.BorderSize = 0;
+            this.btn2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn2.ForeColor = System.Drawing.Color.White;
+            this.btn2.Image = global::GoodeeWay.Properties.Resources.Cookie_100px;
+            this.btn2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn2.Location = new System.Drawing.Point(670, 0);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(150, 65);
+            this.btn2.TabIndex = 3;
+            this.btn2.Text = "사이드";
+            this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Click += new System.EventHandler(this.button_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Controls.Add(this.lblKcal);
+            this.panel1.Controls.Add(this.btnCancelOne);
+            this.panel1.Controls.Add(this.lblPrice);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 630);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1200, 70);
+            this.panel1.TabIndex = 15;
+            // 
             // OderVIew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 861);
-            this.Controls.Add(this.lblKcal);
-            this.Controls.Add(this.lblPrice);
-            this.Controls.Add(this.btnCancelOne);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.gbCheckDivision);
+            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.listViewBasket);
             this.Controls.Add(this.listViewOrder);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OderVIew";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OderVIew";
             this.Load += new System.EventHandler(this.OderVIew_Load);
-            this.gbCheckDivision.ResumeLayout(false);
+            this.MenuPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -202,7 +280,6 @@
 
         private System.Windows.Forms.ListView listViewOrder;
         private System.Windows.Forms.ListView listViewBasket;
-        private System.Windows.Forms.GroupBox gbCheckDivision;
         private System.Windows.Forms.Button btnAll;
         private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.Button btn2;
@@ -213,5 +290,8 @@
         private System.Windows.Forms.Button btnCancelOne;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblKcal;
+        private System.Windows.Forms.Panel MenuPanel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

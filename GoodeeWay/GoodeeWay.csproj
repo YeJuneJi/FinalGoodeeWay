@@ -420,6 +420,14 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <None Include="Resources\GoodeeWay.png" />
+    <Content Include="Images\GooDeeWay.PNG" />
+    <Content Include="Images\GW.PNG" />
+    <Content Include="Images\Sandwich_100px.png" />
+    <None Include="Resources\Salad_100px.png" />
+    <None Include="Resources\Cookie_100px.png" />
+    <None Include="Resources\Milkshake_96px.png" />
+    <None Include="Resources\Restaurant_100px.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
