@@ -66,9 +66,14 @@
             this.btn100 = new System.Windows.Forms.Button();
             this.btn50 = new System.Windows.Forms.Button();
             this.btn10 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbButton.SuspendLayout();
             this.gbWon.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPrice
@@ -205,10 +210,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(47, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(48, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(819, 363);
+            this.dataGridView1.Size = new System.Drawing.Size(819, 301);
             this.dataGridView1.TabIndex = 16;
             // 
             // btn1
@@ -449,11 +454,45 @@
             this.btn10.UseVisualStyleBackColor = true;
             this.btn10.Click += new System.EventHandler(this.btnWon_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(906, 70);
+            this.panel1.TabIndex = 29;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(402, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 49);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "결제";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.GWMain2;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
+            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(906, 721);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbWon);
             this.Controls.Add(this.gbButton);
             this.Controls.Add(this.dataGridView1);
@@ -472,12 +511,16 @@
             this.Controls.Add(this.lblSale);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.txtPrice);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Order";
             this.Text = "Order";
             this.Load += new System.EventHandler(this.Order_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gbButton.ResumeLayout(false);
             this.gbWon.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,5 +566,8 @@
         private System.Windows.Forms.Button btn100;
         private System.Windows.Forms.Button btn50;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
