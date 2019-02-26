@@ -63,9 +63,89 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Cookie_100px {
+        internal static System.Drawing.Bitmap Cancel_64px {
             get {
-                object obj = ResourceManager.GetObject("Cookie_100px", resourceCulture);
+                object obj = ResourceManager.GetObject("Cancel_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Card_Payment_50px {
+            get {
+                object obj = ResourceManager.GetObject("Card_Payment_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Checked_64px {
+            get {
+                object obj = ResourceManager.GetObject("Checked_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Close_Window_64px {
+            get {
+                object obj = ResourceManager.GetObject("Close_Window_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Commodity_50px {
+            get {
+                object obj = ResourceManager.GetObject("Commodity_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Commodity_50px2 {
+            get {
+                object obj = ResourceManager.GetObject("Commodity_50px2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cookie_50px {
+            get {
+                object obj = ResourceManager.GetObject("Cookie_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cooking_Pot_64px {
+            get {
+                object obj = ResourceManager.GetObject("Cooking_Pot_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Employee_50px {
+            get {
+                object obj = ResourceManager.GetObject("Employee_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +183,9 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Milkshake_96px {
+        internal static System.Drawing.Bitmap GW3 {
             get {
-                object obj = ResourceManager.GetObject("Milkshake_96px", resourceCulture);
+                object obj = ResourceManager.GetObject("GW3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +193,9 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Restaurant_100px {
+        internal static System.Drawing.Bitmap GW31 {
             get {
-                object obj = ResourceManager.GetObject("Restaurant_100px", resourceCulture);
+                object obj = ResourceManager.GetObject("GW31", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +203,69 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Salad_100px {
+        internal static System.Drawing.Bitmap GWMain2 {
             get {
-                object obj = ResourceManager.GetObject("Salad_100px", resourceCulture);
+                object obj = ResourceManager.GetObject("GWMain2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Milkshake_64px {
+            get {
+                object obj = ResourceManager.GetObject("Milkshake_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Purchase_Order_50px {
+            get {
+                object obj = ResourceManager.GetObject("Purchase_Order_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Receipt_50px {
+            get {
+                object obj = ResourceManager.GetObject("Receipt_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Restaurant_50px {
+            get {
+                object obj = ResourceManager.GetObject("Restaurant_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Restaurant_Menu_50px {
+            get {
+                object obj = ResourceManager.GetObject("Restaurant_Menu_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Salad_50px {
+            get {
+                object obj = ResourceManager.GetObject("Salad_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +276,26 @@ namespace GoodeeWay.Properties {
         internal static System.Drawing.Bitmap Sandwich_100px {
             get {
                 object obj = ResourceManager.GetObject("Sandwich_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sandwich_50px {
+            get {
+                object obj = ResourceManager.GetObject("Sandwich_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Total_Sales_50px {
+            get {
+                object obj = ResourceManager.GetObject("Total_Sales_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
