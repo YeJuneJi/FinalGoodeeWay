@@ -66,7 +66,7 @@ namespace GoodeeWay.SaleRecords
                 {
                     salesItemList += realMenu.Menu.MenuName + ", ";
                 }
-                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, salesItemList.Remove(salesItemList.Length - 2, 1), item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
+                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, item.SalesitemName/*salesItemList.Remove(salesItemList.Length - 2, 1)*/, item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
             }
             salesRecordsGView.DataSource = searchRecords;
         }

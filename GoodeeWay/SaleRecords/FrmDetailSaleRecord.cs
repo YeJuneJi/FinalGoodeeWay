@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,13 @@ namespace GoodeeWay.SaleRecords
 {
     public partial class FrmDetailSaleRecord : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         private int salesNo;
         private DateTime salesDate;
         private RealMenuVO realMenuVO;
@@ -35,6 +43,9 @@ namespace GoodeeWay.SaleRecords
 
         private void FrmDetailSaleRecord_Load(object sender, EventArgs e)
         {
+            pbxImages.BringToFront();
+            pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+            myToolTip.SetToolTip(btnRefund, "환불");
             lblSalesNo.Text = "주문번호 : " + salesNo.ToString();
             lblSalesDate.Text = "판매날짜 : " + salesDate.ToString();
             lblTotalPrice.Text = "금액 : " + totalPrice.ToString();
@@ -94,6 +105,25 @@ namespace GoodeeWay.SaleRecords
             {
                 MessageBox.Show(except.Message);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void movePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }

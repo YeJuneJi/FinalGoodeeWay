@@ -481,7 +481,9 @@
     <Content Include="Resources\Initialize_64px.png" />
     <Content Include="Resources\In_50px.png" />
     <Content Include="Resources\Picture_64px.png" />
+    <Content Include="Resources\Refund_50px.png" />
     <Content Include="Resources\Search_Black.png" />
+    <Content Include="Resources\Update_Black.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
