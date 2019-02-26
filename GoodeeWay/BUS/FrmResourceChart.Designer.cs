@@ -49,7 +49,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTotalInvest.Series.Add(series1);
-            this.chartTotalInvest.Size = new System.Drawing.Size(1784, 561);
+            this.chartTotalInvest.Size = new System.Drawing.Size(742, 561);
             this.chartTotalInvest.TabIndex = 0;
             this.chartTotalInvest.Text = "TotInvestChart";
             this.chartTotalInvest.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chartTotalInvest_MouseMove);
@@ -58,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1784, 561);
+            this.ClientSize = new System.Drawing.Size(742, 561);
             this.Controls.Add(this.chartTotalInvest);
             this.Name = "FrmResourceChart";
             this.Text = "FrmResourceChart";

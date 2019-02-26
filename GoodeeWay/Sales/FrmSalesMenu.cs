@@ -46,7 +46,6 @@ namespace GoodeeWay.Sales
         private void FrmSalesMenu_Load(object sender, EventArgs e)
         {
             oFdialogPhoto.InitialDirectory = Application.StartupPath + "\\Images\\";
-            //this.WindowState = FormWindowState.Maximized;
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;

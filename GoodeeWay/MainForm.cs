@@ -165,14 +165,12 @@ namespace GoodeeWay
             if (resourceManagemanet == null)
             {
                 resourceManagemanet = new ResourceManagemanet();
-                resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
                 CheckOpenClose(resourceManagemanet);
             }
             else if (resourceManagemanet.IsDisposed)
             {
                 resourceManagemanet = new ResourceManagemanet();
-                resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
                 CheckOpenClose(resourceManagemanet);
             }
