@@ -90,6 +90,7 @@ namespace GoodeeWay.DAO
 
         public List<SalaryVO> Search(DateTime date1, DateTime date2)
         {
+            lst = new List<SalaryVO>();
             string sp = "proc_salary_select2";//저장프로시져 이름
             SqlParameter[] sqlParameters = new SqlParameter[2];
             sqlParameters[0] = new SqlParameter("date1", date1);
