@@ -1,6 +1,6 @@
 -- Sales 테이블 생성문과 제약조건
 use GoodeeWay;
-create table dbo.Sales
+create table dbo.SalesMenu
 (
 menuCode nvarchar(10) constraint sales_mcode_nn not null,
 menuName nvarchar(30) constraint sales_mname_nn not null,
@@ -25,7 +25,7 @@ InventoryTypeCode nvarchar(6) constraint recipe_inventorytypecode_nn not null,
 necessary bit constraint recipe_necessary_nn not null default 0,
 constraint recipe_recipeNo_pk primary key(recipeNo),
 constraint recipe_inventorytypecode_fk foreign key(InventoryTypeCode) references dbo.InventoryType(InventoryTypeCode) on delete cascade on update cascade,
-constraint recipe_menuCode_fk foreign key(menucode) references dbo.Sales(menuCode) on delete cascade on update cascade
+constraint recipe_menuCode_fk foreign key(menucode) references dbo.SalesMenu(menuCode) on delete cascade on update cascade
 );
 GO
 
@@ -69,7 +69,7 @@ GO
 --Sales 테이블의 Select 프로시저
 CREATE PROCEDURE dbo.SelectMenu
 as
-Select * from dbo.Sales;
+Select * from dbo.SalesMenu;
 GO
 
 --SaleRecords 테이블의 Select 프로시저
@@ -94,11 +94,11 @@ select * from SaleRecords where salesDate between @periodStart and @periodEnd
 GO
 
 -- Recipe 테이블과 InventoryType , Sales의 조합으로 만들어진 저장프로시저
-create procedure dbo.SelectByRecipesJoinToInventryTypeNSales
+create procedure dbo.SelectByRecipesJoinToInventryTypeNSalesMenu
 @menuName nvarchar(30)
 as
 select r.recipeNo, r.ingredientAmount, r.menuCode, r.inventoryTypeCode, r.necessary, i.InventoryName, i.MaterialClassification, s.menuName
-from Recipes r, InventoryType i, Sales s
+from Recipes r, InventoryType i, SalesMenu s
 where r.InventoryTypeCode = i.InventoryTypeCode and r.menuCode = s.menuCode
 and s.menuName = @menuName;
 GO
@@ -151,11 +151,11 @@ create procedure SelectMenuByMenuCode
 as
 if(@division != 0)
 begin
-select * from sales where menuCode like '%' + @menuCode +'%' and division = @division-1; 
+select * from SalesMenu where menuCode like '%' + @menuCode +'%' and division = @division-1; 
 end
 else
 begin
-select * from Sales where menuCode like '%' + @menuCode +'%';
+select * from SalesMenu where menuCode like '%' + @menuCode +'%';
 end
 GO
 
@@ -165,11 +165,11 @@ create procedure SelectMenuByMenuName
 as
 if(@division != 0)
 begin
-select * from sales where menuName like '%' + @menuName +'%' and division = @division-1; 
+select * from SalesMenu where menuName like '%' + @menuName +'%' and division = @division-1; 
 end
 else
 begin
-select * from Sales where menuName like '%' + @menuName +'%';
+select * from SalesMenu where menuName like '%' + @menuName +'%';
 end
 GO
 
@@ -179,11 +179,11 @@ create procedure SelectMenuByAdditional
 as
 if(@division != 0)
 begin
-select * from sales where additionalContext like '%' + @additional +'%' and division = @division-1; 
+select * from SalesMenu where additionalContext like '%' + @additional +'%' and division = @division-1; 
 end
 else
 begin
-select * from Sales where additionalContext like '%' + @additional +'%';
+select * from SalesMenu where additionalContext like '%' + @additional +'%';
 end
 GO
 
@@ -208,7 +208,7 @@ CREATE PROCEDURE dbo.InsertMenu
 @additionalContext nvarchar(200),
 @discountRatio float
 as
-insert into dbo.Sales
+insert into dbo.SalesMenu
 values (@menuCode, @menuName, @price, @kCal, @menuImageLocation, @division, @additionalContext, @discountRatio);
 GO
 
@@ -301,7 +301,7 @@ update dbo.Recipes set ingredientAmount = @ingredientAmount, necessary = @necess
 GO
 
 --Sales Update 저장 프로시저
-create procedure UpdateSales
+create procedure UpdateSalesMenu
 @menuCode nvarchar(10),
 @menuName nvarchar(30),
 @price float,
@@ -312,7 +312,7 @@ create procedure UpdateSales
 @oldMenuCode nvarchar(10),
 @discountRatio float
 as
-update dbo.Sales set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
+update dbo.SalesMenu set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
 where menuCode = @oldMenuCode;
 GO
 
@@ -340,20 +340,20 @@ delete from dbo.SaleRecords where salesNo = @salesNo;
 GO
 
 --메뉴 삭제하는 DeleteSales 저장프로시저
-create procedure DeleteSales
+create procedure DeleteSalesMenu
 @menuCode nvarchar(10)
 as
 declare @division int
-set @division = (select division from Sales where menuCode = @menuCode)
+set @division = (select division from SalesMenu where menuCode = @menuCode)
 if (@division != 0)
 	begin
-		delete from dbo.Sales
+		delete from dbo.SalesMenu
 		where menuCode = @menuCode
 	end
 else
 	begin
 		exec DeleteRecipesByMenuCode @menuCode;
-		delete from dbo.Sales
+		delete from dbo.SalesMenu
 		where menuCode = @menuCode;
 	end
 GO
