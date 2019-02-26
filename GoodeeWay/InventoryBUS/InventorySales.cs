@@ -29,6 +29,7 @@ namespace GoodeeWay.InventoryBUS
             
             rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
             cmbType.Items.AddRange(type1);
+            InventorySalesChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
         }
 
         /// <summary>
@@ -40,10 +41,10 @@ namespace GoodeeWay.InventoryBUS
         {
             var displayChart = new Display();
             InventorySalesChart.Series.Clear();
-            
-            if (rdoInventoryType.Checked == true)//종류기준으로 검색할때
-            {
 
+            #region 종류기준 검색
+            if (rdoInventoryType.Checked == true)
+            {
 
                 #region 재고량
                 InventorySalesChart.Series.Add(cmbType.Text + " 재고량");
@@ -66,7 +67,7 @@ namespace GoodeeWay.InventoryBUS
                 #region 판매량
                 InventorySalesChart.Series.Add(cmbType.Text + " 판매량");
 
-                this.inventoryTypeSalesList = new SaleRecordsDAO().SaleRecordsTypeSelect(
+                this.inventoryTypeSalesList = new SaleRecordsDAO().InventorySaleRecordsTypeSelect(
                     new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
                     new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59), cmbType.Text);
 
@@ -108,28 +109,100 @@ namespace GoodeeWay.InventoryBUS
                 var totInventoryTypeSalesList = from i1 in InventoryTypeList.AsEnumerable()
                                                 join i2 in inventoryTypeSalesList.AsEnumerable()
                                                 on i1.XAxis equals i2.XAxis
-                                                select new InventorySalesForChartVO{ XAxis= i1.XAxis, InventoryNum= i1.UseInventory, SalesNum=i2.UseInventory};
+                                                select new InventorySalesForChartVO { XAxis = i1.XAxis, InventoryNum = i1.UseInventory, SalesNum = i2.UseInventory };
                 inventorySalesForChartVOs = new List<InventorySalesForChartVO>(totInventoryTypeSalesList);
                 AverageDisplay(inventorySalesForChartVOs);
                 dgvDisplay(inventorySalesForChartVOs, rdoInventoryType.Checked);
-            }
+            } 
+            #endregion
             else//재고기준으로 검색할때
             {
-                InventorySalesChart.Series.Add(cmbType.Text);
+
+                #region 재고량
+                InventorySalesChart.Series.Add(cmbType.Text+ " 재고량");
                 InventoryList = displayChart.DisplayChart(new InventoryChart()
                 {
-                    StartDate = new DateTime(dtpStartDate.Value.Year,dtpStartDate.Value.Month,dtpStartDate.Value.Day,0,0,0),
+                    StartDate = new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
                     EndDate = new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59)
                 }, cmbType.Text, rdoMonth.Checked);
-                InventorySalesChart.Series[cmbType.Text].Points.DataBind(InventoryList, "XAxis", "UseInventory", null);
-                InventorySalesChart.Series[cmbType.Text].Label = "#VALY";
-                foreach (var item in InventorySalesChart.Series[cmbType.Text].Points)
+                InventorySalesChart.Series[cmbType.Text + " 재고량"].Points.DataBind(InventoryList, "XAxis", "UseInventory", null);
+                InventorySalesChart.Series[cmbType.Text + " 재고량"].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series[cmbType.Text + " 재고량"].Points)
                 {
                     item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
                 }
+                
+                #endregion
+
+
+                #region 판매량
+                InventorySalesChart.Series.Add(cmbType.Text + " 판매량");
+                IEnumerable<InventoryTypeSalesVO> result = null;
+                if (rdoMonth.Checked)
+                {
+                    this.inventoryTypeSalesList = new SaleRecordsDAO().TypeSaleRecordsTypeSelect(
+                                new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
+                                new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59), cmbType.Text);
+
+                    result = from o in this.inventoryTypeSalesList
+                                 group o by o.XAxis.Substring(2, 5) into g
+                                 select new InventoryTypeSalesVO { XAxis = g.Key, UseInventory = g.Sum(c => c.UseInventory) };
+                    
+                }
+                else
+                {
+                    this.inventoryTypeSalesList = new SaleRecordsDAO().TypeSaleRecordsTypeSelect(
+                                new DateTime(dtpStartDate.Value.Year, dtpStartDate.Value.Month, dtpStartDate.Value.Day, 0, 0, 0),
+                                new DateTime(dtpEndDate.Value.Year, dtpEndDate.Value.Month, dtpEndDate.Value.Day, 23, 59, 59), cmbType.Text);
+
+                    result = from o in this.inventoryTypeSalesList
+                                 group o by o.XAxis.Substring(2, 2) into g
+                                 select new InventoryTypeSalesVO { XAxis = g.Key, UseInventory = g.Sum(c => c.UseInventory) };
+                    
+                    
+                }
+
+                List<InventoryTypeSalesVO> inventoryTypeSalesList = new List<InventoryTypeSalesVO>();
+
+                foreach (var item in InventoryList)
+                {
+                    InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO();
+                    inventoryTypeSalesVO.XAxis = item.XAxis;
+                    var i = from o in result where item.XAxis == o.XAxis select o.UseInventory;
+                    if (i != null)
+                    {
+                        foreach (var item1 in i)
+                        {
+                            inventoryTypeSalesVO.UseInventory = item1;
+                        }
+                    }
+                    else
+                    {
+                        inventoryTypeSalesVO.UseInventory = 0;
+                    }
+                    inventoryTypeSalesList.Add(inventoryTypeSalesVO);
+                }
+
+
+                InventorySalesChart.Series[cmbType.Text + " 판매량"].Points.DataBind(inventoryTypeSalesList, "XAxis", "UseInventory", null);
+                InventorySalesChart.Series[cmbType.Text + " 판매량"].Label = "#VALY";
+                foreach (var item in InventorySalesChart.Series[cmbType.Text + " 판매량"].Points)
+                {
+                    item.Label = Math.Round(double.Parse(item.YValues[0].ToString()), 2) + "kg";
+                }
+                #endregion
+                var totInventoryTypeSalesList = from i1 in InventoryList.AsEnumerable()
+                                                join i2 in inventoryTypeSalesList.AsEnumerable()
+                                                on i1.XAxis equals i2.XAxis
+                                                select new InventorySalesForChartVO { XAxis = i1.XAxis, InventoryNum = i1.UseInventory, SalesNum = i2.UseInventory };
+                inventorySalesForChartVOs = new List<InventorySalesForChartVO>(totInventoryTypeSalesList);
                 AverageDisplay(inventorySalesForChartVOs);
                 dgvDisplay(inventorySalesForChartVOs, rdoInventoryType.Checked);
+
             }
+
+
+
             lblStartDate.Text = dtpStartDate.Value.ToShortDateString();
             lblEndDate.Text = dtpEndDate.Value.ToShortDateString();
             
@@ -147,21 +220,15 @@ namespace GoodeeWay.InventoryBUS
             InventorySalesChart.Series.Add("판매량평균");
             avgList = new List<InventoryTypeSalesVO>();
             avgList1 = new List<InventoryTypeSalesVO>();
-            //sum = 0;
-            //count = 0;
-            //foreach (var item in List)
-            //{
-            //    sum += item.UseInventory;
-            //}
-            //count = new InventorySalesDAO().InventorySalesCountSelect(dtpStartDate.Value, dtpEndDate.Value, cmbType.Text);
             
             foreach (var item in List)//평균 라인을 긋기 위해 x 값은 재고명을 다 넣어주고, y값은 모두 평균값으로 입력
             {
-                double inventoryNum = (double)((from avgList in List select avgList.InventoryNum).Average());
+                double inventoryNum = (double)((from avgList in List select avgList.InventoryNum).Sum());
+                double inventoryNumCount = (double)((from avgList in List where avgList.InventoryNum != 0 select avgList.InventoryNum).Count());
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
                     XAxis = item.XAxis,
-                    UseInventory = (float)Math.Round(inventoryNum, 2)
+                    UseInventory = (float)Math.Round(inventoryNum/ inventoryNumCount, 2)
                 };
                 avgList.Add(inventoryTypeSalesVO);
             }
@@ -170,7 +237,8 @@ namespace GoodeeWay.InventoryBUS
             try
             {
                 InventorySalesChart.Series["재고량평균"].Points[0].Label = "재고량 평균 : "+avgList[0].UseInventory+"kg";
-                InventorySalesChart.Series["재고량평균"].Points[0].LabelForeColor = Color.Red;
+                InventorySalesChart.Series["재고량평균"].Points[0].LabelForeColor = Color.Black;
+                InventorySalesChart.Series["재고량평균"].Color = Color.FromArgb(65,140,240);
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -181,11 +249,13 @@ namespace GoodeeWay.InventoryBUS
 
             foreach (var item in List)//평균 라인을 긋기 위해 x 값은 재고명을 다 넣어주고, y값은 모두 평균값으로 입력
             {
-                double salesNum = (double)((from avgList1 in List select avgList1.SalesNum).Average());
+                double salesNum = (double)((from avgList1 in List select avgList1.SalesNum).Sum());
+                double salesNumCount = (double)((from avgList1 in List where avgList1.SalesNum !=0 select avgList1.SalesNum).Count());
+
                 InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
                 {
                     XAxis = item.XAxis,
-                    UseInventory = (float)Math.Round(salesNum, 2)
+                    UseInventory = (float)Math.Round(salesNum/salesNumCount, 2)
                 };
                 avgList1.Add(inventoryTypeSalesVO);
             }
@@ -194,7 +264,9 @@ namespace GoodeeWay.InventoryBUS
             try
             {
                 InventorySalesChart.Series["판매량평균"].Points[avgList1.Count-1].Label = "판매량평균 : " + avgList1[0].UseInventory + "kg";
-                InventorySalesChart.Series["판매량평균"].Points[avgList1.Count-1].LabelForeColor = Color.Blue;
+                InventorySalesChart.Series["판매량평균"].Points[avgList1.Count-1].LabelForeColor = Color.Black;
+                InventorySalesChart.Series["판매량평균"].Color = Color.FromArgb(252, 180, 65);
+
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -209,28 +281,24 @@ namespace GoodeeWay.InventoryBUS
         /// <param name="checked">종류, 재고 체크여부</param>
         private void dgvDisplay(List<InventorySalesForChartVO> List, bool @checked)
         {
-            float inventoryNum = 0;
-            float salesNum = 0;
-            foreach (var item in List)
-            {
-                inventoryNum += item.InventoryNum;
-                salesNum += item.SalesNum;
-            }
-
+            double inventoryNum = (double)((from avgList in List select avgList.InventoryNum).Sum());
+            double inventoryNumCount = (double)((from avgList in List where avgList.InventoryNum != 0 select avgList.InventoryNum).Count());
+            double salesNum = (double)((from avgList1 in List select avgList1.SalesNum).Sum());
+            double salesNumCount = (double)((from avgList1 in List where avgList1.SalesNum != 0 select avgList1.SalesNum).Count());
 
             if (List.Count >0)
             {
                 List.Add(new InventorySalesForChartVO()
                 {
                     XAxis = "평균",
-                    InventoryNum = (float)Math.Round((inventoryNum / List.Count()), 2),
-                    SalesNum = (float)Math.Round((salesNum / List.Count()), 2)
+                    InventoryNum = (float)Math.Round((inventoryNum / inventoryNumCount), 2),
+                    SalesNum = (float)Math.Round((salesNum / salesNumCount), 2)
                 });
                 List.Add(new InventorySalesForChartVO()
                 {
                     XAxis = "총합",
-                    InventoryNum = inventoryNum,
-                    SalesNum= salesNum
+                    InventoryNum = (float)inventoryNum,
+                    SalesNum= (float)salesNum
                 });
             }
             dgvData.DataSource = List;

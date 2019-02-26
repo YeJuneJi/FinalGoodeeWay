@@ -185,6 +185,8 @@ namespace GoodeeWay.DAO
             }
         }
 
+        
+
         /// <summary>
         /// 재고별판매량 실 판매량 데이터 추출
         /// </summary>
@@ -192,7 +194,7 @@ namespace GoodeeWay.DAO
         /// <param name="value2"></param>
         /// <param name="text"></param>
         /// <returns></returns>
-        internal List<InventoryTypeSalesVO> SaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
+        internal List<InventoryTypeSalesVO> InventorySaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
         {
             SqlParameter[] sqlParameters = new SqlParameter[2];
             List<InventoryTypeSalesVO> List = new List<InventoryTypeSalesVO>() ;
@@ -234,5 +236,45 @@ namespace GoodeeWay.DAO
             return List;
         }
 
+        internal List<InventoryTypeSalesVO> TypeSaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
+        {
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            List<InventoryTypeSalesVO> List = new List<InventoryTypeSalesVO>();
+            sqlParameters[0] = new SqlParameter("StartDate", startDate);
+            sqlParameters[1] = new SqlParameter("EndDate", endDate);
+            SqlDataReader dr = new DBConnection().Select("SelectTypeSaleRecordsType", sqlParameters);
+            while (dr.Read())
+            {
+                JObject jObject = JObject.Parse(dr["salesitemName"].ToString());
+                JArray jArray = JArray.Parse(jObject["RealMenu"].ToString());
+                foreach (var item in jArray)
+                {
+                    JArray jArray1 = null;
+                    try
+                    {
+                        jArray1 = JArray.Parse(item["MenuDetailList"].ToString());
+                        foreach (var item1 in jArray1)
+                        {
+                            if (item1["InventoryName"].ToString() == cmbType)
+                            {
+                                InventoryTypeSalesVO inventoryTypeSalesVO = new InventoryTypeSalesVO()
+                                {
+                                    XAxis = dr["salesDate"].ToString(),
+                                    UseInventory = float.Parse(item1["Amount"].ToString())
+                                };
+                                List.Add(inventoryTypeSalesVO);
+                            }
+                        }
+                    }
+                    catch (JsonReaderException)
+                    {
+                    }
+
+
+                }
+            }
+            return List;
+
+        }
     }
 }

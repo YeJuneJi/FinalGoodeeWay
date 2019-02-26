@@ -371,9 +371,19 @@ AS
 	where ReceivingDetailsID=@ReceivingDetailsID;
 
 Go
---saleRecords에서 json 얻어오기
+--재고별 재고량 차트를 위해 saleRecords에서 json 얻어오기
 CREATE PROCEDURE [dbo].SelectSaleRecordsType
 	@StartDate datetime,
 	@EndDate datetime
 AS
 	SELECT salesitemName from SaleRecords where salesDate>= @StartDate and salesDate<=@EndDate;
+
+Go
+--재고별 판매량 차트를 위해 saleRecord에서 json 얻어오기
+CREATE PROCEDURE [dbo].SelectTypeSaleRecordsType
+	@StartDate datetime,
+	@EndDate datetime
+AS
+	SELECT salesDate,salesitemName 
+	from SaleRecords 
+	where salesDate>= @StartDate and salesDate<=@EndDate;
