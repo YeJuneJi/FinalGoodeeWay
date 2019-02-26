@@ -16,7 +16,7 @@ namespace GoodeeWay.Sales
     /// <summary>
     /// 판매메뉴를 정의하는 <c>SalesMenu</c> 클래스
     /// </summary>
-    public partial class SalesMenu : UserControl
+    public partial class USalesMenu : UserControl
     {
         FlowLayoutPanel breadPanel;
         FlowLayoutPanel cheesePanel;
@@ -40,9 +40,11 @@ namespace GoodeeWay.Sales
         /// 구분을 수정할 때에 이전 구분과 새로운 구분을 비교하기위한 oldDivision.</value>
         int oldDivision;
         string images = "\\Images\\";
-        public SalesMenu()
+        public USalesMenu()
         {
             InitializeComponent();
+            btnClear.BackgroundImage = Properties.Resources.Initialize_64px;
+            btnPhoto.BackgroundImage = Properties.Resources.Picture_64px;
             oFdialogPhoto.InitialDirectory = Application.StartupPath + "\\Images\\";
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
             salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -447,37 +449,7 @@ namespace GoodeeWay.Sales
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
         {
-            string menuCode = msktbxMnuCode.Text;
-            int count = 0;
-            foreach (SalesMenuVO item in salesMenuList)
-            {
-                if (item.MenuCode.Equals(menuCode))
-                {
-                    count++;
-                    break;
-                }
-            }
-            if (ValidateMenuCode(menuCode))
-            {
-                if (count == 0)
-                {
-                    MessageBox.Show("삭제하실 메뉴가 없습니다.");
-                    return;
-                }
-                try
-                {
-                    if (new SalesMenuDAO().DeleteMenu(menuCode))
-                    {
-                        MessageBox.Show("메뉴 삭제 성공");
-                    }
-                }
-                catch (SqlException)
-                {
-                    MessageBox.Show("메뉴 삭제 실패");
-                }
-            }
-            btnClear_Click(null, null);
-            ReflashData();
+
         }
 
         private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -919,7 +891,12 @@ namespace GoodeeWay.Sales
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            //this.Close();
+            this.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

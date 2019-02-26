@@ -18,15 +18,27 @@ namespace GoodeeWay.Sales
 {
     public partial class FrmSalesMenuSearch : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         List<SalesMenuVO> searchlist;
         DataTable searchMenu;
         DataColumn[] dataColoumns;
+
         public FrmSalesMenuSearch()
         {
             InitializeComponent();
         }
         private void SalesMenuSearch_Load(object sender, EventArgs e)
         {
+            pbxImages.BringToFront();
+            pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+            myToolTip.SetToolTip(btnExcel, "엑셀 출력");
+            myToolTip.SetToolTip(btnResult, "검색");
             searchlist = new List<SalesMenuVO>();
             menuSearchGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             menuSearchGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -156,6 +168,25 @@ namespace GoodeeWay.Sales
                 Marshal.FinalReleaseComObject(workBook);
                 Marshal.FinalReleaseComObject(excelApp);
             }
+        }
+
+        private void movePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

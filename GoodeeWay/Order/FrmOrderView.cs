@@ -8,11 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
+using System.Runtime.InteropServices;
 
 namespace GoodeeWay.Order
 {
     public partial class FrmOrderView : UserControl
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         List<Menu> menuList = new List<Menu>(); // 전체 메뉴 리스트
         List<ListViewItem> listViewItemList = new List<ListViewItem>(); // 메뉴 리스트를 리스트뷰 아이템으로 만든 리스트
 
@@ -231,6 +239,9 @@ namespace GoodeeWay.Order
 
         }
 
-        
+        private void MenuPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

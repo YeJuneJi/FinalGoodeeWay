@@ -71,7 +71,7 @@
             this.btnEquip.FlatAppearance.BorderSize = 0;
             this.btnEquip.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnEquip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquip.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEquip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEquip.ForeColor = System.Drawing.Color.White;
             this.btnEquip.Image = global::GoodeeWay.Properties.Resources.Cooking_Pot_64px;
             this.btnEquip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -88,7 +88,7 @@
             this.btnInven.FlatAppearance.BorderSize = 0;
             this.btnInven.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnInven.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInven.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInven.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInven.ForeColor = System.Drawing.Color.White;
             this.btnInven.Image = global::GoodeeWay.Properties.Resources.Commodity_50px;
             this.btnInven.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,7 +105,7 @@
             this.btnMenu.FlatAppearance.BorderSize = 0;
             this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenu.ForeColor = System.Drawing.Color.White;
             this.btnMenu.Image = global::GoodeeWay.Properties.Resources.Restaurant_Menu_50px;
             this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

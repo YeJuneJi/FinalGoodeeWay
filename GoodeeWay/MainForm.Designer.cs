@@ -45,14 +45,14 @@
             this.button5 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panelTest = new System.Windows.Forms.Panel();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.mToolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.panelTest.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,7 +243,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Image = global::GoodeeWay.Properties.Resources.Commodity_50px;
+            this.button5.Image = global::GoodeeWay.Properties.Resources.Maintenance_50px;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.Location = new System.Drawing.Point(0, 369);
             this.button5.Name = "button5";
@@ -262,6 +262,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1200, 50);
             this.panel2.TabIndex = 5;
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel2_MouseDown);
             // 
             // pictureBox2
             // 
@@ -274,15 +275,15 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
-            // panelTest
+            // MainPanel
             // 
-            this.panelTest.BackColor = System.Drawing.Color.White;
-            this.panelTest.Controls.Add(this.pictureBox3);
-            this.panelTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTest.Location = new System.Drawing.Point(200, 50);
-            this.panelTest.Name = "panelTest";
-            this.panelTest.Size = new System.Drawing.Size(1200, 725);
-            this.panelTest.TabIndex = 6;
+            this.MainPanel.BackColor = System.Drawing.Color.White;
+            this.MainPanel.Controls.Add(this.pictureBox3);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(200, 50);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(1200, 725);
+            this.MainPanel.TabIndex = 6;
             // 
             // pictureBox3
             // 
@@ -300,7 +301,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1400, 800);
-            this.Controls.Add(this.panelTest);
+            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.mToolStrip);
@@ -316,7 +317,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panelTest.ResumeLayout(false);
+            this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -339,7 +340,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panelTest;
+        private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
     }
