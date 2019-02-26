@@ -230,7 +230,7 @@
             // btnChart
             // 
             this.btnChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChart.Location = new System.Drawing.Point(424, 352);
+            this.btnChart.Location = new System.Drawing.Point(425, 360);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(131, 23);
             this.btnChart.TabIndex = 21;
@@ -242,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btnChart);
             this.Controls.Add(this.lblEmployeeCost);
             this.Controls.Add(this.lblRawMaterialCost);
@@ -264,7 +264,7 @@
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(612, 406);
+            this.Size = new System.Drawing.Size(575, 406);
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,23 +1,11 @@
-﻿using GoodeeWay.DAO;
-using GoodeeWay.VO;
-using GoodeeWay.Order;
+﻿using GoodeeWay.Order;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using GoodeeWay.DB;
 using GoodeeWay.SaleRecords;
 using GoodeeWay.Sales;
 using GoodeeWay.BUS;
 using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
-using System.Threading;
-using System.IO;
 using System.Data.SqlClient;
 
 namespace GoodeeWay
@@ -41,25 +29,6 @@ namespace GoodeeWay
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MdiClient ctlMDI;
-            //foreach (Control ctl in this.Controls)
-            //{
-            //    if (ctl.GetType() == typeof(MenuStrip) || ctl.GetType() == typeof(ToolStrip) || ctl.GetType() == typeof(System.Windows.Forms.Timer) || ctl.GetType() == typeof(ToolStripMenuItem) || ctl.GetType() == typeof(ToolStripLabel))
-            //    {
-            //        continue;
-            //    }
-            //    else
-            //    {
-            //        ctlMDI = ctl as MdiClient;
-            //    }
-
-            //    if (ctlMDI.GetType() != typeof(MenuStrip) && ctlMDI.GetType() != typeof(ToolStrip) || ctlMDI.GetType() != typeof(System.Windows.Forms.Timer) || ctlMDI.GetType() != typeof(ToolStripMenuItem) || ctlMDI.GetType() != typeof(ToolStripLabel))
-            //    {
-            //        ctlMDI.BackColor = this.BackColor;
-            //        break;
-            //    }
-            //}
-
             try
             {
                 new CheckImages().DoAllCheck();
