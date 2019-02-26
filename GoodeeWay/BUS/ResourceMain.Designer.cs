@@ -43,8 +43,6 @@
             this.resourceDataGView = new System.Windows.Forms.DataGridView();
             this.lblbeppr = new System.Windows.Forms.Label();
             this.lblBEPpredict = new System.Windows.Forms.Label();
-            this.btnNetIncome = new System.Windows.Forms.Button();
-            this.lblNetIncome = new System.Windows.Forms.Label();
             this.lbltotalInvesetPrice = new System.Windows.Forms.Label();
             this.lblEquipPrice = new System.Windows.Forms.Label();
             this.lblRawMaterialCost = new System.Windows.Forms.Label();
@@ -193,27 +191,6 @@
             this.lblBEPpredict.TabIndex = 14;
             this.lblBEPpredict.Text = "-";
             // 
-            // btnNetIncome
-            // 
-            this.btnNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNetIncome.Location = new System.Drawing.Point(16, 352);
-            this.btnNetIncome.Name = "btnNetIncome";
-            this.btnNetIncome.Size = new System.Drawing.Size(131, 23);
-            this.btnNetIncome.TabIndex = 15;
-            this.btnNetIncome.Text = "손익분기매출액";
-            this.btnNetIncome.UseVisualStyleBackColor = true;
-            this.btnNetIncome.Click += new System.EventHandler(this.btnNetIncome_Click);
-            // 
-            // lblNetIncome
-            // 
-            this.lblNetIncome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblNetIncome.AutoSize = true;
-            this.lblNetIncome.Location = new System.Drawing.Point(157, 357);
-            this.lblNetIncome.Name = "lblNetIncome";
-            this.lblNetIncome.Size = new System.Drawing.Size(11, 12);
-            this.lblNetIncome.TabIndex = 16;
-            this.lblNetIncome.Text = "-";
-            // 
             // lbltotalInvesetPrice
             // 
             this.lbltotalInvesetPrice.AutoSize = true;
@@ -271,8 +248,6 @@
             this.Controls.Add(this.lblRawMaterialCost);
             this.Controls.Add(this.lblEquipPrice);
             this.Controls.Add(this.lbltotalInvesetPrice);
-            this.Controls.Add(this.lblNetIncome);
-            this.Controls.Add(this.btnNetIncome);
             this.Controls.Add(this.lblBEPpredict);
             this.Controls.Add(this.lblbeppr);
             this.Controls.Add(this.resourceDataGView);
@@ -313,8 +288,6 @@
         private System.Windows.Forms.DataGridView resourceDataGView;
         private System.Windows.Forms.Label lblbeppr;
         private System.Windows.Forms.Label lblBEPpredict;
-        private System.Windows.Forms.Button btnNetIncome;
-        private System.Windows.Forms.Label lblNetIncome;
         private System.Windows.Forms.Label lbltotalInvesetPrice;
         private System.Windows.Forms.Label lblEquipPrice;
         private System.Windows.Forms.Label lblRawMaterialCost;

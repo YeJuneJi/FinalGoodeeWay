@@ -1,5 +1,6 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,7 @@ namespace GoodeeWay.SaleRecords
         DataTable searchRecords;
         DataColumn[] dataColoumns;
         SaleRecordsVO saleRecords;
+        string salesItemList;
         public FrmSaleRecords()
         {
             InitializeComponent();
@@ -47,12 +49,18 @@ namespace GoodeeWay.SaleRecords
             searchlist = new SaleRecordsDAO().OutPutAllSaleRecords();
             ListToGridView(searchlist);
         }
-
+        
         private void ListToGridView(List<SaleRecordsVO> saleRecords)
         {
             foreach (var item in saleRecords)
             {
-                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, item.SalesitemName, item.SalesPrice, item.Discount, item.Duty,item.SalesTotal, item.PaymentPlan);
+                salesItemList = string.Empty;
+                RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
+                foreach (var realMenu in rv.RealMenu)
+                {
+                    salesItemList += realMenu.Menu.MenuName + ", ";
+                }
+                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, salesItemList.Remove(salesItemList.Length - 2, 1) , item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
             }
             salesRecordsGView.DataSource = searchRecords;
         }
@@ -78,12 +86,12 @@ namespace GoodeeWay.SaleRecords
             }
             else
             {
-                TimeSpan breakingDawn = new TimeSpan(00, 00 ,01);
-                TimeSpan eclipse = new TimeSpan(23, 59 ,59);
+                TimeSpan breakingDawn = new TimeSpan(00, 00, 01);
+                TimeSpan eclipse = new TimeSpan(23, 59, 59);
                 DateTime periodStart = dtpPeriodStart.Value;
                 DateTime periodEnd = dtpPeriodEnd.Value;
-                periodStart =  periodStart.Date + breakingDawn;
-                periodEnd =  periodEnd.Date + eclipse;
+                periodStart = periodStart.Date + breakingDawn;
+                periodEnd = periodEnd.Date + eclipse;
 
                 if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
                 {
@@ -185,7 +193,7 @@ namespace GoodeeWay.SaleRecords
                 updateSaleRecords.ShowDialog();
                 OutputAllSaleRecords();
             }
-            
+
         }
 
         private void salesRecordsGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -202,7 +210,7 @@ namespace GoodeeWay.SaleRecords
                     Duty = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[5].Value.ToString()),
                     SalesTotal = float.Parse(salesRecordsGView.Rows[e.RowIndex].Cells[6].Value.ToString()),
                     PaymentPlan = salesRecordsGView.Rows[e.RowIndex].Cells[7].Value.ToString()
-                }; 
+                };
             }
         }
 
@@ -213,7 +221,7 @@ namespace GoodeeWay.SaleRecords
                 MessageBox.Show("삭제할 기록을 선택 해 주세요.");
             }
             else
-            {  
+            {
                 if (MessageBox.Show("정말로 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) != DialogResult.No)
                 {
                     new SaleRecordsDAO().DeleteSaleRecordsbysalesNo(saleRecords.SalesNo.ToString());
@@ -250,9 +258,9 @@ namespace GoodeeWay.SaleRecords
                     workSheet.Cells[i, 2] = salesRecordsGView.Rows[i - 2].Cells[1].Value.ToString();
                     workSheet.Cells[i, 3] = salesRecordsGView.Rows[i - 2].Cells[2].Value.ToString();
                     workSheet.Cells[i, 4] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[3].Value.ToString());
-                    workSheet.Cells[i, 5] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[4].Value.ToString());       
-                    workSheet.Cells[i, 6] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[5].Value.ToString());       
-                    workSheet.Cells[i, 7] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[6].Value.ToString());       
+                    workSheet.Cells[i, 5] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[4].Value.ToString());
+                    workSheet.Cells[i, 6] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[5].Value.ToString());
+                    workSheet.Cells[i, 7] = float.Parse(salesRecordsGView.Rows[i - 2].Cells[6].Value.ToString());
                     workSheet.Cells[i, 8] = salesRecordsGView.Rows[i - 2].Cells[7].Value.ToString();
                 }
                 try

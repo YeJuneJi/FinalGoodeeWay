@@ -15,7 +15,6 @@ namespace GoodeeWay.BUS
 {
     public partial class ResourceMain : UserControl
     {
-        decimal netIncome = 0;
         private bool mainDragging = false;
         private int mainPanelOffsetX, mainPanelOffsetY;
         DataTable totRsrcTab;
@@ -89,18 +88,6 @@ namespace GoodeeWay.BUS
         private void ResourceMain_MouseUp(object sender, MouseEventArgs e)
         {
             this.mainDragging = false;
-        }
-
-        private void btnNetIncome_Click(object sender, EventArgs e)
-        {
-            if (netIncome == 0)
-            {
-                MessageBox.Show("먼저 검색을 해 주세요.");
-            }
-            else
-            {
-                lblNetIncome.Text = "약 " + Math.Round(netIncome).ToString() + " 원";
-            }
         }
 
         private void rdobtn_CheckedChanged(object sender, EventArgs e)
@@ -427,9 +414,7 @@ namespace GoodeeWay.BUS
                         mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
                     }
 
-
                     //리스트를 총판매액 리스트와 비품비 리스트를 병합후 날짜로 정렬 => 리스트화
-
 
                     float totalInvesetPrice = 0; //매출액
                     float totRawMaterialCost = 0;//원재료비
