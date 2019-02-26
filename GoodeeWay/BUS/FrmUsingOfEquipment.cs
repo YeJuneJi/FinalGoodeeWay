@@ -137,14 +137,7 @@ namespace GoodeeWay.BUS
         private DataTable SetDataTable(List<VO.EquipmentVO> equipmentLst)
         {
                dataTable = new DataTable("Equipment");
-            
-            //dataTable.Columns.Add("EQUCode", typeof(string), "비품코드");
-            //dataTable.Columns.Add("detailName", typeof(string), "상세명칭");
-            //dataTable.Columns.Add("location", typeof(string), "위치");
-            //dataTable.Columns.Add("state", typeof(string), "상태");
-            //dataTable.Columns.Add("purchasePrice", typeof(float), "구매가격");
-            //dataTable.Columns.Add("purchaseDate", typeof(DateTime), "구매날짜");
-            //dataTable.Columns.Add("note", typeof(string), "비고");
+         
 
             dataTable.Columns.Add("비품코드", typeof(string));
             dataTable.Columns.Add("상세명칭", typeof(string));

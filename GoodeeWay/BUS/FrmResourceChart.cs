@@ -9,7 +9,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.DataVisualization.Charting;
+//using System.Web.UI.DataVisualization.Charting;
 using System.Windows.Forms;
 
 namespace GoodeeWay.BUS

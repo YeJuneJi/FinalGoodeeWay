@@ -95,7 +95,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(-1, 395);
+            this.groupBox1.Location = new System.Drawing.Point(37, 415);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(413, 273);
             this.groupBox1.TabIndex = 1;
@@ -252,7 +252,7 @@
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.txtSearchForName);
-            this.groupBox2.Location = new System.Drawing.Point(429, 395);
+            this.groupBox2.Location = new System.Drawing.Point(467, 415);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(651, 144);
             this.groupBox2.TabIndex = 2;
@@ -432,7 +432,7 @@
             // 
             // btnAddEquipment
             // 
-            this.btnAddEquipment.Location = new System.Drawing.Point(539, 571);
+            this.btnAddEquipment.Location = new System.Drawing.Point(577, 591);
             this.btnAddEquipment.Name = "btnAddEquipment";
             this.btnAddEquipment.Size = new System.Drawing.Size(173, 62);
             this.btnAddEquipment.TabIndex = 3;
@@ -442,7 +442,7 @@
             // 
             // btnExportAsExcel
             // 
-            this.btnExportAsExcel.Location = new System.Drawing.Point(827, 571);
+            this.btnExportAsExcel.Location = new System.Drawing.Point(865, 591);
             this.btnExportAsExcel.Name = "btnExportAsExcel";
             this.btnExportAsExcel.Size = new System.Drawing.Size(173, 62);
             this.btnExportAsExcel.TabIndex = 4;
@@ -453,7 +453,7 @@
             // pnlPage
             // 
             this.pnlPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlPage.Location = new System.Drawing.Point(435, 369);
+            this.pnlPage.Location = new System.Drawing.Point(472, 369);
             this.pnlPage.Name = "pnlPage";
             this.pnlPage.Size = new System.Drawing.Size(180, 20);
             this.pnlPage.TabIndex = 5;
@@ -462,7 +462,7 @@
             // btnFrontPage
             // 
             this.btnFrontPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnFrontPage.Location = new System.Drawing.Point(405, 369);
+            this.btnFrontPage.Location = new System.Drawing.Point(442, 369);
             this.btnFrontPage.Name = "btnFrontPage";
             this.btnFrontPage.Size = new System.Drawing.Size(24, 21);
             this.btnFrontPage.TabIndex = 7;
@@ -473,7 +473,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnLastPage.Location = new System.Drawing.Point(651, 368);
+            this.btnLastPage.Location = new System.Drawing.Point(688, 368);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(29, 21);
             this.btnLastPage.TabIndex = 9;
@@ -484,7 +484,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNextPage.Location = new System.Drawing.Point(621, 368);
+            this.btnNextPage.Location = new System.Drawing.Point(658, 368);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(24, 21);
             this.btnNextPage.TabIndex = 10;
@@ -495,7 +495,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnFirstPage.Location = new System.Drawing.Point(370, 369);
+            this.btnFirstPage.Location = new System.Drawing.Point(407, 369);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(29, 21);
             this.btnFirstPage.TabIndex = 11;
@@ -518,7 +518,7 @@
             this.dgvEquipmentList.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEquipmentList.ShowEditingIcon = false;
-            this.dgvEquipmentList.Size = new System.Drawing.Size(1092, 362);
+            this.dgvEquipmentList.Size = new System.Drawing.Size(1167, 362);
             this.dgvEquipmentList.TabIndex = 0;
             this.dgvEquipmentList.DataSourceChanged += new System.EventHandler(this.dgvEquipmentList_DataSourceChanged);
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
@@ -530,16 +530,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1092, 696);
+            this.ClientSize = new System.Drawing.Size(1167, 712);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnAddEquipment);
             this.Controls.Add(this.btnFirstPage);
+            this.Controls.Add(this.btnExportAsExcel);
             this.Controls.Add(this.btnNextPage);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFrontPage);
             this.Controls.Add(this.pnlPage);
-            this.Controls.Add(this.btnExportAsExcel);
-            this.Controls.Add(this.btnAddEquipment);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvEquipmentList);
             this.Name = "FrmEquipment";
             this.Text = "비품관리";
