@@ -121,8 +121,8 @@
   <data name="Employee_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Employee_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Commodity_50px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,23 +130,44 @@
   <data name="GW3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GW3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Restaurant_Menu_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\restaurant menu_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GooDeeWay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\goodeeway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Erase_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Erase_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Change Theme_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Change Theme_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GoodeeWayHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goodeewayhead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Cooking_Pot_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\cooking pot_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Sandwich_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\sandwich_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GW31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GW31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GooDeeWay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\goodeeway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Checked_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Checked_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Milkshake_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Milkshake_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Close_Window_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\close window_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sandwich_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sandwich_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,37 +178,31 @@
   <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Search_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Receipt_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Receipt_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GW31" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GW31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Card_Payment_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\card payment_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close_Window_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\close window_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Maintenance_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Maintenance_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Commodity_50px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cooking_Pot_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\cooking pot_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Restaurant_Menu_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\restaurant menu_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Microsoft Excel_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft Excel_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

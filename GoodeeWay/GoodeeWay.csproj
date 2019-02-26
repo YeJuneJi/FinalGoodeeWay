@@ -196,6 +196,12 @@
     <Compile Include="SaleRecords\FrmDetailSaleRecord.Designer.cs">
       <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="SaleRecords\FrmSaleRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SaleRecords\FrmSaleRecord.Designer.cs">
+      <DependentUpon>FrmSaleRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleRecords\FrmSaleRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,6 +397,9 @@
     <EmbeddedResource Include="SaleRecords\FrmDetailSaleRecord.resx">
       <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SaleRecords\FrmSaleRecord.resx">
+      <DependentUpon>FrmSaleRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
       <DependentUpon>FrmSaleRecords.cs</DependentUpon>
     </EmbeddedResource>
@@ -447,6 +456,11 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
+    <None Include="Resources\Maintenance_50px.png" />
+    <None Include="Resources\Search_52px.png" />
+    <None Include="Resources\Change Theme_52px.png" />
+    <None Include="Resources\Erase_50px.png" />
+    <None Include="Resources\Microsoft Excel_52px.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />

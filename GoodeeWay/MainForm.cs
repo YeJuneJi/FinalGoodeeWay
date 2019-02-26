@@ -19,18 +19,26 @@ using GoodeeWay.Equipment;
 using System.Threading;
 using System.IO;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace GoodeeWay
 {
     enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
     public partial class MainForm : Form
     {
-        //OderVIew oderVIew;
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
+        
         FrmOrderView fov;
+        FrmSaleRecord fsr;
 
         inventory inventory;
-        FrmSalesMenu salesMenu;
-        FrmSaleRecords saleRecords;
+        FrmSalesMenu salesMenu;        
         FrmEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
@@ -75,7 +83,7 @@ namespace GoodeeWay
             if (fov == null || fov.IsDisposed)
             {
                 fov = new FrmOrderView();
-                panelTest.Controls.Add(fov);
+                MainPanel.Controls.Add(fov);
                 fov.BringToFront();
                 //CheckOpenClose(oderVIew);
             }
@@ -125,23 +133,17 @@ namespace GoodeeWay
 
         private void 판매기록관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saleRecords == null)
+
+            if (fsr == null || fsr.IsDisposed)
             {
-                saleRecords = new FrmSaleRecords();
-                saleRecords.MdiParent = this;
-                saleRecords.Show();
-                CheckOpenClose(saleRecords);
-            }
-            else if (saleRecords.IsDisposed)
-            {
-                saleRecords = new FrmSaleRecords();
-                saleRecords.MdiParent = this;
-                saleRecords.Show();
-                CheckOpenClose(saleRecords);
-            }
+                fsr = new FrmSaleRecord();
+                MainPanel.Controls.Add(fsr);
+                fsr.BringToFront();
+                //CheckOpenClose(saleRecords);
+            }           
             else
             {
-                saleRecords.BringToFront();
+                fsr.BringToFront();
             }
 
         }
@@ -261,6 +263,20 @@ namespace GoodeeWay
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }
