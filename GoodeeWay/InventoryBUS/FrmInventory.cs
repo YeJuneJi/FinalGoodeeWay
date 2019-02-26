@@ -16,11 +16,11 @@ using GoodeeWay.VO;
 using Excel = Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 
-namespace GoodeeWay
-{
-    public partial class inventory : Form
-    {
 
+namespace GoodeeWay.InventoryBUS
+{
+    public partial class FrmInventory : UserControl
+    {
         List<ReceivingDetailsVO> receivingDetailsList;
         List<InventoryTypeVO> inventoryTypeVOList;
         List<OrderDetailsVO> orderDetailsVOsList;
@@ -32,7 +32,8 @@ namespace GoodeeWay
 
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
-        public inventory()
+
+        public FrmInventory()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
@@ -49,31 +50,6 @@ namespace GoodeeWay
             btnSaveOrderDetails.Enabled = false;
             btnExcelExport.Enabled = false;
         }
-
-        /// <summary>
-        /// 폼사이즈 동적설정
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                switch (tabControl1.SelectedIndex)
-            {
-                case 0:
-                    tabControl1.Size = new Size(916, 659);
-                    this.Size = new Size(951, 722);
-                    break;
-                case 1:
-                    tabControl1.Size = new Size(1159, 659);
-                    this.Size = new Size(1187, 722);
-                    break;
-                case 2:
-                    tabControl1.Size = new Size(729, 659);
-                    this.Size = new Size(764, 722);
-                    break;
-            }
-        }
-
         #region 입고내역
         /// <summary>
         /// '가져오기' 버튼 클릭하여 입고내역 상세뷰 띄우기
@@ -211,7 +187,7 @@ namespace GoodeeWay
             bool temp = false;
             for (int i = 0; i < dgvReceivingDetails.Rows.Count; i++)
             {
-                if (dgvReceivingDetails["InventoryName",i].Value==null)
+                if (dgvReceivingDetails["InventoryName", i].Value == null)
                 {
                     temp = true;
                     MessageBox.Show("등록되지 않은 재고는 입고내역에 추가되지 않습니다.");
@@ -226,7 +202,7 @@ namespace GoodeeWay
                     rd.UnitPrice = float.Parse(dgvReceivingDetails["UnitPrice", i].Value.ToString());
                     rd.ReturnStatus = dgvReceivingDetails["ReturnStatus", i].Value.ToString();
                     rd.InventoryTypeCode = dgvReceivingDetails["InventoryTypeCode", i].Value.ToString();
-                    receivingDetailsList.Add(rd); 
+                    receivingDetailsList.Add(rd);
                 }
             }
             try
@@ -239,9 +215,9 @@ namespace GoodeeWay
             catch (SqlException)
             {
 
-                if (temp ==false)
+                if (temp == false)
                 {
-                    MessageBox.Show("이미 저장되었습니다."); 
+                    MessageBox.Show("이미 저장되었습니다.");
                 }
                 btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             }
@@ -367,6 +343,7 @@ namespace GoodeeWay
                 MessageBox.Show("정상제품에 대해서만 반품내역 추가할 수 있습니다.");
             }
         }
+
         #endregion
 
         #region 재고테이블
@@ -376,11 +353,11 @@ namespace GoodeeWay
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnInventoryNewTable_Click(object sender, EventArgs e)                         
-        {                                                                                           
-            InventoryTableSelect();                                                                 
-        }                                                                                           
-                                                                                                    
+        private void btnInventoryNewTable_Click(object sender, EventArgs e)
+        {
+            InventoryTableSelect();
+        }
+
         /// <summary>                                                                               
         /// 재고 테이블                                                                             
         /// </summary>
@@ -399,7 +376,7 @@ namespace GoodeeWay
         {
             try
             {
-                InventoryUseDetails inventoryUseDetails = 
+                InventoryUseDetails inventoryUseDetails =
                     new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString(),
                     dgvInventoryTable.SelectedRows[0].Cells["유통기한"].Value.ToString());
                 inventoryUseDetails.ShowDialog();
@@ -412,8 +389,6 @@ namespace GoodeeWay
             }
         }
         #endregion
-
-
 
         #region 재고종류
         /// <summary>
@@ -505,7 +480,7 @@ namespace GoodeeWay
             InventoryTypeSelect();
 
         }
-        #endregion                                                                                          
+        #endregion
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
@@ -536,6 +511,7 @@ namespace GoodeeWay
                 }
             }
         }
+
         /// <summary>
         /// 재고테이블 row선택 시 해당 물품의 재고종류가 선택
         /// </summary>
@@ -545,9 +521,8 @@ namespace GoodeeWay
         {
             InventoryTableRowSelected();
         }
+
         #endregion
-
-
 
         #region 발주내역
 
@@ -565,12 +540,12 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
 
             dgvNeedInventoryDetailView.Columns["필요수량"].HeaderText = "필요수량*";
-            
+
 
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
-            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled = false;
         }
         public void CalculationOrderDetails()
         {
@@ -620,7 +595,7 @@ namespace GoodeeWay
             {
                 for (int i = 0; i < dgvOrderDetailsList.Rows.Count; i++)
                 {
-                    if(dgvOrderDetailsList["발주날짜",i].Value.ToString()==DateTime.Now.ToShortDateString())
+                    if (dgvOrderDetailsList["발주날짜", i].Value.ToString() == DateTime.Now.ToShortDateString())
                     {
                         temp = true;
                         MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
@@ -631,14 +606,14 @@ namespace GoodeeWay
                     new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
                     MessageBox.Show("발주내역 저장완료");
                 }
-                
+
             }
             catch (SqlException)
             {
                 MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
             }
 
-            
+
 
             SelectOrderDetailsList();
         }
@@ -679,7 +654,6 @@ namespace GoodeeWay
 
         }
 
-
         /// <summary>
         /// 발주내역서 Excel로 추출
         /// </summary>
@@ -690,22 +664,22 @@ namespace GoodeeWay
             OrderDetailsListDataTable = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
             dgvNeedInventoryDetailView.DataSource = OrderDetailsListDataTable;
             Excel.Application excelApp = new Excel.Application();
-            if (excelApp==null)
+            if (excelApp == null)
             {
                 MessageBox.Show("Excel 응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
                 return;
             }
 
-            Excel.Workbook workbook; 
+            Excel.Workbook workbook;
             Excel.Worksheet worksheet;
             object missingValue = System.Reflection.Missing.Value;
 
             workbook = excelApp.Workbooks.Open(@"C:\Users\GD4\Desktop\FinalProject\OrderDetails.xlsx");
             worksheet = workbook.Sheets.Item[1];
             worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
-            for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
+            for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count + 4; i++)
             {
-                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString())>0)
+                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString()) > 0)
                 {
                     worksheet.Cells[i, 1] = i - 3;
                     worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호", i - 4].Value.ToString();
@@ -714,7 +688,7 @@ namespace GoodeeWay
                     worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
 
                     Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i + 1, 1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
-                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue); 
+                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
                 }
             }
 
@@ -722,7 +696,7 @@ namespace GoodeeWay
             string s = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString().Replace("-", "");
             try
             {
-                workbook.SaveAs(Application.StartupPath + @"\"+s+ "발주내역서.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                workbook.SaveAs(Application.StartupPath + @"\" + s + "발주내역서.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
             }
             catch (Exception)
             {
@@ -733,8 +707,6 @@ namespace GoodeeWay
             Marshal.ReleaseComObject(workbook);
             Marshal.ReleaseComObject(excelApp);
         }
-
-
 
         /// <summary>
         /// 발주 내역 수정
@@ -765,18 +737,14 @@ namespace GoodeeWay
                 OrderDetailsListSelect();
             }
         }
-
-
-
-
         #endregion
 
         private void dgvInventoryType_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
-        
-        private void dgvNeedInventoryDetailView_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
+
+        private void dgvNeedInventoryDetailView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
@@ -794,7 +762,7 @@ namespace GoodeeWay
             catch (Exception)
             {
             }
-            
+
         }
     }
 }

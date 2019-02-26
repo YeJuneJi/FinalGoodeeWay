@@ -1,16 +1,16 @@
-﻿namespace GoodeeWay
+﻿namespace GoodeeWay.InventoryBUS
 {
-    partial class inventory
+    partial class FrmInventory
     {
-        /// <summary>
-        /// Required designer variable.
+        /// <summary> 
+        /// 필수 디자이너 변수입니다.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
+        /// <summary> 
+        /// 사용 중인 모든 리소스를 정리합니다.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,20 +20,20 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region 구성 요소 디자이너에서 생성한 코드
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// <summary> 
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnReturnAdd = new System.Windows.Forms.Button();
@@ -85,13 +85,12 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1159, 659);
+            this.tabControl1.Size = new System.Drawing.Size(1200, 725);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
-            this.tabControl1.TabIndex = 2;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
@@ -105,14 +104,14 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1151, 633);
+            this.tabPage1.Size = new System.Drawing.Size(1192, 699);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "입고내역";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnReturnAdd
             // 
-            this.btnReturnAdd.Location = new System.Drawing.Point(821, 9);
+            this.btnReturnAdd.Location = new System.Drawing.Point(833, 9);
             this.btnReturnAdd.Name = "btnReturnAdd";
             this.btnReturnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnReturnAdd.TabIndex = 3;
@@ -142,14 +141,14 @@
             // 
             this.dgvReceivingDetailsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReceivingDetailsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReceivingDetailsList.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReceivingDetailsList.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReceivingDetailsList.Location = new System.Drawing.Point(12, 35);
             this.dgvReceivingDetailsList.Name = "dgvReceivingDetailsList";
             this.dgvReceivingDetailsList.ReadOnly = true;
@@ -157,13 +156,13 @@
             this.dgvReceivingDetailsList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvReceivingDetailsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReceivingDetailsList.ShowEditingIcon = false;
-            this.dgvReceivingDetailsList.Size = new System.Drawing.Size(125, 546);
+            this.dgvReceivingDetailsList.Size = new System.Drawing.Size(125, 543);
             this.dgvReceivingDetailsList.TabIndex = 25;
             this.dgvReceivingDetailsList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvReceivingDetailsList_CellMouseDoubleClick);
             // 
             // btnLoadingFile
             // 
-            this.btnLoadingFile.Location = new System.Drawing.Point(143, 587);
+            this.btnLoadingFile.Location = new System.Drawing.Point(143, 584);
             this.btnLoadingFile.Name = "btnLoadingFile";
             this.btnLoadingFile.Size = new System.Drawing.Size(114, 40);
             this.btnLoadingFile.TabIndex = 24;
@@ -173,7 +172,7 @@
             // 
             // btnReceivingDetailsSave
             // 
-            this.btnReceivingDetailsSave.Location = new System.Drawing.Point(734, 587);
+            this.btnReceivingDetailsSave.Location = new System.Drawing.Point(746, 584);
             this.btnReceivingDetailsSave.Name = "btnReceivingDetailsSave";
             this.btnReceivingDetailsSave.Size = new System.Drawing.Size(162, 40);
             this.btnReceivingDetailsSave.TabIndex = 20;
@@ -185,21 +184,21 @@
             // 
             this.dgvReceivingDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReceivingDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReceivingDetails.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReceivingDetails.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvReceivingDetails.Location = new System.Drawing.Point(143, 35);
             this.dgvReceivingDetails.MultiSelect = false;
             this.dgvReceivingDetails.Name = "dgvReceivingDetails";
             this.dgvReceivingDetails.ReadOnly = true;
             this.dgvReceivingDetails.RowTemplate.Height = 23;
             this.dgvReceivingDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReceivingDetails.Size = new System.Drawing.Size(753, 546);
+            this.dgvReceivingDetails.Size = new System.Drawing.Size(765, 543);
             this.dgvReceivingDetails.TabIndex = 16;
             // 
             // tabPage3
@@ -216,14 +215,14 @@
             this.tabPage3.Controls.Add(this.dgvInventoryType);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1151, 633);
+            this.tabPage3.Size = new System.Drawing.Size(1192, 699);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "재고내역";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btnRelease
             // 
-            this.btnRelease.Location = new System.Drawing.Point(957, 9);
+            this.btnRelease.Location = new System.Drawing.Point(1010, 9);
             this.btnRelease.Name = "btnRelease";
             this.btnRelease.Size = new System.Drawing.Size(98, 23);
             this.btnRelease.TabIndex = 15;
@@ -282,7 +281,7 @@
             // 
             // btnInventoryNewTable
             // 
-            this.btnInventoryNewTable.Location = new System.Drawing.Point(1061, 9);
+            this.btnInventoryNewTable.Location = new System.Drawing.Point(1114, 9);
             this.btnInventoryNewTable.Name = "btnInventoryNewTable";
             this.btnInventoryNewTable.Size = new System.Drawing.Size(75, 23);
             this.btnInventoryNewTable.TabIndex = 3;
@@ -294,21 +293,21 @@
             // 
             this.dgvInventoryTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInventoryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInventoryTable.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInventoryTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvInventoryTable.Location = new System.Drawing.Point(529, 35);
             this.dgvInventoryTable.MultiSelect = false;
             this.dgvInventoryTable.Name = "dgvInventoryTable";
             this.dgvInventoryTable.ReadOnly = true;
             this.dgvInventoryTable.RowTemplate.Height = 23;
             this.dgvInventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventoryTable.Size = new System.Drawing.Size(607, 589);
+            this.dgvInventoryTable.Size = new System.Drawing.Size(660, 543);
             this.dgvInventoryTable.TabIndex = 2;
             this.dgvInventoryTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventoryTable_CellMouseClick);
             this.dgvInventoryTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvInventoryTable_KeyUp);
@@ -326,20 +325,20 @@
             // 
             this.dgvInventoryType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInventoryType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInventoryType.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInventoryType.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvInventoryType.Location = new System.Drawing.Point(12, 35);
             this.dgvInventoryType.MultiSelect = false;
             this.dgvInventoryType.Name = "dgvInventoryType";
             this.dgvInventoryType.RowTemplate.Height = 23;
             this.dgvInventoryType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventoryType.Size = new System.Drawing.Size(511, 589);
+            this.dgvInventoryType.Size = new System.Drawing.Size(511, 543);
             this.dgvInventoryType.TabIndex = 0;
             this.dgvInventoryType.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventoryType_CellValueChanged);
             this.dgvInventoryType.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvInventoryType_DataError);
@@ -358,7 +357,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1151, 633);
+            this.tabPage2.Size = new System.Drawing.Size(1192, 699);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "발주내역";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -396,7 +395,7 @@
             // 
             // btnSaveOrderDetails
             // 
-            this.btnSaveOrderDetails.Location = new System.Drawing.Point(383, 584);
+            this.btnSaveOrderDetails.Location = new System.Drawing.Point(576, 581);
             this.btnSaveOrderDetails.Name = "btnSaveOrderDetails";
             this.btnSaveOrderDetails.Size = new System.Drawing.Size(163, 43);
             this.btnSaveOrderDetails.TabIndex = 16;
@@ -408,14 +407,14 @@
             // 
             this.dgvOrderDetailsList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrderDetailsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOrderDetailsList.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOrderDetailsList.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOrderDetailsList.Location = new System.Drawing.Point(12, 35);
             this.dgvOrderDetailsList.Name = "dgvOrderDetailsList";
             this.dgvOrderDetailsList.ReadOnly = true;
@@ -436,7 +435,7 @@
             // 
             // btnExcelExport
             // 
-            this.btnExcelExport.Location = new System.Drawing.Point(552, 584);
+            this.btnExcelExport.Location = new System.Drawing.Point(745, 581);
             this.btnExcelExport.Name = "btnExcelExport";
             this.btnExcelExport.Size = new System.Drawing.Size(163, 43);
             this.btnExcelExport.TabIndex = 13;
@@ -446,7 +445,7 @@
             // 
             // btnOrderDisplay
             // 
-            this.btnOrderDisplay.Location = new System.Drawing.Point(603, 9);
+            this.btnOrderDisplay.Location = new System.Drawing.Point(796, 9);
             this.btnOrderDisplay.Name = "btnOrderDisplay";
             this.btnOrderDisplay.Size = new System.Drawing.Size(112, 23);
             this.btnOrderDisplay.TabIndex = 12;
@@ -458,35 +457,34 @@
             // 
             this.dgvNeedInventoryDetailView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNeedInventoryDetailView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SpringGreen;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNeedInventoryDetailView.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SpringGreen;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNeedInventoryDetailView.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvNeedInventoryDetailView.Location = new System.Drawing.Point(143, 35);
             this.dgvNeedInventoryDetailView.MultiSelect = false;
             this.dgvNeedInventoryDetailView.Name = "dgvNeedInventoryDetailView";
             this.dgvNeedInventoryDetailView.RowTemplate.Height = 23;
             this.dgvNeedInventoryDetailView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNeedInventoryDetailView.Size = new System.Drawing.Size(572, 543);
+            this.dgvNeedInventoryDetailView.Size = new System.Drawing.Size(765, 543);
             this.dgvNeedInventoryDetailView.TabIndex = 9;
-            this.dgvNeedInventoryDetailView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvNeedInventoryDetailView_DataError_1);
+            this.dgvNeedInventoryDetailView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvNeedInventoryDetailView_DataError);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // inventory
+            // FrmInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1265, 683);
             this.Controls.Add(this.tabControl1);
-            this.Name = "inventory";
-            this.Text = "Inventory";
+            this.Name = "FrmInventory";
+            this.Size = new System.Drawing.Size(1200, 725);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -508,34 +506,34 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnReturnAdd;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dgvReceivingDetailsList;
         private System.Windows.Forms.Button btnLoadingFile;
         private System.Windows.Forms.Button btnReceivingDetailsSave;
         private System.Windows.Forms.DataGridView dgvReceivingDetails;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dgvOrderDetailsList;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnExcelExport;
-        private System.Windows.Forms.Button btnOrderDisplay;
-        private System.Windows.Forms.DataGridView dgvNeedInventoryDetailView;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnRelease;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnNewTable;
+        private System.Windows.Forms.Button btnInventoryTypeAdd;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnInventoryNewTable;
         private System.Windows.Forms.DataGridView dgvInventoryTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvInventoryType;
-        private System.Windows.Forms.Button btnInventoryTypeAdd;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvReceivingDetailsList;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnNewTable;
-        private System.Windows.Forms.Button btnReturnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnSaveOrderDetails;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnUpdateOrder;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAddOrder;
-        private System.Windows.Forms.Button btnRelease;
+        private System.Windows.Forms.Button btnUpdateOrder;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSaveOrderDetails;
+        private System.Windows.Forms.DataGridView dgvOrderDetailsList;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExcelExport;
+        private System.Windows.Forms.Button btnOrderDisplay;
+        private System.Windows.Forms.DataGridView dgvNeedInventoryDetailView;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

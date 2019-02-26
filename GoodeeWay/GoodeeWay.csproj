@@ -109,6 +109,12 @@
     <Compile Include="BUS\FrmUsingOfEquipment.Designer.cs">
       <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="InventoryBUS\FrmInventory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\FrmInventory.Designer.cs">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="InventoryBUS\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
@@ -316,6 +322,9 @@
     <EmbeddedResource Include="BUS\Update_Emp.resx">
       <DependentUpon>Update_Emp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\FrmInventory.resx">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
@@ -459,7 +468,6 @@
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-<<<<<<< HEAD
       <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
@@ -469,8 +477,6 @@
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
-=======
->>>>>>> master
       <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
