@@ -363,6 +363,16 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap Restart_32px {
+            get {
+                object obj = ResourceManager.GetObject("Restart_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap Restaurant_50px {
             get {
                 object obj = ResourceManager.GetObject("Restaurant_50px", resourceCulture);
@@ -406,6 +416,16 @@ namespace GoodeeWay.Properties {
         internal static System.Drawing.Bitmap Sandwich_50px {
             get {
                 object obj = ResourceManager.GetObject("Sandwich_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_as_32px {
+            get {
+                object obj = ResourceManager.GetObject("Save_as_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -616,6 +636,16 @@ namespace GoodeeWay.Properties {
         internal static System.Drawing.Bitmap Update_Black {
             get {
                 object obj = ResourceManager.GetObject("Update_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Xbox_X_32px {
+            get {
+                object obj = ResourceManager.GetObject("Xbox_X_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

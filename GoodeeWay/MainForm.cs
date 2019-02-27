@@ -29,7 +29,7 @@ namespace GoodeeWay
         FrmInventory fi;
         USalesMenu salesMenu;
         FrmSaleRecords saleRecords;
-        FrmEquipment frmEquipment;
+        UcEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
 
@@ -120,19 +120,12 @@ namespace GoodeeWay
 
         private void 비품관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (frmEquipment == null)
+            if (frmEquipment == null || frmEquipment.IsDisposed)
             {
-                frmEquipment = new Equipment.FrmEquipment();
-                frmEquipment.MdiParent = this;
-                frmEquipment.Show();
-                //CheckOpenClose(frmEquipment);
-            }
-            else if (frmEquipment.IsDisposed)
-            {
-                frmEquipment = new Equipment.FrmEquipment();
-                frmEquipment.MdiParent = this;
-                frmEquipment.Show();
-                //CheckOpenClose(frmEquipment);
+                frmEquipment = new UcEquipment();
+                MainPanel.Controls.Add(frmEquipment);
+                frmEquipment.BringToFront();
+                //CheckOpenClose(saleRecords);
             }
             else
             {
@@ -239,7 +232,7 @@ namespace GoodeeWay
                 // 타이틀 바의 다운 이벤트처럼 보냄
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
-
+            
             base.OnMouseDown(e);
         }
     }

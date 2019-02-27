@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
       <Private>True</Private>
@@ -52,16 +53,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -117,6 +109,12 @@
     </Compile>
     <Compile Include="InventoryBUS\FrmInventory.Designer.cs">
       <DependentUpon>FrmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UcEquipment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Equipment\UcEquipment.Designer.cs">
+      <DependentUpon>UcEquipment.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\EquipmentDAO.cs" />
     <Compile Include="DAO\IEquipmentDAO.cs" />
@@ -339,6 +337,9 @@
     <EmbeddedResource Include="InventoryBUS\FrmInventory.resx">
       <DependentUpon>FrmInventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Equipment\UcEquipment.resx">
+      <DependentUpon>UcEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="VO\EmpVO.cs" />
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
       <SubType>Form</SubType>
@@ -484,6 +485,8 @@
     <Content Include="Resources\In_50px.png" />
     <Content Include="Resources\Picture_64px.png" />
     <Content Include="Resources\Refund_50px.png" />
+    <Content Include="Resources\Restart_32px.png" />
+    <Content Include="Resources\Save as_32px.png" />
     <Content Include="Resources\Search_Black.png" />
     <Content Include="Resources\Update_Black.png" />
     <None Include="Resources\receiving.png" />
@@ -505,6 +508,7 @@
     <None Include="Resources\sjm_excel.png" />
     <None Include="Resources\sjm_refresh1.png" />
     <None Include="Resources\sjm_save2.png" />
+    <Content Include="Resources\Xbox X_32px.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />

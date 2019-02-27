@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,8 +20,21 @@ namespace GoodeeWay.Equipment
             InitializeComponent();
         }
 
-       
+        #region panel이동을 위해서
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2; 
+        #endregion
 
+
+        /// <summary>
+        /// DB로 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (txtDetailName.Text =="")
@@ -56,6 +70,11 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        /// <summary>
+        ///  textbox값 초기화
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRebuild_Click(object sender, EventArgs e)
         {
             txtDetailName.Text = "";
@@ -65,11 +84,21 @@ namespace GoodeeWay.Equipment
             txtNote.Text = "";
         }
 
+        /// <summary>
+        /// close버튼 클릭시 창닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 현재 날짜 이후를 선택했을때 경고
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dtpPurchaseDate_ValueChanged(object sender, EventArgs e)
         {
             if (dtpPurchaseDate.Value > DateTime.Now)
@@ -79,15 +108,20 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        /// <summary>
+        /// 숫자형만,지우기,float 형의 범위로인한 가격제한
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 숫자형만,지우기,float 형의 범위로인한 가격제한
             if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back))|| txtPrice.Text.Length > 8) 
             { 
                 e.Handled = true;
             }
         }
 
+        #region 글자수 제한
         private void txtDetailName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (txtDetailName.Text.Length > 25)
@@ -102,8 +136,14 @@ namespace GoodeeWay.Equipment
             {
                 e.Handled = true;
             }
-        }
+        } 
+        #endregion
 
+        /// <summary>
+        /// txtprice의 format 변환
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPrice_Leave(object sender, EventArgs e)
         {
             if (txtPrice.Text != "")
@@ -121,6 +161,11 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        /// <summary>
+        /// price에 들어갈때  ' , '을 삭제 시켜준다
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPrice_Enter(object sender, EventArgs e)
         {
             if (txtPrice.Text != "")
@@ -128,6 +173,26 @@ namespace GoodeeWay.Equipment
                 txtPrice.Text = txtPrice.Text.Replace(",", "");
             }
         }
+
         
+        /// <summary>
+        /// 위 패널을 통한 창이동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
+        }
+       
     }
 }

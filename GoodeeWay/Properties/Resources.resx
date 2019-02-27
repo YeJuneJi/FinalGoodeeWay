@@ -286,4 +286,13 @@
   <data name="Close_Window_64px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close window_64px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+    <data name="Restart_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\restart_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Save_as_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\save as_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Xbox_X_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\xbox x_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
