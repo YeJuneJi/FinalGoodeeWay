@@ -34,8 +34,6 @@ public partial class FrmUsingOfEquipment : Form
         {
             btnClose.BackgroundImage = Properties.Resources.Close_Window_32px.ToImage();
             dgvtotalList.AllowUserToAddRows = false;
-            //초기화면 chart 설정 변경, x축 dot형식, y축 바탕과 같은 색으로, 축lable 형식 변경, 차이가 많은 데이터 짤라보기
-            //crtEquipment.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
             crtEquipment.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             crtEquipment.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             crtEquipment.ChartAreas[0].AxisY.Interval = 300000;
@@ -50,17 +48,22 @@ public partial class FrmUsingOfEquipment : Form
             var firstDayOfMonth_month = DateTime.Now.Month;
             dtpStartDate.Value = new DateTime(firstDayOfMonth_year, firstDayOfMonth_month, 1);
 
-            equipment = dAO.EquipmentByDate(dtpStartDate.Value, DateTime.Now);//  dAO.AllequipmentVOsList();
+            equipment = dAO.EquipmentByDate(dtpStartDate.Value, DateTime.Now);
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
             crtEquipment.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
             crtEquipment.Series[0].LegendText = "총액";
             DetailInfo();
 
             dgvtotalList.DataSource = SetDataTable(dAO.EquipmentByDate(dtpStartDate.Value, dtpEndDate.Value));
-            //crtCircle.Series[0].IsValueShownAsLabel = true;
+            
 
         }
 
+        /// <summary>
+        /// 검색하기 버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -68,12 +71,14 @@ public partial class FrmUsingOfEquipment : Form
             equipment = dAO.GroupingDateEquipment(dtpStartDate.Value, dtpEndDate.Value);
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
             crtEquipment.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
-            // crtEquipment.Series[0].LegendText = "총액";
+            
 
             DetailInfo();
             dgvtotalList.DataSource = SetDataTable(dAO.EquipmentByDate(dtpStartDate.Value, dtpEndDate.Value));
         }
-
+        /// <summary>
+        /// 디테일 정보를 출력해주는 메서드
+        /// </summary>
         private void DetailInfo()
         {
             var totalE = from eq in equipment
@@ -143,11 +148,13 @@ public partial class FrmUsingOfEquipment : Form
             {
                 lblMaxYear.Text = String.Format("{0:#,###}원", Convert.ToInt32(item.PurchasePrice)) + " / " + item.PurchaseDate.ToLongDateString().Substring(0, 5);
             }
-            //EquipmentBYDate_PROC
-
-            
         }
 
+        /// <summary>
+        /// 그리드뷰에 들어갈 datatable로 변형
+        /// </summary>
+        /// <param name="equipmentLst"></param>
+        /// <returns></returns>
         private DataTable SetDataTable(List<VO.EquipmentVO> equipmentLst)
         {
                dataTable = new DataTable("Equipment");
@@ -171,7 +178,11 @@ public partial class FrmUsingOfEquipment : Form
         {
 
         }
-
+        /// <summary>
+        /// 윈도우 이동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -191,6 +202,11 @@ public partial class FrmUsingOfEquipment : Form
             this.Close();
         }
 
+        /// <summary>
+        /// 막대그래프 툴팁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void crtEquipment_MouseMove(object sender, MouseEventArgs e)
         {
             Point currentPosition = e.Location;
@@ -204,7 +220,7 @@ public partial class FrmUsingOfEquipment : Form
             if (hit.ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
             {
                 var yValue = String.Format("{0:#,###}원", Convert.ToInt32((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).YValues[0]));
-                toolTipColumn.Show(hit.Series.Name + "\n" + yValue, crtEquipment, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                toolTipColumn.Show( yValue, crtEquipment, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
     }

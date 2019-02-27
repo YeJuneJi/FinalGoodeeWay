@@ -13,58 +13,98 @@ namespace GoodeeWay.DAO
 /// </summary>
     class EquipmentDAO : IEquipmentDAO
     {
-        
+        /// <summary>
+        /// 모든 비품리스트들을 불러온다
+        /// </summary>
+        /// <returns></returns>
         public List<EquipmentVO> AllequipmentVOsList()
         {
             List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
 
             DBConnection dBConnection = new DBConnection();
             string procedureName = "dbo.SerchEquipment";
-            SqlDataReader dataReader =  dBConnection.Select(procedureName, null);
-
-            while (dataReader.Read())
+            try
             {
-                EquipmentVO equipmentVO = new EquipmentVO()
+                SqlDataReader dataReader = dBConnection.Select(procedureName, null);
+
+                while (dataReader.Read())
                 {
-                    EQUCode = dataReader["EQUCode"].ToString(),
-                    DetailName = dataReader["detailName"].ToString(),
-                    Location = dataReader["location"].ToString(),
-                    State = dataReader["state"].ToString(),
-                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
-                    PurchaseDate =DateTime.Parse(dataReader["purchaseDate"].ToString()),
-                    Note = dataReader["note"].ToString()
-                };
-                equipmentLst.Add(equipmentVO);
+                    EquipmentVO equipmentVO = new EquipmentVO()
+                    {
+                        EQUCode = dataReader["EQUCode"].ToString(),
+                        DetailName = dataReader["detailName"].ToString(),
+                        Location = dataReader["location"].ToString(),
+                        State = dataReader["state"].ToString(),
+                        PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                        PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                        Note = dataReader["note"].ToString()
+                    };
+                    equipmentLst.Add(equipmentVO);
+                }
+                return equipmentLst;
             }
-            return equipmentLst;
+            catch (SqlException)
+            {
+
+                throw;
+            }
         }
 
+        /// <summary>
+        /// 비품 데이터 삭제
+        /// </summary>
+        /// <param name="equipment"></param>
+        /// <returns></returns>
         public bool DeleteEquipment(EquipmentVO equipment)
         {
+            bool isComplete = false;
             string procedureName = "DeleteEquipment_PROC";
 
             var dbCon = new DBConnection();
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("EQUCode", equipment.EQUCode);
-            return dbCon.Delete(procedureName, sqlParameters);
+
+
+            try
+            {
+                isComplete = dbCon.Delete(procedureName, sqlParameters);
+            }
+            catch (SqlException)
+            {
+
+                throw;
+            }
+            return isComplete;
         }
 
+        /// <summary>
+        /// 비품 데이터 추가
+        /// </summary>
+        /// <param name="equipment"></param>
+        /// <returns></returns>
         public bool InsertEquipment(EquipmentVO equipment)
         {
             string procedureName = "InsertEquipment_PROC";//저장프로시져 이름
-
+            bool isComplete = false;
             var dbCon = new DBConnection();
-           
+
             SqlParameter[] sqlParameters = new SqlParameter[5];
             sqlParameters[0] = new SqlParameter("detailName", equipment.DetailName);
             sqlParameters[1] = new SqlParameter("location", equipment.Location);
             sqlParameters[2] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
             sqlParameters[3] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
             sqlParameters[4] = new SqlParameter("note", equipment.Note);
-            
-            return dbCon.Insert(procedureName , sqlParameters);
+            isComplete = dbCon.Insert(procedureName, sqlParameters);
+
+            return isComplete;
         }
 
+        /// <summary>
+        /// 비품 데이터 찾기
+        /// </summary>
+        /// <param name="equipment"></param>
+        /// <param name="anotherDate"></param>
+        /// <returns></returns>
         public List<EquipmentVO> SelectSearch(EquipmentVO equipment, DateTime? anotherDate)
         {
             List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
@@ -78,25 +118,37 @@ namespace GoodeeWay.DAO
             sqlParameters[3] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
             sqlParameters[4] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
             sqlParameters[5] = new SqlParameter("anotherDate", anotherDate);
-            SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
 
-            while (dataReader.Read())
+            try
             {
-                EquipmentVO equipmentVO = new EquipmentVO()
+                SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
+                while (dataReader.Read())
                 {
-                    EQUCode = dataReader["EQUCode"].ToString(),
-                    DetailName = dataReader["detailName"].ToString(),
-                    Location = dataReader["location"].ToString(),
-                    State = dataReader["state"].ToString(),
-                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
-                    PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
-                    Note = dataReader["note"].ToString()
-                };
-                equipmentLst.Add(equipmentVO);
+                    EquipmentVO equipmentVO = new EquipmentVO()
+                    {
+                        EQUCode = dataReader["EQUCode"].ToString(),
+                        DetailName = dataReader["detailName"].ToString(),
+                        Location = dataReader["location"].ToString(),
+                        State = dataReader["state"].ToString(),
+                        PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                        PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                        Note = dataReader["note"].ToString()
+                    };
+                    equipmentLst.Add(equipmentVO);
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
             }
             return equipmentLst;
         }
 
+        /// <summary>
+        /// 비품 수정(업데이트)
+        /// </summary>
+        /// <param name="equipment"></param>
+        /// <returns></returns>
         public bool UpdateEquipment(EquipmentVO equipment)
         {
             DBConnection dBConnection = new DBConnection();
@@ -110,12 +162,28 @@ namespace GoodeeWay.DAO
             sqlParameters[4] = new SqlParameter("purchasePrice", equipment.PurchasePrice);
             sqlParameters[5] = new SqlParameter("purchaseDate", equipment.PurchaseDate);
 
-            if (dBConnection.Update(procedureName, sqlParameters) !=1)
+            try
             {
-                return false;
+                if (dBConnection.Update(procedureName, sqlParameters) != 1)
+                {
+                    return false;
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
             return true;
         }
+
+        /// <summary>
+        /// 날짜 별로 구입날짜, 구매 가격 찾기
+        /// </summary>
+        /// <param name="startDate">시작 일</param>
+        /// <param name="endDate">종료 일</param>
+        /// <returns></returns>
         public List<EquipmentVO> GroupingDateEquipment(DateTime startDate, DateTime endDate)
         {
             List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
@@ -126,21 +194,35 @@ namespace GoodeeWay.DAO
             sqlParameters[0] = new SqlParameter("startDate", startDate);
             sqlParameters[1] = new SqlParameter("endDate", endDate);
 
-            SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
-
-            while (dataReader.Read())
+            try
             {
-                EquipmentVO equipmentVO = new EquipmentVO()
+                SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
+
+                while (dataReader.Read())
                 {
-                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
-                    PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
-                };
-                equipmentLst.Add(equipmentVO);
+                    EquipmentVO equipmentVO = new EquipmentVO()
+                    {
+                        PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                        PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                    };
+                    equipmentLst.Add(equipmentVO);
+                }
+                return equipmentLst;
             }
-            return equipmentLst;
+            catch (SqlException)
+            {
+
+                throw;
+            }
 
         }
 
+        /// <summary>
+        /// 날짜 별로 비품데이터 찾기
+        /// </summary>
+        /// <param name="startDate">시작 일</param>
+        /// <param name="endDate">종료 일</param>
+        /// <returns></returns>
         public List<EquipmentVO> EquipmentByDate(DateTime startDate, DateTime endDate)
         {
             List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
@@ -151,23 +233,31 @@ namespace GoodeeWay.DAO
             sqlParameters[0] = new SqlParameter("startDate", startDate);
             sqlParameters[1] = new SqlParameter("endDate", endDate);
 
-            SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
-
-            while (dataReader.Read())
+            try
             {
-                EquipmentVO equipmentVO = new EquipmentVO()
+                SqlDataReader dataReader = dBConnection.Select(procedureName, sqlParameters);
+
+                while (dataReader.Read())
                 {
-                    EQUCode = dataReader["EQUCode"].ToString(),
-                    DetailName = dataReader["detailName"].ToString(),
-                    Location = dataReader["location"].ToString(),
-                    State = dataReader["state"].ToString(),
-                    PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
-                    PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
-                    Note = dataReader["note"].ToString()
-                };
-                equipmentLst.Add(equipmentVO);
+                    EquipmentVO equipmentVO = new EquipmentVO()
+                    {
+                        EQUCode = dataReader["EQUCode"].ToString(),
+                        DetailName = dataReader["detailName"].ToString(),
+                        Location = dataReader["location"].ToString(),
+                        State = dataReader["state"].ToString(),
+                        PurchasePrice = float.Parse(dataReader["purchasePrice"].ToString()),
+                        PurchaseDate = DateTime.Parse(dataReader["purchaseDate"].ToString()),
+                        Note = dataReader["note"].ToString()
+                    };
+                    equipmentLst.Add(equipmentVO);
+                }
+                return equipmentLst;
             }
-            return equipmentLst;
+            catch (SqlException)
+            {
+
+                throw;
+            }
         }
     }
 }
