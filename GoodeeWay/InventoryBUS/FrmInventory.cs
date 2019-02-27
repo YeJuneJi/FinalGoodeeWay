@@ -784,11 +784,11 @@ namespace GoodeeWay.InventoryBUS
         /// <param name="e"></param>
         private void btnReceiving_Click(object sender, EventArgs e)
         {
-            MenuPanel.Dock = DockStyle.None;
-            pnbReceiving.Dock = DockStyle.None;
-            pnmInventory.Dock = DockStyle.None;
-            MenuPanel.Dock = DockStyle.Top;
-            pnbReceiving.Dock = DockStyle.Bottom;
+            //MenuPanel.Dock = DockStyle.None;
+            //pnbReceiving.Dock = DockStyle.None;
+            //pnmInventory.Dock = DockStyle.None;
+            //MenuPanel.Dock = DockStyle.Top;
+            //pnbReceiving.Dock = DockStyle.Bottom;
             pnmReceiving.Dock = DockStyle.Fill;
             pnmReceiving.BringToFront();
             btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
@@ -803,11 +803,11 @@ namespace GoodeeWay.InventoryBUS
         /// <param name="e"></param>
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            MenuPanel.Dock = DockStyle.None;
-            pnbReceiving.Dock = DockStyle.None;
-            pnmInventory.Dock = DockStyle.None;
-            MenuPanel.Dock = DockStyle.Top;
-            pnbReceiving.Dock = DockStyle.Bottom;
+            //MenuPanel.Dock = DockStyle.None;
+            //pnbReceiving.Dock = DockStyle.None;
+            //pnmInventory.Dock = DockStyle.None;
+            //MenuPanel.Dock = DockStyle.Top;
+            //pnbReceiving.Dock = DockStyle.Bottom;
             pnmInventory.Dock = DockStyle.Fill;
             pnmInventory.BringToFront();
             btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
@@ -821,11 +821,11 @@ namespace GoodeeWay.InventoryBUS
         /// <param name="e"></param>
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            MenuPanel.Dock = DockStyle.None;
-            pnbReceiving.Dock = DockStyle.None;
-            pnmInventory.Dock = DockStyle.None;
-            MenuPanel.Dock = DockStyle.Top;
-            pnbReceiving.Dock = DockStyle.Bottom;
+            //MenuPanel.Dock = DockStyle.None;
+            //pnbReceiving.Dock = DockStyle.None;
+            //pnmInventory.Dock = DockStyle.None;
+            //MenuPanel.Dock = DockStyle.Top;
+            //pnbReceiving.Dock = DockStyle.Bottom;
             pnmOrder.Dock = DockStyle.Fill;
             pnmOrder.BringToFront();
             btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
