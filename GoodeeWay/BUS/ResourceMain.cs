@@ -11,6 +11,7 @@ using System.IO;
 using GoodeeWay.Order;
 using System.Globalization;
 using System.Drawing;
+using System.Collections;
 
 namespace GoodeeWay.BUS
 {
@@ -113,6 +114,25 @@ namespace GoodeeWay.BUS
                 resourceStart.CustomFormat = resourceEnd.CustomFormat = "yyyy";
                 resourceStart.ShowUpDown = resourceEnd.ShowUpDown = true;
             }
+        }
+
+        public void SelectResourceList(DateTime periodStart, DateTime periodEnd)
+        {
+            var dayPerRealTot = from records in (from saleRecord in saleRecordList
+                                                 where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                                                 select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                                group records by records.SalesDate;
+
+            var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
+                                                      let equipDate = equipment.PurchaseDate.Date
+                                                      where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
+                                                      select new { equipDate, equipment.PurchasePrice })
+                                      group equips by equips.equipDate;
+
+            var dayPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                        where salary.Payday >= periodStart && salary.Payday <= periodEnd
+                                                        select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
+                                          group sals by sals.Payday;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -290,7 +310,6 @@ namespace GoodeeWay.BUS
                                         {
                                             if (menuDetail.InventoryTypeCode.Equals(unitPrice.InventoryTypeCode))
                                             {
-                                                //tbxResult.Text += "재료이름 : " + item2.InventoryName + "\r\n";
                                                 rawMaterialCost += unitPrice.UnitPrice;
                                             }
                                         }
@@ -299,7 +318,6 @@ namespace GoodeeWay.BUS
                                 else
                                 {
                                     rawMaterialCost += realMenu.Menu.Price;
-                                    //tbxResult.Text += "메뉴이름 : " + real.Menu.MenuName + "\r\n" + real.Menu.Price;
                                 }
                             }
                             #endregion
