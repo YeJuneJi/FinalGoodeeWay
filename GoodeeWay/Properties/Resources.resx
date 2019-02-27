@@ -118,68 +118,59 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sjm_excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Employee_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Employee_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="재고1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\재고1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Card_Payment_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\card payment_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="입고" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\입고.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="입고11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\입고11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_order1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_order1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_return" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="반품" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\반품.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="추가1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\추가1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="재고" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\재고.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="추가" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\추가.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GW3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GW3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Restaurant_Menu_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\restaurant menu_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="저장" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\저장.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="재고2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\재고2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="제거" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\제거.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="새로고침1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\새로고침1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_inventory2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_inventory2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Receipt_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Receipt_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="내역" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\내역.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_refresh1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_refresh1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_save1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GoodeeWayHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goodeewayhead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cooking_Pot_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\cooking pot_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,11 +181,11 @@
   <data name="GW31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GW31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="산출" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\산출.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_add11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_add11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="재고11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\재고11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GooDeeWay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goodeeway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,29 +202,32 @@
   <data name="Sandwich_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sandwich_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="발주1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\발주1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GW3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GW3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Salad_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Salad_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="입고1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\입고1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_receiving1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_receiving1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_calculate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_calculate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="수정" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\수정.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_add1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Commodity_50px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,19 +235,13 @@
   <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="새로고침" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\새로고침.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="추가11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\추가11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Card_Payment_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\card payment_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="가져오기" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\가져오기.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="저장1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\저장1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_save2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
