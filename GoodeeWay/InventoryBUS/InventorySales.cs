@@ -30,6 +30,7 @@ namespace GoodeeWay.InventoryBUS
             rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
             cmbType.Items.AddRange(type1);
             InventorySalesChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
         }
 
         /// <summary>

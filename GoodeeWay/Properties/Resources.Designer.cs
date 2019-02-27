@@ -173,7 +173,6 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-<<<<<<< HEAD
         internal static System.Drawing.Bitmap Erase_50px {
             get {
                 object obj = ResourceManager.GetObject("Erase_50px", resourceCulture);
@@ -184,14 +183,19 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Excel_Black_64px {
-            get {
-                object obj = ResourceManager.GetObject("Excel_Black_64px", resourceCulture);
-=======
         internal static System.Drawing.Bitmap excel {
             get {
                 object obj = ResourceManager.GetObject("excel", resourceCulture);
->>>>>>> sjm
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Excel_Black_64px {
+            get {
+                object obj = ResourceManager.GetObject("Excel_Black_64px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -399,15 +403,9 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-<<<<<<< HEAD
         internal static System.Drawing.Bitmap Search_52px {
             get {
                 object obj = ResourceManager.GetObject("Search_52px", resourceCulture);
-=======
-        internal static System.Drawing.Bitmap sjm_add1 {
-            get {
-                object obj = ResourceManager.GetObject("sjm_add1", resourceCulture);
->>>>>>> sjm
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -415,11 +413,26 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-<<<<<<< HEAD
         internal static System.Drawing.Bitmap Search_Black {
             get {
                 object obj = ResourceManager.GetObject("Search_Black", resourceCulture);
-=======
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap sjm_add1 {
+            get {
+                object obj = ResourceManager.GetObject("sjm_add1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap sjm_add11 {
             get {
                 object obj = ResourceManager.GetObject("sjm_add11", resourceCulture);
@@ -573,7 +586,6 @@ namespace GoodeeWay.Properties {
         internal static System.Drawing.Bitmap sjm_save2 {
             get {
                 object obj = ResourceManager.GetObject("sjm_save2", resourceCulture);
->>>>>>> sjm
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

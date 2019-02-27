@@ -33,15 +33,11 @@
             this.programNameLblToolstrip = new System.Windows.Forms.ToolStripLabel();
             this.tsLblTime = new System.Windows.Forms.ToolStripLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-<<<<<<< HEAD
             this.panel1 = new System.Windows.Forms.Panel();
-=======
             this.panelTest = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
->>>>>>> sjm
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -56,16 +52,11 @@
             this.MainPanel = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.mToolStrip.SuspendLayout();
-<<<<<<< HEAD
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-=======
             this.panelTest.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
->>>>>>> sjm
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -142,8 +133,7 @@
             this.panel1.Size = new System.Drawing.Size(200, 775);
             this.panel1.TabIndex = 4;
             // 
-<<<<<<< HEAD
-=======
+
             // pictureBox3
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -166,7 +156,6 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
->>>>>>> sjm
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.GWMain2;
@@ -373,16 +362,11 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mToolStrip.ResumeLayout(false);
             this.mToolStrip.PerformLayout();
-<<<<<<< HEAD
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-=======
             this.panelTest.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
->>>>>>> sjm
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -410,13 +394,10 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
-<<<<<<< HEAD
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-=======
->>>>>>> sjm
     }
 }
 

@@ -7,18 +7,14 @@ using GoodeeWay.BUS;
 using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
 using System.Data.SqlClient;
-<<<<<<< HEAD
 using System.Runtime.InteropServices;
-=======
 using GoodeeWay.InventoryBUS;
->>>>>>> sjm
 
 namespace GoodeeWay
 {
     enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
     public partial class MainForm : Form
     {
-<<<<<<< HEAD
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -31,13 +27,11 @@ namespace GoodeeWay
         FrmSaleRecord fsr;
         inventory inventory;
         USalesMenu salesMenu;        
-=======
         //OderVIew oderVIew;
         FrmOrderView fov;
         FrmInventory fi;
         FrmSalesMenu salesMenu;
         FrmSaleRecords saleRecords;
->>>>>>> sjm
         FrmEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
@@ -78,29 +72,15 @@ namespace GoodeeWay
         {
             if (fi == null)
             {
-<<<<<<< HEAD
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                //CheckOpenClose(inventory);
-=======
                 fi = new FrmInventory();
                 panelTest.Controls.Add(fi);
                 fi.BringToFront();
->>>>>>> sjm
             }
             else if (fi.IsDisposed)
             {
-<<<<<<< HEAD
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                //CheckOpenClose(inventory);
-=======
                 fi = new FrmInventory();
                 panelTest.Controls.Add(fi);
                 fi.BringToFront();
->>>>>>> sjm
             }
             else
             {
@@ -252,7 +232,6 @@ namespace GoodeeWay
             this.Close();
         }
 
-<<<<<<< HEAD
         private void panel2_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -265,11 +244,6 @@ namespace GoodeeWay
             }
 
             base.OnMouseDown(e);
-=======
-        private void frmOrderView1_Load(object sender, EventArgs e)
-        {
-
->>>>>>> sjm
         }
     }
 }

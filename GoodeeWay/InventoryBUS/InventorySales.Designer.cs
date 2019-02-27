@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.InventorySalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,19 +58,23 @@
             this.label6 = new System.Windows.Forms.Label();
             this.rdoInventory = new System.Windows.Forms.RadioButton();
             this.rdoInventoryType = new System.Windows.Forms.RadioButton();
+            this.panelImage = new System.Windows.Forms.PictureBox();
+            this.MenuPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.gbLastestDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelImage)).BeginInit();
+            this.MenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // InventorySalesChart
             // 
             this.InventorySalesChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.Text;
-            chartArea1.Name = "ChartArea1";
-            this.InventorySalesChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.InventorySalesChart.Legends.Add(legend1);
-            this.InventorySalesChart.Location = new System.Drawing.Point(23, 40);
+            chartArea2.Name = "ChartArea1";
+            this.InventorySalesChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.InventorySalesChart.Legends.Add(legend2);
+            this.InventorySalesChart.Location = new System.Drawing.Point(23, 87);
             this.InventorySalesChart.Name = "InventorySalesChart";
             this.InventorySalesChart.Size = new System.Drawing.Size(846, 499);
             this.InventorySalesChart.TabIndex = 0;
@@ -79,7 +83,7 @@
             // cmbType
             // 
             this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(914, 314);
+            this.cmbType.Location = new System.Drawing.Point(914, 361);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(153, 20);
             this.cmbType.TabIndex = 12;
@@ -88,7 +92,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(875, 318);
+            this.label4.Location = new System.Drawing.Point(875, 365);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 12);
             this.label4.TabIndex = 16;
@@ -97,7 +101,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(373, 14);
+            this.label7.Location = new System.Drawing.Point(373, 61);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 21;
@@ -106,7 +110,7 @@
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(420, 14);
+            this.lblStartDate.Location = new System.Drawing.Point(420, 61);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(57, 12);
             this.lblStartDate.TabIndex = 22;
@@ -115,7 +119,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(495, 14);
+            this.label9.Location = new System.Drawing.Point(495, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(14, 12);
             this.label9.TabIndex = 23;
@@ -124,7 +128,7 @@
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(531, 14);
+            this.lblEndDate.Location = new System.Drawing.Point(531, 61);
             this.lblEndDate.Name = "lblEndDate";
             this.lblEndDate.Size = new System.Drawing.Size(57, 12);
             this.lblEndDate.TabIndex = 24;
@@ -132,7 +136,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(1082, 367);
+            this.btnSearch.Location = new System.Drawing.Point(1082, 414);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 169);
             this.btnSearch.TabIndex = 25;
@@ -144,7 +148,7 @@
             // 
             this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Location = new System.Drawing.Point(877, 37);
+            this.dgvData.Location = new System.Drawing.Point(877, 84);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
@@ -167,7 +171,7 @@
             this.gbLastestDate.Controls.Add(this.btn1Week);
             this.gbLastestDate.Controls.Add(this.btn3Year);
             this.gbLastestDate.Controls.Add(this.btn2Year);
-            this.gbLastestDate.Location = new System.Drawing.Point(879, 394);
+            this.gbLastestDate.Location = new System.Drawing.Point(879, 441);
             this.gbLastestDate.Name = "gbLastestDate";
             this.gbLastestDate.Size = new System.Drawing.Size(188, 142);
             this.gbLastestDate.TabIndex = 34;
@@ -299,7 +303,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(875, 345);
+            this.label5.Location = new System.Drawing.Point(875, 392);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 12);
             this.label5.TabIndex = 32;
@@ -307,7 +311,7 @@
             // 
             // dtpStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(914, 340);
+            this.dtpStartDate.Location = new System.Drawing.Point(914, 387);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(153, 21);
             this.dtpStartDate.TabIndex = 30;
@@ -315,7 +319,7 @@
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(914, 367);
+            this.dtpEndDate.Location = new System.Drawing.Point(914, 414);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(153, 21);
             this.dtpEndDate.TabIndex = 31;
@@ -324,7 +328,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(875, 372);
+            this.label6.Location = new System.Drawing.Point(875, 419);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 12);
             this.label6.TabIndex = 33;
@@ -333,7 +337,7 @@
             // rdoInventory
             // 
             this.rdoInventory.AutoSize = true;
-            this.rdoInventory.Location = new System.Drawing.Point(1082, 343);
+            this.rdoInventory.Location = new System.Drawing.Point(1082, 390);
             this.rdoInventory.Name = "rdoInventory";
             this.rdoInventory.Size = new System.Drawing.Size(71, 16);
             this.rdoInventory.TabIndex = 20;
@@ -345,7 +349,7 @@
             // 
             this.rdoInventoryType.AutoSize = true;
             this.rdoInventoryType.Checked = true;
-            this.rdoInventoryType.Location = new System.Drawing.Point(1082, 317);
+            this.rdoInventoryType.Location = new System.Drawing.Point(1082, 364);
             this.rdoInventoryType.Name = "rdoInventoryType";
             this.rdoInventoryType.Size = new System.Drawing.Size(71, 16);
             this.rdoInventoryType.TabIndex = 19;
@@ -354,11 +358,32 @@
             this.rdoInventoryType.UseVisualStyleBackColor = true;
             this.rdoInventoryType.CheckedChanged += new System.EventHandler(this.rdoInventoryType_CheckedChanged);
             // 
+            // panelImage
+            // 
+            this.panelImage.BackColor = System.Drawing.Color.White;
+            this.panelImage.Location = new System.Drawing.Point(0, 0);
+            this.panelImage.Name = "panelImage";
+            this.panelImage.Size = new System.Drawing.Size(232, 40);
+            this.panelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.panelImage.TabIndex = 35;
+            this.panelImage.TabStop = false;
+            // 
+            // MenuPanel
+            // 
+            this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.MenuPanel.Controls.Add(this.panelImage);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(1174, 40);
+            this.MenuPanel.TabIndex = 36;
+            // 
             // InventorySales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1174, 551);
+            this.ClientSize = new System.Drawing.Size(1174, 600);
+            this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.gbLastestDate);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpStartDate);
@@ -375,12 +400,15 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbType);
             this.Controls.Add(this.InventorySalesChart);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "InventorySales";
             this.Text = "InventorySales";
             ((System.ComponentModel.ISupportInitialize)(this.InventorySalesChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.gbLastestDate.ResumeLayout(false);
             this.gbLastestDate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelImage)).EndInit();
+            this.MenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,5 +444,7 @@
         private System.Windows.Forms.RadioButton rdoInventoryType;
         private System.Windows.Forms.RadioButton rdoYear;
         private System.Windows.Forms.RadioButton rdoMonth;
+        private System.Windows.Forms.PictureBox panelImage;
+        private System.Windows.Forms.Panel MenuPanel;
     }
 }

@@ -472,7 +472,6 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
-<<<<<<< HEAD
     <Content Include="Resources\Close_Window_32px.ico" />
     <None Include="Resources\Maintenance_50px.png" />
     <None Include="Resources\Search_52px.png" />
@@ -486,7 +485,6 @@
     <Content Include="Resources\Refund_50px.png" />
     <Content Include="Resources\Search_Black.png" />
     <Content Include="Resources\Update_Black.png" />
-=======
     <None Include="Resources\receiving.png" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\sjm_receiving1.png" />
@@ -506,7 +504,6 @@
     <None Include="Resources\sjm_excel.png" />
     <None Include="Resources\sjm_refresh1.png" />
     <None Include="Resources\sjm_save2.png" />
->>>>>>> sjm
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
