@@ -1,14 +1,23 @@
 ﻿using GoodeeWay.DAO;
 using GoodeeWay.VO;
 using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace GoodeeWay.SaleRecords
 {
     public partial class FrmUpdateSaleRecords : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         SaleRecordsVO saleRecords;
-        public FrmUpdateSaleRecords(VO.SaleRecordsVO saleRecords)
+        public FrmUpdateSaleRecords(SaleRecordsVO saleRecords)
         {
             this.saleRecords = saleRecords;
             InitializeComponent();
@@ -16,6 +25,9 @@ namespace GoodeeWay.SaleRecords
 
         private void FrmUpdateSaleRecords_Load(object sender, EventArgs e)
         {
+            pbxImages.BringToFront();
+            pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+
             lblSalesNo.Text += saleRecords.SalesNo.ToString();
             dtpUpdateDate.Value = saleRecords.SalesDate;
             tbxUpdateName.Text = saleRecords.SalesitemName;
@@ -88,6 +100,20 @@ namespace GoodeeWay.SaleRecords
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void movePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }

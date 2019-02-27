@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRebuild = new System.Windows.Forms.Button();
+            this.panel = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,8 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(421, 295);
             this.groupBox1.TabIndex = 2;
@@ -168,43 +170,77 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(27, 313);
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSave.Image = global::GoodeeWay.Properties.Resources.Save_as_32px;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(27, 347);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(124, 28);
+            this.btnSave.Size = new System.Drawing.Size(124, 44);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "저장";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRebuild
             // 
-            this.btnRebuild.Location = new System.Drawing.Point(157, 313);
+            this.btnRebuild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnRebuild.FlatAppearance.BorderSize = 0;
+            this.btnRebuild.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRebuild.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRebuild.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRebuild.Image = global::GoodeeWay.Properties.Resources.Restart_32px;
+            this.btnRebuild.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRebuild.Location = new System.Drawing.Point(157, 347);
             this.btnRebuild.Name = "btnRebuild";
-            this.btnRebuild.Size = new System.Drawing.Size(127, 28);
+            this.btnRebuild.Size = new System.Drawing.Size(127, 44);
             this.btnRebuild.TabIndex = 4;
             this.btnRebuild.Text = "다시작성";
-            this.btnRebuild.UseVisualStyleBackColor = true;
+            this.btnRebuild.UseVisualStyleBackColor = false;
             this.btnRebuild.Click += new System.EventHandler(this.btnRebuild_Click);
+            // 
+            // panel
+            // 
+            this.panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel.ForeColor = System.Drawing.Color.Cornsilk;
+            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(456, 28);
+            this.panel.TabIndex = 6;
+            this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(290, 313);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnClose.Image = global::GoodeeWay.Properties.Resources.Xbox_X_32px;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(290, 347);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(127, 28);
-            this.btnClose.TabIndex = 5;
+            this.btnClose.Size = new System.Drawing.Size(127, 44);
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "닫기";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // FrmAddEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 350);
+            this.ClientSize = new System.Drawing.Size(456, 403);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.btnRebuild);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAddEquipment";
             this.Text = "비품등록";
             this.groupBox1.ResumeLayout(false);
@@ -228,7 +264,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnRebuild;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -8,15 +8,23 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GoodeeWay.SandwichMakingBus
-{
+{    
     public partial class FrmSandwichMaking : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;        
+
         int count = 5;
 
         List<MakingFormVO> odList = new List<MakingFormVO>();
@@ -30,11 +38,14 @@ namespace GoodeeWay.SandwichMakingBus
 
         private void FrmSandwichMaking_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-
             GridViewReset();
         }
 
+        /// <summary>
+        /// 5초마다 데이터그리드뷰를 갱신해주는 타이머 이벤트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
@@ -47,6 +58,9 @@ namespace GoodeeWay.SandwichMakingBus
             count++;
         }
 
+        /// <summary>
+        /// 데이터베이스에서 자료를가져와 '대기'와 '제조'로 분류해주는 메소드
+        /// </summary>
         private void Classify()
         {
             odList.Clear();
@@ -68,6 +82,9 @@ namespace GoodeeWay.SandwichMakingBus
             }
         }
 
+        /// <summary>
+        /// 데이터그리드뷰를 refresh 해주는 메소드
+        /// </summary>
         private void GridViewReset()
         {
             Classify();
@@ -103,6 +120,11 @@ namespace GoodeeWay.SandwichMakingBus
             dataGridViewING.Columns.Add(endButton);
         }
 
+        /// <summary>
+        /// 데이터 그리드뷰 cell을 클릭이벤트 메소드 제조 시작,취소 처리를 할 수 있다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -162,9 +184,14 @@ namespace GoodeeWay.SandwichMakingBus
             }
         }
 
+        /// <summary>
+        /// 제조 데이터 그리드뷰 클릭이벤트 제조 완료를 할 수 있다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewING_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(dataGridViewING.SelectedRows[0].Cells[1].Value.ToString());
+            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(dataGridViewING.SelectedRows[0].Cells[2].Value.ToString());
 
             tbList.Text = String.Empty;
 
@@ -218,6 +245,21 @@ namespace GoodeeWay.SandwichMakingBus
                     GridViewReset();
                 }                
             }
+        }
+
+        /// <summary>
+        /// 닫기 사진을 누르면 폼이 닫힌다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FrmSandwichMaking_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

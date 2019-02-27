@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
       <Private>True</Private>
@@ -52,16 +53,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Windows.Forms.DataVisualization.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Windows.Forms.DataVisualization.Design.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -137,8 +129,17 @@
     <Compile Include="BUS\FrmUsingOfEquipment.Designer.cs">
       <DependentUpon>FrmUsingOfEquipment.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryBUS\Inventory.Designer.cs">
-      <DependentUpon>Inventory.cs</DependentUpon>
+    <Compile Include="InventoryBUS\FrmInventory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InventoryBUS\FrmInventory.Designer.cs">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\UcEquipment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Equipment\UcEquipment.Designer.cs">
+      <DependentUpon>UcEquipment.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\EquipmentDAO.cs" />
     <Compile Include="DAO\IEquipmentDAO.cs" />
@@ -190,15 +191,15 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order\FrmOrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Order\FrmOrderView.Designer.cs">
+      <DependentUpon>FrmOrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Order\Menu.cs" />
     <Compile Include="Order\MenuAndDetails.cs" />
     <Compile Include="Order\MenuDetail.cs" />
-    <Compile Include="Order\OderVIew.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Order\OderVIew.Designer.cs">
-      <DependentUpon>OderVIew.cs</DependentUpon>
-    </Compile>
     <Compile Include="Order\Order.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +214,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SaleRecords\FrmDetailSaleRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaleRecords\FrmDetailSaleRecord.Designer.cs">
+      <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SaleRecords\FrmSaleRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SaleRecords\FrmSaleRecord.Designer.cs">
+      <DependentUpon>FrmSaleRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleRecords\FrmSaleRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,22 +298,26 @@
     <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\OrderDetailDAO.cs" />
     <Compile Include="DB\DBConnection.cs" />
-    <Compile Include="ImageConverter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="DAO\InventoryDAO.cs" />
     <Compile Include="DAO\InventoryTypeDAO.cs" />
     <Compile Include="DAO\OrderDetailsDAO.cs" />
     <Compile Include="DAO\ReceivingDetailsDAO.cs" />
-    <Compile Include="InventoryBUS\Inventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\USalesMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sales\USalesMenu.Designer.cs">
+      <DependentUpon>USalesMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="VO\ByMenuVO.cs" />
     <Compile Include="VO\CostOfRawMaterials.cs" />
     <Compile Include="VO\ImageVO.cs" />
     <Compile Include="VO\AttendanceVO.cs" />
     <Compile Include="VO\InventoryInventoryTypeVO.cs" />
+    <Compile Include="VO\InventorySalesForChartVO.cs" />
     <Compile Include="VO\InventoryTypeVO.cs" />
     <Compile Include="VO\MakingFormVO.cs" />
     <Compile Include="VO\OrderDetailsVO.cs" />
@@ -336,11 +358,14 @@
     <EmbeddedResource Include="BUS\Update_Emp.resx">
       <DependentUpon>Update_Emp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InventoryBUS\FrmInventory.resx">
+      <DependentUpon>FrmInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Equipment\UcEquipment.resx">
+      <DependentUpon>UcEquipment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\Update_Salary.resx">
       <DependentUpon>Update_Salary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InventoryBUS\Inventory.resx">
-      <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="VO\EmpVO.cs" />
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
@@ -393,8 +418,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Order\OderVIew.resx">
-      <DependentUpon>OderVIew.cs</DependentUpon>
+    <EmbeddedResource Include="Order\FrmOrderView.resx">
+      <DependentUpon>FrmOrderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\Order.resx">
       <DependentUpon>Order.cs</DependentUpon>
@@ -404,14 +429,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="SaleRecords\FrmDetailSaleRecord.resx">
+      <DependentUpon>FrmDetailSaleRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleRecords\FrmSaleRecord.resx">
+      <DependentUpon>FrmSaleRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
       <DependentUpon>FrmSaleRecords.cs</DependentUpon>
     </EmbeddedResource>
@@ -423,6 +449,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\FrmSalesMenuSearch.resx">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\USalesMenu.resx">
+      <DependentUpon>USalesMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SandwichMakingBus\FrmSandwichMaking.resx">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
@@ -445,6 +474,68 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <None Include="Resources\GoodeeWay.png" />
+    <Content Include="Images\GooDeeWay.PNG" />
+    <Content Include="Images\GW.PNG" />
+    <Content Include="Images\NewGoodeeWay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Sandwich_100px.png" />
+    <None Include="Resources\Purchase Order_50px.png" />
+    <None Include="Resources\Commodity_50px.png" />
+    <None Include="Resources\Restaurant Menu_50px.png" />
+    <None Include="Resources\Receipt_50px.png" />
+    <None Include="Resources\Employee_50px.png" />
+    <None Include="Resources\Total Sales_50px.png" />
+    <None Include="Resources\Cooking Pot_64px.png" />
+    <None Include="Resources\GWMain2.jpg" />
+    <None Include="Resources\Restaurant_50px.png" />
+    <None Include="Resources\Sandwich_50px.png" />
+    <None Include="Resources\Salad_50px.png" />
+    <None Include="Resources\Cookie_50px.png" />
+    <None Include="Resources\Milkshake_64px.png" />
+    <None Include="Resources\Close Window_64px.png" />
+    <None Include="Resources\GW3.png" />
+    <None Include="Resources\Card Payment_50px.png" />
+    <None Include="Resources\Cancel_64px.png" />
+    <None Include="Resources\Checked_64px.png" />
+    <None Include="Resources\GW31.png" />
+    <None Include="Resources\close window_64px1.png" />
+    <Content Include="Resources\Close_Window_32px.ico" />
+    <None Include="Resources\Maintenance_50px.png" />
+    <None Include="Resources\Search_52px.png" />
+    <None Include="Resources\Change Theme_52px.png" />
+    <None Include="Resources\Erase_50px.png" />
+    <None Include="Resources\Microsoft Excel_52px.png" />
+    <Content Include="Resources\Excel_Black_64px.png" />
+    <Content Include="Resources\Initialize_64px.png" />
+    <Content Include="Resources\In_50px.png" />
+    <Content Include="Resources\Picture_64px.png" />
+    <Content Include="Resources\Refund_50px.png" />
+    <Content Include="Resources\Restart_32px.png" />
+    <Content Include="Resources\Save as_32px.png" />
+    <Content Include="Resources\Search_Black.png" />
+    <Content Include="Resources\Update_Black.png" />
+    <None Include="Resources\receiving.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\sjm_receiving1.png" />
+    <None Include="Resources\sjm_inventory2.png" />
+    <None Include="Resources\sjm_order1.png" />
+    <None Include="Resources\sjm_calculate.png" />
+    <None Include="Resources\sjm_return.png" />
+    <None Include="Resources\sjm_refresh.png" />
+    <None Include="Resources\sjm_import.png" />
+    <None Include="Resources\sjm_add1.png" />
+    <None Include="Resources\sjm_add11.png" />
+    <None Include="Resources\sjm_save1.png" />
+    <None Include="Resources\sjm_edit.png" />
+    <None Include="Resources\sjm_delete.png" />
+    <None Include="Resources\sjm_save.png" />
+    <None Include="Resources\sjm_details.png" />
+    <None Include="Resources\sjm_excel.png" />
+    <None Include="Resources\sjm_refresh1.png" />
+    <None Include="Resources\sjm_save2.png" />
+    <Content Include="Resources\Xbox X_32px.png" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\ledger.png" />
     <None Include="Resources\update.png" />
@@ -479,9 +570,18 @@
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>3</VersionMinor>
+      <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
@@ -500,15 +600,6 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

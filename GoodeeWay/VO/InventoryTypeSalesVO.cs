@@ -8,12 +8,12 @@ namespace GoodeeWay.VO
 {
     class InventoryTypeSalesVO
     {
-        private string inventoryName;
+        private string xAxis;
 
-        public string InventoryName
+        public string XAxis
         {
-            get { return inventoryName; }
-            set { inventoryName = value; }
+            get { return xAxis; }
+            set { xAxis = value; }
         }
         private float useInventory;
 

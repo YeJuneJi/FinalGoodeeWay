@@ -17,6 +17,15 @@ namespace GoodeeWay.VO
             set { num = value; }
         }
 
+        private int salesNo;
+
+        public int SalesNo
+        {
+            get { return salesNo; }
+            set { salesNo = value; }
+        }
+
+
         private string toMaking;
 
         public string ToMaking
@@ -25,38 +34,41 @@ namespace GoodeeWay.VO
             set { toMaking = value; }
         }
 
+        
 
-        private string sandwichRecipe;
 
-        public string SandwichRecipe
-        {
-            get { return sandwichRecipe; }
-            set { sandwichRecipe = value; }
-        }
 
-        private string salad;
+        //private string sandwichRecipe;
 
-        public string Salad
-        {
-            get { return salad; }
-            set { salad = value; }
-        }
+        //public string SandwichRecipe
+        //{
+        //    get { return sandwichRecipe; }
+        //    set { sandwichRecipe = value; }
+        //}
 
-        private string drink;
+        //private string salad;
 
-        public string Drink
-        {
-            get { return drink; }
-            set { drink = value; }
-        }
+        //public string Salad
+        //{
+        //    get { return salad; }
+        //    set { salad = value; }
+        //}
 
-        private string side;
+        //private string drink;
 
-        public string Side
-        {
-            get { return side; }
-            set { side = value; }
-        }
+        //public string Drink
+        //{
+        //    get { return drink; }
+        //    set { drink = value; }
+        //}
+
+        //private string side;
+
+        //public string Side
+        //{
+        //    get { return side; }
+        //    set { side = value; }
+        //}
 
         private string division;
 

@@ -21,11 +21,20 @@ namespace GoodeeWay.InventoryBUS
         }
         int a = 0;
         int b = 0;
+        /// <summary>
+        /// 창 닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
+        /// <summary>
+        /// 완료 시 재고종류 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnComplete_Click(object sender, EventArgs e)
         {
             string inventoryTypeCode = "";
@@ -72,6 +81,11 @@ namespace GoodeeWay.InventoryBUS
             }
         }
 
+        /// <summary>
+        /// 재고종류코드 입력창에 텍스트 변경 시 숫자 제한
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtInventoryTypeCode_TextChanged(object sender, EventArgs e)
         {
             try
@@ -91,6 +105,11 @@ namespace GoodeeWay.InventoryBUS
             
         }
 
+        /// <summary>
+        /// 입고정량 설정 시 숫자 입력과 범위설정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtReceivingQuantity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -109,6 +128,11 @@ namespace GoodeeWay.InventoryBUS
             }
         }
 
+        /// <summary>
+        /// 분류구분에 해당하는 분류인지 확인
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbClassification_TextChanged(object sender, EventArgs e)
         {
             if (!(cmbClassification.Text == "Bread" || cmbClassification.Text == "Cheese" || cmbClassification.Text == "Vegetable" || cmbClassification.Text == "Sauce" || cmbClassification.Text == "Topping" || cmbClassification.Text == "Additional"|| cmbClassification.Text =="Side"))

@@ -16,11 +16,11 @@ using GoodeeWay.VO;
 using Excel = Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 
-namespace GoodeeWay
-{
-    public partial class inventory : Form
-    {
 
+namespace GoodeeWay.InventoryBUS
+{
+    public partial class FrmInventory : UserControl
+    {
         List<ReceivingDetailsVO> receivingDetailsList;
         List<InventoryTypeVO> inventoryTypeVOList;
         List<OrderDetailsVO> orderDetailsVOsList;
@@ -32,48 +32,33 @@ namespace GoodeeWay
 
         public ReceivingDetailsVO ReceivingDetailsVOReturn;
         bool InventoryTableTemp = false;
-        public inventory()
+
+        public FrmInventory()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             InventoryTypeSelect();
             ReceivingDetailsListSelect();
             InventoryTableSelect();
             btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             InventoryTableTemp = true;
-            tabControl1.Size = new Size(916, 659);
-            this.Size = new Size(951, 722);
             dgvNeedInventoryDetailView.AllowUserToAddRows = false;
             SelectOrderDetailsList();
             dgvOrderDetailsList.AllowUserToAddRows = false;
             btnSaveOrderDetails.Enabled = false;
             btnExcelExport.Enabled = false;
-        }
 
-        /// <summary>
-        /// 폼사이즈 동적설정
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                switch (tabControl1.SelectedIndex)
-            {
-                case 0:
-                    tabControl1.Size = new Size(916, 659);
-                    this.Size = new Size(951, 722);
-                    break;
-                case 1:
-                    tabControl1.Size = new Size(1159, 659);
-                    this.Size = new Size(1187, 722);
-                    break;
-                case 2:
-                    tabControl1.Size = new Size(729, 659);
-                    this.Size = new Size(764, 722);
-                    break;
-            }
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmReceiving.Dock = DockStyle.Fill;
+            pnmReceiving.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
         }
-
         #region 입고내역
         /// <summary>
         /// '가져오기' 버튼 클릭하여 입고내역 상세뷰 띄우기
@@ -120,8 +105,6 @@ namespace GoodeeWay
                     btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = true;
                 }
             }
-
-
         }
 
         /// <summary>
@@ -208,18 +191,26 @@ namespace GoodeeWay
         private void btnReceivingDetailsSave_Click(object sender, EventArgs e)
         {
             receivingDetailsList = new List<ReceivingDetailsVO>();
-
+            bool temp = false;
             for (int i = 0; i < dgvReceivingDetails.Rows.Count; i++)
             {
-                ReceivingDetailsVO rd = new ReceivingDetailsVO();
-                rd.ReceivingDetailsID = dgvReceivingDetails["ReceivingDetailsID", i].Value.ToString();
-                rd.ReceivingDetailsDate = DateTime.Parse(dgvReceivingDetails["ReceivingDetailsDate", i].Value.ToString());
-                rd.ExpirationDate = DateTime.Parse(dgvReceivingDetails["ExpirationDate", i].Value.ToString());
-                rd.Quantity = Int32.Parse(dgvReceivingDetails["Quantity", i].Value.ToString());
-                rd.UnitPrice = float.Parse(dgvReceivingDetails["UnitPrice", i].Value.ToString());
-                rd.ReturnStatus = dgvReceivingDetails["ReturnStatus", i].Value.ToString();
-                rd.InventoryTypeCode = dgvReceivingDetails["InventoryTypeCode", i].Value.ToString();
-                receivingDetailsList.Add(rd);
+                if (dgvReceivingDetails["InventoryName", i].Value == null)
+                {
+                    temp = true;
+                    MessageBox.Show("등록되지 않은 재고는 입고내역에 추가되지 않습니다.");
+                }
+                else
+                {
+                    ReceivingDetailsVO rd = new ReceivingDetailsVO();
+                    rd.ReceivingDetailsID = dgvReceivingDetails["ReceivingDetailsID", i].Value.ToString();
+                    rd.ReceivingDetailsDate = DateTime.Parse(dgvReceivingDetails["ReceivingDetailsDate", i].Value.ToString());
+                    rd.ExpirationDate = DateTime.Parse(dgvReceivingDetails["ExpirationDate", i].Value.ToString());
+                    rd.Quantity = Int32.Parse(dgvReceivingDetails["Quantity", i].Value.ToString());
+                    rd.UnitPrice = float.Parse(dgvReceivingDetails["UnitPrice", i].Value.ToString());
+                    rd.ReturnStatus = dgvReceivingDetails["ReturnStatus", i].Value.ToString();
+                    rd.InventoryTypeCode = dgvReceivingDetails["InventoryTypeCode", i].Value.ToString();
+                    receivingDetailsList.Add(rd);
+                }
             }
             try
             {
@@ -230,7 +221,11 @@ namespace GoodeeWay
             }
             catch (SqlException)
             {
-                MessageBox.Show("이미 저장되었습니다.");
+
+                if (temp == false)
+                {
+                    MessageBox.Show("이미 저장되었습니다.");
+                }
                 btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             }
         }
@@ -282,65 +277,71 @@ namespace GoodeeWay
             //반품 상태가 정상인 입고물품만 반품추가 가능
             if (dgvReceivingDetails.SelectedRows[0].Cells["ReturnStatus"].Value.ToString() == "정상")
             {
-                //선택된 rows의 내용들 VO에 보냄
-                ReceivingDetailsVOReturn = new ReceivingDetailsVO()
+                try
                 {
-                    ReceivingDetailsID = dgvReceivingDetails.SelectedRows[0].Cells["ReceivingDetailsID"].Value.ToString(),
-                    InventoryName = dgvReceivingDetails.SelectedRows[0].Cells["InventoryName"].Value.ToString(),
-                    ReceivingDetailsDate = DateTime.Parse(dgvReceivingDetails.SelectedRows[0].Cells["ReceivingDetailsDate"].Value.ToString()),
-                    ExpirationDate = DateTime.Parse(dgvReceivingDetails.SelectedRows[0].Cells["ExpirationDate"].Value.ToString()),
-                    Quantity = Int32.Parse(dgvReceivingDetails.SelectedRows[0].Cells["Quantity"].Value.ToString()),
-                    UnitPrice = float.Parse(dgvReceivingDetails.SelectedRows[0].Cells["UnitPrice"].Value.ToString()),
-                    ReturnStatus = dgvReceivingDetails.SelectedRows[0].Cells["ReturnStatus"].Value.ToString(),
-                    InventoryTypeCode = dgvReceivingDetails.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString()
-                };
-                //ReceivingDetailsReturn폼에 Vo를 보내줌
-                ReceivingDetailsReturn receivingDetailsReturn = new ReceivingDetailsReturn(ReceivingDetailsVOReturn);
-                receivingDetailsReturn.Owner = this;
-                if (receivingDetailsReturn.ShowDialog() == DialogResult.OK)
-                {
-                    dgvReceivingDetails.DataSource = null;
-
-                    for (int i = 0; i < receivingDetailsList.Count; i++)
+                    //선택된 rows의 내용들 VO에 보냄
+                    ReceivingDetailsVOReturn = new ReceivingDetailsVO()
                     {
+                        ReceivingDetailsID = dgvReceivingDetails.SelectedRows[0].Cells["ReceivingDetailsID"].Value.ToString(),
+                        InventoryName = dgvReceivingDetails.SelectedRows[0].Cells["InventoryName"].Value.ToString(),
+                        ReceivingDetailsDate = DateTime.Parse(dgvReceivingDetails.SelectedRows[0].Cells["ReceivingDetailsDate"].Value.ToString()),
+                        ExpirationDate = DateTime.Parse(dgvReceivingDetails.SelectedRows[0].Cells["ExpirationDate"].Value.ToString()),
+                        Quantity = Int32.Parse(dgvReceivingDetails.SelectedRows[0].Cells["Quantity"].Value.ToString()),
+                        UnitPrice = float.Parse(dgvReceivingDetails.SelectedRows[0].Cells["UnitPrice"].Value.ToString()),
+                        ReturnStatus = dgvReceivingDetails.SelectedRows[0].Cells["ReturnStatus"].Value.ToString(),
+                        InventoryTypeCode = dgvReceivingDetails.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString()
+                    };
+                    //ReceivingDetailsReturn폼에 Vo를 보내줌
+                    ReceivingDetailsReturn receivingDetailsReturn = new ReceivingDetailsReturn(ReceivingDetailsVOReturn, this);
+                    if (receivingDetailsReturn.ShowDialog() == DialogResult.OK)
+                    {
+                        dgvReceivingDetails.DataSource = null;
 
-
-                        //리스트에 입고(IN)으로 시작되는 내역만 검색함
-                        if (receivingDetailsList[i].ReceivingDetailsID.Contains("IN"))
+                        for (int i = 0; i < receivingDetailsList.Count; i++)
                         {
 
-                            if (ReceivingDetailsVOReturn.ReceivingDetailsID.Substring(2, 8) == receivingDetailsList[i].ReceivingDetailsID.Substring(2, 8))
+
+                            //리스트에 입고(IN)으로 시작되는 내역만 검색함
+                            if (receivingDetailsList[i].ReceivingDetailsID.Contains("IN"))
                             {
-                                receivingDetailsList[i].Quantity = receivingDetailsList[i].Quantity - ReceivingDetailsVOReturn.Quantity;
-                                if (receivingDetailsList[i].Quantity == 0)
+
+                                if (ReceivingDetailsVOReturn.ReceivingDetailsID.Substring(2, 8) == receivingDetailsList[i].ReceivingDetailsID.Substring(2, 8))
                                 {
-                                    receivingDetailsList.Remove(receivingDetailsList[i]);
+                                    receivingDetailsList[i].Quantity = receivingDetailsList[i].Quantity - ReceivingDetailsVOReturn.Quantity;
+                                    if (receivingDetailsList[i].Quantity == 0)
+                                    {
+                                        receivingDetailsList.Remove(receivingDetailsList[i]);
+                                    }
                                 }
                             }
                         }
-                    }
-                    //선택된 row에 대한 반품내역 또는 교환내역이 이미 존재한다면 반품,교환내역에 수를 더해줌.
+                        //선택된 row에 대한 반품내역 또는 교환내역이 이미 존재한다면 반품,교환내역에 수를 더해줌.
 
-                    for (int i = 0; i < receivingDetailsList.Count; i++)
-                    {
-                        if (receivingDetailsList[i].ReceivingDetailsID.Contains(ReceivingDetailsVOReturn.ReceivingDetailsID))
+                        for (int i = 0; i < receivingDetailsList.Count; i++)
                         {
-                            ReceivingDetailsVOReturn.Quantity = receivingDetailsList[i].Quantity + ReceivingDetailsVOReturn.Quantity;
-                            receivingDetailsList.Remove(receivingDetailsList[i]);
+                            if (receivingDetailsList[i].ReceivingDetailsID.Contains(ReceivingDetailsVOReturn.ReceivingDetailsID))
+                            {
+                                ReceivingDetailsVOReturn.Quantity = receivingDetailsList[i].Quantity + ReceivingDetailsVOReturn.Quantity;
+                                receivingDetailsList.Remove(receivingDetailsList[i]);
+                            }
+
                         }
+                        receivingDetailsList.Add(ReceivingDetailsVOReturn);
+                        dgvReceivingDetails.DataSource = receivingDetailsList;
+                        dgvReceivingDetails.Columns["ReceivingDetailsID"].HeaderText = "입고번호";
+                        dgvReceivingDetails.Columns["ReceivingDetailsDate"].HeaderText = "입고날짜";
+                        dgvReceivingDetails.Columns["ExpirationDate"].HeaderText = "유통기한";
+                        dgvReceivingDetails.Columns["Quantity"].HeaderText = "수량";
+                        dgvReceivingDetails.Columns["UnitPrice"].HeaderText = "단가";
+                        dgvReceivingDetails.Columns["ReturnStatus"].HeaderText = "반품여부";
+                        dgvReceivingDetails.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
+                        dgvReceivingDetails.Columns["InventoryName"].HeaderText = "입고명";
 
                     }
-                    receivingDetailsList.Add(ReceivingDetailsVOReturn);
-                    dgvReceivingDetails.DataSource = receivingDetailsList;
-                    dgvReceivingDetails.Columns["ReceivingDetailsID"].HeaderText = "입고번호";
-                    dgvReceivingDetails.Columns["ReceivingDetailsDate"].HeaderText = "입고날짜";
-                    dgvReceivingDetails.Columns["ExpirationDate"].HeaderText = "유통기한";
-                    dgvReceivingDetails.Columns["Quantity"].HeaderText = "수량";
-                    dgvReceivingDetails.Columns["UnitPrice"].HeaderText = "단가";
-                    dgvReceivingDetails.Columns["ReturnStatus"].HeaderText = "반품여부";
-                    dgvReceivingDetails.Columns["InventoryTypeCode"].HeaderText = "재고종류코드";
-                    dgvReceivingDetails.Columns["InventoryName"].HeaderText = "입고명";
-
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("등록되지 않은 재고입니다.");
                 }
             }
             else
@@ -357,11 +358,11 @@ namespace GoodeeWay
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnInventoryNewTable_Click(object sender, EventArgs e)                         
-        {                                                                                           
-            InventoryTableSelect();                                                                 
-        }                                                                                           
-                                                                                                    
+        private void btnInventoryNewSelect_Click(object sender, EventArgs e)
+        {
+            InventoryTableSelect();
+        }
+
         /// <summary>                                                                               
         /// 재고 테이블                                                                             
         /// </summary>
@@ -369,7 +370,6 @@ namespace GoodeeWay
         {
             dgvInventoryTable.DataSource = new InventoryDAO().InventoryTableSelect();
             dgvInventoryTable.AllowUserToAddRows = false;
-                                           
         }
 
         /// <summary>
@@ -381,7 +381,7 @@ namespace GoodeeWay
         {
             try
             {
-                InventoryUseDetails inventoryUseDetails = 
+                InventoryUseDetails inventoryUseDetails =
                     new InventoryUseDetails(dgvInventoryTable.SelectedRows[0].Cells["입고번호"].Value.ToString(),
                     dgvInventoryTable.SelectedRows[0].Cells["유통기한"].Value.ToString());
                 inventoryUseDetails.ShowDialog();
@@ -393,9 +393,8 @@ namespace GoodeeWay
                 MessageBox.Show("먼저 재고내역을 선택해주세요");
             }
         }
+        
         #endregion
-
-
 
         #region 재고종류
         /// <summary>
@@ -485,13 +484,12 @@ namespace GoodeeWay
 
             new InventoryTypeDAO().InventoryTypeUpdate(inventoryTypeVO);
             InventoryTypeSelect();
-
         }
-        #endregion                                                                                          
+        #endregion
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
-        /// 재고테이블 row선택 시 해당 물품의 재고종류가 선택
+        /// 재고테이블에서 마우스로 row선택 시 해당 물품의 재고종류가 선택
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -500,6 +498,9 @@ namespace GoodeeWay
             InventoryTableRowSelected();
         }
 
+        /// <summary>
+        /// 재고테이블 선택 시 해당 재고종류 선택하기
+        /// </summary>
         private void InventoryTableRowSelected()
         {
             dgvInventoryType.ClearSelection();
@@ -518,8 +519,9 @@ namespace GoodeeWay
                 }
             }
         }
+
         /// <summary>
-        /// 재고테이블 row선택 시 해당 물품의 재고종류가 선택
+        /// 재고테이블에서 방향키로 row선택 시 해당 물품의 재고종류가 선택
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -527,9 +529,8 @@ namespace GoodeeWay
         {
             InventoryTableRowSelected();
         }
+
         #endregion
-
-
 
         #region 발주내역
 
@@ -547,13 +548,16 @@ namespace GoodeeWay
             dgvNeedInventoryDetailView.Columns["발주종류"].ReadOnly = true;
 
             dgvNeedInventoryDetailView.Columns["필요수량"].HeaderText = "필요수량*";
-            
+
 
 
             btnSaveOrderDetails.Enabled = true;
             btnExcelExport.Enabled = false;
-            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled = false;
         }
+        /// <summary>
+        /// 발주내역 산출
+        /// </summary>
         public void CalculationOrderDetails()
         {
             dgvNeedInventoryDetailView.DataSource = null;
@@ -597,17 +601,30 @@ namespace GoodeeWay
                     orderDetailsVOsList.Add(orderDetailsVO);
                 }
             }
+            bool temp = false;
             try
             {
-                new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
-                MessageBox.Show("발주내역 저장완료");
+                for (int i = 0; i < dgvOrderDetailsList.Rows.Count; i++)
+                {
+                    if (dgvOrderDetailsList["발주날짜", i].Value.ToString() == DateTime.Now.ToShortDateString())
+                    {
+                        temp = true;
+                        MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
+                    }
+                }
+                if (!temp)
+                {
+                    new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOsList);
+                    MessageBox.Show("발주내역 저장완료");
+                }
+
             }
             catch (SqlException)
             {
                 MessageBox.Show("이미 발주처리되었습니다. 발주내역List에서 수정하시기 바랍니다.");
             }
 
-            
+
 
             SelectOrderDetailsList();
         }
@@ -626,11 +643,14 @@ namespace GoodeeWay
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvOrderDetailsList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             OrderDetailsListSelect();
         }
-
+        
+        /// <summary>
+        /// 발주내역 List 에서 상세내역 출력하기
+        /// </summary>
         private void OrderDetailsListSelect()
         {
             btnSaveOrderDetails.Enabled = false;
@@ -648,7 +668,6 @@ namespace GoodeeWay
 
         }
 
-
         /// <summary>
         /// 발주내역서 Excel로 추출
         /// </summary>
@@ -659,22 +678,22 @@ namespace GoodeeWay
             OrderDetailsListDataTable = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
             dgvNeedInventoryDetailView.DataSource = OrderDetailsListDataTable;
             Excel.Application excelApp = new Excel.Application();
-            if (excelApp==null)
+            if (excelApp == null)
             {
                 MessageBox.Show("Excel 응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
                 return;
             }
 
-            Excel.Workbook workbook; 
+            Excel.Workbook workbook;
             Excel.Worksheet worksheet;
             object missingValue = System.Reflection.Missing.Value;
 
             workbook = excelApp.Workbooks.Open(@"C:\Users\GD4\Desktop\FinalProject\OrderDetails.xlsx");
             worksheet = workbook.Sheets.Item[1];
             worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
-            for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count+4; i++)
+            for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count + 4; i++)
             {
-                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString())>0)
+                if (Int32.Parse(dgvNeedInventoryDetailView["수량", i - 4].Value.ToString()) > 0)
                 {
                     worksheet.Cells[i, 1] = i - 3;
                     worksheet.Cells[i, 2] = dgvNeedInventoryDetailView["발주번호", i - 4].Value.ToString();
@@ -683,7 +702,7 @@ namespace GoodeeWay
                     worksheet.Cells[i, 5] = dgvNeedInventoryDetailView["재고종류코드", i - 4].Value.ToString();
 
                     Excel.Range r = worksheet.get_Range((object)worksheet.Cells[i + 1, 1], (object)worksheet.Cells[i + 1, 5]).EntireRow;
-                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue); 
+                    r.Insert(Excel.XlInsertShiftDirection.xlShiftDown, missingValue);
                 }
             }
 
@@ -691,7 +710,7 @@ namespace GoodeeWay
             string s = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString().Replace("-", "");
             try
             {
-                workbook.SaveAs(Application.StartupPath + @"\"+s+ "발주내역서.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                workbook.SaveAs(Application.StartupPath + @"\" + s + "발주내역서.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
             }
             catch (Exception)
             {
@@ -703,10 +722,8 @@ namespace GoodeeWay
             Marshal.ReleaseComObject(excelApp);
         }
 
-
-
         /// <summary>
-        /// 발주 내역 수정
+        /// 발주내역 수정
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -725,6 +742,11 @@ namespace GoodeeWay
             MessageBox.Show("발주내역이 수정되었습니다.");
         }
 
+        /// <summary>
+        /// 발주내역 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             OrderDetailsAdd orderDetailsAdd = new OrderDetailsAdd(OrderDetailsListDataTable);
@@ -734,36 +756,83 @@ namespace GoodeeWay
                 OrderDetailsListSelect();
             }
         }
-
-
-
-
         #endregion
 
+        /// <summary>
+        /// 재고종류 테이블 데이터입력 에러 시 에러박스출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvInventoryType_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
-        
-        private void dgvNeedInventoryDetailView_DataError_1(object sender, DataGridViewDataErrorEventArgs e)
+        /// <summary>
+        /// 재고내역 테이블 데이터입력 에러 시 에러박스출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvNeedInventoryDetailView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
 
-        private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// 입고버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReceiving_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!MaterialClassification.Contains(dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value.ToString()))
-                {
-                    MessageBox.Show("Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side 중 하나의 재료를 입력해주세요.");
-                    dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value = "Bread";
-                }
-            }
-            catch (Exception)
-            {
-            }
-            
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmReceiving.Dock = DockStyle.Fill;
+            pnmReceiving.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible= btnInventoryNewSelect.Visible= false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
         }
+
+        /// <summary>
+        /// 재고버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmInventory.Dock = DockStyle.Fill;
+            pnmInventory.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = true;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
+        }
+        /// <summary>
+        /// 발주버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmOrder.Dock = DockStyle.Fill;
+            pnmOrder.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
+        }
+
+        
     }
 }
