@@ -77,5 +77,7 @@ namespace GoodeeWay.InventoryBUS
             
             this.DialogResult = DialogResult.OK;
         }
+
+        
     }
 }
