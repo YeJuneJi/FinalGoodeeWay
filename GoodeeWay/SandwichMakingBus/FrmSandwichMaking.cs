@@ -38,8 +38,6 @@ namespace GoodeeWay.SandwichMakingBus
 
         private void FrmSandwichMaking_Load(object sender, EventArgs e)
         {
-            //this.WindowState = FormWindowState.Maximized;
-
             GridViewReset();
         }
 

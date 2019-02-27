@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.IO;
 using GoodeeWay.Order;
 using System.Globalization;
+using System.Drawing;
 
 namespace GoodeeWay.BUS
 {
@@ -131,6 +132,7 @@ namespace GoodeeWay.BUS
                 lblRawMaterialCost.Text = "총 원재료비: ";
                 lblEquipPrice.Text = "총 비품비: ";
                 lblEmployeeCost.Text = "총 인사비 : ";
+                lbltotnetProfit.Text = "총 손익 : ";
                 bool datecheck = false;
                 bool monthcheck = false;
                 bool yearcheck = false;
@@ -214,7 +216,7 @@ namespace GoodeeWay.BUS
                     if (rdoDate.Checked)
                     {
                         datecheck = true;
-                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) * 30)).ToString();
+                        lblBEPpredict.Text = "하루에 " + Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) * 30)).ToString() + " 원 이상의 매출을 올리셔야 합니다.";
                         ////일별 총 매출과 원 재료비 계산을 위한 반복문
                         foreach (var itemgroup in dayPerRealTot)
                         {
@@ -278,7 +280,7 @@ namespace GoodeeWay.BUS
                     else if (rdoMonth.Checked)
                     {
                         monthcheck = true;
-                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / Convert.ToDecimal(bEP)).ToString();
+                        lblBEPpredict.Text ="한달에 "+ Math.Round(Convert.ToDecimal(totalInvestCost) / Convert.ToDecimal(bEP)).ToString()+ " 원 이상의 매출을 올리셔야 합니다.";
                         foreach (var itemgroup in monthPerRealTot)
                         {
                             //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
@@ -348,7 +350,7 @@ namespace GoodeeWay.BUS
                     else if (rdoYear.Checked)
                     {
                         yearcheck = true;
-                        lblBEPpredict.Text = Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) / (decimal)3)).ToString();
+                        lblBEPpredict.Text = "1년에 "+Math.Round(Convert.ToDecimal(totalInvestCost) / (Convert.ToDecimal(bEP) / (decimal)3)).ToString()+ " 원 이상의 매출을 올리셔야 합니다.";
                         foreach (var itemgroup in yearPerRealTot)
                         {
                             //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
@@ -420,6 +422,7 @@ namespace GoodeeWay.BUS
                     float totRawMaterialCost = 0;//원재료비
                     float totEquipPrice = 0;//비품비
                     float totEmployeePrice = 0;//직원급여
+                    float totnetProfit = 0; //총 손익
                     foreach (var item in mergeList)
                     {
                         
@@ -443,11 +446,14 @@ namespace GoodeeWay.BUS
                         totRawMaterialCost += item.RawMaterialCost;
                         totEmployeePrice += item.EmployeePrice;
                         totalInvesetPrice += item.TotInvestPrice;
+                        totnetProfit += netProfit;
                     }
                     lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                     lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
                     lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
                     lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
+                    lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
+                    lbltotnetProfit.ForeColor = Color.Red;
                     resourceDataGView.DataSource = totRsrcTab;
                 }
             }

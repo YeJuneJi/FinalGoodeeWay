@@ -205,4 +205,28 @@
   <data name="Microsoft Excel_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Microsoft Excel_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Close_Window_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\close_window_32px.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Initialize_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\initialize_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Picture_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\picture_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="In_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\in_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Excel_Black_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\excel_black_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Search_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\search_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Update_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\update_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Refund_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\refund_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

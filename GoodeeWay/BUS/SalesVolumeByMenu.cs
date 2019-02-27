@@ -135,7 +135,6 @@ namespace GoodeeWay.BUS
                         hashtableForMenu[byMenu.Menu.MenuName] = (int)hashtableForMenu[byMenu.Menu.MenuName] + 1;
                         totalSum += 1;
                     }
-                    
                 }
             }
             

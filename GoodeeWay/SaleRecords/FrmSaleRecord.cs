@@ -35,6 +35,7 @@ namespace GoodeeWay.SaleRecords
             dtpPeriodStart.Enabled = false;
             dtpPeriodEnd.Enabled = false;
 
+            lblText.Text = "내용을 더블 클릭을 하시면 환불을 하실 수 있습니다.";
             searchlist = new List<SaleRecordsVO>();
             salesRecordsGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesRecordsGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -73,6 +74,7 @@ namespace GoodeeWay.SaleRecords
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             searchlist.Clear();
             salesRecordsGView.DataSource = null;
             searchRecords.Rows.Clear();
@@ -286,16 +288,19 @@ namespace GoodeeWay.SaleRecords
 
         private void salesRecordsGView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            RealMenuVO realMenuVO = default(RealMenuVO);
             int salesNo = int.Parse(salesRecordsGView.SelectedRows[0].Cells[0].Value.ToString());
             DateTime salesDate = DateTime.Parse(salesRecordsGView.SelectedRows[0].Cells[1].Value.ToString());
-            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString());
+            var salesItems = from record in searchlist
+                             where record.SalesNo == salesNo
+                             select new { record.SalesitemName };
+            foreach (var item in salesItems)
+            {
+                realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
+            }
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
-
             FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
             fdsr.ShowDialog();
-
         }
-
-        
     }
 }

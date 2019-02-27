@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -287,6 +290,12 @@
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\USalesMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sales\USalesMenu.Designer.cs">
+      <DependentUpon>USalesMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="VO\ByMenuVO.cs" />
     <Compile Include="VO\CostOfRawMaterials.cs" />
     <Compile Include="VO\ImageVO.cs" />
@@ -412,6 +421,9 @@
     <EmbeddedResource Include="Sales\FrmSalesMenuSearch.resx">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\USalesMenu.resx">
+      <DependentUpon>USalesMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SandwichMakingBus\FrmSandwichMaking.resx">
       <DependentUpon>FrmSandwichMaking.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +448,9 @@
     <None Include="Resources\GoodeeWay.png" />
     <Content Include="Images\GooDeeWay.PNG" />
     <Content Include="Images\GW.PNG" />
+    <Content Include="Images\NewGoodeeWay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Sandwich_100px.png" />
     <None Include="Resources\Purchase Order_50px.png" />
     <None Include="Resources\Commodity_50px.png" />
@@ -456,11 +471,19 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
+    <Content Include="Resources\Close_Window_32px.ico" />
     <None Include="Resources\Maintenance_50px.png" />
     <None Include="Resources\Search_52px.png" />
     <None Include="Resources\Change Theme_52px.png" />
     <None Include="Resources\Erase_50px.png" />
     <None Include="Resources\Microsoft Excel_52px.png" />
+    <Content Include="Resources\Excel_Black_64px.png" />
+    <Content Include="Resources\Initialize_64px.png" />
+    <Content Include="Resources\In_50px.png" />
+    <Content Include="Resources\Picture_64px.png" />
+    <Content Include="Resources\Refund_50px.png" />
+    <Content Include="Resources\Search_Black.png" />
+    <Content Include="Resources\Update_Black.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
@@ -508,15 +531,6 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>8</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="Microsoft.Office.Interop.Excel">
-      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>

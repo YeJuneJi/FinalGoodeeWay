@@ -246,6 +246,15 @@ GO
 --
 --
 
+-- 판매기록 환불여부 
+create procedure RefundSaleRecords
+@salesNo int
+as
+update dbo.SaleRecords set paymentPlan = N'환불' where @salesNo = salesNo;
+delete from Making where salesNo = @salesNo;
+
+GO
+
 --SaleRecords Update 저장 프로시저
 create procedure UpdateSaleRecords
 @salesNo int,

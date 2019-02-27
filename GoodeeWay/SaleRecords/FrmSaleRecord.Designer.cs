@@ -43,6 +43,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salesRecordsGView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -141,13 +142,13 @@
             this.salesRecordsGView.BackgroundColor = System.Drawing.Color.White;
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.salesRecordsGView.GridColor = System.Drawing.Color.DarkGray;
-            this.salesRecordsGView.Location = new System.Drawing.Point(12, 135);
+            this.salesRecordsGView.Location = new System.Drawing.Point(12, 146);
             this.salesRecordsGView.MultiSelect = false;
             this.salesRecordsGView.Name = "salesRecordsGView";
             this.salesRecordsGView.ReadOnly = true;
             this.salesRecordsGView.RowTemplate.Height = 23;
             this.salesRecordsGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.salesRecordsGView.Size = new System.Drawing.Size(1176, 573);
+            this.salesRecordsGView.Size = new System.Drawing.Size(1176, 562);
             this.salesRecordsGView.TabIndex = 22;
             this.salesRecordsGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellClick);
             this.salesRecordsGView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellDoubleClick);
@@ -258,10 +259,22 @@
             this.panel2.Size = new System.Drawing.Size(442, 114);
             this.panel2.TabIndex = 36;
             // 
+            // lblText
+            // 
+            this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblText.AutoSize = true;
+            this.lblText.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblText.Location = new System.Drawing.Point(696, 122);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(15, 21);
+            this.lblText.TabIndex = 36;
+            this.lblText.Text = "-";
+            // 
             // FrmSaleRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblText);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.salesRecordsGView);
             this.Name = "FrmSaleRecord";
@@ -271,6 +284,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -291,5 +305,6 @@
         private System.Windows.Forms.SaveFileDialog excelSaveFileDlg;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblText;
     }
 }
