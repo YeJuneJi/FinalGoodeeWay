@@ -8,6 +8,7 @@ using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using GoodeeWay.InventoryBUS;
 
 namespace GoodeeWay
 {
@@ -24,8 +25,10 @@ namespace GoodeeWay
 
         FrmOrderView fov;
         FrmSaleRecord fsr;
-        inventory inventory;
-        USalesMenu salesMenu;        
+        //OderVIew oderVIew;
+        FrmInventory fi;
+        USalesMenu salesMenu;
+        FrmSaleRecords saleRecords;
         FrmEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
@@ -64,23 +67,21 @@ namespace GoodeeWay
 
         private void 재고ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (inventory == null)
+            if (fi == null)
             {
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                //CheckOpenClose(inventory);
+                fi = new FrmInventory();
+                MainPanel.Controls.Add(fi);
+                fi.BringToFront();
             }
-            else if (inventory.IsDisposed)
+            else if (fi.IsDisposed)
             {
-                inventory = new inventory();
-                inventory.MdiParent = this;
-                inventory.Show();
-                //CheckOpenClose(inventory);
+                fi = new FrmInventory();
+                MainPanel.Controls.Add(fi);
+                fi.BringToFront();
             }
             else
             {
-                inventory.BringToFront();
+                fi.BringToFront();
             }
         }
 
