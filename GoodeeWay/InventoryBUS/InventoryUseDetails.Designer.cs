@@ -232,7 +232,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InventoryUseDetails";
             this.Text = "InventoryUseDetails";
-            this.Load += new System.EventHandler(this.InventoryUseDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventoryUseDetails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -21,6 +21,11 @@ namespace GoodeeWay.InventoryBUS
         DataTable dataTable;
 
         string receivingDetailsID;
+        /// <summary>
+        /// 재고사용내역 업로드
+        /// </summary>
+        /// <param name="receivingDetailsID">입고내역코드</param>
+        /// <param name="dateOfDisposal">제품 유통기한</param>
         public InventoryUseDetails(string receivingDetailsID, string dateOfDisposal)
         {
             InitializeComponent();
@@ -37,6 +42,9 @@ namespace GoodeeWay.InventoryBUS
 
 
         }
+        /// <summary>
+        /// 재고사용내역 표에 출력하기
+        /// </summary>
         public void InventoryUseDetailsSelect()
         {
             dataTable = new InventoryDAO().InventoryUseDetails(receivingDetailsID);
@@ -54,11 +62,20 @@ namespace GoodeeWay.InventoryBUS
             dgvInventoryUseDetails.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(65, 64, 65);
         }
 
+        /// <summary>
+        /// 창 닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
+        /// <summary>
+        /// 재고사용량 입력 시 숫자제한
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtInventoryQuantity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -108,7 +125,9 @@ namespace GoodeeWay.InventoryBUS
             }
 
         }
-
+        /// <summary>
+        /// 현재 사용가능 수량 띄우기
+        /// </summary>
         private void NowCanUseQuantity()
         {
             useQuantity = 0;
@@ -131,12 +150,11 @@ namespace GoodeeWay.InventoryBUS
             }
             
         }
-
-        private void InventoryUseDetails_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 제품 폐기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDisposal_Click(object sender, EventArgs e)
         {
             NowCanUseQuantity();

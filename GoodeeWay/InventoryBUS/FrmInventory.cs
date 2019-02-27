@@ -362,9 +362,6 @@ namespace GoodeeWay.InventoryBUS
         {
             InventoryTableSelect();
         }
-        
-
-        
 
         /// <summary>                                                                               
         /// 재고 테이블                                                                             
@@ -492,7 +489,7 @@ namespace GoodeeWay.InventoryBUS
 
         #region 재고테이블 선택 시 재고종류 선택
         /// <summary>
-        /// 재고테이블 row선택 시 해당 물품의 재고종류가 선택
+        /// 재고테이블에서 마우스로 row선택 시 해당 물품의 재고종류가 선택
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -501,6 +498,9 @@ namespace GoodeeWay.InventoryBUS
             InventoryTableRowSelected();
         }
 
+        /// <summary>
+        /// 재고테이블 선택 시 해당 재고종류 선택하기
+        /// </summary>
         private void InventoryTableRowSelected()
         {
             dgvInventoryType.ClearSelection();
@@ -521,7 +521,7 @@ namespace GoodeeWay.InventoryBUS
         }
 
         /// <summary>
-        /// 재고테이블 row선택 시 해당 물품의 재고종류가 선택
+        /// 재고테이블에서 방향키로 row선택 시 해당 물품의 재고종류가 선택
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -555,6 +555,9 @@ namespace GoodeeWay.InventoryBUS
             btnExcelExport.Enabled = false;
             btnAddOrder.Enabled = btnUpdateOrder.Enabled = false;
         }
+        /// <summary>
+        /// 발주내역 산출
+        /// </summary>
         public void CalculationOrderDetails()
         {
             dgvNeedInventoryDetailView.DataSource = null;
@@ -645,7 +648,9 @@ namespace GoodeeWay.InventoryBUS
             OrderDetailsListSelect();
         }
         
-
+        /// <summary>
+        /// 발주내역 List 에서 상세내역 출력하기
+        /// </summary>
         private void OrderDetailsListSelect()
         {
             btnSaveOrderDetails.Enabled = false;
@@ -717,6 +722,11 @@ namespace GoodeeWay.InventoryBUS
             Marshal.ReleaseComObject(excelApp);
         }
 
+        /// <summary>
+        /// 발주내역 수정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateOrder_Click(object sender, EventArgs e)
         {
             List<OrderDetailsVO> orderDetailsVOList = new List<OrderDetailsVO>();
@@ -732,6 +742,11 @@ namespace GoodeeWay.InventoryBUS
             MessageBox.Show("발주내역이 수정되었습니다.");
         }
 
+        /// <summary>
+        /// 발주내역 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
             OrderDetailsAdd orderDetailsAdd = new OrderDetailsAdd(OrderDetailsListDataTable);
@@ -743,21 +758,30 @@ namespace GoodeeWay.InventoryBUS
         }
         #endregion
 
+        /// <summary>
+        /// 재고종류 테이블 데이터입력 에러 시 에러박스출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvInventoryType_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
-
+        /// <summary>
+        /// 재고내역 테이블 데이터입력 에러 시 에러박스출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvNeedInventoryDetailView_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             MessageBox.Show("숫자를 입력해주세요");
         }
 
-        private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// 입고버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReceiving_Click(object sender, EventArgs e)
         {
             MenuPanel.Dock = DockStyle.None;
@@ -772,6 +796,11 @@ namespace GoodeeWay.InventoryBUS
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
         }
 
+        /// <summary>
+        /// 재고버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInventory_Click(object sender, EventArgs e)
         {
             MenuPanel.Dock = DockStyle.None;
@@ -785,7 +814,11 @@ namespace GoodeeWay.InventoryBUS
             btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = true;
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
         }
-
+        /// <summary>
+        /// 발주버튼 클릭 시 입고 창 띄우기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOrder_Click(object sender, EventArgs e)
         {
             MenuPanel.Dock = DockStyle.None;

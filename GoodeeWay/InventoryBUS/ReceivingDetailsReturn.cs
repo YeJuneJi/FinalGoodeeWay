@@ -20,7 +20,11 @@ namespace GoodeeWay.InventoryBUS
             get { return rdvo; }
             set { rdvo = value; }
         }
-
+        /// <summary>
+        /// 입고내역반품 생산자
+        /// </summary>
+        /// <param name="rdvo">입고내역에 대한 VO</param>
+        /// <param name="frmInventory">재고내역 메인 폼에 대한 개체</param>
         public ReceivingDetailsReturn(ReceivingDetailsVO rdvo,FrmInventory frmInventory)
         {
             this.rdvo = rdvo;
@@ -30,11 +34,20 @@ namespace GoodeeWay.InventoryBUS
             this.frmInventory = frmInventory;
         }
 
+        /// <summary>
+        /// 창닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
+        /// <summary>
+        /// 입고내역 반품수량 제한 걸기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtItemQuantity_TextChanged(object sender, EventArgs e)
         {
             try
@@ -60,7 +73,11 @@ namespace GoodeeWay.InventoryBUS
             }
 
         }
-
+        /// <summary>
+        /// 반품 or 교환 내역 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnApply_Click(object sender, EventArgs e)
         {
             Rdvo.Quantity = Int32.Parse(txtItemQuantity.Text);

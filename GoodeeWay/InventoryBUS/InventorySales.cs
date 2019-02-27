@@ -352,7 +352,6 @@ namespace GoodeeWay.InventoryBUS
             }
         }
 
-
         #region 최근기간 설정
         private void btn1Week_Click(object sender, EventArgs e)
         {
@@ -400,8 +399,12 @@ namespace GoodeeWay.InventoryBUS
         }
         #endregion
 
-
         #region 종류,재고 기준 설정
+        /// <summary>
+        /// 종류 선택 시 연월 라디오 버튼 숨기기, 종류 기준 콤보박스 내용 수정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoInventoryType_CheckedChanged(object sender, EventArgs e)
         {
             rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
@@ -410,7 +413,11 @@ namespace GoodeeWay.InventoryBUS
             cmbType.Text = cmbType.Items[0].ToString();
 
         }
-
+        /// <summary>
+        /// 재고 선택시 연월 라디오 버튼 보이기, 재고 기준 콤보박스 내용 수정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rdoInventory_CheckedChanged(object sender, EventArgs e)
         {
             rdoMonth.Checked = rdoMonth.Visible = rdoYear.Visible = true;
@@ -424,11 +431,21 @@ namespace GoodeeWay.InventoryBUS
         }
         #endregion
 
+        /// <summary>
+        /// 종료 버튼 클릭 시 차트 폼 닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 패널 클릭 다운 시 창 이동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuPanel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -444,7 +461,7 @@ namespace GoodeeWay.InventoryBUS
         }
     }
 
-
+    #region 차트 interface 구조
     class Display
     {
         private IChart chart;
@@ -479,7 +496,7 @@ namespace GoodeeWay.InventoryBUS
         {
             return new InventorySalesDAO().InventoryTypeSelect(type, chart);
         }
-        
+
     }
     //-----------------------------------------------------------------------
     class InventoryChart : IChart//재고기준일 때 차트 출력을 위한 class
@@ -498,9 +515,10 @@ namespace GoodeeWay.InventoryBUS
         }
         public List<InventoryTypeSalesVO> Chart(IChart chart, string InventoryName, bool monthYear)
         {
-            return new InventorySalesDAO().InventorySalesSelect(InventoryName, chart,monthYear);
+            return new InventorySalesDAO().InventorySalesSelect(InventoryName, chart, monthYear);
         }
     }
-    
+
+    #endregion
 
 }

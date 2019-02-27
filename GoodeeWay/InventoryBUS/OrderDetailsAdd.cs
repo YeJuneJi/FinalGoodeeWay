@@ -15,7 +15,10 @@ namespace GoodeeWay.InventoryBUS
     public partial class OrderDetailsAdd : Form
     {
         DataTable OrderDetailsListDataTable;
-
+        /// <summary>
+        /// 발주내역 생산자
+        /// </summary>
+        /// <param name="OrderDetailsListDataTable">발주내역테이블</param>
         public OrderDetailsAdd(DataTable OrderDetailsListDataTable)
         {
             InitializeComponent();
@@ -25,10 +28,20 @@ namespace GoodeeWay.InventoryBUS
             dgvOrderDetailsAdd.Columns["재고명"].ReadOnly = true;
             dgvOrderDetailsAdd.Columns["재고종류코드"].ReadOnly = true;
         }
+        /// <summary>
+        /// 창닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
+        /// <summary>
+        /// 발주내역 추가하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             List<OrderDetailsVO> orderDetailsVOList = new List<OrderDetailsVO>();
