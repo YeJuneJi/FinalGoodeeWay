@@ -58,7 +58,8 @@ namespace GoodeeWay.BUS
             }
             chartTotalInvest.Series.Clear();
             chartTotalInvest.Titles.Add("통계");
-            chartTotalInvest.Titles[0].Font = new Font(new FontFamily(GenericFontFamilies.SansSerif), 20, FontStyle.Bold);
+            
+            chartTotalInvest.Titles[0].Font = new Font("Century Gothic", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             chartTotalInvest.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
             chartTotalInvest.ChartAreas[0].AxisY.Interval = 250000;
 

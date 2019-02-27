@@ -75,7 +75,6 @@
             this.btnExportAsExcel = new System.Windows.Forms.Button();
             this.sfdExcel = new System.Windows.Forms.SaveFileDialog();
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
-            this.panel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,7 +84,7 @@
             // btnFirstPage
             // 
             this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnFirstPage.Location = new System.Drawing.Point(377, 399);
+            this.btnFirstPage.Location = new System.Drawing.Point(415, 391);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(29, 21);
             this.btnFirstPage.TabIndex = 16;
@@ -96,7 +95,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNextPage.Location = new System.Drawing.Point(628, 398);
+            this.btnNextPage.Location = new System.Drawing.Point(666, 390);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(24, 21);
             this.btnNextPage.TabIndex = 15;
@@ -107,7 +106,7 @@
             // btnLastPage
             // 
             this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnLastPage.Location = new System.Drawing.Point(658, 398);
+            this.btnLastPage.Location = new System.Drawing.Point(696, 390);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(29, 21);
             this.btnLastPage.TabIndex = 14;
@@ -118,7 +117,7 @@
             // btnFrontPage
             // 
             this.btnFrontPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnFrontPage.Location = new System.Drawing.Point(412, 399);
+            this.btnFrontPage.Location = new System.Drawing.Point(450, 391);
             this.btnFrontPage.Name = "btnFrontPage";
             this.btnFrontPage.Size = new System.Drawing.Size(24, 21);
             this.btnFrontPage.TabIndex = 13;
@@ -129,7 +128,7 @@
             // pnlPage
             // 
             this.pnlPage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlPage.Location = new System.Drawing.Point(442, 399);
+            this.pnlPage.Location = new System.Drawing.Point(480, 391);
             this.pnlPage.Name = "pnlPage";
             this.pnlPage.Size = new System.Drawing.Size(180, 20);
             this.pnlPage.TabIndex = 12;
@@ -179,7 +178,8 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Location = new System.Drawing.Point(332, 220);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 38);
@@ -192,7 +192,8 @@
             // 
             this.btnModification.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.btnModification.Enabled = false;
-            this.btnModification.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnModification.FlatAppearance.BorderSize = 0;
+            this.btnModification.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModification.Location = new System.Drawing.Point(332, 173);
             this.btnModification.Name = "btnModification";
             this.btnModification.Size = new System.Drawing.Size(75, 38);
@@ -424,7 +425,8 @@
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSearch.Location = new System.Drawing.Point(560, 27);
             this.btnSearch.Name = "btnSearch";
@@ -498,7 +500,8 @@
             // btnAddEquipment
             // 
             this.btnAddEquipment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
-            this.btnAddEquipment.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddEquipment.FlatAppearance.BorderSize = 0;
+            this.btnAddEquipment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddEquipment.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAddEquipment.Location = new System.Drawing.Point(556, 606);
             this.btnAddEquipment.Name = "btnAddEquipment";
@@ -511,7 +514,8 @@
             // btnExportAsExcel
             // 
             this.btnExportAsExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
-            this.btnExportAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExportAsExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportAsExcel.ForeColor = System.Drawing.SystemColors.Control;
             this.btnExportAsExcel.Location = new System.Drawing.Point(844, 606);
             this.btnExportAsExcel.Name = "btnExportAsExcel";
@@ -541,7 +545,7 @@
             this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvEquipmentList.EnableHeadersVisualStyles = false;
             this.dgvEquipmentList.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 24);
+            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 0);
             this.dgvEquipmentList.Name = "dgvEquipmentList";
             this.dgvEquipmentList.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -562,25 +566,15 @@
             this.dgvEquipmentList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEquipmentList.RowTemplate.Height = 23;
             this.dgvEquipmentList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEquipmentList.Size = new System.Drawing.Size(1100, 365);
+            this.dgvEquipmentList.Size = new System.Drawing.Size(1200, 385);
             this.dgvEquipmentList.TabIndex = 37;
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
-            // 
-            // panel
-            // 
-            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel.Location = new System.Drawing.Point(0, 0);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1100, 21);
-            this.panel.TabIndex = 38;
-            this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
             // UcEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel);
             this.Controls.Add(this.dgvEquipmentList);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnAddEquipment);
@@ -592,7 +586,7 @@
             this.Controls.Add(this.btnFrontPage);
             this.Controls.Add(this.pnlPage);
             this.Name = "UcEquipment";
-            this.Size = new System.Drawing.Size(1100, 725);
+            this.Size = new System.Drawing.Size(1200, 730);
             this.Load += new System.EventHandler(this.UcEquipment_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -650,6 +644,5 @@
         private System.Windows.Forms.Button btnExportAsExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcel;
         private System.Windows.Forms.DataGridView dgvEquipmentList;
-        private System.Windows.Forms.Panel panel;
     }
 }

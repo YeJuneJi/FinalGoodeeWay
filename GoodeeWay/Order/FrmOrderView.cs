@@ -1,19 +1,26 @@
-﻿using GoodeeWay.DAO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GoodeeWay.DAO;
+using System.Runtime.InteropServices;
 
 namespace GoodeeWay.Order
 {
-    public partial class OderVIew : Form
+    public partial class FrmOrderView : UserControl
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         List<Menu> menuList = new List<Menu>(); // 전체 메뉴 리스트
         List<ListViewItem> listViewItemList = new List<ListViewItem>(); // 메뉴 리스트를 리스트뷰 아이템으로 만든 리스트
 
@@ -23,14 +30,14 @@ namespace GoodeeWay.Order
 
         ImageList imgList = new ImageList(); // 리스트 뷰를 위한 이미지 리스트
 
-        public OderVIew()
+        public FrmOrderView()
         {
             InitializeComponent();
         }
 
-        private void OderVIew_Load(object sender, EventArgs e) // 
+        private void FrmOrderView_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             new OrderDAO().GetAllMenu(menuList); // 메뉴 테이블에서 모든 메뉴를 뽑아와 리스트에 등록
 
             GetMenuList();
@@ -55,7 +62,16 @@ namespace GoodeeWay.Order
 
                 ListViewItem listViewItem = new ListViewItem();
                 listViewItem.Name = item.MenuName;
-                listViewItem.Text = item.MenuName;
+
+                if (item.DiscountRatio != 0)
+                {
+                    listViewItem.Text = item.MenuName + "\r\n" + "할인! : " + ((decimal)item.Price - ((decimal)item.Price / (decimal)item.DiscountRatio)).ToString() + "원";
+                }
+                else
+                {
+                    listViewItem.Text = item.MenuName + "\r\n" + item.Price + "원";
+                }
+
                 listViewItem.ImageKey = item.MenuCode;
 
                 listViewItemList.Add(listViewItem);
@@ -92,22 +108,22 @@ namespace GoodeeWay.Order
                                 listViewOrder.Items.Add((ListViewItem)listViewItem.Clone());
                             }
                         }
-                    }                    
+                    }
                 }
             }
         }
 
         private void listViewOrder_Click(object sender, EventArgs e) // 상품 클릭시 처리 
         {
-            ListView lvi = (ListView)sender;           
-            
+            ListView lvi = (ListView)sender;
+
             foreach (Menu item in menuList)
-            {                
-                if (item.MenuName == lvi.SelectedItems[0].Text)
-                {                    
+            {
+                if (lvi.SelectedItems[0].Text.Contains(item.MenuName))
+                {
                     if (!item.Division.Equals(Convert.ToString((int)Division.샌드위치))) // 구분이 Sandwich가 아니면 그냥 처리
                     {
-                        bucketMenuList.Add(item.Clone()); 
+                        bucketMenuList.Add(item.Clone());
                         MenuAndDetails menuAndDetails = new MenuAndDetails();
                         menuAndDetails.Menu = item;
                         menuAndDetails.MenuDetailList = null;
@@ -115,33 +131,16 @@ namespace GoodeeWay.Order
                         bucketMenuAndDetailList.Add(menuAndDetails);
                     }
                     else // 구분이 Sandwich이면 상세 페이지로 이동
-                    {                        
+                    {
                         OrderDetail orderDetail = new OrderDetail(item, bucketMenuList, bucketMenuAndDetailList);
                         orderDetail.ShowDialog();
-                    }                    
+                    }
                     break;
                 }
             }
 
-            textBox1.Text = "";
-            foreach (var item in bucketMenuAndDetailList)
-            {
-                textBox1.Text += "\r\n";
-                textBox1.Text += item.Menu.MenuName;
-
-                if (item.MenuDetailList != null)
-                {
-                    textBox1.Text += "\r\n";
-                    textBox1.Text += "--> 상세메뉴 :  ";
-                    foreach (var item2 in item.MenuDetailList)
-                    {
-                        textBox1.Text += item2.InventoryName + " | " + item2.Amount + "\t";                        
-                    }
-                }                
-            }
-            
             SetBasketListBox();
-        }       
+        }
 
         private void btnCancel_Click(object sender, EventArgs e) // 전체 취소 버튼 클릭시 작동
         {
@@ -153,8 +152,8 @@ namespace GoodeeWay.Order
         }
 
         private void btnCancelOne_Click(object sender, EventArgs e) // 취소 버튼 클릭시 작동
-        {            
-            
+        {
+
             bucketMenuList.RemoveAt(listViewBasket.SelectedItems[0].Index);
             bucketMenuAndDetailList.RemoveAt(listViewBasket.SelectedItems[0].Index);
             SetBasketListBox();
@@ -171,7 +170,15 @@ namespace GoodeeWay.Order
                 {
                     if (listViewItem.Name.Equals(menu.MenuName))
                     {
-                        price += (decimal)menu.Price;
+                        if (menu.DiscountRatio != 0)
+                        {
+                            price += (decimal)menu.Price - ((decimal)menu.Price / (decimal)menu.DiscountRatio);
+                        }
+                        else
+                        {
+                            price += (decimal)menu.Price;
+                        }
+
                         kCal += menu.Kcal;
 
                         listViewBasket.Items.Add((ListViewItem)listViewItem.Clone());
@@ -211,9 +218,9 @@ namespace GoodeeWay.Order
                 }
 
                 order.ShowDialog();
-            }            
-        }                                           
-        
+            }
+        }
+
         private void formClosed(object sender, EventArgs e) // 결제창이 닫히면 작동
         {
             if (order.result == true)
@@ -229,7 +236,12 @@ namespace GoodeeWay.Order
 
         private void orderBtnOK(object sender, EventArgs e) // 결제창에서 ok 버튼 클릭시 작동
         {
-            
+
+        }
+
+        private void MenuPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

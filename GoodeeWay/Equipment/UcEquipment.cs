@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.VO;
 using GoodeeWay.DAO;
@@ -17,12 +13,7 @@ namespace GoodeeWay.Equipment
 {
     public partial class UcEquipment : UserControl
     {
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-        public readonly int WM_NLBUTTONDOWN = 0xA1;
-        public readonly int HT_CAPTION = 0x2;
+       
         //private ResourceMain resourceMain;
 
         public UcEquipment()
@@ -32,14 +23,13 @@ namespace GoodeeWay.Equipment
         private EquipmentVO tempEquipment;//선택된 비품임시저장
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
 
-        const int pageRows = 15;
-        int currentPage = 1;
+        const int pageRows = 15; //한 page에 보여줄 row의 수
+        int currentPage = 1; //현재 페이지를 저장시킬 변수
         int firstNumLocationLength = 15; //페이지 번호 맨앞 숫자 위치정보(panel중간 지점으로 부터 떨어진 길이)
         int totalPage = 0;
-
-
-        List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>();
-        List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>();
+        
+        List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>(); //넘겨받은 전체 데이터
+        List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>(); //페이지당 담을 데이터
 
 
         private void UcEquipment_Load(object sender, EventArgs e)
@@ -48,25 +38,20 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.AllowUserToAddRows = false;
             chbDate.CheckState = CheckState.Unchecked;
             dgvEquipmentList.DataSource = SetDataTable(dAO.AllequipmentVOsList());
-            //dgvEquipmentList.DataSource = dAO.AllequipmentVOsList();
-            //dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="equipmentLst"></param>
+        /// <returns></returns>
         private DataTable SetDataTable(List<EquipmentVO> equipmentLst)
         {
             dataTable = new DataTable("Equipment");
             baseEquipmentLst = equipmentLst;
             TempListAdd();
-            //dataTable.Columns.Add("EQUCode", typeof(string), "비품코드");
-            //dataTable.Columns.Add("detailName", typeof(string), "상세명칭");
-            //dataTable.Columns.Add("location", typeof(string), "위치");
-            //dataTable.Columns.Add("state", typeof(string), "상태");
-            //dataTable.Columns.Add("purchasePrice", typeof(float), "구매가격");
-            //dataTable.Columns.Add("purchaseDate", typeof(DateTime), "구매날짜");
-            //dataTable.Columns.Add("note", typeof(string), "비고");
+            
 
             dataTable.Columns.Add("비품코드", typeof(string));
             dataTable.Columns.Add("상세명칭", typeof(string));
@@ -326,7 +311,9 @@ namespace GoodeeWay.Equipment
             }
 
         }
-
+        /// <summary>
+        /// panel의 최대 5개까지 link label을 동적으로 생성시켜준다.
+        /// </summary>
         private void Paging()
         {
             pnlPage.Controls.Clear();
@@ -492,18 +479,11 @@ namespace GoodeeWay.Equipment
             Paging();
         }
 
-        private void panel_MouseDown(object sender, MouseEventArgs e)
+       
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
-                ReleaseCapture();
-
-                // 타이틀 바의 다운 이벤트처럼 보냄
-                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
-            }
-
-            base.OnMouseDown(e);
+            this.Dispose();
         }
     }
 }

@@ -18,15 +18,27 @@ namespace GoodeeWay.Sales
 {
     public partial class FrmSalesMenuSearch : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         List<SalesMenuVO> searchlist;
         DataTable searchMenu;
         DataColumn[] dataColoumns;
+
         public FrmSalesMenuSearch()
         {
             InitializeComponent();
         }
         private void SalesMenuSearch_Load(object sender, EventArgs e)
         {
+            pbxImages.BringToFront();
+            pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+            myToolTip.SetToolTip(btnExcel, "엑셀 출력");
+            myToolTip.SetToolTip(btnResult, "검색");
             searchlist = new List<SalesMenuVO>();
             menuSearchGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             menuSearchGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -100,6 +112,7 @@ namespace GoodeeWay.Sales
             lblTotal.Text = searchMenu.Rows.Count.ToString() + "개의 결과를 출력하였습니다.";
         }
 
+
         private void btnExcel_Click(object sender, EventArgs e)
         {
             if (ExcelSaveFileDlg.ShowDialog() != DialogResult.Cancel)
@@ -129,7 +142,8 @@ namespace GoodeeWay.Sales
                     workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
                     workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
                     Excel.Range pictureRange = workSheet.Cells[i, 5];
-                    Image img = Image.FromFile((menuSearchGView.Rows[i - 2].Cells[4].Value.ToString()));
+                    MemoryStream ms = new MemoryStream((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value);
+                    Image img = Image.FromStream(ms);
                     img = (Image)new Bitmap(img, new Size(100, 100));
                     pictureRange.ColumnWidth = 11.88;
                     pictureRange.RowHeight = 75.00;
@@ -137,22 +151,42 @@ namespace GoodeeWay.Sales
                     workSheet.Paste(pictureRange, img); //Ctrl + V     
                     workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
                     workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
-
+                    ms.Close();
                 }
 
                 try
                 {
                     workBook.SaveAs(ExcelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                    MessageBox.Show("저장 성공!");
                 }
                 catch (Exception)
                 {
-                    throw;
+                    MessageBox.Show("저장 실패!");
                 }
                 excelApp.Quit();
                 Marshal.FinalReleaseComObject(workSheet);
                 Marshal.FinalReleaseComObject(workBook);
                 Marshal.FinalReleaseComObject(excelApp);
             }
+        }
+
+        private void movePanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -4,32 +4,46 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GoodeeWay.BUS
 {
-    public partial class FrmUsingOfEquipment : Form
+
+public partial class FrmUsingOfEquipment : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         public FrmUsingOfEquipment()
         {
             InitializeComponent();
         }
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
         List<VO.EquipmentVO> equipment = new List<VO.EquipmentVO>();
+        ToolTip toolTipColumn = new ToolTip();
+        Point? previousPosition = null;
 
         private void FrmUsingOfEquipment_Load(object sender, EventArgs e)
         {
+            btnClose.BackgroundImage = Properties.Resources.Close_Window_32px.ToImage();
             dgvtotalList.AllowUserToAddRows = false;
             //초기화면 chart 설정 변경, x축 dot형식, y축 바탕과 같은 색으로, 축lable 형식 변경, 차이가 많은 데이터 짤라보기
             //crtEquipment.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
             crtEquipment.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             crtEquipment.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            
+            crtEquipment.ChartAreas[0].AxisY.Interval = 300000;
             crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
             crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
             crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
+            panelImage.BringToFront();
+            panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
             DAO.EquipmentDAO dAO = new DAO.EquipmentDAO();
 
             var firstDayOfMonth_year = DateTime.Now.Year;
@@ -156,6 +170,42 @@ namespace GoodeeWay.BUS
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void crtEquipment_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point currentPosition = e.Location;
+            if (previousPosition.HasValue && currentPosition == previousPosition)
+            {
+                return;
+            }
+            toolTipColumn.RemoveAll();
+            previousPosition = currentPosition;
+            var hit = crtEquipment.HitTest(currentPosition.X, currentPosition.Y, System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint);
+            if (hit.ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
+            {
+                var yValue = String.Format("{0:#,###}원", Convert.ToInt32((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).YValues[0]));
+                toolTipColumn.Show(hit.Series.Name + "\n" + yValue, crtEquipment, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+            }
         }
     }
 }

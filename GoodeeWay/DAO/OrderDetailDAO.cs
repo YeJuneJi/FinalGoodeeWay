@@ -13,7 +13,7 @@ namespace GoodeeWay.DAO
     {
         internal List<MenuDetail> getRecipe(string menuName, List<MenuDetail> menuDetailList)
         {
-            string procedure = "SelectByRecipesJoinToInventryTypeNSales"; // 저장 프로시져 이름                        
+            string procedure = "SelectByRecipesJoinToInventryTypeNSalesMenu"; // 저장 프로시져 이름                        
             SqlParameter[] parameters = new SqlParameter[1];
             parameters[0] = new SqlParameter("menuName", menuName);
 
@@ -32,7 +32,7 @@ namespace GoodeeWay.DAO
                     menuDetail.InventoryName = sdr["InventoryName"].ToString();
                     menuDetail.Division = sdr["MaterialClassification"].ToString();
                     menuDetail.MenuName = sdr["menuName"].ToString();                    
-                    //menuDetail.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
+                    menuDetail.DiscountRatio = float.Parse(sdr["discountRatio"].ToString());
 
                     menuDetailList.Add(menuDetail);
                 }

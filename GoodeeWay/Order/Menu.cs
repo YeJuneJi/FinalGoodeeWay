@@ -77,6 +77,7 @@ namespace GoodeeWay.Order
             menu.menuImage = this.menuImage;
             menu.division = this.division;
             menu.additionalContext = this.additionalContext;
+            menu.discountRatio = this.discountRatio;
 
             return menu;
         }
