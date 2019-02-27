@@ -57,7 +57,7 @@ namespace GoodeeWay.InventoryBUS
             btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
             btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
-
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
         }
         #region 입고내역
         /// <summary>

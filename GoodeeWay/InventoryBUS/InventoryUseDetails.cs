@@ -34,6 +34,8 @@ namespace GoodeeWay.InventoryBUS
                 btnAdd.Enabled = false;
                 btnDisposal.Enabled = true;
             }
+
+
         }
         public void InventoryUseDetailsSelect()
         {
@@ -44,11 +46,12 @@ namespace GoodeeWay.InventoryBUS
             maximun = inventoryQuantity * receivingQuantity;
             dataTable.Columns.Remove("수량");
             dataTable.Columns.Remove("재고명");
+
             dgvInventoryUseDetails.DataSource = dataTable;
             
             dgvInventoryUseDetails.AllowUserToAddRows = false;
             dgvInventoryUseDetails.ReadOnly = true;
-            //dgvInventoryUseDetails
+            dgvInventoryUseDetails.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(65, 64, 65);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

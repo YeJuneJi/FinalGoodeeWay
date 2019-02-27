@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvInventoryUseDetails = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
@@ -43,67 +47,129 @@
             // 
             // dgvInventoryUseDetails
             // 
+            this.dgvInventoryUseDetails.AllowUserToResizeColumns = false;
+            this.dgvInventoryUseDetails.AllowUserToResizeRows = false;
             this.dgvInventoryUseDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvInventoryUseDetails.BackgroundColor = System.Drawing.Color.White;
+            this.dgvInventoryUseDetails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvInventoryUseDetails.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventoryUseDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInventoryUseDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventoryUseDetails.Location = new System.Drawing.Point(12, 64);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInventoryUseDetails.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvInventoryUseDetails.EnableHeadersVisualStyles = false;
+            this.dgvInventoryUseDetails.Location = new System.Drawing.Point(12, 67);
+            this.dgvInventoryUseDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvInventoryUseDetails.MultiSelect = false;
             this.dgvInventoryUseDetails.Name = "dgvInventoryUseDetails";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInventoryUseDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvInventoryUseDetails.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            this.dgvInventoryUseDetails.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvInventoryUseDetails.RowTemplate.Height = 23;
-            this.dgvInventoryUseDetails.Size = new System.Drawing.Size(393, 213);
+            this.dgvInventoryUseDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvInventoryUseDetails.Size = new System.Drawing.Size(393, 235);
             this.dgvInventoryUseDetails.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 40);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(10, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "사용량";
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(330, 36);
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.Location = new System.Drawing.Point(330, 37);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(75, 22);
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "닫기";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // txtRealUseQuantity
             // 
-            this.txtRealUseQuantity.Location = new System.Drawing.Point(57, 37);
+            this.txtRealUseQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRealUseQuantity.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRealUseQuantity.ForeColor = System.Drawing.Color.SteelBlue;
+            this.txtRealUseQuantity.HideSelection = false;
+            this.txtRealUseQuantity.Location = new System.Drawing.Point(57, 38);
+            this.txtRealUseQuantity.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtRealUseQuantity.Name = "txtRealUseQuantity";
-            this.txtRealUseQuantity.Size = new System.Drawing.Size(100, 21);
+            this.txtRealUseQuantity.Size = new System.Drawing.Size(100, 22);
             this.txtRealUseQuantity.TabIndex = 4;
             this.txtRealUseQuantity.Text = "0";
             this.txtRealUseQuantity.TextChanged += new System.EventHandler(this.txtInventoryQuantity_TextChanged);
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(163, 36);
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(163, 37);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(50, 23);
+            this.btnAdd.Size = new System.Drawing.Size(50, 22);
             this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "추가";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(12, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "재고명";
             // 
             // lblInventoryName
             // 
             this.lblInventoryName.AutoSize = true;
-            this.lblInventoryName.Location = new System.Drawing.Point(55, 9);
+            this.lblInventoryName.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInventoryName.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblInventoryName.Location = new System.Drawing.Point(55, 12);
             this.lblInventoryName.Name = "lblInventoryName";
-            this.lblInventoryName.Size = new System.Drawing.Size(17, 12);
+            this.lblInventoryName.Size = new System.Drawing.Size(20, 16);
             this.lblInventoryName.TabIndex = 7;
             this.lblInventoryName.Text = "명";
             // 
@@ -111,46 +177,58 @@
             // 
             this.lblUseQuantity.AutoSize = true;
             this.lblUseQuantity.ForeColor = System.Drawing.Color.Red;
-            this.lblUseQuantity.Location = new System.Drawing.Point(319, 9);
+            this.lblUseQuantity.Location = new System.Drawing.Point(319, 12);
             this.lblUseQuantity.Name = "lblUseQuantity";
-            this.lblUseQuantity.Size = new System.Drawing.Size(0, 12);
+            this.lblUseQuantity.Size = new System.Drawing.Size(0, 16);
             this.lblUseQuantity.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(208, 9);
+            this.label3.Location = new System.Drawing.Point(206, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 12);
+            this.label3.Size = new System.Drawing.Size(59, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "사용가능:";
             // 
             // btnDisposal
             // 
-            this.btnDisposal.Location = new System.Drawing.Point(215, 36);
+            this.btnDisposal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnDisposal.FlatAppearance.BorderSize = 0;
+            this.btnDisposal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisposal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDisposal.ForeColor = System.Drawing.Color.White;
+            this.btnDisposal.Location = new System.Drawing.Point(215, 37);
+            this.btnDisposal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDisposal.Name = "btnDisposal";
-            this.btnDisposal.Size = new System.Drawing.Size(50, 23);
+            this.btnDisposal.Size = new System.Drawing.Size(50, 22);
             this.btnDisposal.TabIndex = 10;
             this.btnDisposal.Text = "폐기";
-            this.btnDisposal.UseVisualStyleBackColor = true;
+            this.btnDisposal.UseVisualStyleBackColor = false;
             this.btnDisposal.Click += new System.EventHandler(this.btnDisposal_Click);
             // 
             // InventoryUseDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(423, 289);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(418, 312);
             this.Controls.Add(this.btnDisposal);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtRealUseQuantity);
             this.Controls.Add(this.lblUseQuantity);
             this.Controls.Add(this.lblInventoryName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.txtRealUseQuantity);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvInventoryUseDetails);
+            this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.SteelBlue;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "InventoryUseDetails";
             this.Text = "InventoryUseDetails";
             this.Load += new System.EventHandler(this.InventoryUseDetails_Load);
