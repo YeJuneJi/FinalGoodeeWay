@@ -41,6 +41,12 @@ namespace GoodeeWay.Order
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 주문단에서 메뉴를 선택해서 샌드위치면 그 정보를 받아온다.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="bucketMenuList"></param>
+        /// <param name="bucketMenuAndDetailList"></param>
         public OrderDetail(Menu item, List<Menu> bucketMenuList, List<MenuAndDetails> bucketMenuAndDetailList) : this()
         {
             this.item = item.Clone();
@@ -48,6 +54,11 @@ namespace GoodeeWay.Order
             this.bucketMenuAndDetailList = bucketMenuAndDetailList;
         }
 
+        /// <summary>
+        /// 받아온 정보를 토대로 로드될때 메뉴와 그 메뉴에 대한 상세재료들을 화면에 정보를 띄워준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrderDetail_Load(object sender, EventArgs e)
         {         
             breadGroup.AutoSize = cheeseGroup.AutoSize = vegetableGroup.AutoSize = sauceGroup.AutoSize = toppingGroup.AutoSize = additionalGroup.AutoSize = true;
@@ -78,8 +89,6 @@ namespace GoodeeWay.Order
             }
 
             lblKcal.Text = "칼로리 : " + item.Kcal.ToString() + " Kcal";
-            
-            
 
             // 메뉴 레시피들을 받아와 리스트에 저장
             menuDetailList = new OrderDetailDAO().getRecipe(item.MenuName, menuDetailList);           
@@ -142,6 +151,11 @@ namespace GoodeeWay.Order
             flowLayoutPanel1.Controls.AddRange(new Control[] { breadGroup, cheeseGroup, vegetableGroup, sauceGroup, toppingGroup, additionalGroup } );
         }
 
+        /// <summary>
+        /// 등록되는 라디오 버튼 프리셋
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private Control[] CreateRadioButton(MenuDetail item)
         {            
             RadioButton rb = new RadioButton();
@@ -163,6 +177,11 @@ namespace GoodeeWay.Order
             return new Control[] { rb, lblAmount, nudAmount };
         }
 
+        /// <summary>
+        /// 등록되는 체크박스 버튼 프리셋
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private Control[] CreateCheckBox(MenuDetail item)
         {
             CheckBox cb = new CheckBox();
@@ -208,6 +227,12 @@ namespace GoodeeWay.Order
             }
         }
 
+        /// <summary>
+        /// 라디오 버튼이 체크되면 발생하는 이벤트 
+        /// 라디오 버튼이 체크되면 뉴메릭업다운 Enabled 상태를 바꿔준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Radio_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton radio = sender as RadioButton;
@@ -231,7 +256,12 @@ namespace GoodeeWay.Order
             }
         }
 
-
+        /// <summary>
+        /// 확인 버튼 클릭시 작동하는 이벤트 메소드
+        /// 체크한 상세재료들을 토대로 값을 리스트에 저장해서 넘겨준 후 폼을 종료한다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e) // 확인 버튼 클릭시 작동
         {            
             bucketMenuList.Add(item);
@@ -246,20 +276,35 @@ namespace GoodeeWay.Order
             this.Close();
         }
 
+        /// <summary>
+        /// 취소 버튼 클릭시 작동
+        /// 폼을 종료한다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e) // 취소 버튼 클릭시 작동
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 제목 라벨 Formatter
+        /// </summary>
+        /// <param name="labels"></param>
         private void NameLabelFormatter(params Label[] labels)
         {
             foreach (var item in labels)
             {
-                item.Size = new Size(500, 20);
+                item.Font = new Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                item.Size = new Size(500, 50);
                 item.Padding = new Padding(0, 8, 0, 0);
             }
         }
 
+        /// <summary>
+        /// 재료 라벨 Formatter
+        /// </summary>
+        /// <param name="label"></param>
         private void MaterialLabelFormatter(Label label)
         {
             label.Text = "사용량 :";
@@ -267,6 +312,9 @@ namespace GoodeeWay.Order
             label.Size = new Size(50, 20);
         }
 
+        /// <summary>
+        /// 체크 박스, 라디오 버튼들중 체크되어 있는 것들을 확인한다.
+        /// </summary>
         private void CheckState() // 체크 박스에 얻은 내용 저장
         {
             bucketMenuDetailList.Clear();
@@ -326,6 +374,11 @@ namespace GoodeeWay.Order
             }            
         }
 
+        /// <summary>
+        /// 화면을 이동하게 만들어주는 이벤트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

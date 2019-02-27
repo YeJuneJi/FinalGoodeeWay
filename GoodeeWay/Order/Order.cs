@@ -38,6 +38,12 @@ namespace GoodeeWay.Order
             this.bucketMenuAndDetailList = bucketMenuAndDetailList;
         }
 
+        /// <summary>
+        /// 로드될때 넘겨받은 장바구니리스트에서 선택한 메뉴들을 가져와
+        /// 계산하여 화면에 보여준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Order_Load(object sender, EventArgs e)
         {
             List<Menu> menuList = new List<Menu>();
@@ -85,6 +91,10 @@ namespace GoodeeWay.Order
             //dataGridView1.DataSource = menuList;
         }
 
+        /// <summary>
+        /// 리스트를 데이터테이블로 만들어 데이터 그리드뷰에 넣어준다.
+        /// </summary>
+        /// <param name="menulist"></param>
         private void ListToGridView(List<Menu> menulist)
         {
             foreach (var item in menulist)
@@ -98,6 +108,12 @@ namespace GoodeeWay.Order
 
         public bool result = false;
 
+        /// <summary>
+        /// 확인 버튼 클릭시 작동하는 이벤트 메소드
+        /// 받은 돈과 결제금액을 비교하여 처리 그 외의 여러가지 예외처리 메소드 작동
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOk_Click(object sender, EventArgs e) // 결제 버튼 클릭시 작동
         {
             if (MessageBox.Show("결제하시겠습니까?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -266,19 +282,12 @@ namespace GoodeeWay.Order
             txtPaid.Text = txt;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DateTimePicker dt = new DateTimePicker();
-            DateTimePicker dt2 = new DateTimePicker();
-            DateTime d = dt.Value;
-            DateTime d2 = dt2.Value;
-            TimeSpan tt = new TimeSpan(0, 0, 0);
-
-            d = d.Date + tt;
-
-            MessageBox.Show(d.ToLongDateString() + d.ToLongTimeString());
-        }
-
+        /// <summary>
+        /// 받은 돈이 변경될때마다 작동하는 이벤트 메소드
+        /// 받은 돈과 가격을 비교해서 거스름돈을 계산해준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPaid_TextChanged(object sender, EventArgs e)
         {
             if (txtPaid.Text.Length > 0)
@@ -287,6 +296,11 @@ namespace GoodeeWay.Order
             }
         }
 
+        /// <summary>
+        /// 화면을 이동하게 해주는 이벤트 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)

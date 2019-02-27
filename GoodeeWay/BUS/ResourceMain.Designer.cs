@@ -50,37 +50,37 @@
             // 
             // resourceStart
             // 
-            this.resourceStart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceStart.Location = new System.Drawing.Point(41, 81);
+            this.resourceStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resourceStart.Location = new System.Drawing.Point(45, 68);
             this.resourceStart.Name = "resourceStart";
-            this.resourceStart.Size = new System.Drawing.Size(200, 22);
+            this.resourceStart.Size = new System.Drawing.Size(200, 27);
             this.resourceStart.TabIndex = 0;
             // 
             // resourceEnd
             // 
-            this.resourceEnd.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceEnd.Location = new System.Drawing.Point(268, 81);
+            this.resourceEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resourceEnd.Location = new System.Drawing.Point(272, 68);
             this.resourceEnd.Name = "resourceEnd";
-            this.resourceEnd.Size = new System.Drawing.Size(200, 22);
+            this.resourceEnd.Size = new System.Drawing.Size(200, 27);
             this.resourceEnd.TabIndex = 1;
             // 
             // lblPeriod
             // 
             this.lblPeriod.AutoSize = true;
-            this.lblPeriod.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeriod.Location = new System.Drawing.Point(6, 85);
+            this.lblPeriod.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeriod.Location = new System.Drawing.Point(3, 72);
             this.lblPeriod.Name = "lblPeriod";
-            this.lblPeriod.Size = new System.Drawing.Size(32, 17);
+            this.lblPeriod.Size = new System.Drawing.Size(39, 20);
             this.lblPeriod.TabIndex = 2;
             this.lblPeriod.Text = "기간";
             // 
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTo.Location = new System.Drawing.Point(248, 85);
+            this.lblTo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo.Location = new System.Drawing.Point(252, 72);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(15, 17);
+            this.lblTo.Size = new System.Drawing.Size(18, 20);
             this.lblTo.TabIndex = 3;
             this.lblTo.Text = "~";
             // 
@@ -88,10 +88,10 @@
             // 
             this.rdoDate.AutoSize = true;
             this.rdoDate.Checked = true;
-            this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDate.Location = new System.Drawing.Point(37, 20);
+            this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDate.Location = new System.Drawing.Point(58, 19);
             this.rdoDate.Name = "rdoDate";
-            this.rdoDate.Size = new System.Drawing.Size(50, 21);
+            this.rdoDate.Size = new System.Drawing.Size(57, 24);
             this.rdoDate.TabIndex = 8;
             this.rdoDate.TabStop = true;
             this.rdoDate.Text = "일별";
@@ -101,10 +101,10 @@
             // rdoMonth
             // 
             this.rdoMonth.AutoSize = true;
-            this.rdoMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoMonth.Location = new System.Drawing.Point(112, 20);
+            this.rdoMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoMonth.Location = new System.Drawing.Point(133, 19);
             this.rdoMonth.Name = "rdoMonth";
-            this.rdoMonth.Size = new System.Drawing.Size(50, 21);
+            this.rdoMonth.Size = new System.Drawing.Size(57, 24);
             this.rdoMonth.TabIndex = 9;
             this.rdoMonth.Text = "월별";
             this.rdoMonth.UseVisualStyleBackColor = true;
@@ -113,10 +113,10 @@
             // rdoYear
             // 
             this.rdoYear.AutoSize = true;
-            this.rdoYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoYear.Location = new System.Drawing.Point(187, 20);
+            this.rdoYear.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoYear.Location = new System.Drawing.Point(211, 19);
             this.rdoYear.Name = "rdoYear";
-            this.rdoYear.Size = new System.Drawing.Size(50, 21);
+            this.rdoYear.Size = new System.Drawing.Size(57, 24);
             this.rdoYear.TabIndex = 10;
             this.rdoYear.Text = "연별";
             this.rdoYear.UseVisualStyleBackColor = true;
@@ -128,11 +128,11 @@
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(475, 80);
+            this.btnSearch.Location = new System.Drawing.Point(479, 67);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 28);
             this.btnSearch.TabIndex = 11;
             this.btnSearch.Text = "검색";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -146,50 +146,50 @@
             this.resourceDataGView.BackgroundColor = System.Drawing.Color.White;
             this.resourceDataGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resourceDataGView.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceDataGView.Location = new System.Drawing.Point(3, 135);
+            this.resourceDataGView.Location = new System.Drawing.Point(3, 151);
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(777, 287);
+            this.resourceDataGView.Size = new System.Drawing.Size(819, 337);
             this.resourceDataGView.TabIndex = 12;
             // 
             // lbltotalInvesetPrice
             // 
             this.lbltotalInvesetPrice.AutoSize = true;
-            this.lbltotalInvesetPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(568, 13);
+            this.lbltotalInvesetPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(581, 12);
             this.lbltotalInvesetPrice.Name = "lbltotalInvesetPrice";
-            this.lbltotalInvesetPrice.Size = new System.Drawing.Size(53, 17);
+            this.lbltotalInvesetPrice.Size = new System.Drawing.Size(66, 20);
             this.lbltotalInvesetPrice.TabIndex = 17;
             this.lbltotalInvesetPrice.Text = "총매출 : ";
             // 
             // lblEquipPrice
             // 
             this.lblEquipPrice.AutoSize = true;
-            this.lblEquipPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEquipPrice.Location = new System.Drawing.Point(568, 55);
+            this.lblEquipPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEquipPrice.Location = new System.Drawing.Point(581, 70);
             this.lblEquipPrice.Name = "lblEquipPrice";
-            this.lblEquipPrice.Size = new System.Drawing.Size(68, 17);
+            this.lblEquipPrice.Size = new System.Drawing.Size(85, 20);
             this.lblEquipPrice.TabIndex = 18;
             this.lblEquipPrice.Text = "총 비품비 : ";
             // 
             // lblRawMaterialCost
             // 
             this.lblRawMaterialCost.AutoSize = true;
-            this.lblRawMaterialCost.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRawMaterialCost.Location = new System.Drawing.Point(568, 34);
+            this.lblRawMaterialCost.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRawMaterialCost.Location = new System.Drawing.Point(581, 41);
             this.lblRawMaterialCost.Name = "lblRawMaterialCost";
-            this.lblRawMaterialCost.Size = new System.Drawing.Size(80, 17);
+            this.lblRawMaterialCost.Size = new System.Drawing.Size(100, 20);
             this.lblRawMaterialCost.TabIndex = 19;
             this.lblRawMaterialCost.Text = "총 원재료비 : ";
             // 
             // lblEmployeeCost
             // 
             this.lblEmployeeCost.AutoSize = true;
-            this.lblEmployeeCost.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeCost.Location = new System.Drawing.Point(568, 76);
+            this.lblEmployeeCost.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeCost.Location = new System.Drawing.Point(581, 99);
             this.lblEmployeeCost.Name = "lblEmployeeCost";
-            this.lblEmployeeCost.Size = new System.Drawing.Size(68, 17);
+            this.lblEmployeeCost.Size = new System.Drawing.Size(85, 20);
             this.lblEmployeeCost.TabIndex = 20;
             this.lblEmployeeCost.Text = "총 인사비 : ";
             // 
@@ -200,11 +200,11 @@
             this.btnChart.FlatAppearance.BorderSize = 0;
             this.btnChart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnChart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChart.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChart.ForeColor = System.Drawing.Color.White;
-            this.btnChart.Location = new System.Drawing.Point(649, 447);
+            this.btnChart.Location = new System.Drawing.Point(691, 494);
             this.btnChart.Name = "btnChart";
-            this.btnChart.Size = new System.Drawing.Size(131, 23);
+            this.btnChart.Size = new System.Drawing.Size(131, 31);
             this.btnChart.TabIndex = 21;
             this.btnChart.Text = "차트로 보기";
             this.btnChart.UseVisualStyleBackColor = false;
@@ -213,10 +213,10 @@
             // lbltotnetProfit
             // 
             this.lbltotnetProfit.AutoSize = true;
-            this.lbltotnetProfit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotnetProfit.Location = new System.Drawing.Point(568, 99);
+            this.lbltotnetProfit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotnetProfit.Location = new System.Drawing.Point(581, 128);
             this.lbltotnetProfit.Name = "lbltotnetProfit";
-            this.lbltotnetProfit.Size = new System.Drawing.Size(63, 17);
+            this.lbltotnetProfit.Size = new System.Drawing.Size(70, 20);
             this.lbltotnetProfit.TabIndex = 22;
             this.lbltotnetProfit.Text = "총 손익 : ";
             // 
@@ -226,16 +226,21 @@
             this.panel1.Controls.Add(this.rdoDate);
             this.panel1.Controls.Add(this.rdoMonth);
             this.panel1.Controls.Add(this.rdoYear);
-            this.panel1.Location = new System.Drawing.Point(3, 13);
+            this.panel1.Controls.Add(this.lblPeriod);
+            this.panel1.Controls.Add(this.resourceStart);
+            this.panel1.Controls.Add(this.resourceEnd);
+            this.panel1.Controls.Add(this.lblTo);
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Location = new System.Drawing.Point(3, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(559, 116);
+            this.panel1.Size = new System.Drawing.Size(572, 133);
             this.panel1.TabIndex = 23;
             // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbltotnetProfit);
             this.Controls.Add(this.btnChart);
             this.Controls.Add(this.lblEmployeeCost);
@@ -243,14 +248,9 @@
             this.Controls.Add(this.lblEquipPrice);
             this.Controls.Add(this.lbltotalInvesetPrice);
             this.Controls.Add(this.resourceDataGView);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.lblTo);
-            this.Controls.Add(this.lblPeriod);
-            this.Controls.Add(this.resourceEnd);
-            this.Controls.Add(this.resourceStart);
             this.Controls.Add(this.panel1);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(799, 493);
+            this.Size = new System.Drawing.Size(841, 543);
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

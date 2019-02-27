@@ -872,7 +872,8 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in labels)
             {
-                item.Size = new Size(50, 20);
+                item.Font = new Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                item.Size = new Size(400, 50);
                 item.Padding = new Padding(0, 8, 0, 0);
             }
         }
