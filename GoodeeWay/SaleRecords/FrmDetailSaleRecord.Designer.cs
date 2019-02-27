@@ -58,6 +58,7 @@
             this.btnRefund.BackgroundImage = global::GoodeeWay.Properties.Resources.Refund_50px;
             this.btnRefund.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRefund.FlatAppearance.BorderSize = 0;
+            this.btnRefund.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnRefund.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefund.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnRefund.Location = new System.Drawing.Point(19, 622);
