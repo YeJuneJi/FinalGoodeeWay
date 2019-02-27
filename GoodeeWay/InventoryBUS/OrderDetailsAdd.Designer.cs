@@ -43,6 +43,7 @@
             this.dgvOrderDetailsAdd.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrderDetailsAdd.BackgroundColor = System.Drawing.Color.White;
             this.dgvOrderDetailsAdd.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvOrderDetailsAdd.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvOrderDetailsAdd.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));

@@ -25,12 +25,9 @@ namespace GoodeeWay
 
         FrmOrderView fov;
         FrmSaleRecord fsr;
-        inventory inventory;
-        USalesMenu salesMenu;        
         //OderVIew oderVIew;
-        FrmOrderView fov;
         FrmInventory fi;
-        FrmSalesMenu salesMenu;
+        USalesMenu salesMenu;
         FrmSaleRecords saleRecords;
         FrmEquipment frmEquipment;
         Employee employee;
@@ -73,13 +70,13 @@ namespace GoodeeWay
             if (fi == null)
             {
                 fi = new FrmInventory();
-                panelTest.Controls.Add(fi);
+                MainPanel.Controls.Add(fi);
                 fi.BringToFront();
             }
             else if (fi.IsDisposed)
             {
                 fi = new FrmInventory();
-                panelTest.Controls.Add(fi);
+                MainPanel.Controls.Add(fi);
                 fi.BringToFront();
             }
             else

@@ -163,9 +163,6 @@
   <data name="Change Theme_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Change Theme_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sjm_inventory2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_inventory2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -223,14 +220,8 @@
   <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Search_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sjm_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -240,9 +231,6 @@
   </data>
   <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Card_Payment_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\card payment_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Maintenance_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Maintenance_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -261,9 +249,6 @@
   </data>
   <data name="sjm_calculate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_calculate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sjm_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,16 +277,13 @@
   <data name="Refund_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refund_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sjm_save2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_save2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Close_Window_64px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close window_64px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

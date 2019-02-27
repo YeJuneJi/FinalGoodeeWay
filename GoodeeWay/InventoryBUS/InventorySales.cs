@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,14 @@ namespace GoodeeWay.InventoryBUS
         List<InventoryTypeSalesVO> avgList1;
         List<InventorySalesForChartVO> inventorySalesForChartVOs;
         string[] type1 = new string[] { "Bread", "Cheese", "Vegetable", "Sauce", "Additional", "Topping", "Side" };
+
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         public InventorySales()
         {
             InitializeComponent();
@@ -30,7 +39,7 @@ namespace GoodeeWay.InventoryBUS
             rdoMonth.Checked = rdoYear.Checked = rdoMonth.Visible = rdoYear.Visible = false;
             cmbType.Items.AddRange(type1);
             InventorySalesChart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-            panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+            //panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "GWMain2.png");
         }
 
         /// <summary>
@@ -412,8 +421,27 @@ namespace GoodeeWay.InventoryBUS
                 cmbType.Items.Add(item);
             }
             cmbType.Text = cmbType.Items[0].ToString();
-        } 
+        }
         #endregion
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MenuPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
+        }
     }
 
 

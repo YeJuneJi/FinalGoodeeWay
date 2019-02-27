@@ -472,6 +472,7 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
+    <None Include="Resources\close window_64px1.png" />
     <Content Include="Resources\Close_Window_32px.ico" />
     <None Include="Resources\Maintenance_50px.png" />
     <None Include="Resources\Search_52px.png" />
