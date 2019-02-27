@@ -37,10 +37,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).BeginInit();
             this.movePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // sidePanel
@@ -71,7 +74,7 @@
             this.btnEquip.FlatAppearance.BorderSize = 0;
             this.btnEquip.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnEquip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEquip.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnEquip.ForeColor = System.Drawing.Color.White;
             this.btnEquip.Image = global::GoodeeWay.Properties.Resources.Cooking_Pot_64px;
             this.btnEquip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -88,7 +91,7 @@
             this.btnInven.FlatAppearance.BorderSize = 0;
             this.btnInven.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnInven.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInven.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInven.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnInven.ForeColor = System.Drawing.Color.White;
             this.btnInven.Image = global::GoodeeWay.Properties.Resources.Commodity_50px;
             this.btnInven.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,7 +108,7 @@
             this.btnMenu.FlatAppearance.BorderSize = 0;
             this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenu.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.btnMenu.ForeColor = System.Drawing.Color.White;
             this.btnMenu.Image = global::GoodeeWay.Properties.Resources.Restaurant_Menu_50px;
             this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,6 +123,8 @@
             // movePanel
             // 
             this.movePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(188)))), ((int)(((byte)(204)))));
+            this.movePanel.Controls.Add(this.label1);
+            this.movePanel.Controls.Add(this.pictureBox1);
             this.movePanel.Controls.Add(this.btnClose);
             this.movePanel.Controls.Add(this.pictureBox2);
             this.movePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -160,6 +165,27 @@
             this.mainPanel.Size = new System.Drawing.Size(984, 636);
             this.mainPanel.TabIndex = 7;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.Total_Sales_50px;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 47);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(73, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 33);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "매출 현황";
+            // 
             // ResourceManagemanet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -176,7 +202,9 @@
             this.sidePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).EndInit();
             this.movePanel.ResumeLayout(false);
+            this.movePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -192,5 +220,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel mainPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

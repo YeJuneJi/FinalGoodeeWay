@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbxMenus = new System.Windows.Forms.TextBox();
             this.btnRefund = new System.Windows.Forms.Button();
             this.lblSalesNo = new System.Windows.Forms.Label();
             this.lblSalesDate = new System.Windows.Forms.Label();
@@ -43,15 +43,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tbxMenus
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.textBox1.Location = new System.Drawing.Point(12, 161);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(695, 452);
-            this.textBox1.TabIndex = 0;
+            this.tbxMenus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxMenus.Location = new System.Drawing.Point(12, 161);
+            this.tbxMenus.Multiline = true;
+            this.tbxMenus.Name = "tbxMenus";
+            this.tbxMenus.ReadOnly = true;
+            this.tbxMenus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbxMenus.Size = new System.Drawing.Size(695, 452);
+            this.tbxMenus.TabIndex = 0;
             // 
             // btnRefund
             // 
@@ -157,7 +158,7 @@
             this.Controls.Add(this.lblSalesDate);
             this.Controls.Add(this.lblSalesNo);
             this.Controls.Add(this.btnRefund);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbxMenus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmDetailSaleRecord";
             this.Text = "FrmDetailSaleRecord";
@@ -171,7 +172,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbxMenus;
         private System.Windows.Forms.Button btnRefund;
         private System.Windows.Forms.Label lblSalesNo;
         private System.Windows.Forms.Label lblSalesDate;

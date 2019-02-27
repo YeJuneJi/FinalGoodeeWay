@@ -33,9 +33,9 @@ namespace GoodeeWay.Sales
         List<InventoryTypeVO> inventoryTypeList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
 
-        /// 메뉴코드를 수정할 때에 이전 메뉴코드와 새로운 메뉴코드를 비교하기위한 oldMenuCode.</value>
+        ///<value> 메뉴코드를 수정할 때에 이전 메뉴코드와 새로운 메뉴코드를 비교하기위한 oldMenuCode.</value>
         string oldMenuCode;
-        /// 구분을 수정할 때에 이전 구분과 새로운 구분을 비교하기위한 oldDivision.</value>
+        ///<value>구분을 수정할 때에 이전 구분과 새로운 구분을 비교하기위한 oldDivision.</value>
         int oldDivision;
         string images = "\\Images\\";
         public FrmSalesMenu()

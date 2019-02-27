@@ -74,14 +74,12 @@ namespace GoodeeWay.SaleRecords
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            
             searchlist.Clear();
             salesRecordsGView.DataSource = null;
             searchRecords.Rows.Clear();
             if (rdoTotalSearch.Checked)
             {
                 OutputAllSaleRecords();
-
             }
             else if (rdoSalesNo.Checked)
             {
@@ -146,7 +144,7 @@ namespace GoodeeWay.SaleRecords
             else
             {
                 tbxSalesNo.Focus();
-                MessageBox.Show("판매번호는 0이상의 정수만 입력 해주세요");
+                MessageBox.Show("판매번호는 숫자만 입력 해주세요");
                 return false;
             }
             if (nullResult && typeResult)
@@ -155,7 +153,6 @@ namespace GoodeeWay.SaleRecords
             }
             return result;
         }
-
 
         private void rdoCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -189,6 +186,7 @@ namespace GoodeeWay.SaleRecords
             }
 
         }
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (saleRecords == null)

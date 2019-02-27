@@ -17,7 +17,7 @@ namespace GoodeeWay.SaleRecords
         public readonly int HT_CAPTION = 0x2;
 
         SaleRecordsVO saleRecords;
-        public FrmUpdateSaleRecords(VO.SaleRecordsVO saleRecords)
+        public FrmUpdateSaleRecords(SaleRecordsVO saleRecords)
         {
             this.saleRecords = saleRecords;
             InitializeComponent();

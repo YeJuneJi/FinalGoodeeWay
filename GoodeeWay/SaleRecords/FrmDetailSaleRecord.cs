@@ -50,17 +50,17 @@ namespace GoodeeWay.SaleRecords
             lblSalesDate.Text = "판매날짜 : " + salesDate.ToString();
             lblTotalPrice.Text = "금액 : " + totalPrice.ToString();
 
-            textBox1.Text += "================주문 내역========================\r\n";
+            tbxMenus.Text += "================주문 내역========================\r\n";
             
             foreach (var rmv in realMenuVO.RealMenu)
             {
                 if (rmv.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
                 {
-                    textBox1.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
+                    tbxMenus.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
                 }
                 else
                 {
-                    textBox1.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
+                    tbxMenus.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
                 }
             }
 
@@ -87,9 +87,9 @@ namespace GoodeeWay.SaleRecords
                     lblRefund.Text = "환불 불가 합니다.";
                 }
             }
-            catch (Exception ee)
+            catch (Exception except)
             {
-                MessageBox.Show(ee.StackTrace);
+                MessageBox.Show(except.Message);
             }
         }
 

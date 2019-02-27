@@ -32,30 +32,26 @@
             this.resourceEnd = new System.Windows.Forms.DateTimePicker();
             this.lblPeriod = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
-            this.tbxTotInvest = new System.Windows.Forms.TextBox();
-            this.lblTotInvest = new System.Windows.Forms.Label();
-            this.periodBEP = new System.Windows.Forms.Label();
-            this.tbxBEP = new System.Windows.Forms.TextBox();
             this.rdoDate = new System.Windows.Forms.RadioButton();
             this.rdoMonth = new System.Windows.Forms.RadioButton();
             this.rdoYear = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.resourceDataGView = new System.Windows.Forms.DataGridView();
-            this.lblbeppr = new System.Windows.Forms.Label();
-            this.lblBEPpredict = new System.Windows.Forms.Label();
             this.lbltotalInvesetPrice = new System.Windows.Forms.Label();
             this.lblEquipPrice = new System.Windows.Forms.Label();
             this.lblRawMaterialCost = new System.Windows.Forms.Label();
             this.lblEmployeeCost = new System.Windows.Forms.Label();
             this.btnChart = new System.Windows.Forms.Button();
             this.lbltotnetProfit = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // resourceStart
             // 
             this.resourceStart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceStart.Location = new System.Drawing.Point(47, 140);
+            this.resourceStart.Location = new System.Drawing.Point(41, 81);
             this.resourceStart.Name = "resourceStart";
             this.resourceStart.Size = new System.Drawing.Size(200, 22);
             this.resourceStart.TabIndex = 0;
@@ -63,7 +59,7 @@
             // resourceEnd
             // 
             this.resourceEnd.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceEnd.Location = new System.Drawing.Point(274, 140);
+            this.resourceEnd.Location = new System.Drawing.Point(268, 81);
             this.resourceEnd.Name = "resourceEnd";
             this.resourceEnd.Size = new System.Drawing.Size(200, 22);
             this.resourceEnd.TabIndex = 1;
@@ -72,7 +68,7 @@
             // 
             this.lblPeriod.AutoSize = true;
             this.lblPeriod.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeriod.Location = new System.Drawing.Point(12, 144);
+            this.lblPeriod.Location = new System.Drawing.Point(6, 85);
             this.lblPeriod.Name = "lblPeriod";
             this.lblPeriod.Size = new System.Drawing.Size(32, 17);
             this.lblPeriod.TabIndex = 2;
@@ -82,54 +78,18 @@
             // 
             this.lblTo.AutoSize = true;
             this.lblTo.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTo.Location = new System.Drawing.Point(254, 144);
+            this.lblTo.Location = new System.Drawing.Point(248, 85);
             this.lblTo.Name = "lblTo";
             this.lblTo.Size = new System.Drawing.Size(15, 17);
             this.lblTo.TabIndex = 3;
             this.lblTo.Text = "~";
-            // 
-            // tbxTotInvest
-            // 
-            this.tbxTotInvest.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxTotInvest.Location = new System.Drawing.Point(174, 38);
-            this.tbxTotInvest.Name = "tbxTotInvest";
-            this.tbxTotInvest.Size = new System.Drawing.Size(100, 22);
-            this.tbxTotInvest.TabIndex = 4;
-            // 
-            // lblTotInvest
-            // 
-            this.lblTotInvest.AutoSize = true;
-            this.lblTotInvest.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotInvest.Location = new System.Drawing.Point(57, 41);
-            this.lblTotInvest.Name = "lblTotInvest";
-            this.lblTotInvest.Size = new System.Drawing.Size(71, 17);
-            this.lblTotInvest.TabIndex = 5;
-            this.lblTotInvest.Text = "총 투자금액";
-            // 
-            // periodBEP
-            // 
-            this.periodBEP.AutoSize = true;
-            this.periodBEP.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.periodBEP.Location = new System.Drawing.Point(57, 77);
-            this.periodBEP.Name = "periodBEP";
-            this.periodBEP.Size = new System.Drawing.Size(113, 17);
-            this.periodBEP.TabIndex = 7;
-            this.periodBEP.Text = "손익분기기간(개월)";
-            // 
-            // tbxBEP
-            // 
-            this.tbxBEP.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxBEP.Location = new System.Drawing.Point(174, 74);
-            this.tbxBEP.Name = "tbxBEP";
-            this.tbxBEP.Size = new System.Drawing.Size(100, 22);
-            this.tbxBEP.TabIndex = 6;
             // 
             // rdoDate
             // 
             this.rdoDate.AutoSize = true;
             this.rdoDate.Checked = true;
             this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoDate.Location = new System.Drawing.Point(74, 108);
+            this.rdoDate.Location = new System.Drawing.Point(37, 20);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(50, 21);
             this.rdoDate.TabIndex = 8;
@@ -142,7 +102,7 @@
             // 
             this.rdoMonth.AutoSize = true;
             this.rdoMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoMonth.Location = new System.Drawing.Point(149, 108);
+            this.rdoMonth.Location = new System.Drawing.Point(112, 20);
             this.rdoMonth.Name = "rdoMonth";
             this.rdoMonth.Size = new System.Drawing.Size(50, 21);
             this.rdoMonth.TabIndex = 9;
@@ -154,7 +114,7 @@
             // 
             this.rdoYear.AutoSize = true;
             this.rdoYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoYear.Location = new System.Drawing.Point(227, 108);
+            this.rdoYear.Location = new System.Drawing.Point(187, 20);
             this.rdoYear.Name = "rdoYear";
             this.rdoYear.Size = new System.Drawing.Size(50, 21);
             this.rdoYear.TabIndex = 10;
@@ -170,7 +130,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(481, 139);
+            this.btnSearch.Location = new System.Drawing.Point(475, 80);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 11;
@@ -186,38 +146,18 @@
             this.resourceDataGView.BackgroundColor = System.Drawing.Color.White;
             this.resourceDataGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resourceDataGView.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resourceDataGView.Location = new System.Drawing.Point(16, 181);
+            this.resourceDataGView.Location = new System.Drawing.Point(3, 135);
             this.resourceDataGView.Name = "resourceDataGView";
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resourceDataGView.Size = new System.Drawing.Size(540, 154);
+            this.resourceDataGView.Size = new System.Drawing.Size(777, 287);
             this.resourceDataGView.TabIndex = 12;
-            // 
-            // lblbeppr
-            // 
-            this.lblbeppr.AutoSize = true;
-            this.lblbeppr.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbeppr.Location = new System.Drawing.Point(299, 41);
-            this.lblbeppr.Name = "lblbeppr";
-            this.lblbeppr.Size = new System.Drawing.Size(116, 17);
-            this.lblbeppr.TabIndex = 13;
-            this.lblbeppr.Text = "손익분기 예상금액 : ";
-            // 
-            // lblBEPpredict
-            // 
-            this.lblBEPpredict.AutoSize = true;
-            this.lblBEPpredict.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBEPpredict.Location = new System.Drawing.Point(422, 41);
-            this.lblBEPpredict.Name = "lblBEPpredict";
-            this.lblBEPpredict.Size = new System.Drawing.Size(12, 17);
-            this.lblBEPpredict.TabIndex = 14;
-            this.lblBEPpredict.Text = "-";
             // 
             // lbltotalInvesetPrice
             // 
             this.lbltotalInvesetPrice.AutoSize = true;
             this.lbltotalInvesetPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(299, 60);
+            this.lbltotalInvesetPrice.Location = new System.Drawing.Point(568, 13);
             this.lbltotalInvesetPrice.Name = "lbltotalInvesetPrice";
             this.lbltotalInvesetPrice.Size = new System.Drawing.Size(53, 17);
             this.lbltotalInvesetPrice.TabIndex = 17;
@@ -227,7 +167,7 @@
             // 
             this.lblEquipPrice.AutoSize = true;
             this.lblEquipPrice.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEquipPrice.Location = new System.Drawing.Point(299, 98);
+            this.lblEquipPrice.Location = new System.Drawing.Point(568, 55);
             this.lblEquipPrice.Name = "lblEquipPrice";
             this.lblEquipPrice.Size = new System.Drawing.Size(68, 17);
             this.lblEquipPrice.TabIndex = 18;
@@ -237,7 +177,7 @@
             // 
             this.lblRawMaterialCost.AutoSize = true;
             this.lblRawMaterialCost.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRawMaterialCost.Location = new System.Drawing.Point(299, 79);
+            this.lblRawMaterialCost.Location = new System.Drawing.Point(568, 34);
             this.lblRawMaterialCost.Name = "lblRawMaterialCost";
             this.lblRawMaterialCost.Size = new System.Drawing.Size(80, 17);
             this.lblRawMaterialCost.TabIndex = 19;
@@ -247,7 +187,7 @@
             // 
             this.lblEmployeeCost.AutoSize = true;
             this.lblEmployeeCost.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeCost.Location = new System.Drawing.Point(299, 117);
+            this.lblEmployeeCost.Location = new System.Drawing.Point(568, 76);
             this.lblEmployeeCost.Name = "lblEmployeeCost";
             this.lblEmployeeCost.Size = new System.Drawing.Size(68, 17);
             this.lblEmployeeCost.TabIndex = 20;
@@ -262,7 +202,7 @@
             this.btnChart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChart.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChart.ForeColor = System.Drawing.Color.White;
-            this.btnChart.Location = new System.Drawing.Point(425, 360);
+            this.btnChart.Location = new System.Drawing.Point(649, 447);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(131, 23);
             this.btnChart.TabIndex = 21;
@@ -272,14 +212,24 @@
             // 
             // lbltotnetProfit
             // 
-            this.lbltotnetProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbltotnetProfit.AutoSize = true;
             this.lbltotnetProfit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltotnetProfit.Location = new System.Drawing.Point(22, 360);
+            this.lbltotnetProfit.Location = new System.Drawing.Point(568, 99);
             this.lbltotnetProfit.Name = "lbltotnetProfit";
             this.lbltotnetProfit.Size = new System.Drawing.Size(63, 17);
             this.lbltotnetProfit.TabIndex = 22;
             this.lbltotnetProfit.Text = "총 손익 : ";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.rdoDate);
+            this.panel1.Controls.Add(this.rdoMonth);
+            this.panel1.Controls.Add(this.rdoYear);
+            this.panel1.Location = new System.Drawing.Point(3, 13);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(559, 116);
+            this.panel1.TabIndex = 23;
             // 
             // ResourceMain
             // 
@@ -292,24 +242,18 @@
             this.Controls.Add(this.lblRawMaterialCost);
             this.Controls.Add(this.lblEquipPrice);
             this.Controls.Add(this.lbltotalInvesetPrice);
-            this.Controls.Add(this.lblBEPpredict);
-            this.Controls.Add(this.lblbeppr);
             this.Controls.Add(this.resourceDataGView);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.rdoYear);
-            this.Controls.Add(this.rdoMonth);
-            this.Controls.Add(this.rdoDate);
-            this.Controls.Add(this.periodBEP);
-            this.Controls.Add(this.tbxBEP);
-            this.Controls.Add(this.lblTotInvest);
-            this.Controls.Add(this.tbxTotInvest);
             this.Controls.Add(this.lblTo);
             this.Controls.Add(this.lblPeriod);
             this.Controls.Add(this.resourceEnd);
             this.Controls.Add(this.resourceStart);
+            this.Controls.Add(this.panel1);
             this.Name = "ResourceMain";
-            this.Size = new System.Drawing.Size(575, 406);
+            this.Size = new System.Drawing.Size(799, 493);
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,22 +265,17 @@
         private System.Windows.Forms.DateTimePicker resourceEnd;
         private System.Windows.Forms.Label lblPeriod;
         private System.Windows.Forms.Label lblTo;
-        private System.Windows.Forms.TextBox tbxTotInvest;
-        private System.Windows.Forms.Label lblTotInvest;
-        private System.Windows.Forms.Label periodBEP;
-        private System.Windows.Forms.TextBox tbxBEP;
         private System.Windows.Forms.RadioButton rdoDate;
         private System.Windows.Forms.RadioButton rdoMonth;
         private System.Windows.Forms.RadioButton rdoYear;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView resourceDataGView;
-        private System.Windows.Forms.Label lblbeppr;
-        private System.Windows.Forms.Label lblBEPpredict;
         private System.Windows.Forms.Label lbltotalInvesetPrice;
         private System.Windows.Forms.Label lblEquipPrice;
         private System.Windows.Forms.Label lblRawMaterialCost;
         private System.Windows.Forms.Label lblEmployeeCost;
         private System.Windows.Forms.Button btnChart;
         private System.Windows.Forms.Label lbltotnetProfit;
+        private System.Windows.Forms.Panel panel1;
     }
 }
