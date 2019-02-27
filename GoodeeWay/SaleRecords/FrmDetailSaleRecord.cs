@@ -32,7 +32,6 @@ namespace GoodeeWay.SaleRecords
         {
             InitializeComponent();
         }
-
         public FrmDetailSaleRecord(int salesNo, DateTime salesDate, RealMenuVO realMenuVO, decimal totalPrice) : this()
         {
             this.salesNo = salesNo;
@@ -71,25 +70,34 @@ namespace GoodeeWay.SaleRecords
 
             try
             {
-                if (makingFormVO.Division == null)
-                {
-                    btnRefund.Enabled = false;
-                    lblRefund.Text = "환불 불가 합니다.";
-                }
-                else if (makingFormVO.Division.Equals("대기"))
-                {
-                    btnRefund.Enabled = true;
-                    lblRefund.Text = "환불 가능 합니다.";
-                }
-                else if (makingFormVO.Division.Equals("제조"))
-                {
-                    btnRefund.Enabled = false;
-                    lblRefund.Text = "환불 불가 합니다.";
-                }
+                CheckMaikingDivision(makingFormVO.Division);
             }
             catch (Exception except)
             {
                 MessageBox.Show(except.Message);
+            }
+        }
+
+        /// <summary>
+        /// 제조현황을 파악하기 위한 메서드
+        /// </summary>
+        /// <param name="division">제조현황의 구분</param>
+        private void CheckMaikingDivision(string division)
+        {
+            if (string.IsNullOrEmpty(division))
+            {
+                btnRefund.Enabled = false;
+                lblRefund.Text = "환불 불가 합니다.";
+            }
+            else if (division.Equals("대기"))
+            {
+                btnRefund.Enabled = true;
+                lblRefund.Text = "환불 가능 합니다.";
+            }
+            else if (division.Equals("제조"))
+            {
+                btnRefund.Enabled = false;
+                lblRefund.Text = "환불 불가 합니다.";
             }
         }
 

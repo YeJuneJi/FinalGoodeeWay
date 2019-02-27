@@ -46,7 +46,12 @@ constraint saleRecords_sNo_pk primary key(salesNo),
 );
 GO
 
-
+--이미지 테이블 생성
+create table Images(
+num int primary key,
+name nvarchar(max) unique,
+image Image not null
+)
 
 --
 --
@@ -56,11 +61,7 @@ GO
 --
 --
 
-create table Images(
-num int primary key,
-name nvarchar(max) unique,
-image Image not null
-)
+
 --ReceiveingDetails 테이블의 Select 프로시저
 create procedure OutPutAllReceiveingDetails
 as

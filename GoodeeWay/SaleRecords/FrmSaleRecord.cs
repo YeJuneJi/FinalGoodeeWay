@@ -15,6 +15,9 @@ using System.Runtime.InteropServices;
 
 namespace GoodeeWay.SaleRecords
 {
+    /// <summary>
+    /// 판매기록현황을 보여주기위한 <c>FrmSaleRecord</c> 클래스
+    /// </summary>
     public partial class FrmSaleRecord : UserControl
     {
         List<SaleRecordsVO> searchlist;
@@ -98,14 +101,7 @@ namespace GoodeeWay.SaleRecords
                 DateTime periodEnd = dtpPeriodEnd.Value;
                 periodStart = periodStart.Date + breakingDawn;
                 periodEnd = periodEnd.Date + eclipse;
-
-                if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
-                {
-                    MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
-                    dtpPeriodStart.Value = dtpPeriodEnd.Value = DateTime.Now;
-                    return;
-                }
-                else
+                if (!CheckPeriod(periodStart, periodEnd))
                 {
                     searchlist = new SaleRecordsDAO().SelectSaleRacordsByPeriod(periodStart, periodEnd);
                     ListToGridView(searchlist);
@@ -113,6 +109,9 @@ namespace GoodeeWay.SaleRecords
             }
         }
 
+        /// <summary>
+        /// 모든 판매기록의 출력을 보여주기 위한 메서드.
+        /// </summary>
         private void OutputAllSaleRecords()
         {
             searchlist.Clear();
@@ -189,17 +188,49 @@ namespace GoodeeWay.SaleRecords
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (saleRecords == null)
-            {
-                MessageBox.Show("수정할 기록을 선택 해 주세요.");
-            }
-            else
+            if (CheckSaleRecords())
             {
                 FrmUpdateSaleRecords updateSaleRecords = new FrmUpdateSaleRecords(saleRecords);
                 updateSaleRecords.ShowDialog();
                 OutputAllSaleRecords();
             }
+        }
 
+        /// <summary>
+        /// 메서드의 기간 초과 확인 메서드
+        /// </summary>
+        /// <param name="periodStart">시간 기간</param>
+        /// <param name="periodEnd">종료 기간</param>
+        /// <returns>검사 성공유무를 반환</returns>
+        private bool CheckPeriod(DateTime periodStart, DateTime periodEnd)
+        {
+            bool result = false;
+            if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
+            {
+                MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
+                dtpPeriodStart.Value = dtpPeriodEnd.Value = DateTime.Now;
+                result = true;
+                return result;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 객체의 생성여부를 판단하는 메서드
+        /// </summary>
+        /// <returns>생성 여부를 반환</returns>
+        private bool CheckSaleRecords()
+        {
+            bool result = false;
+            if (saleRecords == null)
+            {
+                MessageBox.Show("기록을 선택 해 주세요.");
+            }
+            else
+            {
+                result = true;
+            }
+            return result;
         }
 
         private void salesRecordsGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -222,11 +253,7 @@ namespace GoodeeWay.SaleRecords
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (saleRecords == null)
-            {
-                MessageBox.Show("삭제할 기록을 선택 해 주세요.");
-            }
-            else
+            if (CheckSaleRecords())
             {
                 if (MessageBox.Show("정말로 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) != DialogResult.No)
                 {
@@ -297,8 +324,8 @@ namespace GoodeeWay.SaleRecords
                 realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
             }
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
-            FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
-            fdsr.ShowDialog();
+            FrmDetailSaleRecord frmDetailSaleRecord = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
+            frmDetailSaleRecord.ShowDialog();
         }
     }
 }
