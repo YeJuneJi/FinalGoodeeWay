@@ -449,7 +449,45 @@ namespace GoodeeWay.Sales
 
         private void btnMnuDelete_Click(object sender, EventArgs e)
         {
-
+            string menuCode = msktbxMnuCode.Text;
+            int count = 0;
+            foreach (SalesMenuVO item in salesMenuList)
+            {
+                if (item.MenuCode.Equals(menuCode))
+                {
+                    count++;
+                    break;
+                }
+            }
+            if (ValidateMenuCode(menuCode))
+            {
+                if (count == 0)
+                {
+                    MessageBox.Show("삭제하실 메뉴가 없습니다.");
+                    return;
+                }
+                try
+                {
+                    if (MessageBox.Show("정말로 삭제 하시겠어요?", "메뉴삭제", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
+                    {
+                        if (new SalesMenuDAO().DeleteMenu(menuCode))
+                        {
+                            MessageBox.Show("메뉴 삭제 성공");
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("메뉴 삭제 실패");
+                }
+            }
+            btnClear_Click(null, null);
+            ReflashData();
         }
 
         private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -539,6 +577,8 @@ namespace GoodeeWay.Sales
         {
             FrmSalesMenuSearch menuSearch = new FrmSalesMenuSearch();
             menuSearch.ShowDialog();
+            btnClear_Click(null, null);
+            ReflashData();
         }
 
         /// <summary>
@@ -893,11 +933,6 @@ namespace GoodeeWay.Sales
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }
