@@ -1,39 +1,35 @@
-﻿using GoodeeWay.DAO;
-using GoodeeWay.VO;
-using GoodeeWay.Order;
+﻿using GoodeeWay.Order;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using GoodeeWay.DB;
 using GoodeeWay.SaleRecords;
 using GoodeeWay.Sales;
 using GoodeeWay.BUS;
 using GoodeeWay.SandwichMakingBus;
 using GoodeeWay.Equipment;
-using System.Threading;
-using System.IO;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace GoodeeWay
 {
     enum Division { 샌드위치, 찹샐러드, 사이드, 음료 };
     public partial class MainForm : Form
     {
-        //OderVIew oderVIew;
-        FrmOrderView fov;
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
 
+
+        FrmOrderView fov;
+        FrmSaleRecord fsr;
         inventory inventory;
-        FrmSalesMenu salesMenu;
-        FrmSaleRecords saleRecords;
+        USalesMenu salesMenu;        
         FrmEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
+
         public static FrmSandwichMaking frmSandwichMaking;
         public MainForm()
         {
@@ -41,25 +37,6 @@ namespace GoodeeWay
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MdiClient ctlMDI;
-            //foreach (Control ctl in this.Controls)
-            //{
-            //    if (ctl.GetType() == typeof(MenuStrip) || ctl.GetType() == typeof(ToolStrip) || ctl.GetType() == typeof(System.Windows.Forms.Timer) || ctl.GetType() == typeof(ToolStripMenuItem) || ctl.GetType() == typeof(ToolStripLabel))
-            //    {
-            //        continue;
-            //    }
-            //    else
-            //    {
-            //        ctlMDI = ctl as MdiClient;
-            //    }
-
-            //    if (ctlMDI.GetType() != typeof(MenuStrip) && ctlMDI.GetType() != typeof(ToolStrip) || ctlMDI.GetType() != typeof(System.Windows.Forms.Timer) || ctlMDI.GetType() != typeof(ToolStripMenuItem) || ctlMDI.GetType() != typeof(ToolStripLabel))
-            //    {
-            //        ctlMDI.BackColor = this.BackColor;
-            //        break;
-            //    }
-            //}
-
             try
             {
                 new CheckImages().DoAllCheck();
@@ -72,17 +49,12 @@ namespace GoodeeWay
 
         private void 주문ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (fov == null)
+            if (fov == null || fov.IsDisposed)
             {
                 fov = new FrmOrderView();
-                panelTest.Controls.Add(fov);
-                //CheckOpenClose(oderVIew);
-            }
-            else if (fov.IsDisposed)
-            {
-                fov = new FrmOrderView();
-                panelTest.Controls.Add(fov);
-                //CheckOpenClose(oderVIew);
+                MainPanel.Controls.Add(fov);
+                fov.BringToFront();
+                CheckOpenClose(fov);
             }
             else
             {
@@ -97,14 +69,14 @@ namespace GoodeeWay
                 inventory = new inventory();
                 inventory.MdiParent = this;
                 inventory.Show();
-                CheckOpenClose(inventory);
+                //CheckOpenClose(inventory);
             }
             else if (inventory.IsDisposed)
             {
                 inventory = new inventory();
                 inventory.MdiParent = this;
                 inventory.Show();
-                CheckOpenClose(inventory);
+                //CheckOpenClose(inventory);
             }
             else
             {
@@ -116,11 +88,11 @@ namespace GoodeeWay
         {
             if (salesMenu == null || salesMenu.IsDisposed)
             {
-                
-                salesMenu = new FrmSalesMenu();
-                salesMenu.MdiParent = this;
-                salesMenu.Show();
-                CheckOpenClose(salesMenu);
+                salesMenu = new USalesMenu();
+                salesMenu.Size = MainPanel.Size;
+                MainPanel.Controls.Add(salesMenu);
+                salesMenu.BringToFront();
+                //CheckOpenClose(salesMenu);
             }
             else
             {
@@ -130,23 +102,17 @@ namespace GoodeeWay
 
         private void 판매기록관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saleRecords == null)
+
+            if (fsr == null || fsr.IsDisposed)
             {
-                saleRecords = new FrmSaleRecords();
-                saleRecords.MdiParent = this;
-                saleRecords.Show();
-                CheckOpenClose(saleRecords);
-            }
-            else if (saleRecords.IsDisposed)
-            {
-                saleRecords = new FrmSaleRecords();
-                saleRecords.MdiParent = this;
-                saleRecords.Show();
-                CheckOpenClose(saleRecords);
+                fsr = new FrmSaleRecord();
+                MainPanel.Controls.Add(fsr);
+                fsr.BringToFront();
+                CheckOpenClose(fsr);
             }
             else
             {
-                saleRecords.BringToFront();
+                fsr.BringToFront();
             }
 
         }
@@ -158,14 +124,14 @@ namespace GoodeeWay
                 frmEquipment = new Equipment.FrmEquipment();
                 frmEquipment.MdiParent = this;
                 frmEquipment.Show();
-                CheckOpenClose(frmEquipment);
+                //CheckOpenClose(frmEquipment);
             }
             else if (frmEquipment.IsDisposed)
             {
                 frmEquipment = new Equipment.FrmEquipment();
                 frmEquipment.MdiParent = this;
                 frmEquipment.Show();
-                CheckOpenClose(frmEquipment);
+                //CheckOpenClose(frmEquipment);
             }
             else
             {
@@ -180,14 +146,14 @@ namespace GoodeeWay
                 employee = new Employee();
                 employee.MdiParent = this;
                 employee.Show();
-                CheckOpenClose(employee);
+                //CheckOpenClose(employee);
             }
             else if (employee.IsDisposed)
             {
                 employee = new Employee();
                 employee.MdiParent = this;
                 employee.Show();
-                CheckOpenClose(employee);
+                //CheckOpenClose(employee);
             }
             else
             {
@@ -201,16 +167,14 @@ namespace GoodeeWay
             if (resourceManagemanet == null)
             {
                 resourceManagemanet = new ResourceManagemanet();
-                resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
-                CheckOpenClose(resourceManagemanet);
+                //CheckOpenClose(resourceManagemanet);
             }
             else if (resourceManagemanet.IsDisposed)
             {
                 resourceManagemanet = new ResourceManagemanet();
-                resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
-                CheckOpenClose(resourceManagemanet);
+                //CheckOpenClose(resourceManagemanet);
             }
             else
             {
@@ -223,13 +187,13 @@ namespace GoodeeWay
             if (frmSandwichMaking == null)
             {
                 frmSandwichMaking = new FrmSandwichMaking();
-                frmSandwichMaking.MdiParent = this;
+                //frmSandwichMaking.MdiParent = this;
                 frmSandwichMaking.Show();
             }
             else if (frmSandwichMaking.IsDisposed)
             {
                 frmSandwichMaking = new FrmSandwichMaking();
-                frmSandwichMaking.MdiParent = this;
+                //frmSandwichMaking.MdiParent = this;
                 frmSandwichMaking.Show();
             }
             else
@@ -243,22 +207,18 @@ namespace GoodeeWay
             tsLblTime.Text = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString();
         }
 
-        private void CheckOpenClose(Form formName)
+        private void CheckOpenClose(UserControl formName)
         {
-            foreach (var item in this.MdiChildren)
-            {
-                try
-                {
-                    Form mf = (Form)item;
+            foreach (var item in MainPanel.Controls)
+            {   
+                if (item.GetType() != typeof(PictureBox))
+                {                    
+                    UserControl mf = (UserControl)item;
 
-                    if (!mf.Name.Equals(formName.Name) && !mf.Name.Equals("FrmSandwichMaking") && !mf.Name.Equals("ResourceManagemanet"))
+                    if (!mf.Name.Equals(formName.Name))
                     {
-                        mf.Close();
+                        mf.Dispose();
                     }
-                }
-                catch (Exception)
-                {
-                    throw;
                 }
             }
         }
@@ -266,6 +226,20 @@ namespace GoodeeWay
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }

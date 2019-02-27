@@ -41,6 +41,7 @@
             this.rdoDate = new System.Windows.Forms.RadioButton();
             this.rdoTotalSearch = new System.Windows.Forms.RadioButton();
             this.excelSaveFileDlg = new System.Windows.Forms.SaveFileDialog();
+            this.lblInfor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salesRecordsGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,13 +53,13 @@
             this.salesRecordsGView.BackgroundColor = System.Drawing.Color.White;
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.salesRecordsGView.GridColor = System.Drawing.Color.DarkGray;
-            this.salesRecordsGView.Location = new System.Drawing.Point(7, 100);
+            this.salesRecordsGView.Location = new System.Drawing.Point(7, 113);
             this.salesRecordsGView.MultiSelect = false;
             this.salesRecordsGView.Name = "salesRecordsGView";
             this.salesRecordsGView.ReadOnly = true;
             this.salesRecordsGView.RowTemplate.Height = 23;
             this.salesRecordsGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.salesRecordsGView.Size = new System.Drawing.Size(739, 381);
+            this.salesRecordsGView.Size = new System.Drawing.Size(739, 368);
             this.salesRecordsGView.TabIndex = 0;
             this.salesRecordsGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellClick);
             this.salesRecordsGView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesRecordsGView_CellDoubleClick);
@@ -184,11 +185,22 @@
             this.excelSaveFileDlg.Filter = "xls 파일|*.xls";
             this.excelSaveFileDlg.OverwritePrompt = false;
             // 
+            // lblInfor
+            // 
+            this.lblInfor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblInfor.AutoSize = true;
+            this.lblInfor.Location = new System.Drawing.Point(497, 93);
+            this.lblInfor.Name = "lblInfor";
+            this.lblInfor.Size = new System.Drawing.Size(245, 12);
+            this.lblInfor.TabIndex = 22;
+            this.lblInfor.Text = "더블 클릭하시면 영수증을 보실 수 있습니다.";
+            // 
             // FrmSaleRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(752, 487);
+            this.Controls.Add(this.lblInfor);
             this.Controls.Add(this.rdoTotalSearch);
             this.Controls.Add(this.rdoDate);
             this.Controls.Add(this.rdoSalesNo);
@@ -225,5 +237,6 @@
         private System.Windows.Forms.RadioButton rdoDate;
         private System.Windows.Forms.RadioButton rdoTotalSearch;
         private System.Windows.Forms.SaveFileDialog excelSaveFileDlg;
+        private System.Windows.Forms.Label lblInfor;
     }
 }

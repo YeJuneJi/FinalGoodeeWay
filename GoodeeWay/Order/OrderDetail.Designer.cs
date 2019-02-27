@@ -35,14 +35,14 @@
             this.lblKcal = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.menuImage = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.menuImage = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuImage)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblMenuName
@@ -107,6 +107,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(600, 50);
             this.panel1.TabIndex = 7;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // label1
             // 
@@ -118,16 +119,6 @@
             this.label1.Size = new System.Drawing.Size(160, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "상세재료 선택";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.GWMain2;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(157, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
             // 
             // btnOK
             // 
@@ -143,16 +134,6 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // menuImage
-            // 
-            this.menuImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.menuImage.Location = new System.Drawing.Point(31, 64);
-            this.menuImage.Name = "menuImage";
-            this.menuImage.Size = new System.Drawing.Size(164, 146);
-            this.menuImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.menuImage.TabIndex = 0;
-            this.menuImage.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -163,6 +144,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(600, 50);
             this.panel2.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GoodeeWay.Properties.Resources.GWMain2;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(157, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // menuImage
+            // 
+            this.menuImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuImage.Location = new System.Drawing.Point(31, 64);
+            this.menuImage.Name = "menuImage";
+            this.menuImage.Size = new System.Drawing.Size(164, 146);
+            this.menuImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.menuImage.TabIndex = 0;
+            this.menuImage.TabStop = false;
             // 
             // OrderDetail
             // 
@@ -180,13 +181,14 @@
             this.Controls.Add(this.menuImage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "OrderDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "OrderDetail";
             this.Load += new System.EventHandler(this.OrderDetail_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuImage)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

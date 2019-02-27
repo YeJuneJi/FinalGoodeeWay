@@ -31,6 +31,23 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+        internal int RefundSaleRecords(int salesNo)
+        {
+            DBConnection connection = new DBConnection();
+            string storedProcedure = "RefundSaleRecords";
+            SqlParameter[] sqlParameters = new SqlParameter[]
+            {
+                new SqlParameter("salesNo", salesNo)
+            };
+            try
+            {
+                return connection.Update(storedProcedure, sqlParameters);
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
 
         internal int UpdateSaleRecords(SaleRecordsVO saleRecordsVO)
         {

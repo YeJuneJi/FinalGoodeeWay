@@ -1,34 +1,41 @@
-﻿using GoodeeWay.DAO;
-using GoodeeWay.VO;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Data;
-using System.Runtime.InteropServices;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using GoodeeWay.VO;
+using GoodeeWay.DAO;
+using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace GoodeeWay.SaleRecords
 {
-    public partial class FrmSaleRecords : Form
+    public partial class FrmSaleRecord : UserControl
     {
         List<SaleRecordsVO> searchlist;
         DataTable searchRecords;
         DataColumn[] dataColoumns;
         SaleRecordsVO saleRecords;
         string salesItemList;
-        public FrmSaleRecords()
+
+        public FrmSaleRecord()
         {
             InitializeComponent();
         }
 
-        private void FrmSaleRecords_Load(object sender, EventArgs e)
+        private void FrmSaleRecord_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             tbxSalesNo.Enabled = false;
             dtpPeriodStart.Enabled = false;
             dtpPeriodEnd.Enabled = false;
 
+            lblText.Text = "내용을 더블 클릭을 하시면 환불을 하실 수 있습니다.";
             searchlist = new List<SaleRecordsVO>();
             salesRecordsGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             salesRecordsGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -49,7 +56,7 @@ namespace GoodeeWay.SaleRecords
             searchlist = new SaleRecordsDAO().OutPutAllSaleRecords();
             ListToGridView(searchlist);
         }
-        
+
         private void ListToGridView(List<SaleRecordsVO> saleRecords)
         {
             foreach (var item in saleRecords)
@@ -58,15 +65,16 @@ namespace GoodeeWay.SaleRecords
                 RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
                 foreach (var realMenu in rv.RealMenu)
                 {
-                    salesItemList += realMenu.Menu.Division + " : " + realMenu.Menu.MenuName + ", ";
+                    salesItemList += realMenu.Menu.MenuName + ", ";
                 }
-                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, item.SalesitemName/*salesItemList.Remove(salesItemList.Length - 2, 2)*/ , item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
+                searchRecords.Rows.Add(item.SalesNo, item.SalesDate, salesItemList.Remove(salesItemList.Length - 2, 1), item.SalesPrice, item.Discount, item.Duty, item.SalesTotal, item.PaymentPlan);
             }
             salesRecordsGView.DataSource = searchRecords;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             searchlist.Clear();
             salesRecordsGView.DataSource = null;
             searchRecords.Rows.Clear();
@@ -280,12 +288,19 @@ namespace GoodeeWay.SaleRecords
 
         private void salesRecordsGView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            RealMenuVO realMenuVO = default(RealMenuVO);
             int salesNo = int.Parse(salesRecordsGView.SelectedRows[0].Cells[0].Value.ToString());
             DateTime salesDate = DateTime.Parse(salesRecordsGView.SelectedRows[0].Cells[1].Value.ToString());
-            RealMenuVO realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(salesRecordsGView.SelectedRows[0].Cells[2].Value.ToString()); 
+            var salesItems = from record in searchlist
+                             where record.SalesNo == salesNo
+                             select new { record.SalesitemName };
+            foreach (var item in salesItems)
+            {
+                realMenuVO = JsonConvert.DeserializeObject<RealMenuVO>(item.SalesitemName);
+            }
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
             FrmDetailSaleRecord fdsr = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
-            fdsr.ShowDialog();            
+            fdsr.ShowDialog();
         }
     }
 }

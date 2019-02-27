@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,7 +16,17 @@ namespace GoodeeWay.Order
 {
     public partial class Order : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         private List<MenuAndDetails> bucketMenuAndDetailList;
+        DataTable orderRecords;
+        DataColumn[] dataColoumns;
+        string menuList;
 
         public Order()
         {
@@ -55,7 +66,34 @@ namespace GoodeeWay.Order
             txtTax.Text = tax.ToString(); // 세금 입력
             txtTotal.Text = (price - discount).ToString();
 
-            dataGridView1.DataSource = menuList;
+            // DataTable
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
+            dataGridView1.AllowUserToAddRows = false;
+            dataColoumns = new DataColumn[]
+            {
+                new DataColumn("메뉴번호"),
+                new DataColumn("이름"),
+                new DataColumn("가격"),
+                new DataColumn("칼로리")
+            };
+            orderRecords = new DataTable("searchRecords");
+            orderRecords.Columns.AddRange(dataColoumns);
+            
+            ListToGridView(menuList);
+
+            //dataGridView1.DataSource = menuList;
+        }
+
+        private void ListToGridView(List<Menu> menulist)
+        {
+            foreach (var item in menulist)
+            {
+                menuList = string.Empty;
+                                
+                orderRecords.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal);
+            }
+            dataGridView1.DataSource = orderRecords;
         }
 
         public bool result = false;
@@ -247,6 +285,20 @@ namespace GoodeeWay.Order
             {
                 txtChange.Text = (decimal.Parse(txtPaid.Text) - decimal.Parse(txtTotal.Text)).ToString();
             }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }

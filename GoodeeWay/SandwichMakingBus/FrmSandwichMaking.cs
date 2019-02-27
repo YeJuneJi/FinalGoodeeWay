@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,13 @@ namespace GoodeeWay.SandwichMakingBus
 {
     public partial class FrmSandwichMaking : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;        
+
         int count = 5;
 
         List<MakingFormVO> odList = new List<MakingFormVO>();
@@ -30,8 +38,6 @@ namespace GoodeeWay.SandwichMakingBus
 
         private void FrmSandwichMaking_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-
             GridViewReset();
         }
 
@@ -218,6 +224,16 @@ namespace GoodeeWay.SandwichMakingBus
                     GridViewReset();
                 }                
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void FrmSandwichMaking_MouseDown(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
