@@ -55,7 +55,7 @@
             this.rdoTotalSearch.Checked = true;
             this.rdoTotalSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoTotalSearch.ForeColor = System.Drawing.Color.White;
-            this.rdoTotalSearch.Location = new System.Drawing.Point(22, 8);
+            this.rdoTotalSearch.Location = new System.Drawing.Point(37, 11);
             this.rdoTotalSearch.Name = "rdoTotalSearch";
             this.rdoTotalSearch.Size = new System.Drawing.Size(92, 25);
             this.rdoTotalSearch.TabIndex = 33;
@@ -70,7 +70,7 @@
             this.rdoDate.AutoSize = true;
             this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDate.ForeColor = System.Drawing.Color.White;
-            this.rdoDate.Location = new System.Drawing.Point(296, 9);
+            this.rdoDate.Location = new System.Drawing.Point(311, 12);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(112, 25);
             this.rdoDate.TabIndex = 32;
@@ -84,7 +84,7 @@
             this.rdoSalesNo.AutoSize = true;
             this.rdoSalesNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoSalesNo.ForeColor = System.Drawing.Color.White;
-            this.rdoSalesNo.Location = new System.Drawing.Point(156, 8);
+            this.rdoSalesNo.Location = new System.Drawing.Point(171, 11);
             this.rdoSalesNo.Name = "rdoSalesNo";
             this.rdoSalesNo.Size = new System.Drawing.Size(112, 25);
             this.rdoSalesNo.TabIndex = 31;
@@ -97,7 +97,7 @@
             this.tbxSalesNo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tbxSalesNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxSalesNo.ForeColor = System.Drawing.Color.Black;
-            this.tbxSalesNo.Location = new System.Drawing.Point(22, 41);
+            this.tbxSalesNo.Location = new System.Drawing.Point(37, 44);
             this.tbxSalesNo.Name = "tbxSalesNo";
             this.tbxSalesNo.Size = new System.Drawing.Size(425, 27);
             this.tbxSalesNo.TabIndex = 26;
@@ -106,7 +106,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(228, 82);
+            this.label1.Location = new System.Drawing.Point(243, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(14, 12);
             this.label1.TabIndex = 25;
@@ -118,7 +118,7 @@
             this.dtpPeriodEnd.CalendarForeColor = System.Drawing.Color.White;
             this.dtpPeriodEnd.CalendarTitleForeColor = System.Drawing.Color.White;
             this.dtpPeriodEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPeriodEnd.Location = new System.Drawing.Point(247, 74);
+            this.dtpPeriodEnd.Location = new System.Drawing.Point(262, 77);
             this.dtpPeriodEnd.Name = "dtpPeriodEnd";
             this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 27);
             this.dtpPeriodEnd.TabIndex = 23;
@@ -129,7 +129,7 @@
             this.dtpPeriodStart.CalendarForeColor = System.Drawing.Color.White;
             this.dtpPeriodStart.CalendarTitleForeColor = System.Drawing.Color.White;
             this.dtpPeriodStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPeriodStart.Location = new System.Drawing.Point(22, 74);
+            this.dtpPeriodStart.Location = new System.Drawing.Point(37, 77);
             this.dtpPeriodStart.Name = "dtpPeriodStart";
             this.dtpPeriodStart.Size = new System.Drawing.Size(200, 27);
             this.dtpPeriodStart.TabIndex = 24;
@@ -189,9 +189,9 @@
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Image = global::GoodeeWay.Properties.Resources.Microsoft_Excel_52px;
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcel.Location = new System.Drawing.Point(1015, 8);
+            this.btnExcel.Location = new System.Drawing.Point(1032, 23);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(180, 90);
+            this.btnExcel.Size = new System.Drawing.Size(160, 70);
             this.btnExcel.TabIndex = 30;
             this.btnExcel.Text = "엑셀";
             this.btnExcel.UseVisualStyleBackColor = true;
@@ -207,9 +207,9 @@
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Image = global::GoodeeWay.Properties.Resources.Search_52px;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(467, 8);
+            this.btnSearch.Location = new System.Drawing.Point(524, 23);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(180, 90);
+            this.btnSearch.Size = new System.Drawing.Size(160, 70);
             this.btnSearch.TabIndex = 29;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -225,9 +225,9 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.Change_Theme_52px;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(653, 8);
+            this.btnUpdate.Location = new System.Drawing.Point(693, 23);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(180, 90);
+            this.btnUpdate.Size = new System.Drawing.Size(160, 70);
             this.btnUpdate.TabIndex = 27;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -243,9 +243,9 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::GoodeeWay.Properties.Resources.Erase_50px;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(829, 8);
+            this.btnDelete.Location = new System.Drawing.Point(860, 23);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(180, 90);
+            this.btnDelete.Size = new System.Drawing.Size(160, 70);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -256,7 +256,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Location = new System.Drawing.Point(12, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(442, 114);
+            this.panel2.Size = new System.Drawing.Size(475, 114);
             this.panel2.TabIndex = 36;
             // 
             // lblText

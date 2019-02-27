@@ -73,7 +73,7 @@
             this.btnEquip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEquip.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEquip.ForeColor = System.Drawing.Color.White;
-            this.btnEquip.Image = global::GoodeeWay.Properties.Resources.Cooking_Pot_64px;
+            this.btnEquip.Image = global::GoodeeWay.Properties.Resources.Maintenance_50px;
             this.btnEquip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEquip.Location = new System.Drawing.Point(0, 201);
             this.btnEquip.Name = "btnEquip";

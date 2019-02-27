@@ -44,6 +44,9 @@ namespace GoodeeWay.Order
             SetListView("All");
         }
 
+        /// <summary>
+        /// 등록되어있는 메뉴들을 가져와 리스트뷰 아이템 셋팅을 해준다.
+        /// </summary>
         private void GetMenuList() // menuList 세팅
         {
             foreach (Menu item in menuList) // 메뉴리스트에 있는 목록을 각각 별로 listview에 띄어줌
@@ -78,6 +81,11 @@ namespace GoodeeWay.Order
             }
         }
 
+        /// <summary>
+        /// 해당되는 버튼들에 대한 리스트뷰 아이템들을 화면에 보여준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_Click(object sender, EventArgs e) // 버튼 선택시 이벤트 처리
         {
             Button b = (Button)sender;
@@ -85,6 +93,10 @@ namespace GoodeeWay.Order
             SetListView(b.Name.Replace("btn", "")); // 버튼 이름에서 btn 제외후 전달
         }
 
+        /// <summary>
+        /// 넘겨받은 선택한 버튼들에대한 리스트뷰 아이템들을 가져와 보여준다.
+        /// </summary>
+        /// <param name="v"></param>
         private void SetListView(string v) // 선택한 버튼에 따른 ListView Setting
         {
             listViewOrder.Clear();
@@ -113,6 +125,12 @@ namespace GoodeeWay.Order
             }
         }
 
+        /// <summary>
+        /// 리스트뷰 아이템을 클릭하면 작동하는 이벤트 메소드
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listViewOrder_Click(object sender, EventArgs e) // 상품 클릭시 처리 
         {
             ListView lvi = (ListView)sender;
@@ -142,6 +160,12 @@ namespace GoodeeWay.Order
             SetBasketListBox();
         }
 
+        /// <summary>
+        /// 전체취소 버튼을 누르면 동작하는 메소드
+        /// 장바구니에 담겨져있는 모든 것들을 비워준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e) // 전체 취소 버튼 클릭시 작동
         {
             bucketMenuList.Clear();
@@ -151,14 +175,29 @@ namespace GoodeeWay.Order
             SetBasketListBox();
         }
 
+        /// <summary>
+        /// 취소 버튼을 클릭하면 작동하는 메소드
+        /// 장바구니 목록중에 선택한 아이템을 삭제해준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancelOne_Click(object sender, EventArgs e) // 취소 버튼 클릭시 작동
         {
-
-            bucketMenuList.RemoveAt(listViewBasket.SelectedItems[0].Index);
-            bucketMenuAndDetailList.RemoveAt(listViewBasket.SelectedItems[0].Index);
-            SetBasketListBox();
+            if (listViewBasket.SelectedItems.Count > 0)
+            {
+                bucketMenuList.RemoveAt(listViewBasket.SelectedItems[0].Index);
+                bucketMenuAndDetailList.RemoveAt(listViewBasket.SelectedItems[0].Index);
+                SetBasketListBox();
+            }
+            else
+            {
+                MessageBox.Show("삭제할 물품을 선택해 주세요");
+            }
         }
 
+        /// <summary>
+        /// 장바구니에 담겨진 내용대로 장바구니 리스트뷰 목록을 갱신해준다.
+        /// </summary>
         private void SetBasketListBox() // 장바구니 리스트에 따라 listview 목록을 refresh 해주는 메소드
         {
             listViewBasket.Clear();
@@ -193,6 +232,13 @@ namespace GoodeeWay.Order
         bool result = false;
 
         Order order;
+
+        /// <summary>
+        /// 결제 버튼 클릭시 작동하는 이벤트 메소드
+        /// 결제창으로 장바구니에 담겨진 내용들을 전달해준다.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e) // 결제 버튼 클릭시 작동
         {
             if (bucketMenuAndDetailList.Count == 0)
@@ -221,6 +267,11 @@ namespace GoodeeWay.Order
             }
         }
 
+        /// <summary>
+        /// 결제창이 닫히면 작동하는 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void formClosed(object sender, EventArgs e) // 결제창이 닫히면 작동
         {
             if (order.result == true)
@@ -235,11 +286,6 @@ namespace GoodeeWay.Order
         }
 
         private void orderBtnOK(object sender, EventArgs e) // 결제창에서 ok 버튼 클릭시 작동
-        {
-
-        }
-
-        private void MenuPanel_MouseDown(object sender, MouseEventArgs e)
         {
 
         }

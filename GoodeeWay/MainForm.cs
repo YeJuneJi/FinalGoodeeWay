@@ -92,7 +92,7 @@ namespace GoodeeWay
                 salesMenu.Size = MainPanel.Size;
                 MainPanel.Controls.Add(salesMenu);
                 salesMenu.BringToFront();
-                //CheckOpenClose(salesMenu);
+                CheckOpenClose(salesMenu);
             }
             else
             {

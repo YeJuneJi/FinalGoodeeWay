@@ -32,7 +32,12 @@
             this.salesMenuGView = new System.Windows.Forms.DataGridView();
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnSearh = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -40,6 +45,7 @@
             this.할인율 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
             this.tbxAddContxt = new System.Windows.Forms.TextBox();
+            this.pbxPhoto = new System.Windows.Forms.PictureBox();
             this.btnPhoto = new System.Windows.Forms.Button();
             this.cbxDivision = new System.Windows.Forms.ComboBox();
             this.tbxKcal = new System.Windows.Forms.TextBox();
@@ -53,12 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSearh = new System.Windows.Forms.Button();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.pbxPhoto = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
@@ -127,220 +128,14 @@
             this.MenuPanel.Controls.Add(this.label3);
             this.MenuPanel.Controls.Add(this.label2);
             this.MenuPanel.Controls.Add(this.label1);
+            this.MenuPanel.Controls.Add(this.panel1);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuPanel.ForeColor = System.Drawing.Color.White;
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(1270, 172);
             this.MenuPanel.TabIndex = 59;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label12.Location = new System.Drawing.Point(441, 139);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 20);
-            this.label12.TabIndex = 88;
-            this.label12.Text = "초기화";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(257, 134);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(23, 20);
-            this.label11.TabIndex = 83;
-            this.label11.Text = "%";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label10.Location = new System.Drawing.Point(257, 106);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 20);
-            this.label10.TabIndex = 82;
-            this.label10.Text = "Kcal";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label9.Location = new System.Drawing.Point(257, 79);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 20);
-            this.label9.TabIndex = 81;
-            this.label9.Text = "\\";
-            // 
-            // tbxDiscountRatio
-            // 
-            this.tbxDiscountRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tbxDiscountRatio.Location = new System.Drawing.Point(87, 130);
-            this.tbxDiscountRatio.Name = "tbxDiscountRatio";
-            this.tbxDiscountRatio.Size = new System.Drawing.Size(164, 26);
-            this.tbxDiscountRatio.TabIndex = 70;
-            // 
-            // 할인율
-            // 
-            this.할인율.AutoSize = true;
-            this.할인율.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.할인율.Location = new System.Drawing.Point(14, 134);
-            this.할인율.Name = "할인율";
-            this.할인율.Size = new System.Drawing.Size(45, 20);
-            this.할인율.TabIndex = 80;
-            this.할인율.Text = "할인율";
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClear.Location = new System.Drawing.Point(512, 128);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(35, 35);
-            this.btnClear.TabIndex = 79;
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // tbxAddContxt
-            // 
-            this.tbxAddContxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tbxAddContxt.Location = new System.Drawing.Point(381, 51);
-            this.tbxAddContxt.Multiline = true;
-            this.tbxAddContxt.Name = "tbxAddContxt";
-            this.tbxAddContxt.Size = new System.Drawing.Size(166, 66);
-            this.tbxAddContxt.TabIndex = 74;
-            // 
-            // btnPhoto
-            // 
-            this.btnPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnPhoto.FlatAppearance.BorderSize = 0;
-            this.btnPhoto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnPhoto.Location = new System.Drawing.Point(381, 128);
-            this.btnPhoto.Name = "btnPhoto";
-            this.btnPhoto.Size = new System.Drawing.Size(35, 35);
-            this.btnPhoto.TabIndex = 71;
-            this.btnPhoto.UseVisualStyleBackColor = true;
-            this.btnPhoto.Click += new System.EventHandler(this.btnPhoto_Click);
-            // 
-            // cbxDivision
-            // 
-            this.cbxDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDivision.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cbxDivision.FormattingEnabled = true;
-            this.cbxDivision.Location = new System.Drawing.Point(381, 21);
-            this.cbxDivision.Name = "cbxDivision";
-            this.cbxDivision.Size = new System.Drawing.Size(121, 28);
-            this.cbxDivision.TabIndex = 72;
-            this.cbxDivision.SelectedIndexChanged += new System.EventHandler(this.cbxDivision_SelectedIndexChanged);
-            // 
-            // tbxKcal
-            // 
-            this.tbxKcal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tbxKcal.Location = new System.Drawing.Point(87, 103);
-            this.tbxKcal.Name = "tbxKcal";
-            this.tbxKcal.Size = new System.Drawing.Size(164, 26);
-            this.tbxKcal.TabIndex = 69;
-            // 
-            // tbxPrice
-            // 
-            this.tbxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tbxPrice.Location = new System.Drawing.Point(87, 76);
-            this.tbxPrice.Name = "tbxPrice";
-            this.tbxPrice.Size = new System.Drawing.Size(164, 26);
-            this.tbxPrice.TabIndex = 68;
-            // 
-            // tbxMnuName
-            // 
-            this.tbxMnuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tbxMnuName.Location = new System.Drawing.Point(87, 48);
-            this.tbxMnuName.Name = "tbxMnuName";
-            this.tbxMnuName.Size = new System.Drawing.Size(164, 26);
-            this.tbxMnuName.TabIndex = 67;
-            // 
-            // msktbxMnuCode
-            // 
-            this.msktbxMnuCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.msktbxMnuCode.Location = new System.Drawing.Point(87, 20);
-            this.msktbxMnuCode.Mask = "MNU0000000";
-            this.msktbxMnuCode.Name = "msktbxMnuCode";
-            this.msktbxMnuCode.Size = new System.Drawing.Size(164, 26);
-            this.msktbxMnuCode.TabIndex = 66;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(322, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 20);
-            this.label7.TabIndex = 65;
-            this.label7.Text = "부가설명";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(324, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 20);
-            this.label6.TabIndex = 64;
-            this.label6.Text = "구분";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(322, 139);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 20);
-            this.label5.TabIndex = 63;
-            this.label5.Text = "사진";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(14, 107);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 20);
-            this.label4.TabIndex = 62;
-            this.label4.Text = "Kcal";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(14, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 20);
-            this.label3.TabIndex = 61;
-            this.label3.Text = "가격";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(14, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 20);
-            this.label2.TabIndex = 60;
-            this.label2.Text = "메뉴명";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(14, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 20);
-            this.label1.TabIndex = 59;
-            this.label1.Text = "메뉴코드";
             // 
             // btnClose
             // 
@@ -357,17 +152,28 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(448, 135);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 20);
+            this.label12.TabIndex = 88;
+            this.label12.Text = "초기화";
+            // 
             // btnSearh
             // 
             this.btnSearh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearh.FlatAppearance.BorderSize = 0;
             this.btnSearh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSearh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearh.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearh.ForeColor = System.Drawing.Color.White;
             this.btnSearh.Image = global::GoodeeWay.Properties.Resources.Search_52px;
             this.btnSearh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearh.Location = new System.Drawing.Point(1007, 89);
+            this.btnSearh.Location = new System.Drawing.Point(1023, 89);
             this.btnSearh.Name = "btnSearh";
             this.btnSearh.Size = new System.Drawing.Size(190, 80);
             this.btnSearh.TabIndex = 87;
@@ -381,11 +187,11 @@
             this.btnInsert.FlatAppearance.BorderSize = 0;
             this.btnInsert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsert.ForeColor = System.Drawing.Color.White;
             this.btnInsert.Image = global::GoodeeWay.Properties.Resources.In_50px;
             this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsert.Location = new System.Drawing.Point(776, 6);
+            this.btnInsert.Location = new System.Drawing.Point(822, 6);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(190, 80);
             this.btnInsert.TabIndex = 86;
@@ -399,11 +205,11 @@
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.Change_Theme_52px;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(1007, 6);
+            this.btnUpdate.Location = new System.Drawing.Point(1023, 6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(190, 80);
             this.btnUpdate.TabIndex = 84;
@@ -417,11 +223,11 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::GoodeeWay.Properties.Resources.Erase_50px;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(776, 89);
+            this.btnDelete.Location = new System.Drawing.Point(822, 89);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(190, 80);
             this.btnDelete.TabIndex = 85;
@@ -429,14 +235,232 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnMnuDelete_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(264, 130);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(21, 20);
+            this.label11.TabIndex = 83;
+            this.label11.Text = "%";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(264, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 20);
+            this.label10.TabIndex = 82;
+            this.label10.Text = "Kcal";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(264, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 20);
+            this.label9.TabIndex = 81;
+            this.label9.Text = "\\";
+            // 
+            // tbxDiscountRatio
+            // 
+            this.tbxDiscountRatio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxDiscountRatio.Location = new System.Drawing.Point(94, 127);
+            this.tbxDiscountRatio.Name = "tbxDiscountRatio";
+            this.tbxDiscountRatio.Size = new System.Drawing.Size(164, 26);
+            this.tbxDiscountRatio.TabIndex = 70;
+            // 
+            // 할인율
+            // 
+            this.할인율.AutoSize = true;
+            this.할인율.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.할인율.ForeColor = System.Drawing.Color.White;
+            this.할인율.Location = new System.Drawing.Point(14, 130);
+            this.할인율.Name = "할인율";
+            this.할인율.Size = new System.Drawing.Size(54, 20);
+            this.할인율.TabIndex = 80;
+            this.할인율.Text = "할인율";
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClear.FlatAppearance.BorderSize = 0;
+            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(519, 124);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(35, 35);
+            this.btnClear.TabIndex = 79;
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // tbxAddContxt
+            // 
+            this.tbxAddContxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxAddContxt.Location = new System.Drawing.Point(400, 47);
+            this.tbxAddContxt.Multiline = true;
+            this.tbxAddContxt.Name = "tbxAddContxt";
+            this.tbxAddContxt.Size = new System.Drawing.Size(166, 66);
+            this.tbxAddContxt.TabIndex = 74;
+            // 
             // pbxPhoto
             // 
-            this.pbxPhoto.Location = new System.Drawing.Point(558, 18);
+            this.pbxPhoto.Location = new System.Drawing.Point(597, 14);
             this.pbxPhoto.Name = "pbxPhoto";
             this.pbxPhoto.Size = new System.Drawing.Size(115, 145);
             this.pbxPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxPhoto.TabIndex = 73;
             this.pbxPhoto.TabStop = false;
+            // 
+            // btnPhoto
+            // 
+            this.btnPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPhoto.FlatAppearance.BorderSize = 0;
+            this.btnPhoto.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnPhoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPhoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnPhoto.Location = new System.Drawing.Point(388, 124);
+            this.btnPhoto.Name = "btnPhoto";
+            this.btnPhoto.Size = new System.Drawing.Size(35, 35);
+            this.btnPhoto.TabIndex = 71;
+            this.btnPhoto.UseVisualStyleBackColor = true;
+            this.btnPhoto.Click += new System.EventHandler(this.btnPhoto_Click);
+            // 
+            // cbxDivision
+            // 
+            this.cbxDivision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDivision.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbxDivision.FormattingEnabled = true;
+            this.cbxDivision.Location = new System.Drawing.Point(400, 17);
+            this.cbxDivision.Name = "cbxDivision";
+            this.cbxDivision.Size = new System.Drawing.Size(121, 28);
+            this.cbxDivision.TabIndex = 72;
+            this.cbxDivision.SelectedIndexChanged += new System.EventHandler(this.cbxDivision_SelectedIndexChanged);
+            // 
+            // tbxKcal
+            // 
+            this.tbxKcal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxKcal.Location = new System.Drawing.Point(94, 100);
+            this.tbxKcal.Name = "tbxKcal";
+            this.tbxKcal.Size = new System.Drawing.Size(164, 26);
+            this.tbxKcal.TabIndex = 69;
+            // 
+            // tbxPrice
+            // 
+            this.tbxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxPrice.Location = new System.Drawing.Point(94, 73);
+            this.tbxPrice.Name = "tbxPrice";
+            this.tbxPrice.Size = new System.Drawing.Size(164, 26);
+            this.tbxPrice.TabIndex = 68;
+            // 
+            // tbxMnuName
+            // 
+            this.tbxMnuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbxMnuName.Location = new System.Drawing.Point(94, 45);
+            this.tbxMnuName.Name = "tbxMnuName";
+            this.tbxMnuName.Size = new System.Drawing.Size(164, 26);
+            this.tbxMnuName.TabIndex = 67;
+            // 
+            // msktbxMnuCode
+            // 
+            this.msktbxMnuCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.msktbxMnuCode.Location = new System.Drawing.Point(94, 17);
+            this.msktbxMnuCode.Mask = "MNU0000000";
+            this.msktbxMnuCode.Name = "msktbxMnuCode";
+            this.msktbxMnuCode.Size = new System.Drawing.Size(164, 26);
+            this.msktbxMnuCode.TabIndex = 66;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(329, 48);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "부가설명";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(331, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 20);
+            this.label6.TabIndex = 64;
+            this.label6.Text = "구분";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(329, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 20);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "사진";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(14, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 20);
+            this.label4.TabIndex = 62;
+            this.label4.Text = "Kcal";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(14, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(39, 20);
+            this.label3.TabIndex = 61;
+            this.label3.Text = "가격";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(14, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "메뉴명";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(14, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "메뉴코드";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(7, 9);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(719, 157);
+            this.panel1.TabIndex = 91;
             // 
             // USalesMenu
             // 
@@ -487,5 +511,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel1;
     }
 }
