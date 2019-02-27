@@ -14,19 +14,20 @@ namespace GoodeeWay.InventoryBUS
     public partial class ReceivingDetailsReturn : Form
     {
         private ReceivingDetailsVO rdvo;
-
+        private FrmInventory frmInventory;
         public ReceivingDetailsVO Rdvo
         {
             get { return rdvo; }
             set { rdvo = value; }
         }
 
-        public ReceivingDetailsReturn(ReceivingDetailsVO rdvo)
+        public ReceivingDetailsReturn(ReceivingDetailsVO rdvo,FrmInventory frmInventory)
         {
             this.rdvo = rdvo;
             InitializeComponent();
             lblItemName.Text = rdvo.InventoryName;
             txtItemQuantity.Text = rdvo.Quantity+"";
+            this.frmInventory = frmInventory;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -73,9 +74,10 @@ namespace GoodeeWay.InventoryBUS
                 Rdvo.ReturnStatus = "교환";
                 Rdvo.ReceivingDetailsID=Rdvo.ReceivingDetailsID.Replace("I", "E");
             }
-            inventory i = (inventory)Owner;
-            i.ReceivingDetailsVOReturn = Rdvo;
+            
             this.DialogResult = DialogResult.OK;
         }
+
+        
     }
 }

@@ -118,14 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sjm_excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Employee_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Employee_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="Commodity_50px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="Card_Payment_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\card payment_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> sjm
+  </data>
+  <data name="sjm_import" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_order1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_order1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_return" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GW3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GW3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,6 +156,7 @@
   <data name="Restaurant_Menu_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\restaurant menu_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="Erase_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Erase_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,10 +165,32 @@
   </data>
   <data name="Change Theme_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Change Theme_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_inventory2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_inventory2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Receipt_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Receipt_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_refresh1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_refresh1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_save1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> sjm
   </data>
   <data name="GoodeeWayHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goodeewayhead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
+=======
+  <data name="sjm_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+>>>>>>> sjm
   <data name="Cooking_Pot_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\cooking pot_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -154,6 +200,15 @@
   <data name="GW31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GW31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
+=======
+  <data name="sjm_add11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_add11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+>>>>>>> sjm
   <data name="GooDeeWay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goodeeway.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,9 +218,12 @@
   <data name="Milkshake_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Milkshake_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+=======
+>>>>>>> sjm
   <data name="Close_Window_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\close window_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -175,9 +233,10 @@
   <data name="Salad_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Salad_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Cookie_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cookie_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\gw.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -186,10 +245,15 @@
   </data>
   <data name="Restaurant_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Restaurant_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="sjm_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> sjm
   </data>
-  <data name="Receipt_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Receipt_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sjm_receiving1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_receiving1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -210,10 +274,27 @@
   </data>
   <data name="Initialize_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\initialize_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="sjm_calculate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_calculate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Total_Sales_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\total sales_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_add1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_add1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> sjm
   </data>
   <data name="Picture_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\picture_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+<<<<<<< HEAD
   <data name="In_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\in_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -228,5 +309,18 @@
   </data>
   <data name="Refund_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refund_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+=======
+  <data name="Purchase_Order_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\purchase order_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Commodity_50px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Commodity_50px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cancel_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sjm_save2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sjm_save2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+>>>>>>> sjm
   </data>
 </root>

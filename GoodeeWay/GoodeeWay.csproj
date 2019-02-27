@@ -118,9 +118,6 @@
     <Compile Include="InventoryBUS\FrmInventory.Designer.cs">
       <DependentUpon>FrmInventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="InventoryBUS\Inventory.Designer.cs">
-      <DependentUpon>Inventory.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAO\EquipmentDAO.cs" />
     <Compile Include="DAO\IEquipmentDAO.cs" />
     <Compile Include="Equipment\FrmAddEquipment.cs">
@@ -290,9 +287,6 @@
     <Compile Include="DAO\InventoryTypeDAO.cs" />
     <Compile Include="DAO\OrderDetailsDAO.cs" />
     <Compile Include="DAO\ReceivingDetailsDAO.cs" />
-    <Compile Include="InventoryBUS\Inventory.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Sales\FrmSalesMenuSearch.Designer.cs">
       <DependentUpon>FrmSalesMenuSearch.cs</DependentUpon>
     </Compile>
@@ -344,9 +338,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InventoryBUS\FrmInventory.resx">
       <DependentUpon>FrmInventory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InventoryBUS\Inventory.resx">
-      <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="VO\EmpVO.cs" />
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
@@ -481,6 +472,7 @@
     <None Include="Resources\Cancel_64px.png" />
     <None Include="Resources\Checked_64px.png" />
     <None Include="Resources\GW31.png" />
+<<<<<<< HEAD
     <Content Include="Resources\Close_Window_32px.ico" />
     <None Include="Resources\Maintenance_50px.png" />
     <None Include="Resources\Search_52px.png" />
@@ -494,6 +486,27 @@
     <Content Include="Resources\Refund_50px.png" />
     <Content Include="Resources\Search_Black.png" />
     <Content Include="Resources\Update_Black.png" />
+=======
+    <None Include="Resources\receiving.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\sjm_receiving1.png" />
+    <None Include="Resources\sjm_inventory2.png" />
+    <None Include="Resources\sjm_order1.png" />
+    <None Include="Resources\sjm_calculate.png" />
+    <None Include="Resources\sjm_return.png" />
+    <None Include="Resources\sjm_refresh.png" />
+    <None Include="Resources\sjm_import.png" />
+    <None Include="Resources\sjm_add1.png" />
+    <None Include="Resources\sjm_add11.png" />
+    <None Include="Resources\sjm_save1.png" />
+    <None Include="Resources\sjm_edit.png" />
+    <None Include="Resources\sjm_delete.png" />
+    <None Include="Resources\sjm_save.png" />
+    <None Include="Resources\sjm_details.png" />
+    <None Include="Resources\sjm_excel.png" />
+    <None Include="Resources\sjm_refresh1.png" />
+    <None Include="Resources\sjm_save2.png" />
+>>>>>>> sjm
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />

@@ -36,19 +36,28 @@ namespace GoodeeWay.InventoryBUS
         public FrmInventory()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Maximized;
             InventoryTypeSelect();
             ReceivingDetailsListSelect();
             InventoryTableSelect();
             btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = false;
             InventoryTableTemp = true;
-            tabControl1.Size = new Size(916, 659);
-            this.Size = new Size(951, 722);
             dgvNeedInventoryDetailView.AllowUserToAddRows = false;
             SelectOrderDetailsList();
             dgvOrderDetailsList.AllowUserToAddRows = false;
             btnSaveOrderDetails.Enabled = false;
             btnExcelExport.Enabled = false;
+
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmReceiving.Dock = DockStyle.Fill;
+            pnmReceiving.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
+            btnAddOrder.Enabled = btnUpdateOrder.Enabled=false;
         }
         #region 입고내역
         /// <summary>
@@ -96,8 +105,6 @@ namespace GoodeeWay.InventoryBUS
                     btnReturnAdd.Enabled = btnReceivingDetailsSave.Enabled = true;
                 }
             }
-
-
         }
 
         /// <summary>
@@ -285,8 +292,7 @@ namespace GoodeeWay.InventoryBUS
                         InventoryTypeCode = dgvReceivingDetails.SelectedRows[0].Cells["InventoryTypeCode"].Value.ToString()
                     };
                     //ReceivingDetailsReturn폼에 Vo를 보내줌
-                    ReceivingDetailsReturn receivingDetailsReturn = new ReceivingDetailsReturn(ReceivingDetailsVOReturn);
-                    receivingDetailsReturn.Owner = this;
+                    ReceivingDetailsReturn receivingDetailsReturn = new ReceivingDetailsReturn(ReceivingDetailsVOReturn, this);
                     if (receivingDetailsReturn.ShowDialog() == DialogResult.OK)
                     {
                         dgvReceivingDetails.DataSource = null;
@@ -343,7 +349,6 @@ namespace GoodeeWay.InventoryBUS
                 MessageBox.Show("정상제품에 대해서만 반품내역 추가할 수 있습니다.");
             }
         }
-
         #endregion
 
         #region 재고테이블
@@ -353,10 +358,13 @@ namespace GoodeeWay.InventoryBUS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnInventoryNewTable_Click(object sender, EventArgs e)
+        private void btnInventoryNewSelect_Click(object sender, EventArgs e)
         {
             InventoryTableSelect();
         }
+        
+
+        
 
         /// <summary>                                                                               
         /// 재고 테이블                                                                             
@@ -388,6 +396,7 @@ namespace GoodeeWay.InventoryBUS
                 MessageBox.Show("먼저 재고내역을 선택해주세요");
             }
         }
+        
         #endregion
 
         #region 재고종류
@@ -478,7 +487,6 @@ namespace GoodeeWay.InventoryBUS
 
             new InventoryTypeDAO().InventoryTypeUpdate(inventoryTypeVO);
             InventoryTypeSelect();
-
         }
         #endregion
 
@@ -632,10 +640,11 @@ namespace GoodeeWay.InventoryBUS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvOrderDetailsList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             OrderDetailsListSelect();
         }
+        
 
         private void OrderDetailsListSelect()
         {
@@ -708,11 +717,6 @@ namespace GoodeeWay.InventoryBUS
             Marshal.ReleaseComObject(excelApp);
         }
 
-        /// <summary>
-        /// 발주 내역 수정
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnUpdateOrder_Click(object sender, EventArgs e)
         {
             List<OrderDetailsVO> orderDetailsVOList = new List<OrderDetailsVO>();
@@ -751,18 +755,51 @@ namespace GoodeeWay.InventoryBUS
 
         private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (!MaterialClassification.Contains(dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value.ToString()))
-                {
-                    MessageBox.Show("Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side 중 하나의 재료를 입력해주세요.");
-                    dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value = "Bread";
-                }
-            }
-            catch (Exception)
-            {
-            }
 
         }
+
+        private void btnReceiving_Click(object sender, EventArgs e)
+        {
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmReceiving.Dock = DockStyle.Fill;
+            pnmReceiving.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = true;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible= btnInventoryNewSelect.Visible= false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmInventory.Dock = DockStyle.Fill;
+            pnmInventory.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = true;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = false;
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            MenuPanel.Dock = DockStyle.None;
+            pnbReceiving.Dock = DockStyle.None;
+            pnmInventory.Dock = DockStyle.None;
+            MenuPanel.Dock = DockStyle.Top;
+            pnbReceiving.Dock = DockStyle.Bottom;
+            pnmOrder.Dock = DockStyle.Fill;
+            pnmOrder.BringToFront();
+            btnReturnAdd.Visible = btnLoadingFile.Visible = btnReceivingDetailsSave.Visible = false;
+            btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
+            btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
+        }
+
+        
     }
 }
