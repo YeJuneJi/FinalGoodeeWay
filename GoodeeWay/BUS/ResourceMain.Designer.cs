@@ -48,6 +48,7 @@
             this.lblRawMaterialCost = new System.Windows.Forms.Label();
             this.lblEmployeeCost = new System.Windows.Forms.Label();
             this.btnChart = new System.Windows.Forms.Button();
+            this.lbltotnetProfit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.resourceDataGView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -269,11 +270,23 @@
             this.btnChart.UseVisualStyleBackColor = false;
             this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
             // 
+            // lbltotnetProfit
+            // 
+            this.lbltotnetProfit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbltotnetProfit.AutoSize = true;
+            this.lbltotnetProfit.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotnetProfit.Location = new System.Drawing.Point(22, 360);
+            this.lbltotnetProfit.Name = "lbltotnetProfit";
+            this.lbltotnetProfit.Size = new System.Drawing.Size(63, 17);
+            this.lbltotnetProfit.TabIndex = 22;
+            this.lbltotnetProfit.Text = "총 손익 : ";
+            // 
             // ResourceMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.lbltotnetProfit);
             this.Controls.Add(this.btnChart);
             this.Controls.Add(this.lblEmployeeCost);
             this.Controls.Add(this.lblRawMaterialCost);
@@ -324,5 +337,6 @@
         private System.Windows.Forms.Label lblRawMaterialCost;
         private System.Windows.Forms.Label lblEmployeeCost;
         private System.Windows.Forms.Button btnChart;
+        private System.Windows.Forms.Label lbltotnetProfit;
     }
 }
