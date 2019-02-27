@@ -41,7 +41,6 @@
             this.btnSalary = new System.Windows.Forms.Button();
             this.btnAttendance = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTotalCount = new System.Windows.Forms.Label();
@@ -54,11 +53,10 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,31 +168,29 @@
             // 
             // btnSalary
             // 
-            this.btnSalary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnSalary.ForeColor = System.Drawing.Color.White;
-            this.btnSalary.Location = new System.Drawing.Point(1007, 31);
+            this.btnSalary.Image = ((System.Drawing.Image)(resources.GetObject("btnSalary.Image")));
+            this.btnSalary.Location = new System.Drawing.Point(1007, 23);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
-            this.btnSalary.Size = new System.Drawing.Size(79, 64);
+            this.btnSalary.Size = new System.Drawing.Size(79, 72);
             this.btnSalary.TabIndex = 93;
-            this.btnSalary.Text = "급여 대장";
             this.btnSalary.UseVisualStyleBackColor = false;
             this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
             // 
             // btnAttendance
             // 
-            this.btnAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnAttendance.ForeColor = System.Drawing.Color.White;
+            this.btnAttendance.Image = ((System.Drawing.Image)(resources.GetObject("btnAttendance.Image")));
             this.btnAttendance.Location = new System.Drawing.Point(1092, 31);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(79, 65);
             this.btnAttendance.TabIndex = 94;
-            this.btnAttendance.Text = "근태기록";
             this.btnAttendance.UseVisualStyleBackColor = false;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
@@ -207,20 +203,6 @@
             this.txtSearch.Size = new System.Drawing.Size(170, 22);
             this.txtSearch.TabIndex = 95;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(353, 13);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(44, 36);
-            this.btnSearch.TabIndex = 96;
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnExcel
             // 
@@ -355,17 +337,6 @@
             this.pictureBox1.TabIndex = 110;
             this.pictureBox1.TabStop = false;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBox1.Location = new System.Drawing.Point(10, 47);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(415, 54);
-            this.groupBox1.TabIndex = 111;
-            this.groupBox1.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -376,12 +347,27 @@
             this.pictureBox2.TabIndex = 112;
             this.pictureBox2.TabStop = false;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Location = new System.Drawing.Point(353, 55);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(44, 41);
+            this.btnSearch.TabIndex = 96;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1307, 599);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblFirst);
@@ -403,7 +389,6 @@
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Employee";
@@ -411,7 +396,6 @@
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -427,7 +411,6 @@
         private System.Windows.Forms.Button btnSalary;
         private System.Windows.Forms.Button btnAttendance;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnExcel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalCount;
@@ -440,7 +423,7 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

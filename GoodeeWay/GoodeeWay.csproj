@@ -436,6 +436,14 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DB\QueryInventory.sql" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\ledger.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\update-arrows.png" />
+    <None Include="Resources\loupe2.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\icons8-trash-filled-50.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />
