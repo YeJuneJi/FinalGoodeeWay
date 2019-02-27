@@ -640,10 +640,11 @@ namespace GoodeeWay.InventoryBUS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvOrderDetailsList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvOrderDetailsList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             OrderDetailsListSelect();
         }
+        
 
         private void OrderDetailsListSelect()
         {
@@ -754,17 +755,6 @@ namespace GoodeeWay.InventoryBUS
 
         private void dgvInventoryType_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (!MaterialClassification.Contains(dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value.ToString()))
-                {
-                    MessageBox.Show("Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side 중 하나의 재료를 입력해주세요.");
-                    dgvInventoryType["재료구분", dgvInventoryType.SelectedCells[0].RowIndex].Value = "Bread";
-                }
-            }
-            catch (Exception)
-            {
-            }
 
         }
 
@@ -810,6 +800,6 @@ namespace GoodeeWay.InventoryBUS
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
         }
 
-
+        
     }
 }
