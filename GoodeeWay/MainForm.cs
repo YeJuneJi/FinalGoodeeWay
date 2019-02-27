@@ -138,14 +138,12 @@ namespace GoodeeWay
             if (employee == null)
             {
                 employee = new Employee();
-                employee.MdiParent = this;
                 employee.Show();
                 //CheckOpenClose(employee);
             }
             else if (employee.IsDisposed)
             {
                 employee = new Employee();
-                employee.MdiParent = this;
                 employee.Show();
                 //CheckOpenClose(employee);
             }

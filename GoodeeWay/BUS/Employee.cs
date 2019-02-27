@@ -67,13 +67,8 @@ namespace GoodeeWay.BUS
         private void btnInsert_Click(object sender, EventArgs e) // 추가
         {
             Insert_Emp ie = new Insert_Emp();
-            ie.FormClosed += new FormClosedEventHandler(newForm_FormClosed); // 닫으면 폼이 새로고침됨
+            ie.FormClosed += new FormClosedEventHandler(Employee_Load); // 닫으면 폼이 새로고침됨
             ie.Show();
-        }
-
-        private void newForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Employee_Load(null, null);
         }
 
         private void btnClear_Click(object sender, EventArgs e) // 새로고침
@@ -83,7 +78,38 @@ namespace GoodeeWay.BUS
 
         private void btnUpdate_Click(object sender, EventArgs e) // 수정버튼
         {
-            MessageBox.Show("수정할 직원을 화면에서 더블클릭하세요.");
+            EmpVO tempVO = new EmpVO()
+            {
+                Empno = dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
+                Name = dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                Job = dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
+                Pay = float.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString()),
+                Department = dataGridView1.SelectedRows[0].Cells[4].Value.ToString(),
+                Mobile = dataGridView1.SelectedRows[0].Cells[5].Value.ToString(),
+                JoinDate = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[6].Value.ToString()),
+                LeaveDate = DateTime.Parse(dataGridView1.SelectedRows[0].Cells[7].Value.ToString()),
+                BankAccountNo = dataGridView1.SelectedRows[0].Cells[8].Value.ToString(),
+                Bank = dataGridView1.SelectedRows[0].Cells[9].Value.ToString(),
+                Email = dataGridView1.SelectedRows[0].Cells[10].Value.ToString(),
+                Note = dataGridView1.SelectedRows[0].Cells[11].Value.ToString(),
+            };
+
+            Update_Emp ue = new Update_Emp();
+            ue.bo.Empno = tempVO.Empno;
+            ue.bo.Name = tempVO.Name;
+            ue.bo.Job = tempVO.Job;
+            ue.bo.Pay = tempVO.Pay;
+            ue.bo.Department = tempVO.Department;
+            ue.bo.Mobile = tempVO.Mobile;
+            ue.bo.JoinDate = tempVO.JoinDate;
+            ue.bo.LeaveDate = tempVO.LeaveDate;
+            ue.bo.BankAccountNo = tempVO.BankAccountNo;
+            ue.bo.Bank = tempVO.Bank;
+            ue.bo.Email = tempVO.Email;
+            ue.bo.Note = tempVO.Note;
+
+            ue.FormClosed += new FormClosedEventHandler(Employee_Load);
+            ue.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e) // 삭제
@@ -143,38 +169,7 @@ namespace GoodeeWay.BUS
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EmpVO tempVO = new EmpVO()
-            {
-                Empno = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Job = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(),
-                Pay = float.Parse(dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString()),
-                Department = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString(),
-                Mobile = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString(),
-                JoinDate = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString()),
-                LeaveDate = DateTime.Parse(dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString()),
-                BankAccountNo = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString(),
-                Bank = dataGridView1.Rows[e.RowIndex].Cells[9].Value.ToString(),
-                Email = dataGridView1.Rows[e.RowIndex].Cells[10].Value.ToString(),
-                Note = dataGridView1.Rows[e.RowIndex].Cells[11].Value.ToString(),
-            };
-
-            Update_Emp ue = new Update_Emp();
-            ue.bo.Empno = tempVO.Empno;
-            ue.bo.Name = tempVO.Name;
-            ue.bo.Job = tempVO.Job;
-            ue.bo.Pay = tempVO.Pay;
-            ue.bo.Department = tempVO.Department;
-            ue.bo.Mobile = tempVO.Mobile;
-            ue.bo.JoinDate = tempVO.JoinDate;
-            ue.bo.LeaveDate = tempVO.LeaveDate;
-            ue.bo.BankAccountNo = tempVO.BankAccountNo;
-            ue.bo.Bank = tempVO.Bank;
-            ue.bo.Email = tempVO.Email;
-            ue.bo.Note = tempVO.Note;
-
-            ue.FormClosed += new FormClosedEventHandler(newForm_FormClosed);
-            ue.Show();
+            btnUpdate_Click(null, null);
         }
 
         private void btnSalary_Click(object sender, EventArgs e)

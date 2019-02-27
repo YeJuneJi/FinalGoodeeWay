@@ -81,6 +81,25 @@
     <Compile Include="BUS\ResourceManagemanet.Designer.cs">
       <DependentUpon>ResourceManagemanet.cs</DependentUpon>
     </Compile>
+    <Compile Include="BUS\Update_Attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Attendance.Designer.cs">
+      <DependentUpon>Update_Attendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Update_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Emp.Designer.cs">
+      <DependentUpon>Update_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUS\Update_Salary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUS\Update_Salary.Designer.cs">
+      <DependentUpon>Update_Salary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DAO\InventorySalesDAO.cs" />
     <Compile Include="DAO\MakingDAO.cs" />
     <Compile Include="DAO\MenuRecipeDAO.cs" />
@@ -252,13 +271,6 @@
     <Compile Include="BUS\SalesVolumeByMenu.Designer.cs">
       <DependentUpon>SalesVolumeByMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="BUS\Update_Emp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BUS\Update_Emp.Designer.cs">
-      <DependentUpon>Update_Emp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DAO\AttendanceDAO.cs" />
     <Compile Include="DAO\SalaryDAO.cs" />
     <Compile Include="BUS\Employee.Designer.cs">
       <DependentUpon>Employee.cs</DependentUpon>
@@ -331,6 +343,9 @@
     <EmbeddedResource Include="BUS\Insert_Salary.resx">
       <DependentUpon>Insert_Salary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Update_Attendance.resx">
+      <DependentUpon>Update_Attendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\Update_Emp.resx">
       <DependentUpon>Update_Emp.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Equipment\UcEquipment.resx">
       <DependentUpon>UcEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUS\Update_Salary.resx">
+      <DependentUpon>Update_Salary.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="VO\EmpVO.cs" />
     <Compile Include="SandwichMakingBus\FrmSandwichMaking.cs">
@@ -509,6 +527,14 @@
     <None Include="Resources\sjm_refresh1.png" />
     <None Include="Resources\sjm_save2.png" />
     <Content Include="Resources\Xbox X_32px.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\ledger.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\update-arrows.png" />
+    <None Include="Resources\loupe2.png" />
+    <None Include="Resources\folder.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\icons8-trash-filled-50.png" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="TextFile1.txt" />

@@ -36,7 +36,7 @@
             this.btnInsert = new System.Windows.Forms.Button();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.lblFirst = new System.Windows.Forms.Label();
             this.lblLast = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@
             this.btnPrev = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(972, 207);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // btnSearch
             // 
@@ -120,7 +122,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(93, 299);
+            this.btnDelete.Location = new System.Drawing.Point(174, 299);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 32);
             this.btnDelete.TabIndex = 107;
@@ -128,16 +130,16 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // button4
+            // btnUpdate
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.button4.Location = new System.Drawing.Point(174, 299);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 32);
-            this.button4.TabIndex = 108;
-            this.button4.Text = "새로고침";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Attendance_Load);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnUpdate.Location = new System.Drawing.Point(93, 299);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 32);
+            this.btnUpdate.TabIndex = 108;
+            this.btnUpdate.Text = "수정";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // lblFirst
             // 
@@ -223,11 +225,23 @@
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnClear.Location = new System.Drawing.Point(255, 299);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 32);
+            this.btnClear.TabIndex = 118;
+            this.btnClear.Text = "새로고침";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.Attendance_Load);
+            // 
             // Attendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 341);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblFirst);
@@ -237,7 +251,7 @@
             this.Controls.Add(this.btnLast);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.btnPrev);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.btnInsert);
@@ -267,7 +281,7 @@
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.Label lblTotalCount;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label lblFirst;
         private System.Windows.Forms.Label lblLast;
         private System.Windows.Forms.Label label2;
@@ -277,5 +291,6 @@
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Button btnClear;
     }
 }
