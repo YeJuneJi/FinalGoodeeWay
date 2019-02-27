@@ -37,7 +37,11 @@ namespace GoodeeWay.InventoryBUS
             if (DateTime.Parse(dateOfDisposal)<=DateTime.Parse(DateTime.Now.ToShortDateString()))
             {
                 btnAdd.Enabled = false;
-                btnDisposal.Enabled = true;
+
+                if (lblUseQuantity.Text!="0")
+                {
+                    btnDisposal.Enabled = true; 
+                }
             }
 
 
