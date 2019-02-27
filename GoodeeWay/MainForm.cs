@@ -33,12 +33,12 @@ namespace GoodeeWay
         public readonly int WM_NLBUTTONDOWN = 0xA1;
         public readonly int HT_CAPTION = 0x2;
 
-        
+
         FrmOrderView fov;
         FrmSaleRecord fsr;
 
         inventory inventory;
-        FrmSalesMenu salesMenu;        
+        FrmSalesMenu salesMenu;
         FrmEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;
@@ -85,7 +85,7 @@ namespace GoodeeWay
                 fov = new FrmOrderView();
                 MainPanel.Controls.Add(fov);
                 fov.BringToFront();
-                //CheckOpenClose(oderVIew);
+                CheckOpenClose(fov);
             }
             else
             {
@@ -95,19 +95,19 @@ namespace GoodeeWay
 
         private void 재고ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (inventory == null )
+            if (inventory == null)
             {
                 inventory = new inventory();
                 inventory.MdiParent = this;
                 inventory.Show();
-                CheckOpenClose(inventory);
+                //CheckOpenClose(inventory);
             }
             else if (inventory.IsDisposed)
             {
                 inventory = new inventory();
                 inventory.MdiParent = this;
                 inventory.Show();
-                CheckOpenClose(inventory);
+                //CheckOpenClose(inventory);
             }
             else
             {
@@ -119,11 +119,11 @@ namespace GoodeeWay
         {
             if (salesMenu == null || salesMenu.IsDisposed)
             {
-                
+
                 salesMenu = new FrmSalesMenu();
                 salesMenu.MdiParent = this;
                 salesMenu.Show();
-                CheckOpenClose(salesMenu);
+                //CheckOpenClose(salesMenu);
             }
             else
             {
@@ -139,8 +139,8 @@ namespace GoodeeWay
                 fsr = new FrmSaleRecord();
                 MainPanel.Controls.Add(fsr);
                 fsr.BringToFront();
-                //CheckOpenClose(saleRecords);
-            }           
+                CheckOpenClose(fsr);
+            }
             else
             {
                 fsr.BringToFront();
@@ -155,14 +155,14 @@ namespace GoodeeWay
                 frmEquipment = new Equipment.FrmEquipment();
                 frmEquipment.MdiParent = this;
                 frmEquipment.Show();
-                CheckOpenClose(frmEquipment);
+                //CheckOpenClose(frmEquipment);
             }
             else if (frmEquipment.IsDisposed)
             {
                 frmEquipment = new Equipment.FrmEquipment();
                 frmEquipment.MdiParent = this;
                 frmEquipment.Show();
-                CheckOpenClose(frmEquipment);
+                //CheckOpenClose(frmEquipment);
             }
             else
             {
@@ -177,14 +177,14 @@ namespace GoodeeWay
                 employee = new Employee();
                 employee.MdiParent = this;
                 employee.Show();
-                CheckOpenClose(employee);
+                //CheckOpenClose(employee);
             }
             else if (employee.IsDisposed)
             {
                 employee = new Employee();
                 employee.MdiParent = this;
                 employee.Show();
-                CheckOpenClose(employee);
+                //CheckOpenClose(employee);
             }
             else
             {
@@ -200,14 +200,14 @@ namespace GoodeeWay
                 resourceManagemanet = new ResourceManagemanet();
                 resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
-                CheckOpenClose(resourceManagemanet);
+                //CheckOpenClose(resourceManagemanet);
             }
             else if (resourceManagemanet.IsDisposed)
             {
                 resourceManagemanet = new ResourceManagemanet();
                 resourceManagemanet.MdiParent = this;
                 resourceManagemanet.Show();
-                CheckOpenClose(resourceManagemanet);
+                //CheckOpenClose(resourceManagemanet);
             }
             else
             {
@@ -240,22 +240,18 @@ namespace GoodeeWay
             tsLblTime.Text = DateTime.Now.ToLongDateString() + DateTime.Now.ToLongTimeString();
         }
 
-        private void CheckOpenClose(Form formName)
+        private void CheckOpenClose(UserControl formName)
         {
-            foreach (var item in this.MdiChildren)
-            {
-                try
-                {
-                    Form mf = (Form)item;
+            foreach (var item in MainPanel.Controls)
+            {   
+                if (item.GetType() != typeof(PictureBox))
+                {                    
+                    UserControl mf = (UserControl)item;
 
-                    if (!mf.Name.Equals(formName.Name) && !mf.Name.Equals("FrmSandwichMaking") && !mf.Name.Equals("ResourceManagemanet"))
+                    if (!mf.Name.Equals(formName.Name))
                     {
-                        mf.Close();
+                        mf.Dispose();
                     }
-                }
-                catch (Exception)
-                {
-                    throw;
                 }
             }
         }
