@@ -75,6 +75,7 @@
             this.btnExportAsExcel = new System.Windows.Forms.Button();
             this.sfdExcel = new System.Windows.Forms.SaveFileDialog();
             this.dgvEquipmentList = new System.Windows.Forms.DataGridView();
+            this.panel = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -540,7 +541,7 @@
             this.dgvEquipmentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvEquipmentList.EnableHeadersVisualStyles = false;
             this.dgvEquipmentList.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 27);
+            this.dgvEquipmentList.Location = new System.Drawing.Point(0, 24);
             this.dgvEquipmentList.Name = "dgvEquipmentList";
             this.dgvEquipmentList.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -565,11 +566,21 @@
             this.dgvEquipmentList.TabIndex = 37;
             this.dgvEquipmentList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEquipmentList_CellClick);
             // 
+            // panel
+            // 
+            this.panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(1100, 21);
+            this.panel.TabIndex = 38;
+            this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
+            // 
             // UcEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.dgvEquipmentList);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnAddEquipment);
@@ -639,5 +650,6 @@
         private System.Windows.Forms.Button btnExportAsExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcel;
         private System.Windows.Forms.DataGridView dgvEquipmentList;
+        private System.Windows.Forms.Panel panel;
     }
 }
