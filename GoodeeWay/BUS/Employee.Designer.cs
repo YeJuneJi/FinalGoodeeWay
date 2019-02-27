@@ -68,26 +68,26 @@
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(59, 468);
+            this.btnDelete.Location = new System.Drawing.Point(108, 468);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(43, 43);
+            this.btnDelete.Size = new System.Drawing.Size(88, 82);
             this.btnDelete.TabIndex = 63;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(108, 468);
+            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
+            this.btnUpdate.Location = new System.Drawing.Point(197, 468);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(111, 48);
+            this.btnUpdate.Size = new System.Drawing.Size(111, 82);
             this.btnUpdate.TabIndex = 62;
-            this.btnUpdate.Text = "직원 수정";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
@@ -100,23 +100,22 @@
             this.btnInsert.Location = new System.Drawing.Point(10, 468);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(43, 43);
+            this.btnInsert.Size = new System.Drawing.Size(92, 82);
             this.btnInsert.TabIndex = 61;
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnClear
             // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(225, 468);
+            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
+            this.btnClear.Location = new System.Drawing.Point(314, 468);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(111, 48);
+            this.btnClear.Size = new System.Drawing.Size(111, 82);
             this.btnClear.TabIndex = 65;
-            this.btnClear.Text = "새로고침";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -127,7 +126,7 @@
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Olive;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -175,12 +174,12 @@
             this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnSalary.ForeColor = System.Drawing.Color.White;
-            this.btnSalary.Location = new System.Drawing.Point(961, 47);
+            this.btnSalary.Location = new System.Drawing.Point(1007, 31);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
-            this.btnSalary.Size = new System.Drawing.Size(111, 49);
+            this.btnSalary.Size = new System.Drawing.Size(79, 64);
             this.btnSalary.TabIndex = 93;
-            this.btnSalary.Text = "월 급여 대장";
+            this.btnSalary.Text = "급여 대장";
             this.btnSalary.UseVisualStyleBackColor = false;
             this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
             // 
@@ -190,10 +189,10 @@
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.btnAttendance.ForeColor = System.Drawing.Color.White;
-            this.btnAttendance.Location = new System.Drawing.Point(1078, 47);
+            this.btnAttendance.Location = new System.Drawing.Point(1092, 31);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(111, 49);
+            this.btnAttendance.Size = new System.Drawing.Size(79, 65);
             this.btnAttendance.TabIndex = 94;
             this.btnAttendance.Text = "근태기록";
             this.btnAttendance.UseVisualStyleBackColor = false;
@@ -225,15 +224,15 @@
             // 
             // btnExcel
             // 
-            this.btnExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.btnExcel.BackColor = System.Drawing.Color.White;
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
-            this.btnExcel.Location = new System.Drawing.Point(1195, 47);
+            this.btnExcel.Location = new System.Drawing.Point(1177, 31);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(61, 49);
+            this.btnExcel.Size = new System.Drawing.Size(79, 65);
             this.btnExcel.TabIndex = 97;
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
@@ -281,7 +280,7 @@
             // 
             this.lblFirst.AutoSize = true;
             this.lblFirst.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblFirst.Location = new System.Drawing.Point(665, 473);
+            this.lblFirst.Location = new System.Drawing.Point(666, 533);
             this.lblFirst.Name = "lblFirst";
             this.lblFirst.Size = new System.Drawing.Size(15, 17);
             this.lblFirst.TabIndex = 108;
@@ -291,7 +290,7 @@
             // 
             this.lblLast.AutoSize = true;
             this.lblLast.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblLast.Location = new System.Drawing.Point(698, 473);
+            this.lblLast.Location = new System.Drawing.Point(699, 533);
             this.lblLast.Name = "lblLast";
             this.lblLast.Size = new System.Drawing.Size(15, 17);
             this.lblLast.TabIndex = 107;
@@ -300,7 +299,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(683, 473);
+            this.label2.Location = new System.Drawing.Point(684, 533);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(10, 15);
             this.label2.TabIndex = 106;
@@ -308,7 +307,7 @@
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(721, 468);
+            this.btnNext.Location = new System.Drawing.Point(722, 528);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(33, 23);
             this.btnNext.TabIndex = 105;
@@ -318,7 +317,7 @@
             // 
             // btnLast
             // 
-            this.btnLast.Location = new System.Drawing.Point(760, 468);
+            this.btnLast.Location = new System.Drawing.Point(761, 528);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(33, 23);
             this.btnLast.TabIndex = 104;
@@ -328,7 +327,7 @@
             // 
             // btnFirst
             // 
-            this.btnFirst.Location = new System.Drawing.Point(587, 468);
+            this.btnFirst.Location = new System.Drawing.Point(588, 528);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(33, 23);
             this.btnFirst.TabIndex = 103;
@@ -338,7 +337,7 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(626, 468);
+            this.btnPrev.Location = new System.Drawing.Point(627, 528);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(33, 23);
             this.btnPrev.TabIndex = 102;
@@ -382,7 +381,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1268, 529);
+            this.ClientSize = new System.Drawing.Size(1307, 599);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblFirst);
