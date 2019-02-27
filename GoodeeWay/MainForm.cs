@@ -30,7 +30,7 @@ namespace GoodeeWay
         USalesMenu salesMenu;
         FrmSaleRecords saleRecords;
         UcEquipment frmEquipment;
-        Employee employee;
+        EmployeeControl employee;
         ResourceManagemanet resourceManagemanet;
 
         public static FrmSandwichMaking frmSandwichMaking;
@@ -135,15 +135,16 @@ namespace GoodeeWay
 
         private void 인사관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (employee == null)
+            if (employee == null || employee.IsDisposed)
             {
-                employee = new Employee();
-                employee.Show();
+                employee = new EmployeeControl();
+                MainPanel.Controls.Add(employee);
+                employee.BringToFront();
                 //CheckOpenClose(employee);
             }
             else if (employee.IsDisposed)
             {
-                employee = new Employee();
+                employee = new EmployeeControl();
                 employee.Show();
                 //CheckOpenClose(employee);
             }

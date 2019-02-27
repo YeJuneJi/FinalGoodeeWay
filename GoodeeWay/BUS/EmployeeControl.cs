@@ -30,7 +30,7 @@ namespace GoodeeWay.BUS
         private void TotalCount()
         {
             lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
-            lblLast.Text = totalcount.ToString();
+            //lblLast.Text = totalcount.ToString();
         }
 
         private void Employee_Load(object sender, EventArgs e)
@@ -239,62 +239,6 @@ namespace GoodeeWay.BUS
         {
             Attendance ad = new Attendance();
             ad.Show();
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            if (page == totalcount)
-            {
-                MessageBox.Show("마지막 페이지 입니다.");
-            }
-            else
-            {
-                page++;
-                lblFirst.Text = page.ToString();
-                Employee_Load(null, null);
-            }
-        }
-
-        private void btnPrev_Click(object sender, EventArgs e)
-        {
-            if (page == 1)
-            {
-                MessageBox.Show("첫번째 페이지 입니다.");
-            }
-            else
-            {
-                page--;
-                lblFirst.Text = page.ToString();
-                Employee_Load(null, null);
-            }
-        }
-
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            if (page == totalcount)
-            {
-                MessageBox.Show("마지막 페이지 입니다.");
-            }
-            else
-            {
-                page = totalcount;
-                lblFirst.Text = page.ToString();
-                Employee_Load(null, null);
-            }
-        }
-
-        private void btnFirst_Click(object sender, EventArgs e)
-        {
-            if (page == 1)
-            {
-                MessageBox.Show("첫번째 페이지 입니다.");
-            }
-            else
-            {
-                page = 1;
-                lblFirst.Text = page.ToString();
-                Employee_Load(null, null);
-            }
         }
     }
 }

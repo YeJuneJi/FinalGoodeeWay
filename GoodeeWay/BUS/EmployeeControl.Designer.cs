@@ -33,16 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblFirst = new System.Windows.Forms.Label();
-            this.lblLast = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnLast = new System.Windows.Forms.Button();
-            this.btnFirst = new System.Windows.Forms.Button();
-            this.btnPrev = new System.Windows.Forms.Button();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,108 +46,20 @@
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(346, 87);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(44, 41);
-            this.btnSearch.TabIndex = 121;
-            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(3, 35);
+            this.pictureBox2.Location = new System.Drawing.Point(505, 33);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(161, 33);
+            this.pictureBox2.Size = new System.Drawing.Size(250, 64);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 134;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(496, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 133;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblFirst
-            // 
-            this.lblFirst.AutoSize = true;
-            this.lblFirst.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblFirst.Location = new System.Drawing.Point(647, 565);
-            this.lblFirst.Name = "lblFirst";
-            this.lblFirst.Size = new System.Drawing.Size(15, 17);
-            this.lblFirst.TabIndex = 132;
-            this.lblFirst.Text = "1";
-            // 
-            // lblLast
-            // 
-            this.lblLast.AutoSize = true;
-            this.lblLast.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblLast.Location = new System.Drawing.Point(680, 565);
-            this.lblLast.Name = "lblLast";
-            this.lblLast.Size = new System.Drawing.Size(15, 17);
-            this.lblLast.TabIndex = 131;
-            this.lblLast.Text = "1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(665, 565);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(11, 12);
-            this.label2.TabIndex = 130;
-            this.label2.Text = "/";
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(703, 560);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(33, 23);
-            this.btnNext.TabIndex = 129;
-            this.btnNext.Text = ">";
-            this.btnNext.UseVisualStyleBackColor = true;
-            // 
-            // btnLast
-            // 
-            this.btnLast.Location = new System.Drawing.Point(742, 560);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(33, 23);
-            this.btnLast.TabIndex = 128;
-            this.btnLast.Text = ">>";
-            this.btnLast.UseVisualStyleBackColor = true;
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.Location = new System.Drawing.Point(569, 560);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(33, 23);
-            this.btnFirst.TabIndex = 127;
-            this.btnFirst.Text = "<<";
-            this.btnFirst.UseVisualStyleBackColor = true;
-            // 
-            // btnPrev
-            // 
-            this.btnPrev.Location = new System.Drawing.Point(608, 560);
-            this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(33, 23);
-            this.btnPrev.TabIndex = 126;
-            this.btnPrev.Text = "<";
-            this.btnPrev.UseVisualStyleBackColor = true;
             // 
             // cbFilter
             // 
@@ -169,7 +72,7 @@
             this.cbFilter.Items.AddRange(new object[] {
             "사원명",
             "사원번호"});
-            this.cbFilter.Location = new System.Drawing.Point(65, 99);
+            this.cbFilter.Location = new System.Drawing.Point(65, 92);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(99, 25);
@@ -179,8 +82,10 @@
             // lblTotalCount
             // 
             this.lblTotalCount.AutoSize = true;
+            this.lblTotalCount.BackColor = System.Drawing.Color.White;
             this.lblTotalCount.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.lblTotalCount.Location = new System.Drawing.Point(1110, 493);
+            this.lblTotalCount.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTotalCount.Location = new System.Drawing.Point(1104, 493);
             this.lblTotalCount.Name = "lblTotalCount";
             this.lblTotalCount.Size = new System.Drawing.Size(87, 17);
             this.lblTotalCount.TabIndex = 124;
@@ -190,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.label1.Location = new System.Drawing.Point(4, 103);
+            this.label1.Location = new System.Drawing.Point(4, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 123;
@@ -201,19 +106,23 @@
             this.btnExcel.BackColor = System.Drawing.Color.White;
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.ForeColor = System.Drawing.Color.DimGray;
             this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
-            this.btnExcel.Location = new System.Drawing.Point(1118, 63);
+            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcel.Location = new System.Drawing.Point(1089, 64);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(79, 65);
+            this.btnExcel.Size = new System.Drawing.Size(102, 60);
             this.btnExcel.TabIndex = 122;
+            this.btnExcel.Text = "엑셀 저장";
+            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(170, 100);
+            this.txtSearch.Location = new System.Drawing.Point(170, 93);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 22);
@@ -223,80 +132,107 @@
             // 
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnAttendance.ForeColor = System.Drawing.Color.White;
+            this.btnAttendance.ForeColor = System.Drawing.Color.DimGray;
             this.btnAttendance.Image = ((System.Drawing.Image)(resources.GetObject("btnAttendance.Image")));
-            this.btnAttendance.Location = new System.Drawing.Point(1033, 63);
+            this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAttendance.Location = new System.Drawing.Point(981, 63);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(79, 65);
+            this.btnAttendance.Size = new System.Drawing.Size(102, 61);
             this.btnAttendance.TabIndex = 119;
+            this.btnAttendance.Text = "근태기록";
+            this.btnAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAttendance.UseVisualStyleBackColor = false;
+            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
             // btnSalary
             // 
             this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnSalary.ForeColor = System.Drawing.Color.White;
+            this.btnSalary.ForeColor = System.Drawing.Color.DimGray;
             this.btnSalary.Image = ((System.Drawing.Image)(resources.GetObject("btnSalary.Image")));
-            this.btnSalary.Location = new System.Drawing.Point(948, 55);
+            this.btnSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalary.Location = new System.Drawing.Point(860, 63);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
-            this.btnSalary.Size = new System.Drawing.Size(79, 72);
+            this.btnSalary.Size = new System.Drawing.Size(115, 61);
             this.btnSalary.TabIndex = 118;
+            this.btnSalary.Text = "월 급여 대장";
+            this.btnSalary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalary.UseVisualStyleBackColor = false;
+            this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.DimGray;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(103, 495);
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(223, 497);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 82);
+            this.btnDelete.Size = new System.Drawing.Size(102, 62);
             this.btnDelete.TabIndex = 115;
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Text = "사원 삭제";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.DimGray;
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(192, 495);
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(115, 497);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(111, 82);
+            this.btnUpdate.Size = new System.Drawing.Size(102, 62);
             this.btnUpdate.TabIndex = 114;
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUpdate.Text = "사원 수정";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnInsert
             // 
+            this.btnInsert.BackColor = System.Drawing.Color.White;
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnInsert.ForeColor = System.Drawing.Color.White;
+            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.ForeColor = System.Drawing.Color.DimGray;
             this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
-            this.btnInsert.Location = new System.Drawing.Point(5, 495);
+            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInsert.Location = new System.Drawing.Point(7, 497);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(92, 82);
+            this.btnInsert.Size = new System.Drawing.Size(102, 62);
             this.btnInsert.TabIndex = 113;
-            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Text = "사원 추가";
+            this.btnInsert.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnClear.ForeColor = System.Drawing.Color.White;
+            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
-            this.btnClear.Location = new System.Drawing.Point(309, 495);
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(331, 497);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(111, 82);
+            this.btnClear.Size = new System.Drawing.Size(102, 62);
             this.btnClear.TabIndex = 117;
+            this.btnClear.Text = "새로고침";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dataGridView1
             // 
@@ -346,20 +282,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(1200, 357);
             this.dataGridView1.TabIndex = 116;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.DimGray;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(346, 85);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(102, 39);
+            this.btnSearch.TabIndex = 135;
+            this.btnSearch.Text = "검색";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // EmployeeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblFirst);
-            this.Controls.Add(this.lblLast);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.btnLast);
-            this.Controls.Add(this.btnFirst);
-            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lblTotalCount);
             this.Controls.Add(this.label1);
@@ -374,8 +320,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "EmployeeControl";
             this.Size = new System.Drawing.Size(1200, 730);
+            this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -383,17 +329,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblFirst;
-        private System.Windows.Forms.Label lblLast;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnLast;
-        private System.Windows.Forms.Button btnFirst;
-        private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Label lblTotalCount;
         private System.Windows.Forms.Label label1;
@@ -406,5 +342,6 @@
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
