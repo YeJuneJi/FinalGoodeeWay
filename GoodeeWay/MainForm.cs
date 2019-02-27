@@ -28,7 +28,6 @@ namespace GoodeeWay
         //OderVIew oderVIew;
         FrmInventory fi;
         USalesMenu salesMenu;
-        FrmSaleRecords saleRecords;
         UcEquipment frmEquipment;
         Employee employee;
         ResourceManagemanet resourceManagemanet;

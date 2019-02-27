@@ -451,21 +451,14 @@ namespace GoodeeWay.Sales
         {
             string menuCode = msktbxMnuCode.Text;
             int count = 0;
-            foreach (SalesMenuVO item in salesMenuList)
+            count = SearchingDeleteMenu(menuCode, count);
+            if (count == 0)
             {
-                if (item.MenuCode.Equals(menuCode))
-                {
-                    count++;
-                    break;
-                }
+                MessageBox.Show("삭제하실 메뉴가 없습니다.");
+                return;
             }
             if (ValidateMenuCode(menuCode))
             {
-                if (count == 0)
-                {
-                    MessageBox.Show("삭제하실 메뉴가 없습니다.");
-                    return;
-                }
                 try
                 {
                     if (MessageBox.Show("정말로 삭제 하시겠어요?", "메뉴삭제", MessageBoxButtons.OKCancel) != DialogResult.Cancel)
@@ -479,7 +472,7 @@ namespace GoodeeWay.Sales
                     {
                         return;
                     }
-                    
+
                 }
                 catch (SqlException)
                 {
@@ -488,6 +481,26 @@ namespace GoodeeWay.Sales
             }
             btnClear_Click(null, null);
             ReflashData();
+        }
+
+        /// <summary>
+        /// 메뉴를 삭제하기위한 리스트 검색
+        /// </summary>
+        /// <param name="menuCode">등록된 메뉴코드</param>
+        /// <param name="count">등록된 메뉴코드의 개수</param>
+        /// <returns>메뉴코드의 개수를 반환한다.</returns>
+        private int SearchingDeleteMenu(string menuCode, int count)
+        {
+            foreach (SalesMenuVO item in salesMenuList)
+            {
+                if (item.MenuCode.Equals(menuCode))
+                {
+                    count++;
+                    break;
+                }
+            }
+
+            return count;
         }
 
         private void salesMenuGView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -917,7 +930,6 @@ namespace GoodeeWay.Sales
                 item.Padding = new Padding(0, 8, 0, 0);
             }
         }
-
 
         /// <summary>
         /// Panel 안의 레시피들의 라벨형식을 동일하게 해주기 위한 메서드.
