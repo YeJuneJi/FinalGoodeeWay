@@ -113,7 +113,7 @@ namespace GoodeeWay.BUS
 
         private void Salary_Load(object sender, EventArgs e)
         {
-            lblFirst.Text = page.ToString();
+            //lblFirst.Text = page.ToString();
             comboBox1.Text = comboBox3.Text = "2019";
             comboBox2.Text = comboBox4.Text = "2";
 
@@ -157,7 +157,7 @@ namespace GoodeeWay.BUS
             //{
             //    totalcount = (lst.Count / 10) + 1;
             //}
-            lblLast.Text = totalcount.ToString();
+            //lblLast.Text = totalcount.ToString();
             lst = sd.SelectAll();
             dataGridView1.DataSource = lst;
             ColumnSetKor();
@@ -174,69 +174,13 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["payday"].HeaderText = "지급 날짜";
             dataGridView1.Columns["name"].HeaderText = "사원명";
         }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            if (page == totalcount)
-            {
-                MessageBox.Show("마지막 페이지 입니다.");
-            }
-            else
-            {
-                page++;
-                lblFirst.Text = page.ToString();
-                Salary_Load(null, null);
-            }
-        }
-
-        private void btnPrev_Click(object sender, EventArgs e)
-        {
-            if (page == 1)
-            {
-                MessageBox.Show("첫번째 페이지 입니다.");
-            }
-            else
-            {
-                page--;
-                lblFirst.Text = page.ToString();
-                Salary_Load(null, null);
-            }
-        }
-
-        private void btnLast_Click(object sender, EventArgs e)
-        {
-            if (page == totalcount)
-            {
-                MessageBox.Show("마지막 페이지 입니다.");
-            }
-            else
-            {
-                page = totalcount;
-                lblFirst.Text = page.ToString();
-                Salary_Load(null, null);
-            }
-        }
-
-        private void btnFirst_Click(object sender, EventArgs e)
-        {
-            if (page == 1)
-            {
-                MessageBox.Show("첫번째 페이지 입니다.");
-            }
-            else
-            {
-                page = 1;
-                lblFirst.Text = page.ToString();
-                Salary_Load(null, null);
-            }
-        }
-
+        
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = "";
 
             DateTime temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
-            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-31");
+            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-28");
             
             if (temp1 > temp2)
             {

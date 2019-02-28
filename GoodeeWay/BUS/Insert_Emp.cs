@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -16,6 +17,13 @@ namespace GoodeeWay.BUS
 {
     public partial class Insert_Emp : Form
     {
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        public readonly int WM_NLBUTTONDOWN = 0xA1;
+        public readonly int HT_CAPTION = 0x2;
+
         EmpDAO ed = new EmpDAO();
 
         public Insert_Emp()
@@ -55,42 +63,8 @@ namespace GoodeeWay.BUS
                     MessageBox.Show("저장 실패");
                 }
             }
-            //try
-            //{
-            //    if (check())
-            //    {
-            //        var emp = new EmpVO()
-            //        {
-            //            Name = txtName.Text,
-            //            Job = cbJob.Text,
-            //            Pay = float.Parse(txtSalary.Text),
-            //            Department = txtDepartment.Text,
-            //            Mobile = txtPhone.Text,
-            //            JoinDate = DateTime.Parse(dtpJoin.Text),
-            //            BankAccountNo = txtBankAccountNo.Text,
-            //            Bank = cbBank.Text,
-            //            Email = txtEmail.Text,
-            //            Note = txtNote.Text
-            //        };
-
-            //        try
-            //        {
-            //            if (new EmpDAO().InsertBoard(emp))
-            //            {
-            //                MessageBox.Show("저장 성공");
-            //            }
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show("저장 실패" + ex);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("오류" + ex);
-            //}
         }
+
         /// <summary>
         /// 필수입력란 bool로 확인
         /// </summary>
@@ -115,7 +89,7 @@ namespace GoodeeWay.BUS
             string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
             if (str.Length > 0)
             {
-                MessageBox.Show("시급은 숫자만 입력가능합니다");
+                MessageBox.Show("숫자만 입력가능합니다");
                 txtSalary.Text = "";
             }
         }
@@ -173,6 +147,47 @@ namespace GoodeeWay.BUS
             txtPhone.Text = "";
             txtSalary.Text = "";
             dtpJoin.Text = "";
+        }
+
+        private void panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
+
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtPhone.Text, @"[0-9]|[-]", "");
+            if (txtPhone.Text.Length > 13 || str.Length > 0)
+            {
+                txtPhone.Text = "";
+            }
+        }
+
+        private void txtBankAccountNo_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtBankAccountNo.Text, @"[0-9]|[-]", "");
+            if (str.Length > 0)
+            {
+                txtBankAccountNo.Text = "";
+            }
+        }
+
+        private void txtDepartment_Leave(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]+", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("부서명은 한글만 입력가능합니다");
+                txtDepartment.Text = "";
+            }
+            txtDepartment.Focus();
         }
     }
 }
