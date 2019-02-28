@@ -198,8 +198,10 @@ namespace GoodeeWay.BUS
                         }
                         salList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EmployeePrice = sum });
                     }
-                    mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
-                    mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
+
+                    FetchMergeList();
+
+
                     break;
 
                 case Period.Month:
@@ -279,7 +281,7 @@ namespace GoodeeWay.BUS
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
 
-                    mergeList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                    FetchMergeList();
                     break;
 
                 case Period.Year:
@@ -359,11 +361,38 @@ namespace GoodeeWay.BUS
                         dt = new DateTime(item.Key, 1, 1) + new TimeSpan(00, 00, 00);
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
-                    mergeList = totInvestList.Union(equipList).ToList();
-                    mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
+
+                    FetchMergeList();
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void FetchMergeList()
+        {
+            mergeList.Clear();
+            var unionTotList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
+
+            foreach (ResourceManagementVO item in unionTotList)
+            {
+                bool pick = false;
+
+                foreach (var item2 in mergeList)
+                {
+                    if (item2.ResourceDate == item.ResourceDate)
+                    {
+                        pick = true;
+                        item2.TotInvestPrice += item.TotInvestPrice;
+                        item2.RawMaterialCost += item.RawMaterialCost;
+                        item2.EquipPrice += item.EquipPrice;
+                        item2.EmployeePrice += item.EmployeePrice;
+                    }
+                }
+                if (!pick)
+                {
+                    mergeList.Add(item);
+                }
             }
         }
 
@@ -391,6 +420,7 @@ namespace GoodeeWay.BUS
             totRsrcTab.Rows.Clear();
             totInvestList.Clear();
             equipList.Clear();
+            salList.Clear();
             lbltotalInvesetPrice.Text = "총매출 : ";
             lblRawMaterialCost.Text = "총 원재료비: ";
             lblEquipPrice.Text = "총 비품비: ";
@@ -424,7 +454,6 @@ namespace GoodeeWay.BUS
                     yearcheck = true;
                 }
 
-                //리스트를 총판매액 리스트와 비품비 리스트를 병합후 날짜로 정렬 => 리스트화
 
                 float totalInvesetPrice = 0; //매출액
                 float totRawMaterialCost = 0;//원재료비
@@ -458,12 +487,6 @@ namespace GoodeeWay.BUS
                     totalInvesetPrice += item.TotInvestPrice;
                     totnetProfit += netProfit;
                 }
-                List<TotalResoureVO> lst = new List<TotalResoureVO>();
-                foreach (DataRow item in totRsrcTab.Rows)
-                {
-                    lst.Add(new TotalResoureVO { ResourceDate = item[0].ToString(), TotInvestPrice = Convert.ToSingle(item[1]), RawMaterialCost = Convert.ToSingle(item[2]), EquipPrice = Convert.ToSingle(item[3]), EmployeePrice = Convert.ToSingle(item[4]), NetProfit = Convert.ToSingle(item[5]) });
-                }
-                
 
                 lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                 lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
@@ -471,7 +494,7 @@ namespace GoodeeWay.BUS
                 lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
                 lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
                 lbltotnetProfit.ForeColor = Color.Red;
-                resourceDataGView.DataSource = lst;
+                resourceDataGView.DataSource = totRsrcTab;
             }
         }
 

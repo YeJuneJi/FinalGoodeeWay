@@ -312,7 +312,6 @@
     <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
-    <Compile Include="VO\TotalResoureVO.cs" />
     <EmbeddedResource Include="BUS\FrmResourceChart.resx">
       <DependentUpon>FrmResourceChart.cs</DependentUpon>
     </EmbeddedResource>

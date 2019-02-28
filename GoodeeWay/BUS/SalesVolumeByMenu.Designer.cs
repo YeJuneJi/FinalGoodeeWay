@@ -98,7 +98,6 @@
             this.crtAllMenuPercent.Size = new System.Drawing.Size(460, 255);
             this.crtAllMenuPercent.TabIndex = 1;
             this.crtAllMenuPercent.Text = "chart2";
-            this.crtAllMenuPercent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.crtAllMenuPercent_MouseMove);
             // 
             // button1
             // 

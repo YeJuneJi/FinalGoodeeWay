@@ -44,7 +44,10 @@
             this.btnRebuild = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
+            this.panelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            this.panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelImage)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -205,11 +208,12 @@
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
+            this.panel.Controls.Add(this.panelImage);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.ForeColor = System.Drawing.Color.Cornsilk;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(456, 28);
+            this.panel.Size = new System.Drawing.Size(456, 40);
             this.panel.TabIndex = 6;
             this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
@@ -230,6 +234,15 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // panelImage
+            // 
+            this.panelImage.Location = new System.Drawing.Point(146, 2);
+            this.panelImage.Name = "panelImage";
+            this.panelImage.Size = new System.Drawing.Size(154, 36);
+            this.panelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.panelImage.TabIndex = 4;
+            this.panelImage.TabStop = false;
+            // 
             // FrmAddEquipment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -243,8 +256,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAddEquipment";
             this.Text = "비품등록";
+            this.Load += new System.EventHandler(this.FrmAddEquipment_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,5 +283,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.PictureBox panelImage;
     }
 }

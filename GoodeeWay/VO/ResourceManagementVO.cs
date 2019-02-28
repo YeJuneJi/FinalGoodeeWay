@@ -49,5 +49,7 @@ namespace GoodeeWay.VO
             get { return employeePrice; }
             set { employeePrice = value; }
         }
+
+
     }
 }

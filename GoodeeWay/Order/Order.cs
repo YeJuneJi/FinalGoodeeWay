@@ -87,8 +87,6 @@ namespace GoodeeWay.Order
             orderRecords.Columns.AddRange(dataColoumns);
             
             ListToGridView(menuList);
-
-            //dataGridView1.DataSource = menuList;
         }
 
         /// <summary>
