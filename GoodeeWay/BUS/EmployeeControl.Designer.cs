@@ -28,38 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.lblTotalCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnExcel = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.btnAttendance = new System.Windows.Forms.Button();
             this.btnSalary = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(505, 40);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(250, 64);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 134;
-            this.pictureBox2.TabStop = false;
             // 
             // cbFilter
             // 
@@ -101,24 +90,6 @@
             this.label1.TabIndex = 123;
             this.label1.Text = "직원검색";
             // 
-            // btnExcel
-            // 
-            this.btnExcel.BackColor = System.Drawing.Color.White;
-            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnExcel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
-            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcel.Location = new System.Drawing.Point(1089, 76);
-            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(102, 60);
-            this.btnExcel.TabIndex = 122;
-            this.btnExcel.Text = "엑셀 저장";
-            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9F);
@@ -127,112 +98,6 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 22);
             this.txtSearch.TabIndex = 120;
-            // 
-            // btnAttendance
-            // 
-            this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnAttendance.ForeColor = System.Drawing.Color.DimGray;
-            this.btnAttendance.Image = ((System.Drawing.Image)(resources.GetObject("btnAttendance.Image")));
-            this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttendance.Location = new System.Drawing.Point(981, 75);
-            this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(102, 61);
-            this.btnAttendance.TabIndex = 119;
-            this.btnAttendance.Text = "근태기록";
-            this.btnAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAttendance.UseVisualStyleBackColor = false;
-            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
-            // 
-            // btnSalary
-            // 
-            this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.btnSalary.ForeColor = System.Drawing.Color.DimGray;
-            this.btnSalary.Image = ((System.Drawing.Image)(resources.GetObject("btnSalary.Image")));
-            this.btnSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalary.Location = new System.Drawing.Point(860, 75);
-            this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSalary.Name = "btnSalary";
-            this.btnSalary.Size = new System.Drawing.Size(115, 61);
-            this.btnSalary.TabIndex = 118;
-            this.btnSalary.Text = "월 급여 대장";
-            this.btnSalary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalary.UseVisualStyleBackColor = false;
-            this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.DimGray;
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(223, 509);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(102, 62);
-            this.btnDelete.TabIndex = 115;
-            this.btnDelete.Text = "사원 삭제";
-            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.DimGray;
-            this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
-            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(115, 509);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(102, 62);
-            this.btnUpdate.TabIndex = 114;
-            this.btnUpdate.Text = "사원 수정";
-            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.BackColor = System.Drawing.Color.White;
-            this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.ForeColor = System.Drawing.Color.DimGray;
-            this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
-            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsert.Location = new System.Drawing.Point(7, 509);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(102, 62);
-            this.btnInsert.TabIndex = 113;
-            this.btnInsert.Text = "사원 추가";
-            this.btnInsert.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnInsert.UseVisualStyleBackColor = false;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.White;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
-            this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
-            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(331, 509);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(102, 62);
-            this.btnClear.TabIndex = 117;
-            this.btnClear.Text = "새로고침";
-            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // dataGridView1
             // 
@@ -288,7 +153,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.DimGray;
-            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.Image = global::GoodeeWay.Properties.Resources.kob_loupe2;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.Location = new System.Drawing.Point(346, 97);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -299,6 +164,140 @@
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.kob_employee;
+            this.pictureBox2.Location = new System.Drawing.Point(505, 40);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(250, 64);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 134;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.White;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnExcel.ForeColor = System.Drawing.Color.DimGray;
+            this.btnExcel.Image = global::GoodeeWay.Properties.Resources.kob_excel;
+            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcel.Location = new System.Drawing.Point(1089, 76);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(102, 60);
+            this.btnExcel.TabIndex = 122;
+            this.btnExcel.Text = "엑셀 저장";
+            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // btnAttendance
+            // 
+            this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnAttendance.ForeColor = System.Drawing.Color.DimGray;
+            this.btnAttendance.Image = global::GoodeeWay.Properties.Resources.kob_folder;
+            this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAttendance.Location = new System.Drawing.Point(981, 75);
+            this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAttendance.Name = "btnAttendance";
+            this.btnAttendance.Size = new System.Drawing.Size(102, 61);
+            this.btnAttendance.TabIndex = 119;
+            this.btnAttendance.Text = "근태기록";
+            this.btnAttendance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAttendance.UseVisualStyleBackColor = false;
+            this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
+            // 
+            // btnSalary
+            // 
+            this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnSalary.ForeColor = System.Drawing.Color.DimGray;
+            this.btnSalary.Image = global::GoodeeWay.Properties.Resources.kob_ledger;
+            this.btnSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalary.Location = new System.Drawing.Point(860, 75);
+            this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSalary.Name = "btnSalary";
+            this.btnSalary.Size = new System.Drawing.Size(115, 61);
+            this.btnSalary.TabIndex = 118;
+            this.btnSalary.Text = "월 급여 대장";
+            this.btnSalary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSalary.UseVisualStyleBackColor = false;
+            this.btnSalary.Click += new System.EventHandler(this.btnSalary_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.DimGray;
+            this.btnDelete.Image = global::GoodeeWay.Properties.Resources.kob_delete;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(223, 509);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(102, 62);
+            this.btnDelete.TabIndex = 115;
+            this.btnDelete.Text = "사원 삭제";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.DimGray;
+            this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.kob_update;
+            this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdate.Location = new System.Drawing.Point(115, 509);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(102, 62);
+            this.btnUpdate.TabIndex = 114;
+            this.btnUpdate.Text = "사원 수정";
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.BackColor = System.Drawing.Color.White;
+            this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.ForeColor = System.Drawing.Color.DimGray;
+            this.btnInsert.Image = global::GoodeeWay.Properties.Resources.kob_add_user;
+            this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInsert.Location = new System.Drawing.Point(7, 509);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(102, 62);
+            this.btnInsert.TabIndex = 113;
+            this.btnInsert.Text = "사원 추가";
+            this.btnInsert.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.White;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.ForeColor = System.Drawing.Color.DimGray;
+            this.btnClear.Image = global::GoodeeWay.Properties.Resources.kob_reload;
+            this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClear.Location = new System.Drawing.Point(331, 509);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(102, 62);
+            this.btnClear.TabIndex = 117;
+            this.btnClear.Text = "새로고침";
+            this.btnClear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // EmployeeControl
             // 
@@ -322,8 +321,8 @@
             this.Name = "EmployeeControl";
             this.Size = new System.Drawing.Size(1200, 730);
             this.Load += new System.EventHandler(this.Employee_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

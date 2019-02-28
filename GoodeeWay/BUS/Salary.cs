@@ -114,8 +114,8 @@ namespace GoodeeWay.BUS
         private void Salary_Load(object sender, EventArgs e)
         {
             //lblFirst.Text = page.ToString();
-            comboBox1.Text = comboBox3.Text = "2019";
-            comboBox2.Text = comboBox4.Text = "2";
+            comboBox1.Text = "2018"; comboBox3.Text = "2019";
+            comboBox2.Text = "1"; comboBox4.Text = "12";
 
             //if (totalcount > 1 && page > 1)
             //{
@@ -180,7 +180,7 @@ namespace GoodeeWay.BUS
             dataGridView1.DataSource = "";
 
             DateTime temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
-            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-28");
+            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-01");
             
             if (temp1 > temp2)
             {
@@ -198,9 +198,13 @@ namespace GoodeeWay.BUS
                 comboBox3.Text = temp;
                 comboBox4.Text = strtemp;
             }
+
+            temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
+            temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-31");
             lst = sd.Search(temp1, temp2);
             dataGridView1.DataSource = lst;
             ColumnSetKor();
+            MessageBox.Show("temp1: " + temp1 + " temp2: " + temp2);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
