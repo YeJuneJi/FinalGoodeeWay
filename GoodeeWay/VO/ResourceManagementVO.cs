@@ -49,27 +49,5 @@ namespace GoodeeWay.VO
             get { return employeePrice; }
             set { employeePrice = value; }
         }
-
-
-
-        //public override bool Equals(object obj)
-        //{
-        //    ResourceManagementVO resource = obj as ResourceManagementVO;
-        //    if (resource == null)
-        //    {
-        //        return false;
-        //    }
-        //    if (resource.ResourceDate.Equals(resource))
-        //    {
-        //        employeePrice = resource.EmployeePrice;
-        //        equipPrice = resource.EquipPrice;
-        //    }
-        //    return resourceDate == resource.ResourceDate;
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return 1119966897 + resourceDate.GetHashCode();
-        //}
     }
 }

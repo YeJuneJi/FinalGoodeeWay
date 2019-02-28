@@ -458,29 +458,12 @@ namespace GoodeeWay.BUS
                     totalInvesetPrice += item.TotInvestPrice;
                     totnetProfit += netProfit;
                 }
-
-                var temp2 = from invest in totInvestList
-                            join equip in equipList on invest.ResourceDate equals equip.ResourceDate
-                            join sal in salList on invest.ResourceDate equals sal.ResourceDate
-                            select new { invest.ResourceDate, invest.TotInvestPrice, invest.RawMaterialCost, equip.EquipPrice, sal.EmployeePrice };
-
-                var temp3 = from t in temp2
-                            group t by t.ResourceDate;
-                foreach (var item in temp3)
+                List<TotalResoureVO> lst = new List<TotalResoureVO>();
+                foreach (DataRow item in totRsrcTab.Rows)
                 {
-                    decimal sum1 = 0;
-                    decimal sum2 = 0;
-                    decimal sum3 = 0;
-                    decimal sum4 = 0;
-                    foreach (var group in item)
-                    {
-                        sum1 += (decimal)group.TotInvestPrice;
-                        sum2 += (decimal)group.RawMaterialCost;
-                        sum3 += (decimal)group.EquipPrice;
-                        sum4 += (decimal)group.EmployeePrice;
-                    }
-                    MessageBox.Show(item.Key + " :::: " + sum1 + " :::: " + sum2 + " :::: " + sum3 + " :::: " + sum4);
+                    lst.Add(new TotalResoureVO { ResourceDate = item[0].ToString(), TotInvestPrice = Convert.ToSingle(item[1]), RawMaterialCost = Convert.ToSingle(item[2]), EquipPrice = Convert.ToSingle(item[3]), EmployeePrice = Convert.ToSingle(item[4]), NetProfit = Convert.ToSingle(item[5]) });
                 }
+                
 
                 lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                 lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
@@ -488,7 +471,7 @@ namespace GoodeeWay.BUS
                 lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
                 lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
                 lbltotnetProfit.ForeColor = Color.Red;
-                resourceDataGView.DataSource = totRsrcTab;
+                resourceDataGView.DataSource = lst;
             }
         }
 
