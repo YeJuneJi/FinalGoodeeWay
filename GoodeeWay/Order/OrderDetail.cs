@@ -203,7 +203,12 @@ namespace GoodeeWay.Order
             return new Control[] { cb, lblAmount, nudAmount };
         }
 
-
+        /// <summary>
+        /// 컨트롤 박스가 체크되면 작동하는 이벤트 메서드
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cbx_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox radio = sender as CheckBox;
