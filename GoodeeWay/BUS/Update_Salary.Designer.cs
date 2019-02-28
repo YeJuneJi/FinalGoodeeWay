@@ -355,7 +355,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Update_Salary";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "내역 수정";
             this.Load += new System.EventHandler(this.Update_Salary_Load);
             this.panel.ResumeLayout(false);

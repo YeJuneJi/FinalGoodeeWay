@@ -339,7 +339,7 @@
             this.Controls.Add(this.label9);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Insert_Salary";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "급여 내역 추가";
             this.Click += new System.EventHandler(this.Insert_Salary_Click);
             this.panel.ResumeLayout(false);

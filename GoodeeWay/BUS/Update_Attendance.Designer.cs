@@ -364,7 +364,7 @@
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Update_Attendance";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "근태 수정";
             this.Load += new System.EventHandler(this.Update_Attendance_Load);
             this.panel.ResumeLayout(false);

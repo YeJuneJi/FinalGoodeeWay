@@ -48,10 +48,10 @@
             this.dtpOvertime = new System.Windows.Forms.DateTimePicker();
             this.dtpTotaltime = new System.Windows.Forms.DateTimePicker();
             this.panel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -264,6 +264,17 @@
             this.panel.TabIndex = 156;
             this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Insert_Attendance_MouseDown);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.Close_Window_64px;
+            this.pictureBox2.Location = new System.Drawing.Point(359, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 199;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
@@ -307,17 +318,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.btnInsert_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.Close_Window_64px;
-            this.pictureBox2.Location = new System.Drawing.Point(359, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 199;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // Insert_Attendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -349,7 +349,7 @@
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Insert_Attendance";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "근태 입력";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Insert_Attendance_MouseDown);
             this.panel.ResumeLayout(false);

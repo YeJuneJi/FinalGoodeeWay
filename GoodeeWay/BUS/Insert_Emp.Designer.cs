@@ -406,7 +406,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Insert_Emp";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "직원 추가";
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

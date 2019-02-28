@@ -16,9 +16,6 @@ namespace GoodeeWay.BUS
 {
     public partial class Salary : Form
     {
-        int page = 1;
-        int temp = 0;
-        int totalcount = 1;
         SalaryDAO sd = new SalaryDAO();
         List<SalaryVO> lst;
         List<SalaryVO> ev = new List<SalaryVO>();
@@ -26,7 +23,6 @@ namespace GoodeeWay.BUS
         public Salary()
         {
             InitializeComponent();
-            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -113,51 +109,9 @@ namespace GoodeeWay.BUS
 
         private void Salary_Load(object sender, EventArgs e)
         {
-            //lblFirst.Text = page.ToString();
             comboBox1.Text = "2018"; comboBox3.Text = "2019";
             comboBox2.Text = "1"; comboBox4.Text = "12";
-
-            //if (totalcount > 1 && page > 1)
-            //{
-            //    ev = new List<SalaryVO>();
-
-            //    for (int i = (page * 10) - 10; i < (page * 10) - 1; i++) // page 2 : 10~19, 3 : 20~29
-            //    {
-            //        ev.Add(new SalaryVO()
-            //        {
-            //            No = lst[i].No.ToString(),
-            //            Name = lst[i].Name.ToString(),
-            //            Empno = lst[i].Empno.ToString(),
-            //            Payday = lst[i].Payday,
-            //            Salary = lst[i].Salary,
-            //            Tax = lst[i].Tax,
-            //            TotalSalary = lst[i].TotalSalary,
-            //        });
-            //ev[temp].Name = lst[i].Name;
-            //ev[temp].Empno = lst[i].Empno;
-            //ev[temp].Payday = lst[i].Payday;
-            //ev[temp].Salary = lst[i].Salary;
-            //ev[temp].Tax = lst[i].Tax;
-            //ev[temp].TotalSalary = lst[i].TotalSalary;
-            //ev.Add(lst[i]);
-            //    }
-            //    dataGridView1.DataSource = ev;
-            //}
-            //else
-            //{
-
-            //}
             
-            //ev = lst;
-            //if (lst.Count % 10 == 0)
-            //{
-            //    totalcount = lst.Count / 10;
-            //}
-            //else
-            //{
-            //    totalcount = (lst.Count / 10) + 1;
-            //}
-            //lblLast.Text = totalcount.ToString();
             lst = sd.SelectAll();
             dataGridView1.DataSource = lst;
             ColumnSetKor();
