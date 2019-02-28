@@ -329,7 +329,6 @@ namespace GoodeeWay.Equipment
                     exist = false;
                 }
             }
-            MessageBox.Show(pathWithfileName);
             return pathWithfileName;
         }
 
