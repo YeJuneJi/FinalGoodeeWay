@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,10 +46,6 @@ namespace GoodeeWay.BUS
             dtpDate.Text = sv.Payday.ToString();
         }
 
-        private void Update_Salary_Activated(object sender, EventArgs e)
-        {
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             var lst = new SalaryVO()
@@ -79,16 +76,34 @@ namespace GoodeeWay.BUS
 
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
+            string str = Regex.Replace(txtSalary.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("숫자만 입력가능합니다");
+                txtSalary.Text = sv.Salary.ToString();
+            }
             changeTotal();
         }
 
         private void txtTax_TextChanged(object sender, EventArgs e)
         {
+            string str = Regex.Replace(txtTax.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("숫자만 입력가능합니다");
+                txtTax.Text = sv.Tax.ToString();
+            }
             changeTotal();
         }
 
         private void txtBonus_TextChanged(object sender, EventArgs e)
         {
+            string str = Regex.Replace(txtBonus.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("숫자만 입력가능합니다");
+                txtBonus.Text = sv.Bonus.ToString();
+            }
             changeTotal();
         }
 

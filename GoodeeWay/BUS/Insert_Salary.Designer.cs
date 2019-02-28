@@ -115,6 +115,7 @@
             this.txtTax.TabIndex = 104;
             this.txtTax.Text = "0";
             this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTax.TextChanged += new System.EventHandler(this.txtTax_TextChanged);
             // 
             // txtEmpno
             // 
@@ -202,6 +203,7 @@
             this.txtSalary.TabIndex = 114;
             this.txtSalary.Text = "0";
             this.txtSalary.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSalary.TextChanged += new System.EventHandler(this.txtSalary_TextChanged);
             // 
             // btnClear
             // 
@@ -241,6 +243,7 @@
             this.txtBonus.TabIndex = 150;
             this.txtBonus.Text = "0";
             this.txtBonus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBonus.TextChanged += new System.EventHandler(this.txtBonus_TextChanged);
             // 
             // label1
             // 

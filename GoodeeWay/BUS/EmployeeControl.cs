@@ -20,13 +20,14 @@ namespace GoodeeWay.BUS
         EmpVO emp = new EmpVO();
         EmpDAO empDAO = new EmpDAO();
         List<EmpVO> ev = new List<EmpVO>();
-        int page = 1;
-        int totalcount = 1;
+        //int page = 1;
+        //int totalcount = 1;
 
         public EmployeeControl()
         {
             InitializeComponent();
         }
+
         private void TotalCount()
         {
             lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";

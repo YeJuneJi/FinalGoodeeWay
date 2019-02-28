@@ -63,8 +63,8 @@ namespace GoodeeWay.BUS
                     MessageBox.Show("저장 실패");
                 }
             }
-            
         }
+
         /// <summary>
         /// 필수입력란 bool로 확인
         /// </summary>
@@ -89,7 +89,7 @@ namespace GoodeeWay.BUS
             string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
             if (str.Length > 0)
             {
-                MessageBox.Show("시급은 숫자만 입력가능합니다");
+                MessageBox.Show("숫자만 입력가능합니다");
                 txtSalary.Text = "";
             }
         }
@@ -159,6 +159,35 @@ namespace GoodeeWay.BUS
                 // 타이틀 바의 다운 이벤트처럼 보냄
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtPhone.Text, @"[0-9]|[-]", "");
+            if (txtPhone.Text.Length > 13 || str.Length > 0)
+            {
+                txtPhone.Text = "";
+            }
+        }
+
+        private void txtBankAccountNo_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtBankAccountNo.Text, @"[0-9]|[-]", "");
+            if (str.Length > 0)
+            {
+                txtBankAccountNo.Text = "";
+            }
+        }
+
+        private void txtDepartment_Leave(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]+", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("부서명은 한글만 입력가능합니다");
+                txtDepartment.Text = "";
+            }
+            txtDepartment.Focus();
         }
     }
 }

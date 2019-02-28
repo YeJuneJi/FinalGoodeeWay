@@ -203,6 +203,7 @@
             this.txtBankAccountNo.Name = "txtBankAccountNo";
             this.txtBankAccountNo.Size = new System.Drawing.Size(119, 22);
             this.txtBankAccountNo.TabIndex = 109;
+            this.txtBankAccountNo.TextChanged += new System.EventHandler(this.txtBankAccountNo_TextChanged);
             // 
             // txtSalary
             // 
@@ -212,6 +213,7 @@
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(100, 22);
             this.txtSalary.TabIndex = 108;
+            this.txtSalary.TextChanged += new System.EventHandler(this.txtSalary_TextChanged);
             // 
             // txtPhone
             // 
@@ -221,6 +223,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(119, 22);
             this.txtPhone.TabIndex = 107;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // txtDepartment
             // 
@@ -230,6 +233,7 @@
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(119, 22);
             this.txtDepartment.TabIndex = 106;
+            this.txtDepartment.Leave += new System.EventHandler(this.txtDepartment_Leave);
             // 
             // txtName
             // 
@@ -431,7 +435,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Update_Emp";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.Text = "직원 수정";
             this.Load += new System.EventHandler(this.Update_Emp_Load);
             this.panel.ResumeLayout(false);

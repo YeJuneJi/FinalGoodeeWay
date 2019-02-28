@@ -51,10 +51,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -183,6 +183,7 @@
             this.txtBankAccountNo.Name = "txtBankAccountNo";
             this.txtBankAccountNo.Size = new System.Drawing.Size(167, 22);
             this.txtBankAccountNo.TabIndex = 109;
+            this.txtBankAccountNo.TextChanged += new System.EventHandler(this.txtBankAccountNo_TextChanged);
             // 
             // txtSalary
             // 
@@ -202,6 +203,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(123, 22);
             this.txtPhone.TabIndex = 107;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // txtDepartment
             // 
@@ -211,6 +213,7 @@
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(100, 22);
             this.txtDepartment.TabIndex = 106;
+            this.txtDepartment.Leave += new System.EventHandler(this.txtDepartment_Leave);
             // 
             // txtName
             // 
@@ -313,6 +316,17 @@
             this.panel.TabIndex = 156;
             this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.Close_Window_64px;
+            this.pictureBox2.Location = new System.Drawing.Point(383, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 199;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
@@ -355,17 +369,6 @@
             this.btnInsert.Text = "추가";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.Close_Window_64px;
-            this.pictureBox2.Location = new System.Drawing.Point(383, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 199;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Insert_Emp
             // 

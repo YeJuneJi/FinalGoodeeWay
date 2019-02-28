@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -91,7 +92,6 @@ namespace GoodeeWay.BUS
                 {
                     MessageBox.Show("수정 실패");
                 }
-            
         }
         /// <summary>
         /// 필수입력란 bool로 확인
@@ -122,6 +122,45 @@ namespace GoodeeWay.BUS
                 // 타이틀 바의 다운 이벤트처럼 보냄
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void txtBankAccountNo_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtBankAccountNo.Text, @"[0-9]|[-]", "");
+            if (str.Length > 0)
+            {
+                txtBankAccountNo.Text = bo.BankAccountNo;
+            }
+        }
+
+        private void txtSalary_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("숫자만 입력가능합니다");
+                txtSalary.Text = bo.Pay.ToString();
+            }
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(txtPhone.Text, @"[0-9]|[-]", "");
+            if (txtPhone.Text.Length > 13 || str.Length > 0)
+            {
+                txtPhone.Text = bo.Mobile;
+            }
+        }
+
+        private void txtDepartment_Leave(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]+", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("부서명은 한글만 입력가능합니다");
+                txtDepartment.Text = bo.Department;
+            }
+            txtDepartment.Focus();
         }
     }
 }

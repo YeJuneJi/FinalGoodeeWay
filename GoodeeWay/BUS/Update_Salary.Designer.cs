@@ -357,7 +357,6 @@
             this.Name = "Update_Salary";
             this.Opacity = 0.9D;
             this.Text = "내역 수정";
-            this.Activated += new System.EventHandler(this.Update_Salary_Activated);
             this.Load += new System.EventHandler(this.Update_Salary_Load);
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
