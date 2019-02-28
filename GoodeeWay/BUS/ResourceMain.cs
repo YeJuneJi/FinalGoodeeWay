@@ -15,10 +15,10 @@ using System.Collections;
 
 namespace GoodeeWay.BUS
 {
+    public enum Period { Date, Month, Year };
+
     public partial class ResourceMain : UserControl
     {
-        private bool mainDragging = false;
-        private int mainPanelOffsetX, mainPanelOffsetY;
         DataTable totRsrcTab;
         DataColumn[] dataColumns;
         List<EquipmentVO> equipmentList;
@@ -56,38 +56,24 @@ namespace GoodeeWay.BUS
             totRsrcTab = new DataTable("totRsrcTab");
             totRsrcTab.Columns.AddRange(dataColumns);
 
-            equipmentList = new EquipmentDAO().AllequipmentVOsList();
-            saleRecordList = new SaleRecordsDAO().OutPutAllSaleRecords();
-            salaryList = new SalaryDAO().SelectAll();
-            inventoryTypeList = new InventoryTypeDAO().InventoryTypeSelect();
+            try
+            {
+                equipmentList = new EquipmentDAO().AllequipmentVOsList();
+                saleRecordList = new SaleRecordsDAO().OutPutAllSaleRecords();
+                salaryList = new SalaryDAO().SelectAll();
+                inventoryTypeList = new InventoryTypeDAO().InventoryTypeSelect();
+                receivingDetailList = new ReceivingDetailsDAO().OutPutAllSaleRecords();
+            }
+            catch (Exception except)
+            {
+                MessageBox.Show(except.StackTrace);
+            }
 
             convertInventoryTypetoList = (from DataRow rows in inventoryTypeList.Rows
                                           select new InventoryTypeVO()
                                           {
                                               InventoryTypeCode = rows["재고종류코드"].ToString(),
                                           }).ToList();
-
-            receivingDetailList = new ReceivingDetailsDAO().OutPutAllSaleRecords();
-        }
-
-        private void ResourceMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.mainDragging = true;
-            this.mainPanelOffsetX = e.X;
-            this.mainPanelOffsetY = e.Y;
-        }
-
-        private void ResourceMain_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this.mainDragging)
-            {
-                this.Left = e.X + this.Left - mainPanelOffsetX;
-                this.Top = e.Y + this.Top - mainPanelOffsetY;
-            }
-        }
-        private void ResourceMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            this.mainDragging = false;
         }
 
         private void rdobtn_CheckedChanged(object sender, EventArgs e)
@@ -116,123 +102,51 @@ namespace GoodeeWay.BUS
             }
         }
 
-        public void SelectResourceList(DateTime periodStart, DateTime periodEnd)
+
+        /// <summary>
+        /// 기간별, 그룹별 매출현황을 출력하기 위한 메서드
+        /// </summary>
+        /// <param name="periodStart">시작 기간</param>
+        /// <param name="periodEnd">종료 기간</param>
+        /// <param name="period">일, 월, 년 그룹 단위 선택</param>
+        public void SelectResourceList(DateTime periodStart, DateTime periodEnd, Period period)
         {
-            var dayPerRealTot = from records in (from saleRecord in saleRecordList
-                                                 where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                                                 select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-                                group records by records.SalesDate;
+            float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
+            float investSum = 0; //그룹별 총 매출을 저장할 변수.
 
-            var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
-                                                      let equipDate = equipment.PurchaseDate.Date
-                                                      where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
-                                                      select new { equipDate, equipment.PurchasePrice })
-                                      group equips by equips.equipDate;
+            //일별 총 매출과 원 재료비 계산을 위한 반복문
+            var calUnitPrice = from inven in convertInventoryTypetoList
+                               join rcv in receivingDetailList
+                               on inven.InventoryTypeCode equals rcv.InventoryTypeCode
+                               select new
+                               {
+                                   InventoryTypeCode = inven.InventoryTypeCode,
+                                   UnitPrice = rcv.UnitPrice
+                               };
 
-            var dayPerEmployeeSalaryTot = from sals in (from salary in salaryList
-                                                        where salary.Payday >= periodStart && salary.Payday <= periodEnd
-                                                        select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
-                                          group sals by sals.Payday;
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            totRsrcTab.Rows.Clear();
-            totInvestList.Clear();
-            equipList.Clear();
-            lbltotalInvesetPrice.Text = "총매출 : ";
-            lblRawMaterialCost.Text = "총 원재료비: ";
-            lblEquipPrice.Text = "총 비품비: ";
-            lblEmployeeCost.Text = "총 인사비 : ";
-            lbltotnetProfit.Text = "총 손익 : ";
-            bool datecheck = false;
-            bool monthcheck = false;
-            bool yearcheck = false;
-            TimeSpan breakingDawn = new TimeSpan(00, 00, 01);
-            TimeSpan eclipse = new TimeSpan(23, 59, 59);
-            DateTime periodStart = resourceStart.Value;
-            DateTime periodEnd = resourceEnd.Value;
-            periodStart = periodStart.Date + breakingDawn;
-            periodEnd = periodEnd.Date + eclipse;
-            if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
+            switch (period)
             {
-                MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
-                resourceStart.Value = resourceEnd.Value = DateTime.Now;
-                return;
-            }
-            else
-            {
-                //일별 총 판매액
-                var dayPerRealTot = from records in (from saleRecord in saleRecordList
-                                                     where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
-                                                     select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-                                    group records by records.SalesDate;
+                case Period.Date:
 
-                //월별 총 판매액
-                var monthPerRealTot = from records in (from saleRecord in saleRecordList
-                                                       where saleRecord.SalesDate.Month >= periodStart.Month && saleRecord.SalesDate.Month <= periodEnd.Month
-                                                       select new { SalesDate = saleRecord.SalesDate.Month, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-                                      group records by records.SalesDate;
+                    var dayPerRealTot = from records in (from saleRecord in saleRecordList
+                                                         where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                                                         select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                                        group records by records.SalesDate;
 
-                //연별 총 판매액
-                var yearPerRealTot = from records in (from saleRecord in saleRecordList
-                                                      where saleRecord.SalesDate.Year >= periodStart.Year && saleRecord.SalesDate.Year <= periodEnd.Year
-                                                      select new { SalesDate = saleRecord.SalesDate.Year, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
-                                     group records by records.SalesDate;
+                    var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
+                                                              where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
+                                                              select new { PurchaseDate = equipment.PurchaseDate, PurchasePrice = equipment.PurchasePrice })
+                                              group equips by equips.PurchaseDate;
 
-                //일별 비품비
-                var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
-                                                          let equipDate = equipment.PurchaseDate.Date
-                                                          where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
-                                                          select new { equipDate, equipment.PurchasePrice })
-                                          group equips by equips.equipDate;
+                    var dayPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                                where salary.Payday >= periodStart && salary.Payday <= periodEnd
+                                                                select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
+                                                  group sals by sals.Payday;
 
-                //월별 비품비
-                var monthPerEquipPriceTot = from equips in (from equipment in equipmentList
-                                                            where equipment.PurchaseDate.Month >= periodStart.Month && equipment.PurchaseDate.Month <= periodEnd.Month
-                                                            select new { EquipDate = equipment.PurchaseDate.Month, PurchasePrice = equipment.PurchasePrice })
-                                            group equips by equips.EquipDate;
-                //연별 비품비
-                var yearPerEquipPriceTot = from equips in (from equipment in equipmentList
-                                                           where equipment.PurchaseDate.Year >= periodStart.Year && equipment.PurchaseDate.Year <= periodEnd.Year
-                                                           select new { EquipDate = equipment.PurchaseDate.Year, PurchasePrice = equipment.PurchasePrice })
-                                           group equips by equips.EquipDate;
-                //일별 인건비
-                var dayPerEmployeeSalaryTot = from sals in (from salary in salaryList
-                                                            where salary.Payday >= periodStart && salary.Payday <= periodEnd
-                                                            select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
-                                              group sals by sals.Payday;
-                //월별 인건비
-                var monthPerEmployeeSalaryTot = from sals in (from salary in salaryList
-                                                              where salary.Payday.Month >= periodStart.Month && salary.Payday.Month <= periodEnd.Month
-                                                              select new { Payday = salary.Payday.Month, TotalSalary = salary.TotalSalary })
-                                                group sals by sals.Payday;
-                //연별 인건비
-                var yearPerEmployeeSalaryTot = from sals in (from salary in salaryList
-                                                             where salary.Payday.Year >= periodStart.Year && salary.Payday.Year <= periodEnd.Year
-                                                             select new { Payday = salary.Payday.Year, TotalSalary = salary.TotalSalary })
-                                               group sals by sals.Payday;
-
-                //단가 계산을 위한 InventoryType테이블과 ReceivingDetail 테이블의 Join 쿼리
-                var calUnitPrice = from inven in convertInventoryTypetoList
-                                   join rcv in receivingDetailList
-                                   on inven.InventoryTypeCode equals rcv.InventoryTypeCode
-                                   select new
-                                   {
-                                       InventoryTypeCode = inven.InventoryTypeCode,
-                                       UnitPrice = rcv.UnitPrice
-                                   };
-
-                float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
-                float investSum = 0; //그룹별 총 매출을 저장할 변수.
-                if (rdoDate.Checked)
-                {
-                    datecheck = true;
-                    ////일별 총 매출과 원 재료비 계산을 위한 반복문
                     foreach (var itemgroup in dayPerRealTot)
                     {
-                        //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
-                        //float investSum = 0; //그룹별 총 매출을 저장할 변수.
+                        rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
+                        investSum = 0; //그룹별 총 매출을 저장할 변수.
                         foreach (var group in itemgroup)
                         {
                             investSum += group.Stotal;
@@ -274,8 +188,7 @@ namespace GoodeeWay.BUS
                         equipList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EquipPrice = sum });
                     }
 
-
-
+                    //일별 인사급여 계산을 위한 반복문
                     foreach (var item in dayPerEmployeeSalaryTot)
                     {
                         float sum = 0;
@@ -287,14 +200,29 @@ namespace GoodeeWay.BUS
                     }
                     mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
                     mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
-                }
-                else if (rdoMonth.Checked)
-                {
-                    monthcheck = true;
+                    break;
+
+                case Period.Month:
+                    var monthPerRealTot = from records in (from saleRecord in saleRecordList
+                                                           where saleRecord.SalesDate.Month >= periodStart.Month && saleRecord.SalesDate.Month <= periodEnd.Month
+                                                           select new { SalesDate = saleRecord.SalesDate.Month, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                                          group records by records.SalesDate;
+
+                    var monthPerEquipPriceTot = from equips in (from equipment in equipmentList
+                                                                where equipment.PurchaseDate.Month >= periodStart.Month && equipment.PurchaseDate.Month <= periodEnd.Month
+                                                                select new { PurchaseDate = equipment.PurchaseDate.Month, PurchasePrice = equipment.PurchasePrice })
+                                                group equips by equips.PurchaseDate;
+
+                    var monthPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                                  where salary.Payday.Month >= periodStart.Month && salary.Payday.Month <= periodEnd.Month
+                                                                  select new { Payday = salary.Payday.Month, TotalSalary = salary.TotalSalary })
+                                                    group sals by sals.Payday;
+
+
                     foreach (var itemgroup in monthPerRealTot)
                     {
-                        //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
-                        //float investSum = 0; //그룹별 총 매출을 저장할 변수.
+                        rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
+                        investSum = 0; //그룹별 총 매출을 저장할 변수.
                         foreach (var group in itemgroup)
                         {
                             investSum += group.Stotal;
@@ -351,17 +279,29 @@ namespace GoodeeWay.BUS
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
 
-                    mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
-                    mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                    mergeList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                    break;
 
-                }
-                else if (rdoYear.Checked)
-                {
-                    yearcheck = true;
+                case Period.Year:
+                    var yearPerRealTot = from records in (from saleRecord in saleRecordList
+                                                          where saleRecord.SalesDate.Year >= periodStart.Year && saleRecord.SalesDate.Year <= periodEnd.Year
+                                                          select new { SalesDate = saleRecord.SalesDate.Year, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
+                                         group records by records.SalesDate;
+
+                    var yearPerEquipPriceTot = from equips in (from equipment in equipmentList
+                                                               where equipment.PurchaseDate.Year >= periodStart.Year && equipment.PurchaseDate.Year <= periodEnd.Year
+                                                               select new { EquipDate = equipment.PurchaseDate.Year, PurchasePrice = equipment.PurchasePrice })
+                                               group equips by equips.EquipDate;
+
+                    var yearPerEmployeeSalaryTot = from sals in (from salary in salaryList
+                                                                 where salary.Payday.Year >= periodStart.Year && salary.Payday.Year <= periodEnd.Year
+                                                                 select new { Payday = salary.Payday.Year, TotalSalary = salary.TotalSalary })
+                                                   group sals by sals.Payday;
+
                     foreach (var itemgroup in yearPerRealTot)
                     {
-                        //float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
-                        //float investSum = 0; //그룹별 총 매출을 저장할 변수.
+                        rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
+                        investSum = 0; //그룹별 총 매출을 저장할 변수.
                         foreach (var group in itemgroup)
                         {
                             investSum += group.Stotal;
@@ -419,8 +359,69 @@ namespace GoodeeWay.BUS
                         dt = new DateTime(item.Key, 1, 1) + new TimeSpan(00, 00, 00);
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
-                    mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
+                    mergeList = totInvestList.Union(equipList).ToList();
                     mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 메서드의 기간 초과 확인 메서드
+        /// </summary>
+        /// <param name="periodStart">시간 기간</param>
+        /// <param name="periodEnd">종료 기간</param>
+        /// <returns>검사 성공유무를 반환</returns>
+        private bool CheckPeriod(DateTime periodStart, DateTime periodEnd)
+        {
+            bool result = false;
+            if (DateTime.Parse(periodStart.ToLongDateString()) > DateTime.Parse(periodEnd.ToLongDateString()))
+            {
+                MessageBox.Show("시작날이 전날보다 이후 일 수 없습니다.");
+                resourceStart.Value = resourceEnd.Value = DateTime.Now;
+                result = true;
+                return result;
+            }
+            return result;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            totRsrcTab.Rows.Clear();
+            totInvestList.Clear();
+            equipList.Clear();
+            lbltotalInvesetPrice.Text = "총매출 : ";
+            lblRawMaterialCost.Text = "총 원재료비: ";
+            lblEquipPrice.Text = "총 비품비: ";
+            lblEmployeeCost.Text = "총 인사비 : ";
+            lbltotnetProfit.Text = "총 손익 : ";
+            bool datecheck = false;
+            bool monthcheck = false;
+            bool yearcheck = false;
+            TimeSpan breakingDawn = new TimeSpan(00, 00, 01);
+            TimeSpan eclipse = new TimeSpan(23, 59, 59);
+            DateTime periodStart = resourceStart.Value;
+            DateTime periodEnd = resourceEnd.Value;
+            periodStart = periodStart.Date + breakingDawn;
+            periodEnd = periodEnd.Date + eclipse;
+
+            if (!CheckPeriod(periodStart, periodEnd))
+            {
+                if (rdoDate.Checked)
+                {
+                    SelectResourceList(periodStart, periodEnd, Period.Date);
+                    datecheck = true;
+                }
+                else if (rdoMonth.Checked)
+                {
+                    SelectResourceList(periodStart, periodEnd, Period.Month);
+                    monthcheck = true;
+                }
+                else if (rdoYear.Checked)
+                {
+                    SelectResourceList(periodStart, periodEnd, Period.Year);
+                    yearcheck = true;
                 }
 
                 //리스트를 총판매액 리스트와 비품비 리스트를 병합후 날짜로 정렬 => 리스트화
@@ -448,13 +449,39 @@ namespace GoodeeWay.BUS
                     {
                         resourceDate = item.ResourceDate.Year.ToString() + "년";
                     }
-                    totRsrcTab.Rows.Add(resourceDate, (decimal)item.TotInvestPrice, (decimal)item.RawMaterialCost, (decimal)item.EquipPrice, /*인사급여*/(decimal)item.EmployeePrice, (decimal)netProfit);
+
+                    totRsrcTab.Rows.Add(resourceDate, (decimal)item.TotInvestPrice, (decimal)item.RawMaterialCost, (decimal)item.EquipPrice, (decimal)item.EmployeePrice, (decimal)netProfit);
+
                     totEquipPrice += item.EquipPrice;
                     totRawMaterialCost += item.RawMaterialCost;
                     totEmployeePrice += item.EmployeePrice;
                     totalInvesetPrice += item.TotInvestPrice;
                     totnetProfit += netProfit;
                 }
+
+                var temp2 = from invest in totInvestList
+                            join equip in equipList on invest.ResourceDate equals equip.ResourceDate
+                            join sal in salList on invest.ResourceDate equals sal.ResourceDate
+                            select new { invest.ResourceDate, invest.TotInvestPrice, invest.RawMaterialCost, equip.EquipPrice, sal.EmployeePrice };
+
+                var temp3 = from t in temp2
+                            group t by t.ResourceDate;
+                foreach (var item in temp3)
+                {
+                    decimal sum1 = 0;
+                    decimal sum2 = 0;
+                    decimal sum3 = 0;
+                    decimal sum4 = 0;
+                    foreach (var group in item)
+                    {
+                        sum1 += (decimal)group.TotInvestPrice;
+                        sum2 += (decimal)group.RawMaterialCost;
+                        sum3 += (decimal)group.EquipPrice;
+                        sum4 += (decimal)group.EmployeePrice;
+                    }
+                    MessageBox.Show(item.Key + " :::: " + sum1 + " :::: " + sum2 + " :::: " + sum3 + " :::: " + sum4);
+                }
+
                 lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                 lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
                 lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
@@ -463,7 +490,6 @@ namespace GoodeeWay.BUS
                 lbltotnetProfit.ForeColor = Color.Red;
                 resourceDataGView.DataSource = totRsrcTab;
             }
-
         }
 
         private void btnChart_Click(object sender, EventArgs e)
