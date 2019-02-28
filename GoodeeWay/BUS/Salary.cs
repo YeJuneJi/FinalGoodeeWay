@@ -180,7 +180,7 @@ namespace GoodeeWay.BUS
             dataGridView1.DataSource = "";
 
             DateTime temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
-            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-31");
+            DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-28");
             
             if (temp1 > temp2)
             {

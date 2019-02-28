@@ -54,7 +54,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(505, 33);
+            this.pictureBox2.Location = new System.Drawing.Point(505, 66);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(250, 64);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -72,7 +72,7 @@
             this.cbFilter.Items.AddRange(new object[] {
             "사원명",
             "사원번호"});
-            this.cbFilter.Location = new System.Drawing.Point(65, 92);
+            this.cbFilter.Location = new System.Drawing.Point(65, 130);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(99, 25);
@@ -85,7 +85,7 @@
             this.lblTotalCount.BackColor = System.Drawing.Color.White;
             this.lblTotalCount.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.lblTotalCount.ForeColor = System.Drawing.Color.DimGray;
-            this.lblTotalCount.Location = new System.Drawing.Point(1104, 493);
+            this.lblTotalCount.Location = new System.Drawing.Point(1104, 531);
             this.lblTotalCount.Name = "lblTotalCount";
             this.lblTotalCount.Size = new System.Drawing.Size(87, 17);
             this.lblTotalCount.TabIndex = 124;
@@ -95,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.label1.Location = new System.Drawing.Point(4, 96);
+            this.label1.Location = new System.Drawing.Point(4, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 17);
             this.label1.TabIndex = 123;
@@ -109,7 +109,7 @@
             this.btnExcel.ForeColor = System.Drawing.Color.DimGray;
             this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcel.Location = new System.Drawing.Point(1089, 64);
+            this.btnExcel.Location = new System.Drawing.Point(1089, 102);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(102, 60);
@@ -122,7 +122,7 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(170, 93);
+            this.txtSearch.Location = new System.Drawing.Point(170, 131);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(170, 22);
@@ -135,7 +135,7 @@
             this.btnAttendance.ForeColor = System.Drawing.Color.DimGray;
             this.btnAttendance.Image = ((System.Drawing.Image)(resources.GetObject("btnAttendance.Image")));
             this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttendance.Location = new System.Drawing.Point(981, 63);
+            this.btnAttendance.Location = new System.Drawing.Point(981, 101);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(102, 61);
@@ -152,7 +152,7 @@
             this.btnSalary.ForeColor = System.Drawing.Color.DimGray;
             this.btnSalary.Image = ((System.Drawing.Image)(resources.GetObject("btnSalary.Image")));
             this.btnSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalary.Location = new System.Drawing.Point(860, 63);
+            this.btnSalary.Location = new System.Drawing.Point(860, 101);
             this.btnSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalary.Name = "btnSalary";
             this.btnSalary.Size = new System.Drawing.Size(115, 61);
@@ -170,7 +170,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.DimGray;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(223, 497);
+            this.btnDelete.Location = new System.Drawing.Point(223, 535);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 62);
@@ -188,7 +188,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.DimGray;
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(115, 497);
+            this.btnUpdate.Location = new System.Drawing.Point(115, 535);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(102, 62);
@@ -206,7 +206,7 @@
             this.btnInsert.ForeColor = System.Drawing.Color.DimGray;
             this.btnInsert.Image = ((System.Drawing.Image)(resources.GetObject("btnInsert.Image")));
             this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInsert.Location = new System.Drawing.Point(7, 497);
+            this.btnInsert.Location = new System.Drawing.Point(7, 535);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(102, 62);
@@ -224,7 +224,7 @@
             this.btnClear.ForeColor = System.Drawing.Color.DimGray;
             this.btnClear.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.Image")));
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClear.Location = new System.Drawing.Point(331, 497);
+            this.btnClear.Location = new System.Drawing.Point(331, 535);
             this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(102, 62);
@@ -258,7 +258,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
-            this.dataGridView1.Location = new System.Drawing.Point(0, 132);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 170);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -289,7 +289,7 @@
             this.btnSearch.ForeColor = System.Drawing.Color.DimGray;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(346, 85);
+            this.btnSearch.Location = new System.Drawing.Point(346, 123);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(102, 39);
