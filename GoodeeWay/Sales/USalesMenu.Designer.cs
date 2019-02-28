@@ -264,9 +264,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(264, 75);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(18, 20);
+            this.label9.Size = new System.Drawing.Size(24, 20);
             this.label9.TabIndex = 81;
-            this.label9.Text = "\\";
+            this.label9.Text = "원";
             // 
             // tbxDiscountRatio
             // 
