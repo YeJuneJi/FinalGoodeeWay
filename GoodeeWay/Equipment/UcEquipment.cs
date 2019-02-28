@@ -13,9 +13,6 @@ namespace GoodeeWay.Equipment
 {
     public partial class UcEquipment : UserControl
     {
-       
-        //private ResourceMain resourceMain;
-
         public UcEquipment()
         {
             InitializeComponent();
@@ -27,7 +24,7 @@ namespace GoodeeWay.Equipment
         int currentPage = 1; //현재 페이지를 저장시킬 변수
         int firstNumLocationLength = 15; //페이지 번호 맨앞 숫자 위치정보(panel중간 지점으로 부터 떨어진 길이)
         int totalPage = 0;
-        
+
         List<EquipmentVO> baseEquipmentLst = new List<EquipmentVO>(); //넘겨받은 전체 데이터
         List<EquipmentVO> tempEquipmentLst = new List<EquipmentVO>(); //페이지당 담을 데이터
 
@@ -42,7 +39,7 @@ namespace GoodeeWay.Equipment
         }
 
         /// <summary>
-        /// 
+        /// 그리드뷰에 들어갈 리스트를 형식에 맞는datatable로 반환
         /// </summary>
         /// <param name="equipmentLst"></param>
         /// <returns></returns>
@@ -51,7 +48,7 @@ namespace GoodeeWay.Equipment
             dataTable = new DataTable("Equipment");
             baseEquipmentLst = equipmentLst;
             TempListAdd();
-            
+
 
             dataTable.Columns.Add("비품코드", typeof(string));
             dataTable.Columns.Add("상세명칭", typeof(string));
@@ -67,12 +64,22 @@ namespace GoodeeWay.Equipment
             return dataTable;
         }
 
+        /// <summary>
+        /// 비품등록하는 폼열기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddEquipment_Click(object sender, EventArgs e)
         {
             FrmAddEquipment frmAddEquipment = new FrmAddEquipment();
             frmAddEquipment.ShowDialog();
         }
 
+        /// <summary>
+        /// 날짜를 포함하는 데이터인지를 판별
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chbDate_CheckedChanged(object sender, EventArgs e)
         {
             if (chbDate.CheckState == CheckState.Checked)
@@ -87,6 +94,11 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        /// <summary>
+        /// 그리드뷰에 셀을클릭할시 수정,삭제 할 수 있는 곤간에 데이터 삽입
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvEquipmentList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -115,6 +127,11 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        /// <summary>
+        /// 선택된 데이터 삭제
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (tempEquipment is null)
@@ -126,11 +143,24 @@ namespace GoodeeWay.Equipment
 
             if (mbResult == DialogResult.Yes)
             {
-                dAO.DeleteEquipment(tempEquipment);
+                try
+                {
+                    dAO.DeleteEquipment(tempEquipment);
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("삭제하는데 실패 하였습니다", "삭제 실패", MessageBoxButtons.OK);
+                }
             }
             btnSearch_Click(null, null);
         }
 
+        /// <summary>
+        /// textboxPrice의 format값을 검사하는 이벤트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSearchForPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)) || txtPrice.Text.Length > 8)
@@ -139,6 +169,8 @@ namespace GoodeeWay.Equipment
             }
         }
 
+
+        #region price textbox의 기본 format값을 지정하는 이벤트
         private void txtSearchForPrice_Leave(object sender, EventArgs e)
         {
             if (txtSearchForPrice.Text == "")
@@ -154,7 +186,14 @@ namespace GoodeeWay.Equipment
                 txtSearchForPrice.Text = "";
             }
         }
+        #endregion
 
+
+        /// <summary>
+        /// 비품 수정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnModification_Click(object sender, EventArgs e)
         {
             DialogResult mbResult = MessageBox.Show("정말로 수정하시겠습니까? 수정기록은 남지 않습니다.", "비품수정", MessageBoxButtons.YesNo);
@@ -184,10 +223,16 @@ namespace GoodeeWay.Equipment
             btnSearch_Click(null, null);
         }
 
+
+        /// <summary>
+        /// 그리드뷰에 있는 파일을 execel로 출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExportAsExcel_Click(object sender, EventArgs e)
         {
             string fileName = "EQ" + DateTime.Now.ToLongDateString(); //기본 파일이름, 가공되어 saveAs에 들어갈 변수 이름
-                                                                      //FileNameCreate(@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls");
+
             sfdExcel.FileName = fileName;
             sfdExcel.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\";
             sfdExcel.Title = "Excel 저장위치 설정";
@@ -222,20 +267,21 @@ namespace GoodeeWay.Equipment
 
             sheets = workbook.Sheets.Item[1];
 
-            for (int i = 0; i < dgvEquipmentList.Rows.Count; i++)
+            int writeNum = 0;
+
+            for (int i = 0; i < baseEquipmentLst.Count; i++)
             {
-                sheets.Cells[i + 5, 1] = dgvEquipmentList.Rows[i].Cells[0].Value.ToString();
-                sheets.Cells[i + 5, 2] = dgvEquipmentList.Rows[i].Cells[1].Value.ToString();
-                sheets.Cells[i + 5, 3] = dgvEquipmentList.Rows[i].Cells[2].Value.ToString();
-                sheets.Cells[i + 5, 4] = dgvEquipmentList.Rows[i].Cells[3].Value.ToString();
-                sheets.Cells[i + 5, 5] = dgvEquipmentList.Rows[i].Cells[4].Value.ToString();
-                sheets.Cells[i + 5, 6] = dgvEquipmentList.Rows[i].Cells[6].Value.ToString();
+                
+                sheets.Cells[i + 5, 1] = baseEquipmentLst[i].EQUCode;
+                sheets.Cells[i + 5, 2] = baseEquipmentLst[i].DetailName;
+                sheets.Cells[i + 5, 3] = baseEquipmentLst[i].Location;
+                sheets.Cells[i + 5, 4] = baseEquipmentLst[i].State;
+                sheets.Cells[i + 5, 5] = baseEquipmentLst[i].PurchasePrice.ToString();
+                sheets.Cells[i + 5, 6] = baseEquipmentLst[i].Note;
                 sheets.Cells[3, 9] = DateTime.Now.ToShortDateString();
-
+                writeNum++;
             }
-
-            //@"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\"
-            //FileNameCreate(@"C:\GoodeeWay\", "EQ" + DateTime.Now.ToLongDateString() + ".xls")
+            
             try
             {
                 workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
@@ -251,9 +297,7 @@ namespace GoodeeWay.Equipment
             Marshal.FinalReleaseComObject(sheets);
             Marshal.FinalReleaseComObject(workbook);
             Marshal.FinalReleaseComObject(excelApp);
-            //Marshal.ReleaseComObject(sheets);
-            //Marshal.ReleaseComObject(workbook);
-            //Marshal.ReleaseComObject(excelApp);
+
         }
 
 
@@ -264,7 +308,6 @@ namespace GoodeeWay.Equipment
         /// <returns></returns>
         public string FileNameCreate(string pathWithfileName)
         {
-
             string path = Path.GetDirectoryName(pathWithfileName);
             string strname = Path.GetFileNameWithoutExtension(pathWithfileName);
             string extentionName = Path.GetExtension(pathWithfileName);
@@ -289,6 +332,13 @@ namespace GoodeeWay.Equipment
             MessageBox.Show(pathWithfileName);
             return pathWithfileName;
         }
+
+        /// <summary>
+        /// 동적으로 만들어준 paging link label의  click event
+        /// click시 label의 숫자만 뽑아 현재 페이지에 맞게 temp리스트에 넣고 그리드뷰에 출력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LikButton(object sender, EventArgs e)
         {
             string senderStr = sender.ToString();
@@ -298,6 +348,9 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
         }
 
+        /// <summary>
+        /// 보여줘야할 page별 list들을 페이지리스트(tempEquipmentLst)에 넣어준다
+        /// </summary>
         private void TempListAdd()
         {
             int datasourcestartIndex = (currentPage - 1) * pageRows;
@@ -311,6 +364,7 @@ namespace GoodeeWay.Equipment
             }
 
         }
+
         /// <summary>
         /// panel의 최대 5개까지 link label을 동적으로 생성시켜준다.
         /// </summary>
@@ -389,6 +443,7 @@ namespace GoodeeWay.Equipment
             }
         }
 
+        #region paging버튼 클릭 이벤트
         private void btnFirstPage_Click(object sender, EventArgs e)
         {
             currentPage = 1;
@@ -422,7 +477,13 @@ namespace GoodeeWay.Equipment
             dgvEquipmentList.DataSource = SetDataTable(baseEquipmentLst);
             Paging();
         }
+        #endregion
 
+        /// <summary>
+        /// 검색 기능 버튼 이벤트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             currentPage = 1;
@@ -461,7 +522,15 @@ namespace GoodeeWay.Equipment
                 };
 
                 DateTime endDate = dtpEndDate.Value;
-                dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, endDate));
+                try
+                {
+                    dgvEquipmentList.DataSource = SetDataTable(dAO.SelectSearch(equipment, endDate));
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("검색오류");
+                }
             }
             else
             {
@@ -479,7 +548,6 @@ namespace GoodeeWay.Equipment
             Paging();
         }
 
-       
 
         private void btnClose_Click(object sender, EventArgs e)
         {

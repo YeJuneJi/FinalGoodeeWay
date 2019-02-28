@@ -193,6 +193,10 @@ namespace GoodeeWay.Equipment
 
             base.OnMouseDown(e);
         }
-       
+
+        private void FrmAddEquipment_Load(object sender, EventArgs e)
+        {
+            panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
+        }
     }
 }

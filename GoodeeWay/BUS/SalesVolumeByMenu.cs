@@ -6,10 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using GoodeeWay.VO;
 using Newtonsoft.Json;
 
@@ -31,15 +28,15 @@ namespace GoodeeWay.BUS
         Point? previousPosition = null;
         List<SaleRecordsVO> saleRecordsLst;
         Hashtable hashtableForMenu;
-        DataTable datatableForMenu;
         Division divisionMenu;
+
         private void SalesVolumeByMenu_Load(object sender, EventArgs e)
         {
             btnClose.BackgroundImage = Properties.Resources.Close_Window_32px.ToImage();
             crtSalesVolumeByDate.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             crtSalesVolumeByDate.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             crtSalesVolumeByDate.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            //crtSalesVolumeByDate.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
+            
             dgvRank.AllowUserToAddRows = false;
             panelImage.BringToFront();
             panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
@@ -83,6 +80,11 @@ namespace GoodeeWay.BUS
             dgvRank.Sort(dgvRank.Columns[1], ListSortDirection.Descending);
         }
 
+        /// <summary>
+        /// hash테이블의 값을 data테이블 값으로 변경시켜준다.
+        /// </summary>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         private DataTable SelectMenuForTable(Hashtable hash)
         {
             DataTable data;
@@ -104,9 +106,6 @@ namespace GoodeeWay.BUS
         /// <param name="hash">hashtable type</param>
         private void CircleChartDisplay(Hashtable hash)
         {
-
-            //crtSalesVolumeByDate.Series[0].Points[0].Color = Color.Red;
-
             crtAllMenuPercent.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             crtAllMenuPercent.Series[0].Points.DataBindXY(hash.Keys, hash.Values);
             crtAllMenuPercent.Legends[0].Alignment = StringAlignment.Center;
@@ -155,6 +154,8 @@ namespace GoodeeWay.BUS
             return hashtableForMenu;
 
         }
+
+
         /// <summary>
         /// 메뉴종류에따라 분류된 데이터
         /// </summary>
@@ -170,7 +171,11 @@ namespace GoodeeWay.BUS
             return selectedMenu;
         }
 
-        //
+        /// <summary>
+        /// 상위 5개의 값을 뽑아 hash table로 반환시켜준다.
+        /// </summary>
+        /// <param name="selectedMenu"></param>
+        /// <returns></returns>
         private Hashtable Top5Hash(IEnumerable<SalesMenuVO> selectedMenu)
         {
             List<ByMenuVO> tempMenuLst = new List<ByMenuVO>();
@@ -218,6 +223,11 @@ namespace GoodeeWay.BUS
             return top5Hash;
         }
 
+        /// <summary>
+        /// 날짜 설정후 검색click 부분
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (rbSandwich.Checked)
@@ -244,21 +254,12 @@ namespace GoodeeWay.BUS
             dgvRank.DataSource = SelectMenuForTable(hash);
             dgvRank.Sort(dgvRank.Columns[1], ListSortDirection.Descending);
         }
-
-        private void crtAllMenuPercent_MouseMove(object sender, MouseEventArgs e)
-        {
-            ToolTip toolTip = new ToolTip();
-            if (crtAllMenuPercent.HitTest(e.X, e.Y).ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
-            {
-                //var result = Math.Round((quizCourse[crtAllMenuPercent.HitTest(e.X, e.Y).PointIndex].Respondent / 150.0 * 100), 2);
-                //MessageBox.Show(hashtableForMenu[crtAllMenuPercent.HitTest(e.X, e.Y).ChartArea.Name]);
-                //MessageBox.Show(crtAllMenuPercent.HitTest(e.X, e.Y).Series.());
-                //MessageBox.Show(crtAllMenuPercent.Series[0].);
-                //var re = Math.Round();
-                //toolTip.Show(result + "%", crtAllMenuPercent, new Point(e.X, e.Y));
-            }
-        }
-
+        
+        /// <summary>
+        /// 창이동 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -273,11 +274,21 @@ namespace GoodeeWay.BUS
             base.OnMouseDown(e);
         }
 
+        /// <summary>
+        /// 창 닫기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// 막대그래프의 툴팁생성
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void crtSalesVolumeByDate_MouseMove(object sender, MouseEventArgs e)
         {
             Point currentPosition = e.Location;
