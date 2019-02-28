@@ -200,8 +200,6 @@ namespace GoodeeWay.BUS
                     }
 
                     FetchMergeList();
-
-
                     break;
 
                 case Period.Month:
@@ -369,6 +367,9 @@ namespace GoodeeWay.BUS
             }
         }
 
+        /// <summary>
+        /// 통합된 컬렉션의 중복을 제거하기위한 메서드 
+        /// </summary>
         private void FetchMergeList()
         {
             mergeList.Clear();
@@ -500,12 +501,7 @@ namespace GoodeeWay.BUS
 
         private void btnChart_Click(object sender, EventArgs e)
         {
-            if (frmResourceChart == null)
-            {
-                frmResourceChart = new FrmResourceChart(totRsrcTab);
-                frmResourceChart.Show();
-            }
-            else if (frmResourceChart.IsDisposed)
+            if (frmResourceChart == null || frmResourceChart.IsDisposed)
             {
                 frmResourceChart = new FrmResourceChart(totRsrcTab);
                 frmResourceChart.Show();

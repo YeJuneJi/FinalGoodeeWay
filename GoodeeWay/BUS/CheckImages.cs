@@ -2,6 +2,7 @@
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,16 +28,29 @@ namespace GoodeeWay.BUS
 
         private void CheckImage()
         {
-            nameList = new ImagesDAO().SelectImagesName();
+            try
+            {
+                nameList = new ImagesDAO().SelectImagesName();
+            }
+            catch (SqlException except)
+            {
+                MessageBox.Show(except.StackTrace);
+            }
             hasImageList = new List<string>();
             needsToUpload = new List<string>();
             needsToDownload = new List<string>();
 
-            DirectoryInfo di = new DirectoryInfo(Application.StartupPath + "\\images");
-
-            foreach (var fileName in di.GetFiles())
+            try
             {
-                hasImageList.Add(fileName.Name);
+                DirectoryInfo di = new DirectoryInfo(Application.StartupPath + "\\images");
+                foreach (var fileName in di.GetFiles())
+                {
+                    hasImageList.Add(fileName.Name);
+                }
+            }
+            catch (ArgumentException except)
+            {
+                MessageBox.Show(except.StackTrace);
             }
 
             foreach (var name in nameList) // 다운로드 해야 되는 파일
@@ -69,7 +83,14 @@ namespace GoodeeWay.BUS
 
                 imgVO.Image = ms.ToArray();
 
-                new ImagesDAO().InsertImage(imgVO);
+                try
+                {
+                    new ImagesDAO().InsertImage(imgVO);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
+                }
             }
         }
 
@@ -77,13 +98,17 @@ namespace GoodeeWay.BUS
         {
             foreach (var name in needsToDownload)
             {
-                MessageBox.Show(name);
-                ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
-
-                MessageBox.Show(imgVO.Name);
-                MessageBox.Show("\r\n\r\n" + imgVO.Image);
-                File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
-
+                try
+                {
+                    ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
+                    MessageBox.Show(imgVO.Name);
+                    MessageBox.Show("\r\n\r\n" + imgVO.Image);
+                    File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
+                }
             }
         }
     }

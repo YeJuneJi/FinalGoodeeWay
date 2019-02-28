@@ -87,6 +87,8 @@ namespace GoodeeWay.BUS
             ChartFormatting(seriesInvest, seriesRawMaterial, seriesEquipPrice, seriesEmployeePrice, seriesNetProfit);
 
         }
+
+
         private void ChartFormatting(params System.Windows.Forms.DataVisualization.Charting.Series[] series)
         {
             foreach (var item in series)
