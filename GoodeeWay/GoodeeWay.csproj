@@ -66,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\CheckImages.cs" />
+    <Compile Include="BUS\EmployeeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BUS\EmployeeControl.Designer.cs">
+      <DependentUpon>EmployeeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="BUS\FrmResourceChart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,6 +318,9 @@
     <Compile Include="VO\RealMenuVO.cs" />
     <Compile Include="VO\ReceivingDetailsDetailViewVO.cs" />
     <Compile Include="VO\ReceivingDetailsVO.cs" />
+    <EmbeddedResource Include="BUS\EmployeeControl.resx">
+      <DependentUpon>EmployeeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BUS\FrmResourceChart.resx">
       <DependentUpon>FrmResourceChart.cs</DependentUpon>
     </EmbeddedResource>
