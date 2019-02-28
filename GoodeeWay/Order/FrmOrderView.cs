@@ -137,7 +137,7 @@ namespace GoodeeWay.Order
 
             foreach (Menu item in menuList)
             {
-                if (lvi.SelectedItems[0].Text.Contains(item.MenuName))
+                if (lvi.SelectedItems[0].Text.Remove(lvi.SelectedItems[0].Text.IndexOf("\r\n")).Replace(" ", "").Equals(item.MenuName))                
                 {
                     if (!item.Division.Equals(Convert.ToString((int)Division.샌드위치))) // 구분이 Sandwich가 아니면 그냥 처리
                     {
