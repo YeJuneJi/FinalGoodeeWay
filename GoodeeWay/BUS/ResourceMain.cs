@@ -198,8 +198,10 @@ namespace GoodeeWay.BUS
                         }
                         salList.Add(new ResourceManagementVO() { ResourceDate = item.Key, EmployeePrice = sum });
                     }
-                    mergeList = totInvestList.Union(equipList).OrderBy(mlist => mlist.ResourceDate).ToList();
-                    mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
+
+                    FetchMergeList();
+
+
                     break;
 
                 case Period.Month:
@@ -279,7 +281,7 @@ namespace GoodeeWay.BUS
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
 
-                    mergeList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate.Month).ToList();
+                    FetchMergeList();
                     break;
 
                 case Period.Year:
@@ -359,11 +361,37 @@ namespace GoodeeWay.BUS
                         dt = new DateTime(item.Key, 1, 1) + new TimeSpan(00, 00, 00);
                         salList.Add(new ResourceManagementVO() { ResourceDate = dt, EmployeePrice = sum });
                     }
-                    mergeList = totInvestList.Union(equipList).ToList();
-                    mergeList = mergeList.Union(salList).OrderBy(mlist => mlist.ResourceDate.Year).ToList();
+
+                    FetchMergeList();
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void FetchMergeList()
+        {
+            var unionTotList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
+
+            foreach (ResourceManagementVO item in unionTotList)
+            {
+                bool pick = false;
+
+                foreach (var item2 in mergeList)
+                {
+                    if (item2.ResourceDate == item.ResourceDate)
+                    {
+                        pick = true;
+                        item2.TotInvestPrice += item.TotInvestPrice;
+                        item2.RawMaterialCost += item.RawMaterialCost;
+                        item2.EquipPrice += item.EquipPrice;
+                        item2.EmployeePrice += item.EmployeePrice;
+                    }
+                }
+                if (!pick)
+                {
+                    mergeList.Add(item);
+                }
             }
         }
 
@@ -459,28 +487,7 @@ namespace GoodeeWay.BUS
                     totnetProfit += netProfit;
                 }
 
-                var temp2 = from invest in totInvestList
-                            join equip in equipList on invest.ResourceDate equals equip.ResourceDate
-                            join sal in salList on invest.ResourceDate equals sal.ResourceDate
-                            select new { invest.ResourceDate, invest.TotInvestPrice, invest.RawMaterialCost, equip.EquipPrice, sal.EmployeePrice };
 
-                var temp3 = from t in temp2
-                            group t by t.ResourceDate;
-                foreach (var item in temp3)
-                {
-                    decimal sum1 = 0;
-                    decimal sum2 = 0;
-                    decimal sum3 = 0;
-                    decimal sum4 = 0;
-                    foreach (var group in item)
-                    {
-                        sum1 += (decimal)group.TotInvestPrice;
-                        sum2 += (decimal)group.RawMaterialCost;
-                        sum3 += (decimal)group.EquipPrice;
-                        sum4 += (decimal)group.EmployeePrice;
-                    }
-                    MessageBox.Show(item.Key + " :::: " + sum1 + " :::: " + sum2 + " :::: " + sum3 + " :::: " + sum4);
-                }
 
                 lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                 lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
