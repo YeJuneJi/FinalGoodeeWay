@@ -428,9 +428,9 @@ namespace GoodeeWay.Sales
 
                 ReflashData();
             }
-            if ((menuUpdateSucess && sucessUpdateRecipe) || menuUpdateSucess)
+            if ((menuUpdateSucess && sucessUpdateRecipe))
             {
-                MessageBox.Show("레시피 수정 완료");
+                MessageBox.Show("레시피 수정 완료(레시피 수정 완료)");
             }
             else if (menuUpdateSucess && sucessdeleteRecipe)
             {
@@ -440,9 +440,9 @@ namespace GoodeeWay.Sales
             {
                 MessageBox.Show("메뉴 수정 성공(추가 레시피 등록)");
             }
-            else
+            else if (menuUpdateSucess && !sucessUpdateRecipe && !sucessdeleteRecipe && !successInsertRecipe)
             {
-                MessageBox.Show("수정 실패");
+                MessageBox.Show("레시피 수정 완료");
             }
             btnClear_Click(null, null);
         }
