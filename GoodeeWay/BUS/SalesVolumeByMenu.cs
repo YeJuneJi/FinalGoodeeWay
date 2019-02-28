@@ -32,6 +32,7 @@ namespace GoodeeWay.BUS
 
         private void SalesVolumeByMenu_Load(object sender, EventArgs e)
         {
+            
             btnClose.BackgroundImage = Properties.Resources.Close_Window_32px.ToImage();
             crtSalesVolumeByDate.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             crtSalesVolumeByDate.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
@@ -89,8 +90,8 @@ namespace GoodeeWay.BUS
         {
             DataTable data;
             data = new DataTable();
-            data.Columns.Add("메뉴 명");
-            data.Columns.Add("판매량");
+            data.Columns.Add("메뉴 명",typeof(string));
+            data.Columns.Add("판매량",typeof(int));
 
             foreach (var item in hash)
             {
@@ -109,7 +110,8 @@ namespace GoodeeWay.BUS
             crtAllMenuPercent.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             crtAllMenuPercent.Series[0].Points.DataBindXY(hash.Keys, hash.Values);
             crtAllMenuPercent.Legends[0].Alignment = StringAlignment.Center;
-            crtAllMenuPercent.Series[0].Label = "#VALX (#PERCENT)";
+            crtAllMenuPercent.Series[0].LabelForeColor = Color.White;
+            crtAllMenuPercent.Series[0].Label = "#VALY \n (#PERCENT)";
             crtAllMenuPercent.Series[0].LegendText = "#VALX :#VALY (#PERCENT)";
 
         }
