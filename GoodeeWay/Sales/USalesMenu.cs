@@ -443,7 +443,7 @@ namespace GoodeeWay.Sales
             }
             if ((menuUpdateSucess && sucessUpdateRecipe))
             {
-                MessageBox.Show("레시피 수정 완료(레시피 수정 완료)");
+                MessageBox.Show("메뉴 수정 완료(레시피 수정 완료)");
             }
             else if (menuUpdateSucess && sucessdeleteRecipe)
             {

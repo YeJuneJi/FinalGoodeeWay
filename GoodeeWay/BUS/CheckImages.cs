@@ -101,8 +101,7 @@ namespace GoodeeWay.BUS
                 try
                 {
                     ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
-                    MessageBox.Show(imgVO.Name);
-                    MessageBox.Show("\r\n\r\n" + imgVO.Image);
+                    MessageBox.Show(imgVO.Name+ " 를 다운로드 합니다.");
                     File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
                 }
                 catch (SqlException ex)
