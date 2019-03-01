@@ -2,15 +2,10 @@
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -41,7 +36,6 @@ namespace GoodeeWay.Sales
             myToolTip.SetToolTip(btnResult, "검색");
             searchlist = new List<SalesMenuVO>();
             menuSearchGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            menuSearchGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             menuSearchGView.AllowUserToAddRows = false;
             dataColoumns = new DataColumn[]
             {
@@ -74,7 +68,15 @@ namespace GoodeeWay.Sales
         {
             foreach (var item in salesMenus)
             {
-                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, Image.FromFile(Application.StartupPath + item.MenuImageLocation).ImageToByteArray(), item.Division, item.AdditionalContext);
+                string division = string.Empty;
+                foreach (Division div in Enum.GetValues(typeof(Division))) //Enum Type 반복하며 ComboBox에 등록.
+                {
+                    if ((int)div == item.Division)
+                    {
+                        division = div.ToString();
+                    }
+                }
+                searchMenu.Rows.Add(item.MenuCode, item.MenuName, item.Price, item.Kcal, Image.FromFile(Application.StartupPath + item.MenuImageLocation).ImageToByteArray(), division, item.AdditionalContext);
             }
             menuSearchGView.DataSource = searchMenu;
         }
@@ -186,11 +188,6 @@ namespace GoodeeWay.Sales
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void cbxDivision_SelectedValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

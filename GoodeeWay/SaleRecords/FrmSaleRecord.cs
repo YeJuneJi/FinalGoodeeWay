@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.VO;
 using GoodeeWay.DAO;
 using Newtonsoft.Json;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
 
 namespace GoodeeWay.SaleRecords
 {
@@ -41,7 +38,6 @@ namespace GoodeeWay.SaleRecords
             lblText.Text = "내용을 더블 클릭을 하시면 환불을 하실 수 있습니다.";
             searchlist = new List<SaleRecordsVO>();
             salesRecordsGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            salesRecordsGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesRecordsGView.AllowUserToAddRows = false;
             dataColoumns = new DataColumn[]
             {
@@ -89,8 +85,15 @@ namespace GoodeeWay.SaleRecords
                 string salesNo = tbxSalesNo.Text.Replace(" ", "").Trim();
                 if (ValidateSalesNo(salesNo))
                 {
-                    searchlist = new SaleRecordsDAO().SelectSaleRecordsBysalesNo(salesNo);
-                    ListToGridView(searchlist);
+                    try
+                    {
+                        searchlist = new SaleRecordsDAO().SelectSaleRecordsBysalesNo(salesNo);
+                        ListToGridView(searchlist);
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("판매기록을 출력 할 수 없습니다.");
+                    }
                 }
             }
             else
@@ -103,8 +106,15 @@ namespace GoodeeWay.SaleRecords
                 periodEnd = periodEnd.Date + eclipse;
                 if (!CheckPeriod(periodStart, periodEnd))
                 {
-                    searchlist = new SaleRecordsDAO().SelectSaleRacordsByPeriod(periodStart, periodEnd);
-                    ListToGridView(searchlist);
+                    try
+                    {
+                        searchlist = new SaleRecordsDAO().SelectSaleRacordsByPeriod(periodStart, periodEnd);
+                        ListToGridView(searchlist);
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("판매기록을 출력 할 수 없습니다.");
+                    }
                 }
             }
         }
@@ -190,7 +200,15 @@ namespace GoodeeWay.SaleRecords
         {
             if (CheckSaleRecords())
             {
-                FrmUpdateSaleRecords updateSaleRecords = new FrmUpdateSaleRecords(saleRecords);
+                var salesItems = from record in searchlist
+                                 where record.SalesNo == saleRecords.SalesNo
+                                 select new { record.SalesitemName };
+                string salesItemName = string.Empty;
+                foreach (var item in salesItems)
+                {
+                    salesItemName = item.SalesitemName;
+                }
+                FrmUpdateSaleRecords updateSaleRecords = new FrmUpdateSaleRecords(saleRecords, salesItemName);
                 updateSaleRecords.ShowDialog();
                 OutputAllSaleRecords();
             }
@@ -232,8 +250,8 @@ namespace GoodeeWay.SaleRecords
             }
             return result;
         }
-
-        private void salesRecordsGView_CellClick(object sender, DataGridViewCellEventArgs e)
+        
+    private void salesRecordsGView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
@@ -326,6 +344,11 @@ namespace GoodeeWay.SaleRecords
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
             FrmDetailSaleRecord frmDetailSaleRecord = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
             frmDetailSaleRecord.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

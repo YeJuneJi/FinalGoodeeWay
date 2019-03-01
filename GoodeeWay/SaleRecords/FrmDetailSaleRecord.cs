@@ -66,11 +66,14 @@ namespace GoodeeWay.SaleRecords
             MakingFormVO makingFormVO = new MakingFormVO();
 
             // 제조 대기 상태이면 환불 가능 다른경우 전부 x
-            makingFormVO = new MakingDAO().SelectMakingBySaleNo(salesNo);
-
             try
             {
+                makingFormVO = new MakingDAO().SelectMakingBySaleNo(salesNo);
                 CheckMaikingDivision(makingFormVO.Division);
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("제조 현황을 가져올 수 없습니다.");
             }
             catch (Exception except)
             {

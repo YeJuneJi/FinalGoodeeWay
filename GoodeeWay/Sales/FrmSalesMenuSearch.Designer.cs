@@ -139,6 +139,7 @@
             this.menuSearchGView.Location = new System.Drawing.Point(14, 158);
             this.menuSearchGView.Name = "menuSearchGView";
             this.menuSearchGView.ReadOnly = true;
+            this.menuSearchGView.RowHeadersVisible = false;
             this.menuSearchGView.RowTemplate.Height = 23;
             this.menuSearchGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.menuSearchGView.Size = new System.Drawing.Size(712, 327);

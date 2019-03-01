@@ -43,11 +43,19 @@ namespace GoodeeWay.Sales
         public USalesMenu()
         {
             InitializeComponent();
+            myToolTip.SetToolTip(lblDivisionExplain, (int)Division.샌드위치 + " - "  + Division.샌드위치 + Environment.NewLine + (int)Division.찹샐러드 + " - " + Division.찹샐러드 + Environment.NewLine + (int)Division.사이드 + " - " + Division.사이드 + Environment.NewLine + (int)Division.음료 + " - " + Division.음료);
             btnClear.BackgroundImage = Properties.Resources.Initialize_64px;
             btnPhoto.BackgroundImage = Properties.Resources.Picture_64px;
             oFdialogPhoto.InitialDirectory = Application.StartupPath + "\\Images\\";
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
-            salesMenuList = new SalesMenuDAO().OutPutAllMenus();
+            try
+            {
+                salesMenuList = new SalesMenuDAO().OutPutAllMenus();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("메뉴를 출력할 수 없습니다.");
+            }
             salesMenuGView.DataSource = salesMenuList;
             salesMenuGView.Columns[0].HeaderText = "메뉴코드";
             salesMenuGView.Columns[1].HeaderText = "메뉴명";
@@ -61,10 +69,16 @@ namespace GoodeeWay.Sales
             {
                 cbxDivision.Items.Add(item);
             }
-
             //InventoryTypeDAO에 정의되어있는 InventoryTypeSelect() 메서드를호출하여 
             //InventoryType테이블의 데이터를Datatable에 저장한다.
-            inventoryTypeTable = new InventoryTypeDAO().InventoryTypeSelect();
+            try
+            {
+                inventoryTypeTable = new InventoryTypeDAO().InventoryTypeSelect();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("재고 종류를 가져올 수 없습니다.");
+            }
             foreach (DataRow item in inventoryTypeTable.Rows)//데이터 테이블의 로우의만큼 반복하며
             {
 
@@ -77,6 +91,7 @@ namespace GoodeeWay.Sales
                     MinimumQuantity = int.Parse(item[3].ToString()),
                 });
             }
+            salesMenuGView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
         private void btnMnuInsert_Click(object sender, EventArgs e)
@@ -92,7 +107,7 @@ namespace GoodeeWay.Sales
             string imageLocation = images;
             bool sucessRecipe = false; //레시피 등록 성공여부를 판단하기 위한 bool 변수
 
-            bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수/
+            bool sucessMenu = false; //메뉴 등록 성공여부를 판단하기 위한 bool 변수
 
             if (ValidateNull(menuCode, menuName, price, kcal, division, addContxt, discountRatio, imageLocation) && ValidateType(price, kcal, discountRatio) && ValidateMenuCode(menuCode))//만약 유효성 검사에 통과 한다면
             {
@@ -524,7 +539,15 @@ namespace GoodeeWay.Sales
 
                 if (cbxDivision.SelectedIndex == 0)
                 {
-                    List<MenuRecipeVO> menuRecipeList = new MenuRecipeDAO().SelectRecipesByMenuCode(msktbxMnuCode.Text);
+                    List<MenuRecipeVO> menuRecipeList = default(List<MenuRecipeVO>);
+                    try
+                    {
+                        menuRecipeList = new MenuRecipeDAO().SelectRecipesByMenuCode(msktbxMnuCode.Text);
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("레시피를 가져올 수 없습니다.");
+                    }
                     foreach (MenuRecipeVO item in menuRecipeList)
                     {
                         foreach (FlowLayoutPanel panel in FlowPanel.Controls)
@@ -912,6 +935,7 @@ namespace GoodeeWay.Sales
             salesMenuGView.Columns[5].HeaderText = "구분";
             salesMenuGView.Columns[6].HeaderText = "부가설명";
             salesMenuGView.Columns[7].HeaderText = "할인율";
+            salesMenuGView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
 

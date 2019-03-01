@@ -5,13 +5,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using System;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using System.IO;
-using GoodeeWay.Order;
-using System.Globalization;
 using System.Drawing;
-using System.Collections;
+using System.Data.SqlClient;
 
 namespace GoodeeWay.BUS
 {
@@ -41,7 +37,6 @@ namespace GoodeeWay.BUS
             salList = new List<ResourceManagementVO>();
             mergeList = new List<ResourceManagementVO>();
             resourceDataGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            resourceDataGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             resourceDataGView.AllowUserToAddRows = false;
             dataColumns = new DataColumn[]
             {
@@ -64,7 +59,7 @@ namespace GoodeeWay.BUS
                 inventoryTypeList = new InventoryTypeDAO().InventoryTypeSelect();
                 receivingDetailList = new ReceivingDetailsDAO().OutPutAllSaleRecords();
             }
-            catch (Exception except)
+            catch (SqlException except)
             {
                 MessageBox.Show(except.StackTrace);
             }
@@ -399,7 +394,6 @@ namespace GoodeeWay.BUS
 
         private void CommaSet(Label label, string txt)
         {
-            //label.Text = string.Empty;
             for (int i = txt.Length - 3; i > 1; i = i - 3)
             {
                 txt = txt.Insert(i, ",");

@@ -231,12 +231,6 @@
     <Compile Include="SaleRecords\FrmSaleRecord.Designer.cs">
       <DependentUpon>FrmSaleRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaleRecords\FrmSaleRecords.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SaleRecords\FrmSaleRecords.Designer.cs">
-      <DependentUpon>FrmSaleRecords.cs</DependentUpon>
-    </Compile>
     <Compile Include="SaleRecords\FrmUpdateSaleRecords.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -432,9 +426,6 @@
     <EmbeddedResource Include="SaleRecords\FrmSaleRecord.resx">
       <DependentUpon>FrmSaleRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SaleRecords\FrmSaleRecords.resx">
-      <DependentUpon>FrmSaleRecords.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SaleRecords\FrmUpdateSaleRecords.resx">
       <DependentUpon>FrmUpdateSaleRecords.cs</DependentUpon>
     </EmbeddedResource>
@@ -509,6 +500,8 @@
     <Content Include="Resources\In_50px.png" />
     <None Include="Resources\ledger.png" />
     <None Include="Resources\loupe2.png" />
+    <Content Include="Resources\Maximize_Window_64px.png" />
+    <Content Include="Resources\Minimize_Window_64px.png" />
     <Content Include="Resources\Picture_64px.png" />
     <Content Include="Resources\Refund_50px.png" />
     <None Include="Resources\reload.png" />
