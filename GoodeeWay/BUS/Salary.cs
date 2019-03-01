@@ -158,7 +158,6 @@ namespace GoodeeWay.BUS
             lst = sd.Search(temp1, temp2);
             dataGridView1.DataSource = lst;
             ColumnSetKor();
-            MessageBox.Show("temp1: " + temp1 + " temp2: " + temp2);
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
