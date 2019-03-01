@@ -71,6 +71,7 @@ namespace GoodeeWay
                 fi = new FrmInventory();
                 MainPanel.Controls.Add(fi);
                 fi.BringToFront();
+                CheckOpenClose(fi);
             }
             else if (fi.IsDisposed)
             {
@@ -125,7 +126,7 @@ namespace GoodeeWay
                 frmEquipment = new UcEquipment();
                 MainPanel.Controls.Add(frmEquipment);
                 frmEquipment.BringToFront();
-                //CheckOpenClose(saleRecords);
+                CheckOpenClose(frmEquipment);
             }
             else
             {
