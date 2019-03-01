@@ -372,10 +372,10 @@ namespace GoodeeWay.Sales
             //메뉴 업데이트 -> 레시피 업데이트
             //2. 만약 oldDivision이 샌드위치이고, division이 샌드위치가 아니면
             //레시피 삭제 -> 메뉴 업데이트
-            //delete from dbo.Recipe where 메뉴코드 = 올드메뉴코드
+            //메뉴코드 삭제
             //3. 만약 oldDivision이 샌드위치가 아니고, division이 샌드위치이면
             //메뉴 수정 - > 레시피 등록
-            //insert into 메뉴코드 = 메뉴코드 .....
+            //메뉴코드 등록
             string menuCode = msktbxMnuCode.Text;
             string menuName = tbxMnuName.Text.Replace(" ", "").Trim();
             string price = tbxPrice.Text.Replace(",", "").Trim();
@@ -669,7 +669,6 @@ namespace GoodeeWay.Sales
                     MessageBox.Show(ex.Message);
                 }
             }
-
             return sucessMenu;
         }
 
@@ -757,8 +756,7 @@ namespace GoodeeWay.Sales
                         }
                     }
                 }
-                menuRecipeVO.Necessary = necess;
-                menuRecipeVO.IngredientAmount = ingrAmount;
+                menuRecipeVO.Necessary = necess;  menuRecipeVO.IngredientAmount = ingrAmount;
                 try
                 {
                     if (new MenuRecipeDAO().InsertRecipe(menuRecipeVO))
@@ -771,7 +769,6 @@ namespace GoodeeWay.Sales
                     MessageBox.Show(ex.Message);
                 }
             }
-
             return succRecip;
         }
 
@@ -840,7 +837,6 @@ namespace GoodeeWay.Sales
                     MessageBox.Show(ex.Message);
                 }
             }
-
             return sucessUpdateRecipe;
         }
 

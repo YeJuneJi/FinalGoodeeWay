@@ -198,8 +198,10 @@ namespace GoodeeWay.SaleRecords
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            //객체의 생성여부를 판단하는 유효성검사를 통과하면
             if (CheckSaleRecords())
             {
+                //linq를 통해 salesNo가 동일한 Json형식으로된 판매물품명을 가져와
                 var salesItems = from record in searchlist
                                  where record.SalesNo == saleRecords.SalesNo
                                  select new { record.SalesitemName };
@@ -208,6 +210,7 @@ namespace GoodeeWay.SaleRecords
                 {
                     salesItemName = item.SalesitemName;
                 }
+                //매개변수로 전송하여 판매물품명을 분석한다.
                 FrmUpdateSaleRecords updateSaleRecords = new FrmUpdateSaleRecords(saleRecords, salesItemName);
                 updateSaleRecords.ShowDialog();
                 OutputAllSaleRecords();

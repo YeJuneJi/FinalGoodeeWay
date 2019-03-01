@@ -12,21 +12,31 @@ using System.Data.SqlClient;
 namespace GoodeeWay.BUS
 {
     public enum Period { Date, Month, Year };
-
+    /// <summary>
+    /// 매출현황 및 그래프를 출력하기위한 <C>ResourceMain</C> 클래스
+    /// </summary>
     public partial class ResourceMain : UserControl
     {
+        ///<value>총 매출현황 출력을 위한 Datatable</value>
         DataTable totRsrcTab;
         DataColumn[] dataColumns;
+        ///<value>총 비품내역 검색내용을 저장할 equipmentList</value>
         List<EquipmentVO> equipmentList;
+        ///<value>총 판매기록 검색내용을 저장할 saleRecordList</value>
         List<SaleRecordsVO> saleRecordList;
+        ///<value>총 인사급여 검색내용을 저장할 salaryList</value>
         List<SalaryVO> salaryList;
+        ///<value>총 재고종류 검색내용을 저장할 convertInventoryTypetoList</value>
         List<InventoryTypeVO> convertInventoryTypetoList;
+        ///<value>총 입고내역 검색내용을 저장할 receivingDetailList</value>
         List<ReceivingDetailsVO> receivingDetailList;
+
         DataTable inventoryTypeList;
         List<ResourceManagementVO> totInvestList;
         List<ResourceManagementVO> equipList;
         List<ResourceManagementVO> salList;
         List<ResourceManagementVO> mergeList;
+        ///<value>총 매출현황을 차트로 나타내기 위한 frmResourceChart </value>
         FrmResourceChart frmResourceChart;
 
         public ResourceMain()
@@ -119,20 +129,21 @@ namespace GoodeeWay.BUS
                                    UnitPrice = rcv.UnitPrice
                                };
 
+            //그룹(일별,월별,년별)에따라 총매출, 원재료비, 비품비, 인사비의 총합을 Linq를 사용하여그룹화한 값을 IEnumarable 타입으로 반환.
             switch (period)
             {
                 case Period.Date:
-
+                    //일별 총 매출액과 판매물품명을 기간으로 그룹화.
                     var dayPerRealTot = from records in (from saleRecord in saleRecordList
                                                          where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
                                                          select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
                                         group records by records.SalesDate;
-
+                    //일별총 비품비를 기간으로 그룹화.
                     var dayPerEquipPriceTot = from equips in (from equipment in equipmentList
                                                               where equipment.PurchaseDate >= periodStart && equipment.PurchaseDate <= periodEnd
                                                               select new { PurchaseDate = equipment.PurchaseDate, PurchasePrice = equipment.PurchasePrice })
                                               group equips by equips.PurchaseDate;
-
+                    //일별 인사급여를 기간으로 그룹화.
                     var dayPerEmployeeSalaryTot = from sals in (from salary in salaryList
                                                                 where salary.Payday >= periodStart && salary.Payday <= periodEnd
                                                                 select new { Payday = salary.Payday, TotalSalary = salary.TotalSalary })
@@ -146,29 +157,31 @@ namespace GoodeeWay.BUS
                         {
                             investSum += group.Stotal;
                             #region jsonParsing 분석
+                            //json형식으로된 판매물품명을 매개변수로 받아NuGet 패키지로부터 NewtonSoft의 Json.NET 을 참조받아 Deserializing한다.
                             RealMenuVO rv = JsonConvert.DeserializeObject<RealMenuVO>(group.SitemName);
                             foreach (var realMenu in rv.RealMenu)
-                            {
+                            {//만약 판매메뉴의 구분이 샌드위치라면
                                 if (realMenu.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
-                                {
+                                {//샌드위치의 레시피를 반복하며 재료를 찾아
                                     foreach (var menuDetail in realMenu.MenuDetailList)
-                                    {
+                                    {//입고내역에 있는 재료단가를 반복시켜서
                                         foreach (var unitPrice in calUnitPrice)
-                                        {
+                                        {//재료에 해당되는 단가를 일치시킨후
                                             if (menuDetail.InventoryTypeCode.Equals(unitPrice.InventoryTypeCode))
-                                            {
+                                            {//원재료비에 단가를 종합한다.
                                                 rawMaterialCost += unitPrice.UnitPrice;
                                             }
                                         }
                                     }
                                 }
                                 else
-                                {
+                                {//만약 판매메뉴의 구분이 샌드위치가 아니라면 판매메뉴 고유의 가격을 원재료비에 종합한다.
                                     rawMaterialCost += realMenu.Menu.Price;
                                 }
                             }
                             #endregion
                         }
+                        //종합한 총매출과 원재료비를 리스트에 반환
                         totInvestList.Add(new ResourceManagementVO() { ResourceDate = itemgroup.Key, RawMaterialCost = rawMaterialCost, TotInvestPrice = investSum });
                     }
 
@@ -368,30 +381,38 @@ namespace GoodeeWay.BUS
         private void FetchMergeList()
         {
             mergeList.Clear();
+            ///<value>총매출과 원재료비, 비품비, 인사급여를 Union 시켜 리스트로 반환한다.</value>
             var unionTotList = totInvestList.Union(equipList).Union(salList).OrderBy(mlist => mlist.ResourceDate).ToList();
-
-            foreach (ResourceManagementVO item in unionTotList)
+            //Union된 전체 리스트를 반복한다.
+            foreach (ResourceManagementVO union in unionTotList)
             {
                 bool pick = false;
-
-                foreach (var item2 in mergeList)
-                {
-                    if (item2.ResourceDate == item.ResourceDate)
+                
+                foreach (var merge in mergeList)
+                {//만약 Union된 리스트의 일자와 병합시킬 리스트의 일자가 같다면
+                    if (merge.ResourceDate == union.ResourceDate)
                     {
                         pick = true;
-                        item2.TotInvestPrice += item.TotInvestPrice;
-                        item2.RawMaterialCost += item.RawMaterialCost;
-                        item2.EquipPrice += item.EquipPrice;
-                        item2.EmployeePrice += item.EmployeePrice;
+                        //병합시킬 리스트의 객체에 중복되는 속성들을 전부 더해 하나의 열로 병합시킨다.
+                        merge.TotInvestPrice += union.TotInvestPrice;
+                        merge.RawMaterialCost += union.RawMaterialCost;
+                        merge.EquipPrice += union.EquipPrice;
+                        merge.EmployeePrice += union.EmployeePrice;
                     }
                 }
                 if (!pick)
                 {
-                    mergeList.Add(item);
+                    //중복이 되지않는다면 병합시킬 리스트에 바로 추가한다.
+                    mergeList.Add(union);
                 }
             }
         }
 
+        /// <summary>
+        /// 매출현황별 금액에 3글자 단위 (콤마)','를 삽입하기 위한 메서드
+        /// </summary>
+        /// <param name="label">콤마를 삽입할 라벨</param>
+        /// <param name="txt">콤마를 삽입할 정수의 string값</param>
         private void CommaSet(Label label, string txt)
         {
             for (int i = txt.Length - 3; i > 1; i = i - 3)
@@ -493,15 +514,10 @@ namespace GoodeeWay.BUS
                     totnetProfit += netProfit;
                 }
 
-                //lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
                 CommaSet(lbltotalInvesetPrice, ((decimal)totalInvesetPrice).ToString());
-                // lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
                 CommaSet(lblRawMaterialCost, ((decimal)totRawMaterialCost).ToString());
-                //lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
                 CommaSet(lblEquipPrice, ((decimal)totEquipPrice).ToString());
-                //lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
                 CommaSet(lblEmployeeCost, ((decimal)totEmployeePrice).ToString());
-                //lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
                 CommaSet(lbltotnetProfit, ((decimal)totnetProfit).ToString());
                 lbltotnetProfit.ForeColor = Color.Red;
                 

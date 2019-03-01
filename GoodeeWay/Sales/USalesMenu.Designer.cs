@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.salesMenuGView = new System.Windows.Forms.DataGridView();
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
@@ -65,6 +65,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblDivisionExplain = new System.Windows.Forms.Label();
             this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.lblRecipeQues = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
@@ -92,23 +93,23 @@
             this.salesMenuGView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.salesMenuGView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.salesMenuGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.salesMenuGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.salesMenuGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.salesMenuGView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.salesMenuGView.DefaultCellStyle = dataGridViewCellStyle2;
             this.salesMenuGView.EnableHeadersVisualStyles = false;
             this.salesMenuGView.Location = new System.Drawing.Point(14, 202);
             this.salesMenuGView.MultiSelect = false;
@@ -500,10 +501,23 @@
             this.lblDivisionExplain.TabIndex = 92;
             this.lblDivisionExplain.Text = "구분칸의 숫자가 궁금하다면 이곳에 마우스를 올리세요";
             // 
+            // lblRecipeQues
+            // 
+            this.lblRecipeQues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecipeQues.AutoSize = true;
+            this.lblRecipeQues.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecipeQues.ForeColor = System.Drawing.Color.Black;
+            this.lblRecipeQues.Location = new System.Drawing.Point(1063, 178);
+            this.lblRecipeQues.Name = "lblRecipeQues";
+            this.lblRecipeQues.Size = new System.Drawing.Size(194, 18);
+            this.lblRecipeQues.TabIndex = 93;
+            this.lblRecipeQues.Text = "사용량의 단위는 그램(g)입니다.";
+            // 
             // USalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblRecipeQues);
             this.Controls.Add(this.lblDivisionExplain);
             this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.FlowPanel);
@@ -554,5 +568,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblDivisionExplain;
         private System.Windows.Forms.ToolTip myToolTip;
+        private System.Windows.Forms.Label lblRecipeQues;
     }
 }

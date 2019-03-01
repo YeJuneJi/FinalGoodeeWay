@@ -11,6 +11,9 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace GoodeeWay.Sales
 {
+    /// <summary>
+    /// 판매메뉴들을 조회하기위한 <c>FrmSalesMenuSearch</c> 클래스
+    /// </summary>
     public partial class FrmSalesMenuSearch : Form
     {
         [DllImport("user32.dll")]
@@ -63,7 +66,7 @@ namespace GoodeeWay.Sales
         /// <summary>
         /// List<SalesMenuVO>를 gridView에 출력해 주기 위한 메서드
         /// </summary>
-        /// <param name="salesMenus"></param>
+        /// <param name="salesMenus">판매메뉴 리스트를 매개변수로 받아 분석하기위한 변수</param>
         private void ListToGridView(List<SalesMenuVO> salesMenus)
         {
             foreach (var item in salesMenus)

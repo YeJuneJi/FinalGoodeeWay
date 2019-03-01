@@ -14,6 +14,9 @@ using GoodeeWay.VO;
 
 namespace GoodeeWay.SaleRecords
 {
+    /// <summary>
+    /// 판매기록의 영수증과 환불상태를 나타내 주기 위한<c>FrmDetailSaleRecord</c> 클래스
+    /// </summary>
     public partial class FrmDetailSaleRecord : Form
     {
         [DllImport("user32.dll")]
@@ -51,8 +54,10 @@ namespace GoodeeWay.SaleRecords
 
             tbxMenus.Text += "================주문 내역========================\r\n";
             
+            //매개변수로 전달받은 Json 형식의 판매물품명을 분석해
             foreach (var rmv in realMenuVO.RealMenu)
             {
+                //구분별 판매물품명을 출력한다.
                 if (rmv.Menu.Division.Equals(Convert.ToString((int)Division.샌드위치)))
                 {
                     tbxMenus.Text += "\r\n\r\n<<" + Enum.GetName(typeof(Division), int.Parse(rmv.Menu.Division)) + ">>\r\n" + rmv.Menu.MenuName;
@@ -65,7 +70,7 @@ namespace GoodeeWay.SaleRecords
 
             MakingFormVO makingFormVO = new MakingFormVO();
 
-            // 제조 대기 상태이면 환불 가능 다른경우 전부 x
+            // 제조 대기 상태이면 환불이 가능하며 그외의 상태는 환불이 불가능하다.
             try
             {
                 makingFormVO = new MakingDAO().SelectMakingBySaleNo(salesNo);

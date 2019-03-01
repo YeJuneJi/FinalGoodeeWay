@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace GoodeeWay.SaleRecords
 {
+    /// <summary>
+    /// 판매기록의 내용을 수정하기위한 <c>FrmUpdateSaleRecords</c> 클래스
+    /// </summary>
     public partial class FrmUpdateSaleRecords : Form
     {
         [DllImport("user32.dll")]
@@ -76,7 +79,14 @@ namespace GoodeeWay.SaleRecords
                 Close();
             }
         }
-
+        /// <summary>
+        /// 수정하고자하는 판매기록들의 데이터들의 Type유효성검사를 위한 메서드
+        /// </summary>
+        /// <param name="price">가격</param>
+        /// <param name="discount">할인</param>
+        /// <param name="duty">세금</param>
+        /// <param name="total">총액</param>
+        /// <returns></returns>
         private bool ValidateType(string price, string discount, string duty, string total)
         {
             bool result = false;
@@ -93,6 +103,16 @@ namespace GoodeeWay.SaleRecords
             return result;
         }
 
+        /// <summary>
+        /// 수정하고자하는 판매기록들의 데이터들의 Null유효성검사를 위한 메서드
+        /// </summary>
+        /// <param name="name">이름</param>
+        /// <param name="price">가격</param>
+        /// <param name="discount">할인</param>
+        /// <param name="duty">세금</param>
+        /// <param name="total">총액</param>
+        /// <param name="plan">지불방법</param>
+        /// <returns></returns>
         private bool ValidateNull(string name, string price, string discount, string duty, string total, string plan)
         {
             bool result = false;
