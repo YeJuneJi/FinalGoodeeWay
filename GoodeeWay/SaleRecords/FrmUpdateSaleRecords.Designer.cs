@@ -144,6 +144,7 @@
             this.tbxUpdateName.Location = new System.Drawing.Point(97, 111);
             this.tbxUpdateName.Multiline = true;
             this.tbxUpdateName.Name = "tbxUpdateName";
+            this.tbxUpdateName.ReadOnly = true;
             this.tbxUpdateName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxUpdateName.Size = new System.Drawing.Size(351, 241);
             this.tbxUpdateName.TabIndex = 9;

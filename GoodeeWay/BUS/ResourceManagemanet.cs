@@ -29,7 +29,6 @@ namespace GoodeeWay.BUS
 
         private void ResourceManagemanet_Load(object sender, EventArgs e)
         {
-            btnClose.Image = Properties.Resources.Close_Window_32px.ToImage();
             pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
             resourceMain = new ResourceMain();
             resourceMain.Size = mainPanel.Size;
@@ -74,6 +73,26 @@ namespace GoodeeWay.BUS
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Maximized;
+                
+
+            }
+            else if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }

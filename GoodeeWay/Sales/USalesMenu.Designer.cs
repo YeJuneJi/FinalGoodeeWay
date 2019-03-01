@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.salesMenuGView = new System.Windows.Forms.DataGridView();
             this.oFdialogPhoto = new System.Windows.Forms.OpenFileDialog();
@@ -62,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblDivisionExplain = new System.Windows.Forms.Label();
+            this.myToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.salesMenuGView)).BeginInit();
             this.MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).BeginInit();
@@ -73,45 +76,48 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FlowPanel.AutoScroll = true;
-            this.FlowPanel.Location = new System.Drawing.Point(679, 178);
+            this.FlowPanel.Location = new System.Drawing.Point(679, 202);
             this.FlowPanel.Name = "FlowPanel";
-            this.FlowPanel.Size = new System.Drawing.Size(578, 534);
+            this.FlowPanel.Size = new System.Drawing.Size(578, 510);
             this.FlowPanel.TabIndex = 54;
             // 
             // salesMenuGView
             // 
+            this.salesMenuGView.AllowUserToAddRows = false;
+            this.salesMenuGView.AllowUserToDeleteRows = false;
             this.salesMenuGView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.salesMenuGView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.salesMenuGView.BackgroundColor = System.Drawing.Color.White;
             this.salesMenuGView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.salesMenuGView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.salesMenuGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.salesMenuGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.salesMenuGView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.salesMenuGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.salesMenuGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.salesMenuGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.salesMenuGView.DefaultCellStyle = dataGridViewCellStyle8;
             this.salesMenuGView.EnableHeadersVisualStyles = false;
-            this.salesMenuGView.Location = new System.Drawing.Point(14, 178);
+            this.salesMenuGView.Location = new System.Drawing.Point(14, 202);
             this.salesMenuGView.MultiSelect = false;
             this.salesMenuGView.Name = "salesMenuGView";
             this.salesMenuGView.ReadOnly = true;
+            this.salesMenuGView.RowHeadersVisible = false;
             this.salesMenuGView.RowTemplate.Height = 23;
             this.salesMenuGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.salesMenuGView.Size = new System.Drawing.Size(659, 534);
+            this.salesMenuGView.Size = new System.Drawing.Size(659, 510);
             this.salesMenuGView.TabIndex = 30;
             this.salesMenuGView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.salesMenuGView_CellClick);
             // 
@@ -166,7 +172,7 @@
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(1222, 6);
+            this.btnClose.Location = new System.Drawing.Point(1235, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(35, 35);
             this.btnClose.TabIndex = 90;
@@ -483,10 +489,22 @@
             this.panel1.Size = new System.Drawing.Size(719, 157);
             this.panel1.TabIndex = 91;
             // 
+            // lblDivisionExplain
+            // 
+            this.lblDivisionExplain.AutoSize = true;
+            this.lblDivisionExplain.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDivisionExplain.ForeColor = System.Drawing.Color.Black;
+            this.lblDivisionExplain.Location = new System.Drawing.Point(14, 178);
+            this.lblDivisionExplain.Name = "lblDivisionExplain";
+            this.lblDivisionExplain.Size = new System.Drawing.Size(327, 18);
+            this.lblDivisionExplain.TabIndex = 92;
+            this.lblDivisionExplain.Text = "구분칸의 숫자가 궁금하다면 이곳에 마우스를 올리세요";
+            // 
             // USalesMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblDivisionExplain);
             this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.FlowPanel);
             this.Controls.Add(this.salesMenuGView);
@@ -497,6 +515,7 @@
             this.MenuPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhoto)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -533,5 +552,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblDivisionExplain;
+        private System.Windows.Forms.ToolTip myToolTip;
     }
 }

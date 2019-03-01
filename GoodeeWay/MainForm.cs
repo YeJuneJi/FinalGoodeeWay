@@ -24,7 +24,7 @@ namespace GoodeeWay
 
 
         FrmOrderView fov;
-        FrmSaleRecord fsr;
+        FrmSaleRecord frmSaleRecord;
         //OderVIew oderVIew;
         FrmInventory fi;
         USalesMenu salesMenu;
@@ -71,6 +71,7 @@ namespace GoodeeWay
                 fi = new FrmInventory();
                 MainPanel.Controls.Add(fi);
                 fi.BringToFront();
+                CheckOpenClose(fi);
             }
             else if (fi.IsDisposed)
             {
@@ -103,16 +104,17 @@ namespace GoodeeWay
         private void 판매기록관리ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (fsr == null || fsr.IsDisposed)
+            if (frmSaleRecord == null || frmSaleRecord.IsDisposed)
             {
-                fsr = new FrmSaleRecord();
-                MainPanel.Controls.Add(fsr);
-                fsr.BringToFront();
-                CheckOpenClose(fsr);
+                frmSaleRecord = new FrmSaleRecord();
+                frmSaleRecord.Size = MainPanel.Size;
+                MainPanel.Controls.Add(frmSaleRecord);
+                frmSaleRecord.BringToFront();
+                CheckOpenClose(frmSaleRecord);
             }
             else
             {
-                fsr.BringToFront();
+                frmSaleRecord.BringToFront();
             }
 
         }
@@ -124,7 +126,7 @@ namespace GoodeeWay
                 frmEquipment = new UcEquipment();
                 MainPanel.Controls.Add(frmEquipment);
                 frmEquipment.BringToFront();
-                //CheckOpenClose(saleRecords);
+                CheckOpenClose(frmEquipment);
             }
             else
             {
@@ -215,7 +217,7 @@ namespace GoodeeWay
             }
         }
 
-        private void pictureBox2_Click_1(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -233,5 +235,40 @@ namespace GoodeeWay
             
             base.OnMouseDown(e);
         }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Maximized;
+                if (salesMenu != null)
+                {
+                    salesMenu.Size = MainPanel.Size;
+                }
+                if (frmSaleRecord != null)
+                {
+                    frmSaleRecord.Size = MainPanel.Size;
+                }
+               
+            }
+            else if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                if (salesMenu != null)
+                {
+                    salesMenu.Size = MainPanel.Size;
+                }
+                if (frmSaleRecord != null)
+                {
+                    frmSaleRecord.Size = MainPanel.Size;
+                }
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
     }
 }

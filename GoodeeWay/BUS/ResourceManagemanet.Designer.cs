@@ -34,15 +34,15 @@
             this.btnInven = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.movePanel = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.mainPanel = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnMaximize = new System.Windows.Forms.Button();
             this.sidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).BeginInit();
             this.movePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +74,7 @@
             this.btnEquip.FlatAppearance.BorderSize = 0;
             this.btnEquip.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnEquip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEquip.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnEquip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnEquip.ForeColor = System.Drawing.Color.White;
             this.btnEquip.Image = global::GoodeeWay.Properties.Resources.Maintenance_50px;
             this.btnEquip.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,7 +91,7 @@
             this.btnInven.FlatAppearance.BorderSize = 0;
             this.btnInven.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnInven.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInven.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnInven.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnInven.ForeColor = System.Drawing.Color.White;
             this.btnInven.Image = global::GoodeeWay.Properties.Resources.Commodity_50px;
             this.btnInven.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,7 +108,7 @@
             this.btnMenu.FlatAppearance.BorderSize = 0;
             this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.btnMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnMenu.ForeColor = System.Drawing.Color.White;
             this.btnMenu.Image = global::GoodeeWay.Properties.Resources.Restaurant_Menu_50px;
             this.btnMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,47 +123,28 @@
             // movePanel
             // 
             this.movePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(188)))), ((int)(((byte)(204)))));
+            this.movePanel.Controls.Add(this.btnClose);
+            this.movePanel.Controls.Add(this.btnMinimize);
+            this.movePanel.Controls.Add(this.btnMaximize);
             this.movePanel.Controls.Add(this.label1);
             this.movePanel.Controls.Add(this.pictureBox1);
-            this.movePanel.Controls.Add(this.btnClose);
-            this.movePanel.Controls.Add(this.pictureBox2);
             this.movePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.movePanel.Location = new System.Drawing.Point(200, 0);
             this.movePanel.Name = "movePanel";
-            this.movePanel.Size = new System.Drawing.Size(984, 50);
+            this.movePanel.Size = new System.Drawing.Size(957, 50);
             this.movePanel.TabIndex = 6;
             this.movePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
             // 
-            // btnClose
+            // label1
             // 
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(28, 28);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::GoodeeWay.Properties.Resources.Close_Window_64px;
-            this.pictureBox2.Location = new System.Drawing.Point(1149, 7);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(39, 37);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(200, 50);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(984, 636);
-            this.mainPanel.TabIndex = 7;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(73, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 31);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "매출 현황";
             // 
             // pictureBox1
             // 
@@ -175,23 +156,62 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // mainPanel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(73, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 33);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "매출 현황";
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(200, 50);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(957, 636);
+            this.mainPanel.TabIndex = 7;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackgroundImage = global::GoodeeWay.Properties.Resources.Close_Window_64px;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(916, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(41, 36);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.BackgroundImage = global::GoodeeWay.Properties.Resources.Minimize_Window_64px;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(830, 7);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(41, 36);
+            this.btnMinimize.TabIndex = 5;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.BackgroundImage = global::GoodeeWay.Properties.Resources.Maximize_Window_64px;
+            this.btnMaximize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Location = new System.Drawing.Point(873, 7);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(41, 36);
+            this.btnMaximize.TabIndex = 4;
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
             // ResourceManagemanet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1184, 686);
+            this.ClientSize = new System.Drawing.Size(1157, 686);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.movePanel);
             this.Controls.Add(this.sidePanel);
@@ -203,7 +223,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).EndInit();
             this.movePanel.ResumeLayout(false);
             this.movePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -217,10 +236,11 @@
         private System.Windows.Forms.Button btnInven;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Panel movePanel;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Button btnMaximize;
     }
 }
