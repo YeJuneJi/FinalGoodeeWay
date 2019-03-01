@@ -154,13 +154,13 @@ namespace GoodeeWay.BUS
 
         private void txtDepartment_Leave(object sender, EventArgs e)
         {
-            string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]+", "");
+            string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]", "");
             if (str.Length > 0)
             {
                 MessageBox.Show("부서명은 한글만 입력가능합니다");
                 txtDepartment.Text = bo.Department;
+                txtDepartment.Focus();
             }
-            txtDepartment.Focus();
         }
     }
 }

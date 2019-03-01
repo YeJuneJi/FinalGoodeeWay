@@ -55,7 +55,7 @@
             this.cbFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             this.cbFilter.DisplayMember = "test";
             this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilter.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.cbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cbFilter.ForeColor = System.Drawing.Color.Black;
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Items.AddRange(new object[] {
@@ -64,7 +64,7 @@
             this.cbFilter.Location = new System.Drawing.Point(65, 104);
             this.cbFilter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(99, 25);
+            this.cbFilter.Size = new System.Drawing.Size(99, 23);
             this.cbFilter.TabIndex = 125;
             this.cbFilter.Tag = "";
             // 
@@ -72,41 +72,43 @@
             // 
             this.lblTotalCount.AutoSize = true;
             this.lblTotalCount.BackColor = System.Drawing.Color.White;
-            this.lblTotalCount.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.lblTotalCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.lblTotalCount.ForeColor = System.Drawing.Color.DimGray;
             this.lblTotalCount.Location = new System.Drawing.Point(1104, 505);
             this.lblTotalCount.Name = "lblTotalCount";
-            this.lblTotalCount.Size = new System.Drawing.Size(87, 17);
+            this.lblTotalCount.Size = new System.Drawing.Size(86, 15);
             this.lblTotalCount.TabIndex = 124;
             this.lblTotalCount.Text = "현재 인원 : 0명";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.Location = new System.Drawing.Point(4, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 17);
+            this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 123;
             this.label1.Text = "직원검색";
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.txtSearch.Location = new System.Drawing.Point(170, 105);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(170, 22);
+            this.txtSearch.Size = new System.Drawing.Size(170, 21);
             this.txtSearch.TabIndex = 120;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Olive;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -115,7 +117,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(192)))), ((int)(((byte)(239)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
@@ -136,8 +138,9 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersVisible = false;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
@@ -151,7 +154,7 @@
             // btnSearch
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.DimGray;
             this.btnSearch.Image = global::GoodeeWay.Properties.Resources.kob_loupe2;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,7 +199,7 @@
             // btnAttendance
             // 
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAttendance.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnAttendance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnAttendance.ForeColor = System.Drawing.Color.DimGray;
             this.btnAttendance.Image = global::GoodeeWay.Properties.Resources.kob_folder;
             this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,7 +216,7 @@
             // btnSalary
             // 
             this.btnSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSalary.Font = new System.Drawing.Font("Century Gothic", 9F);
+            this.btnSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnSalary.ForeColor = System.Drawing.Color.DimGray;
             this.btnSalary.Image = global::GoodeeWay.Properties.Resources.kob_ledger;
             this.btnSalary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -231,7 +234,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.DimGray;
             this.btnDelete.Image = global::GoodeeWay.Properties.Resources.kob_delete;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,7 +252,7 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.White;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.DimGray;
             this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.kob_update;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -267,7 +270,7 @@
             // 
             this.btnInsert.BackColor = System.Drawing.Color.White;
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsert.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsert.ForeColor = System.Drawing.Color.DimGray;
             this.btnInsert.Image = global::GoodeeWay.Properties.Resources.kob_add_user;
             this.btnInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -285,7 +288,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.DimGray;
             this.btnClear.Image = global::GoodeeWay.Properties.Resources.kob_reload;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;

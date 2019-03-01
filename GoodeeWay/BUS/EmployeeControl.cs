@@ -38,7 +38,7 @@ namespace GoodeeWay.BUS
         {
             cbFilter.Text = "사원명";
             lst = empDAO.SelectAll();
-
+            dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.DataSource = lst;
             ColumnSettingKorean();
             TotalCount();
