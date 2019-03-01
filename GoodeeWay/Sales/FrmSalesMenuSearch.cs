@@ -79,7 +79,6 @@ namespace GoodeeWay.Sales
             menuSearchGView.DataSource = searchMenu;
         }
 
-
         private void btnResult_Click(object sender, EventArgs e)
         {
             if (rdoMenuCode.Checked)
@@ -187,6 +186,11 @@ namespace GoodeeWay.Sales
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cbxDivision_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

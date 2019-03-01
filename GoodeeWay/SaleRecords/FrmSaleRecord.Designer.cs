@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rdoTotalSearch = new System.Windows.Forms.RadioButton();
             this.rdoDate = new System.Windows.Forms.RadioButton();
             this.rdoSalesNo = new System.Windows.Forms.RadioButton();
@@ -53,11 +55,11 @@
             this.rdoTotalSearch.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoTotalSearch.AutoSize = true;
             this.rdoTotalSearch.Checked = true;
-            this.rdoTotalSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoTotalSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoTotalSearch.ForeColor = System.Drawing.Color.White;
             this.rdoTotalSearch.Location = new System.Drawing.Point(37, 11);
             this.rdoTotalSearch.Name = "rdoTotalSearch";
-            this.rdoTotalSearch.Size = new System.Drawing.Size(92, 25);
+            this.rdoTotalSearch.Size = new System.Drawing.Size(75, 24);
             this.rdoTotalSearch.TabIndex = 33;
             this.rdoTotalSearch.TabStop = true;
             this.rdoTotalSearch.Text = "전체검색";
@@ -68,11 +70,11 @@
             // 
             this.rdoDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoDate.AutoSize = true;
-            this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDate.ForeColor = System.Drawing.Color.White;
             this.rdoDate.Location = new System.Drawing.Point(311, 12);
             this.rdoDate.Name = "rdoDate";
-            this.rdoDate.Size = new System.Drawing.Size(112, 25);
+            this.rdoDate.Size = new System.Drawing.Size(91, 24);
             this.rdoDate.TabIndex = 32;
             this.rdoDate.Text = "기간별 검색";
             this.rdoDate.UseVisualStyleBackColor = true;
@@ -82,11 +84,11 @@
             // 
             this.rdoSalesNo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rdoSalesNo.AutoSize = true;
-            this.rdoSalesNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoSalesNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoSalesNo.ForeColor = System.Drawing.Color.White;
             this.rdoSalesNo.Location = new System.Drawing.Point(171, 11);
             this.rdoSalesNo.Name = "rdoSalesNo";
-            this.rdoSalesNo.Size = new System.Drawing.Size(112, 25);
+            this.rdoSalesNo.Size = new System.Drawing.Size(91, 24);
             this.rdoSalesNo.TabIndex = 31;
             this.rdoSalesNo.Text = "번호별 검색";
             this.rdoSalesNo.UseVisualStyleBackColor = true;
@@ -95,11 +97,11 @@
             // tbxSalesNo
             // 
             this.tbxSalesNo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tbxSalesNo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxSalesNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxSalesNo.ForeColor = System.Drawing.Color.Black;
             this.tbxSalesNo.Location = new System.Drawing.Point(37, 44);
             this.tbxSalesNo.Name = "tbxSalesNo";
-            this.tbxSalesNo.Size = new System.Drawing.Size(425, 27);
+            this.tbxSalesNo.Size = new System.Drawing.Size(425, 26);
             this.tbxSalesNo.TabIndex = 26;
             // 
             // label1
@@ -117,10 +119,10 @@
             this.dtpPeriodEnd.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpPeriodEnd.CalendarForeColor = System.Drawing.Color.White;
             this.dtpPeriodEnd.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dtpPeriodEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPeriodEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPeriodEnd.Location = new System.Drawing.Point(262, 77);
             this.dtpPeriodEnd.Name = "dtpPeriodEnd";
-            this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 27);
+            this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 26);
             this.dtpPeriodEnd.TabIndex = 23;
             // 
             // dtpPeriodStart
@@ -128,10 +130,10 @@
             this.dtpPeriodStart.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dtpPeriodStart.CalendarForeColor = System.Drawing.Color.White;
             this.dtpPeriodStart.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dtpPeriodStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPeriodStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPeriodStart.Location = new System.Drawing.Point(37, 77);
             this.dtpPeriodStart.Name = "dtpPeriodStart";
-            this.dtpPeriodStart.Size = new System.Drawing.Size(200, 27);
+            this.dtpPeriodStart.Size = new System.Drawing.Size(200, 26);
             this.dtpPeriodStart.TabIndex = 24;
             // 
             // salesRecordsGView
@@ -140,7 +142,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.salesRecordsGView.BackgroundColor = System.Drawing.Color.White;
+            this.salesRecordsGView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.salesRecordsGView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.salesRecordsGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.salesRecordsGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.salesRecordsGView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.salesRecordsGView.EnableHeadersVisualStyles = false;
             this.salesRecordsGView.GridColor = System.Drawing.Color.DarkGray;
             this.salesRecordsGView.Location = new System.Drawing.Point(12, 146);
             this.salesRecordsGView.MultiSelect = false;
@@ -185,7 +207,7 @@
             this.btnExcel.FlatAppearance.BorderSize = 0;
             this.btnExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExcel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Image = global::GoodeeWay.Properties.Resources.Microsoft_Excel_52px;
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,7 +225,7 @@
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Image = global::GoodeeWay.Properties.Resources.Search_52px;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,7 +243,7 @@
             this.btnUpdate.FlatAppearance.BorderSize = 0;
             this.btnUpdate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.Change_Theme_52px;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,7 +261,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::GoodeeWay.Properties.Resources.Erase_50px;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -263,10 +285,10 @@
             // 
             this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblText.AutoSize = true;
-            this.lblText.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblText.Location = new System.Drawing.Point(696, 122);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(15, 21);
+            this.lblText.Size = new System.Drawing.Size(14, 20);
             this.lblText.TabIndex = 36;
             this.lblText.Text = "-";
             // 

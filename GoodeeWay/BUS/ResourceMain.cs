@@ -397,6 +397,16 @@ namespace GoodeeWay.BUS
             }
         }
 
+        private void CommaSet(Label label, string txt)
+        {
+            //label.Text = string.Empty;
+            for (int i = txt.Length - 3; i > 1; i = i - 3)
+            {
+                txt = txt.Insert(i, ",");
+            }
+            label.Text += txt + " 원";
+        }
+
         /// <summary>
         /// 메서드의 기간 초과 확인 메서드
         /// </summary>
@@ -489,12 +499,18 @@ namespace GoodeeWay.BUS
                     totnetProfit += netProfit;
                 }
 
-                lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
-                lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
-                lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
-                lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
-                lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
+                //lbltotalInvesetPrice.Text += ((decimal)totalInvesetPrice).ToString();
+                CommaSet(lbltotalInvesetPrice, ((decimal)totalInvesetPrice).ToString());
+                // lblRawMaterialCost.Text += ((decimal)totRawMaterialCost).ToString();
+                CommaSet(lblRawMaterialCost, ((decimal)totRawMaterialCost).ToString());
+                //lblEquipPrice.Text += ((decimal)totEquipPrice).ToString();
+                CommaSet(lblEquipPrice, ((decimal)totEquipPrice).ToString());
+                //lblEmployeeCost.Text += ((decimal)totEmployeePrice).ToString();
+                CommaSet(lblEmployeeCost, ((decimal)totEmployeePrice).ToString());
+                //lbltotnetProfit.Text += ((decimal)totnetProfit).ToString() + "원";
+                CommaSet(lbltotnetProfit, ((decimal)totnetProfit).ToString());
                 lbltotnetProfit.ForeColor = Color.Red;
+                
                 resourceDataGView.DataSource = totRsrcTab;
             }
         }

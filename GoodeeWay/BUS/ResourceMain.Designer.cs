@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.resourceStart = new System.Windows.Forms.DateTimePicker();
             this.resourceEnd = new System.Windows.Forms.DateTimePicker();
             this.lblPeriod = new System.Windows.Forms.Label();
@@ -50,37 +52,37 @@
             // 
             // resourceStart
             // 
-            this.resourceStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resourceStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resourceStart.Location = new System.Drawing.Point(45, 68);
             this.resourceStart.Name = "resourceStart";
-            this.resourceStart.Size = new System.Drawing.Size(200, 27);
+            this.resourceStart.Size = new System.Drawing.Size(200, 26);
             this.resourceStart.TabIndex = 0;
             // 
             // resourceEnd
             // 
-            this.resourceEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resourceEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resourceEnd.Location = new System.Drawing.Point(272, 68);
             this.resourceEnd.Name = "resourceEnd";
-            this.resourceEnd.Size = new System.Drawing.Size(200, 27);
+            this.resourceEnd.Size = new System.Drawing.Size(200, 26);
             this.resourceEnd.TabIndex = 1;
             // 
             // lblPeriod
             // 
             this.lblPeriod.AutoSize = true;
-            this.lblPeriod.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPeriod.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPeriod.Location = new System.Drawing.Point(3, 72);
             this.lblPeriod.Name = "lblPeriod";
-            this.lblPeriod.Size = new System.Drawing.Size(39, 20);
+            this.lblPeriod.Size = new System.Drawing.Size(34, 18);
             this.lblPeriod.TabIndex = 2;
             this.lblPeriod.Text = "기간";
             // 
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTo.Location = new System.Drawing.Point(252, 72);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(18, 20);
+            this.lblTo.Size = new System.Drawing.Size(17, 18);
             this.lblTo.TabIndex = 3;
             this.lblTo.Text = "~";
             // 
@@ -88,10 +90,10 @@
             // 
             this.rdoDate.AutoSize = true;
             this.rdoDate.Checked = true;
-            this.rdoDate.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoDate.Location = new System.Drawing.Point(58, 19);
             this.rdoDate.Name = "rdoDate";
-            this.rdoDate.Size = new System.Drawing.Size(57, 24);
+            this.rdoDate.Size = new System.Drawing.Size(52, 22);
             this.rdoDate.TabIndex = 8;
             this.rdoDate.TabStop = true;
             this.rdoDate.Text = "일별";
@@ -101,10 +103,10 @@
             // rdoMonth
             // 
             this.rdoMonth.AutoSize = true;
-            this.rdoMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoMonth.Location = new System.Drawing.Point(133, 19);
             this.rdoMonth.Name = "rdoMonth";
-            this.rdoMonth.Size = new System.Drawing.Size(57, 24);
+            this.rdoMonth.Size = new System.Drawing.Size(52, 22);
             this.rdoMonth.TabIndex = 9;
             this.rdoMonth.Text = "월별";
             this.rdoMonth.UseVisualStyleBackColor = true;
@@ -113,10 +115,10 @@
             // rdoYear
             // 
             this.rdoYear.AutoSize = true;
-            this.rdoYear.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdoYear.Location = new System.Drawing.Point(211, 19);
             this.rdoYear.Name = "rdoYear";
-            this.rdoYear.Size = new System.Drawing.Size(57, 24);
+            this.rdoYear.Size = new System.Drawing.Size(52, 22);
             this.rdoYear.TabIndex = 10;
             this.rdoYear.Text = "연별";
             this.rdoYear.UseVisualStyleBackColor = true;
@@ -128,7 +130,7 @@
             this.btnSearch.FlatAppearance.BorderSize = 0;
             this.btnSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(479, 67);
             this.btnSearch.Name = "btnSearch";
@@ -143,11 +145,33 @@
             this.resourceDataGView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.resourceDataGView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.resourceDataGView.BackgroundColor = System.Drawing.Color.White;
+            this.resourceDataGView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.resourceDataGView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.resourceDataGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.resourceDataGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.resourceDataGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resourceDataGView.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.resourceDataGView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.resourceDataGView.EnableHeadersVisualStyles = false;
+            this.resourceDataGView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resourceDataGView.Location = new System.Drawing.Point(3, 151);
             this.resourceDataGView.Name = "resourceDataGView";
+            this.resourceDataGView.ReadOnly = true;
             this.resourceDataGView.RowTemplate.Height = 23;
             this.resourceDataGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.resourceDataGView.Size = new System.Drawing.Size(819, 337);
@@ -156,40 +180,40 @@
             // lbltotalInvesetPrice
             // 
             this.lbltotalInvesetPrice.AutoSize = true;
-            this.lbltotalInvesetPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.lbltotalInvesetPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.lbltotalInvesetPrice.Location = new System.Drawing.Point(581, 12);
             this.lbltotalInvesetPrice.Name = "lbltotalInvesetPrice";
-            this.lbltotalInvesetPrice.Size = new System.Drawing.Size(66, 20);
+            this.lbltotalInvesetPrice.Size = new System.Drawing.Size(59, 18);
             this.lbltotalInvesetPrice.TabIndex = 17;
             this.lbltotalInvesetPrice.Text = "총매출 : ";
             // 
             // lblEquipPrice
             // 
             this.lblEquipPrice.AutoSize = true;
-            this.lblEquipPrice.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEquipPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEquipPrice.Location = new System.Drawing.Point(581, 70);
             this.lblEquipPrice.Name = "lblEquipPrice";
-            this.lblEquipPrice.Size = new System.Drawing.Size(85, 20);
+            this.lblEquipPrice.Size = new System.Drawing.Size(76, 18);
             this.lblEquipPrice.TabIndex = 18;
             this.lblEquipPrice.Text = "총 비품비 : ";
             // 
             // lblRawMaterialCost
             // 
             this.lblRawMaterialCost.AutoSize = true;
-            this.lblRawMaterialCost.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRawMaterialCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawMaterialCost.Location = new System.Drawing.Point(581, 41);
             this.lblRawMaterialCost.Name = "lblRawMaterialCost";
-            this.lblRawMaterialCost.Size = new System.Drawing.Size(100, 20);
+            this.lblRawMaterialCost.Size = new System.Drawing.Size(89, 18);
             this.lblRawMaterialCost.TabIndex = 19;
             this.lblRawMaterialCost.Text = "총 원재료비 : ";
             // 
             // lblEmployeeCost
             // 
             this.lblEmployeeCost.AutoSize = true;
-            this.lblEmployeeCost.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeCost.Location = new System.Drawing.Point(581, 99);
             this.lblEmployeeCost.Name = "lblEmployeeCost";
-            this.lblEmployeeCost.Size = new System.Drawing.Size(85, 20);
+            this.lblEmployeeCost.Size = new System.Drawing.Size(76, 18);
             this.lblEmployeeCost.TabIndex = 20;
             this.lblEmployeeCost.Text = "총 인사비 : ";
             // 
@@ -200,7 +224,7 @@
             this.btnChart.FlatAppearance.BorderSize = 0;
             this.btnChart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btnChart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChart.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChart.ForeColor = System.Drawing.Color.White;
             this.btnChart.Location = new System.Drawing.Point(691, 494);
             this.btnChart.Name = "btnChart";
@@ -213,10 +237,10 @@
             // lbltotnetProfit
             // 
             this.lbltotnetProfit.AutoSize = true;
-            this.lbltotnetProfit.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltotnetProfit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbltotnetProfit.Location = new System.Drawing.Point(581, 128);
             this.lbltotnetProfit.Name = "lbltotnetProfit";
-            this.lbltotnetProfit.Size = new System.Drawing.Size(70, 20);
+            this.lbltotnetProfit.Size = new System.Drawing.Size(63, 18);
             this.lbltotnetProfit.TabIndex = 22;
             this.lbltotnetProfit.Text = "총 손익 : ";
             // 

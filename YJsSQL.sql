@@ -63,7 +63,7 @@ image Image not null
 
 
 --ReceiveingDetails 테이블의 Select 프로시저
-create procedure OutPutAllReceiveingDetails
+CREATE PROCEDURE OutPutAllReceiveingDetails
 as
 select ReceivingDetailsID,UnitPrice , InventoryTypeCode from ReceivingDetails;
 GO

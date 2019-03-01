@@ -202,14 +202,14 @@ namespace GoodeeWay.DAO
             }
         }
 
-        
+
 
         /// <summary>
         /// 재고별판매량 실 판매량 데이터 추출
         /// </summary>
-        /// <param name="value1"></param>
-        /// <param name="value2"></param>
-        /// <param name="text"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <param name="cmbType"></param>
         /// <returns></returns>
         internal List<InventoryTypeSalesVO> InventorySaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
         {

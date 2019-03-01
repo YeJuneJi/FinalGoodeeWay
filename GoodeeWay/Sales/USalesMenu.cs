@@ -47,8 +47,6 @@ namespace GoodeeWay.Sales
             btnPhoto.BackgroundImage = Properties.Resources.Picture_64px;
             oFdialogPhoto.InitialDirectory = Application.StartupPath + "\\Images\\";
             FlowPanel.BorderStyle = BorderStyle.FixedSingle; //플로우차트의 테두리 스타일.
-            salesMenuGView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            salesMenuGView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             salesMenuList = new SalesMenuDAO().OutPutAllMenus();
             salesMenuGView.DataSource = salesMenuList;
             salesMenuGView.Columns[0].HeaderText = "메뉴코드";

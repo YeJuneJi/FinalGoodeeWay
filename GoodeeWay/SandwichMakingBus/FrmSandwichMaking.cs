@@ -224,7 +224,7 @@ namespace GoodeeWay.SandwichMakingBus
                     {
                         int num = (int)dataGridViewING.SelectedRows[0].Cells[0].Value;
 
-                        if (MessageBox.Show(num + "완료?", "완료", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        if (MessageBox.Show(num + "번의 제조를 완료 하시겠습니까?", "완료", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             // 삭제 메서드 작동
                             try
@@ -257,9 +257,18 @@ namespace GoodeeWay.SandwichMakingBus
             this.Close();
         }
 
-        private void FrmSandwichMaking_MouseDown(object sender, MouseEventArgs e)
+        private void movePanel_MouseDown(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 다른 컨트롤에 묶여있을 수 있을 수 있으므로 마우스캡쳐 해제
+                ReleaseCapture();
 
+                // 타이틀 바의 다운 이벤트처럼 보냄
+                SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+
+            base.OnMouseDown(e);
         }
     }
 }
