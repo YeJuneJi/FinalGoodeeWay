@@ -347,6 +347,7 @@ namespace GoodeeWay.SaleRecords
             decimal totalPrice = decimal.Parse(salesRecordsGView.SelectedRows[0].Cells[6].Value.ToString());
             FrmDetailSaleRecord frmDetailSaleRecord = new FrmDetailSaleRecord(salesNo, salesDate, realMenuVO, totalPrice);
             frmDetailSaleRecord.ShowDialog();
+            OutputAllSaleRecords();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
