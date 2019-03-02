@@ -121,56 +121,57 @@ namespace GoodeeWay.Sales
         {
             if (ExcelSaveFileDlg.ShowDialog() != DialogResult.Cancel)
             {
-                Excel.Application excelApp = new Excel.Application();
-                if (excelApp == null)
-                {
-                    MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
-                    return;
-                }
-                Excel.Workbook workBook;
-                Excel.Worksheet workSheet;
-                object missingValue = System.Reflection.Missing.Value;
-                workBook = excelApp.Workbooks.Add(missingValue);
-                workSheet = workBook.Worksheets.Item[1];
-
-                for (int i = 1; i < dataColoumns.Length + 1; i++)
-                {
-                    workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
-                }
-
-                for (int i = 2; i < menuSearchGView.Rows.Count + 2; i++)
-                {
-                    Clipboard.Clear();
-                    workSheet.Cells[i, 1] = menuSearchGView.Rows[i - 2].Cells[0].Value.ToString();
-                    workSheet.Cells[i, 2] = menuSearchGView.Rows[i - 2].Cells[1].Value.ToString();
-                    workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
-                    workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
-                    Excel.Range pictureRange = workSheet.Cells[i, 5];
-                    MemoryStream ms = new MemoryStream((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value);
-                    Image img = Image.FromStream(ms);
-                    img = (Image)new Bitmap(img, new Size(100, 100));
-                    pictureRange.ColumnWidth = 11.88;
-                    pictureRange.RowHeight = 75.00;
-                    Clipboard.SetDataObject(img, true); //Ctrl + C
-                    workSheet.Paste(pictureRange, img); //Ctrl + V     
-                    workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
-                    workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
-                    ms.Close();
-                }
-
+                Excel.Application excelApp = default(Excel.Application);
                 try
                 {
-                    workBook.SaveAs(ExcelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
-                    MessageBox.Show("저장 성공!");
+                    excelApp = new Excel.Application();
+                    Excel.Workbook workBook;
+                    Excel.Worksheet workSheet;
+                    object missingValue = System.Reflection.Missing.Value;
+                    workBook = excelApp.Workbooks.Add(missingValue);
+                    workSheet = workBook.Worksheets.Item[1];
+                    for (int i = 1; i < dataColoumns.Length + 1; i++)
+                    {
+                        workSheet.Cells[1, i] = dataColoumns[i - 1].ColumnName;
+                    }
+
+                    for (int i = 2; i < menuSearchGView.Rows.Count + 2; i++)
+                    {
+                        Clipboard.Clear();
+                        workSheet.Cells[i, 1] = menuSearchGView.Rows[i - 2].Cells[0].Value.ToString();
+                        workSheet.Cells[i, 2] = menuSearchGView.Rows[i - 2].Cells[1].Value.ToString();
+                        workSheet.Cells[i, 3] = float.Parse(menuSearchGView.Rows[i - 2].Cells[2].Value.ToString());
+                        workSheet.Cells[i, 4] = int.Parse(menuSearchGView.Rows[i - 2].Cells[3].Value.ToString());
+                        Excel.Range pictureRange = workSheet.Cells[i, 5];
+                        MemoryStream ms = new MemoryStream((byte[])menuSearchGView.Rows[i - 2].Cells[4].Value);
+                        Image img = Image.FromStream(ms);
+                        img = (Image)new Bitmap(img, new Size(100, 100));
+                        pictureRange.ColumnWidth = 11.88;
+                        pictureRange.RowHeight = 75.00;
+                        Clipboard.SetDataObject(img, true); //Ctrl + C
+                        workSheet.Paste(pictureRange, img); //Ctrl + V     
+                        workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
+                        workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
+                        ms.Close();
+                    }
+                    try
+                    {
+                        workBook.SaveAs(ExcelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                        MessageBox.Show("저장 성공!");
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("저장 실패!");
+                    }
+                    excelApp.Quit();
+                    Marshal.FinalReleaseComObject(workSheet);
+                    Marshal.FinalReleaseComObject(workBook);
+                    Marshal.FinalReleaseComObject(excelApp);
                 }
-                catch (Exception)
+                catch (COMException)
                 {
-                    MessageBox.Show("저장 실패!");
-                }
-                excelApp.Quit();
-                Marshal.FinalReleaseComObject(workSheet);
-                Marshal.FinalReleaseComObject(workBook);
-                Marshal.FinalReleaseComObject(excelApp);
+                        MessageBox.Show("Excel응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
+                } 
             }
         }
 
