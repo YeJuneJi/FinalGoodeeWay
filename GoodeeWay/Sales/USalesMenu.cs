@@ -455,7 +455,7 @@ namespace GoodeeWay.Sales
             }
             else if (menuUpdateSucess && !sucessUpdateRecipe && !sucessdeleteRecipe && !successInsertRecipe)
             {
-                MessageBox.Show("레시피 수정 완료");
+                MessageBox.Show("메뉴 수정 완료");
             }
             btnClear_Click(null, null);
         }
