@@ -9,6 +9,7 @@ using GoodeeWay.Equipment;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 using GoodeeWay.InventoryBUS;
+using GoodeeWay.Properties;
 
 namespace GoodeeWay
 {
@@ -36,6 +37,7 @@ namespace GoodeeWay
         public MainForm()
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.Properties;
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace GoodeeWay.Sales
         public FrmSalesMenuSearch()
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
         private void SalesMenuSearch_Load(object sender, EventArgs e)
         {

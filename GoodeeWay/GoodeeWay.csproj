@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\C_Sharp_Logo_2_1.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -494,6 +497,7 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\excel2.png" />
     <None Include="Resources\employee.PNG" />
+    <Content Include="Resources\C_Sharp_Logo_2_1.ico" />
     <Content Include="Resources\Excel_Black_64px.png" />
     <None Include="Resources\folder.png" />
     <Content Include="Resources\Initialize_64px.png" />

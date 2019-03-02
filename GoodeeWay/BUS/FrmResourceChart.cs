@@ -1,15 +1,9 @@
-﻿using GoodeeWay.VO;
+﻿using GoodeeWay.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 //using System.Web.UI.DataVisualization.Charting;
 using System.Windows.Forms;
 
@@ -36,6 +30,7 @@ namespace GoodeeWay.BUS
         public FrmResourceChart(DataTable totRsrcTab)
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
             pbxImages.BringToFront();
             pbxImages.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
             this.totRsrcTab = totRsrcTab;

@@ -1,4 +1,5 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.Properties;
 using GoodeeWay.VO;
 using System;
 using System.Data.SqlClient;
@@ -27,6 +28,7 @@ namespace GoodeeWay.SaleRecords
             this.saleRecords = saleRecords;
             this.salesItemName = salesItemName;
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
 
         private void FrmUpdateSaleRecords_Load(object sender, EventArgs e)

@@ -161,7 +161,7 @@
             this.Controls.Add(this.tbxMenus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmDetailSaleRecord";
-            this.Text = "FrmDetailSaleRecord";
+            this.Text = "영수증 및 환불처리";
             this.Load += new System.EventHandler(this.FrmDetailSaleRecord_Load);
             this.movePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImages)).EndInit();

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
+using GoodeeWay.Properties;
 using GoodeeWay.VO;
 
 namespace GoodeeWay.SaleRecords
@@ -34,6 +29,7 @@ namespace GoodeeWay.SaleRecords
         public FrmDetailSaleRecord()
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
         public FrmDetailSaleRecord(int salesNo, DateTime salesDate, RealMenuVO realMenuVO, decimal totalPrice) : this()
         {
