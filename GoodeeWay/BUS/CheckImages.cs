@@ -123,7 +123,11 @@ namespace GoodeeWay.BUS
                     MessageBox.Show(ex.StackTrace);
                 }
             }
-            MessageBox.Show("현재 폴더에없는" + Environment.NewLine+downloadImage +"가 다운로드 되었습니다");
+            if (!string.IsNullOrWhiteSpace(downloadImage))
+            {
+                MessageBox.Show("현재 폴더에없는" + Environment.NewLine + downloadImage + "가 다운로드 되었습니다");
+            }
+            
         }
     }
 }
