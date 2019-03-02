@@ -103,8 +103,7 @@ from Recipes r, InventoryType i, SalesMenu s
 where r.InventoryTypeCode = i.InventoryTypeCode and r.menuCode = s.menuCode
 and s.menuName = @menuName;
 GO
-
---메뉴코드별 레시피 검색
+--SelectRecipesByMenuCode 메뉴코드별 레시피 검색
 create procedure SelectRecipesByMenuCode
 @menuCode nvarchar(10)
 as
@@ -270,6 +269,34 @@ as
 update dbo.SaleRecords set salesDate = @salesDate, salesitemName = @salesitemName,salesPrice = @salesPrice ,discount = @discount, duty = @duty, salesTotal = @salesTotal , paymentPlan = @paymentPlan  where salesNo = @salesNo;
 GO
 
+--Recipe Update 저장 프로시저
+create procedure UpdateRecipes
+@ingredientAmount int,
+@menuCode nvarchar(10),
+@InventoryTypeCode nvarchar(6),
+@necessary bit
+as
+update dbo.Recipes set ingredientAmount = @ingredientAmount, necessary = @necessary where menuCode = @menuCode and InventoryTypeCode = @InventoryTypeCode;
+GO
+
+--Sales Update 저장 프로시저
+create procedure UpdateSalesMenu
+@menuCode nvarchar(10),
+@menuName nvarchar(30),
+@price float,
+@kCal int,
+@menuImageLocation nvarchar(max),
+@division int,
+@additionalContext nvarchar(200),
+@oldMenuCode nvarchar(10),
+@discountRatio float
+as
+update dbo.SalesMenu set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
+where menuCode = @oldMenuCode;
+GO
+
+
+
 --Recipe와 Sales 동시에 Update 할 수있는 프로시저 생성중.. (미완성)
 create procedure UpdateSalesNRecipes
 @division int,
@@ -299,33 +326,6 @@ else
 		set @updateNecessary = (select necessary from Recipes where menuCode = @menuCode)
 		
 GO
-
---Recipe Update 저장 프로시저
-create procedure UpdateRecipes
-@ingredientAmount int,
-@menuCode nvarchar(10),
-@InventoryTypeCode nvarchar(6),
-@necessary bit
-as
-update dbo.Recipes set ingredientAmount = @ingredientAmount, necessary = @necessary where menuCode = @menuCode and InventoryTypeCode = @InventoryTypeCode;
-GO
-
---Sales Update 저장 프로시저
-create procedure UpdateSalesMenu
-@menuCode nvarchar(10),
-@menuName nvarchar(30),
-@price float,
-@kCal int,
-@menuImageLocation nvarchar(max),
-@division int,
-@additionalContext nvarchar(200),
-@oldMenuCode nvarchar(10),
-@discountRatio float
-as
-update dbo.SalesMenu set menuCode = @menuCode, menuName = @menuName, price = @price, kCal = @kCal,menuImageLocation=@menuImageLocation, division = @division, additionalContext = @additionalContext, discountRatio = @discountRatio
-where menuCode = @oldMenuCode;
-GO
-
 
 --
 --
