@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
+    /// <summary>
+    /// 이미지의 정보를 가지고 있는 ImageVO 클래스
+    /// </summary>
     class ImageVO
     {
+        ///<value>
+        /// 이미지번호
+        ///</value>
         private int num;
 
         public int Num
@@ -16,7 +22,9 @@ namespace GoodeeWay.VO
             get { return num; }
             set { num = value; }
         }
-
+        ///<value>
+        /// 이미지명
+        ///</value>
         private string name;
 
         public string Name
@@ -24,7 +32,9 @@ namespace GoodeeWay.VO
             get { return name; }
             set { name = value; }
         }
-
+        ///<value>
+        /// 이미지고유데이터
+        ///</value>
         private byte[] image;
 
         public byte[] Image

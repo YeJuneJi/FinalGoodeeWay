@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
+    /// <summary>
+    /// 매출현황의 데이터를 담을 ResourceManagementVO
+    /// </summary>
     class ResourceManagementVO
     {
-        //기간
+        /// <value>
+        /// 기간
+        /// </value>
         private DateTime resourceDate;
 
         public DateTime ResourceDate
@@ -16,7 +21,9 @@ namespace GoodeeWay.VO
             get { return resourceDate; }
             set { resourceDate = value; }
         }
-        //총매출액
+        /// <value>
+        /// 총매출액
+        /// </value>
         private float totInvestPrice;
 
         public float TotInvestPrice
@@ -25,7 +32,9 @@ namespace GoodeeWay.VO
             set { totInvestPrice = value; }
         }
 
-        //원재료비
+        /// <value>
+        /// 원재료비
+        /// </value>
         private float rawMaterialCost;
 
         public float RawMaterialCost
@@ -33,7 +42,9 @@ namespace GoodeeWay.VO
             get { return rawMaterialCost; }
             set { rawMaterialCost = value; }
         }
-        //비품비
+        /// <value>
+        /// 비품비
+        /// </value>
         private float equipPrice;
 
         public float EquipPrice
@@ -41,7 +52,9 @@ namespace GoodeeWay.VO
             get { return equipPrice; }
             set { equipPrice = value; }
         }
-
+        /// <value>
+        /// 인사급여
+        /// </value>
         private float employeePrice;
 
         public float EmployeePrice

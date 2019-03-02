@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.VO
 {
+    /// <summary>
+    /// 판매메뉴의 모든 정보를 담고있는 SalesMenuVO
+    /// </summary>
     public class SalesMenuVO
     {
+        /// <value>
+        /// 메뉴코드
+        /// </value>
         private string menuCode;
 
         public string MenuCode
@@ -17,6 +23,9 @@ namespace GoodeeWay.VO
             set { menuCode = value; }
         }
 
+        /// <value>
+        /// 메뉴명
+        /// </value>
         private string menuName;
 
         public string MenuName
@@ -24,7 +33,9 @@ namespace GoodeeWay.VO
             get { return menuName; }
             set { menuName = value; }
         }
-
+        /// <value>
+        /// 가격
+        /// </value>
         private float price;
 
         public float Price
@@ -32,7 +43,9 @@ namespace GoodeeWay.VO
             get { return price; }
             set { price = value; }
         }
-
+        /// <value>
+        /// Kcal
+        /// </value>
         private int kcal;
 
         public int Kcal
@@ -41,6 +54,9 @@ namespace GoodeeWay.VO
             set { kcal = value; }
         }
 
+        /// <value>
+        /// 이미지경로
+        /// </value>
         private string menuImageLocation;
 
         public string MenuImageLocation
@@ -49,6 +65,9 @@ namespace GoodeeWay.VO
             set { menuImageLocation = value; }
         }
 
+        /// <value>
+        /// 구분
+        /// </value>
         private int division;
 
         public int Division
@@ -57,6 +76,9 @@ namespace GoodeeWay.VO
             set { division = value; }
         }
 
+        /// <value>
+        /// 부가내용
+        /// </value>
         private string additionalContext;
 
         public string AdditionalContext
@@ -65,6 +87,9 @@ namespace GoodeeWay.VO
             set { additionalContext = value; }
         }
 
+        /// <value>
+        /// 할인율
+        /// </value>
         private float discountRatio;
 
         public float DiscountRatio

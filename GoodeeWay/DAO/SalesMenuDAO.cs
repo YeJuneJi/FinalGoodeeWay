@@ -8,14 +8,18 @@ using System.IO;
 
 namespace GoodeeWay.DAO
 {
+    /// <summary>
+    /// 판매메뉴 데이터베이스에 접근하기 위한 SalesMenuDAO 객체
+    /// </summary>
     class SalesMenuDAO
     {
+        /// <value>DB의 접근을 위한 DBConnection 객체</value>
         DBConnection connection;
         /// <summary>
         /// 메뉴 삭제 메서드
         /// </summary>
-        /// <param name="menuCode"></param>
-        /// <returns></returns>
+        /// <param name="menuCode">메뉴코드</param>
+        /// <returns>삭제 성공 여부 반환</returns>
         public bool DeleteMenu(string menuCode)
         {
             connection = new DBConnection();
@@ -67,10 +71,11 @@ namespace GoodeeWay.DAO
         }
 
         /// <summary>
-        /// 메뉴를 업데이트하는 메서드
+        /// 판매 메뉴를 업데이트 하기 위한 메서드
         /// </summary>
-        /// <param name="salesMenuVO"></param>
-        /// <returns></returns>
+        /// <param name="salesMenuVO">판매메뉴 객체</param>
+        /// <param name="oldeMenuCode">수정하기 전의  메뉴코드</param>
+        /// <returns>성공여부 행의 개수를 반환</returns>
         public int UpdateMenu(SalesMenuVO salesMenuVO, string oldeMenuCode)
         {
             connection = new DBConnection();
@@ -97,6 +102,12 @@ namespace GoodeeWay.DAO
             }
         }
 
+        /// <summary>
+        /// 부가설명별 메뉴를 검색하는 메서드
+        /// </summary>
+        /// <param name="additional">부가 설명</param>
+        /// <param name="division">구분</param>
+        /// <returns>검색결과를 컬렉션으로 반환</returns>
         internal List<SalesMenuVO> SelectMenuByAdditional(string additional, int division)
         {
             List<SalesMenuVO> lst = new List<SalesMenuVO>();
@@ -130,6 +141,12 @@ namespace GoodeeWay.DAO
             }
         }
 
+        /// <summary>
+        /// 메뉴명별 메뉴를 검색하는 메서드
+        /// </summary>
+        /// <param name="menuName">메뉴명</param>
+        /// <param name="division">구분</param>
+        /// <returns>검색 결과를 컬렉션으로 반환</returns>
         internal List<SalesMenuVO> SelectMenuByMenuName(string menuName, int division)
         {
             List<SalesMenuVO> lst = new List<SalesMenuVO>();
@@ -163,6 +180,12 @@ namespace GoodeeWay.DAO
             }
         }
 
+        /// <summary>
+        /// 메뉴코드별 메뉴를 검색하는 메서드
+        /// </summary>
+        /// <param name="menuCode">메뉴코드</param>
+        /// <param name="division">구분</param>
+        /// <returns>검색 결과를 컬렉션으로 반환</returns>
         public List<SalesMenuVO> SelectMenuByMenuCode(string menuCode, int division)
         {
             List<SalesMenuVO> lst = new List<SalesMenuVO>();
@@ -199,7 +222,7 @@ namespace GoodeeWay.DAO
         /// <summary>
         /// 모든 메뉴를 검색하는OutPutAllMenus 메서드
         /// </summary>
-        /// <returns>모든메뉴를 List<SalesMenuVO>화 시켜 반환</returns>
+        /// <returns>모든메뉴를 List of SalesMenuVO화 시켜 반환</returns>
         public List<SalesMenuVO> OutPutAllMenus()
         {
             List<SalesMenuVO> lst = new List<SalesMenuVO>();

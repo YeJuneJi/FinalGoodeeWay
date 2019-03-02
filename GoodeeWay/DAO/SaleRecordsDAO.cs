@@ -11,9 +11,16 @@ using System.Threading.Tasks;
 
 namespace GoodeeWay.DAO
 {
+    /// <summary>
+    /// 판매기록 테이블의 데이터베이스에 접근하기위한 SaleRecordsDAO 클래스
+    /// </summary>
     class SaleRecordsDAO
     {
-
+        /// <summary>
+        /// 지정된 판매번호를삭제하기위한 DeleteSaleRecordsbySalesNo 메서드
+        /// </summary>
+        /// <param name="salesNo">삭제할 판매번호</param>
+        /// <returns>삭제 성공여부 반환</returns>
         public bool DeleteSaleRecordsbysalesNo(string salesNo)
         {
             DBConnection connection = new DBConnection();
@@ -31,6 +38,11 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
+        /// <summary>
+        /// 판매기록 환불을 위한 RefundSaleRecords메서드
+        /// </summary>
+        /// <param name="salesNo">환불할 판매번호</param>
+        /// <returns>성공 여부 반환</returns>
         internal int RefundSaleRecords(int salesNo)
         {
             DBConnection connection = new DBConnection();
@@ -48,7 +60,11 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
-
+        /// <summary>
+        /// 판매기록 수정을 위한 UpdateSaleRecords
+        /// </summary>
+        /// <param name="saleRecordsVO"> 판매기록 데이터가 담긴 saleRecordsVO 객체</param>
+        /// <returns>성공 여부 반환</returns>
         internal int UpdateSaleRecords(SaleRecordsVO saleRecordsVO)
         {
             DBConnection connection = new DBConnection();
@@ -81,8 +97,8 @@ namespace GoodeeWay.DAO
         /// <summary>
         /// 판매기록 Insert 메서드
         /// </summary>
-        /// <param name="saleRecordsVO"></param>
-        /// <returns></returns>
+        /// <param name="saleRecordsVO">판매기록의 데이터가 담긴 saleRecords객체</param>
+        /// <returns>성공 여부 반환</returns>
         public bool InsertSaleRecords(SaleRecordsVO saleRecordsVO) 
         {
             DBConnection connection = new DBConnection();
@@ -107,6 +123,12 @@ namespace GoodeeWay.DAO
             }
         }
 
+        /// <summary>
+        /// 기간별 판매기록을 검색하기 위한 SelectSaleRacordsByPeriod 메서드
+        /// </summary>
+        /// <param name="periodStart">시작기간</param>
+        /// <param name="periodEnd">종료기간</param>
+        /// <returns>검색결과를 컬렉션으로 반환</returns>
         public List<SaleRecordsVO> SelectSaleRacordsByPeriod(DateTime periodStart, DateTime periodEnd)
         {
             List<SaleRecordsVO> lst = new List<SaleRecordsVO>();
@@ -140,7 +162,11 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
-
+        /// <summary>
+        /// 판매번호별 판매기록을 검색하기 위한 SelectSaleRecordsBysalesNo 메서드
+        /// </summary>
+        /// <param name="salesNo">검색할 판매번호</param>
+        /// <returns>검색 결과를 컬렉션으로 반환한다</returns>
         public List<SaleRecordsVO> SelectSaleRecordsBysalesNo(string salesNo)
         {
             List<SaleRecordsVO> lst = new List<SaleRecordsVO>();
@@ -173,7 +199,10 @@ namespace GoodeeWay.DAO
                 throw;
             }
         }
-
+        /// <summary>
+        /// 모든 판매기록을 검색하기위한 메서드
+        /// </summary>
+        /// <returns> 검색결과를 컬렉션으로 반환</returns>
         public List<SaleRecordsVO> OutPutAllSaleRecords()
         {
             List<SaleRecordsVO> lst = new List<SaleRecordsVO>();
@@ -207,10 +236,10 @@ namespace GoodeeWay.DAO
         /// <summary>
         /// 재고별판매량 실 판매량 데이터 추출
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="cmbType"></param>
-        /// <returns></returns>
+        /// <param name="startDate">시작기간</param>
+        /// <param name="endDate">종료기간</param>
+        /// <param name="cmbType">구분</param>
+        /// <returns>검색결과를 컬렉션으로 반환</returns>
         internal List<InventoryTypeSalesVO> InventorySaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
         {
             SqlParameter[] sqlParameters = new SqlParameter[2];
@@ -242,17 +271,24 @@ namespace GoodeeWay.DAO
                             }
                         }
                     }
-                    catch (JsonReaderException)
+                    catch (JsonReaderException )
                     {
+                        throw;
                     }
-                    
-                    
+ 
                 }
             }
 
             return List;
         }
 
+        /// <summary>
+        /// 판매기록별타입 검색
+        /// </summary>
+        /// <param name="startDate">시작기간</param>
+        /// <param name="endDate">종료기간</param>
+        /// <param name="cmbType">구분</param>
+        /// <returns>검색결과를 컬렉션으로 반환</returns>
         internal List<InventoryTypeSalesVO> TypeSaleRecordsTypeSelect(DateTime startDate, DateTime endDate, string cmbType)
         {
             SqlParameter[] sqlParameters = new SqlParameter[2];
@@ -285,6 +321,7 @@ namespace GoodeeWay.DAO
                     }
                     catch (JsonReaderException)
                     {
+                        throw;
                     }
 
 
