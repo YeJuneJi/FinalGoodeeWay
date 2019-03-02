@@ -213,7 +213,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmSandwichMaking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmSandwichMaking";
+            this.Text = "제조현황";
             this.Load += new System.EventHandler(this.FrmSandwichMaking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSB)).EndInit();
             this.movePanel.ResumeLayout(false);
