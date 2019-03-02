@@ -1,204 +1,22 @@
 {
-  "RealMenu": [
-    {
-      "Menu": {
-        "MenuCode": "MNU0000001",
-        "MenuName": "에그마요",
-        "Price": 3000.0,
-        "Kcal": 30,
-        "MenuImage": "System.Drawing.Bitmap",
-        "Division": "0",
-        "AdditionalContext": "에급마요",
-        "DiscountRatio": 0.0
-      },
-      "MenuDetailList": [
-        {
-          "RecipeCode": "RCP0000778",
-          "Amount": 5,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0004",
-          "Compulsory": true,
-          "InventoryName": "파마산오레가노",
-          "Division": "Bread",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000781",
-          "Amount": 5,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0011",
-          "Compulsory": true,
-          "InventoryName": "아메리칸치즈",
-          "Division": "Cheese",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000818",
-          "Amount": 1,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0071",
-          "Compulsory": true,
-          "InventoryName": "양상추",
-          "Division": "Vegetable",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000820",
-          "Amount": 3,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0073",
-          "Compulsory": true,
-          "InventoryName": "오이",
-          "Division": "Vegetable",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000822",
-          "Amount": 6,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0075",
-          "Compulsory": true,
-          "InventoryName": "양파",
-          "Division": "Vegetable",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000824",
-          "Amount": 9,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0077",
-          "Compulsory": true,
-          "InventoryName": "올리브",
-          "Division": "Vegetable",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000826",
-          "Amount": 12,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0079",
-          "Compulsory": true,
-          "InventoryName": "아보카도V",
-          "Division": "Vegetable",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000799",
-          "Amount": 15,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0035",
-          "Compulsory": true,
-          "InventoryName": "스위트칠리",
-          "Division": "Sauce",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000801",
-          "Amount": 33,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0037",
-          "Compulsory": true,
-          "InventoryName": "사우스웨스트",
-          "Division": "Sauce",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000813",
-          "Amount": 15,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0056",
-          "Compulsory": true,
-          "InventoryName": "페퍼로니",
-          "Division": "Topping",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000815",
-          "Amount": 36,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0058",
-          "Compulsory": true,
-          "InventoryName": "에그마요",
-          "Division": "Topping",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000817",
-          "Amount": 48,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0060",
-          "Compulsory": true,
-          "InventoryName": "오믈렛",
-          "Division": "Topping",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000789",
-          "Amount": 33,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0021",
-          "Compulsory": true,
-          "InventoryName": "미트볼",
-          "Division": "Additional",
-          "Name": null,
-          "DiscountRatio": 0.0
-        },
-        {
-          "RecipeCode": "RCP0000791",
-          "Amount": 48,
-          "MenuCode": "MNU0000001",
-          "MenuName": "에그마요",
-          "InventoryTypeCode": "ST0023",
-          "Compulsory": true,
-          "InventoryName": "풀드포크",
-          "Division": "Additional",
-          "Name": null,
-          "DiscountRatio": 0.0
-        }
-      ]
-    },
+  [
     {
       "Menu": {
         "MenuCode": "MNU0000002",
-        "MenuName": "베이컨",
-        "Price": 3000.0,
-        "Kcal": 30,
-        "MenuImage": "System.Drawing.Bitmap",
+        "MenuName": "터키",
+        "Price": 2500.0,
+        "Kcal": 40,
+        "MenuImage": "\\images\\Turkey.jpg",
         "Division": "0",
-        "AdditionalContext": "베이컨",
+        "AdditionalContext": "맛있는 터키",
         "DiscountRatio": 0.0
       },
       "MenuDetailList": [
         {
-          "RecipeCode": "RCP0000827",
+          "RecipeCode": "RCP0002195",
           "Amount": 0,
           "MenuCode": "MNU0000002",
-          "MenuName": "베이컨",
+          "MenuName": "터키",
           "InventoryTypeCode": "ST0001",
           "Compulsory": true,
           "InventoryName": "허니오트",
@@ -207,10 +25,10 @@
           "DiscountRatio": 0.0
         },
         {
-          "RecipeCode": "RCP0000833",
+          "RecipeCode": "RCP0002201",
           "Amount": 0,
           "MenuCode": "MNU0000002",
-          "MenuName": "베이컨",
+          "MenuName": "터키",
           "InventoryTypeCode": "ST0011",
           "Compulsory": true,
           "InventoryName": "아메리칸치즈",
@@ -219,42 +37,91 @@
           "DiscountRatio": 0.0
         },
         {
-          "RecipeCode": "RCP0000870",
+          "RecipeCode": "RCP0002215",
           "Amount": 5,
           "MenuCode": "MNU0000002",
-          "MenuName": "베이컨",
-          "InventoryTypeCode": "ST0071",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0031",
           "Compulsory": true,
-          "InventoryName": "양상추",
-          "Division": "Vegetable",
+          "InventoryName": "랜치드레싱",
+          "Division": "Sauce",
           "Name": null,
           "DiscountRatio": 0.0
         },
         {
-          "RecipeCode": "RCP0000873",
+          "RecipeCode": "RCP0002218",
           "Amount": 5,
           "MenuCode": "MNU0000002",
-          "MenuName": "베이컨",
-          "InventoryTypeCode": "ST0074",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0034",
           "Compulsory": true,
-          "InventoryName": "피망",
-          "Division": "Vegetable",
+          "InventoryName": "허니머스터드",
+          "Division": "Sauce",
           "Name": null,
           "DiscountRatio": 0.0
         },
         {
-          "RecipeCode": "RCP0000876",
+          "RecipeCode": "RCP0002221",
           "Amount": 5,
           "MenuCode": "MNU0000002",
-          "MenuName": "베이컨",
-          "InventoryTypeCode": "ST0077",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0037",
           "Compulsory": true,
-          "InventoryName": "올리브",
-          "Division": "Vegetable",
+          "InventoryName": "사우스웨스트",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002224",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0040",
+          "Compulsory": true,
+          "InventoryName": "사우전아일랜드",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002225",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0041",
+          "Compulsory": true,
+          "InventoryName": "이탈리안드레싱",
+          "Division": "Sauce",
+          "Name": null,
+          "DiscountRatio": 0.0
+        },
+        {
+          "RecipeCode": "RCP0002227",
+          "Amount": 5,
+          "MenuCode": "MNU0000002",
+          "MenuName": "터키",
+          "InventoryTypeCode": "ST0043",
+          "Compulsory": true,
+          "InventoryName": "레드와인식초",
+          "Division": "Sauce",
           "Name": null,
           "DiscountRatio": 0.0
         }
       ]
+    },
+    {
+      "Menu": {
+        "MenuCode": "MNU0000004",
+        "MenuName": "콜라",
+        "Price": 50000.0,
+        "Kcal": 1000,
+        "MenuImage": "\\images\\Soda.jpg",
+        "Division": "3",
+        "AdditionalContext": "맛있는 소우다",
+        "DiscountRatio": 10.0
+      },
+      "MenuDetailList": null
     }
   ]
 }

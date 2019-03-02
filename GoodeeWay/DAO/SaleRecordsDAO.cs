@@ -273,7 +273,6 @@ namespace GoodeeWay.DAO
                     }
                     catch (JsonReaderException )
                     {
-                        throw;
                     }
  
                 }
@@ -321,7 +320,6 @@ namespace GoodeeWay.DAO
                     }
                     catch (JsonReaderException)
                     {
-                        throw;
                     }
 
 
