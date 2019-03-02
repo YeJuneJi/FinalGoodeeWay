@@ -109,12 +109,13 @@ namespace GoodeeWay.BUS
         /// </summary>
         private void DownloadImage()
         {
+            string downloadImage = string.Empty;
             foreach (var name in needsToDownload)
             {
                 try
                 {
                     ImageVO imgVO = new ImagesDAO().SelectImagesByName(name);
-                    MessageBox.Show(imgVO.Name+ " 를 다운로드 합니다.");
+                    downloadImage += imgVO.Name + Environment.NewLine;
                     File.WriteAllBytes(Application.StartupPath + "\\images\\" + imgVO.Name, imgVO.Image);
                 }
                 catch (SqlException ex)
@@ -122,6 +123,7 @@ namespace GoodeeWay.BUS
                     MessageBox.Show(ex.StackTrace);
                 }
             }
+            MessageBox.Show("현재 폴더에없는" + Environment.NewLine+downloadImage +"가 다운로드 되었습니다");
         }
     }
 }
