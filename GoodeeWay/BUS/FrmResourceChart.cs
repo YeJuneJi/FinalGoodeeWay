@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
-//using System.Web.UI.DataVisualization.Charting;
 using System.Windows.Forms;
 
 namespace GoodeeWay.BUS
@@ -83,7 +82,10 @@ namespace GoodeeWay.BUS
 
         }
 
-
+        /// <summary>
+        /// 차트들의 포맷을 공통적으로 만들어주는 CharFormatting 메서드
+        /// </summary>
+        /// <param name="series">포맷을 동일하게 만들고자 하는 Series 배열</param>
         private void ChartFormatting(params System.Windows.Forms.DataVisualization.Charting.Series[] series)
         {
             foreach (var item in series)
