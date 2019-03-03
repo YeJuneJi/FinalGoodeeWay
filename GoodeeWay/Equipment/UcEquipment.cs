@@ -392,7 +392,7 @@ namespace GoodeeWay.Equipment
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]", LinkColor = Color.WhiteSmoke });
+                    pnlPage.Controls.Add(new LinkLabel() { Name = "lik" + (i + 1), Text = "[" + (currentPage + i) + "]", LinkColor = Color.DimGray });
                     pnlPage.Controls[i].Location = new Point(pnlPage.Size.Width / 2 - firstNumLocationLength * (5 - i * 2), 5);
                     pnlPage.Controls[i].Size = new Size(30, 12);
                     pnlPage.Controls[i].Click += new EventHandler(LikButton);
