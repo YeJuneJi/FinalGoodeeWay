@@ -93,9 +93,9 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Change_Theme_52px {
+        internal static System.Drawing.Bitmap change_Theme_52px {
             get {
-                object obj = ResourceManager.GetObject("Change Theme_52px", resourceCulture);
+                object obj = ResourceManager.GetObject("change_Theme_52px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -543,9 +543,9 @@ namespace GoodeeWay.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Sandwich_100px {
+        internal static System.Drawing.Bitmap sandwich_100px_1 {
             get {
-                object obj = ResourceManager.GetObject("Sandwich_100px", resourceCulture);
+                object obj = ResourceManager.GetObject("sandwich_100px_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

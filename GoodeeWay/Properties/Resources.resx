@@ -160,9 +160,6 @@
   <data name="GWMain2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GWMain2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Change Theme_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Change Theme_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sjm_inventory2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sjm_inventory2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -183,9 +180,6 @@
   </data>
   <data name="Cooking_Pot_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\cooking pot_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Sandwich_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\sandwich_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GW31" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GW31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -339,5 +333,11 @@
   </data>
   <data name="C_Sharp_Logo_2_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\c_sharp_logo_2_1.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sandwich_100px_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sandwich_100px_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="change_Theme_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\change_Theme_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -263,7 +263,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.Change_Theme_52px;
+            this.btnUpdate.Image = global::GoodeeWay.Properties.Resources.change_Theme_52px;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUpdate.Location = new System.Drawing.Point(665, 23);
             this.btnUpdate.Name = "btnUpdate";

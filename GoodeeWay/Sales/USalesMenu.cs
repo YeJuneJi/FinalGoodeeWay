@@ -649,7 +649,14 @@ namespace GoodeeWay.Sales
             {
                 if (new SalesMenuDAO().InsertMenu(salesMenuVO))
                 {
-                    pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    try
+                    {
+                        pbxPhoto.Image.Save(Application.StartupPath + salesMenuVO.MenuImageLocation);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("등록된 사진이 없습니다.");
+                    }
                     new BUS.CheckImages().DoAllCheck();
                     sucessMenu = true;
                 }
