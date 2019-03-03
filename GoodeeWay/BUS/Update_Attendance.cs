@@ -16,6 +16,7 @@ namespace GoodeeWay.BUS
 {
     public partial class Update_Attendance : Form
     {
+        //드래그 가능하게 해주는 코드
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -29,12 +30,19 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 수정할 데이터를 근태관리 클래스에서 가져옴
+        /// </summary>
+        /// <param name="vo"></param>
         public Update_Attendance(AttendanceVO vo) : this()
         {
             av = vo;
         }
-
+        /// <summary>
+        /// 폼이 로드될때 수정하려고했던 내용 보여줌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_Attendance_Load(object sender, EventArgs e)
         {
             txtNo.Text = av.No.ToString();
@@ -48,7 +56,11 @@ namespace GoodeeWay.BUS
             dtpOvertime.Text = av.OverTime.ToString();
             txtNote.Text = av.Note;
         }
-
+        /// <summary>
+        /// 수정하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             AttendanceVO vo = new AttendanceVO()
@@ -77,7 +89,11 @@ namespace GoodeeWay.BUS
         {
             Close();
         }
-
+        /// <summary>
+        /// 마우스 드래그 가능하게 하는 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -89,7 +105,11 @@ namespace GoodeeWay.BUS
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-        
+        /// <summary>
+        /// 총 급여 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTotalpay_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtTotalpay.Text, @"[0-9]", "");

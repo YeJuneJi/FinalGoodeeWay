@@ -27,7 +27,9 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 그리드뷰의 총인원 표시
+        /// </summary>
         private void TotalCount()
         {
             lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
@@ -38,13 +40,14 @@ namespace GoodeeWay.BUS
         {
             cbFilter.Text = "사원명";
             lst = empDAO.SelectAll();
-            dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.DataSource = lst;
             ColumnSettingKorean();
             TotalCount();
         }
-
-        private void ColumnSettingKorean() // 컬럼명 한글화
+        /// <summary>
+        /// 컬럼명 한글화
+        /// </summary>
+        private void ColumnSettingKorean()
         {
             dataGridView1.Columns["empno"].HeaderText = "사원번호";
             dataGridView1.Columns["name"].HeaderText = "사원명";
@@ -59,19 +62,31 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["Email"].HeaderText = "이메일주소";
             dataGridView1.Columns["Note"].HeaderText = "비고";
         }
-
+        /// <summary>
+        /// 사원 추가 닫으면 폼이 새로고침 됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e) // 추가
         {
             Insert_Emp ie = new Insert_Emp();
             ie.FormClosed += new FormClosedEventHandler(Employee_Load); // 닫으면 폼이 새로고침됨
             ie.Show();
         }
-
+        /// <summary>
+        /// 새로고침
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e) // 새로고침
         {
             Employee_Load(null, null);
         }
-
+        /// <summary>
+        /// 수정 버튼 폼. 닫을때 새로고침됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e) // 수정버튼
         {
             EmpVO tempVO = new EmpVO()
@@ -107,7 +122,11 @@ namespace GoodeeWay.BUS
             ue.FormClosed += new FormClosedEventHandler(Employee_Load);
             ue.Show();
         }
-
+        /// <summary>
+        /// 선택된 행 삭제 버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e) // 삭제
         {
             DialogResult result = MessageBox.Show("'" + dataGridView1.SelectedCells[1].Value + "' 직원을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
@@ -130,7 +149,11 @@ namespace GoodeeWay.BUS
             }
             Employee_Load(null, null);
         }
-
+        /// <summary>
+        /// 이름 또는 사번으로 검색
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = "";
@@ -154,7 +177,11 @@ namespace GoodeeWay.BUS
             ColumnSettingKorean();
             TotalCount();
         }
-
+        /// <summary>
+        /// 검색할때 버튼말고 엔터쳐도 검색 됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -162,18 +189,30 @@ namespace GoodeeWay.BUS
                 btnSearch_Click(null, null);
             }
         }
-
+        /// <summary>
+        /// 셀 더블 클릭하면 수정할 수 있음
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnUpdate_Click(null, null);
         }
-
+        /// <summary>
+        /// 월 급여 대장 폼 열기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSalary_Click(object sender, EventArgs e)
         {
             Salary s = new Salary();
             s.Show();
         }
-
+        /// <summary>
+        /// 사번으로 검색시 번거롭지 않게 예시로 양식 설정
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Text = "";
@@ -183,7 +222,11 @@ namespace GoodeeWay.BUS
                 txtSearch.Text = "EMP000000";
             }
         }
-
+        /// <summary>
+        /// 엑셀 파일로 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExcel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
@@ -235,7 +278,11 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("엑셀 파일 저장 성공");
             }
         }
-
+        /// <summary>
+        /// 근태관리 폼 열기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAttendance_Click(object sender, EventArgs e)
         {
             Attendance ad = new Attendance();

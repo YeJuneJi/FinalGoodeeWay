@@ -18,6 +18,7 @@ namespace GoodeeWay.BUS
 {
     public partial class Update_Emp : Form
     {
+        //드래그 가능하게 해주는 코드
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -31,12 +32,19 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 수정할 데이터를 인사관리 클래스에서 가져옴
+        /// </summary>
+        /// <param name="vo"></param>
         public Update_Emp(EmpVO vo) : this()
         {
             bo = vo;
         }
-
+        /// <summary>
+        /// 폼이 로드되면 수정하려는 데이터 보여줌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_Emp_Load(object sender, EventArgs e)
         {
             txtNum.Text = bo.Empno;
@@ -57,7 +65,11 @@ namespace GoodeeWay.BUS
         {
             Close();
         }
-
+        /// <summary>
+        /// 수정하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if (!(dtpLeave.Text == "1900-01-01") && dtpLeave.Value < dtpJoin.Value) // 퇴사일이 입사일보다 빠르면 서로 교체
@@ -111,7 +123,11 @@ namespace GoodeeWay.BUS
             }
             return result;
         }
-
+        /// <summary>
+        /// 마우스 드래그 가능하게 하는 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -123,7 +139,11 @@ namespace GoodeeWay.BUS
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-
+        /// <summary>
+        /// 계좌번호 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBankAccountNo_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtBankAccountNo.Text, @"[0-9]|[-]", "");
@@ -132,7 +152,11 @@ namespace GoodeeWay.BUS
                 txtBankAccountNo.Text = bo.BankAccountNo;
             }
         }
-
+        /// <summary>
+        /// 급여 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
@@ -142,7 +166,11 @@ namespace GoodeeWay.BUS
                 txtSalary.Text = bo.Pay.ToString();
             }
         }
-
+        /// <summary>
+        /// 폰번호 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtPhone.Text, @"[0-9]|[-]", "");
@@ -151,7 +179,11 @@ namespace GoodeeWay.BUS
                 txtPhone.Text = bo.Mobile;
             }
         }
-
+        /// <summary>
+        /// 부서명 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtDepartment_Leave(object sender, EventArgs e)
         {
             string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]", "");

@@ -35,19 +35,31 @@ namespace GoodeeWay.BUS
         {
             Close();
         }
-
+        /// <summary>
+        /// 사원번호 검색할 수 있게 새 폼 띄우고 닫힐때 입력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ase = new Attendance_SearchEmpno();
             ase.FormClosed += new FormClosedEventHandler(aseForm_FormClosed);
             ase.Show();
         }
-
+        /// <summary>
+        /// 폼 닫힐때 선택된 사번을 폼에 입력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             txtEmpno.Text = ase.empno;
         }
-
+        /// <summary>
+        /// 다시입력
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtEmpno.Text = "";
@@ -56,7 +68,11 @@ namespace GoodeeWay.BUS
             txtTotal.Text = "0";
             txtBonus.Text = "0";
         }
-
+        /// <summary>
+        /// 급여대장 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             var sv = new SalaryVO()
@@ -78,7 +94,11 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("입력 실패");
             }
         }
-
+        /// <summary>
+        /// 폼 여백 클릭시 총 급여를 계산해줌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Insert_Salary_Click(object sender, EventArgs e)
         {
             if (txtTotal.Text == "")
@@ -92,7 +112,11 @@ namespace GoodeeWay.BUS
             
             
         }
-
+        /// <summary>
+        /// 마우스 드래그 가능
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -106,7 +130,11 @@ namespace GoodeeWay.BUS
 
             base.OnMouseDown(e);
         }
-
+        /// <summary>
+        /// 급여 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtSalary.Text, @"[0-9]", "");
@@ -116,7 +144,11 @@ namespace GoodeeWay.BUS
                 txtSalary.Text = "";
             }
         }
-
+        /// <summary>
+        /// 세금 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtTax_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtTax.Text, @"[0-9]", "");
@@ -126,7 +158,11 @@ namespace GoodeeWay.BUS
                 txtTax.Text = "";
             }
         }
-
+        /// <summary>
+        /// 보너스 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBonus_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtBonus.Text, @"[0-9]", "");

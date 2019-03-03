@@ -29,13 +29,21 @@ namespace GoodeeWay.BUS
             cbFilter.Text = "사원명";
             ColumnSetKor();
         }
-
+        /// <summary>
+        /// 더블클릭하면 해당 사원번호가 데이터에 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             empno = dataGridView1.SelectedCells[0].Value.ToString();
             Close();
         }
-
+        /// <summary>
+        /// 사원또는 이름으로 검색
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             EmpDAO empDAO = new EmpDAO();
@@ -60,7 +68,9 @@ namespace GoodeeWay.BUS
             }
             ColumnSetKor();
         }
-
+        /// <summary>
+        /// 컬럼명 한글화
+        /// </summary>
         private void ColumnSetKor()
         {
             dataGridView1.Columns["empno"].HeaderText = "사원번호";
@@ -76,7 +86,11 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["Email"].HeaderText = "이메일주소";
             dataGridView1.Columns["Note"].HeaderText = "비고";
         }
-
+        /// <summary>
+        /// 엔터쳐도 검색가능
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

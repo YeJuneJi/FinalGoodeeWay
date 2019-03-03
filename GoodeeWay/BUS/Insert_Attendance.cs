@@ -15,13 +15,14 @@ namespace GoodeeWay.BUS
 {
     public partial class Insert_Attendance : Form
     {
+        // 상단 창 드래그 가능하게 함
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
         public readonly int WM_NLBUTTONDOWN = 0xA1;
         public readonly int HT_CAPTION = 0x2;
-
+        
         public Insert_Attendance()
         {
             InitializeComponent();
@@ -34,19 +35,31 @@ namespace GoodeeWay.BUS
         {
             Close();
         }
-
+        /// <summary>
+        /// 사원번호 검색시 새 폼 띄워서 보여주기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ase = new Attendance_SearchEmpno();
             ase.FormClosed += new FormClosedEventHandler(aseForm_FormClosed);
             ase.Show();
         }
-
+        /// <summary>
+        /// 폼 닫을때 선택된 사번이 폼에 입력됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aseForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             txtEmpno.Text = ase.empno;
         }
-        
+        /// <summary>
+        /// 근태기록 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             //dtpTotaltime.Value = TimeSpan.FromHours.dtpTotaltime;
@@ -72,14 +85,22 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("입력 실패");
             }
         }
-
+        /// <summary>
+        /// 다시 입력할 수 있게 텍스트 비움
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtEmpno.Text = "";
             txtTotalpay.Text = "";
             txtNote.Text = "";
         }
-
+        /// <summary>
+        /// 마우스 드래그 가능하게 하는 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Insert_Attendance_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
