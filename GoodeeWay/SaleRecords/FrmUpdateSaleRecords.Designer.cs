@@ -136,7 +136,7 @@
             this.dtpUpdateDate.Location = new System.Drawing.Point(97, 70);
             this.dtpUpdateDate.Name = "dtpUpdateDate";
             this.dtpUpdateDate.Size = new System.Drawing.Size(200, 26);
-            this.dtpUpdateDate.TabIndex = 8;
+            this.dtpUpdateDate.TabIndex = 1;
             // 
             // tbxUpdateName
             // 
@@ -155,7 +155,7 @@
             this.tbxUpdatePrice.Location = new System.Drawing.Point(97, 368);
             this.tbxUpdatePrice.Name = "tbxUpdatePrice";
             this.tbxUpdatePrice.Size = new System.Drawing.Size(200, 26);
-            this.tbxUpdatePrice.TabIndex = 10;
+            this.tbxUpdatePrice.TabIndex = 2;
             // 
             // tbxUpdateDiscount
             // 
@@ -163,7 +163,7 @@
             this.tbxUpdateDiscount.Location = new System.Drawing.Point(97, 406);
             this.tbxUpdateDiscount.Name = "tbxUpdateDiscount";
             this.tbxUpdateDiscount.Size = new System.Drawing.Size(200, 26);
-            this.tbxUpdateDiscount.TabIndex = 11;
+            this.tbxUpdateDiscount.TabIndex = 3;
             // 
             // tbxUpdateduty
             // 
@@ -171,7 +171,7 @@
             this.tbxUpdateduty.Location = new System.Drawing.Point(97, 444);
             this.tbxUpdateduty.Name = "tbxUpdateduty";
             this.tbxUpdateduty.Size = new System.Drawing.Size(200, 26);
-            this.tbxUpdateduty.TabIndex = 12;
+            this.tbxUpdateduty.TabIndex = 4;
             // 
             // tbxUpdateTotal
             // 
@@ -179,7 +179,7 @@
             this.tbxUpdateTotal.Location = new System.Drawing.Point(97, 482);
             this.tbxUpdateTotal.Name = "tbxUpdateTotal";
             this.tbxUpdateTotal.Size = new System.Drawing.Size(200, 26);
-            this.tbxUpdateTotal.TabIndex = 13;
+            this.tbxUpdateTotal.TabIndex = 5;
             // 
             // tbxUpadatePlan
             // 
@@ -187,7 +187,7 @@
             this.tbxUpadatePlan.Location = new System.Drawing.Point(97, 520);
             this.tbxUpadatePlan.Name = "tbxUpadatePlan";
             this.tbxUpadatePlan.Size = new System.Drawing.Size(200, 26);
-            this.tbxUpadatePlan.TabIndex = 14;
+            this.tbxUpadatePlan.TabIndex = 6;
             // 
             // btnUpdate
             // 
@@ -199,7 +199,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(97, 552);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(35, 35);
-            this.btnUpdate.TabIndex = 15;
+            this.btnUpdate.TabIndex = 7;
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 

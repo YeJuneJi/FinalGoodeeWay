@@ -298,7 +298,7 @@
             this.btnClose.Location = new System.Drawing.Point(1147, 7);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(41, 36);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 10;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -312,7 +312,7 @@
             this.btnMinimize.Location = new System.Drawing.Point(1064, 7);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(41, 36);
-            this.btnMinimize.TabIndex = 2;
+            this.btnMinimize.TabIndex = 8;
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
@@ -326,7 +326,7 @@
             this.btnMaximize.Location = new System.Drawing.Point(1106, 7);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(41, 36);
-            this.btnMaximize.TabIndex = 1;
+            this.btnMaximize.TabIndex = 9;
             this.btnMaximize.UseVisualStyleBackColor = true;
             this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 

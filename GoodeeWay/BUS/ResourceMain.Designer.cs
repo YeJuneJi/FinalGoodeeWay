@@ -56,7 +56,7 @@
             this.resourceStart.Location = new System.Drawing.Point(45, 68);
             this.resourceStart.Name = "resourceStart";
             this.resourceStart.Size = new System.Drawing.Size(200, 26);
-            this.resourceStart.TabIndex = 0;
+            this.resourceStart.TabIndex = 4;
             // 
             // resourceEnd
             // 
@@ -64,7 +64,7 @@
             this.resourceEnd.Location = new System.Drawing.Point(272, 68);
             this.resourceEnd.Name = "resourceEnd";
             this.resourceEnd.Size = new System.Drawing.Size(200, 26);
-            this.resourceEnd.TabIndex = 1;
+            this.resourceEnd.TabIndex = 5;
             // 
             // lblPeriod
             // 
@@ -94,7 +94,7 @@
             this.rdoDate.Location = new System.Drawing.Point(58, 19);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(52, 22);
-            this.rdoDate.TabIndex = 8;
+            this.rdoDate.TabIndex = 1;
             this.rdoDate.TabStop = true;
             this.rdoDate.Text = "일별";
             this.rdoDate.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this.rdoMonth.Location = new System.Drawing.Point(133, 19);
             this.rdoMonth.Name = "rdoMonth";
             this.rdoMonth.Size = new System.Drawing.Size(52, 22);
-            this.rdoMonth.TabIndex = 9;
+            this.rdoMonth.TabIndex = 2;
             this.rdoMonth.Text = "월별";
             this.rdoMonth.UseVisualStyleBackColor = true;
             this.rdoMonth.CheckedChanged += new System.EventHandler(this.rdobtn_CheckedChanged);
@@ -119,7 +119,7 @@
             this.rdoYear.Location = new System.Drawing.Point(211, 19);
             this.rdoYear.Name = "rdoYear";
             this.rdoYear.Size = new System.Drawing.Size(52, 22);
-            this.rdoYear.TabIndex = 10;
+            this.rdoYear.TabIndex = 3;
             this.rdoYear.Text = "연별";
             this.rdoYear.UseVisualStyleBackColor = true;
             this.rdoYear.CheckedChanged += new System.EventHandler(this.rdobtn_CheckedChanged);
@@ -135,7 +135,7 @@
             this.btnSearch.Location = new System.Drawing.Point(479, 67);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 28);
-            this.btnSearch.TabIndex = 11;
+            this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "검색";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -230,7 +230,7 @@
             this.btnChart.Location = new System.Drawing.Point(691, 494);
             this.btnChart.Name = "btnChart";
             this.btnChart.Size = new System.Drawing.Size(131, 31);
-            this.btnChart.TabIndex = 21;
+            this.btnChart.TabIndex = 7;
             this.btnChart.Text = "차트로 보기";
             this.btnChart.UseVisualStyleBackColor = false;
             this.btnChart.Click += new System.EventHandler(this.btnChart_Click);

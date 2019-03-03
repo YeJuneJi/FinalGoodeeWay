@@ -57,7 +57,7 @@
             this.tbxSearch.Location = new System.Drawing.Point(12, 92);
             this.tbxSearch.Name = "tbxSearch";
             this.tbxSearch.Size = new System.Drawing.Size(605, 26);
-            this.tbxSearch.TabIndex = 0;
+            this.tbxSearch.TabIndex = 5;
             // 
             // btnResult
             // 
@@ -71,7 +71,7 @@
             this.btnResult.Location = new System.Drawing.Point(630, 83);
             this.btnResult.Name = "btnResult";
             this.btnResult.Size = new System.Drawing.Size(45, 45);
-            this.btnResult.TabIndex = 1;
+            this.btnResult.TabIndex = 6;
             this.btnResult.UseVisualStyleBackColor = true;
             this.btnResult.Click += new System.EventHandler(this.btnResult_Click);
             // 
@@ -83,7 +83,7 @@
             this.rdoMenuCode.Location = new System.Drawing.Point(27, 60);
             this.rdoMenuCode.Name = "rdoMenuCode";
             this.rdoMenuCode.Size = new System.Drawing.Size(75, 24);
-            this.rdoMenuCode.TabIndex = 2;
+            this.rdoMenuCode.TabIndex = 1;
             this.rdoMenuCode.TabStop = true;
             this.rdoMenuCode.Text = "메뉴코드";
             this.rdoMenuCode.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             this.rdoMenuName.Location = new System.Drawing.Point(125, 60);
             this.rdoMenuName.Name = "rdoMenuName";
             this.rdoMenuName.Size = new System.Drawing.Size(63, 24);
-            this.rdoMenuName.TabIndex = 3;
+            this.rdoMenuName.TabIndex = 2;
             this.rdoMenuName.Text = "메뉴명";
             this.rdoMenuName.UseVisualStyleBackColor = true;
             // 
@@ -106,7 +106,7 @@
             this.rdoAdditional.Location = new System.Drawing.Point(212, 60);
             this.rdoAdditional.Name = "rdoAdditional";
             this.rdoAdditional.Size = new System.Drawing.Size(75, 24);
-            this.rdoAdditional.TabIndex = 4;
+            this.rdoAdditional.TabIndex = 3;
             this.rdoAdditional.Text = "부가설명";
             this.rdoAdditional.UseVisualStyleBackColor = true;
             // 
@@ -143,7 +143,7 @@
             this.menuSearchGView.RowTemplate.Height = 23;
             this.menuSearchGView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.menuSearchGView.Size = new System.Drawing.Size(712, 327);
-            this.menuSearchGView.TabIndex = 5;
+            this.menuSearchGView.TabIndex = 50;
             // 
             // lblTotal
             // 
@@ -171,7 +171,7 @@
             this.cbxDivision.Location = new System.Drawing.Point(362, 58);
             this.cbxDivision.Name = "cbxDivision";
             this.cbxDivision.Size = new System.Drawing.Size(121, 28);
-            this.cbxDivision.TabIndex = 8;
+            this.cbxDivision.TabIndex = 4;
             // 
             // btnExcel
             // 
@@ -185,7 +185,7 @@
             this.btnExcel.Location = new System.Drawing.Point(681, 83);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(45, 45);
-            this.btnExcel.TabIndex = 9;
+            this.btnExcel.TabIndex = 7;
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 

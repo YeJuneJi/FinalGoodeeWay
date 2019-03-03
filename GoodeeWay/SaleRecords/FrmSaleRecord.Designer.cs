@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rdoTotalSearch = new System.Windows.Forms.RadioButton();
             this.rdoDate = new System.Windows.Forms.RadioButton();
             this.rdoSalesNo = new System.Windows.Forms.RadioButton();
@@ -40,13 +40,13 @@
             this.salesRecordsGView = new System.Windows.Forms.DataGridView();
             this.excelSaveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblText = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.salesRecordsGView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             this.rdoTotalSearch.Location = new System.Drawing.Point(37, 11);
             this.rdoTotalSearch.Name = "rdoTotalSearch";
             this.rdoTotalSearch.Size = new System.Drawing.Size(75, 24);
-            this.rdoTotalSearch.TabIndex = 33;
+            this.rdoTotalSearch.TabIndex = 1;
             this.rdoTotalSearch.TabStop = true;
             this.rdoTotalSearch.Text = "전체검색";
             this.rdoTotalSearch.UseVisualStyleBackColor = true;
@@ -76,7 +76,7 @@
             this.rdoDate.Location = new System.Drawing.Point(311, 12);
             this.rdoDate.Name = "rdoDate";
             this.rdoDate.Size = new System.Drawing.Size(91, 24);
-            this.rdoDate.TabIndex = 32;
+            this.rdoDate.TabIndex = 3;
             this.rdoDate.Text = "기간별 검색";
             this.rdoDate.UseVisualStyleBackColor = true;
             this.rdoDate.CheckedChanged += new System.EventHandler(this.rdoCheck_CheckedChanged);
@@ -90,7 +90,7 @@
             this.rdoSalesNo.Location = new System.Drawing.Point(171, 11);
             this.rdoSalesNo.Name = "rdoSalesNo";
             this.rdoSalesNo.Size = new System.Drawing.Size(91, 24);
-            this.rdoSalesNo.TabIndex = 31;
+            this.rdoSalesNo.TabIndex = 2;
             this.rdoSalesNo.Text = "번호별 검색";
             this.rdoSalesNo.UseVisualStyleBackColor = true;
             this.rdoSalesNo.CheckedChanged += new System.EventHandler(this.rdoCheck_CheckedChanged);
@@ -103,7 +103,7 @@
             this.tbxSalesNo.Location = new System.Drawing.Point(37, 44);
             this.tbxSalesNo.Name = "tbxSalesNo";
             this.tbxSalesNo.Size = new System.Drawing.Size(425, 26);
-            this.tbxSalesNo.TabIndex = 26;
+            this.tbxSalesNo.TabIndex = 4;
             // 
             // label1
             // 
@@ -124,7 +124,7 @@
             this.dtpPeriodEnd.Location = new System.Drawing.Point(262, 77);
             this.dtpPeriodEnd.Name = "dtpPeriodEnd";
             this.dtpPeriodEnd.Size = new System.Drawing.Size(200, 26);
-            this.dtpPeriodEnd.TabIndex = 23;
+            this.dtpPeriodEnd.TabIndex = 6;
             // 
             // dtpPeriodStart
             // 
@@ -135,7 +135,7 @@
             this.dtpPeriodStart.Location = new System.Drawing.Point(37, 77);
             this.dtpPeriodStart.Name = "dtpPeriodStart";
             this.dtpPeriodStart.Size = new System.Drawing.Size(200, 26);
-            this.dtpPeriodStart.TabIndex = 24;
+            this.dtpPeriodStart.TabIndex = 5;
             // 
             // salesRecordsGView
             // 
@@ -146,23 +146,23 @@
             this.salesRecordsGView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.salesRecordsGView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.salesRecordsGView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.salesRecordsGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(64)))), ((int)(((byte)(65)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.salesRecordsGView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.salesRecordsGView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.salesRecordsGView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.salesRecordsGView.DefaultCellStyle = dataGridViewCellStyle2;
             this.salesRecordsGView.EnableHeadersVisualStyles = false;
             this.salesRecordsGView.GridColor = System.Drawing.Color.DarkGray;
             this.salesRecordsGView.Location = new System.Drawing.Point(12, 146);
@@ -204,6 +204,21 @@
             this.panel1.Size = new System.Drawing.Size(1200, 120);
             this.panel1.TabIndex = 35;
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackgroundImage = global::GoodeeWay.Properties.Resources.Cancel_64px;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(1165, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(35, 35);
+            this.btnClose.TabIndex = 91;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // btnExcel
             // 
             this.btnExcel.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -217,7 +232,7 @@
             this.btnExcel.Location = new System.Drawing.Point(1004, 23);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(160, 70);
-            this.btnExcel.TabIndex = 30;
+            this.btnExcel.TabIndex = 10;
             this.btnExcel.Text = "엑셀";
             this.btnExcel.UseVisualStyleBackColor = true;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
@@ -235,7 +250,7 @@
             this.btnSearch.Location = new System.Drawing.Point(496, 23);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(160, 70);
-            this.btnSearch.TabIndex = 29;
+            this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -253,7 +268,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(665, 23);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(160, 70);
-            this.btnUpdate.TabIndex = 27;
+            this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -271,7 +286,7 @@
             this.btnDelete.Location = new System.Drawing.Point(832, 23);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(160, 70);
-            this.btnDelete.TabIndex = 28;
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -295,21 +310,6 @@
             this.lblText.Size = new System.Drawing.Size(14, 20);
             this.lblText.TabIndex = 36;
             this.lblText.Text = "-";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackgroundImage = global::GoodeeWay.Properties.Resources.Cancel_64px;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(1165, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(35, 35);
-            this.btnClose.TabIndex = 91;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // FrmSaleRecord
             // 

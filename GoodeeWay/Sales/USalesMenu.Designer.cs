@@ -204,7 +204,7 @@
             this.btnSearh.Location = new System.Drawing.Point(1023, 89);
             this.btnSearh.Name = "btnSearh";
             this.btnSearh.Size = new System.Drawing.Size(190, 80);
-            this.btnSearh.TabIndex = 87;
+            this.btnSearh.TabIndex = 13;
             this.btnSearh.Text = "검색";
             this.btnSearh.UseVisualStyleBackColor = true;
             this.btnSearh.Click += new System.EventHandler(this.btnMnuSearch_Click);
@@ -222,7 +222,7 @@
             this.btnInsert.Location = new System.Drawing.Point(822, 6);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(190, 80);
-            this.btnInsert.TabIndex = 86;
+            this.btnInsert.TabIndex = 10;
             this.btnInsert.Text = "등록";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnMnuInsert_Click);
@@ -240,7 +240,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(1023, 6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(190, 80);
-            this.btnUpdate.TabIndex = 84;
+            this.btnUpdate.TabIndex = 11;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnMnuUpdate_Click);
@@ -258,7 +258,7 @@
             this.btnDelete.Location = new System.Drawing.Point(822, 89);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(190, 80);
-            this.btnDelete.TabIndex = 85;
+            this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnMnuDelete_Click);
@@ -302,7 +302,7 @@
             this.tbxDiscountRatio.Location = new System.Drawing.Point(94, 127);
             this.tbxDiscountRatio.Name = "tbxDiscountRatio";
             this.tbxDiscountRatio.Size = new System.Drawing.Size(164, 26);
-            this.tbxDiscountRatio.TabIndex = 70;
+            this.tbxDiscountRatio.TabIndex = 5;
             // 
             // 할인율
             // 
@@ -325,7 +325,7 @@
             this.btnClear.Location = new System.Drawing.Point(519, 124);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(35, 35);
-            this.btnClear.TabIndex = 79;
+            this.btnClear.TabIndex = 9;
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -336,7 +336,7 @@
             this.tbxAddContxt.Multiline = true;
             this.tbxAddContxt.Name = "tbxAddContxt";
             this.tbxAddContxt.Size = new System.Drawing.Size(166, 66);
-            this.tbxAddContxt.TabIndex = 74;
+            this.tbxAddContxt.TabIndex = 7;
             // 
             // pbxPhoto
             // 
@@ -357,7 +357,7 @@
             this.btnPhoto.Location = new System.Drawing.Point(388, 124);
             this.btnPhoto.Name = "btnPhoto";
             this.btnPhoto.Size = new System.Drawing.Size(35, 35);
-            this.btnPhoto.TabIndex = 71;
+            this.btnPhoto.TabIndex = 8;
             this.btnPhoto.UseVisualStyleBackColor = true;
             this.btnPhoto.Click += new System.EventHandler(this.btnPhoto_Click);
             // 
@@ -369,7 +369,7 @@
             this.cbxDivision.Location = new System.Drawing.Point(400, 17);
             this.cbxDivision.Name = "cbxDivision";
             this.cbxDivision.Size = new System.Drawing.Size(121, 28);
-            this.cbxDivision.TabIndex = 72;
+            this.cbxDivision.TabIndex = 6;
             this.cbxDivision.SelectedIndexChanged += new System.EventHandler(this.cbxDivision_SelectedIndexChanged);
             // 
             // tbxKcal
@@ -378,7 +378,7 @@
             this.tbxKcal.Location = new System.Drawing.Point(94, 100);
             this.tbxKcal.Name = "tbxKcal";
             this.tbxKcal.Size = new System.Drawing.Size(164, 26);
-            this.tbxKcal.TabIndex = 69;
+            this.tbxKcal.TabIndex = 4;
             // 
             // tbxPrice
             // 
@@ -386,7 +386,7 @@
             this.tbxPrice.Location = new System.Drawing.Point(94, 73);
             this.tbxPrice.Name = "tbxPrice";
             this.tbxPrice.Size = new System.Drawing.Size(164, 26);
-            this.tbxPrice.TabIndex = 68;
+            this.tbxPrice.TabIndex = 3;
             // 
             // tbxMnuName
             // 
@@ -394,7 +394,7 @@
             this.tbxMnuName.Location = new System.Drawing.Point(94, 45);
             this.tbxMnuName.Name = "tbxMnuName";
             this.tbxMnuName.Size = new System.Drawing.Size(164, 26);
-            this.tbxMnuName.TabIndex = 67;
+            this.tbxMnuName.TabIndex = 2;
             // 
             // msktbxMnuCode
             // 
@@ -403,7 +403,7 @@
             this.msktbxMnuCode.Mask = "MNU0000000";
             this.msktbxMnuCode.Name = "msktbxMnuCode";
             this.msktbxMnuCode.Size = new System.Drawing.Size(164, 26);
-            this.msktbxMnuCode.TabIndex = 66;
+            this.msktbxMnuCode.TabIndex = 1;
             // 
             // label7
             // 
