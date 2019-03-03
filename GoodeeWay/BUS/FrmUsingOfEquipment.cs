@@ -76,6 +76,7 @@ public partial class FrmUsingOfEquipment : Form
             DAO.EquipmentDAO dAO = new DAO.EquipmentDAO();
             equipment = dAO.GroupingDateEquipment(dtpStartDate.Value, dtpEndDate.Value);
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
+            crtEquipment.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
             crtEquipment.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
             
 
@@ -226,7 +227,9 @@ public partial class FrmUsingOfEquipment : Form
             if (hit.ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
             {
                 var yValue = String.Format("{0:#,###}원", Convert.ToInt32((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).YValues[0]));
-                toolTipColumn.Show( yValue, crtEquipment, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                var xValue = DateTime.FromOADate((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).XValue).ToShortDateString();
+
+                toolTipColumn.Show(xValue +"\n"+ yValue, crtEquipment, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
     }
