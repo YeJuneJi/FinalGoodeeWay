@@ -105,7 +105,7 @@ namespace GoodeeWay.DAO
         /// <param name="equipment"></param>
         /// <param name="anotherDate"></param>
         /// <returns></returns>
-        public List<EquipmentVO> SelectSearch(EquipmentVO equipment, DateTime? anotherDate)
+        public List<EquipmentVO> SelectSearch(EquipmentVO equipment, DateTime anotherDate)
         {
             List<EquipmentVO> equipmentLst = new List<EquipmentVO>();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoodeeWay.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.DataVisualization.Charting;
 using System.Windows.Forms;
 
 namespace GoodeeWay.BUS
@@ -24,6 +26,7 @@ public partial class FrmUsingOfEquipment : Form
         public FrmUsingOfEquipment()
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
         private DataTable dataTable; //그리드뷰에 연결시킬 데이터 테이블
         List<VO.EquipmentVO> equipment = new List<VO.EquipmentVO>();
@@ -36,10 +39,13 @@ public partial class FrmUsingOfEquipment : Form
             dgvtotalList.AllowUserToAddRows = false;
             crtEquipment.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             crtEquipment.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            crtEquipment.ChartAreas[0].AxisY.Interval = 300000;
-            crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "MM-dd"; //"dd.MM-hh:mm";
+            crtEquipment.Series[0].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            //crtEquipment.ChartAreas[0].AxisY.Interval = 300000;
+            //crtEquipment.ChartAreas[0].AxisX.LabelStyle.Format = "dd.MM-hh:mm"; //"dd.MM-hh:mm";
             crtEquipment.ChartAreas[0].AxisY.LabelStyle.Format = "0,000원";
             crtEquipment.ChartAreas[0].AxisY.ScaleBreakStyle.Enabled = true;
+            crtEquipment.ChartAreas[0].AxisX.ScaleBreakStyle.Enabled = true;
+
             panelImage.BringToFront();
             panelImage.Image = Image.FromFile(Application.StartupPath + "\\images\\" + "NewGooDeeWay.png");
             DAO.EquipmentDAO dAO = new DAO.EquipmentDAO();
@@ -50,7 +56,7 @@ public partial class FrmUsingOfEquipment : Form
 
             equipment = dAO.EquipmentByDate(dtpStartDate.Value, DateTime.Now);
             crtEquipment.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.RangeColumn;
-            crtEquipment.Series[0].Points.DataBind(equipment, "purchaseDate", "purchasePrice", null);
+            crtEquipment.Series[0].Points.DataBind(equipment, "PurchaseDate", "purchasePrice", null);
             crtEquipment.Series[0].LegendText = "총액";
             DetailInfo();
 

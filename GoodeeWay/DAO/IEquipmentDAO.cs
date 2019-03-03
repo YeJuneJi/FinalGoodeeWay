@@ -18,7 +18,7 @@ namespace GoodeeWay.DAO
         /// 정보에 맞는 컬럼 찾기
         /// </summary>
         /// <returns></returns>
-        List<EquipmentVO> SelectSearch(EquipmentVO equipment, DateTime? anotherDate);
+        List<EquipmentVO> SelectSearch(EquipmentVO equipment, DateTime anotherDate);
         /// <summary>
         /// EquipmentVO타입의 데이터를 DB에 삽입
         /// </summary>

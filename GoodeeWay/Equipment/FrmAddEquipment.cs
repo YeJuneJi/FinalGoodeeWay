@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GoodeeWay.DAO;
+using GoodeeWay.Properties;
 using GoodeeWay.VO;
 
 namespace GoodeeWay.Equipment
@@ -18,6 +19,7 @@ namespace GoodeeWay.Equipment
         public FrmAddEquipment()
         {
             InitializeComponent();
+            this.Icon = Resources.C_Sharp_Logo_2_1;
         }
 
         #region panel이동을 위해서
