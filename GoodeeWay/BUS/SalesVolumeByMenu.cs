@@ -6,7 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using GoodeeWay.VO;
 using Newtonsoft.Json;
 
@@ -29,6 +31,8 @@ namespace GoodeeWay.BUS
         List<SaleRecordsVO> saleRecordsLst;
         Hashtable hashtableForMenu;
         Division divisionMenu;
+        DataTable data;
+        List<string> menus =new List<string>();
 
         private void SalesVolumeByMenu_Load(object sender, EventArgs e)
         {
@@ -37,6 +41,7 @@ namespace GoodeeWay.BUS
             crtSalesVolumeByDate.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             crtSalesVolumeByDate.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             crtSalesVolumeByDate.ChartAreas[0].AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            
             
             dgvRank.AllowUserToAddRows = false;
             panelImage.BringToFront();
@@ -70,11 +75,17 @@ namespace GoodeeWay.BUS
             var hash = HashtableForMenuCount(saleRecordsLst, divisionMenu);
             crtSalesVolumeByDate.Series[0].Points.DataBindXY(hash.Keys, hash.Values);
 
+            foreach (var item in hash)
+            {
+                DictionaryEntry de = (DictionaryEntry)item;
+                menus.Add(de.Key.ToString());
+            }
+
             var top5 = Top5Hash(MenusSelect(divisionMenu));
             CircleChartDisplay(top5);
 
             dgvRank.DataSource = hash;
-            DataTable data;
+           
             data = SelectMenuForTable(hash);
 
             dgvRank.DataSource = SelectMenuForTable(hash);
@@ -255,6 +266,12 @@ namespace GoodeeWay.BUS
             CircleChartDisplay(top5);
             dgvRank.DataSource = SelectMenuForTable(hash);
             dgvRank.Sort(dgvRank.Columns[1], ListSortDirection.Descending);
+            menus.Clear();
+            foreach (var item in hash)
+            {
+                DictionaryEntry de = (DictionaryEntry)item;
+                menus.Add(de.Key.ToString());
+            }
         }
         
         /// <summary>
@@ -300,11 +317,14 @@ namespace GoodeeWay.BUS
             }
             toolTipColumn.RemoveAll();
             previousPosition = currentPosition;
+            
             var hit = crtSalesVolumeByDate.HitTest(currentPosition.X, currentPosition.Y, System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint);
+            HitTestResult hits = hit;
             if (hit.ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
             {
                 var yValue = String.Format("{0:#,###}개", Convert.ToInt32((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).YValues[0]));
-                toolTipColumn.Show(yValue, crtSalesVolumeByDate, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                var xValue = menus[hit.PointIndex];
+                toolTipColumn.Show(xValue +"\n"+ yValue, crtSalesVolumeByDate, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
     }
