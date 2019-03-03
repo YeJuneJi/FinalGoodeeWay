@@ -1,4 +1,5 @@
 ﻿using GoodeeWay.DAO;
+using GoodeeWay.Properties;
 using GoodeeWay.VO;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace GoodeeWay.InventoryBUS
 
         public InventorySales()
         {
+            this.Icon = Resources.C_Sharp_Logo_2_1;
             InitializeComponent();
             dtpStartDate.Value = dtpStartDate.Value.AddDays(-1);
             
