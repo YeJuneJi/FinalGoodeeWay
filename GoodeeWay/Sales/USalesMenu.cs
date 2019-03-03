@@ -882,7 +882,15 @@ namespace GoodeeWay.Sales
         private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation)
         {
             bool result = false;
-            imageLocation = imageLocation.Substring(8);
+            try
+            {
+                imageLocation = imageLocation.Substring(8);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                imageLocation = string.Empty;
+                pbxPhoto.Image = default(Image);
+            }
             if (!(string.IsNullOrEmpty(menuCode) || string.IsNullOrEmpty(menuName) || string.IsNullOrEmpty(price) || string.IsNullOrEmpty(kcal) || string.IsNullOrEmpty(division) || string.IsNullOrEmpty(addContxt) || string.IsNullOrEmpty(discountRatio) || string.IsNullOrEmpty(imageLocation)))
             {
                 result = true;
