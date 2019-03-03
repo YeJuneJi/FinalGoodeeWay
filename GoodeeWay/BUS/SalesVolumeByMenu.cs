@@ -304,7 +304,7 @@ namespace GoodeeWay.BUS
             if (hit.ChartElementType == System.Windows.Forms.DataVisualization.Charting.ChartElementType.DataPoint)
             {
                 var yValue = String.Format("{0:#,###}개", Convert.ToInt32((hit.Object as System.Windows.Forms.DataVisualization.Charting.DataPoint).YValues[0]));
-                toolTipColumn.Show(hit.Series.Name + "\n" + yValue, crtSalesVolumeByDate, new Point(currentPosition.X + 10, currentPosition.Y + 15));
+                toolTipColumn.Show(yValue, crtSalesVolumeByDate, new Point(currentPosition.X + 10, currentPosition.Y + 15));
             }
         }
     }
