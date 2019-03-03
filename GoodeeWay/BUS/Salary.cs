@@ -24,14 +24,22 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 추가 누르면 추가폼 열고 닫으면 폼이 새로고침됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Salary ins = new Insert_Salary();
             ins.FormClosed += new FormClosedEventHandler(Salary_Load); // 닫으면 폼이 새로고침됨
             ins.Show();
         }
-        
+        /// <summary>
+        /// 삭제하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("일련번호 '" + dataGridView1.SelectedCells[0].Value + "'의 기록을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
@@ -54,7 +62,11 @@ namespace GoodeeWay.BUS
             }
             Salary_Load(null, null);
         }
-
+        /// <summary>
+        /// 엑셀 파일로 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExcel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
@@ -106,7 +118,11 @@ namespace GoodeeWay.BUS
                 MessageBox.Show("엑셀 파일 저장 성공");
             }
         }
-
+        /// <summary>
+        /// 폼이 로드될때 데이터들 그리드뷰 띄워줌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Salary_Load(object sender, EventArgs e)
         {
             comboBox1.Text = "2018"; comboBox3.Text = "2019";
@@ -116,7 +132,9 @@ namespace GoodeeWay.BUS
             dataGridView1.DataSource = lst;
             ColumnSetKor();
         }
-
+        /// <summary>
+        /// 컬럼명 한글화
+        /// </summary>
         private void ColumnSetKor()
         {
             dataGridView1.Columns["no"].HeaderText = "일련번호";
@@ -128,7 +146,11 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["payday"].HeaderText = "지급 날짜";
             dataGridView1.Columns["name"].HeaderText = "사원명";
         }
-        
+        /// <summary>
+        /// 검색하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = "";
@@ -136,7 +158,7 @@ namespace GoodeeWay.BUS
             DateTime temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
             DateTime temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-01");
             
-            if (temp1 > temp2)
+            if (temp1 > temp2) // 뒷날짜가 앞날짜보다 이르면 날짜 교체
             {
                 DateTime temp3;
                 temp3 = temp1;
@@ -159,12 +181,20 @@ namespace GoodeeWay.BUS
             dataGridView1.DataSource = lst;
             ColumnSetKor();
         }
-
+        /// <summary>
+        /// 더블클릭하면 수정하기
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnUpdate_Click(null, null);
         }
-
+        /// <summary>
+        /// 수정하기 새로운 폼 띄우고 폼 닫히면 새로고침됨
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             SalaryVO sv = new SalaryVO()

@@ -17,6 +17,7 @@ namespace GoodeeWay.BUS
 {
     public partial class Insert_Emp : Form
     {
+        // 드래그 가능하게 하는 코드
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImport("user32.dll")]
@@ -35,7 +36,11 @@ namespace GoodeeWay.BUS
         {
             Close();
         }
-
+        /// <summary>
+        /// 사원 추가
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e) // insert
         {
             if (check())
@@ -83,7 +88,11 @@ namespace GoodeeWay.BUS
             }
             return result;
         }
-
+        /// <summary>
+        /// 급여란 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtSalary_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(this.txtSalary.Text, @"[0-9]", "");
@@ -93,7 +102,11 @@ namespace GoodeeWay.BUS
                 txtSalary.Text = "";
             }
         }
-
+        /// <summary>
+        /// 은행명 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbBank_Leave(object sender, EventArgs e)
         {
             bool b = true;
@@ -112,7 +125,11 @@ namespace GoodeeWay.BUS
                 cbBank.Text = "";
             }
         }
-
+        /// <summary>
+        /// 직급 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbJob_Leave(object sender, EventArgs e)
         {
             if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장" || cbJob.Text == ""))
@@ -121,7 +138,11 @@ namespace GoodeeWay.BUS
                 cbJob.Text = "";
             }
         }
-
+        /// <summary>
+        /// 이메일 형식 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtEmail_Leave(object sender, EventArgs e)
         {
             if (!(txtEmail.Text == ""))
@@ -134,7 +155,11 @@ namespace GoodeeWay.BUS
                 }
             }
         }
-
+        /// <summary>
+        /// 다시 입력하기 위한 버튼
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtName.Text = "";
@@ -148,7 +173,11 @@ namespace GoodeeWay.BUS
             txtSalary.Text = "";
             dtpJoin.Text = "";
         }
-
+        /// <summary>
+        /// 창 상단 마우스로 드래그가 가능하게 하는 메소드
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -160,7 +189,11 @@ namespace GoodeeWay.BUS
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-
+        /// <summary>
+        /// 폰번호 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtPhone.Text, @"[0-9]|[-]", "");
@@ -169,7 +202,11 @@ namespace GoodeeWay.BUS
                 txtPhone.Text = "";
             }
         }
-
+        /// <summary>
+        /// 계좌번호 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtBankAccountNo_TextChanged(object sender, EventArgs e)
         {
             string str = Regex.Replace(txtBankAccountNo.Text, @"[0-9]|[-]", "");
@@ -178,7 +215,11 @@ namespace GoodeeWay.BUS
                 txtBankAccountNo.Text = "";
             }
         }
-
+        /// <summary>
+        /// 부서명 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtDepartment_Leave(object sender, EventArgs e)
         {
             string str = Regex.Replace(this.txtDepartment.Text, @"[가-힣]+", "");

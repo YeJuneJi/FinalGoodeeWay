@@ -24,12 +24,16 @@ namespace GoodeeWay.BUS
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 근태기록 날짜로 검색
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = "";
 
-            if (dateTimePicker1.Value > dateTimePicker2.Value)
+            if (dateTimePicker1.Value > dateTimePicker2.Value) // 뒤날짜가 앞날짜 보다 이르면 서로 날짜 교체
             {
                 var temp = dateTimePicker1.Value;
                 dateTimePicker1.Value = dateTimePicker2.Value;
@@ -48,7 +52,9 @@ namespace GoodeeWay.BUS
             ColumnSetKorean();
             lblTotalCount.Text = "현재 인원: " + dataGridView1.RowCount.ToString() + "명";
         }
-
+        /// <summary>
+        /// 컬럼명 한글로 변환
+        /// </summary>
         private void ColumnSetKorean()
         {
             dataGridView1.Columns["no"].HeaderText = "번호";
@@ -62,7 +68,11 @@ namespace GoodeeWay.BUS
             dataGridView1.Columns["Note"].HeaderText = "비고";
             dataGridView1.Columns["name"].HeaderText = "사원명";
         }
-
+        /// <summary>
+        /// 추가하기 누르면 새 폼 띄우고 닫을때 이벤트 삽입
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Insert_Attendance ia = new Insert_Attendance();
@@ -74,7 +84,11 @@ namespace GoodeeWay.BUS
         {
             Attendance_Load(null, null);
         }
-        
+        /// <summary>
+        /// 수정하기 누르면 새 폼 띄우고 닫을때 이벤트 삽입
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             AttendanceVO av = new AttendanceVO()
@@ -106,7 +120,11 @@ namespace GoodeeWay.BUS
             ua.FormClosed += new FormClosedEventHandler(Attendance_Load);
             ua.Show();
         }
-
+        /// <summary>
+        /// 선택된 행 삭제
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("일련번호 " + dataGridView1.SelectedCells[0].Value + "번 기록을 정말로 삭제하시겠습니까?", "", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button2);
@@ -129,7 +147,11 @@ namespace GoodeeWay.BUS
             }
             Attendance_Load(null, null);
         }
-
+        /// <summary>
+        /// 엑셀 파일로 저장
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnExcel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
@@ -182,7 +204,11 @@ namespace GoodeeWay.BUS
             }
 
         }
-
+        /// <summary>
+        /// 더블클릭해도 수정이랑 똑같이 되게함
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             btnUpdate_Click(null, null);
