@@ -162,8 +162,6 @@ namespace GoodeeWay.BUS
                 }
             }
             
-
-            //, Percent = Math.Round(((int)hashtableForMenu[item.MenuName] /(float)totalSum), 2)
             return hashtableForMenu;
 
         }
@@ -201,7 +199,7 @@ namespace GoodeeWay.BUS
                     MenuName = item.MenuName,
                     Amount = (int)hashtableForMenu[item.MenuName]
                 });
-                //  tempMenuLst.Add(new ByMenuVO() {MenuName = item.MenuName ,Amount = (int)hashtableForMenu[item.MenuName], Percent = Math.Round(((int)hashtableForMenu[item.MenuName] / (float)totalSum)*100, 2) });
+         
             }
             var top5Rows = (from row in tempMenuLst
                             orderby row.Amount descending
@@ -209,7 +207,6 @@ namespace GoodeeWay.BUS
             Hashtable top5Hash = new Hashtable();
             foreach (var item in top5Rows)
             {
-                // MessageBox.Show(item.MenuName+"\t"+item.Amount+ "\t" +item.Percent);
                 top5Hash.Add(item.MenuName, item.Amount);
             }
 
@@ -230,9 +227,7 @@ namespace GoodeeWay.BUS
             {
                 top5Hash.Add("기타", etcAmount);
             }
-
-
-
+            
             return top5Hash;
         }
 
