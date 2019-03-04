@@ -677,7 +677,14 @@ namespace GoodeeWay.InventoryBUS
         {
             OrderDetailsListDataTable = new OrderDetailsDAO().SelectOrderDetails(dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString());
             dgvNeedInventoryDetailView.DataSource = OrderDetailsListDataTable;
-            Excel.Application excelApp = new Excel.Application();
+            Excel.Application excelApp = null;
+            try
+            {
+                excelApp = new Excel.Application();
+            }
+            catch (Exception)
+            {
+            }
             if (excelApp == null)
             {
                 MessageBox.Show("Excel 응용 프로그램을 찾을 수 없거나, 설치되지 않았습니다.");
@@ -832,7 +839,5 @@ namespace GoodeeWay.InventoryBUS
             btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
         }
-
-        
     }
 }
