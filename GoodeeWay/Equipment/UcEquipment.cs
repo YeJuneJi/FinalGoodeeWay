@@ -248,55 +248,65 @@ namespace GoodeeWay.Equipment
             fileName = FileNameCreate(fileName);
 
 
-            Excel.Application excelApp = new Excel.Application();
-            if (excelApp == null)
-            {
-                MessageBox.Show("Excel응용 프로그램을 찾을수 없거나, 설치되지 않았습니다.");
-                return;
-            }
-
-            Excel.Workbook workbook;
-            Excel.Worksheet sheets;
-
-            object missingVlaue = System.Reflection.Missing.Value;
-            DirectoryInfo directory = new DirectoryInfo(Application.StartupPath);
-
-
-            workbook = excelApp.Workbooks.Open(directory.Parent.Parent.Parent.FullName + @"\Equipments\EquipmentExcel.xls");
-
-
-            sheets = workbook.Sheets.Item[1];
-
-            int writeNum = 0;
-
-            for (int i = 0; i < baseEquipmentLst.Count; i++)
-            {
-                
-                sheets.Cells[i + 5, 1] = baseEquipmentLst[i].EQUCode;
-                sheets.Cells[i + 5, 2] = baseEquipmentLst[i].DetailName;
-                sheets.Cells[i + 5, 3] = baseEquipmentLst[i].Location;
-                sheets.Cells[i + 5, 4] = baseEquipmentLst[i].State;
-                sheets.Cells[i + 5, 5] = baseEquipmentLst[i].PurchasePrice.ToString();
-                sheets.Cells[i + 5, 6] = baseEquipmentLst[i].Note;
-                sheets.Cells[3, 9] = DateTime.Now.ToShortDateString();
-                writeNum++;
-            }
-            
             try
             {
-                workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
+                Excel.Application excelApp = new Excel.Application();
+                if (excelApp == null)
+                {
+                    MessageBox.Show("Excel응용 프로그램을 찾을수 없거나, 설치되지 않았습니다.");
+                    return;
+                }
+
+                Excel.Workbook workbook;
+                Excel.Worksheet sheets;
+
+                object missingVlaue = System.Reflection.Missing.Value;
+                DirectoryInfo directory = new DirectoryInfo(Application.StartupPath);
+
+
+                workbook = excelApp.Workbooks.Open(directory.Parent.Parent.Parent.FullName + @"\Equipments\EquipmentExcel.xls");
+
+
+                sheets = workbook.Sheets.Item[1];
+
+                int writeNum = 0;
+
+                for (int i = 0; i < baseEquipmentLst.Count; i++)
+                {
+
+                    sheets.Cells[i + 5, 1] = baseEquipmentLst[i].EQUCode;
+                    sheets.Cells[i + 5, 2] = baseEquipmentLst[i].DetailName;
+                    sheets.Cells[i + 5, 3] = baseEquipmentLst[i].Location;
+                    sheets.Cells[i + 5, 4] = baseEquipmentLst[i].State;
+                    sheets.Cells[i + 5, 5] = baseEquipmentLst[i].PurchasePrice.ToString();
+                    sheets.Cells[i + 5, 6] = baseEquipmentLst[i].Note;
+                    sheets.Cells[3, 9] = DateTime.Now.ToShortDateString();
+                    writeNum++;
+                }
+
+                try
+                {
+                    workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingVlaue, missingVlaue, missingVlaue, missingVlaue);
+                    MessageBox.Show("저장 성공");
+                }
+                catch (Exception saveExeption)
+                {
+                    MessageBox.Show(saveExeption.Message);
+                    
+                }
+
+                workbook.Close(false, missingVlaue, missingVlaue);
+                excelApp.Quit();
+
+                Marshal.FinalReleaseComObject(sheets);
+                Marshal.FinalReleaseComObject(workbook);
+                Marshal.FinalReleaseComObject(excelApp);
             }
-            catch (Exception saveExeption)
+            catch (Exception)
             {
-                MessageBox.Show(saveExeption.Message);
+                MessageBox.Show("엑셀프로그램이 없습니다. 엑셀을 설치해주세요.");
+                throw;
             }
-
-            workbook.Close(false, missingVlaue, missingVlaue);
-            excelApp.Quit();
-
-            Marshal.FinalReleaseComObject(sheets);
-            Marshal.FinalReleaseComObject(workbook);
-            Marshal.FinalReleaseComObject(excelApp);
 
         }
 
