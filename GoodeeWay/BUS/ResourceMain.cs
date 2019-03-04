@@ -119,15 +119,23 @@ namespace GoodeeWay.BUS
             float rawMaterialCost = 0; //그룹별 원재료비 합을 저장할 변수
             float investSum = 0; //그룹별 총 매출을 저장할 변수.
 
+
+
             //일별 총 매출과 원 재료비 계산을 위한 반복문
+            //var calUnitPrice = from inven in convertInventoryTypetoList
+            //                   join rcv in receivingDetailList
+            //                   on inven.InventoryTypeCode equals rcv.InventoryTypeCode
+            //                   select new
+            //                   {
+            //                       InventoryTypeCode = inven.InventoryTypeCode,
+            //                       UnitPrice = rcv.UnitPrice
+            //                   };
             var calUnitPrice = from inven in convertInventoryTypetoList
                                join rcv in receivingDetailList
                                on inven.InventoryTypeCode equals rcv.InventoryTypeCode
-                               select new
-                               {
-                                   InventoryTypeCode = inven.InventoryTypeCode,
-                                   UnitPrice = rcv.UnitPrice
-                               };
+                               group rcv by rcv.InventoryTypeCode into temp
+                               select new { InventoryTypeCode = temp.Key, Avg = temp.Average(a => a.UnitPrice) };
+
 
             //그룹(일별,월별,년별)에따라 총매출, 원재료비, 비품비, 인사비의 총합을 Linq를 사용하여그룹화한 값을 IEnumarable 타입으로 반환.
             switch (period)
@@ -135,7 +143,7 @@ namespace GoodeeWay.BUS
                 case Period.Date:
                     //일별 총 매출액과 판매물품명을 기간으로 그룹화.
                     var dayPerRealTot = from records in (from saleRecord in saleRecordList
-                                                         where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd
+                                                         where saleRecord.SalesDate >= periodStart && saleRecord.SalesDate <= periodEnd && saleRecord.PaymentPlan != "환불"
                                                          select new { SalesDate = saleRecord.SalesDate.Date, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
                                         group records by records.SalesDate;
                     //일별총 비품비를 기간으로 그룹화.
@@ -169,14 +177,15 @@ namespace GoodeeWay.BUS
                                         {//재료에 해당되는 단가를 일치시킨후
                                             if (menuDetail.InventoryTypeCode.Equals(unitPrice.InventoryTypeCode))
                                             {//원재료비에 단가를 종합한다.
-                                                rawMaterialCost += unitPrice.UnitPrice;
+                                                //rawMaterialCost += unitPrice.UnitPrice ;
+                                                rawMaterialCost += unitPrice.Avg ;
                                             }
                                         }
                                     }
                                 }
                                 else
                                 {//만약 판매메뉴의 구분이 샌드위치가 아니라면 판매메뉴 고유의 가격을 원재료비에 종합한다.
-                                    rawMaterialCost += realMenu.Menu.Price;
+                                    rawMaterialCost += realMenu.Menu.Price * (1 - (40 / 100));
                                 }
                             }
                             #endregion
@@ -212,7 +221,7 @@ namespace GoodeeWay.BUS
 
                 case Period.Month:
                     var monthPerRealTot = from records in (from saleRecord in saleRecordList
-                                                           where saleRecord.SalesDate.Month >= periodStart.Month && saleRecord.SalesDate.Month <= periodEnd.Month
+                                                           where saleRecord.SalesDate.Month >= periodStart.Month && saleRecord.SalesDate.Month <= periodEnd.Month && saleRecord.PaymentPlan != "환불"
                                                            select new { SalesDate = saleRecord.SalesDate.Month, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
                                           group records by records.SalesDate;
 
@@ -246,14 +255,15 @@ namespace GoodeeWay.BUS
                                         {
                                             if (menuDetail.InventoryTypeCode.Equals(unitPrice.InventoryTypeCode))
                                             {
-                                                rawMaterialCost += unitPrice.UnitPrice;
+                                                rawMaterialCost += unitPrice.Avg;
+                                                //rawMaterialCost += unitPrice.UnitPrice;
                                             }
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    rawMaterialCost += realMenu.Menu.Price;
+                                    rawMaterialCost += realMenu.Menu.Price * (1 - (40 / 100));
                                 }
                             }
                             #endregion
@@ -292,7 +302,7 @@ namespace GoodeeWay.BUS
 
                 case Period.Year:
                     var yearPerRealTot = from records in (from saleRecord in saleRecordList
-                                                          where saleRecord.SalesDate.Year >= periodStart.Year && saleRecord.SalesDate.Year <= periodEnd.Year
+                                                          where saleRecord.SalesDate.Year >= periodStart.Year && saleRecord.SalesDate.Year <= periodEnd.Year && saleRecord.PaymentPlan != "환불"
                                                           select new { SalesDate = saleRecord.SalesDate.Year, Stotal = saleRecord.SalesTotal, SitemName = saleRecord.SalesitemName })
                                          group records by records.SalesDate;
 
@@ -325,14 +335,15 @@ namespace GoodeeWay.BUS
                                         {
                                             if (menuDetail.InventoryTypeCode.Equals(unitPrice.InventoryTypeCode))
                                             {
-                                                rawMaterialCost += unitPrice.UnitPrice;
+                                               // rawMaterialCost += unitPrice.UnitPrice;
+                                                rawMaterialCost += unitPrice.Avg;
                                             }
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    rawMaterialCost += realMenu.Menu.Price;
+                                    rawMaterialCost += realMenu.Menu.Price * (1 - (40 / 100));
                                 }
                             }
                             #endregion

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodeeWay", "GoodeeWay\GoodeeWay.csproj", "{DA1CD391-5DF2-454C-A5F5-75D3FB86485A}"
 EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "GWInstaller", "GWInstaller\GWInstaller.aiproj", "{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -18,6 +20,12 @@ Global
 		{DA1CD391-5DF2-454C-A5F5-75D3FB86485A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA1CD391-5DF2-454C-A5F5-75D3FB86485A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA1CD391-5DF2-454C-A5F5-75D3FB86485A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.All|Any CPU.ActiveCfg = DefaultBuild
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.All|Any CPU.Build.0 = DefaultBuild
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.Debug|Any CPU.Build.0 = DefaultBuild
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{8CD99D9A-08B7-4F43-AA75-5FA3385E2022}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
