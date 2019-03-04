@@ -68,6 +68,7 @@ namespace GoodeeWay.BUS
                     MessageBox.Show("저장 실패");
                 }
             }
+            btnClear_Click(null, null);
         }
 
         /// <summary>

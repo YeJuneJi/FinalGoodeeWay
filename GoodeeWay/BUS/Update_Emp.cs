@@ -204,7 +204,8 @@ namespace GoodeeWay.BUS
             if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장" || cbJob.Text == ""))
             {
                 MessageBox.Show(cbJob.Text + "는 존재하지 않는 직급입니다");
-                cbJob.Text = "";
+                cbJob.Text = bo.Job;
+                cbJob.Focus();
             }
         }
         /// <summary>
@@ -227,7 +228,8 @@ namespace GoodeeWay.BUS
             if (b)
             {
                 MessageBox.Show(cbBank.Text + "는 존재하지 않는 은행명입니다");
-                cbBank.Text = "";
+                cbBank.Text = bo.Bank;
+                cbBank.Focus();
             }
         }
     }
