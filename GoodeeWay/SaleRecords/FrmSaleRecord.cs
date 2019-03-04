@@ -318,10 +318,11 @@ namespace GoodeeWay.SaleRecords
                     try
                     {
                         workBook.SaveAs(excelSaveFileDlg.FileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                        MessageBox.Show("저장 성공!");
                     }
                     catch (Exception)
                     {
-                        throw;
+                        MessageBox.Show("저장 실패");
                     }
                     excelApp.Quit();
                     Marshal.FinalReleaseComObject(workSheet);
