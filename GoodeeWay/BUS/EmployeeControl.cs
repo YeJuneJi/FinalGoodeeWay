@@ -230,7 +230,7 @@ namespace GoodeeWay.BUS
         private void btnExcel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("현재 내용을 파일로 저장하시겠습니까?", "", MessageBoxButtons.YesNo);
-
+            
             if (result == DialogResult.Yes)
             {
                 Excel.Application excelApp = new Excel.Application(); // Excel 응용프로그램 객체
@@ -262,7 +262,22 @@ namespace GoodeeWay.BUS
                 }
                 try
                 {
-                    workbook.SaveAs(@"C:\Users\llsw1\Desktop\Employee.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                    string fileName = "인사관리 " + DateTime.Now.ToLongDateString();
+                    saveFileDialog1.FileName = fileName;
+                    saveFileDialog1.InitialDirectory = @"C:\Users\" + Environment.UserName + @"\AppData\GoodeeWay\";
+                    saveFileDialog1.Title = "Excel 저장위치 설정";
+                    saveFileDialog1.DefaultExt = "xls";
+                    saveFileDialog1.Filter = "Xls files(*.xls)|*xls";
+                    saveFileDialog1.CreatePrompt = false;
+                    saveFileDialog1.OverwritePrompt = false;
+                    DialogResult address = saveFileDialog1.ShowDialog();
+                    if (address == DialogResult.OK)
+                    {
+                        fileName = saveFileDialog1.FileName;
+
+                        MessageBox.Show("엑셀 파일 저장 성공");
+                    }
+                    //workbook.SaveAs(@"C:\Users\llsw1\Desktop\Employee.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
                 }
                 catch (Exception)
                 {
@@ -274,8 +289,6 @@ namespace GoodeeWay.BUS
                 Marshal.ReleaseComObject(worksheet);
                 Marshal.ReleaseComObject(workbook);
                 Marshal.ReleaseComObject(excelApp);
-
-                MessageBox.Show("엑셀 파일 저장 성공");
             }
         }
         /// <summary>
