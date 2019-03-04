@@ -264,7 +264,7 @@ namespace GoodeeWay.Equipment
                 DirectoryInfo directory = new DirectoryInfo(Application.StartupPath);
 
 
-                workbook = excelApp.Workbooks.Open(directory.Parent.Parent.Parent.FullName + @"\Equipments\EquipmentExcel.xls");
+                workbook = excelApp.Workbooks.Open(Application.StartupPath+ "\\Excel\\EquipmentExcel.xls");
 
 
                 sheets = workbook.Sheets.Item[1];

@@ -695,7 +695,7 @@ namespace GoodeeWay.InventoryBUS
             Excel.Worksheet worksheet;
             object missingValue = System.Reflection.Missing.Value;
 
-            workbook = excelApp.Workbooks.Open(@"C:\Users\GD4\Desktop\FinalProject\OrderDetails.xlsx");
+            workbook = excelApp.Workbooks.Open(Application.StartupPath + "\\Excel\\OrderDetails.xlsx");
             worksheet = workbook.Sheets.Item[1];
             worksheet.Cells[2, 5] = dgvOrderDetailsList.SelectedRows[0].Cells["발주날짜"].Value.ToString();
             for (int i = 4; i < dgvNeedInventoryDetailView.Rows.Count + 4; i++)
