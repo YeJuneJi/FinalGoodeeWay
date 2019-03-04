@@ -839,5 +839,6 @@ namespace GoodeeWay.InventoryBUS
             btnNewTable.Visible = btnInventoryTypeAdd.Visible = btnUpdate.Visible = btnDelete.Visible = btnRelease.Visible = btnInventoryNewSelect.Visible = false;
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
         }
+
     }
 }

@@ -63,5 +63,10 @@ namespace GoodeeWay.InventoryBUS
             new OrderDetailsDAO().InsertOrderDetails(orderDetailsVOList);
             this.DialogResult = DialogResult.OK;
         }
+
+        private void dgvOrderDetailsAdd_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("숫자만 입력해주세요.");
+        }
     }
 }
