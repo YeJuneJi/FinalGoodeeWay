@@ -51,17 +51,17 @@
             this.btnOrderDisplay = new System.Windows.Forms.Button();
             this.btnReturnAdd = new System.Windows.Forms.Button();
             this.pnbReceiving = new System.Windows.Forms.Panel();
+            this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
             this.btnAddOrder = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnUpdateOrder = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnExcelExport = new System.Windows.Forms.Button();
-            this.btnRelease = new System.Windows.Forms.Button();
             this.btnInventoryNewSelect = new System.Windows.Forms.Button();
-            this.btnReceivingDetailsSave = new System.Windows.Forms.Button();
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnLoadingFile = new System.Windows.Forms.Button();
             this.btnInventoryTypeAdd = new System.Windows.Forms.Button();
+            this.btnRelease = new System.Windows.Forms.Button();
             this.btnSaveOrderDetails = new System.Windows.Forms.Button();
             this.pnmReceiving = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -172,9 +172,9 @@
             this.btnOrderDisplay.ForeColor = System.Drawing.Color.White;
             this.btnOrderDisplay.Image = global::GoodeeWay.Properties.Resources.sjm_calculate;
             this.btnOrderDisplay.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrderDisplay.Location = new System.Drawing.Point(995, 0);
+            this.btnOrderDisplay.Location = new System.Drawing.Point(1016, 0);
             this.btnOrderDisplay.Name = "btnOrderDisplay";
-            this.btnOrderDisplay.Size = new System.Drawing.Size(203, 70);
+            this.btnOrderDisplay.Size = new System.Drawing.Size(182, 70);
             this.btnOrderDisplay.TabIndex = 13;
             this.btnOrderDisplay.Text = "발주내역산출";
             this.btnOrderDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -219,6 +219,24 @@
             this.pnbReceiving.Name = "pnbReceiving";
             this.pnbReceiving.Size = new System.Drawing.Size(1324, 70);
             this.pnbReceiving.TabIndex = 20;
+            // 
+            // btnReceivingDetailsSave
+            // 
+            this.btnReceivingDetailsSave.FlatAppearance.BorderSize = 0;
+            this.btnReceivingDetailsSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnReceivingDetailsSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceivingDetailsSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceivingDetailsSave.ForeColor = System.Drawing.Color.White;
+            this.btnReceivingDetailsSave.Image = global::GoodeeWay.Properties.Resources.sjm_save2;
+            this.btnReceivingDetailsSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReceivingDetailsSave.Location = new System.Drawing.Point(929, 2);
+            this.btnReceivingDetailsSave.Name = "btnReceivingDetailsSave";
+            this.btnReceivingDetailsSave.Size = new System.Drawing.Size(270, 65);
+            this.btnReceivingDetailsSave.TabIndex = 10;
+            this.btnReceivingDetailsSave.Text = "입고내역 저장";
+            this.btnReceivingDetailsSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReceivingDetailsSave.UseVisualStyleBackColor = true;
+            this.btnReceivingDetailsSave.Click += new System.EventHandler(this.btnReceivingDetailsSave_Click);
             // 
             // btnAddOrder
             // 
@@ -310,24 +328,6 @@
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
-            // btnRelease
-            // 
-            this.btnRelease.FlatAppearance.BorderSize = 0;
-            this.btnRelease.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnRelease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelease.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRelease.ForeColor = System.Drawing.Color.White;
-            this.btnRelease.Image = global::GoodeeWay.Properties.Resources.sjm_details;
-            this.btnRelease.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRelease.Location = new System.Drawing.Point(754, -1);
-            this.btnRelease.Name = "btnRelease";
-            this.btnRelease.Size = new System.Drawing.Size(255, 70);
-            this.btnRelease.TabIndex = 14;
-            this.btnRelease.Text = "재고사용내역";
-            this.btnRelease.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRelease.UseVisualStyleBackColor = true;
-            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
-            // 
             // btnInventoryNewSelect
             // 
             this.btnInventoryNewSelect.FlatAppearance.BorderSize = 0;
@@ -345,24 +345,6 @@
             this.btnInventoryNewSelect.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnInventoryNewSelect.UseVisualStyleBackColor = true;
             this.btnInventoryNewSelect.Click += new System.EventHandler(this.btnInventoryNewSelect_Click);
-            // 
-            // btnReceivingDetailsSave
-            // 
-            this.btnReceivingDetailsSave.FlatAppearance.BorderSize = 0;
-            this.btnReceivingDetailsSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnReceivingDetailsSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceivingDetailsSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceivingDetailsSave.ForeColor = System.Drawing.Color.White;
-            this.btnReceivingDetailsSave.Image = global::GoodeeWay.Properties.Resources.sjm_save2;
-            this.btnReceivingDetailsSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReceivingDetailsSave.Location = new System.Drawing.Point(929, 2);
-            this.btnReceivingDetailsSave.Name = "btnReceivingDetailsSave";
-            this.btnReceivingDetailsSave.Size = new System.Drawing.Size(270, 65);
-            this.btnReceivingDetailsSave.TabIndex = 10;
-            this.btnReceivingDetailsSave.Text = "입고내역 저장";
-            this.btnReceivingDetailsSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReceivingDetailsSave.UseVisualStyleBackColor = true;
-            this.btnReceivingDetailsSave.Click += new System.EventHandler(this.btnReceivingDetailsSave_Click);
             // 
             // btnNewTable
             // 
@@ -417,6 +399,24 @@
             this.btnInventoryTypeAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnInventoryTypeAdd.UseVisualStyleBackColor = true;
             this.btnInventoryTypeAdd.Click += new System.EventHandler(this.btnInventoryTypeAdd_Click);
+            // 
+            // btnRelease
+            // 
+            this.btnRelease.FlatAppearance.BorderSize = 0;
+            this.btnRelease.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnRelease.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelease.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRelease.ForeColor = System.Drawing.Color.White;
+            this.btnRelease.Image = global::GoodeeWay.Properties.Resources.sjm_details;
+            this.btnRelease.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRelease.Location = new System.Drawing.Point(754, -1);
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(255, 70);
+            this.btnRelease.TabIndex = 14;
+            this.btnRelease.Text = "재고사용내역";
+            this.btnRelease.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
             // btnSaveOrderDetails
             // 
