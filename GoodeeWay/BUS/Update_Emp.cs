@@ -194,5 +194,41 @@ namespace GoodeeWay.BUS
                 txtDepartment.Focus();
             }
         }
+        /// <summary>
+        /// 직급 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbJob_Leave(object sender, EventArgs e)
+        {
+            if (!(cbJob.Text == "알바" || cbJob.Text == "매니저" || cbJob.Text == "점장" || cbJob.Text == ""))
+            {
+                MessageBox.Show(cbJob.Text + "는 존재하지 않는 직급입니다");
+                cbJob.Text = "";
+            }
+        }
+        /// <summary>
+        /// 은행명 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cbBank_Leave(object sender, EventArgs e)
+        {
+            bool b = true;
+
+            for (int i = 0; i < cbBank.Items.Count; i++)
+            {
+                if ((cbBank.Items[i].ToString() == cbBank.Text)) // 콤보에 있으면
+                {
+                    b = false;
+                }
+            }
+
+            if (b)
+            {
+                MessageBox.Show(cbBank.Text + "는 존재하지 않는 은행명입니다");
+                cbBank.Text = "";
+            }
+        }
     }
 }

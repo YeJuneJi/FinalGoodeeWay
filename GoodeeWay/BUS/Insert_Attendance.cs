@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -110,6 +111,20 @@ namespace GoodeeWay.BUS
 
                 // 타이틀 바의 다운 이벤트처럼 보냄
                 SendMessage(this.Handle, WM_NLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+        /// <summary>
+        /// 급여 유효성검사
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtTotalpay_TextChanged(object sender, EventArgs e)
+        {
+            string str = Regex.Replace(this.txtTotalpay.Text, @"[0-9]", "");
+            if (str.Length > 0)
+            {
+                MessageBox.Show("숫자만 입력가능합니다");
+                txtTotalpay.Text = "";
             }
         }
     }

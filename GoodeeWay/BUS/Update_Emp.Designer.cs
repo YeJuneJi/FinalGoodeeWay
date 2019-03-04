@@ -75,6 +75,7 @@
             this.cbJob.Name = "cbJob";
             this.cbJob.Size = new System.Drawing.Size(100, 25);
             this.cbJob.TabIndex = 117;
+            this.cbJob.Leave += new System.EventHandler(this.cbJob_Leave);
             // 
             // cbBank
             // 
@@ -105,6 +106,7 @@
             this.cbBank.Name = "cbBank";
             this.cbBank.Size = new System.Drawing.Size(100, 25);
             this.cbBank.TabIndex = 116;
+            this.cbBank.Leave += new System.EventHandler(this.cbBank_Leave);
             // 
             // label14
             // 

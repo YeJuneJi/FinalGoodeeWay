@@ -124,6 +124,7 @@
             this.txtTotalpay.Name = "txtTotalpay";
             this.txtTotalpay.Size = new System.Drawing.Size(100, 22);
             this.txtTotalpay.TabIndex = 133;
+            this.txtTotalpay.TextChanged += new System.EventHandler(this.txtTotalpay_TextChanged);
             // 
             // txtEmpno
             // 

@@ -109,8 +109,6 @@ namespace GoodeeWay.BUS
             {
                 txtTotal.Text = (float.Parse(txtBonus.Text) + float.Parse(txtSalary.Text) - float.Parse(txtTax.Text)).ToString();
             }
-            
-            
         }
         /// <summary>
         /// 마우스 드래그 가능
@@ -141,8 +139,9 @@ namespace GoodeeWay.BUS
             if (str.Length > 0)
             {
                 MessageBox.Show("숫자만 입력가능합니다");
-                txtSalary.Text = "";
+                txtSalary.Text = "0";
             }
+            Insert_Salary_Click(null, null);
         }
         /// <summary>
         /// 세금 유효성검사
@@ -155,8 +154,9 @@ namespace GoodeeWay.BUS
             if (str.Length > 0)
             {
                 MessageBox.Show("숫자만 입력가능합니다");
-                txtTax.Text = "";
+                txtTax.Text = "0";
             }
+            Insert_Salary_Click(null, null);
         }
         /// <summary>
         /// 보너스 유효성검사
@@ -169,8 +169,9 @@ namespace GoodeeWay.BUS
             if (str.Length > 0)
             {
                 MessageBox.Show("숫자만 입력가능합니다");
-                txtBonus.Text = "";
+                txtBonus.Text = "0";
             }
+            Insert_Salary_Click(null, null);
         }
     }
 }

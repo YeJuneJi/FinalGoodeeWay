@@ -227,8 +227,8 @@ namespace GoodeeWay.BUS
             {
                 MessageBox.Show("부서명은 한글만 입력가능합니다");
                 txtDepartment.Text = "";
+                txtDepartment.Focus();
             }
-            txtDepartment.Focus();
         }
     }
 }
