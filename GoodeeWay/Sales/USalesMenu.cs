@@ -35,11 +35,14 @@ namespace GoodeeWay.Sales
         List<InventoryTypeVO> inventoryTypeList = new List<InventoryTypeVO>();
         List<SalesMenuVO> salesMenuList = new List<SalesMenuVO>();
 
-        /// 메뉴코드를 수정할 때에 이전 메뉴코드와 새로운 메뉴코드를 비교하기위한 oldMenuCode.</value>
+        /// <value>메뉴코드를 수정할 때에 이전 메뉴코드와 새로운 메뉴코드를 비교하기위한 oldMenuCode.</value>
         string oldMenuCode;
-        /// 구분을 수정할 때에 이전 구분과 새로운 구분을 비교하기위한 oldDivision.</value>
+        /// <value>구분을 수정할 때에 이전 구분과 새로운 구분을 비교하기위한 oldDivision.</value>
         int oldDivision;
         string images = "\\Images\\";
+        /// <summary>
+        /// <c>SalesMenu</c>의 생성자. 컴포넌트를 초기화하고 변수를 초기화하는 생성자
+        /// </summary>
         public USalesMenu()
         {
             InitializeComponent();
@@ -624,8 +627,9 @@ namespace GoodeeWay.Sales
         /// <param name="kcal">Kcal</param>
         /// <param name="division">구분</param>
         /// <param name="addContxt">부가설명</param>
-        /// <param name="ImageLocation">이미지 경로</param>
+        /// <param name="imageLocation">이미지 경로</param>
         /// <param name="sucessMenu">성공여부</param>
+        /// <param name="discountRatio">할인율</param>
         /// <returns>등록 성공 여부를 반환.</returns>
         private bool InsertingMenu(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation, bool sucessMenu)
         {
@@ -721,7 +725,7 @@ namespace GoodeeWay.Sales
         /// 레시피를 등록하기위한 InsertingRecipe 메서드
         /// </summary>
         /// <param name="menuCode">지정된 제품의 레시피를 나타내기위한 메뉴코드</param>
-        /// <param name="sucessRecipe">레시피 등록 성공 여부</param>
+        /// <param name="succRecip">레시피 등록 성공 여부</param>
         /// <returns>레시피 등록 성공 여부 반환.</returns>
         private bool InsertingRecipe(string menuCode, bool succRecip)
         {
@@ -877,7 +881,8 @@ namespace GoodeeWay.Sales
         /// <param name="kcal">Kcal</param>
         /// <param name="division">구분</param>
         /// <param name="addContxt">부가설명</param>
-        /// <param name="ImageLocation">이미지 경로</param>
+        /// <param name="imageLocation">이미지 경로</param>
+        /// <param name="discountRatio">할인율</param>
         /// <returns>유효성검사 성공 여부</returns>
         private bool ValidateNull(string menuCode, string menuName, string price, string kcal, string division, string addContxt, string discountRatio, string imageLocation)
         {
@@ -911,6 +916,7 @@ namespace GoodeeWay.Sales
         /// </summary>
         /// <param name="price">가격</param>
         /// <param name="kcal">Kcal</param>
+        /// <param name="discountRatio">할인율</param>
         /// <returns>유효성검사 성공 여부</returns>
         private bool ValidateType(string price, string kcal, string discountRatio)
         {

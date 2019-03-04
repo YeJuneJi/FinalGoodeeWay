@@ -66,7 +66,7 @@ namespace GoodeeWay.Sales
         }
 
         /// <summary>
-        /// List<SalesMenuVO>를 gridView에 출력해 주기 위한 메서드
+        /// List of SalesMenuVO를 gridView에 출력해 주기 위한 메서드
         /// </summary>
         /// <param name="salesMenus">판매메뉴 리스트를 매개변수로 받아 분석하기위한 변수</param>
         private void ListToGridView(List<SalesMenuVO> salesMenus)
@@ -152,7 +152,7 @@ namespace GoodeeWay.Sales
                         pictureRange.RowHeight = 75.00;
                         Clipboard.SetDataObject(img, true); //Ctrl + C
                         workSheet.Paste(pictureRange, img); //Ctrl + V     
-                        workSheet.Cells[i, 6] = Convert.ToInt32(menuSearchGView.Rows[i - 2].Cells[5].Value);
+                        workSheet.Cells[i, 6] = Convert.ToString(menuSearchGView.Rows[i - 2].Cells[5].Value);
                         workSheet.Cells[i, 7] = menuSearchGView.Rows[i - 2].Cells[6].Value.ToString();
                         ms.Close();
                     }
