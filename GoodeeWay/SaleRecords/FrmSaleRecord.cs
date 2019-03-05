@@ -278,8 +278,25 @@ namespace GoodeeWay.SaleRecords
             {
                 if (MessageBox.Show("정말로 삭제 하시겠습니까?", "", MessageBoxButtons.YesNo) != DialogResult.No)
                 {
-                    new SaleRecordsDAO().DeleteSaleRecordsbysalesNo(saleRecords.SalesNo.ToString());
-                    MessageBox.Show("삭제 성공");
+
+                    try
+                    {
+                        new SaleRecordsDAO().DeleteSaleRecordsbysalesNo(saleRecords.SalesNo.ToString());
+                        MessageBox.Show("삭제 성공");
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Message.Contains("REFERENCE constraint"))
+                        {
+                            MessageBox.Show("제조중인 메뉴가 있습니다.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("삭제 실패");
+                        }
+
+                    }
+                    
                 }
                 OutputAllSaleRecords();
             }
