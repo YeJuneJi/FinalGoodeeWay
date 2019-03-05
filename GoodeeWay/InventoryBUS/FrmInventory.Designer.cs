@@ -661,9 +661,9 @@
             this.pnmInventory.Controls.Add(this.label1);
             this.pnmInventory.Controls.Add(this.dgvInventoryType);
             this.pnmInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnmInventory.Location = new System.Drawing.Point(0, 0);
+            this.pnmInventory.Location = new System.Drawing.Point(0, 70);
             this.pnmInventory.Name = "pnmInventory";
-            this.pnmInventory.Size = new System.Drawing.Size(1324, 725);
+            this.pnmInventory.Size = new System.Drawing.Size(1324, 585);
             this.pnmInventory.TabIndex = 32;
             // 
             // label3
@@ -777,6 +777,7 @@
             this.dgvInventoryType.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventoryType.Size = new System.Drawing.Size(502, 550);
             this.dgvInventoryType.TabIndex = 16;
+            this.dgvInventoryType.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvInventoryType_DataError);
             // 
             // pnmOrder
             // 
@@ -786,9 +787,9 @@
             this.pnmOrder.Controls.Add(this.dgvNeedInventoryDetailView);
             this.pnmOrder.Controls.Add(this.dgvOrderDetailsList);
             this.pnmOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnmOrder.Location = new System.Drawing.Point(0, 70);
+            this.pnmOrder.Location = new System.Drawing.Point(0, 0);
             this.pnmOrder.Name = "pnmOrder";
-            this.pnmOrder.Size = new System.Drawing.Size(1324, 585);
+            this.pnmOrder.Size = new System.Drawing.Size(1324, 725);
             this.pnmOrder.TabIndex = 33;
             // 
             // FrmInventory
@@ -796,11 +797,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.pnmOrder);
+            this.Controls.Add(this.pnmInventory);
             this.Controls.Add(this.pnbReceiving);
             this.Controls.Add(this.MenuPanel);
-            this.Controls.Add(this.pnmInventory);
             this.Controls.Add(this.pnmReceiving);
+            this.Controls.Add(this.pnmOrder);
             this.Name = "FrmInventory";
             this.Size = new System.Drawing.Size(1324, 725);
             this.MenuPanel.ResumeLayout(false);

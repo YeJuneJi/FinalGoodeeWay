@@ -72,6 +72,7 @@
             this.dgvOrderDetailsAdd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOrderDetailsAdd.Size = new System.Drawing.Size(240, 301);
             this.dgvOrderDetailsAdd.TabIndex = 0;
+            this.dgvOrderDetailsAdd.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvOrderDetailsAdd_DataError);
             // 
             // btnAdd
             // 
