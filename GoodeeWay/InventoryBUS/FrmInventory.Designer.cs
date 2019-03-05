@@ -720,7 +720,7 @@
             this.dgvInventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventoryTable.Size = new System.Drawing.Size(669, 550);
             this.dgvInventoryTable.TabIndex = 18;
-            this.dgvInventoryTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventoryTable_CellMouseClick);
+            this.dgvInventoryTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInventoryTable_CellMouseClick);
             this.dgvInventoryTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvInventoryTable_KeyUp);
             // 
             // label1

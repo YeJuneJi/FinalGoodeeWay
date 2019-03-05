@@ -117,7 +117,7 @@ namespace GoodeeWay.BUS
 
                         MessageBox.Show("엑셀 파일 저장 성공");
                     }
-                    //workbook.SaveAs(@"C:\Users\llsw1\Desktop\Salary.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                    workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
                 }
                 catch (Exception)
                 {
@@ -188,8 +188,10 @@ namespace GoodeeWay.BUS
                 comboBox4.Text = strtemp;
             }
 
+            var day = DateTime.DaysInMonth(Int32.Parse(comboBox3.Text), Int32.Parse(comboBox4.Text));
+
             temp1 = DateTime.Parse(comboBox1.Text + "-" + comboBox2.Text + "-01");
-            temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-31");
+            temp2 = DateTime.Parse(comboBox3.Text + "-" + comboBox4.Text + "-" + day);
             lst = sd.Search(temp1, temp2);
             dataGridView1.DataSource = lst;
             ColumnSetKor();

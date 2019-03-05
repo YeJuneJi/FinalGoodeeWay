@@ -473,17 +473,24 @@ namespace GoodeeWay.InventoryBUS
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            InventoryTypeVO inventoryTypeVO = new InventoryTypeVO()
+            if (MaterialClassification.Contains(dgvInventoryType.SelectedRows[0].Cells["재료구분"].Value.ToString()))
             {
-                InventoryTypeCode = dgvInventoryType.SelectedRows[0].Cells["재고종류코드"].Value.ToString(),
-                ReceivingQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["입고정량"].Value.ToString()),
-                MinimumQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["최소재고"].Value.ToString()),
-                InventoryName = dgvInventoryType.SelectedRows[0].Cells["재고명"].Value.ToString(),
-                MaterialClassification = dgvInventoryType.SelectedRows[0].Cells["재료구분"].Value.ToString(),
-            };
+                InventoryTypeVO inventoryTypeVO = new InventoryTypeVO()
+                {
+                    InventoryTypeCode = dgvInventoryType.SelectedRows[0].Cells["재고종류코드"].Value.ToString(),
+                    ReceivingQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["입고정량"].Value.ToString()),
+                    MinimumQuantity = Int32.Parse(dgvInventoryType.SelectedRows[0].Cells["최소재고"].Value.ToString()),
+                    InventoryName = dgvInventoryType.SelectedRows[0].Cells["재고명"].Value.ToString(),
+                    MaterialClassification = dgvInventoryType.SelectedRows[0].Cells["재료구분"].Value.ToString(),
+                };
 
-            new InventoryTypeDAO().InventoryTypeUpdate(inventoryTypeVO);
-            InventoryTypeSelect();
+                new InventoryTypeDAO().InventoryTypeUpdate(inventoryTypeVO);
+                InventoryTypeSelect(); 
+            }
+            else
+            {
+                MessageBox.Show("기존 재료구분 내에서 입력해주세요.\n Bread, Cheese, Additional, Sauce, Topping, Vegetable, Side");
+            }
         }
         #endregion
 
@@ -493,6 +500,10 @@ namespace GoodeeWay.InventoryBUS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        private void dgvInventoryTable_CellMouseClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
         private void dgvInventoryTable_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             InventoryTableRowSelected();
@@ -840,5 +851,6 @@ namespace GoodeeWay.InventoryBUS
             btnAddOrder.Visible = btnUpdateOrder.Visible = btnSaveOrderDetails.Visible = btnExcelExport.Visible = btnOrderDisplay.Visible = true;
         }
 
+        
     }
 }

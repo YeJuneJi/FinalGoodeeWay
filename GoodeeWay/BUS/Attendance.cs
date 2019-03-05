@@ -202,7 +202,7 @@ namespace GoodeeWay.BUS
 
                         MessageBox.Show("엑셀 파일 저장 성공");
                     }
-                    //workbook.SaveAs(@"C:\Users\llsw1\Desktop\Attendance.xls", Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
+                    workbook.SaveAs(fileName, Excel.XlFileFormat.xlWorkbookNormal, null, null, null, null, Excel.XlSaveAsAccessMode.xlExclusive, Excel.XlSaveConflictResolution.xlLocalSessionChanges, missingValue, missingValue, missingValue, missingValue);
                 }
                 catch (Exception)
                 {
