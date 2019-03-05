@@ -16,7 +16,9 @@ namespace GoodeeWay.VO
         /// 메뉴코드
         /// </value>
         private string menuCode;
-
+        /// <value>
+        /// 메뉴코드 Getter와 Settrt
+        /// </value>
         public string MenuCode
         {
             get { return menuCode; }
@@ -27,7 +29,9 @@ namespace GoodeeWay.VO
         /// 메뉴명
         /// </value>
         private string menuName;
-
+        /// <value>
+        /// 메뉴 명 Getter와 Settrt
+        /// </value>
         public string MenuName
         {
             get { return menuName; }
@@ -37,7 +41,9 @@ namespace GoodeeWay.VO
         /// 가격
         /// </value>
         private float price;
-
+        /// <value>
+        /// 가격 Getter와 Settrt
+        /// </value>
         public float Price
         {
             get { return price; }
@@ -47,7 +53,9 @@ namespace GoodeeWay.VO
         /// Kcal
         /// </value>
         private int kcal;
-
+        /// <value>
+        /// Kcal Getter와 Settrt
+        /// </value>
         public int Kcal
         {
             get { return kcal; }
@@ -58,7 +66,9 @@ namespace GoodeeWay.VO
         /// 이미지경로
         /// </value>
         private string menuImageLocation;
-
+        /// <value>
+        /// 이미지경로 Getter와 Settrt
+        /// </value>
         public string MenuImageLocation
         {   
             get { return menuImageLocation; }
@@ -68,8 +78,11 @@ namespace GoodeeWay.VO
         /// <value>
         /// 구분
         /// </value>
+        
         private int division;
-
+        /// <value>
+        /// 구분 Getter와 Settrt
+        /// </value>
         public int Division
         {
             get { return division; }
@@ -79,8 +92,11 @@ namespace GoodeeWay.VO
         /// <value>
         /// 부가내용
         /// </value>
+        
         private string additionalContext;
-
+        /// <value>
+        /// 부가내용 Getter와 Settrt
+        /// </value>
         public string AdditionalContext
         {
             get { return additionalContext; }
@@ -92,6 +108,9 @@ namespace GoodeeWay.VO
         /// </value>
         private float discountRatio;
 
+        /// <value>
+        /// 할인율Getter와 Settrt
+        /// </value>
         public float DiscountRatio
         {
             get { return discountRatio; }

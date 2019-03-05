@@ -93,10 +93,10 @@ namespace GoodeeWay.BUS
                 img.Save(ms, img.RawFormat);
 
                 imgVO.Image = ms.ToArray();
-
                 try
                 {
                     new ImagesDAO().InsertImage(imgVO);
+                    MessageBox.Show(imgVO.Name + " 이(가) 업로드 되었습니다.");
                 }
                 catch (SqlException ex)
                 {
@@ -127,7 +127,6 @@ namespace GoodeeWay.BUS
             {
                 MessageBox.Show("현재 폴더에없는" + Environment.NewLine + downloadImage + "가 다운로드 되었습니다");
             }
-            
         }
     }
 }

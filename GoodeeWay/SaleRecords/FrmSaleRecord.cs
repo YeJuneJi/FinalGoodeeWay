@@ -22,7 +22,9 @@ namespace GoodeeWay.SaleRecords
         DataColumn[] dataColoumns;
         SaleRecordsVO saleRecords;
         string salesItemList;
-
+        /// <summary>
+        /// 생성자
+        /// </summary>
         public FrmSaleRecord()
         {
             InitializeComponent();

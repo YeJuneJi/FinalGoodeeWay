@@ -26,11 +26,21 @@ namespace GoodeeWay.SaleRecords
         private RealMenuVO realMenuVO;
         private decimal totalPrice;
 
+        /// <summary>
+        /// 생성자
+        /// </summary>
         public FrmDetailSaleRecord()
         {
             InitializeComponent();
             this.Icon = Resources.C_Sharp_Logo_2_1;
         }
+        /// <summary>
+        /// 생성자 오버로딩
+        /// </summary>
+        /// <param name="salesNo">판매 번호</param>
+        /// <param name="salesDate">판매일</param>
+        /// <param name="realMenuVO">판매물품명</param>
+        /// <param name="totalPrice">총 가격</param>
         public FrmDetailSaleRecord(int salesNo, DateTime salesDate, RealMenuVO realMenuVO, decimal totalPrice) : this()
         {
             this.salesNo = salesNo;
